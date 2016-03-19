@@ -1,14 +1,4 @@
-﻿- Prefix, indentation based, with optional parentheses for disambiguation.
-- www.dwheeler.com/readable/version02.html 
-- What about inside collections?
-- Easier to read (less visual noise, less intimidating)
-- Implicitly optional, since parentheses can be used for single-line expressions.
-- Can automatically/implictly be used as a command line language. Ex: ls /tmp
-- Rules:
-- Parenthesis can be used for grouping.
-- Arguments are first space separated, then line separated by indentation.
-- Function call with no arguments requires parenthesis for disambiguation.
-- www.infoq.com/presentations/Value-Values
+﻿- www.infoq.com/presentations/Value-Values
 - http://www-formal.stanford.edu/jmc/recursive/recursive.html
 - www.wired.com/2012/06/berkeley-programming-languages/
 - http://tagide.com/blog/2012/03/research-in-programming-languages/

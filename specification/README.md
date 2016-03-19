@@ -7,19 +7,24 @@
 - Mention collection hierarchy (needed because "splice", "get", "traverse" work with any collection), and ":" is part of their syntax to associate a key with a value (quotes left value).
 - Documentation via Python-like docstrings in Markdown.
 - EBNF diagram? http://www.bottlecaps.de/rr/ui
+- Indentation based syntax.
+  - Optional parentheses for grouping.
+  - Arguments are first space-separated, then line-separated by indentation.
+  - Function calls with no arguments requires parentheses for disambiguation.
 
 # Research #
 
-- Built-in parallelism?
+- Command line language? `ls dir`
 - http://www.infoq.com/presentations/Simple-Made-Easy
-- www.infoq.com/presentations/Value-Identity-State-Rich-Hickey
-- Immutability by default. No need for defensive copying (eg "who owns this data"), easier for concurrency, etc. Clojure, Elm, ImmutableJs
+- http://www.infoq.com/presentations/Value-Identity-State-Rich-Hickey
+- Immutability by default? No need for defensive copying (eg "who owns this data"), easier for concurrency, etc. Clojure, Elm, ImmutableJs
 - Transducers = transform + reduce.
   - "the reduce function is the base transformation; any other transformation can be expressed in terms of it (map, filter, etc)"
   - http://jlongster.com/Transducers.js--A-JavaScript-Library-for-Transformation-of-Data
   - http://blog.cognitect.com/blog/2014/8/6/transducers-are-coming
 - Lazy functional style.
   - http://philosopherdeveloper.com/posts/introducing-lazy-js.html
+  - "no iteration takes place until you call each, and no intermediate arrays are created"
   - eager: text.split("\n").slice(0, 5)
   - lazy: Lazy(text).split("\n").take(5)
 - Reactive programming.
