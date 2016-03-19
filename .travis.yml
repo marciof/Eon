@@ -1,0 +1,14 @@
+language: cpp
+script: cmake . && make
+addons:
+ apt:
+   packages:
+   - make
+   - g++
+   - cmake
+   # x86
+   - g++-multilib
+   # x86
+   - libc6-dev-i386
+   # x86
+   - nasm

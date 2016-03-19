@@ -1,0 +1,32 @@
+# To Do #
+
+- Cleanup Scheme:
+  - Simple functional tests with Valgrind.
+  - Fix no output when cwd isn't the source code path.
+  - Move library to a separate directory.
+  - Compile as C++.
+  - Use readline.
+  - Reformat indentation.
+  - Consistent naming.
+  - `#pragma once`
+- Tests with coverage, and continuous integration.
+  - https://autotest.github.io
+  - https://scan.coverity.com
+  - https://travis-ci.org
+- Lint and static analysis.
+  - http://clang-analyzer.llvm.org
+- Clean up, simplify (remove IO wrappers), remove useless TODO comments and documentation, use single-line comments, remove `this->`.
+- Drop Windows support.
+- Logging of long integers.
+- Make warnings fatal.
+- Drop x86 support and switch to x64.
+  - ASFLAGS += -f elf64
+  - CCFLAGS += -m64
+  - LINKFLAGS += -m elf_x86_64
+- Upgrade to Multiboot 2.
+- Inspiration:
+  - http://norvig.com/lispy.html
+  - https://github.com/copy/v86
+  - https://github.com/boynton/scheme
+  - https://github.com/kanaka/mal
+  - http://www.nongnu.org/libunwind/
