@@ -16,6 +16,7 @@
 - Lint and static analysis.
   - http://clang-analyzer.llvm.org
 - Clean up, simplify (remove IO wrappers), remove useless TODO comments and documentation, use single-line comments, remove `this->`.
+- Colored native logging.
 - Drop Windows support.
 - Logging of long integers.
 - Make warnings fatal.

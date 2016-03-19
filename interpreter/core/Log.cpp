@@ -67,8 +67,8 @@ namespace core {
             return;
         }
         
-        /* Reserve 8 char's, which are enough for an 8 bits integer. If it
-           isn't for a full range integer, call recursively until it is. */
+        // Reserve 8 chars, which are enough for an 8 bits integer.
+        // If it isn't for a full range integer, call recursively until it is.
         char byte[sizeof(char) * (8 + 1)];
         ssize_t i = STATIC_ARRAY_LENGTH(byte) - 1 - 1;
         

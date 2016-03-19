@@ -2,13 +2,12 @@
 #include <stdarg.h>
 #include <stddef.h>
 
-
 namespace eon {
 namespace core {
     class Log {
     public:
         enum {
-            TAB_SPACES_WIDTH = 8
+            TAB_SPACES_WIDTH = 4
         };
         
         static Log* get(); // = 0
