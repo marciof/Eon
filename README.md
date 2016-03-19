@@ -12,14 +12,15 @@ apt-get install grub-common xorriso bochs bochs-sdl
 
 # Checklist #
 
-- Keep it simple, and practical.
+- Keep it simple, concise, and practical.
 - Make right things easy (easier than wrong things), encouraged, and the only way.
 - Principle of Least Surprise: "The design should match the user's experience, expectations, and mental models."
 - "Zero-one-infinity rule": no arbitrary limits.
 - Prefer flat over nested. (Eg. prefer object composition over class inheritance.)
 - No undefined behavior.
-- "A programming language is low level when its programs require attention to the irrelevant." (Alan Perlis). Remove any need to have helper scripts auto-generate skeleton or boiler-plate code.
+- "A programming language is low level when its programs require attention to the irrelevant." (Alan Perlis).
 - Low cognitive load and typing difficulty (US keyboard layout, prefer home row keys).
+- http://rigaux.org/language-study/scripting-language/ (Perl: `push @files, map {"$dir/$_"} sort grep {/^access\.log/} readdir DH;`)
 
 # Changelog #
 

@@ -1,8 +1,4 @@
-﻿- Ensure it's short and easy to write
-- http://rigaux.org/language-study/scripting-language/#programs
-- www.paulgraham.com/accgen.html
-- push @files, map {"$dir/$_"} sort grep {/^access\.log/} readdir DH;
-- Prefix, indentation based, with optional parentheses for disambiguation.
+﻿- Prefix, indentation based, with optional parentheses for disambiguation.
 - www.dwheeler.com/readable/version02.html 
 - What about inside collections?
 - Easier to read (less visual noise, less intimidating)
