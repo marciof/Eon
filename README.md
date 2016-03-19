@@ -19,6 +19,7 @@ apt-get install grub-common xorriso bochs bochs-sdl
 - Prefer flat over nested. (Eg. prefer object composition over class inheritance.)
 - No undefined behavior.
 - "A programming language is low level when its programs require attention to the irrelevant." (Alan Perlis). Remove any need to have helper scripts auto-generate skeleton or boiler-plate code.
+- Low cognitive load and typing difficulty (US keyboard layout, prefer home row keys).
 
 # Changelog #
 

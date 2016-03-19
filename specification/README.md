@@ -37,7 +37,6 @@
 - Dynamic function calls.
 - Type identification.
 - Varargs.
-- Low cognitive load and typing difficulty (US keyboard layout, prefer home row keys).
 
 # Scratchpad #
 
