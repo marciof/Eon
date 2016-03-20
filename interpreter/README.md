@@ -9,6 +9,7 @@
   - Reformat indentation.
   - Consistent naming.
   - `#pragma once`
+  - http://matt.might.net/articles/programming-with-continuations--exceptions-backtracking-search-threads-generators-coroutines/
 - Tests with coverage, and continuous integration.
   - https://autotest.github.io
   - https://scan.coverity.com
