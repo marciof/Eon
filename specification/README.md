@@ -14,7 +14,10 @@
 
 # Research #
 
+- Code that returns a single value? Eg. `(map [1 5] '(1))`
+- Readable expression chains? 
 - Command line language? `ls dir`
+- http://www.infoq.com/presentations/Value-Values
 - http://www.infoq.com/presentations/Simple-Made-Easy
 - http://www.infoq.com/presentations/Value-Identity-State-Rich-Hickey
 - Immutability by default? No need for defensive copying (eg "who owns this data"), easier for concurrency, etc. Clojure, Elm, ImmutableJs
@@ -65,4 +68,18 @@ x
 >>> (map [1 5] '(+ _ 1))
 >>> (length [1 5])
 >>> (range from: 1 to: 3)
+
+push @files,
+  map {"$dir/$_"}
+  sort
+  grep {/^access\.log/}
+  readdir DH;
+
+(extend files
+  (map 'i"$dir/$_"
+    (sort
+      (grep m"^access\.log"
+        (readdir DH)))))
+
+read-dir DH | grep r"^access\.log" | sort | map 'i"$dir/$_"
 ```

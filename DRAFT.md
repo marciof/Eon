@@ -1,7 +1,4 @@
-﻿- www.infoq.com/presentations/Value-Values
-- http://www-formal.stanford.edu/jmc/recursive/recursive.html
-- www.wired.com/2012/06/berkeley-programming-languages/
-- http://tagide.com/blog/2012/03/research-in-programming-languages/
+﻿- http://tagide.com/blog/2012/03/research-in-programming-languages/
 - www.javaworld.com/javaworld/jw-03-2012/120315-fatal-exception.html
 - http://steve-yegge.blogspot.com/2007/02/next-big-language.html 
 - http://steve.yegge.googlepages.com/tour-de-babel
