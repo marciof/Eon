@@ -1,12 +1,12 @@
 # To Do #
 
 - Specify splice for each data type, and edge cases (eg. removing a key that doesn't exist).
-- Simplify syntax, don't make it contextual, be easy to analyze and parsed without a symbol table.
 - Specify all values and built-ins, how they are evaluated, and so on. Remove all mentions of "function".
 - Add simple math operators.
 - Mention collection hierarchy (needed because "splice", "get", "traverse" work with any collection), and ":" is part of their syntax to associate a key with a value (quotes left value).
 - Documentation via Python-like docstrings in Markdown.
 - EBNF diagram? http://www.bottlecaps.de/rr/ui
+- List position starts at 1. String length is the number of logical characters, not bytes.
 - Indentation based syntax.
   - Optional parentheses for grouping.
   - Arguments are first space-separated, then line-separated by indentation.
@@ -45,6 +45,7 @@
 - Dynamic function calls.
 - Type identification.
 - Varargs.
+- No null value.
 
 # Scratchpad #
 
