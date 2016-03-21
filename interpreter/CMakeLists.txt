@@ -4,7 +4,7 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -ansi -pedantic-errors -Wall -Wextra -We
 
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${CMAKE_CXX_FLAGS}")
 string(REPLACE "-Weffc++ -Wold-style-cast" ""
-    CMAKE_C_FLAGS ${CMAKE_C_FLAGS})
+    CMAKE_C_FLAGS "${CMAKE_C_FLAGS}")
 
 set(core_sources
     core/Log.cpp
