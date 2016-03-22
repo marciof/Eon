@@ -16,17 +16,7 @@
 - http://www.jamesmolloy.co.uk/tutorial_html/4.-The%20GDT%20and%20IDT.html
 - http://stakface.com/nuggets/index.php?id=11&replyTo=0
 - http://www.osdever.net/tutorials/view/memory-management-1
-- Operating Systems / Kernels:
-- https://github.com/runtimejs/runtime
-- http://www.minix3.org/
-- http://sourceforge.net/projects/viridis/
-- http://github.com/giannitedesco/scaraOS
-- http://www.whitix.org/
-- http://sites.google.com/site/scorchopsys/
-- http://common-lisp.net/project/movitz/
-- http://sourceforge.net/projects/theosperiment/
-- http://en.wikipedia.org/wiki/Plan_9_from_Bell_Labs#Design_concepts
-- https://github.com/google/sanitizers
+- http://www.minix3.org
 
 ```
 # TODO: Document.

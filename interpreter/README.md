@@ -14,6 +14,9 @@
   - https://autotest.github.io
   - https://scan.coverity.com
   - https://travis-ci.org
+  - https://github.com/andrewrk/malcheck
+  - https://github.com/google/sanitizers
+  - Valgrind
 - Lint and static analysis.
   - http://clang-analyzer.llvm.org
 - Clean up, simplify (remove IO wrappers), remove useless TODO comments and documentation, use single-line comments, remove `this->`.

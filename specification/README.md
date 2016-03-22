@@ -14,6 +14,7 @@
 
 # Research #
 
+- Unquoted map keys, quoted keyword args?
 - Code that returns a single value? Eg. `(map [1 5] '(1))`
 - Readable expression chains? 
 - Command line language? `ls dir`
