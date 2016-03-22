@@ -1,23 +1,11 @@
 # To Do #
 
-- Cleanup Scheme:
-  - Simple functional tests with Valgrind.
-  - Fix no output when cwd isn't the source code path.
-  - Move library to a separate directory.
-  - Compile as C++.
-  - Use readline.
-  - Reformat indentation.
-  - Consistent naming.
-  - `#pragma once`
-  - http://matt.might.net/articles/programming-with-continuations--exceptions-backtracking-search-threads-generators-coroutines/
-- Tests with coverage, and continuous integration.
+- Tests, coverage, lint, static analysis, continuous integration, memory check.
   - https://autotest.github.io
   - https://scan.coverity.com
   - https://travis-ci.org
   - https://github.com/andrewrk/malcheck
   - https://github.com/google/sanitizers
-  - Valgrind
-- Lint and static analysis.
   - http://clang-analyzer.llvm.org
 - Clean up, simplify (remove IO wrappers), remove useless TODO comments and documentation, use single-line comments, remove `this->`.
 - Colored native logging.
@@ -29,7 +17,20 @@
   - CCFLAGS += -m64
   - LINKFLAGS += -m elf_x86_64
 - Upgrade to Multiboot 2.
-- Inspiration:
+- Memory management:
+  - http://www.jamesmolloy.co.uk/tutorial_html/4.-The%20GDT%20and%20IDT.html
+  - http://www.osdever.net/tutorials/view/memory-management-1
+  - http://www.osdever.net/bkerndev/Docs/gdt.htm
+- Cleanup Scheme:
+  - Simple functional tests with Valgrind.
+  - Fix no output when cwd isn't the source code path.
+  - Move library to a separate directory.
+  - Compile as C++.
+  - Use readline.
+  - Reformat indentation.
+  - Consistent naming.
+  - `#pragma once`
+  - http://matt.might.net/articles/programming-with-continuations--exceptions-backtracking-search-threads-generators-coroutines/
   - http://norvig.com/lispy.html
   - https://github.com/copy/v86
   - https://github.com/boynton/scheme
