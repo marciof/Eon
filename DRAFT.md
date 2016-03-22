@@ -3,19 +3,9 @@
 - So that they don't need to call System::stop() directly, for example (e.g. calls to Log::error will be converted to an exception throw).
 - Remove calls to System::get_instance() and make everything an object/class to remove globals and reduce dependencies?
 - Private constructor for singletons?
-- Resolve non-source code related TODO's.
-- Document only what's need. Document log's format string grammar. Also check for string end whenever ++format.
-- Is the same dtor/obj registered twice for at-exit?
 - Check and write down the difference between *(.rodata*) and *(.rodata).
-- http://www.minix3.org
 
 ```
-# TODO: Document.
-# TODO: Function definition helper (named arguments, etc).
-# TODO: Enforce types, values and number of parameters.
-# TODO: Document that boolean operators short-circuit.
-# TODO: Accept a variable number of arguments for some boolean operators.
-
 # TODO: Accept an optional scope parameter?
 # TODO: Evaluate arguments?
 (put (get scopes 1)

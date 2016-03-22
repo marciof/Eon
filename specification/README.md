@@ -1,5 +1,6 @@
 # To Do #
 
+- Code evaluation: whole list quoted as new scope (map keys aren't).
 - Specify splice for each data type, and edge cases (eg. removing a key that doesn't exist).
 - Specify all values and built-ins, how they are evaluated, and so on. Remove all mentions of "function".
 - Add simple math operators.
@@ -51,7 +52,7 @@
 # Scratchpad #
 
 ```
->>> {x: 1 y: 5} ## map
+>>> {'x: 1 'y: 5} ## map
 {x: 1 y: 5}
 >>> {1 5 5} ## set
 {1 5}
@@ -82,6 +83,13 @@ push @files,
     (sort
       (grep m"^access\.log"
         (readdir DH)))))
+
+extend files
+  pipe
+    readdir DH
+    grep m"^access\.log"
+    sort
+    map 'i"$dir/$_"
 
 read-dir DH | grep r"^access\.log" | sort | map 'i"$dir/$_"
 ```
