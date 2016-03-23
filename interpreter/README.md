@@ -18,6 +18,7 @@
   - CCFLAGS += -m64
   - LINKFLAGS += -m elf_x86_64
 - Upgrade to Multiboot 2.
+- Use exceptions to reduce coupling between components? Eg. no need to call System::stop() directly, calls to Log::error() will throw an exception.
 - Memory management:
   - http://www.minix3.org
   - http://www.jamesmolloy.co.uk/tutorial_html/4.-The%20GDT%20and%20IDT.html

@@ -1,11 +1,4 @@
-﻿- Don't make a copy of video/rows/columns in the VGA text mode module.
-- Use exceptions to reduce dependency coupling between System components (e.g. Memory, Log).
-- So that they don't need to call System::stop() directly, for example (e.g. calls to Log::error will be converted to an exception throw).
-- Remove calls to System::get_instance() and make everything an object/class to remove globals and reduce dependencies?
-- Private constructor for singletons?
-- Check and write down the difference between *(.rodata*) and *(.rodata).
-
-```
+﻿```
 # TODO: Accept an optional scope parameter?
 # TODO: Evaluate arguments?
 (put (get scopes 1)

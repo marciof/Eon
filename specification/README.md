@@ -15,7 +15,8 @@
 
 # Research #
 
-- Unquoted map keys, quoted keyword args?
+- Make lists accept pairs? For defining parameter lists with optional typing and default arguments. [] = ordered map, {} = unordered map/set
+- Unquoted map keys, quoted keyword args? Quoted is more consistent and convenient (`let`, map literals, etc).
 - Code that returns a single value? Eg. `(map [1 5] '(1))`
 - Readable expression chains? 
 - Command line language? `ls dir`
@@ -44,6 +45,7 @@
 - Easy list, map, set and code literals. 
 - Lazy arguments.
 - Keyword arguments.
+- Parameters with optional typing.
 - Dynamic function calls.
 - Type identification.
 - Varargs.
@@ -54,13 +56,15 @@
 ```
 >>> {'x: 1 'y: 5} ## map
 {x: 1 y: 5}
->>> {1 5 5} ## set
+>>> {1 5 5} ## set (map)
 {1 5}
->>> {1 "x": "x"} ## map/set
+>>> {1 "x": "x"}
 {1 "x": "x"}
->>> [+ 1 5] ## list
+>>> [+ 1 5] ## list (ordered map)
 [+ 1 5]
->>> '(+ 1 5) ## code
+>>> [1 2 3 'x: y]
+[1 2 3 'x: y]
+>>> '(+ 1 5) ## code (list)
 (+ 1 5)
 >>> (+ 1 5) ## code evaluate
 6
