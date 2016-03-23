@@ -17,7 +17,7 @@ namespace x86 {
 namespace vga {
 namespace text_mode {
 
-    const graphics::Memory_Map* _gfx = NULL;
+    static const graphics::Memory_Map* _gfx = NULL;
     static size_t _row = 0;
     static size_t _column = 0;
     static uint8_t _color_code = ENCODE_COLOR(WHITE, BLACK);
@@ -66,15 +66,13 @@ namespace text_mode {
     
     void initialize() {
         _gfx = graphics::get_memory_map();
-        
+
+        crt::enable_cursor(false);
+        clear_screen();
+        crt::move_cursor(_row, _column);
+        attribute::enable_blink_mode(false);
         crt::enable_color_mode(_gfx->is_color);
         general::enable_color_mode(_gfx->is_color);
-
-        clear_screen();
-        
-        crt::move_cursor(0, 0);
-        crt::enable_cursor(false);
-        attribute::enable_blink_mode(false);
     }
     
     
