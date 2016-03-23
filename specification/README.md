@@ -15,11 +15,6 @@
 
 # Research #
 
-- Make lists accept pairs? For defining parameter lists with optional typing and default arguments. [] = ordered map, {} = unordered map/set
-- Unquoted map keys, quoted keyword args? Quoted is more consistent and convenient (`let`, map literals, etc).
-- Code that returns a single value? Eg. `(map [1 5] '(1))`
-- Readable expression chains? 
-- Command line language? `ls dir`
 - http://www.infoq.com/presentations/Value-Values
 - http://www.infoq.com/presentations/Simple-Made-Easy
 - http://www.infoq.com/presentations/Value-Identity-State-Rich-Hickey
@@ -28,16 +23,10 @@
   - "the reduce function is the base transformation; any other transformation can be expressed in terms of it (map, filter, etc)"
   - http://jlongster.com/Transducers.js--A-JavaScript-Library-for-Transformation-of-Data
   - http://blog.cognitect.com/blog/2014/8/6/transducers-are-coming
-- Lazy functional style.
-  - http://philosopherdeveloper.com/posts/introducing-lazy-js.html
-  - "no iteration takes place until you call each, and no intermediate arrays are created"
-  - eager: text.split("\n").slice(0, 5)
-  - lazy: Lazy(text).split("\n").take(5)
 - Reactive programming.
   - https://gist.github.com/staltz/868e7e9bc2a7b8c1f754
   - count clicks stream eg: [---c----c--c->], map (1 each c), [---1----1--1->], scan(+), [---1----2--3->]
-- http://blog.fogus.me/2011/09/08/10-technical-papers-every-programmer-should-read-at-least-twice/
-- Look for best and worst features of other programming languages. Check JavaScript, Clojure, Python, Perl, Ruby, Haskell, Io, Rust, Erlang, Smalltalk, Java, Scheme, Go, ML, Lua.
+- Look for best/worst features of other languages: JavaScript, Clojure, Python, Perl, Ruby, Haskell, Io, Rust, Erlang, Smalltalk, Java, Scheme, Go, ML, Lua.
 
 # Checklist #
 
@@ -46,10 +35,12 @@
 - Lazy arguments.
 - Keyword arguments.
 - Parameters with optional typing.
+- Varargs.
 - Dynamic function calls.
 - Type identification.
-- Varargs.
 - No null value.
+- Shell language.
+- Lazy functional. Eg. lazy.js, "no iteration takes place until you call each, and no intermediate arrays are created", `Lazy(txt).split("\n").take(5)`
 
 # Scratchpad #
 
@@ -74,7 +65,7 @@ x
 5
 >>> (map [1 5] '(+ _ 1))
 >>> (length [1 5])
->>> (range from: 1 to: 3)
+>>> (range 'from: 1 'to: 3)
 
 push @files,
   map {"$dir/$_"}
@@ -82,18 +73,10 @@ push @files,
   grep {/^access\.log/}
   readdir DH;
 
-(extend files
-  (map 'i"$dir/$_"
-    (sort
-      (grep m"^access\.log"
-        (readdir DH)))))
-
 extend files
   pipe
     readdir DH
     grep m"^access\.log"
     sort
     map 'i"$dir/$_"
-
-read-dir DH | grep r"^access\.log" | sort | map 'i"$dir/$_"
 ```
