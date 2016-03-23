@@ -1,22 +1,4 @@
 ﻿```
-# TODO: Accept an optional scope parameter?
-# TODO: Evaluate arguments?
-(put (get scopes 1)
-    'get-argument
-    '(get (get scopes 2)
-        (- (get (get scopes 1) 2) 1)))
-
-(put (get scopes 1)
-    'evaluate
-    '((get-argument 1)))
-
-# TODO: Enforce it's not re-declared.
-(put (get scopes 1)
-    'var
-    '(put (get scopes 1)
-        (get-argument 1)
-        (evaluate (get-argument 2))))
-
 (var Boolean (identify (= 0 0)))
 (var List (identify '()))
 (var Map (identify []))
@@ -26,8 +8,6 @@
 (var Symbol (identify 'symbol))
 (var Text (identify ""))
 
-(var true (= 0 0))
-(var false (= -1 1))
 (var infinity (/ 1 0.(0)1))
 
 (var count '(traverse (evaluate (get-argument 1))))

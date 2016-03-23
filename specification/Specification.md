@@ -23,27 +23,36 @@ A package is a set of zero or more modules and/or packages with a valid *Symbol*
 
 A boolean is a binary logical value that can only be either *true* or *false*.
 
-## Code ##
+## Function ##
 
-...
+A function is a list composed of a function followed by zero or more expression arguments.
 
 ### Evaluation ###
 
-1. Create a new scope list composed of the list itself in the first position, followed by the arguments.
-2. Evaluate the list within the new scope, and return the result.
+1. Create a new scope composed of the arguments, each one deferred.
+2. Evaluate the function within the new scope, and return the result.
 
 ### Examples ###
 
 ```
->>> (set 'double '(* ((get 2)) 2))
-(* ((get 2)) 2)
+>>> (set 'double '(* 2 ((get 1))))
+(* 2 ((get 1)))
 >>> (double 4)
 8
 ```
 
 ## List ##
 
-A list is a sequence of elements.
+A list is a sequence of zero or more elements.
+
+### Examples ###
+
+```
+>>> ["x" "y"]
+["x" "y"]
+>>> [1 2 3 'key: 'value]
+[1 2 3 'key: 'value]
+```
 
 ## Map ##
 
@@ -178,7 +187,7 @@ Creates a snapshot of the current control flow (also known as a continuation), o
 (+ 1 x)
 >>> (defer (+ 1 x))
 (+ 1 x)
->>> (defer (+ 1 (eval x)) 'eval)
+>>> (defer (+ 1 (escape x)) 'escape)
 (+ 1 2)
 ```
 
@@ -275,7 +284,7 @@ When the collection is a map, if a key from a new key/value pair being added is 
 ["x" "y" "z"]
 
 # Assign.
->>> (splice {} [x: 3])
+>>> (splice {} ['x: 3])
 [x: 3]
 >>> x
 3

@@ -1,0 +1,8 @@
+(splice {} [
+  set: '(splice {} [
+    ((get 1)): ((get 2))
+  ])
+])
+
+(set 'true (= 0 0))
+(set 'false (= 0 1))
