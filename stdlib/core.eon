@@ -6,3 +6,4 @@
 
 (set 'true (= 0 0))
 (set 'false (= 0 1))
+(set 'infinity (/ 1 0.(0)1))

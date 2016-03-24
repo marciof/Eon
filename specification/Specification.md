@@ -27,7 +27,7 @@ A boolean is a binary logical value that can only be either *true* or *false*.
 
 A function is a list composed of a function followed by zero or more expression arguments. It extends the *List* type.
 
-### Evaluation ###
+### Function Call ###
 
 1. Create a new scope composed of the arguments, each one deferred.
 2. Evaluate the function within the new scope, and return the result.
@@ -54,19 +54,21 @@ A list is a sequence of elements. It extends the *Map* type by associating conse
 ["x" "y"]
 >>> [1 2 3 'key: 'value]
 [1 2 3 key: value]
+>>> ['name: "Bob"]
+[name: "Bob"]
 ```
 
 ## Map ##
 
-A map is a collection of unique keys and of values, where each unique key is associated with a single value.
+A map is a collection of unique keys and of values, where each unique key is associated with a single value. If a given key has no associated value, then it's handled as in a set, where the key and value are one and the same.
 
 ### Examples ###
 
 ```
 >>> {}
 {}
->>> {'name: "John" 'age: 30}
-{name: "John" age: 30}
+>>> {'name: "Bob" 'age: 30}
+{name: "Bob" age: 30}
 >>> {"x" "y"}
 {"x" "y"}
 >>> {1 2 3 'key: 'value}
@@ -77,21 +79,9 @@ A map is a collection of unique keys and of values, where each unique key is ass
 
 A number is a quantity.
 
-The evaluator accepts a single number, and returns it unchanged.
-
-```
-(Number number:Number) : Number
-```
-
 ## Set ##
 
 A set is a collection of unique elements.
-
-The evaluator accepts zero or more sets, and merges them into a new empty set.
-
-```
-(Set set:Set ...) : Set
-```
 
 ## Symbol ##
 

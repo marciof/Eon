@@ -8,8 +8,6 @@
 (var Symbol (identify 'symbol))
 (var Text (identify ""))
 
-(var infinity (/ 1 0.(0)1))
-
 (var count '(traverse (evaluate (get-argument 1))))
 
 (var call
