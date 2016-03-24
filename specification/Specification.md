@@ -27,10 +27,7 @@ A boolean is a binary logical value that can only be either *true* or *false*.
 
 A function is a list composed of a function followed by zero or more expression arguments. It extends the *List* type.
 
-### Function Call ###
-
-1. Create a new scope composed of the arguments, each one deferred.
-2. Evaluate the function within the new scope, and return the result.
+Calling a function creates a new scope composed of the arguments, each one deferred, and is then evaluated within the new scope, returning the result.
 
 ### Examples ###
 
@@ -52,15 +49,19 @@ A list is a sequence of elements. It extends the *Map* type by associating conse
 []
 >>> ["x" "y"]
 ["x" "y"]
->>> [1 2 3 'key: 'value]
-[1 2 3 key: value]
+>>> [1 2 2 'key: 'value]
+[1 2 2 key: value]
 >>> ['name: "Bob"]
 [name: "Bob"]
 ```
 
 ## Map ##
 
-A map is a collection of unique keys and of values, where each unique key is associated with a single value. If a given key has no associated value, then it's handled as in a set, where the key and value are one and the same.
+A map is a collection of unique keys and of values, where each unique key is associated with a single value.
+
+If a given key has no associated value, it's then handled as in a set, where the key and value are one and the same.
+
+If the same key is repeated multiple times, the last value overwrites the other ones.
 
 ### Examples ###
 
@@ -71,8 +72,8 @@ A map is a collection of unique keys and of values, where each unique key is ass
 {name: "Bob" age: 30}
 >>> {"x" "y"}
 {"x" "y"}
->>> {1 2 3 'key: 'value}
-{1 2 3 key: value}
+>>> {1 2 2 'key: 'value}
+{1 2 key: value}
 ```
 
 ## Number ##
@@ -139,9 +140,9 @@ Compares two values and returns true if they are or have the same value, or fals
 true
 >>> (= "A" "a")
 false
->>> (= '(1 2 3) '(1 2 3))
+>>> (= [1 2 3] [1 2 3])
 true
->>> (= () {})
+>>> (= [] {})
 false
 >>> (= {0 1} {1 0})
 true

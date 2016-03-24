@@ -1,17 +1,15 @@
 # To Do #
 
-- Code evaluation: whole list quoted as new scope (map keys aren't).
 - Specify splice for each data type, and edge cases (eg. removing a key that doesn't exist).
 - Specify all values and built-ins, how they are evaluated, and so on.
 - Add simple math operators.
 - Mention collection hierarchy (needed because "splice", "get", "traverse" work with any collection), and ":" is part of their syntax to associate a key with a value (quotes left value).
-- Documentation via Python-like docstrings in Markdown.
+- Documentation via Python-like docstrings in Markdown format.
 - EBNF diagram? http://www.bottlecaps.de/rr/ui
-- List position starts at 1. String length is the number of logical characters, not bytes.
 
 # Research #
 
-- Indentation based syntax.
+- Indentation based syntax?
   - Optional parentheses for grouping.
   - Arguments are first space-separated, then line-separated by indentation.
   - Function calls with no arguments requires parentheses for disambiguation.

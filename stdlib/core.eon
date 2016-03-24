@@ -7,3 +7,8 @@
 (set 'true (= 0 0))
 (set 'false (= 0 1))
 (set 'infinity (/ 1 0.(0)1))
+
+(set 'if
+  ((get
+    [true: (get 2) false: (get 3)]
+    ((get 1)))))
