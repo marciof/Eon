@@ -25,7 +25,7 @@ A boolean is a binary logical value that can only be either *true* or *false*.
 
 ## Function ##
 
-A function is a list composed of a function followed by zero or more expression arguments.
+A function is a list composed of a function followed by zero or more expression arguments. It extends the *List* type.
 
 ### Evaluation ###
 
@@ -43,20 +43,35 @@ A function is a list composed of a function followed by zero or more expression 
 
 ## List ##
 
-A list is a sequence of zero or more elements.
+A list is a sequence of elements. It extends the *Map* type by associating consecutive positive integers with elements.
 
 ### Examples ###
 
 ```
+>>> []
+[]
 >>> ["x" "y"]
 ["x" "y"]
 >>> [1 2 3 'key: 'value]
-[1 2 3 'key: 'value]
+[1 2 3 key: value]
 ```
 
 ## Map ##
 
 A map is a collection of unique keys and of values, where each unique key is associated with a single value.
+
+### Examples ###
+
+```
+>>> {}
+{}
+>>> {'name: "John" 'age: 30}
+{name: "John" age: 30}
+>>> {"x" "y"}
+{"x" "y"}
+>>> {1 2 3 'key: 'value}
+{1 2 3 key: value}
+```
 
 ## Number ##
 
