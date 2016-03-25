@@ -80,48 +80,46 @@ If the same key is repeated multiple times, the last value overwrites the other 
 
 A number is a quantity.
 
-## Set ##
+### Examples ###
 
-A set is a collection of unique elements.
+```
+>>> 2
+2
+>>> -7.3
+-7.3
+>>> +9
+9
+>>> 1.(3)
+1.(3)
+```
 
 ## Symbol ##
 
-A symbol is a case-sensitive name.
+A symbol is a case-sensitive name. It extends the *Text* type by restricting the characters that can be used (see *Grammar*).
 
-The evaluator accepts one or more symbols or one or more texts, and concatenates them into a new symbol. Texts are first converted to symbols.
-
-```
-(Symbol symbol:Symbol ...) : Symbol
-```
+### Examples ###
 
 ```
-(Symbol text:Text ...) : Symbol
+>>> 'abc
+abc
+>>> 'is?
+is?
+>>> '!
+!
 ```
-
-### Text to Symbol Conversion ###
-
-1. If the text is a grammatically valid *Symbol*, use each Unicode character as-is in sequence to build a new symbol and return it.
-2. Otherwise, use the result of `(debug 'symbol text positions)` as the new text, where `text` is the given text and `positions` is a list of invalid character positions, and repeat this process from the start.
 
 ## Text ##
 
-A text is a sequence of Unicode characters, each one identified by a code point.
+A text is a sequence of Unicode characters, each one identified by a code point. It extends the *List* type by associating non-negative integer elements to Unicode character code-points.
 
-The evaluator accepts zero or more texts or one or more code points, and concatenates them into a new empty text. Code points are first converted to characters.
-
-```
-(Text text:Text ...) : Text
-```
+### Examples ###
 
 ```
-(Text code-point:Number ...) : Text
+>>> ""
+""
+>>> "Bob"
+"Bob"
 ```
-
-### Code Point to Character Conversion ###
-
-1. If the code point number is within the valid Unicode range, return the associated Unicode character.
-2. Otherwise, use the result of `(debug 'text/character code-point)` as the new code point, where `code-point` is the given code point, and repeat this process
-from the start.
 
 # Built-ins #
 
