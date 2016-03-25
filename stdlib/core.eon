@@ -4,11 +4,60 @@
   ])
 ])
 
+(set 'Boolean (prototype (= 0 0)))
+(set 'Function (prototype '())
+(set 'List (prototype []))
+(set 'Map (prototype {}))
+(set 'Number (prototype 0))
+(set 'Symbol (prototype 'symbol))
+(set 'Text (prototype ""))
+
 (set 'true (= 0 0))
 (set 'false (= 0 1))
 (set 'infinity (/ 1 0.(0)1))
 
 (set 'if
-  ((get
-    [true: (get 2) false: (get 3)]
+  '((get
+    {true: (get 2) false: (get 3)}
     ((get 1)))))
+
+(set 'and
+  '((get
+    {true: (get 2) false: '(do false)}
+    ((get 1)))))
+
+(set 'not
+  '(get {true: false false: true}
+    ((get 1))))
+
+(set 'or
+  '((get
+    {true: '(do true) false: (get 2)}
+    ((get 1)))))
+
+(set '<>
+  '(not (= ((get 1)) ((get 2)))))
+
+(set '<
+  '(and
+    (<> x y)
+    (= (* (- x y) infinity)
+       (- infinity))))
+
+(set '<=
+  '(or
+    (= x y)
+    (= (* (- x y) infinity)
+       (- infinity))))
+
+(set '>
+  '(and
+    (<> x y)
+    (= (* (- x y) infinity)
+       infinity)))
+
+(set '>=
+  '(or
+    (= x y)
+    (= (* (- x y) infinity)
+       infinity)))
