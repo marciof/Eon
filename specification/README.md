@@ -2,7 +2,6 @@
 
 - Specify splice for each data type, and edge cases (eg. removing a key that doesn't exist).
 - Specify all values and built-ins, how they are evaluated, and so on.
-- Add simple math operators.
 - Mention collection hierarchy (needed because "splice", "get", "traverse" work with any collection), and ":" is part of their syntax to associate a key with a value (quotes left value).
 - Documentation via Python-like docstrings in Markdown format.
 - EBNF diagram? http://www.bottlecaps.de/rr/ui

@@ -95,7 +95,7 @@ A number is a quantity.
 
 ## Symbol ##
 
-A symbol is a case-sensitive name. It extends the *Text* type by restricting the characters that can be used (see *Grammar*).
+A symbol is a case-sensitive name. It extends the *Text* type by restricting the characters that can be used.
 
 ### Examples ###
 
@@ -110,7 +110,7 @@ is?
 
 ## Text ##
 
-A text is a sequence of Unicode characters, each one identified by a code point. It extends the *List* type by associating non-negative integer elements to Unicode character code-points.
+A text is a sequence of Unicode characters, each one identified by a code-point. It extends the *List* type by associating non-negative integer elements to code-points.
 
 ### Examples ###
 
@@ -125,10 +125,10 @@ A text is a sequence of Unicode characters, each one identified by a code point.
 
 ## `=` ##
 
-Compares two values and returns true if they are or have the same value, or false otherwise.
+Compares two or more values and returns true if they all are or have the same value, or false otherwise.
 
 ```
-(= a b) : Boolean
+(= x y ...) : Boolean
 ```
 
 ### Examples ###
@@ -146,6 +146,38 @@ false
 true
 >>> (= 0 "")
 false
+```
+
+## `+` ##
+
+Adds numbers.
+
+```
+(+ x ...) : Number
+```
+
+## `-` ##
+
+Subtracts numbers.
+
+```
+(- x ...) : Number
+```
+
+## `*` ##
+
+Multiplies two or more numbers.
+
+```
+(* x y ...) : Number
+```
+
+## `/` ##
+
+Divides two or more values.
+
+```
+(/ x y ...) : Number
 ```
 
 ## `debug` ##
