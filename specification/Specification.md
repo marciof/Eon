@@ -25,15 +25,15 @@ A boolean is a binary logical value that can only be either *true* or *false*.
 
 ## Function ##
 
-A function is a list composed of a function followed by zero or more expression arguments. It extends the *List* type.
+A function is a list composed of a function followed by zero or more expression arguments. It extends the *Map* type.
 
 Calling a function creates a new scope composed of the arguments, each one deferred, and is then evaluated within the new scope, returning the result.
 
 ### Examples ###
 
 ```
->>> (set 'double '(* 2 ((get 1))))
-(* 2 ((get 1)))
+>>> (set 'double '(* 2 (evaluate (get 1))))
+(* 2 (evaluate (get 1)))
 >>> (double 4)
 8
 ```
@@ -47,12 +47,8 @@ A list is a sequence of elements. It extends the *Map* type by associating conse
 ```
 >>> []
 []
->>> ["x" "y"]
-["x" "y"]
->>> [1 2 2 'key: 'value]
-[1 2 2 key: value]
->>> ['name: "Bob"]
-[name: "Bob"]
+>>> [8 2 2]
+[8 2 2]
 ```
 
 ## Map ##
@@ -61,7 +57,7 @@ A map is a collection of unique keys and of values, where each unique key is ass
 
 If a given key has no associated value, it's then handled as in a set, where the key and value are one and the same.
 
-If the same key is repeated multiple times, the last value overwrites the other ones.
+If the same key is repeated multiple times, the last value overwrites all others.
 
 ### Examples ###
 
@@ -72,8 +68,8 @@ If the same key is repeated multiple times, the last value overwrites the other 
 {name: "Bob" age: 30}
 >>> {"x" "y"}
 {"x" "y"}
->>> {1 2 2 'key: 'value}
-{1 2 key: value}
+>>> {8 2 2 'key: 'value}
+{8 2 key: value}
 ```
 
 ## Number ##
@@ -150,7 +146,7 @@ false
 
 ## `+` ##
 
-Adds numbers.
+Adds one or more numbers.
 
 ```
 (+ x ...) : Number
@@ -158,7 +154,7 @@ Adds numbers.
 
 ## `-` ##
 
-Subtracts numbers.
+Subtracts one or more numbers.
 
 ```
 (- x ...) : Number
@@ -174,7 +170,7 @@ Multiplies two or more numbers.
 
 ## `/` ##
 
-Divides two or more values.
+Divides two or more numbers.
 
 ```
 (/ x y ...) : Number
@@ -201,7 +197,7 @@ Interrupts normal execution flow.
 Creates a snapshot of the current control flow (also known as a continuation), or of an expression thereby preventing it from being evaluated. The latter form is the named counterpart of the *Defer* grammar.
 
 ```
-(defer) : List
+(defer) : Function
 ```
 
 ```
@@ -280,10 +276,10 @@ Retrieves the original value used to construct another from.
 ""
 >>> (prototype "")
 ""
->>> (prototype '(1 2 3))
-()
+>>> (prototype [8 2 2])
+[]
 >>> (prototype get)
-get
+()
 ```
 
 ## `splice` ##
