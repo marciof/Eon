@@ -1,14 +1,12 @@
 # To Do #
 
-- How to evaluate deferred function arguments? Via "evaluate"? 
-- Specify splice for each data type, and edge cases (eg. removing a key that doesn't exist).
-- Specify all values and built-ins, how they are evaluated, and so on.
-- Mention collection hierarchy (needed because "splice", "get", "traverse" work with any collection), and ":" is part of their syntax to associate a key with a value (quotes left value).
+- Specify all values and built-ins, how they are evaluated, edge cases, etc.
 - Documentation via Python-like docstrings in Markdown format.
 - EBNF diagram? http://www.bottlecaps.de/rr/ui
 
 # Research #
 
+- How to evaluate deferred function arguments? Via "evaluate"? Built-in? how to bootstrap it?
 - Indentation based syntax?
   - Optional parentheses for grouping.
   - Arguments are first space-separated, then line-separated by indentation.

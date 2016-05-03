@@ -25,15 +25,15 @@ A boolean is a binary logical value that can only be either *true* or *false*.
 
 ## Function ##
 
-A function is a list composed of a function followed by zero or more expression arguments. It extends the *Map* type.
+A function is a sequence composed of a function followed by zero or more expression arguments. It extends the *Map* type by ordering keys.
 
-Calling a function creates a new scope composed of the arguments, each one deferred, and is then evaluated within the new scope, returning the result.
+Calling a function creates a new scope composed of the arguments, each one deferred, and then is evaluated within the new scope, returning the result.
 
 ### Examples ###
 
 ```
->>> (set 'double '(* 2 (evaluate (get 1))))
-(* 2 (evaluate (get 1)))
+>>> (set 'double '(* 2 (get 1)))
+(* 2 (get 1))
 >>> (double 4)
 8
 ```
@@ -57,7 +57,7 @@ A map is a collection of unique keys and of values, where each unique key is ass
 
 If a given key has no associated value, it's then handled as in a set, where the key and value are one and the same.
 
-If the same key is repeated multiple times, the last value overwrites all others.
+If the same key is repeated multiple times, it's associated with only the last value.
 
 ### Examples ###
 
