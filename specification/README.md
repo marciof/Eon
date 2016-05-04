@@ -1,12 +1,12 @@
 # To Do #
 
-- Specify all values and built-ins, how they are evaluated, edge cases, etc.
+- Specify all values and built-ins.
 - Documentation via Python-like docstrings in Markdown format.
-- EBNF diagram? http://www.bottlecaps.de/rr/ui
 
 # Research #
 
-- How to evaluate deferred function arguments? Via "evaluate"? Built-in? how to bootstrap it?
+- EBNF diagram? http://www.bottlecaps.de/rr/ui
+- How to evaluate deferred function arguments? Via "evaluate"? Built-in? How to bootstrap it?
 - Indentation based syntax?
   - Optional parentheses for grouping.
   - Arguments are first space-separated, then line-separated by indentation.

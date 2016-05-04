@@ -25,7 +25,7 @@ A boolean is a binary logical value that can only be either *true* or *false*.
 
 ## Function ##
 
-A function is a sequence composed of a function followed by zero or more expression arguments. It extends the *Map* type by ordering keys.
+A function is a sequence composed of a function followed by zero or more expression arguments. It extends the *List* type.
 
 Calling a function creates a new scope composed of the arguments, each one deferred, and then is evaluated within the new scope, returning the result.
 
@@ -40,15 +40,19 @@ Calling a function creates a new scope composed of the arguments, each one defer
 
 ## List ##
 
-A list is a sequence of elements. It extends the *Map* type by associating consecutive positive integers with elements.
+A list is a sequence of elements. It extends the *Map* type by associating consecutive positive integers with elements in ascending order of keys.
 
 ### Examples ###
 
 ```
 >>> []
 []
->>> [8 2 2]
-[8 2 2]
+>>> ["x" "y"]
+["x" "y"]
+>>> [8 2 2 'key: 'value]
+[8 2 2 'key: 'value]
+>>> ['name" "Bob"]
+['name: "Bob"]
 ```
 
 ## Map ##
@@ -122,6 +126,8 @@ A text is a sequence of Unicode characters, each one identified by a code-point.
 ## `=` ##
 
 Compares two or more values and returns true if they all are or have the same value, or false otherwise.
+
+If less than two arguments are passed, it returns the result of `(debug 'parameter-mismatch)`.
 
 ```
 (= x y ...) : Boolean
@@ -225,7 +231,9 @@ Creates a snapshot of the current control flow (also known as a continuation), o
 
 ## `get` ##
 
-This symbol names a function that retrieves the value associated with a key. If the association does not exist, it returns the result of either `(debug 'scope/key/undefined key)` or `(debug 'map/key/undefined key)` depending on which one was called.
+This symbol names a function that retrieves the value associated with a key.
+
+If the association does not exist, it returns the result of `(debug 'undefined-key)`.
 
 ```
 (get key)
