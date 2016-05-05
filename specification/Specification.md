@@ -154,6 +154,10 @@ false
 
 Adds one or more numbers.
 
+If no arguments are passed, it returns the result of `(debug 'parameter-mismatch)`.
+
+If any of the arguments isn't a number, it returns the result of `(debug 'type-mismatch)`.
+
 ```
 (+ x ...) : Number
 ```
@@ -161,6 +165,10 @@ Adds one or more numbers.
 ## `-` ##
 
 Subtracts one or more numbers.
+
+If no arguments are passed, it returns the result of `(debug 'parameter-mismatch)`.
+
+If any of the arguments isn't a number, it returns the result of `(debug 'type-mismatch)`.
 
 ```
 (- x ...) : Number
@@ -170,6 +178,10 @@ Subtracts one or more numbers.
 
 Multiplies two or more numbers.
 
+If less than two arguments are passed, it returns the result of `(debug 'parameter-mismatch)`.
+
+If any of the arguments isn't a number, it returns the result of `(debug 'type-mismatch)`.
+
 ```
 (* x y ...) : Number
 ```
@@ -177,6 +189,10 @@ Multiplies two or more numbers.
 ## `/` ##
 
 Divides two or more numbers.
+
+If less than two arguments are passed, it returns the result of `(debug 'parameter-mismatch)`.
+
+If any of the arguments isn't a number, it returns the result of `(debug 'type-mismatch)`.
 
 ```
 (/ x y ...) : Number
