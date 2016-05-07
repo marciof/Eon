@@ -158,6 +158,8 @@ If no arguments are passed, it returns the result of `(debug 'parameter-mismatch
 
 If any of the arguments isn't a number, it returns the result of `(debug 'type-mismatch)`.
 
+If at least two of the arguments are the positive and negative infinity, it returns the result of `(debug 'indeterminate-arithmetic)`.
+
 ```
 (+ x ...) : Number
 ```
@@ -340,8 +342,8 @@ When the collection is a map, if a key from a new key/value pair being added is 
 ["x" "y" "z"]
 
 # Assign.
->>> (splice {} ['x: 3])
-[x: 3]
+>>> (splice {} {'x: 3})
+{x: 3}
 >>> x
 3
 ```

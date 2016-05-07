@@ -5,8 +5,8 @@
 
 # Research #
 
-- EBNF diagram? http://www.bottlecaps.de/rr/ui
 - How to evaluate deferred function arguments? Via "evaluate"? Built-in? How to bootstrap it?
+- EBNF diagram? http://www.bottlecaps.de/rr/ui
 - Indentation based syntax?
   - Optional parentheses for grouping.
   - Arguments are first space-separated, then line-separated by indentation.
