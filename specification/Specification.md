@@ -158,10 +158,10 @@ If no arguments are passed, it returns the result of `(debug 'parameter-mismatch
 
 If any of the arguments isn't a number, it returns the result of `(debug 'type-mismatch)`.
 
-If at least two of the arguments are the positive and negative infinity, it returns the result of `(debug 'indeterminate-arithmetic)`.
+Adding negative infinity to positive infinity returns the result of `(debug 'indeterminate-arithmetic)`.
 
 ```
-(+ x ...) : Number
+(+ x:Number ...) : Number
 ```
 
 ## `-` ##
@@ -172,8 +172,10 @@ If no arguments are passed, it returns the result of `(debug 'parameter-mismatch
 
 If any of the arguments isn't a number, it returns the result of `(debug 'type-mismatch)`.
 
+Subtracting infinity from infinity returns the result of `(debug 'indeterminate-arithmetic)`.
+
 ```
-(- x ...) : Number
+(- x:Number ...) : Number
 ```
 
 ## `*` ##
@@ -184,8 +186,10 @@ If less than two arguments are passed, it returns the result of `(debug 'paramet
 
 If any of the arguments isn't a number, it returns the result of `(debug 'type-mismatch)`.
 
+Multiplying zero with infinity returns the result of `(debug 'indeterminate-arithmetic)`.
+
 ```
-(* x y ...) : Number
+(* x:Number y:Number ...) : Number
 ```
 
 ## `/` ##
@@ -197,7 +201,7 @@ If less than two arguments are passed, it returns the result of `(debug 'paramet
 If any of the arguments isn't a number, it returns the result of `(debug 'type-mismatch)`.
 
 ```
-(/ x y ...) : Number
+(/ x:Number y:Number ...) : Number
 ```
 
 ## `debug` ##
@@ -209,7 +213,7 @@ Interrupts normal execution flow.
 ```
 
 ```
-(debug identifier:Symbol ...)
+(debug identifier:Symbol)
 ```
 
 > **Note**
@@ -229,7 +233,7 @@ Creates a snapshot of the current control flow (also known as a continuation), o
 ```
 
 ```
-(defer expression escape)
+(defer expression escape:Symbol)
 ```
 
 ### Examples ###
