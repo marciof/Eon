@@ -51,7 +51,7 @@ A list is a sequence of elements. It extends the *Map* type by associating conse
 ["x" "y"]
 >>> [8 2 2 'key: 'value]
 [8 2 2 'key: 'value]
->>> ['name" "Bob"]
+>>> ['name": "Bob"]
 ['name: "Bob"]
 ```
 
@@ -360,23 +360,14 @@ When the collection is a map, if a key from a new key/value pair being added is 
 ### Examples ###
 
 ```
-# Replace.
 >>> (splice ["x" "y"] {2} ["z"])
 ["x" "z"]
-
-# Remove.
 >>> (splice ["x" "y"] {1} [])
 ["y"]
-
-# Insert.
 >>> (splice ["x" "y"] {2} ["z" "y"])
 ["x" "z" "y"]
-
-# Concatenate.
 >>> (splice ["x"] {} ["y" "z"])
 ["x" "y" "z"]
-
-# Assign.
 >>> (splice {} {'x: 3})
 {x: 3}
 >>> x
@@ -445,7 +436,7 @@ Pair-Separator ::= : (U+3A)
 
 ## Transformations ##
 
-These are the syntactic transformations that occur for each associated non-terminal. Each letter represents a matching element of a production.
+These are the syntactic transformations that occur for each associated non-terminal. Each letter represents a matching element of a grammar production.
 
 |Non-Terminal       |Syntax|Transformation|Association   |
 |-------------------|------|--------------|--------------|
