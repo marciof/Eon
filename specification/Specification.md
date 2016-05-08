@@ -245,7 +245,7 @@ If the `identifier` argument isn't a symbol, it returns the result of `(debug 't
 
 Creates a snapshot of the current control flow (also known as a continuation), or of an expression thereby preventing it from being evaluated. The latter form is the named counterpart of the *Defer* grammar.
 
-If more than two arguments are passed, it returns the result of `(debug 'parameter-mismatch)`.
+If more than two arguments are passed or the continuation isn't passed one argument, it returns the result of `(debug 'parameter-mismatch)`.
 
 If the `escape` argument isn't a symbol, it returns the result of `(debug 'type-mismatch)`.
 
@@ -274,6 +274,12 @@ If the `escape` argument isn't a symbol, it returns the result of `(debug 'type-
 (+ 1 x)
 >>> (defer (+ 1 (escape x)) 'escape)
 (+ 1 2)
+>>> (* 2 (do (set 'c (defer)) (c 3)))
+6
+>>> (c 4)
+8
+>>> (c 2)
+6
 ```
 
 ## `get` ##
