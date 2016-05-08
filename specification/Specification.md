@@ -158,7 +158,7 @@ If no arguments are passed, it returns the result of `(debug 'parameter-mismatch
 
 If any of the arguments isn't a number, it returns the result of `(debug 'type-mismatch)`.
 
-Adding negative infinity to positive infinity returns the result of `(debug 'indeterminate-arithmetic)`.
+Adding negative infinity to positive infinity returns the result of `(debug 'undefined-arithmetic)`.
 
 ```
 (+ x:Number ...) : Number
@@ -172,7 +172,7 @@ If no arguments are passed, it returns the result of `(debug 'parameter-mismatch
 
 If any of the arguments isn't a number, it returns the result of `(debug 'type-mismatch)`.
 
-Subtracting infinity from infinity returns the result of `(debug 'indeterminate-arithmetic)`.
+Subtracting infinity from infinity returns the result of `(debug 'undefined-arithmetic)`.
 
 ```
 (- x:Number ...) : Number
@@ -186,7 +186,7 @@ If less than two arguments are passed, it returns the result of `(debug 'paramet
 
 If any of the arguments isn't a number, it returns the result of `(debug 'type-mismatch)`.
 
-Multiplying zero with infinity returns the result of `(debug 'indeterminate-arithmetic)`.
+Multiplying zero and infinity returns the result of `(debug 'undefined-arithmetic)`.
 
 ```
 (* x:Number y:Number ...) : Number
@@ -199,6 +199,8 @@ Divides two or more numbers.
 If less than two arguments are passed, it returns the result of `(debug 'parameter-mismatch)`.
 
 If any of the arguments isn't a number, it returns the result of `(debug 'type-mismatch)`.
+
+Dividing any number by zero or infinity by infinity returns the result of `(debug 'undefined-arithmetic)`.
 
 ```
 (/ x:Number y:Number ...) : Number
