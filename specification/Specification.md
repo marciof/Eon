@@ -284,7 +284,11 @@ If the `escape` argument isn't a symbol, it returns the result of `(debug 'type-
 
 ## `get` ##
 
-This symbol names a function that retrieves the value associated with a key.
+Retrieves the value associated with a key in a collection. If no collection is specified, the environment is used instead.
+
+If zero or more than two arguments are passed, it returns the result of `(debug 'parameter-mismatch)`.
+
+If the `map` argument isn't a map, it returns the result of `(debug 'type-mismatch)`.
 
 If the association does not exist, it returns the result of `(debug 'undefined-key)`.
 
