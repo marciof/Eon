@@ -206,9 +206,28 @@ Dividing any number by zero or infinity by infinity returns the result of `(debu
 (/ x:Number y:Number ...) : Number
 ```
 
+### Examples ###
+
+```
+>>> (/ 12 3)
+4
+>>> (/ 7 10)
+0.7
+>>> (/ 1 3)
+0.(3)
+>>> (/ 0 6)
+0
+>>> (/ 1 0.(0)1)
+infinity
+```
+
 ## `debug` ##
 
 Interrupts normal execution flow.
+
+If more than one argument is passed, it returns the result of `(debug 'parameter-mismatch)`.
+
+If the `identifier` argument isn't a symbol, it returns the result of `(debug 'type-mismatch)`.
 
 ```
 (debug)
@@ -225,6 +244,10 @@ Interrupts normal execution flow.
 ## `defer` ##
 
 Creates a snapshot of the current control flow (also known as a continuation), or of an expression thereby preventing it from being evaluated. The latter form is the named counterpart of the *Defer* grammar.
+
+If more than two arguments are passed, it returns the result of `(debug 'parameter-mismatch)`.
+
+If the `escape` argument isn't a symbol, it returns the result of `(debug 'type-mismatch)`.
 
 ```
 (defer) : Function
@@ -274,7 +297,7 @@ This symbol names a function that loads a *module* or a *package* on a given pat
 A path is a list of zero or more package names, ending with the name of the intended module or package.
 
 ```
-(load package:List) : Set
+(load package:List) : Map
 ```
 
 ```

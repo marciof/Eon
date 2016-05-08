@@ -1,62 +1,62 @@
 (splice {} {
   'set: '(splice {} {
-    (get 1): (evaluate (get 2))
+    (evaluate (get 1)): (evaluate (get 2))
   })
 })
 
-(set Boolean (prototype (= 0 0)))
-(set Function (prototype '())
-(set List (prototype []))
-(set Map (prototype {}))
-(set Number (prototype 0))
-(set Symbol (prototype 'x))
-(set Text (prototype ""))
+(set 'Boolean (prototype (= 0 0)))
+(set 'Function (prototype '())
+(set 'List (prototype []))
+(set 'Map (prototype {}))
+(set 'Number (prototype 0))
+(set 'Symbol (prototype 'x))
+(set 'Text (prototype ""))
 
-(set true (= 0 0))
-(set false (= 0 1))
-(set infinity (/ 1 0.(0)1))
+(set 'true (= 0 0))
+(set 'false (= 0 1))
+(set 'infinity (/ 1 0.(0)1))
 
-(set if
+(set 'if
   '((get
     {true: (get 2) false: (get 3)}
     ((get 1)))))
 
-(set and
+(set 'and
   '((get
     {true: (get 2) false: '(do false)}
     ((get 1)))))
 
-(set not
+(set 'not
   '(get {true: false false: true}
     ((get 1))))
 
-(set or
+(set 'or
   '((get
     {true: '(do true) false: (get 2)}
     ((get 1)))))
 
-(set <>
+(set '<>
   '(not (= ((get 1)) ((get 2)))))
 
-(set <
+(set '<
   '(and
     (<> x y)
     (= (* (- x y) infinity)
        (- infinity))))
 
-(set <=
+(set '<=
   '(or
     (= x y)
     (= (* (- x y) infinity)
        (- infinity))))
 
-(set >
+(set '>
   '(and
     (<> x y)
     (= (* (- x y) infinity)
        infinity)))
 
-(set >=
+(set '>=
   '(or
     (= x y)
     (= (* (- x y) infinity)
