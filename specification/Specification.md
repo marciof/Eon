@@ -300,9 +300,28 @@ If the association does not exist, it returns the result of `(debug 'undefined-k
 (get map:Map key)
 ```
 
+### Examples ###
+
+```
+>>> (get [8 2 2] 1)
+8
+>>> (get {"a" "b"} "b")
+"b"
+>>> (get {'name: "Bob"} 'name)
+"Bob"
+>>> (get '(+ 6 7) 2)
+6
+>>> (set 'x 3)
+3
+>>> (get 'x)
+3
+>>> x
+3
+```
+
 ## `load` ##
 
-This symbol names a function that loads a *module* or a *package* on a given path.
+Loads a *module* or a *package* on a given path.
 
 A path is a list of zero or more package names, ending with the name of the intended module or package.
 
@@ -316,7 +335,7 @@ A path is a list of zero or more package names, ending with the name of the inte
 
 ## `parse` ##
 
-This symbol names a function that parses the textual representation of an expression.
+Parses the textual representation of an expression.
 
 ```
 (parse expression:Text)
@@ -328,7 +347,7 @@ This symbol names a function that parses the textual representation of an expres
 
 ## `prototype` ##
 
-Retrieves the original value used to construct another from.
+Retrieves the original value used to construct another one from.
 
 ```
 (prototype value)
@@ -349,7 +368,7 @@ Retrieves the original value used to construct another from.
 
 ## `splice` ##
 
-This symbol names a function that adds elements and removes keys in a collection, and returns the changed collection. If no collection is specified, the environment is modified instead.
+Adds elements to and removes keys from a collection, and returns the changed collection. If no collection is specified, the environment is used instead.
 
 When the collection is a map, if a key from a new key/value pair being added is already present, the new value replaces the previous one.
 
