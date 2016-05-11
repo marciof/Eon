@@ -284,7 +284,7 @@ If the `escape` argument isn't a symbol, it returns the result of `(debug 'type-
 
 ## `get` ##
 
-Retrieves the value associated with a key in a collection. If no collection is specified, the environment is used instead.
+Retrieves the value associated with a key in a collection or the environment by default.
 
 If zero or more than two arguments are passed, it returns the result of `(debug 'parameter-mismatch)`.
 
@@ -372,7 +372,7 @@ If zero or more than one argument are passed, it returns the result of `(debug '
 
 ## `splice` ##
 
-Adds elements to and removes keys from a collection, and returns the changed collection. If no collection is specified, the environment is used instead.
+Adds elements to and removes keys from a collection or the environment by default, and returns the changed collection.
 
 If a key from a new key/value pair being added is already present, the new value replaces the previous one.
 
