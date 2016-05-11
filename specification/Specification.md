@@ -349,6 +349,8 @@ Parses the textual representation of an expression.
 
 Retrieves the original value used to construct another one from.
 
+If zero or more than one argument are passed, it returns the result of `(debug 'parameter-mismatch)`.
+
 ```
 (prototype value)
 ```
@@ -364,20 +366,24 @@ Retrieves the original value used to construct another one from.
 []
 >>> (prototype get)
 ()
+>>> (prototype 8)
+0
 ```
 
 ## `splice` ##
 
 Adds elements to and removes keys from a collection, and returns the changed collection. If no collection is specified, the environment is used instead.
 
-When the collection is a map, if a key from a new key/value pair being added is already present, the new value replaces the previous one.
+If a key from a new key/value pair being added is already present, the new value replaces the previous one.
+
+If less than two or more than three arguments are passed, it returns the result of `(debug 'parameter-mismatch)`.
 
 ```
 (splice keys elements)
 ```
 
 ```
-(splice collection keys elements)
+(splice collection:Map keys elements)
 ```
 
 ### Examples ###
