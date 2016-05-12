@@ -372,18 +372,22 @@ If zero or more than one argument are passed, it returns the result of `(debug '
 
 ## `splice` ##
 
-Adds elements to and removes keys from a collection or the environment by default, and returns the changed collection.
+Adds elements to and removes keys from a map or the environment by default, and returns the changed collection.
 
 If a key from a new key/value pair being added is already present, the new value replaces the previous one.
 
+If removing non-contiguous positions (keys) from a list, new elements are added to the last specified position.
+
 If less than two or more than three arguments are passed, it returns the result of `(debug 'parameter-mismatch)`.
+
+If the `map` argument isn't a map, it returns the result of `(debug 'type-mismatch)`.
 
 ```
 (splice keys elements)
 ```
 
 ```
-(splice collection:Map keys elements)
+(splice map:Map keys elements)
 ```
 
 ### Examples ###
@@ -408,11 +412,11 @@ If less than two or more than three arguments are passed, it returns the result 
 This symbol names a function that optionally calls another function for every key/value pair of a map, and then returns the total number of pairs in the map.
 
 ```
-(traverse collection) : Number
+(traverse map:Map) : Number
 ```
 
 ```
-(traverse collection visitor:Function) : Number
+(traverse map:Map visitor:Function) : Number
 ```
 
 # Grammar #
