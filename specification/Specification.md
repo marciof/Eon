@@ -409,7 +409,11 @@ If the `map` argument isn't a map, it returns the result of `(debug 'type-mismat
 
 ## `traverse` ##
 
-This symbol names a function that optionally calls another function for every key/value pair of a map, and then returns the total number of pairs in the map.
+Iterates over a map using an optional function called with every value and key pairs, and then returns the total number of pairs.
+
+If zero or more than two arguments are passed, it returns the result of `(debug 'parameter-mismatch)`.
+
+If the `map` argument isn't a map or the `visitor` argument isn't a function, it returns the result of `(debug 'type-mismatch)`.
 
 ```
 (traverse map:Map) : Number
