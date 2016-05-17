@@ -7,14 +7,13 @@
 
 - How to evaluate deferred function arguments? Via "evaluate"? Built-in? How to bootstrap it?
 - EBNF diagram? http://www.bottlecaps.de/rr/ui
+- Immutability by default? No need for defensive copying (eg "who owns this data"), easier for concurrency, etc. Clojure, Elm, ImmutableJs
 - Indentation based syntax?
   - Optional parentheses for grouping.
   - Arguments are first space-separated, then line-separated by indentation.
   - Function calls with no arguments requires parentheses for disambiguation.
-- http://www.infoq.com/presentations/Value-Values
 - http://www.infoq.com/presentations/Simple-Made-Easy
 - http://www.infoq.com/presentations/Value-Identity-State-Rich-Hickey
-- Immutability by default? No need for defensive copying (eg "who owns this data"), easier for concurrency, etc. Clojure, Elm, ImmutableJs
 - Transducers = transform + reduce.
   - "the reduce function is the base transformation; any other transformation can be expressed in terms of it (map, filter, etc)"
   - http://jlongster.com/Transducers.js--A-JavaScript-Library-for-Transformation-of-Data
