@@ -130,7 +130,7 @@ Compares two or more values and returns true if they all are or have the same va
 If less than two arguments are passed, it returns the result of `(debug 'parameter-mismatch)`.
 
 ```
-(= x y ...) : Boolean
+(= x y ...): Boolean
 ```
 
 ### Examples ###
@@ -161,7 +161,7 @@ If any of the arguments isn't a number, it returns the result of `(debug 'type-m
 Adding negative infinity to positive infinity returns the result of `(debug 'undefined-arithmetic)`.
 
 ```
-(+ x:Number ...) : Number
+(+ x:Number ...): Number
 ```
 
 ## `-` ##
@@ -175,7 +175,7 @@ If any of the arguments isn't a number, it returns the result of `(debug 'type-m
 Subtracting infinity from infinity returns the result of `(debug 'undefined-arithmetic)`.
 
 ```
-(- x:Number ...) : Number
+(- x:Number ...): Number
 ```
 
 ## `*` ##
@@ -189,7 +189,7 @@ If any of the arguments isn't a number, it returns the result of `(debug 'type-m
 Multiplying zero and infinity returns the result of `(debug 'undefined-arithmetic)`.
 
 ```
-(* x:Number y:Number ...) : Number
+(* x:Number y:Number ...): Number
 ```
 
 ## `/` ##
@@ -203,7 +203,7 @@ If any of the arguments isn't a number, it returns the result of `(debug 'type-m
 Dividing any number by zero or infinity by infinity returns the result of `(debug 'undefined-arithmetic)`.
 
 ```
-(/ x:Number y:Number ...) : Number
+(/ x:Number y:Number ...): Number
 ```
 
 ### Examples ###
@@ -231,9 +231,6 @@ If the `identifier` argument isn't a symbol, it returns the result of `(debug 't
 
 ```
 (debug)
-```
-
-```
 (debug identifier:Symbol)
 ```
 
@@ -250,14 +247,8 @@ If more than two arguments are passed or the continuation isn't passed one argum
 If the `escape` argument isn't a symbol, it returns the result of `(debug 'type-mismatch)`.
 
 ```
-(defer) : Function
-```
-
-```
+(defer): Function
 (defer expression)
-```
-
-```
 (defer expression escape:Symbol)
 ```
 
@@ -274,7 +265,7 @@ If the `escape` argument isn't a symbol, it returns the result of `(debug 'type-
 (+ 1 x)
 >>> (defer (+ 1 (escape x)) 'escape)
 (+ 1 2)
->>> (* 2 (do (set 'c (defer)) (c 3)))
+>>> (* 2 (do (set 'c (defer)) 3))
 6
 >>> (c 4)
 8
@@ -294,9 +285,6 @@ If the association does not exist, it returns the result of `(debug 'undefined-k
 
 ```
 (get key)
-```
-
-```
 (get map:Map key)
 ```
 
@@ -326,11 +314,8 @@ Loads a *module* or a *package* on a given path.
 A path is a list of zero or more package names, ending with the name of the intended module or package.
 
 ```
-(load package:List) : Map
-```
-
-```
-(load module:List) : Text
+(load package:List): Map
+(load module:List): Text
 ```
 
 ## `parse` ##
@@ -339,9 +324,6 @@ Parses the textual representation of an expression.
 
 ```
 (parse expression:Text)
-```
-
-```
 (parse expression:Text position:Number)
 ```
 
@@ -384,9 +366,6 @@ If the `map` argument isn't a map, it returns the result of `(debug 'type-mismat
 
 ```
 (splice keys elements)
-```
-
-```
 (splice map:Map keys elements)
 ```
 
@@ -416,11 +395,8 @@ If zero or more than two arguments are passed, it returns the result of `(debug 
 If the `map` argument isn't a map or the `visitor` argument isn't a function, it returns the result of `(debug 'type-mismatch)`.
 
 ```
-(traverse map:Map) : Number
-```
-
-```
-(traverse map:Map visitor:Function) : Number
+(traverse map:Map): Number
+(traverse map:Map visitor:Function): Number
 ```
 
 # Grammar #
