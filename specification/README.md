@@ -22,6 +22,7 @@
 - Reactive programming.
   - https://gist.github.com/staltz/868e7e9bc2a7b8c1f754
   - count clicks stream eg: [---c----c--c->], map (1 each c), [---1----1--1->], scan(+), [---1----2--3->]
+- Promises, async, await: https://zeit.co/blog/async-and-await
 - Look for best/worst features of other languages: JavaScript, Clojure, Python, Perl, Ruby, Haskell, Io, Rust, Erlang, Smalltalk, Java, Scheme, Go, ML, Lua.
 
 # Checklist #
