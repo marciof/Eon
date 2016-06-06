@@ -4,19 +4,6 @@
 
 A module is the Unicode textual representation of *Expressions* encoded in UTF-8 without a Byte Order Mark, with a valid *Symbol* for its name.
 
-> **Note**
->
-> While unspecified, the usual implementation is a file or a stream.
-
-## Package ##
-
-A package is a set of zero or more modules and/or packages with a valid *Symbol* for its name.
-
-> **Note**
->
-> While unspecified, the usual implementation is a directory or a
-> compressed file.
-
 # Types #
 
 ## Boolean ##
@@ -223,7 +210,7 @@ infinity
 
 ## `debug` ##
 
-Interrupts normal execution flow.
+Interrupts normal execution flow. In development mode it triggers a debugger, while in production mode it halts execution with an appropriate error message.
 
 If more than one argument is passed, it returns the result of `(debug 'parameter-mismatch)`.
 
@@ -233,10 +220,6 @@ If the `identifier` argument isn't a symbol, it returns the result of `(debug 't
 (debug)
 (debug identifier:Symbol)
 ```
-
-> **Note**
->
-> While unspecified, the usual implementation triggers a debugger or halts execution with an appropriate error message.
 
 ## `defer` ##
 
@@ -309,22 +292,12 @@ If the association does not exist, it returns the result of `(debug 'undefined-k
 
 ## `load` ##
 
-Loads a *module* or a *package* on a given path.
+Loads a *module* by pathname.
 
-A path is a list of zero or more package names, ending with the name of the intended module or package.
-
-```
-(load package:List): Map
-(load module:List): Text
-```
-
-## `parse` ##
-
-Parses the textual representation of an expression.
+A pathname is a list of zero or more names, ending with the name of the intended module.
 
 ```
-(parse expression:Text)
-(parse expression:Text position:Number)
+(load module:List)
 ```
 
 ## `prototype` ##
@@ -473,10 +446,6 @@ The name of a function should use a verb as the first word. If it is an accessor
 ### Module ###
 
 The name of a module should be a noun, in lower-case.
-
-### Package ###
-
-The name of a package should be a noun, in lower-case, and usually in singular form.
 
 ### Type ###
 
