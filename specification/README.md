@@ -1,11 +1,10 @@
 # To Do #
 
-- Specify all values and built-ins. How arguments are put in a scope.
+- Specify all values and built-ins.
 - Documentation via Python-like docstrings in Markdown format.
 
 # Research #
 
-- No same named modules and packages?
 - How to evaluate deferred function arguments? Via "evaluate"? Built-in? How to bootstrap it?
 - EBNF diagram? http://www.bottlecaps.de/rr/ui
 - Immutability by default? No need for defensive copying (eg "who owns this data"), easier for concurrency, etc. Clojure, Elm, ImmutableJs
