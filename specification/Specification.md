@@ -14,7 +14,7 @@ A boolean is a binary logical value that can only be either *true* or *false*.
 
 A function is a sequence composed of a function followed by zero or more expression arguments. It extends the *List* type.
 
-Calling a function creates a new scope composed of arguments keyed by position, each one deferred, and is then evaluated within the new scope returning the result.
+Calling a function creates a new scope composed of closure variables and deferred argument key/value pairs, and then evaluates it in the new scope returning the result.
 
 ### Examples ###
 

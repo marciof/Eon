@@ -5,7 +5,7 @@
 
 # Research #
 
-- How to evaluate deferred function arguments? Via "evaluate"? Built-in? How to bootstrap it?
+- Leverage "evaluate" from function calling? Or library defined? 
 - EBNF diagram? http://www.bottlecaps.de/rr/ui
 - Immutability by default? No need for defensive copying (eg "who owns this data"), easier for concurrency, etc. Clojure, Elm, ImmutableJs
 - Indentation based syntax?
