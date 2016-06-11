@@ -1,11 +1,11 @@
 # To Do #
 
 - Specify all values and built-ins.
+- Built-in "evaluate".
 - Documentation via Python-like docstrings in Markdown format.
 
 # Research #
 
-- Leverage "evaluate" from function calling? Or library defined? 
 - EBNF diagram? http://www.bottlecaps.de/rr/ui
 - Immutability by default? No need for defensive copying (eg "who owns this data"), easier for concurrency, etc. Clojure, Elm, ImmutableJs
 - http://www.infoq.com/presentations/Simple-Made-Easy

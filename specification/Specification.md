@@ -12,7 +12,7 @@ A boolean is a binary logical value that can only be either *true* or *false*.
 
 ## Function ##
 
-A function is a sequence composed of a function followed by zero or more expression arguments. It extends the *List* type.
+A function is a sequence composed of a function followed by zero or more values, the arguments. It extends the *List* type.
 
 Calling a function creates a new scope composed of closure variables and deferred argument key/value pairs, and then evaluates it in the new scope returning the result.
 
