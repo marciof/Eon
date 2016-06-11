@@ -1,18 +1,19 @@
 %include "support.nasm"
 
-
 %macro FUNCTION_READ 2
 PUBLIC read_%1:
     enter 0, 0
-    
     mov edx, ARG(1)
-    mov eax, 0              ; Clear return value register.
-    in %2, dx               ; Return the value read.
+
+    ; Clear return value register.
+    mov eax, 0
+
+    ; Return the value read.
+    in %2, dx
     
     leave
     ret
 %endmacro
-
 
 %macro FUNCTION_WRITE 2
 PUBLIC write_%1:
@@ -25,7 +26,6 @@ PUBLIC write_%1:
     leave
     ret
 %endmacro
-
 
 CODE_SECTION
 

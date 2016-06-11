@@ -54,7 +54,6 @@ add_executable(${PROJECT_NAME}-x86
     vga/text_mode.h
     Bit.h
     io.nasm
-    io.cpp
     io.h
     Log.cpp
     Memory.nasm

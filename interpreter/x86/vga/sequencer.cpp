@@ -2,7 +2,6 @@
 #include "../io.h"
 #include "sequencer.h"
 
-
 namespace eon {
 namespace x86 {
 namespace vga {
@@ -12,28 +11,22 @@ namespace sequencer {
         ADDRESS_PORT = 0x3C4,
         DATA_PORT = 0x3C5
     };
-    
-    
+
     void enable_screen(bool enable) {
         uint8_t mode = read(CLOCKING_MODE);
-        
-        mode = enable ? BIT_CLEAR(mode, 5) : BIT_SET(mode, 5);
-        write(CLOCKING_MODE, mode);
+
+        write(CLOCKING_MODE, static_cast<uint8_t>(enable
+            ? BIT_CLEAR(mode, 5)
+            : BIT_SET(mode, 5)));
     }
-    
     
     uint8_t read(Register reg) {
-        uint8_t data;
-        
-        io::write(ADDRESS_PORT, 1, &reg);
-        io::read(DATA_PORT, 1, &data);
-        
-        return data;
+        io::write_byte(ADDRESS_PORT, reg);
+        return io::read_byte(DATA_PORT);
     }
-    
-    
+
     void write(Register reg, uint8_t data) {
-        io::write(ADDRESS_PORT, 1, &reg);
-        io::write(DATA_PORT, 1, &data);
+        io::write_byte(ADDRESS_PORT, reg);
+        io::write_byte(DATA_PORT, data);
     }
 }}}}

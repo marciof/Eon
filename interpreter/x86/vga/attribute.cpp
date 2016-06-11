@@ -1,9 +1,7 @@
-#include "../../core/util.h"
 #include "../Bit.h"
 #include "../io.h"
 #include "attribute.h"
 #include "general.h"
-
 
 namespace eon {
 namespace x86 {
@@ -15,8 +13,7 @@ namespace attribute {
         DATA_WRITE_PORT = 0x3C0,
         DATA_READ_PORT = 0x3C1
     };
-    
-    
+
     enum {
         /** Palette address source bit. */
         PAS_BIT = 5,
@@ -24,8 +21,7 @@ namespace attribute {
         /** Attribute address bits. */
         ADDRESS_BITS = 0x1F
     };
-    
-    
+
     /**
      * Resets the state of the address register.
      *
@@ -41,48 +37,44 @@ namespace attribute {
     static inline void reset_state() {
         general::read_input_status(1);
     }
-    
-    
+
     void enable_blink_mode(bool enable) {
         uint8_t mode = read(ATTRIBUTE_MODE_CONTROL);
         
-        mode = enable ? BIT_SET(mode, 3) : BIT_CLEAR(mode, 3);
-        write(ATTRIBUTE_MODE_CONTROL, mode);
+        write(ATTRIBUTE_MODE_CONTROL, static_cast<uint8_t>(enable
+            ? BIT_SET(mode, 3)
+            : BIT_CLEAR(mode, 3)));
     }
-    
-    
+
     void enable_graphics_mode(bool enable) {
         uint8_t mode = read(ATTRIBUTE_MODE_CONTROL);
         
-        mode = enable ? BIT_SET(mode, 0) : BIT_CLEAR(mode, 0);
-        write(ATTRIBUTE_MODE_CONTROL, mode);
+        write(ATTRIBUTE_MODE_CONTROL, static_cast<uint8_t>(enable
+            ? BIT_SET(mode, 0)
+            : BIT_CLEAR(mode, 0)));
     }
-    
-    
+
     uint8_t read(Register reg) {
-        uint8_t data, status;
+        reset_state();
+
+        uint8_t status = static_cast<uint8_t>(
+            BIT_GET(io::read_byte(ADDRESS_PORT), PAS_BIT)
+            | (reg & ADDRESS_BITS));
         
         reset_state();
-        io::read(ADDRESS_PORT, 1, &status);
-        status = BIT_GET(status, PAS_BIT) | (reg & ADDRESS_BITS);
-        
-        reset_state();
-        io::write(ADDRESS_PORT, 1, &status);
-        io::read(DATA_READ_PORT, 1, &data);
-        
-        return data;
+        io::write_byte(ADDRESS_PORT, status);
+        return io::read_byte(DATA_READ_PORT);
     }
-    
-    
+
     void write(Register reg, uint8_t data) {
-        uint8_t status;
+        reset_state();
+
+        uint8_t status = static_cast<uint8_t>(
+            BIT_GET(io::read_byte(ADDRESS_PORT), PAS_BIT)
+            | (reg & ADDRESS_BITS));
         
         reset_state();
-        io::read(ADDRESS_PORT, 1, &status);
-        status = BIT_GET(status, PAS_BIT) | (reg & ADDRESS_BITS);
-        
-        reset_state();
-        io::write(ADDRESS_PORT, 1, &status);
-        io::write(DATA_WRITE_PORT, 1, &data);
+        io::write_byte(ADDRESS_PORT, status);
+        io::write_byte(DATA_WRITE_PORT, data);
     }
 }}}}

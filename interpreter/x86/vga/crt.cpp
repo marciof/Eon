@@ -3,7 +3,6 @@
 #include "crt.h"
 #include "text_mode.h"
 
-
 namespace eon {
 namespace x86 {
 namespace vga {
@@ -17,66 +16,52 @@ namespace crt {
         MONOCHROME_DATA_PORT = 0x3B5
     };
 
-    
-    static bool _is_color_mode_enabled = true;
-    
-    
+    static bool is_color_mode_enabled = true;
+
     void enable_color_mode(bool enable) {
-        _is_color_mode_enabled = enable;
+        is_color_mode_enabled = enable;
     }
-    
-    
+
     void enable_cursor(bool enable) {
         uint8_t status = read(CURSOR_START);
         
-        status = enable ? BIT_CLEAR(status, 5) : BIT_SET(status, 5);
-        write(CURSOR_START, status);
+        write(CURSOR_START, static_cast<uint8_t>(enable
+            ? BIT_CLEAR(status, 5)
+            : BIT_SET(status, 5)));
     }
-    
-    
+
     void move_cursor(uint32_t row, uint32_t column) {
         size_t columns = text_mode::get_columns();
         uint16_t position = static_cast<uint16_t>((row * columns) + column);
         
-        write(CURSOR_LOCATION_LOW, position & 0xFF);
-        write(CURSOR_LOCATION_HIGH, position >> 8);
+        write(CURSOR_LOCATION_LOW, static_cast<uint8_t>(position & 0xFF));
+        write(CURSOR_LOCATION_HIGH, static_cast<uint8_t>(position >> 8));
     }
-    
     
     uint8_t read(Register reg) {
-        uint8_t data;
-
-        io::write(
-            _is_color_mode_enabled
+        io::write_byte(
+            is_color_mode_enabled
                 ? COLOR_ADDRESS_PORT
                 : MONOCHROME_ADDRESS_PORT,
-            1,
-            &reg);
+            reg);
 
-        io::read(
-            _is_color_mode_enabled
+        return io::read_byte(
+            is_color_mode_enabled
                 ? COLOR_DATA_PORT
-                : MONOCHROME_DATA_PORT,
-            1,
-            &data);
-        
-        return data;
+                : MONOCHROME_DATA_PORT);
     }
     
-    
     void write(Register reg, uint8_t data) {
-        io::write(
-            _is_color_mode_enabled
+        io::write_byte(
+            is_color_mode_enabled
                 ? COLOR_ADDRESS_PORT
                 : MONOCHROME_ADDRESS_PORT,
-            1,
-            &reg);
+            reg);
 
-        io::write(
-            _is_color_mode_enabled
+        io::write_byte(
+            is_color_mode_enabled
                 ? COLOR_DATA_PORT
                 : MONOCHROME_DATA_PORT,
-            1,
-            &data);
+            data);
     }
 }}}}

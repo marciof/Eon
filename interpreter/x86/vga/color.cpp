@@ -1,7 +1,6 @@
 #include "../io.h"
 #include "color.h"
 
-
 namespace eon {
 namespace x86 {
 namespace vga {
@@ -14,35 +13,23 @@ namespace color {
         DAC_STATE_READ_PORT = 0x3C7
     };
     
-    
     void read(uint8_t start, size_t length, Color* colors) {
-        io::write(DAC_ADDRESS_READ_MODE_WRITE_PORT, 1, &start);
+        io::write_byte(DAC_ADDRESS_READ_MODE_WRITE_PORT, start);
         
         for (size_t i = 0; i < length; ++i) {
-            uint8_t red, green, blue;
-            
-            io::read(DAC_DATA_PORT, 1, &red);
-            io::read(DAC_DATA_PORT, 1, &green);
-            io::read(DAC_DATA_PORT, 1, &blue);
-            
-            colors[i].red = red;
-            colors[i].green = green;
-            colors[i].blue = blue;
+            colors[i].red = io::read_byte(DAC_DATA_PORT);
+            colors[i].green = io::read_byte(DAC_DATA_PORT);
+            colors[i].blue = io::read_byte(DAC_DATA_PORT);
         }
     }
-    
-    
+
     void write(uint8_t start, size_t length, Color* colors) {
-        io::write(DAC_ADDRESS_WRITE_MODE_PORT, 1, &start);
+        io::write_byte(DAC_ADDRESS_WRITE_MODE_PORT, start);
         
         for (size_t i = 0; i < length; ++i) {
-            uint8_t red = colors[i].red;
-            uint8_t green = colors[i].green;
-            uint8_t blue = colors[i].blue;
-            
-            io::write(DAC_DATA_PORT, 1, &red);
-            io::write(DAC_DATA_PORT, 1, &green);
-            io::write(DAC_DATA_PORT, 1, &blue);
+            io::write_byte(DAC_DATA_PORT, static_cast<uint8_t>(colors[i].red));
+            io::write_byte(DAC_DATA_PORT, static_cast<uint8_t>(colors[i].green));
+            io::write_byte(DAC_DATA_PORT, static_cast<uint8_t>(colors[i].blue));
         }
     }
 }}}}
