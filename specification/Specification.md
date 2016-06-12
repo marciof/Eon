@@ -256,6 +256,29 @@ If the `escape` argument isn't a symbol, it returns the result of `(debug 'type-
 6
 ```
 
+## `evaluate` ##
+
+Evaluates an expression and returns the result.
+
+If zero or more than one argument is passed, it returns the result of `(debug 'parameter-mismatch)`.
+
+```
+(evaluate expression)
+```
+
+### Examples ###
+
+```
+>>> (evaluate "Bob")
+"Bob"
+>>> (set 'x '(+ 8 2))
+(+ 8 2)
+>>> (evaluate x)
+10
+>>> (evaluate 'x)
+(+ 8 2)
+```
+
 ## `get` ##
 
 Retrieves the value associated with a key in a collection or the environment by default.
@@ -294,7 +317,7 @@ If the association does not exist, it returns the result of `(debug 'undefined-k
 
 Loads a *module* by pathname.
 
-A pathname is a list of zero or more names, ending with the name of the intended module.
+A pathname is a list of zero or more names, ending with the module name.
 
 ```
 (load module:List)
@@ -302,7 +325,7 @@ A pathname is a list of zero or more names, ending with the name of the intended
 
 ## `prototype` ##
 
-Retrieves the original value used to construct another one from.
+Retrieves the original value used to create another one from.
 
 If zero or more than one argument are passed, it returns the result of `(debug 'parameter-mismatch)`.
 

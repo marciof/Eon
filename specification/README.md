@@ -1,8 +1,6 @@
 # To Do #
 
-- Specify all values and built-ins.
-- Built-in "evaluate".
-- Documentation via Python-like docstrings in Markdown format.
+- Specify all values, built-ins, documentation format.
 - EBNF diagram? http://www.bottlecaps.de/rr/ui
 
 # Research #
