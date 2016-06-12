@@ -435,6 +435,10 @@ These are the syntactic transformations that occur for each associated non-termi
 
 The human language used should be English.
 
+## Documentation ##
+
+Documentation should be written in [CommonMark](http://commonmark.org) format.
+
 ## Naming ##
 
 All names should use hyphens as the word delimiter.

@@ -3,10 +3,10 @@
 - Specify all values and built-ins.
 - Built-in "evaluate".
 - Documentation via Python-like docstrings in Markdown format.
+- EBNF diagram? http://www.bottlecaps.de/rr/ui
 
 # Research #
 
-- EBNF diagram? http://www.bottlecaps.de/rr/ui
 - Immutability by default? No need for defensive copying (eg "who owns this data"), easier for concurrency, etc. Clojure, Elm, ImmutableJs
 - http://www.infoq.com/presentations/Simple-Made-Easy
 - http://www.infoq.com/presentations/Value-Identity-State-Rich-Hickey
