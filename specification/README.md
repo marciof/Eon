@@ -1,10 +1,12 @@
 # To Do #
 
-- Specify all values, built-ins, documentation format.
-- EBNF diagram? http://www.bottlecaps.de/rr/ui
+- Specify all values and built-ins.
+- EBNF diagram: http://www.bottlecaps.de/rr/ui
+- Specify documentation syntax.
 
 # Research #
 
+- Macros? Eg. (map [1 2 3] '(* 2 _))
 - Immutability by default? No need for defensive copying (eg "who owns this data"), easier for concurrency, etc. Clojure, Elm, ImmutableJs
 - http://www.infoq.com/presentations/Simple-Made-Easy
 - http://www.infoq.com/presentations/Value-Identity-State-Rich-Hickey
