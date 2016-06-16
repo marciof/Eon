@@ -382,17 +382,23 @@ If the `map` argument isn't a map, it returns the result of `(debug 'type-mismat
 3
 ```
 
-## `traverse` ##
+## `transduce` ##
 
-Iterates over a map using an optional function called with every value and key pairs, and then returns the total number of pairs.
+Iterates over a map, calling the transformation function with each value and key pairs, and running the reducing function with each previously returned value (or the initial default value) and the current transformation result, and then returns the last reduced value.
 
-If zero or more than two arguments are passed, it returns the result of `(debug 'parameter-mismatch)`.
+If less or more than four arguments are passed, it returns the result of `(debug 'parameter-mismatch)`.
 
-If the `map` argument isn't a map or the `visitor` argument isn't a function, it returns the result of `(debug 'type-mismatch)`.
+If the `map` argument isn't a map or the `transform` and `reduce` arguments aren't functions, it returns the result of `(debug 'type-mismatch)`.
 
 ```
-(traverse map:Map): Number
-(traverse map:Map visitor:Function): Number
+(transduce map:Map transform:Function reduce:Function default)
+```
+
+### Examples ###
+
+```
+>>> (transduce [1 2 3] '(- (get 1)) (+ (get 1) (get 2)) 0)
+-6
 ```
 
 # Grammar #

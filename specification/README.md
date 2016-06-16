@@ -6,14 +6,9 @@
 
 # Research #
 
-- Macros? Eg. (map [1 2 3] '(* 2 _))
 - Immutability by default? No need for defensive copying (eg "who owns this data"), easier for concurrency, etc. Clojure, Elm, ImmutableJs
 - http://www.infoq.com/presentations/Simple-Made-Easy
 - http://www.infoq.com/presentations/Value-Identity-State-Rich-Hickey
-- Transducers = transform + reduce.
-  - "the reduce function is the base transformation; any other transformation can be expressed in terms of it (map, filter, etc)"
-  - http://jlongster.com/Transducers.js--A-JavaScript-Library-for-Transformation-of-Data
-  - http://blog.cognitect.com/blog/2014/8/6/transducers-are-coming
 - Reactive programming.
   - https://gist.github.com/staltz/868e7e9bc2a7b8c1f754
   - count clicks stream eg: [---c----c--c->], map (1 each c), [---1----1--1->], scan(+), [---1----2--3->]
