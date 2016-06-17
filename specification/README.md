@@ -4,16 +4,18 @@
 - EBNF diagram: http://www.bottlecaps.de/rr/ui
 - Specify documentation syntax.
 
+named arguments can extend scope
+get and slice don't modify scope
+evaluate can be used to prove scope
+simplify to no optional params
+
 # Research #
 
 - Immutability by default? No need for defensive copying (eg "who owns this data"), easier for concurrency, etc. Clojure, Elm, ImmutableJs
 - http://www.infoq.com/presentations/Simple-Made-Easy
 - http://www.infoq.com/presentations/Value-Identity-State-Rich-Hickey
-- Reactive programming.
-  - https://gist.github.com/staltz/868e7e9bc2a7b8c1f754
-  - count clicks stream eg: [---c----c--c->], map (1 each c), [---1----1--1->], scan(+), [---1----2--3->]
 - Promises, async, await: https://zeit.co/blog/async-and-await
-- Look for best/worst features of other languages: JavaScript, Clojure, Python, Perl, Ruby, Haskell, Io, Rust, Erlang, Smalltalk, Java, Scheme, Go, ML, Lua.
+- Look for best/worst features of other languages: JavaScript, Clojure, Python, Perl, Ruby, Haskell, Elm, Io, Rust, Erlang, Smalltalk, Java, Scheme, Go, ML, Lua.
 
 # Checklist #
 

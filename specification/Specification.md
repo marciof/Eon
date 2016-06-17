@@ -214,11 +214,11 @@ Interrupts normal execution flow. In development mode it triggers a debugger, wh
 
 If more than one argument is passed, it returns the result of `(debug 'parameter-mismatch)`.
 
-If the `identifier` argument isn't a symbol, it returns the result of `(debug 'type-mismatch)`.
+If the `name` argument isn't a symbol, it returns the result of `(debug 'type-mismatch)`.
 
 ```
 (debug)
-(debug identifier:Symbol)
+(debug name:Symbol)
 ```
 
 ## `defer` ##
