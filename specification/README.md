@@ -15,7 +15,6 @@ immutable scope (shadow it to change)
 - Immutability by default? No need for defensive copying (eg "who owns this data"), easier for concurrency, etc. Clojure, Elm, ImmutableJs
 - http://www.infoq.com/presentations/Simple-Made-Easy
 - http://www.infoq.com/presentations/Value-Identity-State-Rich-Hickey
-- Promises, async, await: https://zeit.co/blog/async-and-await
 - Look for best/worst features of other languages: JavaScript, Clojure, Python, Perl, Ruby, Haskell, Elm, Io, Rust, Erlang, Smalltalk, Java, Scheme, Go, ML, Lua.
 
 # Checklist #
