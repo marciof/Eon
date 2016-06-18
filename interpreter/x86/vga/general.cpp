@@ -27,9 +27,7 @@ namespace general {
         uint8_t status = io::read_byte(MISCELLANEOUS_OUTPUT_READ_PORT);
 
         // Extract the I/O address select bit and infer the compatibility mode.
-        bool is_color_mode_enabled = BIT_IS_SET(status, 0);
-
-        if (enable != is_color_mode_enabled) {
+        if (enable != BIT_IS_SET(status, 0)) {
             io::write_byte(MISCELLANEOUS_OUTPUT_WRITE_PORT,
                 static_cast<uint8_t>(enable
                 ? BIT_SET(status, 0)
