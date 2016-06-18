@@ -1,5 +1,5 @@
-#include "Memory.h"
-#include "System.h"
+#include "memory.h"
+#include "system.h"
 
 namespace eon {
 namespace core {

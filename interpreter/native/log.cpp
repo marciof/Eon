@@ -1,5 +1,5 @@
 #include <iostream>
-#include "../core/Log.h"
+#include "../core/log.h"
 
 namespace eon {
 namespace native {

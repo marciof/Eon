@@ -4,9 +4,9 @@
 
 
 #include "../core/util.h"
-#include "../core/Log.h"
-#include "../core/System.h"
-#include "multiboot/Information.h"
+#include "../core/log.h"
+#include "../core/system.h"
+#include "multiboot/information.h"
 #include "support.h"
 
 

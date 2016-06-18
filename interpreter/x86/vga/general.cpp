@@ -1,5 +1,5 @@
-#include "../../core/Log.h"
-#include "../Bit.h"
+#include "../../core/log.h"
+#include "../bit.h"
 #include "../io.h"
 #include "general.h"
 

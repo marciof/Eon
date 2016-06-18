@@ -1,13 +1,11 @@
 %include "support.nasm"
 
-
 section .bss
 align 1
 
 gdtr:
     resw 1
     resd 1
-
 
 CODE_SECTION
 

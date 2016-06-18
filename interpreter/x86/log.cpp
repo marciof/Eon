@@ -1,4 +1,4 @@
-#include "../core/Log.h"
+#include "../core/log.h"
 #include "vga/text_mode.h"
 
 namespace eon {

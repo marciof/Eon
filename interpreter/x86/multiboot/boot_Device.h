@@ -1,7 +1,7 @@
 #pragma once
 #include <stdint.h>
 #include "../../core/util.h"
-#include "Drive.h"
+#include "drive.h"
 
 namespace eon {
 namespace x86 {

@@ -24,20 +24,20 @@ include_directories(SYSTEM ../ext/grub/include)
 add_executable(${PROJECT_NAME}-x86
     # Order is important, check linker script for details.
     layout.lds
-    multiboot/Header.cpp
+    multiboot/header.cpp
 
     ${core_sources}
 
     ../ext/grub/include/multiboot.h
 
-    multiboot/Boot_Device.cpp
-    multiboot/Boot_Device.h
-    multiboot/Drive.cpp
-    multiboot/Drive.h
-    multiboot/Information.cpp
-    multiboot/Information.h
-    multiboot/Memory_Region_Iterator.cpp
-    multiboot/Memory_Region_Iterator.h
+    multiboot/boot_Device.cpp
+    multiboot/boot_Device.h
+    multiboot/drive.cpp
+    multiboot/drive.h
+    multiboot/information.cpp
+    multiboot/information.h
+    multiboot/memory_region_iterator.cpp
+    multiboot/memory_region_iterator.h
     vga/attribute.cpp
     vga/attribute.h
     vga/color.cpp
@@ -52,14 +52,14 @@ add_executable(${PROJECT_NAME}-x86
     vga/sequencer.h
     vga/text_mode.cpp
     vga/text_mode.h
-    Bit.h
+    bit.h
     io.nasm
     io.h
-    Log.cpp
-    Memory.nasm
-    Memory.cpp
+    log.cpp
+    memory.nasm
+    memory.cpp
     support.nasm
     support.cpp
     support.h
-    System.nasm
-    System.cpp)
+    system.nasm
+    system.cpp)

@@ -1,9 +1,7 @@
 %include "support.nasm"
 
-
 %define STACK_LENGTH (16 * 1024)
 extern c_main
-
 
 section .bss
 align 4
@@ -15,13 +13,11 @@ PUBLIC _multiboot_magic_nr:
 stack:
     resb STACK_LENGTH
 
-
 CODE_SECTION
 
 PUBLIC halt:
     cli
     hlt
-
 
 PUBLIC main:
     ; The stack pointer initial value isn't "stack + STACK_LENGTH - 1" because
@@ -32,7 +28,6 @@ PUBLIC main:
     mov [_multiboot_info], ebx
     
     call c_main
-
 
 PUBLIC reset:
     ; Reset by causing a triple fault (which doesn't require a keyboard).

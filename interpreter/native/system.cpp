@@ -1,8 +1,8 @@
 #include <errno.h>
 #include <stdlib.h>
 #include <unistd.h>
-#include "../core/System.h"
-#include "../core/Log.h"
+#include "../core/system.h"
+#include "../core/log.h"
 
 namespace eon {
 namespace native {

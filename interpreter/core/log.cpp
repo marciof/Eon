@@ -1,7 +1,7 @@
 #include <sys/types.h>
 #include "util.h"
-#include "Log.h"
-#include "System.h"
+#include "log.h"
+#include "system.h"
 
 #define NUMERIC_BASE_CONVERSION_SYMBOLS "0123456789ABCDEF"
 #define ERROR_MESSAGE_PREFIX "[ERROR] "

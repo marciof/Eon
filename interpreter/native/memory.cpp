@@ -1,4 +1,4 @@
-#include "../core/Memory.h"
+#include "../core/memory.h"
 
 namespace eon {
 namespace native {

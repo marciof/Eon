@@ -1,5 +1,5 @@
-#include "../../core/Log.h"
-#include "Boot_Device.h"
+#include "../../core/log.h"
+#include "boot_Device.h"
 
 namespace eon {
 namespace x86 {

@@ -1,4 +1,4 @@
-#include "../Bit.h"
+#include "../bit.h"
 #include "../io.h"
 #include "graphics.h"
 

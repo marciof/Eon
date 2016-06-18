@@ -1,4 +1,4 @@
-#include "Memory.h"
+#include "memory.h"
 
 namespace eon {
 namespace core {

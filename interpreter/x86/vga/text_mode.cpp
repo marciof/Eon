@@ -1,4 +1,4 @@
-#include "../../core/Log.h"
+#include "../../core/log.h"
 #include "attribute.h"
 #include "crt.h"
 #include "general.h"

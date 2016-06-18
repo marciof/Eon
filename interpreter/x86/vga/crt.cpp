@@ -1,4 +1,4 @@
-#include "../Bit.h"
+#include "../bit.h"
 #include "../io.h"
 #include "crt.h"
 #include "text_mode.h"

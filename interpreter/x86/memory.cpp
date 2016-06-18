@@ -1,7 +1,7 @@
 #include <stdint.h>
 #include "../core/util.h"
-#include "../core/Memory.h"
-#include "Bit.h"
+#include "../core/memory.h"
+#include "bit.h"
 
 
 /**

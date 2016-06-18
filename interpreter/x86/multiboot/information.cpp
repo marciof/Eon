@@ -1,9 +1,9 @@
-#include "../../core/Log.h"
-#include "../../core/System.h"
-#include "Boot_Device.h"
-#include "Drive.h"
-#include "Information.h"
-#include "Memory_Region_Iterator.h"
+#include "../../core/log.h"
+#include "../../core/system.h"
+#include "boot_Device.h"
+#include "drive.h"
+#include "information.h"
+#include "memory_region_iterator.h"
 
 
 #define IS_FLAG_SET(flags, flag) \

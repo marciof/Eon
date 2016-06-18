@@ -1,5 +1,5 @@
 #include "../core/util.h"
-#include "../core/Log.h"
+#include "../core/log.h"
 #include "support.h"
 
 

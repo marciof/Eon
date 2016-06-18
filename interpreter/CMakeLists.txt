@@ -7,12 +7,12 @@ string(REPLACE "-Weffc++ -Wold-style-cast" ""
     CMAKE_C_FLAGS "${CMAKE_C_FLAGS}")
 
 set(core_sources
-    core/Log.cpp
-    core/Log.h
-    core/Memory.cpp
-    core/Memory.h
-    core/System.cpp
-    core/System.h
+    core/log.cpp
+    core/log.h
+    core/memory.cpp
+    core/memory.h
+    core/system.cpp
+    core/system.h
     core/util.h)
 
 string(REGEX REPLACE "([^;]+)" "${CMAKE_CURRENT_SOURCE_DIR}/\\1"
