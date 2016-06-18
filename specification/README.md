@@ -4,10 +4,11 @@
 - EBNF diagram: http://www.bottlecaps.de/rr/ui
 - Specify documentation syntax.
 
-named arguments can extend scope
-get and slice don't modify scope
-evaluate can be used to prove scope
-simplify to no optional params
+simplify transduce to reduce? 
+
+making scope first class doesn't require optional parameters to slice (more readable), makes it easier to run unsafe code using eval, debugging with call frames (each function adds a scope map and is available in there), can evaluate functions at a different scope
+
+immutable scope (shadow it to change)
 
 # Research #
 
