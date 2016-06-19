@@ -1,6 +1,6 @@
 #include "../../core/log.h"
 #include "../../core/system.h"
-#include "boot_Device.h"
+#include "boot_device.h"
 #include "drive.h"
 #include "information.h"
 #include "memory_region_iterator.h"

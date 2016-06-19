@@ -30,8 +30,8 @@ add_executable(${PROJECT_NAME}-x86
 
     ../ext/grub/include/multiboot.h
 
-    multiboot/boot_Device.cpp
-    multiboot/boot_Device.h
+    multiboot/boot_device.cpp
+    multiboot/boot_device.h
     multiboot/drive.cpp
     multiboot/drive.h
     multiboot/information.cpp

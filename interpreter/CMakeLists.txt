@@ -9,7 +9,6 @@ string(REPLACE "-Weffc++ -Wold-style-cast" ""
 set(core_sources
     core/log.cpp
     core/log.h
-    core/memory.cpp
     core/memory.h
     core/system.cpp
     core/system.h)
