@@ -83,8 +83,8 @@ namespace text_mode {
             _column = 0;
             break;
         case '\t':
-            _column += core::Log::TAB_SPACES_WIDTH
-                - (_column % core::Log::TAB_SPACES_WIDTH);
+            _column += core::Log::TAB_NR_SPACES
+                - (_column % core::Log::TAB_NR_SPACES);
             break;
         default:
             size_t position = 2 * ((_row * _gfx->columns) + _column);

@@ -7,7 +7,7 @@ namespace core {
     class Log {
     public:
         enum {
-            TAB_SPACES_WIDTH = 4
+            TAB_NR_SPACES = 4
         };
         
         static Log* get(); // = 0
