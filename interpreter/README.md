@@ -8,7 +8,7 @@
   - https://github.com/andrewrk/malcheck
   - https://github.com/google/sanitizers
   - http://clang-analyzer.llvm.org
-- Clean up, simplify (remove util, make all filenames lower-case, hpp headers, remove double blank lines), remove useless TODO comments and documentation (document only what's need, eg. log's format string grammar), use single-line comments, remove `this->`.
+- Clean up, simplify, remove double blank lines, more flat less nested, remove useless TODO comments and documentation (document only what's need, eg. log's format string grammar), use single-line comments, remove `this->`.
 - Colored native logging.
 - Drop Windows support.
 - Logging of long integers.

@@ -1,5 +1,4 @@
 #include <sys/types.h>
-#include "util.h"
 #include "log.h"
 #include "system.h"
 
@@ -12,6 +11,9 @@
 
 #define FORMAT_STRING_ERROR \
     ERROR_MESSAGE_PREFIX "Invalid logging format string.\n"
+
+#define STATIC_ARRAY_LENGTH(array) \
+    (sizeof(array) / sizeof((array)[0]))
 
 namespace eon {
 namespace core {

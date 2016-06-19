@@ -1,8 +1,13 @@
 #include <stdint.h>
-#include "../core/util.h"
 #include "../core/memory.h"
 #include "bit.h"
 
+#define CONCAT(x, y) x##y
+#define CONCAT_EXPAND(x, y) CONCAT(x, y)
+
+// http://www.pixelbeat.org/programming/gcc/static_assert.html
+#define STATIC_ASSERT(expr, message) \
+    enum {CONCAT_EXPAND(STATIC_ASSERTION_, __LINE__) = 1 / ((expr) ? 1 : 0)}
 
 /**
  * Loads the GDT register.
@@ -11,7 +16,6 @@
  * @param [in] address starting address of the GDT
  */
 extern "C" void set_gdtr(uint16_t size, uint32_t address);
-
 
 namespace eon {
 namespace x86 {
@@ -36,8 +40,7 @@ namespace x86 {
                 };
             }
         }
-        
-        
+
         namespace Granularity {
             enum {
                 /** The segment size can range from 1 B to 1 MiB. */
@@ -47,33 +50,29 @@ namespace x86 {
                 STEP_4KiB = 1
             };
         }
-        
-        
+
         namespace Operation_Size {
             enum {
                 SEGMENT_16_BIT = 0,
                 SEGMENT_32_BIT = 1
             };
         }
-        
-        
+
         namespace Presence {
             enum {
                 ABSENT = 0,
                 IN_MEMORY = 1
             };
         }
-        
-        
+
         namespace Type {
             enum {
                 SYSTEM = 0,
                 CODE_DATA = 1
             };
         }
-        
-        
-        PACKED(struct Descriptor {
+
+        PACKED_STRUCT(struct Descriptor {
             /**
              * @name Segment Limit
              * Specifies the segment size according to the granularity.
@@ -111,15 +110,13 @@ namespace x86 {
         STATIC_ASSERT(sizeof(Descriptor) == 8,
             "Memory segment descriptor structure not packed.");
     }
-    
-    
+
     class Physical_Memory: public core::Memory {
     public:
         Physical_Memory() {
         }
     };
 }}
-
 
 namespace eon {
 namespace core {

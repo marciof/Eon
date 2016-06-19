@@ -1,12 +1,12 @@
 #pragma once
 #include <stdint.h>
-#include "../../core/util.h"
 #include "drive.h"
+#include "../bit.h"
 
 namespace eon {
 namespace x86 {
 namespace multiboot {
-    PACKED(struct Boot_Device {
+    PACKED_STRUCT(struct Boot_Device {
         // Partition numbers start at zero.
         enum {
             UNUSED_PARTITION = 0xFF

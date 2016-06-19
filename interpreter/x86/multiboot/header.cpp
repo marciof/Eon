@@ -1,5 +1,4 @@
 #include <stdint.h>
-#include "../../core/util.h"
 
 // TODO: Figure out why this is needed, or switch to Multiboot 2?
 typedef uint16_t grub_uint16_t;

@@ -1,5 +1,7 @@
 #pragma once
 
+#define PACKED_STRUCT(type) \
+    type __attribute__((__packed__))
 
 /**
  * Creates a bit.
@@ -9,7 +11,6 @@
  */
 #define BIT(position) \
     (1 << (position))
-
 
 /**
  * Clears a bit.
@@ -21,7 +22,6 @@
 #define BIT_CLEAR(integer, position) \
     ((integer) & (~0 ^ BIT(position)))
 
-
 /**
  * Gets a bit.
  *
@@ -32,7 +32,6 @@
 #define BIT_GET(integer, position) \
     ((integer) & BIT(position))
 
-
 /**
  * Checks if a bit is set.
  *
@@ -42,7 +41,6 @@
  */
 #define BIT_IS_SET(integer, position) \
     (BIT_GET(integer, position) != 0 ? true : false)
-
 
 /**
  * Sets a bit.

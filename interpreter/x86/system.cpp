@@ -3,7 +3,6 @@
  */
 
 
-#include "../core/util.h"
 #include "../core/log.h"
 #include "../core/system.h"
 #include "multiboot/information.h"
