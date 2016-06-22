@@ -1,14 +1,9 @@
 # To Do #
 
+- Simplify transduce to reduce.
 - Specify all values and built-ins.
 - EBNF diagram: http://www.bottlecaps.de/rr/ui
 - Specify documentation syntax.
-
-simplify transduce to reduce? 
-
-making scope first class doesn't require optional parameters to slice (more readable), makes it easier to run unsafe code using eval, debugging with call frames (each function adds a scope map and is available in there), can evaluate functions at a different scope
-
-immutable scope (shadow it to change)
 
 # Research #
 
@@ -30,3 +25,22 @@ immutable scope (shadow it to change)
 - No null value.
 - Shell language.
 - Lazy functional. Eg. lazy.js, "no iteration takes place until you call each, and no intermediate arrays are created", `Lazy(txt).split("\n").take(5)`
+
+# Clojure atoms?
+
+{
+  let: '(evaluate
+          (splice
+            (defer
+              (evaluate (escape (get 3)))
+              'escape)
+          {}
+          (get 2)))
+}
+
+# "scopes" built-in, a list of maps
+# immutable scope, shadow to update
+# values don't change, what changes is what a name points to
+# no optional parameters to slice
+# can run unsafe code using eval
+# debugging with call frames
