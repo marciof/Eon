@@ -348,6 +348,25 @@ If zero or more than one argument are passed, it returns the result of `(debug '
 0
 ```
 
+## `reduce` ##
+
+Iterates over a map, calling the reducing function with each previously returned value (or the initial default value) and each value and key map pairs, and then returns the last reduced value.
+
+If less or more than three arguments are passed, it returns the result of `(debug 'parameter-mismatch)`.
+
+If the `map` argument isn't a map or the `reducer` argument isn't a function, it returns the result of `(debug 'type-mismatch)`.
+
+```
+(reduce map:Map reducer:Function default)
+```
+
+### Examples ###
+
+```
+>>> (reduce [8 2 2] '(+ (get 1) (get 2)) 0)
+12
+```
+
 ## `splice` ##
 
 Adds elements to and removes keys from a map or the environment by default, and returns the changed collection.
@@ -380,25 +399,6 @@ If the `map` argument isn't a map, it returns the result of `(debug 'type-mismat
 {x: 3}
 >>> x
 3
-```
-
-## `transduce` ##
-
-Iterates over a map, calling the transformation function with each value and key pairs, and running the reducing function with each previously returned value (or the initial default value) and the current transformation result, and then returns the last reduced value.
-
-If less or more than four arguments are passed, it returns the result of `(debug 'parameter-mismatch)`.
-
-If the `map` argument isn't a map or the `transform` and `reduce` arguments aren't functions, it returns the result of `(debug 'type-mismatch)`.
-
-```
-(transduce map:Map transform:Function reduce:Function default)
-```
-
-### Examples ###
-
-```
->>> (transduce [1 2 3] '(- (get 1)) (+ (get 1) (get 2)) 0)
--6
 ```
 
 # Grammar #

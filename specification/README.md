@@ -1,3 +1,20 @@
+{
+  let: '(evaluate
+          (splice
+            (defer
+              (evaluate (escape (get 3)))
+              'escape)
+          {}
+          (get 2)))
+}
+
+- "scopes" built-in, a list of maps
+- mutable scope
+- values don't change, what changes is what a name points to
+- no optional params to slice, simpler
+- can run unsafe code using eval
+- debugging with call frames
+
 # To Do #
 
 - Simplify transduce to reduce.
@@ -25,22 +42,3 @@
 - No null value.
 - Shell language.
 - Lazy functional. Eg. lazy.js, "no iteration takes place until you call each, and no intermediate arrays are created", `Lazy(txt).split("\n").take(5)`
-
-# Clojure atoms?
-
-{
-  let: '(evaluate
-          (splice
-            (defer
-              (evaluate (escape (get 3)))
-              'escape)
-          {}
-          (get 2)))
-}
-
-# "scopes" built-in, a list of maps
-# immutable scope, shadow to update
-# values don't change, what changes is what a name points to
-# no optional parameters to slice
-# can run unsafe code using eval
-# debugging with call frames
