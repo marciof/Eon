@@ -1,34 +1,14 @@
-{
-  let: '(evaluate
-          (splice
-            (defer
-              (evaluate (escape (get 3)))
-              'escape)
-          {}
-          (get 2)))
-}
-
-- "scopes" built-in, a list of maps
-- mutable scope
-- values don't change, what changes is what a name points to
-- no optional params to slice, simpler
-- can run unsafe code using eval
-- debugging with call frames
-
 # To Do #
 
-- Simplify transduce to reduce.
+- `scope` built-in, map, mutable, no optional parameters to `slice`, `get`, optional parameter to `evaluate` to run unsafe code.
 - Specify all values and built-ins.
 - EBNF diagram: http://www.bottlecaps.de/rr/ui
-- Specify documentation syntax.
+- Specify documentation format.
+- Fix continuation example.
 
 # Research #
 
 - Immutability by default? No need for defensive copying (eg "who owns this data"), easier for concurrency, etc. Clojure, Elm, ImmutableJs
-- Indentation based syntax?
-  - Optional parentheses for grouping.
-  - Arguments are first space-separated, then line-separated by indentation.
-  - Function calls with no arguments requires parentheses for disambiguation.
 - http://www.infoq.com/presentations/Simple-Made-Easy
 - http://www.infoq.com/presentations/Value-Identity-State-Rich-Hickey
 - Look for best/worst features of other languages: JavaScript, Clojure, Python, Perl, Ruby, Haskell, Elm, Io, Rust, Erlang, Smalltalk, Java, Scheme, Go, ML, Lua.

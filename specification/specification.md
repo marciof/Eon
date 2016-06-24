@@ -4,6 +4,13 @@
 
 A module is the Unicode textual representation of *Expressions* encoded in UTF-8 without a Byte Order Mark, with a valid *Symbol* for its name.
 
+## Indentation ##
+
+Source code indentation is generally significant for function expressions, based on the following two rules:
+
+1. Arguments are first *Space*-separated, then *End-of-Line*-separated by the same indentation level.
+2. Parentheses are optional, except for grouping and disambiguating zero-argument calls.
+
 # Types #
 
 ## Boolean ##
@@ -414,11 +421,11 @@ The grammar is expressed in Extended Backus-Naur Form syntax with the following 
 
 ```
 Expressions ::= White-Space* (Expression (White-Space+ Expression)* White-Space*)?
-Expression ::= Defer* (Symbol | Number | Quantity | List | Map | Text | Code | Ellipsis)
+    Expression ::= Defer* (Symbol | Number | Quantity | List | Map | Text | Function | Ellipsis)
 White-Space ::= Space | End-of-Line | Comment
 Comment ::= Comment-Quote not(End-of-Line)* End-of-Line
 Symbol ::= not(Reserved-Character, White-Space, Sign, Digit) not(Reserved-Character, White-Space)*
-Reserved-Character ::= List-Begin | List-End | Code-Begin | Code-End | Map-Begin | Map-End | Comment-Quote | Text-Quote | Defer | Pair-Separator | Unit-Separator
+Reserved-Character ::= List-Begin | List-End | Function-Begin | Function-End | Map-Begin | Map-End | Comment-Quote | Text-Quote | Defer | Pair-Separator | Unit-Separator
 Quantity ::= Number (Symbol | Dotted-Expression)
 Dotted-Expression ::= Symbol (Unit-Separator Symbol)+
 Number ::= Terminating-Decimal | Repeating-Decimal
@@ -426,7 +433,7 @@ Terminating-Decimal ::= Sign? Digit+ (Unit-Separator Digit+)?
 Repeating-Decimal ::= Sign? Digit+ Unit-Separator Digit* List-Begin Digit+ List-End Digit*
 Pair ::= Expression White-Space* Pair-Separator White-Space* Expressio
 Map-Expressions ::= White-Space* ((Expression | Pair) (White-Space+ (Expression | Pair))* White-Space*)?
-Code ::= Code-Begin Map-Expressions Code-End
+Function ::= Function-Begin Map-Expressions Function-End
 List ::= List-Begin Map-Expressions List-End
 Map ::= Map-Begin Map-Expressions Map-End
 Text ::= Literal-Text | Custom-Text
@@ -441,8 +448,8 @@ Defer ::= ' (U+27)
 Unit-Separator ::= . (U+2E)
 Digit ::= 0 (U+30) | 1 (U+31) | 2 (U+32) | 3 (U+33) | 4 (U+34) | 5 (U+35) | 6 (U+36) | 7 (U+37) | 8 (U+38) | 9 (U+39)
 Sign ::= + (U+2B) | - (U+2D)
-Code-Begin ::= ( (U+28)
-Code-End ::= ) (U+28)
+Function-Begin ::= ( (U+28)
+Function-End ::= ) (U+28)
 Map-Begin ::= { (U+7B)
 Map-End ::= } (U+7D)
 List-Begin ::= [ (U+5B)
