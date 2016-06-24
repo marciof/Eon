@@ -25,6 +25,10 @@
 # Research #
 
 - Immutability by default? No need for defensive copying (eg "who owns this data"), easier for concurrency, etc. Clojure, Elm, ImmutableJs
+- Indentation based syntax?
+  - Optional parentheses for grouping.
+  - Arguments are first space-separated, then line-separated by indentation.
+  - Function calls with no arguments requires parentheses for disambiguation.
 - http://www.infoq.com/presentations/Simple-Made-Easy
 - http://www.infoq.com/presentations/Value-Identity-State-Rich-Hickey
 - Look for best/worst features of other languages: JavaScript, Clojure, Python, Perl, Ruby, Haskell, Elm, Io, Rust, Erlang, Smalltalk, Java, Scheme, Go, ML, Lua.
