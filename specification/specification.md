@@ -446,7 +446,7 @@ The grammar is expressed in Extended Backus-Naur Form syntax with the following 
 
 ```
 Expressions ::= White-Space* (Expression (White-Space+ Expression)* White-Space*)?
-    Expression ::= Defer* (Symbol | Number | Quantity | List | Map | Text | Function | Ellipsis)
+Expression ::= Defer* (Symbol | Number | Quantity | List | Map | Text | Function | Ellipsis)
 White-Space ::= Space | End-of-Line | Comment
 Comment ::= Comment-Quote not(End-of-Line)* End-of-Line
 Symbol ::= not(Reserved-Character, White-Space, Sign, Digit) not(Reserved-Character, White-Space)*
