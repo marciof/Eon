@@ -11,7 +11,20 @@ Source code indentation is generally significant for function expressions, based
 1. Arguments are first *Space*-separated, then *End-of-Line*-separated by the same indentation level.
 2. Parentheses are optional, except for grouping and disambiguating zero-argument calls.
 
+### Examples ###
+
+```
+>>> var name: "John"
+"John"
+>>> if (= name "Bob")
+  >    'allowed
+  >    'denied
+'denied
+```
+
 # Types #
+
+All user defined values are immutable.
 
 ## Boolean ##
 
@@ -26,9 +39,9 @@ Calling a function creates a new scope composed of closure variables and deferre
 ### Examples ###
 
 ```
->>> (set 'double '(* 2 (get 1)))
-(* 2 (get 1))
->>> (double 4)
+>>> var double: '(* 2 (get scope 1))
+(* 2 (get scope 1))
+>>> double 4
 8
 ```
 
@@ -113,6 +126,8 @@ A text is a sequence of Unicode characters, each one identified by a code-point.
 ""
 >>> "Bob"
 "Bob"
+>>> "x"
+"x"
 ```
 
 # Built-ins #
@@ -130,17 +145,17 @@ If less than two arguments are passed, it returns the result of `(debug 'paramet
 ### Examples ###
 
 ```
->>> (= "A" "A")
+>>> = "A" "A"
 true
->>> (= "A" "a")
+>>> = "A" "a"
 false
->>> (= [1 2 3] [1 2 3])
+>>> = [1 2 3] [1 2 3]
 true
->>> (= [] {})
+>>> = [] {}
 false
->>> (= {0 1} {1 0})
+>>> = {0 1} {1 0}
 true
->>> (= 0 "")
+>>> = 0 ""
 false
 ```
 
@@ -203,15 +218,15 @@ Dividing any number by zero or infinity by infinity returns the result of `(debu
 ### Examples ###
 
 ```
->>> (/ 12 3)
+>>> / 12 3
 4
->>> (/ 7 10)
+>>> / 7 10
 0.7
->>> (/ 1 3)
+>>> / 1 3
 0.(3)
->>> (/ 0 6)
+>>> / 0 6
 0
->>> (/ 1 0.(0)1)
+>>> / 1 0.(0)1
 infinity
 ```
 
@@ -244,15 +259,15 @@ If the `escape` argument isn't a symbol, it returns the result of `(debug 'type-
 ### Examples ###
 
 ```
->>> (set 'x 2)
+>>> var x: 2
 2
->>> (+ 1 x)
+>>> + 1 x
 3
 >>> '(+ 1 x)
 (+ 1 x)
->>> (defer (+ 1 x))
+>>> defer (+ 1 x)
 (+ 1 x)
->>> (defer (+ 1 (escape x)) 'escape)
+>>> defer (+ 1 (escape x)) 'escape
 (+ 1 2)
 ```
 
@@ -269,13 +284,13 @@ If zero or more than one argument is passed, it returns the result of `(debug 'p
 ### Examples ###
 
 ```
->>> (evaluate "Bob")
+>>> evaluate "Bob"
 "Bob"
->>> (set 'x '(+ 8 2))
+>>> var x: '(+ 8 2)
 (+ 8 2)
->>> (evaluate x)
+>>> evaluate x
 10
->>> (evaluate 'x)
+>>> evaluate 'x
 (+ 8 2)
 ```
 
@@ -296,13 +311,13 @@ If the association does not exist, it returns the result of `(debug 'unkown-key)
 ### Examples ###
 
 ```
->>> (get [8 2 2] 1)
+>>> get [8 2 2] 1
 8
->>> (get {"a" "b"} "b")
+>>> get {"a" "b"} "b"
 "b"
->>> (get {'name: "Bob"} 'name)
+>>> get {'name: "Bob"} 'name
 "Bob"
->>> (get '(+ 6 7) 2)
+>>> get '(+ 6 7) 2
 6
 ```
 
@@ -318,7 +333,7 @@ A pathname is a list of zero or more names, ending with the module name.
 
 ## `prototype` ##
 
-Retrieves the original value used to create another one from.
+Retrieves the original value used to create another from.
 
 If zero or more than one argument are passed, it returns the result of `(debug 'parameter-mismatch)`.
 
@@ -329,15 +344,15 @@ If zero or more than one argument are passed, it returns the result of `(debug '
 ### Examples ###
 
 ```
->>> (prototype "Hello")
+>>> prototype "Hello"
 ""
->>> (prototype "")
+>>> prototype ""
 ""
->>> (prototype [8 2 2])
+>>> prototype [8 2 2]
 []
->>> (prototype get)
+>>> prototype get
 ()
->>> (prototype 8)
+>>> prototype 8
 0
 ```
 
@@ -356,13 +371,13 @@ If the `map` argument isn't a map or the `reducer` argument isn't a function, it
 ### Examples ###
 
 ```
->>> (reduce [8 2 2] '(+ (get 1) (get 2)) 0)
+>>> reduce [8 2 2] '(+ (get scope 1) (get scope 2)) 0
 12
 ```
 
 ## `scope` ##
 
-Mutable map of identifiers to values in the current scope.
+Mutable map of names to values in the current scope.
 
 ```
 scope:Map
@@ -371,13 +386,13 @@ scope:Map
 ### Examples ###
 
 ```
->>> (set 'x 3)
+>>> var x: 3
 3
->>> (get scope 'x)
+>>> get scope 'x
 3
 >>> x
 3
->>> (splice scope {} {'y: 8})
+>>> splice scope {} {'y: 8}
 {x: 3 y: 8}
 >>> y
 8
@@ -402,16 +417,20 @@ If the `map` argument isn't a map, it returns the result of `(debug 'type-mismat
 ### Examples ###
 
 ```
->>> (splice ["x" "y"] {2} ["z"])
+>>> splice ["x" "y"] {2} ["z"]
 ["x" "z"]
->>> (splice ["x" "y"] {1} [])
+>>> splice ["x" "y"] {1} []
 ["y"]
->>> (splice ["x" "y"] {2} ["z" "y"])
+>>> splice ["x" "y"] {2} ["z" "y"]
 ["x" "z" "y"]
->>> (splice ["x"] {} ["y" "z"])
+>>> splice ["x"] {} ["y" "z"]
 ["x" "y" "z"]
->>> (splice {'u: "Bob"} {} {'u: "John"})
-{u: "John"}
+>>> var user: {'name: "Bob"}
+{name: "Bob"}
+>>> splice user {} {'age: 25}
+{name: "Bob" age: 25}
+>>> user
+{name: "Bob"}
 ```
 
 # Grammar #
