@@ -230,14 +230,13 @@ If the `name` argument isn't a symbol, it returns the result of `(debug 'type-mi
 
 ## `defer` ##
 
-Creates a snapshot of the current control flow (also known as a continuation), or of an expression thereby preventing it from being evaluated. The latter form is the named counterpart of the *Defer* grammar.
+Creates a snapshot of an expression thereby preventing it from being evaluated.
 
-If more than two arguments are passed or the continuation isn't passed one argument, it returns the result of `(debug 'parameter-mismatch)`.
+If less than one or more than two arguments are passed, it returns the result of `(debug 'parameter-mismatch)`.
 
 If the `escape` argument isn't a symbol, it returns the result of `(debug 'type-mismatch)`.
 
 ```
-(defer): Function
 (defer expression)
 (defer expression escape:Symbol)
 ```
@@ -255,12 +254,6 @@ If the `escape` argument isn't a symbol, it returns the result of `(debug 'type-
 (+ 1 x)
 >>> (defer (+ 1 (escape x)) 'escape)
 (+ 1 2)
->>> (* 2 (do (set 'c (defer)) 3))
-6
->>> (c 4)
-8
->>> (c 2)
-6
 ```
 
 ## `evaluate` ##
@@ -288,16 +281,15 @@ If zero or more than one argument is passed, it returns the result of `(debug 'p
 
 ## `get` ##
 
-Retrieves the value associated with a key in a collection or the environment by default.
+Retrieves the value associated with a key in a collection map.
 
-If zero or more than two arguments are passed, it returns the result of `(debug 'parameter-mismatch)`.
+If less or more than two arguments are passed, it returns the result of `(debug 'parameter-mismatch)`.
 
 If the `map` argument isn't a map, it returns the result of `(debug 'type-mismatch)`.
 
-If the association does not exist, it returns the result of `(debug 'undefined-key)`.
+If the association does not exist, it returns the result of `(debug 'unkown-key)`.
 
 ```
-(get key)
 (get map:Map key)
 ```
 
@@ -312,12 +304,6 @@ If the association does not exist, it returns the result of `(debug 'undefined-k
 "Bob"
 >>> (get '(+ 6 7) 2)
 6
->>> (set 'x 3)
-3
->>> (get 'x)
-3
->>> x
-3
 ```
 
 ## `load` ##
@@ -374,20 +360,42 @@ If the `map` argument isn't a map or the `reducer` argument isn't a function, it
 12
 ```
 
+## `scope` ##
+
+Mutable map of identifiers to values in the current scope.
+
+```
+scope:Map
+```
+
+### Examples ###
+
+```
+>>> (set 'x 3)
+3
+>>> (get scope 'x)
+3
+>>> x
+3
+>>> (splice scope {} {'y: 8})
+{x: 3 y: 8}
+>>> y
+8
+```
+
 ## `splice` ##
 
-Adds elements to and removes keys from a map or the environment by default, and returns the changed collection.
+Adds elements to and removes keys from a map, and returns the changed collection.
 
 If a key from a new key/value pair being added is already present, the new value replaces the previous one.
 
-If removing non-contiguous positions (keys) from a list, new elements are added to the last specified position.
+If removing positions (keys) from a list, new elements are added to the last specified position.
 
 If less than two or more than three arguments are passed, it returns the result of `(debug 'parameter-mismatch)`.
 
 If the `map` argument isn't a map, it returns the result of `(debug 'type-mismatch)`.
 
 ```
-(splice keys elements)
 (splice map:Map keys elements)
 ```
 
@@ -402,10 +410,8 @@ If the `map` argument isn't a map, it returns the result of `(debug 'type-mismat
 ["x" "z" "y"]
 >>> (splice ["x"] {} ["y" "z"])
 ["x" "y" "z"]
->>> (splice {} {'x: 3})
-{x: 3}
->>> x
-3
+>>> (splice {'u: "Bob"} {} {'u: "John"})
+{u: "John"}
 ```
 
 # Grammar #
@@ -436,9 +442,9 @@ Map-Expressions ::= White-Space* ((Expression | Pair) (White-Space+ (Expression 
 Function ::= Function-Begin Map-Expressions Function-End
 List ::= List-Begin Map-Expressions List-End
 Map ::= Map-Begin Map-Expressions Map-End
-Text ::= Literal-Text | Custom-Text
+Text ::= Literal-Text | Tagged-Text
 Literal-Text ::= Text-Quote (not(Text-Quote) | Text-Quote{2})* Text-Quote
-Custom-Text ::= (Symbol | Dotted-Expression) Literal-Text (Symbol | Dotted-Expression | Number | Quantity)?
+Tagged-Text ::= (Symbol | Dotted-Expression) Literal-Text (Symbol | Dotted-Expression | Number | Quantity)?
 Ellipsis ::= Unit-Separator{3}
 Space ::= (U+20)
 End-of-Line ::= (U+A)
@@ -464,7 +470,7 @@ These are the syntactic transformations that occur for each associated non-termi
 |Non-Terminal       |Syntax|Transformation|Association   |
 |-------------------|------|--------------|--------------|
 |*Dotted-Expression*|`x.y` |`(get x 'y)`  |Left to right.|
-|*Custom-Text*      |`xyz` |`(x y z)`     |              |
+|*Tagged-Text*      |`xyz` |`(x y z)`     |              |
 |*Quantity*         |`xy`  |`(y x)`       |              |
 |*Defer*            |`'x`  |`(defer x)`   |              |
 
