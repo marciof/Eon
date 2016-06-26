@@ -66,7 +66,7 @@ A list is a sequence of elements. It extends the *Map* type by associating conse
 [8 2 2 'key: 'value]
 # [8 2 2 key: value]
 
-['name": "Bob"]
+['name: "Bob"]
 # [name: "Bob"]
 ```
 
