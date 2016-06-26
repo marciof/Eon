@@ -6,7 +6,7 @@ A module is the Unicode textual representation of *Expressions* encoded in UTF-8
 
 ## Indentation ##
 
-Source code indentation is generally significant for function expressions, based on the following two rules:
+Source code indentation is optionally significant for function expressions, based on the following rules:
 
 1. Arguments are first *Space*-separated, then *End-of-Line*-separated by the same indentation level.
 2. Parentheses are optional, except for grouping and disambiguating zero-argument calls.
@@ -21,6 +21,9 @@ if (= name "Bob")
   'allowed
   'denied
 # denied
+
+(if (= name "John") 'allowed 'denied)
+# allowed
 ```
 
 # Types #
