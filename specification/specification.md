@@ -14,12 +14,13 @@ Source code indentation is generally significant for function expressions, based
 ### Examples ###
 
 ```
->>> var name: "John"
-"John"
->>> if (= name "Bob")
-  >    'allowed
-  >    'denied
-'denied
+var name: "John"
+# "John"
+
+if (= name "Bob")
+  'allowed
+  'denied
+# denied
 ```
 
 # Types #
@@ -39,10 +40,11 @@ Calling a function creates a new scope composed of closure variables and deferre
 ### Examples ###
 
 ```
->>> var double: '(* 2 (get scope 1))
-(* 2 (get scope 1))
->>> double 4
-8
+var double: '(* 2 (get scope 1))
+# (* 2 (get scope 1))
+
+double 4
+# 8
 ```
 
 ## List ##
@@ -52,14 +54,17 @@ A list is a sequence of elements. It extends the *Map* type by associating conse
 ### Examples ###
 
 ```
->>> []
 []
->>> ["x" "y"]
+# []
+
 ["x" "y"]
->>> [8 2 2 'key: 'value]
+# ["x" "y"]
+
 [8 2 2 'key: 'value]
->>> ['name": "Bob"]
-['name: "Bob"]
+# [8 2 2 key: value]
+
+['name": "Bob"]
+# [name: "Bob"]
 ```
 
 ## Map ##
@@ -73,14 +78,17 @@ If the same key is repeated multiple times, it's associated with only the last v
 ### Examples ###
 
 ```
->>> {}
 {}
->>> {'name: "Bob" 'age: 30}
-{name: "Bob" age: 30}
->>> {"x" "y"}
+# {}
+
+{'name: "Bob" 'age: 30}
+# {name: "Bob" age: 30}
+
 {"x" "y"}
->>> {8 2 2 'key: 'value}
-{8 2 key: value}
+# {"x" "y"}
+
+{8 2 2 'key: 'value}
+# {8 2 key: value}
 ```
 
 ## Number ##
@@ -90,14 +98,17 @@ A number is a quantity.
 ### Examples ###
 
 ```
->>> 2
 2
->>> -7.3
+# 2
+
 -7.3
->>> +9
-9
->>> 1.(3)
+# -7.3
+
++9
+# 9
+
 1.(3)
+# 1.(3)
 ```
 
 ## Symbol ##
@@ -107,12 +118,14 @@ A symbol is a case-sensitive name. It extends the *Text* type by restricting the
 ### Examples ###
 
 ```
->>> 'abc
-abc
->>> 'is?
-is?
->>> '!
-!
+'abc
+# abc
+
+'is?
+# is?
+
+'!
+# !
 ```
 
 ## Text ##
@@ -122,12 +135,14 @@ A text is a sequence of Unicode characters, each one identified by a code-point.
 ### Examples ###
 
 ```
->>> ""
 ""
->>> "Bob"
+# ""
+
 "Bob"
->>> "x"
+# "Bob"
+
 "x"
+# "x"
 ```
 
 # Built-ins #
@@ -145,18 +160,23 @@ If less than two arguments are passed, it returns the result of `(debug 'paramet
 ### Examples ###
 
 ```
->>> = "A" "A"
-true
->>> = "A" "a"
-false
->>> = [1 2 3] [1 2 3]
-true
->>> = [] {}
-false
->>> = {0 1} {1 0}
-true
->>> = 0 ""
-false
+= "A" "A"
+# true
+
+= "A" "a"
+# false
+
+= [1 2 3] [1 2 3]
+# true
+
+= [] {}
+# false
+
+= {0 1} {1 0}
+# true
+
+= 0 ""
+# false
 ```
 
 ## `+` ##
@@ -218,16 +238,20 @@ Dividing any number by zero or infinity by infinity returns the result of `(debu
 ### Examples ###
 
 ```
->>> / 12 3
-4
->>> / 7 10
-0.7
->>> / 1 3
-0.(3)
->>> / 0 6
-0
->>> / 1 0.(0)1
-infinity
+/ 12 3
+# 4
+
+/ 7 10
+# 0.7
+
+/ 1 3
+# 0.(3)
+
+/ 0 6
+# 0
+
+/ 1 0.(0)1
+# infinity
 ```
 
 ## `debug` ##
@@ -259,16 +283,20 @@ If the `escape` argument isn't a symbol, it returns the result of `(debug 'type-
 ### Examples ###
 
 ```
->>> var x: 2
-2
->>> + 1 x
-3
->>> '(+ 1 x)
-(+ 1 x)
->>> defer (+ 1 x)
-(+ 1 x)
->>> defer (+ 1 (escape x)) 'escape
-(+ 1 2)
+var x: 2
+# 2
+
++ 1 x
+# 3
+
+'(+ 1 x)
+# (+ 1 x)
+
+defer (+ 1 x)
+# (+ 1 x)
+
+defer (+ 1 (escape x)) 'escape
+# (+ 1 2)
 ```
 
 ## `evaluate` ##
@@ -284,14 +312,17 @@ If zero or more than one argument is passed, it returns the result of `(debug 'p
 ### Examples ###
 
 ```
->>> evaluate "Bob"
-"Bob"
->>> var x: '(+ 8 2)
-(+ 8 2)
->>> evaluate x
-10
->>> evaluate 'x
-(+ 8 2)
+evaluate "Bob"
+# "Bob"
+
+var x: '(+ 8 2)
+# (+ 8 2)
+
+evaluate x
+# 10
+
+evaluate 'x
+# (+ 8 2)
 ```
 
 ## `get` ##
@@ -311,14 +342,17 @@ If the association does not exist, it returns the result of `(debug 'unkown-key)
 ### Examples ###
 
 ```
->>> get [8 2 2] 1
-8
->>> get {"a" "b"} "b"
-"b"
->>> get {'name: "Bob"} 'name
-"Bob"
->>> get '(+ 6 7) 2
-6
+get [8 2 2] 1
+# 8
+
+get {"a" "b"} "b"
+# "b"
+
+get {'name: "Bob"} 'name
+# "Bob"
+
+get '(+ 6 7) 2
+# 6
 ```
 
 ## `load` ##
@@ -344,16 +378,20 @@ If zero or more than one argument are passed, it returns the result of `(debug '
 ### Examples ###
 
 ```
->>> prototype "Hello"
-""
->>> prototype ""
-""
->>> prototype [8 2 2]
-[]
->>> prototype get
-()
->>> prototype 8
-0
+prototype "Hello"
+# ""
+
+prototype ""
+# ""
+
+prototype [8 2 2]
+# []
+
+prototype get
+# ()
+
+prototype 8
+# 0
 ```
 
 ## `reduce` ##
@@ -371,8 +409,8 @@ If the `map` argument isn't a map or the `reducer` argument isn't a function, it
 ### Examples ###
 
 ```
->>> reduce [8 2 2] '(+ (get scope 1) (get scope 2)) 0
-12
+reduce [8 2 2] '(+ (get scope 1) (get scope 2)) 0
+# 12
 ```
 
 ## `scope` ##
@@ -386,16 +424,20 @@ scope:Map
 ### Examples ###
 
 ```
->>> var x: 3
-3
->>> get scope 'x
-3
->>> x
-3
->>> splice scope {} {'y: 8}
-{x: 3 y: 8}
->>> y
-8
+var x: 3
+# 3
+
+get scope 'x
+# 3
+
+x
+# 3
+
+splice scope {} {'y: 8}
+# {x: 3 y: 8}
+
+y
+# 8
 ```
 
 ## `splice` ##
@@ -417,19 +459,25 @@ If the `map` argument isn't a map, it returns the result of `(debug 'type-mismat
 ### Examples ###
 
 ```
->>> splice ["x" "y"] {2} ["z"]
-["x" "z"]
->>> splice ["x" "y"] {1} []
-["y"]
->>> splice ["x" "y"] {2} ["z" "y"]
-["x" "z" "y"]
->>> splice ["x"] {} ["y" "z"]
-["x" "y" "z"]
->>> var user: {'name: "Bob"}
-{name: "Bob"}
->>> splice user {} {'age: 25}
-{name: "Bob" age: 25}
->>> user
+splice ["x" "y"] {2} ["z"]
+# ["x" "z"]
+
+splice ["x" "y"] {1} []
+# ["y"]
+
+splice ["x" "y"] {2} ["z" "y"]
+# ["x" "z" "y"]
+
+splice ["x"] {} ["y" "z"]
+# ["x" "y" "z"]
+
+var user: {'name: "Bob"}
+# {name: "Bob"}
+
+splice user {} {'age: 25}
+# {name: "Bob" age: 25}
+
+# user
 {name: "Bob"}
 ```
 
