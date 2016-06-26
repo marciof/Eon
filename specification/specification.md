@@ -8,7 +8,7 @@ A module is the Unicode textual representation of *Expressions* encoded in UTF-8
 
 Source code indentation is optionally significant for function expressions, based on the following rules:
 
-1. Arguments are first *Space*-separated, then *End-of-Line*-separated by the same indentation level.
+1. Arguments are first *Space*-separated, then *End-of-Line*-separated with the same indentation level.
 2. Parentheses are optional, except for grouping and disambiguating zero-argument calls.
 
 ### Examples ###
