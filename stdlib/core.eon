@@ -1,51 +1,54 @@
 splice scope {} {
 
-  Boolean: (prototype (= 0 0)))
-  Function: (prototype '())
-  List: (prototype []))
-  Map: (prototype {}))
-  Number: (prototype 0))
-  Symbol: (prototype 'x))
-  Text: (prototype ""))
+  'Boolean: (prototype (= 0 0)))
+  'Function: (prototype '())
+  'List: (prototype []))
+  'Map: (prototype {}))
+  'Number: (prototype 0))
+  'Symbol: (prototype 'x))
+  'Text: (prototype ""))
 
-  true: (= 0 0))
-  false: (= 0 1))
-  infinity: (/ 1 0.(0)1))
+  'true: (= 0 0))
+  'false: (= 0 1))
+  'infinity: (/ 1 0.(0)1))
 
-  if: '(evaluate (get
+  'if: '(evaluate (get
     {
       true: (get scope 2)
       false: (get scope 3)
     }
     (evaluate (get scope 1))))
 
-  and: '(evaluate (get
+  'and: '(evaluate (get
     {
       true: (get scope 2)
       false: false
     }
     (evaluate (get scope 1))))
 
-  not: '(get
+  'not: '(get
     {true: false false: true}
     (evaluate (get scope 1)))
 
-  or: '(evaluate (get
+  'or: '(evaluate (get
     {
       true: true
       false: (get scope 2)
     }
     (evaluate (get scope 1))))
+
+  '<>: '(not (=
+    (evaluate (get scope 1))
+    (evaluate (get scope 2))))
+
+  '<: '(
+    '(and
+      (<> left right)
+      (= (* (- left right) infinity)
+         (- infinity)))
+    left: (evaluate (get scope 1))
+    right: (evaluate (get scope 2)))
 }
-
-(set '<>
-  '(not (= ((get 1)) ((get 2)))))
-
-(set '<
-  '(and
-    (<> x y)
-    (= (* (- x y) infinity)
-       (- infinity))))
 
 (set '<=
   '(or
