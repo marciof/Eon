@@ -21,4 +21,5 @@
 - Type identification.
 - No null value.
 - Shell language.
+- Live changes. 
 - Lazy functional. Eg. lazy.js, "no iteration takes place until you call each, and no intermediate arrays are created", `Lazy(txt).split("\n").take(5)`
