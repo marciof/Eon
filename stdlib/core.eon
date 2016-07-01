@@ -63,4 +63,15 @@
   '>=: '(not (<
     (evaluate (get scope 1))
     (evaluate (get scope 2))))
+
+  'do: '(reduce
+    (splice scope {1} [])
+    (evaluate (get scope 1))
+    '(evaluate (get scope 2)))
 }
+
+(lambda (x) (+ 1 x))
+
+(let name: "Bob"
+     age: 20
+  ...)

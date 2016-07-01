@@ -384,13 +384,17 @@ If less or more than three arguments are passed, it returns the result of `(debu
 If the `map` argument isn't a map or the `reducer` argument isn't a function, it returns the result of `(debug 'type-mismatch)`.
 
 ```
-(reduce map:Map reducer:Function default)
+(reduce map:Map default reducer:Function)
 ```
 
 ### Examples ###
 
 ```
-(reduce [8 2 2] '(+ (get scope 1) (get scope 2)) 0)
+(reduce
+  [8 2 2]
+  0
+  '(+ (get scope 1)
+      (get scope 2)))
 # 12
 ```
 
