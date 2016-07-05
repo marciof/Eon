@@ -25,6 +25,8 @@
   - http://www.osdever.net/tutorials/view/memory-management-1
   - http://www.osdever.net/bkerndev/Docs/gdt.htm
 - Cleanup Scheme:
+  - `elk` embeddable Scheme interpreter
+  - `STk` Scheme interpreter
   - Simple functional tests with Valgrind.
   - Fix no output when cwd isn't the source code path.
   - Move library to a separate directory.
