@@ -40,14 +40,6 @@
     (evaluate (get scope 1))
     (evaluate (get scope 2))))
 
-  '>: '(
-    '(and
-      (<> left right)
-      (= (* (- left right) infinity)
-         infinity))
-    left: (evaluate (get scope 1))
-    right: (evaluate (get scope 2)))
-
   '<=: '(not (>
     (evaluate (get scope 1))
     (evaluate (get scope 2))))

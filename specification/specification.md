@@ -182,6 +182,18 @@ If any of the arguments isn't a number, it returns the result of `(debug 'type-m
 # true
 ```
 
+## `>` ##
+
+Compares two or more numbers and returns true if each one is greater than the next, or false otherwise.
+
+If less than two arguments are passed, it returns the result of `(debug 'parameter-mismatch)`.
+
+If any of the arguments isn't a number, it returns the result of `(debug 'type-mismatch)`.
+
+```
+(> x y ...): Boolean
+```
+
 ## `+` ##
 
 Adds one or more numbers.
