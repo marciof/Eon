@@ -3,7 +3,7 @@
 - EBNF diagram: http://www.bottlecaps.de/rr/ui
 - http://www.infoq.com/presentations/Value-Identity-State-Rich-Hickey
 - Remove scope mutability for consistency? (Use "let" instead of "var".)
-- Look for best/worst features of other languages: JavaScript, Clojure, Python, Perl, Ruby, Haskell, Elm, Io, Rust, Erlang, Smalltalk, Java, Scheme, Go, ML, Lua, Haxe.
+- Look for best/worst features of other languages: JavaScript, Clojure, Python, Perl, Ruby, Haskell, Elm, Io, Rust, Erlang, Smalltalk, Java, Scheme, Go, ML, Lua, Haxe, Tcl.
 
 # Checklist #
 

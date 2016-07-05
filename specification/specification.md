@@ -141,7 +141,7 @@ If less than two arguments are passed, it returns the result of `(debug 'paramet
 ### Examples ###
 
 ```
-(= "A" "A")
+(= "A" "A" "A")
 # true
 
 (= "A" "a")
@@ -158,6 +158,28 @@ If less than two arguments are passed, it returns the result of `(debug 'paramet
 
 (= 0 "")
 # false
+```
+
+## `<` ##
+
+Compares two or more numbers and returns true if each one is less than the next, or false otherwise.
+
+If less than two arguments are passed, it returns the result of `(debug 'parameter-mismatch)`.
+
+If any of the arguments isn't a number, it returns the result of `(debug 'type-mismatch)`.
+
+```
+(< x y ...): Boolean
+```
+
+### Examples ###
+
+```
+(< 1 -2)
+# false
+
+(< 8 10 infinity)
+# true
 ```
 
 ## `+` ##
