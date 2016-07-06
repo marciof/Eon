@@ -25,6 +25,7 @@
   - http://www.osdever.net/tutorials/view/memory-management-1
   - http://www.osdever.net/bkerndev/Docs/gdt.htm
 - Cleanup Scheme:
+  - https://github.com/eriksvedang/Carp
   - `elk` embeddable Scheme interpreter
   - `STk` Scheme interpreter
   - Simple functional tests with Valgrind.
