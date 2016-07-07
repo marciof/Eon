@@ -1,10 +1,11 @@
 # To Do #
 
 - EBNF diagram: http://www.bottlecaps.de/rr/ui
-- Allow creating new prototypes (for new data types, static typing, etc).
+- Allow creating new prototypes (for new data types, static typing, etc). http://docs.racket-lang.org/ts-guide/
 - http://www.infoq.com/presentations/Value-Identity-State-Rich-Hickey
 - Remove scope mutability for consistency? (Use "let" instead of "var".)
 - Partial function application, automatic, generating closures?
+- http://www.javaslang.io/javaslang-docs/#_try
 - Look for best/worst features of other languages: JavaScript, Clojure, Python, Perl, Ruby, Haskell, Elm, Io, Rust, Erlang, Smalltalk, Java, Scheme, Go, ML, Lua, Haxe, Tcl, Shen.
 
 # Checklist #
