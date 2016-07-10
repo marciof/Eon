@@ -6,8 +6,6 @@ A module is the Unicode textual representation of *Expressions* encoded in UTF-8
 
 # Types #
 
-All user defined values are immutable.
-
 ## Boolean ##
 
 A boolean is a binary logical value that can only be either *true* or *false*.
@@ -21,10 +19,8 @@ Calling a function creates a new scope composed of closure variables and deferre
 ### Examples ###
 
 ```
-(var double: '(* 2 (get scope 1)))
-# (* 2 (get scope 1))
-
-(double 4)
+(let double: '(* 2 (get scope 1))
+  (double 4))
 # 8
 ```
 
@@ -298,20 +294,19 @@ If the `escape` argument isn't a symbol, it returns the result of `(debug 'type-
 ### Examples ###
 
 ```
-(var x: 2)
-# 2
+(let x: 2
 
-(+ 1 x)
-# 3
+  (+ 1 x)
+  # 3
 
-'(+ 1 x)
-# (+ 1 x)
+  '(+ 1 x)
+  # (+ 1 x)
 
-(defer (+ 1 x))
-# (+ 1 x)
+  (defer (+ 1 x))
+  # (+ 1 x)
 
-(defer (+ 1 (escape x)) 'escape)
-# (+ 1 2)
+  (defer (+ 1 (escape x)) 'escape))
+  # (+ 1 2)
 ```
 
 ## `evaluate` ##
@@ -330,14 +325,13 @@ If zero or more than one argument is passed, it returns the result of `(debug 'p
 (evaluate "Bob")
 # "Bob"
 
-(var x: '(+ 8 2))
-# (+ 8 2)
+(let x: '(+ 8 2)
 
-(evaluate x)
-# 10
+  (evaluate x)
+  # 10
 
-(evaluate 'x)
-# (+ 8 2)
+  (evaluate 'x))
+  # (+ 8 2)
 ```
 
 ## `get` ##
@@ -434,7 +428,7 @@ If the `map` argument isn't a map or the `reducer` argument isn't a function, it
 
 ## `scope` ##
 
-Mutable map of names to values in the current scope.
+Map of identifiers to values in the current scope.
 
 ```
 scope:Map
@@ -443,25 +437,18 @@ scope:Map
 ### Examples ###
 
 ```
-(var x: 3)
-# 3
+(let x: 3
 
-(get scope 'x)
-# 3
+  (get scope 'x)
+  # 3
 
-x
-# 3
-
-(splice scope {} {'y: 8})
-# {x: 3 y: 8}
-
-y
-# 8
+  x)
+  # 3
 ```
 
 ## `splice` ##
 
-Adds elements to and removes keys from a map, and returns the changed collection.
+Adds elements to and removes keys from a map, and returns a new collection.
 
 If a key from a new key/value pair being added is already present, the new value replaces the previous one.
 
@@ -490,14 +477,13 @@ If the `map` argument isn't a map, it returns the result of `(debug 'type-mismat
 (splice ["x"] {} ["y" "z"])
 # ["x" "y" "z"]
 
-(var user: {'name: "Bob"})
-# {name: "Bob"}
+(let user: {'name: "Bob"}
 
-(splice user {} {'age: 25})
-# {name: "Bob" age: 25}
+  (splice user {} {'age: 25})
+  # {name: "Bob" age: 25}
 
-user
-# {name: "Bob"}
+  user)
+  # {name: "Bob"}
 ```
 
 # Grammar #
