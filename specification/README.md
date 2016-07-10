@@ -1,6 +1,7 @@
 # To Do #
 
 - EBNF diagram: http://www.bottlecaps.de/rr/ui
+- Ellipsis data type?
 - Allow creating new prototypes (for new data types, static typing - default everything to type Any?, etc). http://docs.racket-lang.org/ts-guide/
 - http://www.infoq.com/presentations/Value-Identity-State-Rich-Hickey
 - Remove scope mutability for consistency? (Use "let" instead of "var".)
