@@ -21,9 +21,3 @@ apt-get install grub-common xorriso bochs bochs-sdl
 - "A programming language is low level when its programs require attention to the irrelevant." (Alan Perlis).
 - Low cognitive load and typing difficulty (US keyboard layout, prefer home row keys).
 - http://rigaux.org/language-study/scripting-language/
-
-# Changelog #
-
-## 0.1.0 - UNRELEASED ##
-
-- Log Multiboot information.
