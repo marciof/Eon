@@ -71,3 +71,10 @@
 
 # New typed type: emulate person "class"
 (Map 'name: Text 'age: Number)
+
+# How to create instances?
+# Scope assignments fix the data type?
+# Use prototype for casting as well?
+
+(List 8 2 2) = [8 2 2]
+(prototype []) = List
