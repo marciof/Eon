@@ -1,7 +1,7 @@
 # To Do #
 
 - EBNF diagram: http://www.bottlecaps.de/rr/ui
-- Allow creating new prototypes (for new data types, static typing - default everything to type Any?, etc). http://docs.racket-lang.org/ts-guide/
+- http://steve-yegge.blogspot.com/2008/10/universal-design-pattern.html
 - http://www.infoq.com/presentations/Value-Identity-State-Rich-Hickey
 - http://www.javaslang.io/javaslang-docs/#_try
 - http://michaeldrogalis.tumblr.com/post/40181639419/trycatch-complects-we-can-do-so-much-better
@@ -12,7 +12,6 @@
 - "A programming language is low level when its programs require attention to the irrelevant." (Alan Perlis).
 - Low cognitive load and typing difficulty (US keyboard layout, favor home row keys).
 - http://rigaux.org/language-study/scripting-language/
-
 - Data/code uniformity.
 - Easy list, map, set and function literals. 
 - Lazy arguments.

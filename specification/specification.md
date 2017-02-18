@@ -4,7 +4,7 @@
 
 A module is the Unicode textual representation of *Expressions* encoded in UTF-8 without a Byte Order Mark, with a valid *Symbol* for its name.
 
-# Types #
+# Prototypes #
 
 ## Boolean ##
 
@@ -12,7 +12,7 @@ A boolean is a binary logical value that can only be either *true* or *false*.
 
 ## Function ##
 
-A function is a sequence composed of a function followed by zero or more values, the arguments. It extends the *List* type.
+A function is a sequence composed of a function followed by zero or more values, the arguments. It extends the *List* prototype.
 
 Calling a function creates a new scope composed of closure variables and deferred argument key/value pairs, and then evaluates it in the new scope returning the result.
 
@@ -26,7 +26,7 @@ Calling a function creates a new scope composed of closure variables and deferre
 
 ## List ##
 
-A list is a sequence of elements. It extends the *Map* type by associating consecutive positive integers with elements in ascending order of keys.
+A list is a sequence of elements. It extends the *Map* prototype by associating consecutive positive integers with elements in ascending order of keys.
 
 ### Examples ###
 
@@ -90,7 +90,7 @@ A number is a quantity.
 
 ## Symbol ##
 
-A symbol is a case-sensitive name. It extends the *Text* type by restricting the characters that can be used.
+A symbol is a case-sensitive name. It extends the *Text* prototype by restricting the characters that can be used.
 
 ### Examples ###
 
@@ -107,7 +107,7 @@ A symbol is a case-sensitive name. It extends the *Text* type by restricting the
 
 ## Text ##
 
-A text is a sequence of Unicode characters, each one identified by a code-point. It extends the *List* type by associating non-negative integer elements to code-points.
+A text is a sequence of Unicode characters, each one identified by a code-point. It extends the *List* prototype by associating non-negative integer elements to code-points.
 
 ### Examples ###
 
@@ -162,7 +162,7 @@ Compares two or more numbers and returns true if each one is less than the next,
 
 If less than two arguments are passed, it returns the result of `(debug 'parameter-mismatch)`.
 
-If any of the arguments isn't a number, it returns the result of `(debug 'type-mismatch)`.
+If any of the arguments isn't a number, it returns the result of `(debug 'prototype-mismatch)`.
 
 ```
 (< x y ...): Boolean
@@ -184,7 +184,7 @@ Compares two or more numbers and returns true if each one is greater than the ne
 
 If less than two arguments are passed, it returns the result of `(debug 'parameter-mismatch)`.
 
-If any of the arguments isn't a number, it returns the result of `(debug 'type-mismatch)`.
+If any of the arguments isn't a number, it returns the result of `(debug 'prototype-mismatch)`.
 
 ```
 (> x y ...): Boolean
@@ -196,7 +196,7 @@ Adds one or more numbers.
 
 If no arguments are passed, it returns the result of `(debug 'parameter-mismatch)`.
 
-If any of the arguments isn't a number, it returns the result of `(debug 'type-mismatch)`.
+If any of the arguments isn't a number, it returns the result of `(debug 'prototype-mismatch)`.
 
 Adding negative infinity to positive infinity returns the result of `(debug 'undefined-arithmetic)`.
 
@@ -210,7 +210,7 @@ Subtracts one or more numbers.
 
 If no arguments are passed, it returns the result of `(debug 'parameter-mismatch)`.
 
-If any of the arguments isn't a number, it returns the result of `(debug 'type-mismatch)`.
+If any of the arguments isn't a number, it returns the result of `(debug 'prototype-mismatch)`.
 
 Subtracting infinity from infinity returns the result of `(debug 'undefined-arithmetic)`.
 
@@ -224,7 +224,7 @@ Multiplies two or more numbers.
 
 If less than two arguments are passed, it returns the result of `(debug 'parameter-mismatch)`.
 
-If any of the arguments isn't a number, it returns the result of `(debug 'type-mismatch)`.
+If any of the arguments isn't a number, it returns the result of `(debug 'prototype-mismatch)`.
 
 Multiplying zero and infinity returns the result of `(debug 'undefined-arithmetic)`.
 
@@ -238,7 +238,7 @@ Divides two or more numbers.
 
 If less than two arguments are passed, it returns the result of `(debug 'parameter-mismatch)`.
 
-If any of the arguments isn't a number, it returns the result of `(debug 'type-mismatch)`.
+If any of the arguments isn't a number, it returns the result of `(debug 'prototype-mismatch)`.
 
 Dividing any number by zero or infinity by infinity returns the result of `(debug 'undefined-arithmetic)`.
 
@@ -271,7 +271,7 @@ Interrupts normal execution flow. In development mode it triggers a debugger, wh
 
 If more than one argument is passed, it returns the result of `(debug 'parameter-mismatch)`.
 
-If the `name` argument isn't a symbol, it returns the result of `(debug 'type-mismatch)`.
+If the `name` argument isn't a symbol, it returns the result of `(debug 'prototype-mismatch)`.
 
 ```
 (debug)
@@ -284,7 +284,7 @@ Creates a snapshot of an expression thereby preventing it from being evaluated.
 
 If less than one or more than two arguments are passed, it returns the result of `(debug 'parameter-mismatch)`.
 
-If the `escape` argument isn't a symbol, it returns the result of `(debug 'type-mismatch)`.
+If the `escape` argument isn't a symbol, it returns the result of `(debug 'prototype-mismatch)`.
 
 ```
 (defer expression)
@@ -340,7 +340,7 @@ Retrieves the value associated with a key in a collection map.
 
 If less or more than two arguments are passed, it returns the result of `(debug 'parameter-mismatch)`.
 
-If the `map` argument isn't a map, it returns the result of `(debug 'type-mismatch)`.
+If the `map` argument isn't a map, it returns the result of `(debug 'prototype-mismatch)`.
 
 If the association does not exist, it returns the result of `(debug 'unkown-key)`.
 
@@ -376,12 +376,15 @@ A pathname is a list of zero or more names, ending with the module name.
 
 ## `prototype` ##
 
-Retrieves the original value used to create another from.
+Retrieves the original value used to create another one from, also known as its prototype, and optionally extends the prototype hierarchy using it as the base prototype.
+
+The prototype of a prototype is its base prototype, or itself if it doesn't have one.
 
 If zero or more than one argument are passed, it returns the result of `(debug 'parameter-mismatch)`.
 
 ```
 (prototype value)
+(prototype base-prototype new-prototype)
 ```
 
 ### Examples ###
@@ -401,6 +404,15 @@ If zero or more than one argument are passed, it returns the result of `(debug '
 
 (prototype 8)
 # 0
+
+(let Person: (prototype {} {'name: "" 'age: 0})
+     bob: (splice Person {} {'name: "Bob" 'age: 20})
+
+  (prototype bob)
+  # Person
+
+  (prototype Person))
+  # {}
 ```
 
 ## `reduce` ##
@@ -409,7 +421,7 @@ Iterates over a map, calling the reducing function with each previously returned
 
 If less or more than three arguments are passed, it returns the result of `(debug 'parameter-mismatch)`.
 
-If the `map` argument isn't a map or the `reducer` argument isn't a function, it returns the result of `(debug 'type-mismatch)`.
+If the `map` argument isn't a map or the `reducer` argument isn't a function, it returns the result of `(debug 'prototype-mismatch)`.
 
 ```
 (reduce map:Map default reducer:Function)
@@ -456,7 +468,7 @@ If removing positions (keys) from a list, new elements are added to the last spe
 
 If less than two or more than three arguments are passed, it returns the result of `(debug 'parameter-mismatch)`.
 
-If the `map` argument isn't a map, it returns the result of `(debug 'type-mismatch)`.
+If the `map` argument isn't a map, it returns the result of `(debug 'prototype-mismatch)`.
 
 ```
 (splice map:Map keys elements)
@@ -566,6 +578,6 @@ The name of a function should use a verb as the first word. If it is an accessor
 
 The name of a module should be a noun, in lower-case.
 
-### Type ###
+### Prototype ###
 
-The name of a type should be a noun, properly capitalized.
+The name of a prototype should be a noun, properly capitalized.
