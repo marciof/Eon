@@ -7,13 +7,10 @@
 - http://michaeldrogalis.tumblr.com/post/40181639419/trycatch-complects-we-can-do-so-much-better
 - Look for best/worst features of other languages: JavaScript, Clojure, Python, Perl, Ruby, Haskell, Elm, Io, Rust, Erlang, Smalltalk, Java, Scheme, Go, ML, Lua, Haxe, Tcl, Shen.
 
-# Checklist #
+# Requirements #
 
-- "A programming language is low level when its programs require attention to the irrelevant." (Alan Perlis).
-- Low cognitive load and typing difficulty (US keyboard layout, favor home row keys).
-- http://rigaux.org/language-study/scripting-language/
 - Data/code uniformity.
-- Easy list, map, set and function literals. 
+- Easy literals: list, map, set and function.
 - Lazy arguments.
 - Keyword arguments.
 - Optional typing.
@@ -21,6 +18,11 @@
 - Dynamic function calls.
 - Type identification.
 - No null value.
-- Shell language support.
+- Shell language support. http://rigaux.org/language-study/scripting-language/
 - Live changes editor support. 
 - Lazy functional. Eg. lazy.js, "no iteration takes place until you call each, and no intermediate arrays are created", `Lazy(txt).split("\n").take(5)`
+
+# Guidelines #
+
+- "A programming language is low level when its programs require attention to the irrelevant." (Alan Perlis).
+- Low cognitive load and typing difficulty (US keyboard layout, favor home row keys).
