@@ -336,7 +336,7 @@ If zero or more than one argument is passed, it returns the result of `(debug 'p
 
 ## `get` ##
 
-Retrieves the value associated with a key in a collection map.
+Retrieves the value associated with a key in a map.
 
 If less or more than two arguments are passed, it returns the result of `(debug 'parameter-mismatch)`.
 
@@ -380,11 +380,13 @@ Retrieves the original value used to create another one from, also known as its 
 
 The prototype of a prototype is its base prototype, or itself if it doesn't have one.
 
-If zero or more than one argument are passed, it returns the result of `(debug 'parameter-mismatch)`.
+If zero or more than two arguments are passed, it returns the result of `(debug 'parameter-mismatch)`.
+
+When extending the prototype hierarchy, if both the `value` and `base-prototype` don't share a common ancestor prototype, it returns the result of `(debug 'prototype-mismatch)`.
 
 ```
 (prototype value)
-(prototype base-prototype new-prototype)
+(prototype value base-prototype)
 ```
 
 ### Examples ###
@@ -405,13 +407,22 @@ If zero or more than one argument are passed, it returns the result of `(debug '
 (prototype 8)
 # 0
 
-(let Person: (prototype {} {'name: "" 'age: 0})
+(let Person: (prototype {'name: "" 'age: 0} {})
      bob: (splice Person {} {'name: "Bob" 'age: 20})
 
+  Person
+  # {name: "" age: 0}
+
+  (prototype Person)
+  # {}
+
+  bob
+  # {name: "Bob" age: 20}
+  
   (prototype bob)
   # Person
 
-  (prototype Person))
+  (prototype {'name: "Bob" 'age: 20}))
   # {}
 ```
 

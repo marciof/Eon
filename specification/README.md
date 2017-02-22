@@ -1,10 +1,15 @@
 # To Do #
 
-- EBNF diagram: http://www.bottlecaps.de/rr/ui
-- http://steve-yegge.blogspot.com/2008/10/universal-design-pattern.html
+- Specify prototypal inheritance (eg. intro, `get` handling, etc).
+  - http://steve-yegge.blogspot.com/2008/10/universal-design-pattern.html
+- Make it clear that `scope` uses prototypal inheritance (it always inherits from the previous scope, on each function call, and the symbol always points to the latest one). Can use `prototype` to go up the `scope` chain, useful for debugging.
+- How to do safe/restricted `evaluate`? Useful for evaluating user input without giving unrestricted access. Add a `scope` parameter?
+- Add optional `data` parameter to `debug` for easier identification of what caused it?
+- How to do test assertions? Reuse `debug` or add an `assert`? Or replace `debug` with `assert`, which may be more useful for preconditions?
+- How to raise exceptions?
+  - http://www.javaslang.io/javaslang-docs/#_try
+  - http://michaeldrogalis.tumblr.com/post/40181639419/trycatch-complects-we-can-do-so-much-better
 - http://www.infoq.com/presentations/Value-Identity-State-Rich-Hickey
-- http://www.javaslang.io/javaslang-docs/#_try
-- http://michaeldrogalis.tumblr.com/post/40181639419/trycatch-complects-we-can-do-so-much-better
 - Look for best/worst features of other languages: JavaScript, Clojure, Python, Perl, Ruby, Haskell, Elm, Io, Rust, Erlang, Smalltalk, Java, Scheme, Go, ML, Lua, Haxe, Tcl, Shen.
 
 # Requirements #
