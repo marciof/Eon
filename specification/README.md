@@ -1,12 +1,10 @@
 # To Do #
 
-- Specify prototypal inheritance (eg. intro, `get` handling, etc).
+- Specify prototypical inheritance (eg. intro, `get` handling, etc).
   - http://steve-yegge.blogspot.com/2008/10/universal-design-pattern.html
-- Make it clear that `scope` uses prototypal inheritance (it always inherits from the previous scope, on each function call, and the symbol always points to the latest one). Can use `prototype` to go up the `scope` chain, useful for debugging.
+- Make it clear that `scope` uses prototypical inheritance (it always inherits from the previous scope, on each function call, and the symbol always points to the latest one). Can use `prototype` to go up the `scope` chain, useful for debugging.
 - How to do safe/restricted `evaluate`? Useful for evaluating user input without giving unrestricted access. Add a `scope` parameter?
-- Add optional `data` parameter to `debug` for easier identification of what caused it?
-- How to do test assertions? Reuse `debug` or add an `assert`? Or replace `debug` with `assert`, which may be more useful for preconditions?
-- How to raise exceptions?
+- How to raise exceptions? (Build `assert` and `debug` on top of exceptions? `debug` needs optional `data` parameter for easier identification of what caused it?)
   - http://www.javaslang.io/javaslang-docs/#_try
   - http://michaeldrogalis.tumblr.com/post/40181639419/trycatch-complects-we-can-do-so-much-better
   - http://matt.might.net/articles/implementing-exceptions/
@@ -25,6 +23,7 @@
 - Dynamic function calls.
 - Type identification.
 - No null value.
+- Exceptions (error handling).
 - Shell language support. http://rigaux.org/language-study/scripting-language/
 - Live changes editor support. 
 - Lazy functional. Eg. lazy.js, "no iteration takes place until you call each, and no intermediate arrays are created", `Lazy(txt).split("\n").take(5)`

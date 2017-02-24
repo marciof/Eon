@@ -376,7 +376,7 @@ A pathname is a list of zero or more names, ending with the module name.
 
 ## `prototype` ##
 
-Retrieves the original value used to create another one from, also known as its prototype, and optionally extends the prototype hierarchy using it as the base prototype.
+Retrieves the original value used to create another one from, also known as its prototype, and optionally extends the prototype hierarchy.
 
 The prototype of a prototype is its base prototype, or itself if it doesn't have one.
 
