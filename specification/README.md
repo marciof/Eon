@@ -10,7 +10,7 @@
   - http://matt.might.net/articles/implementing-exceptions/
   - http://axisofeval.blogspot.com/2011/04/whats-condition-system-and-why-do-you.html
 - http://www.infoq.com/presentations/Value-Identity-State-Rich-Hickey
-- Look for best/worst features of other languages: JavaScript, Clojure, Python, Perl, Ruby, Haskell, Elm, Io, Rust, Erlang, Smalltalk, Java, Scheme, Go, ML, Lua, Haxe, Tcl, Shen.
+- Look for best/worst features of other languages: JavaScript, Clojure, Python, Perl, Ruby, Haskell, Elm, Io, Rust, Erlang, Smalltalk, Java, Scheme, Go, ML, Lua, Haxe, Tcl, Shen, Matlab.
 
 # Requirements #
 
