@@ -9,6 +9,7 @@
   - http://michaeldrogalis.tumblr.com/post/40181639419/trycatch-complects-we-can-do-so-much-better
   - http://matt.might.net/articles/implementing-exceptions/
   - http://axisofeval.blogspot.com/2011/04/whats-condition-system-and-why-do-you.html
+- Indentation based/optional parentheses for shell/CLI?
 - http://www.infoq.com/presentations/Value-Identity-State-Rich-Hickey
 - https://eev.ee/blog/2016/12/01/lets-stop-copying-c/
 - Look for best/worst features of other languages: JavaScript, Clojure, Python, Perl, Ruby, Haskell, Elm, Io, Rust, Erlang, Smalltalk, Java, Scheme, Go, ML, Lua, Haxe, Tcl, Shen, Matlab.
