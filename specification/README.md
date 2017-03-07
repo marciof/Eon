@@ -12,7 +12,8 @@
 - Indentation based/optional parentheses for shell/CLI?
 - http://www.infoq.com/presentations/Value-Identity-State-Rich-Hickey
 - https://eev.ee/blog/2016/12/01/lets-stop-copying-c/
-- Look for best/worst features of other languages: JavaScript, Clojure, Python, Perl, Ruby, Haskell, Elm, Io, Rust, Erlang, Smalltalk, Java, Scheme, Go, ML, Lua, Haxe, Tcl, Shen, Matlab.
+- Look for best/worst features of other languages: JavaScript, Clojure, Python, Ruby, Haskell, Elm, Io, Rust, Erlang, Smalltalk, Java, Scheme, Go, ML, Lua, Haxe, Tcl, Shen, Matlab.
+  - Check Perl Pocket Reference.
 
 # Requirements #
 
