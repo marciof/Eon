@@ -1,12 +1,6 @@
 #pragma once
+#include <multiboot/multiboot.h>
 #include <stdint.h>
-
-// TODO: Figure out why this is needed, or switch to Multiboot 2?
-typedef uint16_t grub_uint16_t;
-typedef uint32_t grub_uint32_t;
-#define GRUB_PACKED __attribute__ ((packed))
-#include <multiboot.h>
-
 
 namespace eon {
 namespace x86 {

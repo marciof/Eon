@@ -1,5 +1,6 @@
 # To Do #
 
+- Use `grub-file` to verify kernel image is bootable.
 - Tests, coverage, lint, static analysis, continuous integration, memory check.
   - Automation: Vagrant, Docker
   - https://autotest.github.io

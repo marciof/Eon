@@ -2,12 +2,13 @@
 
 See `.travis.yml` for details.
 
-Tested on Linux Mint 17.3 Rosa KDE 64-bit.
+Tested on Debian 9 64-bit.
 
 ## x86 ##
 
 ```
-apt-get install grub-common xorriso bochs bochs-sdl
+# for testing
+apt install grub-common xorriso mtools bochs bochs-sdl
 ```
 
 # Checklist #
