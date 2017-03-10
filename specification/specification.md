@@ -14,7 +14,7 @@ A boolean is a binary logical value that can only be either *true* or *false*.
 
 A function is a sequence composed of a function followed by zero or more values, the arguments. It extends the *List* prototype.
 
-Calling a function creates a new scope composed of closure variables and deferred argument key/value pairs, and then evaluates it in the new scope returning the result.
+Calling a function creates a new scope, prototypically inherited from the previous scope, composed of closure variables and deferred argument key/value pairs, and then evaluates it in this new scope returning the result.
 
 ### Examples ###
 
@@ -465,6 +465,8 @@ If the `map` argument isn't a map or the `reducer` argument isn't a function, it
 
 Map of identifiers to values in the current scope.
 
+The scope map always prototypically inherits from the previous scope, or none if it's the module scope. Each function call creates a new scope  that prototypically inherits from the previous one, and this symbol always points to the current one.
+
 ```
 scope:Map
 ```
@@ -472,13 +474,24 @@ scope:Map
 ### Examples ###
 
 ```
-(let x: 3
+(let x: 2
+
+  x
+  # 2
 
   (get scope 'x)
-  # 3
+  # 2
 
-  x)
-  # 3
+  (let x: 8
+
+    x
+    # 8
+
+    (get scope 'x)
+    # 8
+
+    (get (prototype scope) 'x)))
+    # 2
 ```
 
 ## `splice` ##

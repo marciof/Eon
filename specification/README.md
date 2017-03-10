@@ -2,8 +2,7 @@
 
 - Specify prototypical inheritance (eg. intro, `get` handling, etc).
   - http://steve-yegge.blogspot.com/2008/10/universal-design-pattern.html
-- Make it clear that `scope` uses prototypical inheritance (it always inherits from the previous scope, on each function call, and the symbol always points to the latest one). Can use `prototype` to go up the `scope` chain, useful for debugging.
-- How to raise exceptions? (Build `assert` and `debug` on top of exceptions? `debug` needs optional `data` parameter for easier identification of what caused it?)
+- Remove `debug` (turn into exceptions with additional data on the error) and make `(defer)` return the current continuation for the current scope. Build exceptions on top of continuations. Build `assert` on top of exceptions.
   - http://www.javaslang.io/javaslang-docs/#_try
   - http://michaeldrogalis.tumblr.com/post/40181639419/trycatch-complects-we-can-do-so-much-better
   - http://matt.might.net/articles/implementing-exceptions/
@@ -11,10 +10,11 @@
 - Indentation based/optional parentheses for shell/CLI?
 - http://www.infoq.com/presentations/Value-Identity-State-Rich-Hickey
 - https://eev.ee/blog/2016/12/01/lets-stop-copying-c/
+- Need to specify which Unicode version is used?
 - Look for best/worst features of other languages: JavaScript, Clojure, Python, Ruby, Haskell, Elm, Io, Rust, Erlang, Smalltalk, Java, Scheme, Go, ML, Lua, Haxe, Tcl, Shen, Matlab, R.
-  - Check Perl Pocket Reference.
+  - Perl Pocket Reference
 
-# Requirements #
+# Checklist #
 
 - Data/code uniformity.
 - Easy literals: list, map, set and function.
@@ -30,7 +30,6 @@
 - Live changes editor support. 
 - Lazy functional. Eg. lazy.js, "no iteration takes place until you call each, and no intermediate arrays are created", `Lazy(txt).split("\n").take(5)`
 
-# Guidelines #
-
 - "A programming language is low level when its programs require attention to the irrelevant." (Alan Perlis).
 - Low cognitive load and typing difficulty (US keyboard layout, favor home row keys).
+- Avoid verbs that are also nouns.
