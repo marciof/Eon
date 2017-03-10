@@ -3,7 +3,6 @@
 - Specify prototypical inheritance (eg. intro, `get` handling, etc).
   - http://steve-yegge.blogspot.com/2008/10/universal-design-pattern.html
 - Make it clear that `scope` uses prototypical inheritance (it always inherits from the previous scope, on each function call, and the symbol always points to the latest one). Can use `prototype` to go up the `scope` chain, useful for debugging.
-- How to do safe/restricted `evaluate`? Useful for evaluating user input without giving unrestricted access. Add a `scope` parameter?
 - How to raise exceptions? (Build `assert` and `debug` on top of exceptions? `debug` needs optional `data` parameter for easier identification of what caused it?)
   - http://www.javaslang.io/javaslang-docs/#_try
   - http://michaeldrogalis.tumblr.com/post/40181639419/trycatch-complects-we-can-do-so-much-better

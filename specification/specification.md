@@ -311,12 +311,13 @@ If the `escape` argument isn't a symbol, it returns the result of `(debug 'proto
 
 ## `evaluate` ##
 
-Evaluates an expression and returns the result.
+Evaluates an expression, optionally in a different scope, and returns the result.
 
-If zero or more than one argument is passed, it returns the result of `(debug 'parameter-mismatch)`.
+If zero or more than two arguments are passed, it returns the result of `(debug 'parameter-mismatch)`.
 
 ```
 (evaluate expression)
+(evaluate expression scope)
 ```
 
 ### Examples ###
@@ -332,6 +333,17 @@ If zero or more than one argument is passed, it returns the result of `(debug 'p
 
   (evaluate 'x))
   # (+ 8 2)
+
+(let y: 2
+
+  (evaluate 'y)
+  # 2
+
+  (evaluate 'y {'y: 8})
+  # 8
+
+  (evaluate 'y scope))
+  # 2
 ```
 
 ## `get` ##
@@ -392,7 +404,7 @@ When extending the prototype hierarchy, if both the `value` and `base-prototype`
 ### Examples ###
 
 ```
-(prototype "Hello")
+(prototype "Bob")
 # ""
 
 (prototype "")
