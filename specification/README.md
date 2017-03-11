@@ -25,11 +25,13 @@
 - Dynamic function calls.
 - Type identification.
 - No null value.
+- Multiple return values.
+- Unicode (text) strings != byte strings.
 - Exceptions (error handling).
 - Shell language support. http://rigaux.org/language-study/scripting-language/
 - Live changes editor support. 
 - Lazy functional. Eg. lazy.js, "no iteration takes place until you call each, and no intermediate arrays are created", `Lazy(txt).split("\n").take(5)`
 
 - "A programming language is low level when its programs require attention to the irrelevant." (Alan Perlis).
-- Low cognitive load and typing difficulty (US keyboard layout, favor home row keys).
+- Low cognitive load and typing effort (US keyboard layout, favor home row keys).
 - Avoid verbs that are also nouns.
