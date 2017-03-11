@@ -1,7 +1,7 @@
 link_libraries(m)
 add_definitions(-DLINUX -DX86_64 -DSCMLIB=${CMAKE_CURRENT_SOURCE_DIR})
 
-add_executable(${PROJECT_NAME}-scheme
+add_executable(${PROJECT_NAME}.scheme
     scheme.c
     heap.c
     runtime.c

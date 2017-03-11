@@ -1,3 +1,16 @@
+# Dependencies #
+
+See `../.travis.yml` for details.
+
+Tested on Debian 9 64-bit.
+
+## x86 ##
+
+```
+# test
+apt install grub-common grub-pc-bin xorriso mtools virtualbox-5.1
+```
+
 # To Do #
 
 - Use `grub-file` to verify kernel image is bootable.
@@ -5,7 +18,7 @@
   - Automation: Vagrant, Docker
   - https://autotest.github.io
   - https://scan.coverity.com
-  - https://travis-ci.org
+  - https://travis-ci.org # validate `.travis.yml` file
   - https://github.com/andrewrk/malcheck
   - https://github.com/google/sanitizers
   - http://clang-analyzer.llvm.org

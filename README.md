@@ -1,16 +1,3 @@
-# Dependencies #
-
-See `.travis.yml` for details.
-
-Tested on Debian 9 64-bit.
-
-## x86 ##
-
-```
-# for testing
-apt install grub-common xorriso mtools bochs bochs-sdl
-```
-
 # Checklist #
 
 - Keep it simple and practical.
