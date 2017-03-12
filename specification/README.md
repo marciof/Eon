@@ -28,7 +28,7 @@
 - Multiple return values.
 - Unicode (text) strings != byte strings.
 - Exceptions (error handling).
-- Shell language support. http://rigaux.org/language-study/scripting-language/
+- Shell language support (see "wf.sh"). http://rigaux.org/language-study/scripting-language/
 - Live changes editor support. 
 - Lazy functional. Eg. lazy.js, "no iteration takes place until you call each, and no intermediate arrays are created", `Lazy(txt).split("\n").take(5)`
 
