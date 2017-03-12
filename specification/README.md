@@ -11,7 +11,8 @@
 - http://www.infoq.com/presentations/Value-Identity-State-Rich-Hickey
 - https://eev.ee/blog/2016/12/01/lets-stop-copying-c/
 - Need to specify which Unicode version is used?
-- Look for best/worst features of other languages: JavaScript, Clojure, Python, Ruby, Haskell, Elm, Io, Rust, Erlang, Smalltalk, Java, Scheme, Go, ML, Lua, Haxe, Tcl, Shen, Matlab, R.
+- Number literal underscores for readability? `1_000_000`
+- Look for best/worst features of other languages: JavaScript, Clojure, Python, Ruby, Haskell, Elm, Io, Rust, Erlang, Smalltalk, Java, Scheme, Go, ML, Lua, Haxe, Tcl, Shen, Matlab, R, REBOL.
   - Perl Pocket Reference
 
 # Checklist #
@@ -29,7 +30,8 @@
 - Unicode (text) strings != byte strings.
 - Exceptions (error handling).
 - Shell language support (see "wf.sh"). http://rigaux.org/language-study/scripting-language/
-- Live changes editor support. 
+- Documentation available at run-time.
+- Live changes editor support.
 - Lazy functional. Eg. lazy.js, "no iteration takes place until you call each, and no intermediate arrays are created", `Lazy(txt).split("\n").take(5)`
 
 - "A programming language is low level when its programs require attention to the irrelevant." (Alan Perlis).

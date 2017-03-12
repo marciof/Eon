@@ -53,28 +53,3 @@
     (evaluate (get scope 1))
     '(evaluate (get scope 2)))
 }
-
-(lambda (x) (+ 1 x))
-
-(let name: "Bob"
-     age: 20
-  ...)
-
-# New untyped type: list of any
-(List)
-
-# New typed type: list of numbers
-(List Number)
-
-# New typed type: map of text to number
-(Map Text Number)
-
-# New typed type: emulate person "class"
-(Map 'name: Text 'age: Number)
-
-# How to create instances?
-# Scope assignments fix the data type?
-# Use prototype for casting as well?
-
-(List 8 2 2) = [8 2 2]
-(prototype []) = List
