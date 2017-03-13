@@ -9,9 +9,9 @@
   - http://axisofeval.blogspot.com/2011/04/whats-condition-system-and-why-do-you.html
 - Indentation based/optional parentheses for shell/CLI?
 - http://www.infoq.com/presentations/Value-Identity-State-Rich-Hickey
-- https://eev.ee/blog/2016/12/01/lets-stop-copying-c/
+- https://eev.ee/blog/2015/02/28/sylph-the-programming-language-i-want/
 - Need to specify which Unicode version is used?
-- Number literal underscores for readability? `1_000_000`
+- Number literal underscores for readability, eg. `1_000_000`
 - Look for best/worst features of other languages: JavaScript, Clojure, Python, Ruby, Haskell, Elm, Io, Rust, Erlang, Smalltalk, Java, Scheme, Go, ML, Lua, Haxe, Tcl, Shen, Matlab, R, REBOL.
   - Perl Pocket Reference
 
