@@ -86,6 +86,9 @@ A number is a quantity.
 
 1.(3)
 # 1.(3)
+
+4_294_967_296
+# 4294967296
 ```
 
 ## Symbol ##
@@ -555,8 +558,9 @@ Reserved-Character ::= List-Begin | List-End | Function-Begin | Function-End | M
 Quantity ::= Number (Symbol | Dotted-Expression)
 Dotted-Expression ::= Symbol (Unit-Separator Symbol)+
 Number ::= Terminating-Decimal | Repeating-Decimal
-Terminating-Decimal ::= Sign? Digit+ (Unit-Separator Digit+)?
-Repeating-Decimal ::= Sign? Digit+ Unit-Separator Digit* List-Begin Digit+ List-End Digit*
+Terminating-Decimal ::= Sign? Digits (Unit-Separator Digits)?
+Repeating-Decimal ::= Sign? Digits Unit-Separator Digits? List-Begin Digits List-End Digits?
+Digits ::= Digit+ (Digit-Group-Separator Digit-Group)*
 Pair ::= Expression White-Space* Pair-Separator White-Space* Expressio
 Map-Expressions ::= White-Space* ((Expression | Pair) (White-Space+ (Expression | Pair))* White-Space*)?
 Function ::= Function-Begin Map-Expressions Function-End
@@ -571,16 +575,17 @@ End-of-Line ::= (U+A)
 Comment-Quote ::= # (U+23)
 Text-Quote ::= " (U+22)
 Defer ::= ' (U+27)
-Unit-Separator ::= . (U+2E)
-Digit ::= 0 (U+30) | 1 (U+31) | 2 (U+32) | 3 (U+33) | 4 (U+34) | 5 (U+35) | 6 (U+36) | 7 (U+37) | 8 (U+38) | 9 (U+39)
-Sign ::= + (U+2B) | - (U+2D)
 Function-Begin ::= ( (U+28)
 Function-End ::= ) (U+28)
 Map-Begin ::= { (U+7B)
 Map-End ::= } (U+7D)
 List-Begin ::= [ (U+5B)
 List-End ::= ] (U+5D)
+Unit-Separator ::= . (U+2E)
 Pair-Separator ::= : (U+3A)
+Digit-Group-Separator ::= _ (U+5E)
+Sign ::= + (U+2B) | - (U+2D)
+Digit ::= 0 (U+30) | 1 (U+31) | 2 (U+32) | 3 (U+33) | 4 (U+34) | 5 (U+35) | 6 (U+36) | 7 (U+37) | 8 (U+38) | 9 (U+39)
 ```
 
 ## Transformations ##
