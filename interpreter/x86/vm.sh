@@ -1,49 +1,49 @@
 #!/bin/sh
-
 set -e -u
 
 create_grub_cd_image() {
-    local KERNEL_FILE=$1
-    local CD_IMAGE=`mktemp -t "$KERNEL_FILE.grub-cd.XXXXX.iso"`
-    local CD_CONTENTS=`mktemp -d`
+    local kernel_file=$1
+    local cd_image="$(mktemp -t "$kernel_file.grub-cd.XXXXX.iso")"
+    local cd_contents="$(mktemp -d)"
 
-    cp "$KERNEL_FILE" "$CD_CONTENTS"
-    mkdir -p "$CD_CONTENTS/boot/grub"
+    cp "$kernel_file" "$cd_contents"
+    mkdir -p "$cd_contents/boot/grub"
 
-    cat << CONFIG > "$CD_CONTENTS/boot/grub/grub.cfg"
+    cat <<CONFIG >"$cd_contents/boot/grub/grub.cfg"
 set timeout=0
-menuentry "`basename "$KERNEL_FILE"`" {
+menuentry "$(basename "$kernel_file")" {
     insmod multiboot
-    multiboot /$KERNEL_FILE
+    multiboot /$kernel_file
 }
 CONFIG
 
-    grub-mkrescue -o "$CD_IMAGE" "$CD_CONTENTS"
-    rm -rf "$CD_CONTENTS"
-    echo "$CD_IMAGE"
+    grub-mkrescue -o "$cd_image" "$cd_contents"
+    rm -rf "$cd_contents"
+    echo "$cd_image"
     return 0
 }
 
 if [ $# -ne 1 ]; then
-    echo "Usage: `basename "$0"` <kernel>"
+    echo "Usage: $(basename "$0") <kernel>" >&2
     exit 1
 fi
 
-KERNEL_FILE=$1
-VM_NAME="$KERNEL_FILE.$$"
-STORAGE_NAME=ide
-KERNEL_CD=`create_grub_cd_image "$KERNEL_FILE"`
+kernel_file="$1"
+vm_name="$kernel_file.$$"
+storage_name=ide
+kernel_cd="$(create_grub_cd_image "$kernel_file")"
 
-vboxmanage createvm --name "$VM_NAME" --ostype Other_64 --register
-vboxmanage storagectl "$VM_NAME" --name "$STORAGE_NAME" --add ide
-vboxmanage storageattach "$VM_NAME" --storagectl "$STORAGE_NAME" --port 0 --device 0 --type dvddrive --medium "$KERNEL_CD"
-vboxmanage startvm "$VM_NAME" --type sdl
+trap 'rm "$kernel_cd"' EXIT
 
-until vboxmanage showvminfo --machinereadable "$VM_NAME" | grep -Eq '^VMState="poweroff"$'; do
+vboxmanage createvm --name "$vm_name" --ostype Other_64 --register
+vboxmanage storagectl "$vm_name" --name "$storage_name" --add ide
+vboxmanage storageattach "$vm_name" --storagectl "$storage_name" --port 0 --device 0 --type dvddrive --medium "$kernel_cd"
+vboxmanage startvm "$vm_name" --type sdl
+
+until vboxmanage showvminfo --machinereadable "$vm_name" | grep -Eq '^VMState="poweroff"$'; do
     sleep 1
 done
 
 sleep 1
-vboxmanage storageattach "$VM_NAME" --storagectl "$STORAGE_NAME" --port 0 --device 0 --type dvddrive --medium none
-vboxmanage unregistervm --delete "$VM_NAME"
-rm -rf "$KERNEL_CD"
+vboxmanage storageattach "$vm_name" --storagectl "$storage_name" --port 0 --device 0 --type dvddrive --medium none
+vboxmanage unregistervm --delete "$vm_name"
