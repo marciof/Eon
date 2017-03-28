@@ -10,7 +10,7 @@
 - Indentation based/optional parentheses for shell/CLI?
 - http://www.infoq.com/presentations/Value-Identity-State-Rich-Hickey
 - Need to specify which Unicode version is used?
-- Look for best/worst features of other languages: JavaScript, Clojure, Python, Ruby, Haskell, Elm, Io, Rust, Erlang, Smalltalk, Java, Scheme, Go, ML, Lua, Haxe, Tcl, Shen, Matlab, R, REBOL.
+- Look for best/worst features of other languages: JavaScript, Clojure, Python, Haskell, Erlang, PureScript, Elm, Io, Rust, Ruby, Smalltalk, Java, Scheme, Go, ML, Lua, Haxe, Tcl, Shen, Matlab, R, REBOL.
   - Perl Pocket Reference
 
 # Checklist #
