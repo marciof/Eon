@@ -7,9 +7,15 @@
   - http://michaeldrogalis.tumblr.com/post/40181639419/trycatch-complects-we-can-do-so-much-better
   - http://matt.might.net/articles/implementing-exceptions/
   - http://axisofeval.blogspot.com/2011/04/whats-condition-system-and-why-do-you.html
+- Better `try`/`catch`? `Optional` support? eg. Python `some_dict[key]` `KeyError` vs `some_dict[key].or_else(default_value)`
 - Indentation based/optional parentheses for shell/CLI?
 - http://www.infoq.com/presentations/Value-Identity-State-Rich-Hickey
+- Uniform zero handling? `0/n = 0*n = n*0 = 0%n = 0`
+- Evaluate typing difficulty of each identifier quantitatively. Use easier synonyms for hard to type words.
+- How to have references in literal data structures? Needed for persisting state or configuration files?
 - Need to specify which Unicode version is used?
+- Pre-conditions are more specific than types (and more generic).
+- Post-conditions can function as embedded tests.
 - Look for best/worst features of other languages: JavaScript, Clojure, Python, Haskell, Erlang, PureScript, Elm, Io, Rust, Ruby, Smalltalk, Java, Scheme, Go, ML, Lua, Haxe, Tcl, Shen, Matlab, R, REBOL.
   - Perl Pocket Reference
 
@@ -17,8 +23,8 @@
 
 - Data/code uniformity.
 - Easy literals: list, map, set and function.
-- Lazy arguments.
-- Keyword arguments.
+- Lazy arguments. (Functional too, eg. lazy.js, "no iteration takes place until you call each, and no intermediate arrays are created", `Lazy(txt).split("\n").take(5)`
+- Keyword arguments.)
 - Optional typing.
 - Varargs.
 - Dynamic function calls.
@@ -30,8 +36,8 @@
 - Shell language support (see "wf.sh"). http://rigaux.org/language-study/scripting-language/
 - Documentation available at run-time.
 - Live changes editor support.
-- Lazy functional. Eg. lazy.js, "no iteration takes place until you call each, and no intermediate arrays are created", `Lazy(txt).split("\n").take(5)`
-
+- Embeddable as a scripting language.
+- Avoid verbs that are also nouns.
+- Avoid the semipredicate problem.
 - "A programming language is low level when its programs require attention to the irrelevant." (Alan Perlis).
 - Low cognitive load and typing effort (US keyboard layout, favor home row keys).
-- Avoid verbs that are also nouns.

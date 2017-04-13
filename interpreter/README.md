@@ -57,4 +57,5 @@ apt install grub-common grub-pc-bin xorriso mtools virtualbox-5.1
   - https://github.com/boynton/scheme
   - https://github.com/kanaka/mal
   - http://www.nongnu.org/libunwind/
+- Number type: http://www.dec64.com
 - Language: IDE, profiler, debugger, code coverage
