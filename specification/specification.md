@@ -107,9 +107,6 @@ A symbol is a case-sensitive name. It extends the *Text* prototype by restrictin
 '!
 # !
 
-...
-# ...
-
 '...
 # ...
 ```
@@ -378,11 +375,16 @@ If the association does not exist, it returns the result of `(debug 'unkown-key)
 (get {"a" "b"} "b")
 # "b"
 
-(get {'name: "Bob"} 'name)
-# "Bob"
-
 (get '(+ 6 7) 2)
 # 6
+
+(let user: {'name: "Bob"}
+
+  (get user 'name)
+  # "Bob"
+
+  user::name)
+  # "Bob"
 ```
 
 ## `load` ##
@@ -556,33 +558,32 @@ The grammar is expressed in Extended Backus-Naur Form syntax with the following 
 
 ```
 Expressions ::= White-Space* (Expression (White-Space+ Expression)* White-Space*)?
-Expression ::= Defer* (Symbol | Number | Quantity | List | Map | Text | Function | Ellipsis)
+Expression ::= Defer* (Symbol | Number | Quantity | List | Map | Text | Function | Get-Expression)
 White-Space ::= Space | End-of-Line | Comment
 Comment ::= Comment-Quote not(End-of-Line)* End-of-Line
 Symbol ::= not(Reserved-Character, White-Space, Sign, Digit) not(Reserved-Character, White-Space)* | Sign (not(Reserved-Character, White-Space, Digit) not(Reserved-Character, White-Space)*)?
-Reserved-Character ::= List-Begin | List-End | Function-Begin | Function-End | Map-Begin | Map-End | Comment-Quote | Text-Quote | Defer | Pair-Separator | Unit-Separator
-Quantity ::= Number (Symbol | Dotted-Expression)
-Dotted-Expression ::= Symbol (Unit-Separator Symbol)+
+Reserved-Character ::= List-Begin | List-End | Parenthesis-Begin | Parenthesis-End | Map-Begin | Map-End | Comment-Quote | Text-Quote | Defer | Pair-Separator
+Quantity ::= Number (Symbol | Get-Expression)
+Get-Expression ::= Symbol (Pair-Separator Pair-Separator Symbol)+
 Number ::= Terminating-Decimal | Repeating-Decimal
 Terminating-Decimal ::= Sign? Digits (Unit-Separator Digits)?
-Repeating-Decimal ::= Sign? Digits Unit-Separator Digits? List-Begin Digits List-End Digits?
-Digits ::= Digit+ (Digit-Group-Separator Digit-Group)*
+Repeating-Decimal ::= Sign? Digits Unit-Separator Digits? Parenthesis-Begin Digits Parenthesis-End Digits?
+Digits ::= Digit+ (Digit-Group-Separator Digits)*
 Pair ::= Expression White-Space* Pair-Separator White-Space* Expressio
 Map-Expressions ::= White-Space* ((Expression | Pair) (White-Space+ (Expression | Pair))* White-Space*)?
-Function ::= Function-Begin Map-Expressions Function-End
+Function ::= Parenthesis-Begin Map-Expressions Parenthesis-End
 List ::= List-Begin Map-Expressions List-End
 Map ::= Map-Begin Map-Expressions Map-End
 Text ::= Literal-Text | Tagged-Text
 Literal-Text ::= Text-Quote (not(Text-Quote) | Text-Quote{2})* Text-Quote
-Tagged-Text ::= (Symbol | Dotted-Expression) Literal-Text (Symbol | Dotted-Expression | Number | Quantity)?
-Ellipsis ::= Unit-Separator{3}
+Tagged-Text ::= (Symbol | Get-Expression) Literal-Text (Symbol | Get-Expression | Number | Quantity)?
 Space ::= (U+20)
 End-of-Line ::= (U+A)
 Comment-Quote ::= # (U+23)
 Text-Quote ::= " (U+22)
 Defer ::= ' (U+27)
-Function-Begin ::= ( (U+28)
-Function-End ::= ) (U+28)
+Parenthesis-Begin ::= ( (U+28)
+Parenthesis-End ::= ) (U+28)
 Map-Begin ::= { (U+7B)
 Map-End ::= } (U+7D)
 List-Begin ::= [ (U+5B)
@@ -598,12 +599,12 @@ Digit ::= 0 (U+30) | 1 (U+31) | 2 (U+32) | 3 (U+33) | 4 (U+34) | 5 (U+35) | 6 (U
 
 These are the syntactic transformations that occur for each associated non-terminal. Each letter represents a matching element of a grammar production.
 
-|Non-Terminal       |Syntax|Transformation|Association   |
-|-------------------|------|--------------|--------------|
-|*Dotted-Expression*|`x.y` |`(get x 'y)`  |Left to right.|
-|*Tagged-Text*      |`xyz` |`(x y z)`     |              |
-|*Quantity*         |`xy`  |`(y x)`       |              |
-|*Defer*            |`'x`  |`(defer x)`   |              |
+|Non-Terminal    |Syntax|Transformation|Association   |Example     |
+|----------------|------|--------------|--------------|------------|
+|*Get-Expression*|`x::y`|`(get x 'y)`  |Left to right.|`user::name`|
+|*Tagged-Text*   |`xyz` |`(x y z)`     |              |`hex"1F"`   |
+|*Quantity*      |`xy`  |`(y x)`       |              |`2Km`       |
+|*Defer*         |`'x`  |`(defer x)`   |              |`'length`   |
 
 # Coding Style #
 

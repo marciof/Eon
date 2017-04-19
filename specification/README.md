@@ -8,7 +8,6 @@
   - http://matt.might.net/articles/implementing-exceptions/
   - http://axisofeval.blogspot.com/2011/04/whats-condition-system-and-why-do-you.html
 - Better `try`/`catch`? `Optional` support? eg. Python `some_dict[key]` `KeyError` vs `some_dict[key].or_else(default_value)`
-- Indentation based/optional parentheses for shell/CLI?
 - http://www.infoq.com/presentations/Value-Identity-State-Rich-Hickey
 - Uniform zero handling? `0/n = 0*n = n*0 = 0%n = 0`
 - Evaluate typing difficulty of each identifier quantitatively. Use easier synonyms for hard to type words.
@@ -16,6 +15,7 @@
 - Need to specify which Unicode version is used?
 - Pre-conditions are more specific than types (and more generic).
 - Post-conditions can function as embedded tests.
+- Indentation based, significant white-space? Useful for using the REPL as a shell.
 - Look for best/worst features of other languages: JavaScript, Clojure, Python, Haskell, Erlang, PureScript, Elm, Io, Rust, Ruby, Smalltalk, Java, Scheme, Go, ML, Lua, Haxe, Tcl, Shen, Matlab, R, REBOL.
   - Perl Pocket Reference
 
@@ -33,7 +33,7 @@
 - Multiple return values.
 - Unicode (text) strings != byte strings.
 - Exceptions (error handling).
-- Shell language support (see "wf.sh"). http://rigaux.org/language-study/scripting-language/
+- Shell language support. http://rigaux.org/language-study/scripting-language/
 - Documentation available at run-time.
 - Live changes editor support.
 - Embeddable as a scripting language.
