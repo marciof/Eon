@@ -15,8 +15,9 @@
 - Need to specify which Unicode version is used?
 - Pre-conditions are more specific than types (and more generic).
 - Post-conditions can function as embedded tests.
+- Use static typing with type inference? (Algebraic Subtyping: https://www.cl.cam.ac.uk/~sd601/thesis.pdf)
 - Indentation based, significant white-space? Useful for using the REPL as a shell.
-- Look for best/worst features of other languages: JavaScript, Clojure, Python, Haskell, Erlang, PureScript, Elm, Io, Rust, Ruby, Smalltalk, Java, Scheme, Go, ML, Lua, Haxe, Tcl, Shen, Matlab, R, REBOL.
+- Look for best/worst features of other languages: JavaScript, Clojure, Kotlin, Python, Haskell, Erlang, PureScript, Elm, Io, Rust, Ruby, Smalltalk, Java, Scheme, Go, ML, Lua, Haxe, Tcl, Shen, Matlab, R, REBOL.
   - Perl Pocket Reference
 
 # Checklist #
