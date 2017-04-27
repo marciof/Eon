@@ -12,7 +12,7 @@ A boolean is a binary logical value that can only be either *true* or *false*.
 
 ## Function ##
 
-A function is a sequence composed of a function followed by zero or more values, the arguments. It extends the *List* prototype.
+A function is an immutable sequence composed of a function followed by zero or more values, the arguments. It extends the *List* prototype.
 
 Calling a function creates a new scope, prototypically inherited from the previous scope, composed of closure variables and deferred argument key/value pairs, and then evaluates it in this new scope returning the result.
 
@@ -26,7 +26,7 @@ Calling a function creates a new scope, prototypically inherited from the previo
 
 ## List ##
 
-A list is a sequence of elements. It extends the *Map* prototype by associating consecutive positive integers with elements in ascending order of keys.
+A list is an immutable sequence of elements. It extends the *Map* prototype by associating consecutive positive integers with elements in ascending order of keys.
 
 ### Examples ###
 
@@ -46,7 +46,7 @@ A list is a sequence of elements. It extends the *Map* prototype by associating 
 
 ## Map ##
 
-A map is a collection of unique keys and of values, where each unique key is associated with a single value.
+A map is an immutable collection of unique keys and of values, where each unique key is associated with a single value.
 
 If a given key has no associated value, it's then handled as in a set, where the key and value are one and the same.
 
@@ -93,7 +93,7 @@ A number is a quantity.
 
 ## Symbol ##
 
-A symbol is a case-sensitive name. It extends the *Text* prototype by restricting the characters that can be used.
+A symbol is an immutable case-sensitive name. It extends the *Text* prototype by restricting the characters that can be used.
 
 ### Examples ###
 
@@ -113,7 +113,7 @@ A symbol is a case-sensitive name. It extends the *Text* prototype by restrictin
 
 ## Text ##
 
-A text is a sequence of Unicode characters, each one identified by a code-point. It extends the *List* prototype by associating non-negative integer elements to code-points.
+A text is an immutable sequence of Unicode characters, each one identified by a code-point. It extends the *List* prototype by associating non-negative integer elements to code-points.
 
 ### Examples ###
 
@@ -399,7 +399,7 @@ A pathname is a list of zero or more names, ending with the module name.
 
 ## `prototype` ##
 
-Retrieves the original value used to create another one from, also known as its prototype, and optionally extends the prototype hierarchy.
+Retrieves the original value used to create another one from, also known as its prototype, and optionally extends the prototype hierarchy creating a new prototype.
 
 The prototype of a prototype is its base prototype, or itself if it doesn't have one.
 
@@ -503,6 +503,38 @@ scope:Map
 
     (get (prototype scope) 'x)))
     # 2
+```
+
+## `set` ##
+
+Associates a key with a value in a map, and returns it in a new map.
+
+If less than two or more than three arguments are passed, it returns the result of `(debug 'parameter-mismatch)`.
+
+If the `map` argument isn't a map, it returns the result of `(debug 'prototype-mismatch)`.
+
+```
+(set map:Map key)
+(set map:Map key value)
+```
+
+### Examples ###
+
+```
+(set [8] 1 9)
+# [9]
+
+(set ['x 'y] 3 'z)
+# [x y z]
+
+(set ['x 'y] 4 'z)
+# [x y 4:z]
+
+(set {'x 'y} z)
+# {x y z}
+
+(set {} 'name "Bob")
+# {name: "Bob"}
 ```
 
 ## `splice` ##
