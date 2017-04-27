@@ -430,8 +430,8 @@ When extending the prototype hierarchy, if both the `value` and `base-prototype`
 (prototype 8)
 # 0
 
-(let Person: (prototype {'name: "" 'age: 0} {})
-     bob: (splice Person {} {'name: "Bob" 'age: 20})
+(let Person: (prototype {'name: ""} {})
+     bob: (set Person 'name "Bob")
 
   Person
   # {name: "" age: 0}
@@ -507,7 +507,7 @@ scope:Map
 
 ## `set` ##
 
-Associates a key with a value in a map, and returns it in a new map.
+Associates a key to a value in a map, and returns the new map.
 
 If less than two or more than three arguments are passed, it returns the result of `(debug 'parameter-mismatch)`.
 
@@ -535,46 +535,37 @@ If the `map` argument isn't a map, it returns the result of `(debug 'prototype-m
 
 (set {} 'name "Bob")
 # {name: "Bob"}
+
+(set {'name: "Bob"} 'name "John")
+# {name: "John"}
 ```
 
-## `splice` ##
+## `unset` ##
 
-Adds elements to and removes keys from a map, and returns a new collection.
+Disassociates a key from a value in a map, and returns the new map.
 
-If a key from a new key/value pair being added is already present, the new value replaces the previous one.
-
-If removing positions (keys) from a list, new elements are added to the last specified position.
-
-If less than two or more than three arguments are passed, it returns the result of `(debug 'parameter-mismatch)`.
+If less or more than two arguments are passed, it returns the result of `(debug 'parameter-mismatch)`.
 
 If the `map` argument isn't a map, it returns the result of `(debug 'prototype-mismatch)`.
 
 ```
-(splice map:Map keys elements)
+(unset map:Map key)
 ```
 
 ### Examples ###
 
 ```
-(splice ["x" "y"] {2} ["z"])
-# ["x" "z"]
+(unset [8] 1)
+# []
 
-(splice ["x" "y"] {1} [])
-# ["y"]
+(unset ['x 'y] 3 'z)
+# [x y]
 
-(splice ["x" "y"] {2} ["z" "y"])
-# ["x" "z" "y"]
+(unset {'x 'y} 'y)
+# {x}
 
-(splice ["x"] {} ["y" "z"])
-# ["x" "y" "z"]
-
-(let user: {'name: "Bob"}
-
-  (splice user {} {'age: 25})
-  # {name: "Bob" age: 25}
-
-  user)
-  # {name: "Bob"}
+(unset {'name: "Bob" 'age: 20} 'age)
+# {name: "Bob"}
 ```
 
 # Grammar #

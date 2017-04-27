@@ -2,6 +2,7 @@
 
 - Specify prototypical inheritance (eg. intro, `get` handling, etc).
   - http://steve-yegge.blogspot.com/2008/10/universal-design-pattern.html
+- Specify `Variable` container-like data type, like Clojure's `atom`, of which `scope` is one (it's how it can be modified to always point to the current scope). It's also how mutable variables in the classic sense can be created, useful for the REPL and shell.
 - Remove `debug` (turn into exceptions with additional data on the error) and make `(defer)` return the current continuation for the current scope. Build exceptions on top of continuations. Build `assert` on top of exceptions.
   - http://www.javaslang.io/javaslang-docs/#_try
   - http://michaeldrogalis.tumblr.com/post/40181639419/trycatch-complects-we-can-do-so-much-better
