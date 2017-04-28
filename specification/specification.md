@@ -19,9 +19,8 @@ Calling a function creates a new scope, prototypically inherited from the previo
 ### Examples ###
 
 ```
-(let double: '(* 2 (get scope 1))
-  (double 4))
-# 8
+(+ 1 2)
+# 3
 ```
 
 ## List ##
@@ -431,7 +430,7 @@ When extending the prototype hierarchy, if both the `value` and `base-prototype`
 # 0
 
 (let Person: (prototype {'name: ""} {})
-     bob: (set Person 'name "Bob")
+     bob: (put Person 'name "Bob")
 
   Person
   # {name: "" age: 0}
@@ -447,6 +446,41 @@ When extending the prototype hierarchy, if both the `value` and `base-prototype`
 
   (prototype {'name: "Bob" 'age: 20}))
   # {}
+```
+
+## `put` ##
+
+Associates a key with a value in a map, and returns the new map.
+
+If less than two or more than three arguments are passed, it returns the result of `(debug 'parameter-mismatch)`.
+
+If the `map` argument isn't a map, it returns the result of `(debug 'prototype-mismatch)`.
+
+```
+(put map:Map key)
+(put map:Map key value)
+```
+
+### Examples ###
+
+```
+(put [8] 1 9)
+# [9]
+
+(put ["x" "y"] 3 "z")
+# ["x" "y" "z"]
+
+(put ["x" "y"] 4 "z")
+# [x y 4:z]
+
+(put {1 2} 3)
+# {1 2 3}
+
+(put {} 'name "Bob")
+# {name: "Bob"}
+
+(put {'name: "Bob"} 'name "John")
+# {name: "John"}
 ```
 
 ## `reduce` ##
@@ -468,8 +502,36 @@ If the `map` argument isn't a map or the `reducer` argument isn't a function, it
   [8 2 2]
   0
   '(+ (get scope 1)
-      (get scope 2)))
+      (get scope 3)))
 # 12
+```
+
+## `remove` ##
+
+Disassociates a key from a value in a map, and returns the new map.
+
+If less or more than two arguments are passed, it returns the result of `(debug 'parameter-mismatch)`.
+
+If the `map` argument isn't a map, it returns the result of `(debug 'prototype-mismatch)`.
+
+```
+(remove map:Map key)
+```
+
+### Examples ###
+
+```
+(remove [8] 1)
+# []
+
+(remove ["x" "y"] 3)
+# ["x" "y"]
+
+(remove {"x" "y"} "y")
+# {"x"}
+
+(remove {'name: "Bob" 'age: 20} 'age)
+# {name: "Bob"}
 ```
 
 ## `scope` ##
@@ -503,69 +565,6 @@ scope:Map
 
     (get (prototype scope) 'x)))
     # 2
-```
-
-## `set` ##
-
-Associates a key to a value in a map, and returns the new map.
-
-If less than two or more than three arguments are passed, it returns the result of `(debug 'parameter-mismatch)`.
-
-If the `map` argument isn't a map, it returns the result of `(debug 'prototype-mismatch)`.
-
-```
-(set map:Map key)
-(set map:Map key value)
-```
-
-### Examples ###
-
-```
-(set [8] 1 9)
-# [9]
-
-(set ['x 'y] 3 'z)
-# [x y z]
-
-(set ['x 'y] 4 'z)
-# [x y 4:z]
-
-(set {'x 'y} z)
-# {x y z}
-
-(set {} 'name "Bob")
-# {name: "Bob"}
-
-(set {'name: "Bob"} 'name "John")
-# {name: "John"}
-```
-
-## `unset` ##
-
-Disassociates a key from a value in a map, and returns the new map.
-
-If less or more than two arguments are passed, it returns the result of `(debug 'parameter-mismatch)`.
-
-If the `map` argument isn't a map, it returns the result of `(debug 'prototype-mismatch)`.
-
-```
-(unset map:Map key)
-```
-
-### Examples ###
-
-```
-(unset [8] 1)
-# []
-
-(unset ['x 'y] 3 'z)
-# [x y]
-
-(unset {'x 'y} 'y)
-# {x}
-
-(unset {'name: "Bob" 'age: 20} 'age)
-# {name: "Bob"}
 ```
 
 # Grammar #
