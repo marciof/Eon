@@ -1,33 +1,33 @@
-# Structure #
+# Structure
 
-## Module ##
+## Module
 
 A module is the Unicode textual representation of *Expressions* encoded in UTF-8 without a Byte Order Mark, with a valid *Symbol* for its name.
 
-# Prototypes #
+# Prototypes
 
-## Boolean ##
+## Boolean
 
-A boolean is a binary logical value that can only be either *true* or *false*.
+A binary logical value that can only be either *true* or *false*.
 
-## Function ##
+## Function
 
-A function is an immutable sequence composed of a function followed by zero or more values, the arguments. It extends the *List* prototype.
+An immutable sequence composed of a function followed by zero or more values, the arguments. It extends the *List* prototype.
 
 Calling a function creates a new scope, prototypically inherited from the previous scope, composed of closure variables and deferred argument key/value pairs, and then evaluates it in this new scope returning the result.
 
-### Examples ###
+### Examples
 
 ```
 (+ 1 2)
 # 3
 ```
 
-## List ##
+## List
 
-A list is an immutable sequence of elements. It extends the *Map* prototype by associating consecutive positive integers with elements in ascending order of keys.
+An immutable sequence of elements. It extends the *Map* prototype by associating consecutive positive integers with elements in ascending order of keys.
 
-### Examples ###
+### Examples
 
 ```
 []
@@ -43,15 +43,15 @@ A list is an immutable sequence of elements. It extends the *Map* prototype by a
 # [name: "Bob"]
 ```
 
-## Map ##
+## Map
 
-A map is an immutable collection of unique keys and of values, where each unique key is associated with a single value.
+An immutable collection of unique keys and of values, where each unique key is associated with a single value.
 
 If a given key has no associated value, it's then handled as in a set, where the key and value are one and the same.
 
 If the same key is repeated multiple times, it's associated with only the last value.
 
-### Examples ###
+### Examples
 
 ```
 {}
@@ -67,11 +67,11 @@ If the same key is repeated multiple times, it's associated with only the last v
 # {8 2 key: value}
 ```
 
-## Number ##
+## Number
 
-A number is a quantity.
+A quantity.
 
-### Examples ###
+### Examples
 
 ```
 2
@@ -90,11 +90,21 @@ A number is a quantity.
 # 4294967296
 ```
 
-## Symbol ##
+## Reference
 
-A symbol is an immutable case-sensitive name. It extends the *Text* prototype by restricting the characters that can be used.
+A mutable container for a value. It extends the *List* prototype by restricting its length to exactly one element and making the key and value one and the same.
 
-### Examples ###
+### Examples
+
+```
+(reference "Bob")
+```
+
+## Symbol
+
+An immutable case-sensitive name. It extends the *Text* prototype by restricting the characters that can be used.
+
+### Examples
 
 ```
 'abc
@@ -110,11 +120,11 @@ A symbol is an immutable case-sensitive name. It extends the *Text* prototype by
 # ...
 ```
 
-## Text ##
+## Text
 
-A text is an immutable sequence of Unicode characters, each one identified by a code-point. It extends the *List* prototype by associating non-negative integer elements to code-points.
+An immutable sequence of Unicode characters, each one identified by a code-point. It extends the *List* prototype by associating non-negative integer elements to code-points.
 
-### Examples ###
+### Examples
 
 ```
 ""
@@ -127,9 +137,9 @@ A text is an immutable sequence of Unicode characters, each one identified by a 
 # "x"
 ```
 
-# Built-ins #
+# Built-ins
 
-## `=` ##
+## `=`
 
 Compares two or more values and returns true if they all are or have the same value, or false otherwise.
 
@@ -139,7 +149,7 @@ If less than two arguments are passed, it returns the result of `(debug 'paramet
 (= x y ...): Boolean
 ```
 
-### Examples ###
+### Examples
 
 ```
 (= "A" "A" "A")
@@ -161,7 +171,7 @@ If less than two arguments are passed, it returns the result of `(debug 'paramet
 # false
 ```
 
-## `<` ##
+## `<`
 
 Compares two or more numbers and returns true if each one is less than the next, or false otherwise.
 
@@ -173,7 +183,7 @@ If any of the arguments isn't a number, it returns the result of `(debug 'protot
 (< x y ...): Boolean
 ```
 
-### Examples ###
+### Examples
 
 ```
 (< 1 -2)
@@ -183,7 +193,7 @@ If any of the arguments isn't a number, it returns the result of `(debug 'protot
 # true
 ```
 
-## `>` ##
+## `>`
 
 Compares two or more numbers and returns true if each one is greater than the next, or false otherwise.
 
@@ -195,7 +205,7 @@ If any of the arguments isn't a number, it returns the result of `(debug 'protot
 (> x y ...): Boolean
 ```
 
-## `+` ##
+## `+`
 
 Adds one or more numbers.
 
@@ -209,7 +219,7 @@ Adding negative infinity to positive infinity returns the result of `(debug 'und
 (+ x:Number ...): Number
 ```
 
-## `-` ##
+## `-`
 
 Subtracts one or more numbers.
 
@@ -223,7 +233,7 @@ Subtracting infinity from infinity returns the result of `(debug 'undefined-arit
 (- x:Number ...): Number
 ```
 
-## `*` ##
+## `*`
 
 Multiplies two or more numbers.
 
@@ -237,7 +247,7 @@ Multiplying zero and infinity returns the result of `(debug 'undefined-arithmeti
 (* x:Number y:Number ...): Number
 ```
 
-## `/` ##
+## `/`
 
 Divides two or more numbers.
 
@@ -251,7 +261,7 @@ Dividing any number by zero or infinity by infinity returns the result of `(debu
 (/ x:Number y:Number ...): Number
 ```
 
-### Examples ###
+### Examples
 
 ```
 (/ 12 3)
@@ -270,7 +280,7 @@ Dividing any number by zero or infinity by infinity returns the result of `(debu
 # infinity
 ```
 
-## `debug` ##
+## `debug`
 
 Interrupts normal execution flow. In development mode it triggers a debugger, while in production mode it halts execution with an appropriate error message.
 
@@ -283,7 +293,7 @@ If the `name` argument isn't a symbol, it returns the result of `(debug 'prototy
 (debug name:Symbol)
 ```
 
-## `defer` ##
+## `defer`
 
 Creates a snapshot of an expression thereby preventing it from being evaluated.
 
@@ -296,7 +306,7 @@ If the `escape` argument isn't a symbol, it returns the result of `(debug 'proto
 (defer expression escape:Symbol)
 ```
 
-### Examples ###
+### Examples
 
 ```
 (let x: 2
@@ -314,7 +324,7 @@ If the `escape` argument isn't a symbol, it returns the result of `(debug 'proto
   # (+ 1 2)
 ```
 
-## `evaluate` ##
+## `evaluate`
 
 Evaluates an expression, optionally in a different scope, and returns the result.
 
@@ -325,7 +335,7 @@ If zero or more than two arguments are passed, it returns the result of `(debug 
 (evaluate expression scope)
 ```
 
-### Examples ###
+### Examples
 
 ```
 (evaluate "Bob")
@@ -351,7 +361,7 @@ If zero or more than two arguments are passed, it returns the result of `(debug 
   # 2
 ```
 
-## `get` ##
+## `get`
 
 Retrieves the value associated with a key in a map.
 
@@ -365,7 +375,7 @@ If the association does not exist, it returns the result of `(debug 'unkown-key)
 (get map:Map key)
 ```
 
-### Examples ###
+### Examples
 
 ```
 (get [8 2 2] 1)
@@ -386,7 +396,7 @@ If the association does not exist, it returns the result of `(debug 'unkown-key)
   # "Bob"
 ```
 
-## `load` ##
+## `load`
 
 Loads a *module* by pathname.
 
@@ -396,7 +406,7 @@ A pathname is a list of zero or more names, ending with the module name.
 (load module:List)
 ```
 
-## `prototype` ##
+## `prototype`
 
 Retrieves the original value used to create another one from, also known as its prototype, and optionally extends the prototype hierarchy creating a new prototype.
 
@@ -411,7 +421,7 @@ When extending the prototype hierarchy, if both the `value` and `base-prototype`
 (prototype value base-prototype)
 ```
 
-### Examples ###
+### Examples
 
 ```
 (prototype "Bob")
@@ -448,7 +458,7 @@ When extending the prototype hierarchy, if both the `value` and `base-prototype`
   # {}
 ```
 
-## `put` ##
+## `put`
 
 Associates a key with a value in a map, and returns the new map.
 
@@ -457,11 +467,11 @@ If less than two or more than three arguments are passed, it returns the result 
 If the `map` argument isn't a map, it returns the result of `(debug 'prototype-mismatch)`.
 
 ```
-(put map:Map key)
-(put map:Map key value)
+(put map:Map key): Map
+(put map:Map key value): Map
 ```
 
-### Examples ###
+### Examples
 
 ```
 (put [8] 1 9)
@@ -483,7 +493,7 @@ If the `map` argument isn't a map, it returns the result of `(debug 'prototype-m
 # {name: "John"}
 ```
 
-## `reduce` ##
+## `reduce`
 
 Iterates over a map, calling the reducing function with each previously returned value (or the initial default value) and each value and key map pairs, and then returns the last reduced value.
 
@@ -495,7 +505,7 @@ If the `map` argument isn't a map or the `reducer` argument isn't a function, it
 (reduce map:Map default reducer:Function)
 ```
 
-### Examples ###
+### Examples
 
 ```
 (reduce
@@ -506,7 +516,31 @@ If the `map` argument isn't a map or the `reducer` argument isn't a function, it
 # 12
 ```
 
-## `remove` ##
+## `reference`
+
+Creates a new reference to a value.
+
+If less or more than one argument is passed, it returns the result of `(debug 'parameter-mismatch)`.
+
+```
+(reference value)
+```
+
+### Examples
+
+```
+(let name: (reference "Bob")
+
+  (get name)
+  # "Bob"
+
+  (put name "John")
+
+  (get name))
+  # "John"
+```
+
+## `remove`
 
 Disassociates a key from a value in a map, and returns the new map.
 
@@ -515,10 +549,10 @@ If less or more than two arguments are passed, it returns the result of `(debug 
 If the `map` argument isn't a map, it returns the result of `(debug 'prototype-mismatch)`.
 
 ```
-(remove map:Map key)
+(remove map:Map key): Map
 ```
 
-### Examples ###
+### Examples
 
 ```
 (remove [8] 1)
@@ -534,17 +568,13 @@ If the `map` argument isn't a map, it returns the result of `(debug 'prototype-m
 # {name: "Bob"}
 ```
 
-## `scope` ##
+## `scope`
 
-Map of identifiers to values in the current scope.
+A reference to a map of identifiers to values in the current scope.
 
-The scope map always prototypically inherits from the previous scope, or none if it's the module scope. Each function call creates a new scope  that prototypically inherits from the previous one, and this symbol always points to the current one.
+The scope map always prototypically inherits from the previous scope, or none if it's the module scope. Each function call creates a new scope  that prototypically inherits from the previous one, and this reference always points to the current one.
 
-```
-scope:Map
-```
-
-### Examples ###
+### Examples
 
 ```
 (let x: 2
@@ -552,7 +582,7 @@ scope:Map
   x
   # 2
 
-  (get scope 'x)
+  (get (get scope) 'x)
   # 2
 
   (let x: 8
@@ -560,14 +590,24 @@ scope:Map
     x
     # 8
 
-    (get scope 'x)
+    (get (get scope) 'x)
     # 8
 
-    (get (prototype scope) 'x)))
+    (get (prototype (get scope)) 'x)))
     # 2
+
+(let y: 3
+
+  y
+  # 3
+
+  (put scope (put (get scope) 'y 5))
+
+  y
+  # 5)
 ```
 
-# Grammar #
+# Grammar
 
 The grammar is expressed in Extended Backus-Naur Form syntax with the following changes:
 
@@ -617,7 +657,7 @@ Sign ::= + (U+2B) | - (U+2D)
 Digit ::= 0 (U+30) | 1 (U+31) | 2 (U+32) | 3 (U+33) | 4 (U+34) | 5 (U+35) | 6 (U+36) | 7 (U+37) | 8 (U+38) | 9 (U+39)
 ```
 
-## Transformations ##
+## Transformations
 
 These are the syntactic transformations that occur for each associated non-terminal. Each letter represents a matching element of a grammar production.
 
@@ -628,26 +668,26 @@ These are the syntactic transformations that occur for each associated non-termi
 |*Quantity*      |`xy`  |`(y x)`       |              |`2Km`       |
 |*Defer*         |`'x`  |`(defer x)`   |              |`'length`   |
 
-# Coding Style #
+# Coding Style
 
 The human language used should be English.
 
-## Documentation ##
+## Documentation
 
 Documentation should be written in [CommonMark](http://commonmark.org) format.
 
-## Naming ##
+## Naming
 
 All names should use hyphens as the word delimiter.
 
-### Function ###
+### Function
 
 The name of a function should use a verb as the first word. If it is an accessor function it should end in `-of`. Predicate functions should instead append a `?` to the name.
 
-### Module ###
+### Module
 
 The name of a module should be a noun, in lower-case.
 
-### Prototype ###
+### Prototype
 
 The name of a prototype should be a noun, properly capitalized.
