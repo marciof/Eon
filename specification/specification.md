@@ -612,7 +612,7 @@ If the `map` argument isn't a map, it returns the result of `(debug 'prototype-m
 
 A reference to a map of identifiers to values in the current scope.
 
-The scope map always prototypically inherits from the previous scope, or none if it's the module scope. Each function call creates a new scope  that prototypically inherits from the previous one, and this reference always points to the current one.
+The scope map always prototypically inherits from the previous scope map, or none if it's the module scope map. Each function call creates a new scope map that prototypically inherits from the previous one, and this reference always points to the current one.
 
 ### Examples
 
