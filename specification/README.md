@@ -2,12 +2,12 @@
 
 - Specify prototypical inheritance (eg. intro, `get` handling, etc).
   - http://steve-yegge.blogspot.com/2008/10/universal-design-pattern.html
-- Remove `debug` (turn into exceptions with additional data on the error) and make `(defer)` return the current continuation for the current scope. Build exceptions on top of continuations. Build `assert` on top of exceptions.
-  - http://www.javaslang.io/javaslang-docs/#_try
-  - http://michaeldrogalis.tumblr.com/post/40181639419/trycatch-complects-we-can-do-so-much-better
+- Rename `debug` to `rescue` for something similar to Common Lisp conditions (signaling a condition, handling it, and restarting).
+  - The specification doesn't dictate how it's handled, but the core library uses continuations to implement a full condition system?
+  - Add a `continuation` built-in to create (escape?) continuations?
+  - Make `rescue` calls very specific, eg. `(rescue 'illegal-argument function: get parameter: 'map argument: 123)`
+  - http://www.gigamonkeys.com/book/beyond-exception-handling-conditions-and-restarts.html
   - http://matt.might.net/articles/implementing-exceptions/
-  - http://axisofeval.blogspot.com/2011/04/whats-condition-system-and-why-do-you.html
-- Better `try`/`catch`? `Optional` support? eg. Python `some_dict[key]` `KeyError` vs `some_dict[key].or_else(default_value)`
 - http://www.infoq.com/presentations/Value-Identity-State-Rich-Hickey
 - Uniform zero handling? `0/n = 0*n = n*0 = 0%n = 0`
 - Evaluate typing difficulty of each identifier quantitatively. Use easier synonyms for hard to type words.
@@ -16,8 +16,9 @@
 - Pre-conditions are more specific than types (and more generic).
 - Post-conditions can function as embedded tests.
 - Use static typing with type inference? (Algebraic Subtyping: https://www.cl.cam.ac.uk/~sd601/thesis.pdf)
-- Indentation based, significant white-space? Useful for using the REPL as a shell.
+- Indentation based, significant white-space? Useful for using the REPL as a shell itself.
 - Dependent types? http://www.ybrikman.com/writing/2014/04/09/six-programming-paradigms-that-will/
+- Need to put the currently executing function in the scope for debugger support?
 - Look for best/worst features of other languages: JavaScript, Clojure, Kotlin, Python, Haskell, Erlang, PureScript, Elm, Io, Rust, Ruby, Smalltalk, Java, Scheme, Go, ML, Lua, Haxe, Tcl, Shen, Matlab, R, REBOL.
   - Perl Pocket Reference
 
@@ -25,7 +26,7 @@
 
 - Data/code uniformity.
 - Easy literals: list, map, set and function.
-- Lazy arguments. (Functional too, eg. lazy.js, "no iteration takes place until you call each, and no intermediate arrays are created", `Lazy(txt).split("\n").take(5)`)
+- Lazy arguments.
 - Keyword arguments.
 - Optional typing.
 - Varargs.
@@ -34,13 +35,14 @@
 - No null value.
 - Multiple return values.
 - Unicode (text) strings != byte strings.
-- Exceptions (error handling).
-- Debugger support.
-- REPL support.
-- Shell language support. http://rigaux.org/language-study/scripting-language/
-- Documentation available at run-time.
-- Live changes editor support.
+- Error handling.
+- Debugger.
+- REPL.
+- Shell scripting. http://rigaux.org/language-study/scripting-language/
 - Embeddable as a scripting language.
+- Documentation available at run-time.
+- Live changes (hot-reloading) support.
+- Package manager.
 - Avoid verbs that are also nouns.
 - Avoid the semipredicate problem.
 - "A programming language is low level when its programs require attention to the irrelevant." (Alan Perlis).
