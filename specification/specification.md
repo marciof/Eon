@@ -141,17 +141,26 @@ An immutable sequence of Unicode characters, each one identified by a code-point
 
 ## `=`
 
-Compares two or more values and returns true if they all are or have the same value, or false otherwise.
-
-If less than two arguments are passed, it returns the result of `(debug 'parameter-mismatch)`.
-
 ```
 (= x y ...): Boolean
 ```
 
+Compares two or more values and returns true if they are all equal, or false otherwise.
+
+If less than two arguments are passed, it returns the result of `(debug 'parameter-mismatch)`.
+
 ### Examples
 
 ```
+(= 1 1.0)
+# true
+
+(= 1 +1)
+# true
+
+(= -0 +0)
+# true
+
 (= "A" "A" "A")
 # true
 
@@ -173,15 +182,15 @@ If less than two arguments are passed, it returns the result of `(debug 'paramet
 
 ## `<`
 
+```
+(< x y ...): Boolean
+```
+
 Compares two or more numbers and returns true if each one is less than the next, or false otherwise.
 
 If less than two arguments are passed, it returns the result of `(debug 'parameter-mismatch)`.
 
 If any of the arguments isn't a number, it returns the result of `(debug 'prototype-mismatch)`.
-
-```
-(< x y ...): Boolean
-```
 
 ### Examples
 
@@ -189,11 +198,15 @@ If any of the arguments isn't a number, it returns the result of `(debug 'protot
 (< 1 -2)
 # false
 
-(< 8 10 infinity)
+(< 8 10 10.1)
 # true
 ```
 
 ## `>`
+
+```
+(> x y ...): Boolean
+```
 
 Compares two or more numbers and returns true if each one is greater than the next, or false otherwise.
 
@@ -201,11 +214,11 @@ If less than two arguments are passed, it returns the result of `(debug 'paramet
 
 If any of the arguments isn't a number, it returns the result of `(debug 'prototype-mismatch)`.
 
-```
-(> x y ...): Boolean
-```
-
 ## `+`
+
+```
+(+ x:Number ...): Number
+```
 
 Adds one or more numbers.
 
@@ -215,11 +228,11 @@ If any of the arguments isn't a number, it returns the result of `(debug 'protot
 
 Adding negative infinity to positive infinity returns the result of `(debug 'undefined-arithmetic)`.
 
-```
-(+ x:Number ...): Number
-```
-
 ## `-`
+
+```
+(- x:Number ...): Number
+```
 
 Subtracts one or more numbers.
 
@@ -229,11 +242,11 @@ If any of the arguments isn't a number, it returns the result of `(debug 'protot
 
 Subtracting infinity from infinity returns the result of `(debug 'undefined-arithmetic)`.
 
-```
-(- x:Number ...): Number
-```
-
 ## `*`
+
+```
+(* x:Number y:Number ...): Number
+```
 
 Multiplies two or more numbers.
 
@@ -243,11 +256,11 @@ If any of the arguments isn't a number, it returns the result of `(debug 'protot
 
 Multiplying zero and infinity returns the result of `(debug 'undefined-arithmetic)`.
 
-```
-(* x:Number y:Number ...): Number
-```
-
 ## `/`
+
+```
+(/ x:Number y:Number ...): Number
+```
 
 Divides two or more numbers.
 
@@ -256,10 +269,6 @@ If less than two arguments are passed, it returns the result of `(debug 'paramet
 If any of the arguments isn't a number, it returns the result of `(debug 'prototype-mismatch)`.
 
 Dividing any number by zero or infinity by infinity returns the result of `(debug 'undefined-arithmetic)`.
-
-```
-(/ x:Number y:Number ...): Number
-```
 
 ### Examples
 
@@ -282,29 +291,29 @@ Dividing any number by zero or infinity by infinity returns the result of `(debu
 
 ## `debug`
 
+```
+(debug)
+(debug name:Symbol)
+```
+
 Interrupts normal execution flow. In development mode it triggers a debugger, while in production mode it halts execution with an appropriate error message.
 
 If more than one argument is passed, it returns the result of `(debug 'parameter-mismatch)`.
 
 If the `name` argument isn't a symbol, it returns the result of `(debug 'prototype-mismatch)`.
 
-```
-(debug)
-(debug name:Symbol)
-```
-
 ## `defer`
+
+```
+(defer expression)
+(defer expression escape:Symbol)
+```
 
 Creates a snapshot of an expression thereby preventing it from being evaluated.
 
 If less than one or more than two arguments are passed, it returns the result of `(debug 'parameter-mismatch)`.
 
 If the `escape` argument isn't a symbol, it returns the result of `(debug 'prototype-mismatch)`.
-
-```
-(defer expression)
-(defer expression escape:Symbol)
-```
 
 ### Examples
 
@@ -326,14 +335,14 @@ If the `escape` argument isn't a symbol, it returns the result of `(debug 'proto
 
 ## `evaluate`
 
-Evaluates an expression, optionally in a different scope, and returns the result.
-
-If zero or more than two arguments are passed, it returns the result of `(debug 'parameter-mismatch)`.
-
 ```
 (evaluate expression)
 (evaluate expression scope)
 ```
+
+Evaluates an expression, optionally in a different scope, and returns the result.
+
+If zero or more than two arguments are passed, it returns the result of `(debug 'parameter-mismatch)`.
 
 ### Examples
 
@@ -363,6 +372,10 @@ If zero or more than two arguments are passed, it returns the result of `(debug 
 
 ## `get`
 
+```
+(get map:Map key)
+```
+
 Retrieves the value associated with a key in a map.
 
 If less or more than two arguments are passed, it returns the result of `(debug 'parameter-mismatch)`.
@@ -370,10 +383,6 @@ If less or more than two arguments are passed, it returns the result of `(debug 
 If the `map` argument isn't a map, it returns the result of `(debug 'prototype-mismatch)`.
 
 If the association does not exist, it returns the result of `(debug 'unkown-key)`.
-
-```
-(get map:Map key)
-```
 
 ### Examples
 
@@ -398,15 +407,20 @@ If the association does not exist, it returns the result of `(debug 'unkown-key)
 
 ## `load`
 
-Loads a *module* by pathname.
-
-A pathname is a list of zero or more names, ending with the module name.
-
 ```
 (load module:List)
 ```
 
+Loads a *module* by pathname.
+
+A pathname is a list of zero or more names, ending with the module name.
+
 ## `prototype`
+
+```
+(prototype value)
+(prototype value base-prototype)
+```
 
 Retrieves the original value used to create another one from, also known as its prototype, and optionally extends the prototype hierarchy creating a new prototype.
 
@@ -415,11 +429,6 @@ The prototype of a prototype is its base prototype, or itself if it doesn't have
 If zero or more than two arguments are passed, it returns the result of `(debug 'parameter-mismatch)`.
 
 When extending the prototype hierarchy, if both the `value` and `base-prototype` don't share a common ancestor prototype, it returns the result of `(debug 'prototype-mismatch)`.
-
-```
-(prototype value)
-(prototype value base-prototype)
-```
 
 ### Examples
 
@@ -460,16 +469,16 @@ When extending the prototype hierarchy, if both the `value` and `base-prototype`
 
 ## `put`
 
+```
+(put map:Map key): Map
+(put map:Map key value): Map
+```
+
 Associates a key with a value in a map, and returns the new map.
 
 If less than two or more than three arguments are passed, it returns the result of `(debug 'parameter-mismatch)`.
 
 If the `map` argument isn't a map, it returns the result of `(debug 'prototype-mismatch)`.
-
-```
-(put map:Map key): Map
-(put map:Map key value): Map
-```
 
 ### Examples
 
@@ -495,15 +504,15 @@ If the `map` argument isn't a map, it returns the result of `(debug 'prototype-m
 
 ## `reduce`
 
+```
+(reduce map:Map default reducer:Function)
+```
+
 Iterates over a map, calling the reducing function with each previously returned value (or the initial default value) and each value and key map pairs, and then returns the last reduced value.
 
 If less or more than three arguments are passed, it returns the result of `(debug 'parameter-mismatch)`.
 
 If the `map` argument isn't a map or the `reducer` argument isn't a function, it returns the result of `(debug 'prototype-mismatch)`.
-
-```
-(reduce map:Map default reducer:Function)
-```
 
 ### Examples
 
@@ -518,13 +527,13 @@ If the `map` argument isn't a map or the `reducer` argument isn't a function, it
 
 ## `reference`
 
-Creates a new reference to a value.
-
-If less or more than one argument is passed, it returns the result of `(debug 'parameter-mismatch)`.
-
 ```
 (reference value)
 ```
+
+Creates a new reference to a value.
+
+If less or more than one argument is passed, it returns the result of `(debug 'parameter-mismatch)`.
 
 ### Examples
 
@@ -542,15 +551,15 @@ If less or more than one argument is passed, it returns the result of `(debug 'p
 
 ## `remove`
 
-Disassociates a key from a value in a map, and returns the new map.
+```
+(remove map:Map key): Map
+```
+
+A function that disassociates a key from a value in a map, and returns the new map.
 
 If less or more than two arguments are passed, it returns the result of `(debug 'parameter-mismatch)`.
 
 If the `map` argument isn't a map, it returns the result of `(debug 'prototype-mismatch)`.
-
-```
-(remove map:Map key): Map
-```
 
 ### Examples
 
