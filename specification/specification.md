@@ -2,17 +2,17 @@
 
 ## Module
 
-A module is the Unicode textual representation of *Expressions* encoded in UTF-8 without a Byte Order Mark, with a valid *Symbol* for its name.
+A Unicode textual representation of expressions encoded in UTF-8 without a Byte Order Mark, with a valid symbol for its name.
 
 # Prototypes
 
 ## Boolean
 
-A binary logical value that can only be either *true* or *false*.
+A binary logical value that can only be either true or false.
 
 ## Function
 
-An immutable sequence composed of a function followed by zero or more values, the arguments. It extends the *List* prototype.
+An immutable sequence composed of a function followed by zero or more values, the arguments. It extends the list prototype.
 
 Calling a function creates a new scope, prototypically inherited from the previous scope, composed of closure variables and deferred argument key/value pairs, and then evaluates it in this new scope returning the result.
 
@@ -25,7 +25,7 @@ Calling a function creates a new scope, prototypically inherited from the previo
 
 ## List
 
-An immutable sequence of elements. It extends the *Map* prototype by associating consecutive positive integers with elements in ascending order of keys.
+An immutable sequence of elements. It extends the map prototype by associating consecutive positive integers with elements in ascending order of keys.
 
 ### Examples
 
@@ -92,7 +92,7 @@ A quantity.
 
 ## Reference
 
-A mutable container for a value. It extends the *List* prototype by restricting its length to exactly one element and making the key and value one and the same.
+A mutable container for a value. It extends the list prototype by restricting its length to exactly one element and making the key and value one and the same.
 
 ### Examples
 
@@ -102,7 +102,7 @@ A mutable container for a value. It extends the *List* prototype by restricting 
 
 ## Symbol
 
-An immutable case-sensitive name. It extends the *Text* prototype by restricting the characters that can be used.
+An immutable case-sensitive name. It extends the text prototype by restricting the characters that can be used.
 
 ### Examples
 
@@ -122,7 +122,7 @@ An immutable case-sensitive name. It extends the *Text* prototype by restricting
 
 ## Text
 
-An immutable sequence of Unicode characters, each one identified by a code-point. It extends the *List* prototype by associating non-negative integer elements to code-points.
+An immutable sequence of Unicode characters, each one identified by a code-point. It extends the list prototype by associating non-negative integer elements to code-points.
 
 ### Examples
 
@@ -145,7 +145,7 @@ An immutable sequence of Unicode characters, each one identified by a code-point
 (= x y ...): Boolean
 ```
 
-Compares two or more values and returns true if they are all equal, or false otherwise.
+A function that compares two or more values and returns true if they are all equal, or false otherwise.
 
 If less than two arguments are passed, it returns the result of `(debug 'parameter-mismatch)`.
 
@@ -186,7 +186,7 @@ If less than two arguments are passed, it returns the result of `(debug 'paramet
 (< x y ...): Boolean
 ```
 
-Compares two or more numbers and returns true if each one is less than the next, or false otherwise.
+A function that compares two or more numbers and returns true if each one is less than the next, or false otherwise.
 
 If less than two arguments are passed, it returns the result of `(debug 'parameter-mismatch)`.
 
@@ -208,7 +208,7 @@ If any of the arguments isn't a number, it returns the result of `(debug 'protot
 (> x y ...): Boolean
 ```
 
-Compares two or more numbers and returns true if each one is greater than the next, or false otherwise.
+A function that compares two or more numbers and returns true if each one is greater than the next, or false otherwise.
 
 If less than two arguments are passed, it returns the result of `(debug 'parameter-mismatch)`.
 
@@ -220,7 +220,7 @@ If any of the arguments isn't a number, it returns the result of `(debug 'protot
 (+ x:Number ...): Number
 ```
 
-Adds one or more numbers.
+A function that adds one or more numbers.
 
 If no arguments are passed, it returns the result of `(debug 'parameter-mismatch)`.
 
@@ -234,7 +234,7 @@ Adding negative infinity to positive infinity returns the result of `(debug 'und
 (- x:Number ...): Number
 ```
 
-Subtracts one or more numbers.
+A function that subtracts one or more numbers.
 
 If no arguments are passed, it returns the result of `(debug 'parameter-mismatch)`.
 
@@ -248,7 +248,7 @@ Subtracting infinity from infinity returns the result of `(debug 'undefined-arit
 (* x:Number y:Number ...): Number
 ```
 
-Multiplies two or more numbers.
+A function that multiplies two or more numbers.
 
 If less than two arguments are passed, it returns the result of `(debug 'parameter-mismatch)`.
 
@@ -262,7 +262,7 @@ Multiplying zero and infinity returns the result of `(debug 'undefined-arithmeti
 (/ x:Number y:Number ...): Number
 ```
 
-Divides two or more numbers.
+A function that divides two or more numbers.
 
 If less than two arguments are passed, it returns the result of `(debug 'parameter-mismatch)`.
 
@@ -296,7 +296,7 @@ Dividing any number by zero or infinity by infinity returns the result of `(debu
 (debug name:Symbol)
 ```
 
-Interrupts normal execution flow. In development mode it triggers a debugger, while in production mode it halts execution with an appropriate error message.
+A function that interrupts normal execution flow. In development mode it triggers a debugger, while in production mode it halts execution with an appropriate error message.
 
 If more than one argument is passed, it returns the result of `(debug 'parameter-mismatch)`.
 
@@ -309,7 +309,7 @@ If the `name` argument isn't a symbol, it returns the result of `(debug 'prototy
 (defer expression escape:Symbol)
 ```
 
-Creates a snapshot of an expression thereby preventing it from being evaluated.
+A function that creates a snapshot of an expression thereby preventing it from being evaluated.
 
 If less than one or more than two arguments are passed, it returns the result of `(debug 'parameter-mismatch)`.
 
@@ -340,7 +340,7 @@ If the `escape` argument isn't a symbol, it returns the result of `(debug 'proto
 (evaluate expression scope)
 ```
 
-Evaluates an expression, optionally in a different scope, and returns the result.
+A function that evaluates an expression, optionally in a different scope, and returns the result.
 
 If zero or more than two arguments are passed, it returns the result of `(debug 'parameter-mismatch)`.
 
@@ -376,7 +376,7 @@ If zero or more than two arguments are passed, it returns the result of `(debug 
 (get map:Map key)
 ```
 
-Retrieves the value associated with a key in a map.
+A function that retrieves the value associated with a key in a map.
 
 If less or more than two arguments are passed, it returns the result of `(debug 'parameter-mismatch)`.
 
@@ -411,9 +411,16 @@ If the association does not exist, it returns the result of `(debug 'unkown-key)
 (load module:List)
 ```
 
-Loads a *module* by pathname.
+A function that loads a module by pathname.
 
 A pathname is a list of zero or more names, ending with the module name.
+
+### Examples
+
+```
+(load ['server])
+(load ['image 'parser])
+```
 
 ## `prototype`
 
@@ -422,7 +429,7 @@ A pathname is a list of zero or more names, ending with the module name.
 (prototype value base-prototype)
 ```
 
-Retrieves the original value used to create another one from, also known as its prototype, and optionally extends the prototype hierarchy creating a new prototype.
+A function that retrieves the original value used to create another one from, also known as its prototype, and optionally extends the prototype hierarchy creating a new prototype.
 
 The prototype of a prototype is its base prototype, or itself if it doesn't have one.
 
@@ -474,7 +481,7 @@ When extending the prototype hierarchy, if both the `value` and `base-prototype`
 (put map:Map key value): Map
 ```
 
-Associates a key with a value in a map, and returns the new map.
+A function that associates a key with a value in a map, and returns the new map.
 
 If less than two or more than three arguments are passed, it returns the result of `(debug 'parameter-mismatch)`.
 
@@ -508,7 +515,7 @@ If the `map` argument isn't a map, it returns the result of `(debug 'prototype-m
 (reduce map:Map default reducer:Function)
 ```
 
-Iterates over a map, calling the reducing function with each previously returned value (or the initial default value) and each value and key map pairs, and then returns the last reduced value.
+A function that iterates over a map, calling the reducing function with each previously returned value (or the initial default value) and each value and key map pairs, and then returns the last reduced value.
 
 If less or more than three arguments are passed, it returns the result of `(debug 'parameter-mismatch)`.
 
@@ -531,7 +538,7 @@ If the `map` argument isn't a map or the `reducer` argument isn't a function, it
 (reference value)
 ```
 
-Creates a new reference to a value.
+A function that creates a new reference to a value.
 
 If less or more than one argument is passed, it returns the result of `(debug 'parameter-mismatch)`.
 
