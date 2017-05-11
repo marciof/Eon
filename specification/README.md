@@ -1,5 +1,6 @@
 # To Do #
 
+- Indicate time and space complexity for each operation.
 - Specify prototypical inheritance (eg. intro, `get` handling, etc).
   - http://steve-yegge.blogspot.com/2008/10/universal-design-pattern.html
 - Rename `debug` to `rescue` for something similar to Common Lisp conditions (signaling a condition, handling it, and restarting).
@@ -19,6 +20,7 @@
 - Indentation based, significant white-space? Useful for using the REPL as a shell itself.
 - Dependent types? http://www.ybrikman.com/writing/2014/04/09/six-programming-paradigms-that-will/
 - Need to put the currently executing function in the scope for debugger support?
+- Add `count` built-in or let it be defined in core via `reduce`? What about performance?
 - Look for best/worst features of other languages: JavaScript, Clojure, Kotlin, Python, Haskell, Erlang, PureScript, Elm, Io, Rust, Ruby, Smalltalk, Java, Scheme, Go, ML, Lua, Haxe, Tcl, Shen, Matlab, R, REBOL.
   - Perl Pocket Reference
 

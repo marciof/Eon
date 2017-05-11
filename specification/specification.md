@@ -539,7 +539,9 @@ If the `map` argument isn't a map, it returns the result of `(debug 'prototype-m
 (reduce map:Map default reducer:Function)
 ```
 
-A function that iterates over a map, calling the reducing function with each previously returned value (or the initial default value) and each value and key map pairs, and then returns the last reduced value.
+A function that iterates over a map, calling the reducing function with each previously returned value (starting with the initial default value), each map value, and each map key, and then returns the last reduced value.
+
+If the map is empty the default value is immediately returned.
 
 If less or more than three arguments are passed, it returns the result of `(debug 'parameter-mismatch)`.
 
