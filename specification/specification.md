@@ -51,6 +51,8 @@ If a given key has no associated value, it's then handled as in a set, where the
 
 If the same key is repeated multiple times, it's associated with only the last value.
 
+If a key is already present as a set value, it returns the result of `(debug 'prototype-mismatch)`.
+
 ### Examples
 
 ```
@@ -501,11 +503,13 @@ When extending the prototype hierarchy, if both the `value` and `base-prototype`
 ## `put`
 
 ```
-(put map:Map key): Map
+(put map:Map value): Map
 (put map:Map key value): Map
 ```
 
 A function that associates a key with a value in a map, and returns the new map.
+
+If `key` is a set element and `value` is passed, it returns the result of `(debug 'prototype-mismatch)`.
 
 If less than two or more than three arguments are passed, it returns the result of `(debug 'parameter-mismatch)`.
 
