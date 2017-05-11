@@ -104,7 +104,7 @@ A mutable container for a value. It extends the list prototype by restricting it
 
 ## Symbol
 
-An immutable case-sensitive name. It extends the text prototype by restricting the characters that can be used.
+An immutable case-sensitive name. It extends the text prototype by restricting the character set used.
 
 ### Examples
 
