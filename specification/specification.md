@@ -547,6 +547,10 @@ A function that iterates over a map, calling the reducing function with each pre
 
 If the map is empty the default value is immediately returned.
 
+If the reducing function is called for a set element, only the value is passed, no key.
+
+If iterating over a list, list elements are first iterated in order, then all remaining map key/value pairs in insertion order.
+
 If less or more than three arguments are passed, it returns the result of `(debug 'parameter-mismatch)`.
 
 If the `map` argument isn't a map or the `reducer` argument isn't a function, it returns the result of `(debug 'prototype-mismatch)`.
@@ -555,11 +559,11 @@ If the `map` argument isn't a map or the `reducer` argument isn't a function, it
 
 ```
 (reduce
-  [8 2 2]
+  [8 3 4]
   0
-  '(+ (get scope 1)
-      (get scope 3)))
-# 12
+  '(+ (get (get scope) 1)
+      (get (get scope) 2)))
+# 15
 ```
 
 ## `reference`
