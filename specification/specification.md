@@ -25,7 +25,7 @@ Calling a function creates a new scope, prototypically inherited from the previo
 
 ## List
 
-An immutable sequence of elements. It extends the map prototype by associating consecutive positive integers with elements in ascending order of keys.
+An immutable sequence of elements. It extends the map prototype by associating consecutive positive integers with elements in ascending order of keys, while keeping relative insertion order of other map keys.
 
 ### Examples
 
@@ -47,11 +47,9 @@ An immutable sequence of elements. It extends the map prototype by associating c
 
 An immutable collection of unique keys and of values, where each unique key is associated with a single value.
 
-If a given key has no associated value, it's then handled as in a set, where the key and value are one and the same.
+If a given key has no associated value, it's then handled as in a set where the key and value are the same, but still separate from each other.
 
 If the same key is repeated multiple times, it's associated with only the last value.
-
-If a key is already present as a set value, it returns the result of `(debug 'prototype-mismatch)`.
 
 ### Examples
 
@@ -67,6 +65,9 @@ If a key is already present as a set value, it returns the result of `(debug 'pr
 
 {8 2 2 'key: 'value}
 # {8 2 key: value}
+
+{'name 'name: "Bob"}
+# {name: "Bob"}
 ```
 
 ## Number
@@ -485,8 +486,6 @@ When extending the prototype hierarchy, if both the `value` and `base-prototype`
 
 A function that associates a key with a value in a map, and returns the new map.
 
-If `key` is a set element and `value` is passed, it returns the result of `(debug 'prototype-mismatch)`.
-
 If less than two or more than three arguments are passed, it returns the result of `(debug 'parameter-mismatch)`.
 
 If the `map` argument isn't a map, it returns the result of `(debug 'prototype-mismatch)`.
@@ -496,6 +495,9 @@ If the `map` argument isn't a map, it returns the result of `(debug 'prototype-m
 ```
 (put [8] 1 9)
 # [9]
+
+(put [8] 9)
+# [8 9]
 
 (put ["x" "y"] 3 "z")
 # ["x" "y" "z"]
@@ -511,6 +513,9 @@ If the `map` argument isn't a map, it returns the result of `(debug 'prototype-m
 
 (put {'name: "Bob"} 'name "John")
 # {name: "John"}
+
+(put {'name: "Bob"} 'name)
+# {name}
 ```
 
 ## `reduce`
@@ -519,13 +524,9 @@ If the `map` argument isn't a map, it returns the result of `(debug 'prototype-m
 (reduce map:Map default reducer:Function)
 ```
 
-A function that iterates over a map, calling the reducing function with each previously returned value (starting with the initial default value), each map value, and each map key, and then returns the last reduced value.
+A function that iterates over a map, calling the reducing function with each previously returned value (starting with the initial default value) as parameter `accumulator`, each map value as parameter `value`, and each map key as parameter `key`, and then returns the last reduced value.
 
-If the map is empty the default value is immediately returned.
-
-If the reducing function is called for a set element, only the value is passed, no key.
-
-If iterating over a list, list elements are first iterated in order, then all remaining map key/value pairs in insertion order.
+If the map is empty the default value is returned immediately.
 
 If less or more than three arguments are passed, it returns the result of `(debug 'parameter-mismatch)`.
 
@@ -534,11 +535,7 @@ If the `map` argument isn't a map or the `reducer` argument isn't a function, it
 ### Examples
 
 ```
-(reduce
-  [8 3 4]
-  0
-  '(+ (get (get scope) 1)
-      (get (get scope) 2)))
+(reduce [8 3 4] 0 '(+ accumulator key)
 # 15
 ```
 
@@ -658,10 +655,11 @@ Terminating-Decimal ::= Sign? Digits (Unit-Separator Digits)?
 Repeating-Decimal ::= Sign? Digits Unit-Separator Digits? Parenthesis-Begin Digits Parenthesis-End Digits?
 Digits ::= Digit+ (Digit-Group-Separator Digits)*
 Pair ::= Expression Pair-Separator White-Space* Expression
-Map-Expressions ::= White-Space* ((Expression | Pair) (White-Space+ (Expression | Pair))* White-Space*)?
-Function ::= Parenthesis-Begin Map-Expressions Parenthesis-End
-List ::= List-Begin Map-Expressions List-End
-Map ::= Map-Begin Map-Expressions Map-End
+Set-Value ::= Expression
+List-Value ::= Expression
+Function ::= Parenthesis-Begin White-Space* ((Expression | Pair) (White-Space+ (Expression | Pair))* White-Space*)? Parenthesis-End
+List ::= List-Begin White-Space* ((List-Value | Pair) (White-Space+ (List-Value | Pair))* White-Space*)? List-End
+Map ::= Map-Begin White-Space* ((Set-Value | Pair) (White-Space+ (Set-Value | Pair))* White-Space*)? Map-End
 Text ::= Literal-Text | Tagged-Text
 Literal-Text ::= Text-Quote (not(Text-Quote) | Text-Quote{2})* Text-Quote
 Tagged-Text ::= (Symbol | Get-Expression) Literal-Text (Symbol | Get-Expression | Number | Quantity)?
@@ -687,12 +685,14 @@ Digit ::= 0 (U+30) | 1 (U+31) | 2 (U+32) | 3 (U+33) | 4 (U+34) | 5 (U+35) | 6 (U
 
 These are the syntactic transformations that occur for each associated non-terminal. Each letter represents a matching element of a grammar production.
 
-|Non-Terminal    |Syntax|Transformation|Association   |Example     |
-|----------------|------|--------------|--------------|------------|
-|*Get-Expression*|`x::y`|`(get x 'y)`  |Left to right.|`user::name`|
-|*Tagged-Text*   |`xyz` |`(x y z)`     |              |`hex"1F"`   |
-|*Quantity*      |`xy`  |`(y x)`       |              |`2Km`       |
-|*Defer*         |`'x`  |`(defer x)`   |              |`'length`   |
+|Non-Terminal    |Syntax|Transformation|Example     |Notes         |
+|----------------|------|--------------|------------|--------------|
+|*Get-Expression*|`x::y`|`(get x 'y)`  |`user::name`|Left to right.|
+|*Tagged-Text*   |`xyz` |`(x y z)`     |`hex"1F"`   |              |
+|*List-Value*    |`x`   |`N: x`        |`["a"]`     |Position `N`. |
+|*Set-Value*     |`x`   |`x: x`        |`{123}`     |              |
+|*Quantity*      |`xy`  |`(y x)`       |`2Km`       |              |
+|*Defer*         |`'x`  |`(defer x)`   |`'length`   |              |
 
 # Coding Style
 
