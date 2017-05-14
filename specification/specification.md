@@ -376,7 +376,7 @@ If zero or more than two arguments are passed, it returns the result of `(debug 
 ## `get`
 
 ```
-(get map:Map key)
+(get map:Map key default)
 ```
 
 A function that retrieves the value associated with a key in a map.
@@ -385,7 +385,7 @@ If less or more than two arguments are passed, it returns the result of `(debug 
 
 If the `map` argument isn't a map, it returns the result of `(debug 'prototype-mismatch)`.
 
-If the association does not exist, it returns the result of `(debug 'unkown-key)`.
+If the association does not exist and the `default` argument is present, it returns `default`, otherwise it returns the result of `(debug 'unkown-key)`.
 
 ### Examples
 
@@ -398,6 +398,9 @@ If the association does not exist, it returns the result of `(debug 'unkown-key)
 
 (get '(+ 6 7) 2)
 # 6
+
+(get {} 'name "John")
+# "John"
 
 (let user: {'name: "Bob"}
 
