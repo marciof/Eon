@@ -410,10 +410,10 @@ If the association does not exist, it returns the result of `(debug 'unkown-key)
 ## `load`
 
 ```
-(load module:List): Text
+(load module:List): Function
 ```
 
-A function that loads a module by pathname.
+A function that loads a module by pathname, and returns it as a function.
 
 A pathname is a list of zero or more names, ending with the module name.
 
@@ -422,30 +422,6 @@ A pathname is a list of zero or more names, ending with the module name.
 ```
 (load ['server])
 (load ['image 'parser])
-```
-
-## `parse`
-
-```
-(parse expressions:Text): List
-```
-
-A function that parses the textual representation of one or more expressions, and returns a list of them parsed.
-
-### Examples
-
-```
-(parse "123")
-# [123]
-
-(parse """Bob""")
-# ["Bob"]
-
-(parse "{x y} z")
-# [{x y} z]
-
-(parse "")
-# []
 ```
 
 ## `prototype`
