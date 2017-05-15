@@ -1,5 +1,6 @@
 # To Do #
 
+- Make the first element in the scope for a function call the called function?
 - Indicate time and space complexity for each operation.
 - Specify prototypical inheritance (eg. intro, `get` handling, etc).
   - http://steve-yegge.blogspot.com/2008/10/universal-design-pattern.html

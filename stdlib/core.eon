@@ -4,6 +4,7 @@
   'List: (prototype []))
   'Map: (prototype {}))
   'Number: (prototype 0))
+  'Reference: (prototype (reference 0))
   'Symbol: (prototype 'x))
   'Text: (prototype ""))
 
