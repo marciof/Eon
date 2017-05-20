@@ -13,6 +13,9 @@ apt install grub-common grub-pc-bin xorriso mtools virtualbox-5.1
 
 # To Do #
 
+- Language: IDE (IntelliJ plugin? Emacs? JVM interop? C FFI? libffi?), profiler, debugger, code coverage
+  - https://news.ycombinator.com/item?id=1591172
+  - https://github.com/kanaka/mal
 - Use `grub-file` to verify kernel image is bootable.
 - Tests, coverage, lint, static analysis, continuous integration, memory check.
   - Automation: Vagrant, Docker
@@ -58,4 +61,3 @@ apt install grub-common grub-pc-bin xorriso mtools virtualbox-5.1
   - https://github.com/kanaka/mal
   - http://www.nongnu.org/libunwind/
 - Number type: http://www.dec64.com
-- Language: IDE, profiler, debugger, code coverage
