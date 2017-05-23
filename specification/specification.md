@@ -146,6 +146,9 @@ An immutable sequence of Unicode characters, each one identified by a code-point
 
 "x"
 # "x"
+
+"<a href=""http://www.example.com"">"
+# "<a href=""http://www.example.com"">"
 ```
 
 # Built-ins
