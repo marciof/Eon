@@ -6,6 +6,8 @@ A Unicode textual representation of expressions encoded in UTF-8 without a Byte 
 
 # Prototypes
 
+A prototype is the original value used to create another one from. The prototype of a prototype is its base prototype, or itself if it doesn't have one (root prototype).
+
 ## Boolean
 
 A binary logical value that can only be either true or false.
@@ -412,11 +414,19 @@ If zero or more than two arguments are passed, it returns the result of `(debug 
 
 A function that retrieves the value associated with a `key` in a `map`, with an optional `default` value to use if the `key` doesn't exist.
 
+```
+(get reference:Reference)
+```
+
+A function that dereferences a `reference`.
+
 ### Conditions
 
-If less or more than two arguments are passed, it returns the result of `(debug 'parameter-mismatch)`.
+If one or three arguments aren't passed, it returns the result of `(debug 'parameter-mismatch)`.
 
 If the `map` argument isn't a map, it returns the result of `(debug 'prototype-mismatch)`.
+
+If the `reference` argument isn't a reference, it returns the result of `(debug 'prototype-mismatch)`.
 
 If the association doesn't exist and the `default` argument is present, it returns `default`, otherwise it returns the result of `(debug 'unkown-key)`.
 
@@ -442,6 +452,9 @@ If the association doesn't exist and the `default` argument is present, it retur
 
   user::name)
   # "Bob"
+
+(get (reference 123))
+# 123
 ```
 
 ## `load`
@@ -471,12 +484,15 @@ If the specified `module` doesn't exist, it returns the result of `(debug 'unkno
 
 ```
 (prototype value)
+```
+
+A function that retrieves the prototype of `value`.
+
+```
 (prototype value base-prototype)
 ```
 
-A function that retrieves the original value used to create another one `value` from, also known as its prototype, and optionally extends the prototype hierarchy using `base-prototype` thereby creating a new prototype.
-
-The prototype of a prototype is its base prototype, or itself if it doesn't have one (root prototype).
+A function that extends the prototype hierarchy using `base-prototype` thereby creating a new prototype.
 
 ### Conditions
 
@@ -530,11 +546,21 @@ When extending the prototype hierarchy, if both the `value` and `base-prototype`
 
 A function that associates a `key` with a `value` in a `map`, and returns the new map.
 
+If no `key` is passed and the `map` is a list, then the `value` is inserted at the end of the list. Otherwise `key` defaults to `value`.
+
+```
+(put reference:Reference value): Reference
+```
+
+A function that modifies a `reference` to point to a new `value`.
+
 ### Conditions
 
 If less than two or more than three arguments are passed, it returns the result of `(debug 'parameter-mismatch)`.
 
 If the `map` argument isn't a map, it returns the result of `(debug 'prototype-mismatch)`.
+
+If the `reference` argument isn't a reference, it returns the result of `(debug 'prototype-mismatch)`.
 
 ### Examples
 
@@ -562,6 +588,9 @@ If the `map` argument isn't a map, it returns the result of `(debug 'prototype-m
 
 (put {'name: "Bob"} 'name)
 # {name}
+
+(get (put (reference 123) 321))
+# 321
 ```
 
 ## `reduce`
