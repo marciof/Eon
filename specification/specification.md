@@ -16,7 +16,7 @@ A binary logical value that can only be either true or false.
 
 An immutable sequence composed of a function followed by zero or more values, the arguments. It extends the list prototype.
 
-Calling a function creates a new scope, prototypically inherited from the previous scope, composed of closure variables and deferred argument key/value pairs, and then evaluates it in this new scope returning the result.
+Calling a function creates a new scope, prototypically inherited from the previous scope, composed of closure variables and deferred argument values, and then evaluates it in this new scope returning the result.
 
 Arguments in a function call can be specified positionally or via keyword parameters.
 
@@ -46,11 +46,11 @@ An immutable sequence of elements. It extends the map prototype by associating c
 ["x" "y"]
 # ["x" "y"]
 
-[8 2 2 'key: 'value]
-# [8 2 2 key: value]
+[8 2 2 'key:'value]
+# [8 2 2 key:value]
 
-['name: "Bob"]
-# [name: "Bob"]
+['name:"Bob"]
+# [name:"Bob"]
 ```
 
 ## Map
@@ -67,17 +67,17 @@ If the same key is repeated multiple times, it's associated with only the last v
 {}
 # {}
 
-{'name: "Bob" 'age: 30}
-# {name: "Bob" age: 30}
+{'name:"Bob" 'age:30}
+# {name:"Bob" age:30}
 
 {"x" "y"}
 # {"x" "y"}
 
-{8 2 2 'key: 'value}
-# {8 2 key: value}
+{8 2 2 'key:'value}
+# {8 2 key:value}
 
-{'name 'name: "Bob"}
-# {name: "Bob"}
+{'name 'name:"Bob"}
+# {name:"Bob"}
 ```
 
 ## Number
@@ -399,7 +399,7 @@ If zero or more than two arguments are passed, it returns the result of `(debug 
   (evaluate 'y)
   # 2
 
-  (evaluate 'y {'y: 8})
+  (evaluate 'y {'y:8})
   # 8
 
   (evaluate 'y scope))
@@ -445,7 +445,7 @@ If the association doesn't exist and the `default` argument is present, it retur
 (get {} 'name "John")
 # "John"
 
-(let user: {'name: "Bob"}
+(let user: {'name:"Bob"}
 
   (get user 'name)
   # "Bob"
@@ -518,22 +518,22 @@ When extending the prototype hierarchy, if both the `value` and `base-prototype`
 (prototype 8)
 # 0
 
-(let Person: (prototype {'name: ""} {})
+(let Person: (prototype {'name:""} {})
      bob: (put Person 'name "Bob")
 
   Person
-  # {name: "" age: 0}
+  # {name:"" age:0}
 
   (prototype Person)
   # {}
 
   bob
-  # {name: "Bob" age: 20}
+  # {name:"Bob" age:20}
   
   (prototype bob)
   # Person
 
-  (prototype {'name: "Bob" 'age: 20}))
+  (prototype {'name:"Bob" 'age:20}))
   # {}
 ```
 
@@ -581,12 +581,12 @@ If the `reference` argument isn't a reference, it returns the result of `(debug 
 # {1 2 3}
 
 (put {} 'name "Bob")
-# {name: "Bob"}
+# {name:"Bob"}
 
-(put {'name: "Bob"} 'name "John")
-# {name: "John"}
+(put {'name:"Bob"} 'name "John")
+# {name:"John"}
 
-(put {'name: "Bob"} 'name)
+(put {'name:"Bob"} 'name)
 # {name}
 
 (get (put (reference 123) 321))
@@ -668,8 +668,8 @@ If the `map` argument isn't a map, it returns the result of `(debug 'prototype-m
 (remove {"x" "y"} "y")
 # {"x"}
 
-(remove {'name: "Bob" 'age: 20} 'age)
-# {name: "Bob"}
+(remove {'name:"Bob" 'age:20} 'age)
+# {name:"Bob"}
 ```
 
 ## `scope`
@@ -736,9 +736,10 @@ Terminating-Decimal ::= Sign? Digits (Unit-Separator Digits)?
 Repeating-Decimal ::= Sign? Digits Unit-Separator Digits? Parenthesis-Begin Digits Parenthesis-End Digits?
 Digits ::= Digit+ (Digit-Group-Separator Digits)*
 Pair ::= Expression Pair-Separator White-Space* Expression
-Set-Value ::= Expression
+Keyword-Parameter ::= Pair
 List-Value ::= Expression
-Function ::= Parenthesis-Begin White-Space* ((Expression | Pair) (White-Space+ (Expression | Pair))* White-Space*)? Parenthesis-End
+Set-Value ::= Expression
+Function ::= Parenthesis-Begin White-Space* ((Expression | Keyword-Parameter) (White-Space+ (Expression | Keyword-Parameter))* White-Space*)? Parenthesis-End
 List ::= List-Begin White-Space* ((List-Value | Pair) (White-Space+ (List-Value | Pair))* White-Space*)? List-End
 Map ::= Map-Begin White-Space* ((Set-Value | Pair) (White-Space+ (Set-Value | Pair))* White-Space*)? Map-End
 Text ::= Literal-Text | Tagged-Text
@@ -766,14 +767,15 @@ Digit ::= 0 (U+30) | 1 (U+31) | 2 (U+32) | 3 (U+33) | 4 (U+34) | 5 (U+35) | 6 (U
 
 These are the syntactic transformations that occur for each associated non-terminal. Each letter represents a matching element of a grammar production.
 
-|Non-Terminal    |Syntax|Transformation|Example     |Notes         |
-|----------------|------|--------------|------------|--------------|
-|*Get-Expression*|`x::y`|`(get x 'y)`  |`user::name`|Left to right.|
-|*Tagged-Text*   |`xyz` |`(x y z)`     |`hex"1F"`   |              |
-|*List-Value*    |`x`   |`N: x`        |`["a"]`     |Position `N`. |
-|*Set-Value*     |`x`   |`x: x`        |`{123}`     |              |
-|*Quantity*      |`xy`  |`(y x)`       |`2Km`       |              |
-|*Defer*         |`'x`  |`(defer x)`   |`'length`   |              |
+|Non-Terminal       |Syntax|Transformation|Example       |Notes         |
+|-------------------|------|--------------|--------------|--------------|
+|*Get-Expression*   |`x::y`|`(get x 'y)`  |`user::name`  |Left to right.|
+|*Tagged-Text*      |`xyz` |`(x y z)`     |`hex"1F"`     |              |
+|*Keyword-Parameter*|`x:y` |`'x:y`        |`(range to:9)`|              |
+|*List-Value*       |`x`   |`N:x`         |`["a"]`       |Position `N`. |
+|*Set-Value*        |`x`   |`x:x`         |`{123}`       |              |
+|*Quantity*         |`xy`  |`(y x)`       |`2Km`         |              |
+|*Defer*            |`'x`  |`(defer x)`   |`'length`     |              |
 
 # Coding Style
 
