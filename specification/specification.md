@@ -791,7 +791,7 @@ All names should use hyphens as the word delimiter.
 
 ### Function
 
-The name of a function should use a verb as the first word. If it is an accessor function it should end in `-of`. Predicate functions should instead append a `?` to the name.
+The name of a function should generally use a verb as the first word. Predicate functions should end in `?`. Accessor functions should instead start with a noun and end in `-of`.
 
 ### Module
 
@@ -799,4 +799,4 @@ The name of a module should be a noun, in lower-case.
 
 ### Prototype
 
-The name of a prototype should be a noun, properly capitalized.
+The name of a prototype should be a noun, capitalized.
