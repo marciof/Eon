@@ -480,6 +480,33 @@ If the specified `module` doesn't exist, it returns the result of `(debug 'unkno
 (load ['image 'parser])
 ```
 
+## `local`
+
+```
+(local map:Map): Map
+```
+
+A function that returns a map with the non-inherited key/values pairs from a prototyped `map`.
+
+### Conditions
+
+If less or more than one argument is passed, it returns the result of `(debug 'parameter-mismatch)`.
+
+If the `map` argument isn't a map, it returns the result of `(debug 'prototype-mismatch)`.
+
+### Examples
+
+```
+(let x:1
+  (let y:2
+
+    (local (get scope))
+    # {y:2}
+
+    (prototype (get scope))))
+    # {x:1}
+```
+
 ## `prototype`
 
 ```
