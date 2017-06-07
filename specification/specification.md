@@ -16,9 +16,9 @@ A binary logical value that can only be either true or false.
 
 An immutable sequence composed of a function followed by zero or more values, the arguments. It extends the list prototype.
 
-Calling a function creates a new scope, prototypically inherited from the previous scope, composed of closure variables and deferred argument values, and then evaluates it in this new scope returning the result.
+Calling a function creates a new scope using the function call list with deferred arguments, prototypically inherited from the previous scope, and then evaluates it in this new scope returning the result.
 
-Arguments in a function call can be specified positionally or via keyword parameters.
+Arguments in a function call are specified positionally or via keyword parameters.
 
 ### Examples
 
@@ -701,9 +701,9 @@ If the `map` argument isn't a map, it returns the result of `(debug 'prototype-m
 
 ## `scope`
 
-A reference to a map of identifiers to values in the current scope.
+A reference to a list mapping identifiers to values in the current scope.
 
-The scope map always prototypically inherits from the previous scope map, or none if it's the module scope map. Each function call creates a new scope map that prototypically inherits from the previous one, and this reference always points to the current one.
+The scope list always prototypically inherits from the previous scope list, or none if it's the module scope. Each function call creates a new scope list that prototypically inherits from the previous one, and this reference always points to the current one.
 
 ### Examples
 

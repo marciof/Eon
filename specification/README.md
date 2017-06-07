@@ -1,7 +1,6 @@
 # To Do #
 
 - Indicate time and space complexity for each operation.
-- Make the first element in the scope for a function call the called function. Useful for the debugger.
 - Specify prototypical inheritance (eg. intro, `get` `put` and `remove` handling, etc). http://steve-yegge.blogspot.com/2008/10/universal-design-pattern.html
 - Rename `debug` to `rescue` for something similar to Common Lisp conditions (signaling a condition, handling it, and restarting).
   - The specification doesn't dictate how it's handled, but the core library uses continuations to implement a full condition system?
@@ -27,6 +26,7 @@ Research:
 - Easy literals: list, map, set and function.
 - Lazy arguments.
 - Keyword arguments.
+- Recursive anonymous functions.
 - Optional typing.
 - Varargs.
 - Dynamic function calls.
@@ -35,7 +35,7 @@ Research:
 - Multiple return values.
 - Unicode (text) strings != byte strings.
 - Error handling.
-- Debugger.
+- Debugger with call frames and local variables.
 - REPL.
 - Shell scripting. http://rigaux.org/language-study/scripting-language/
 - Embeddable as a scripting language.
