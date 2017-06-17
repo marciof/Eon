@@ -1,5 +1,6 @@
 # To Do #
 
+- Need table of contents and hyperlinks between terms.
 - Indicate time and space complexity for each operation.
 - Specify prototypical inheritance (eg. intro, `get` `put` and `remove` handling, etc). http://steve-yegge.blogspot.com/2008/10/universal-design-pattern.html
 - Rename `debug` to `rescue` for something similar to Common Lisp conditions (signaling a condition, handling it, and restarting).

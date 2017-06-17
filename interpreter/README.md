@@ -13,12 +13,28 @@ apt install grub-common grub-pc-bin xorriso mtools virtualbox-5.1
 
 # To Do #
 
-- Language: IDE (IntelliJ plugin? Emacs? JVM interop? C FFI? libffi?), profiler, debugger, code coverage
-  - https://news.ycombinator.com/item?id=1591172
-  - https://github.com/kanaka/mal
+- Try embedding PicoLisp to check how easy/hard it is. (ECL?)
+  - Remove or cleanup Boynton Scheme?
+    - Simple functional tests with Valgrind.
+    - Fix no output when cwd isn't the source code path.
+    - Move library to a separate directory.
+    - Compile as C++.
+    - Use readline.
+    - Reformat indentation.
+    - Consistent naming.
+  - Verify requirements: CFFI C/Java, immutable maps/sets/lists, unwind, Unicode, scope, prototype
+  - Resources:
+    - https://news.ycombinator.com/item?id=1591172
+    - https://github.com/kanaka/mal
+    - http://matt.might.net/articles/programming-with-continuations--exceptions-backtracking-search-threads-generators-coroutines/
+    - http://norvig.com/lispy.html
+    - https://github.com/copy/v86
+    - http://www.nongnu.org/libunwind/
+    - https://sourceware.org/libffi/
+- IDE (IntelliJ plugin? Emacs?), profiler, debugger, code coverage
 - Use `grub-file` to verify kernel image is bootable.
 - Tests, coverage, lint, static analysis, continuous integration, memory check.
-  - Automation: Vagrant, Docker
+  - Automation: Vagrant, Docker?
   - https://autotest.github.io
   - https://scan.coverity.com
   - https://travis-ci.org # validate `.travis.yml` file
@@ -27,37 +43,12 @@ apt install grub-common grub-pc-bin xorriso mtools virtualbox-5.1
   - http://clang-analyzer.llvm.org
 - Clean up, simplify, remove double blank lines, more flat less nested, remove useless TODO comments and documentation (document only what's need, eg. log's format string grammar), use single-line comments, remove `this->`.
 - Colored native logging.
-- Drop Windows support.
 - Logging of long integers.
 - Make warnings fatal.
-- Drop x86 support and switch to x64.
+- Drop x86 support and switch to x64?
   - ASFLAGS += -f elf64
   - CCFLAGS += -m64
   - LINKFLAGS += -m elf_x86_64
 - Upgrade to Multiboot 2.
+- Modern C, `#pragma once`
 - Use exceptions to reduce coupling between components? Eg. no need to call System::stop() directly, calls to Log::error() will throw an exception.
-- Memory management:
-  - http://www.minix3.org
-  - http://www.jamesmolloy.co.uk/tutorial_html/4.-The%20GDT%20and%20IDT.html
-  - http://www.osdever.net/tutorials/view/memory-management-1
-  - http://www.osdever.net/bkerndev/Docs/gdt.htm
-- Cleanup Scheme:
-  - Use TinyScheme instead? Supported and still small? http://tinyscheme.sourceforge.net/home.html
-  - https://github.com/eriksvedang/Carp
-  - `elk` embeddable Scheme interpreter
-  - `STk` Scheme interpreter
-  - Simple functional tests with Valgrind.
-  - Fix no output when cwd isn't the source code path.
-  - Move library to a separate directory.
-  - Compile as C++.
-  - Use readline.
-  - Reformat indentation.
-  - Consistent naming.
-  - `#pragma once`
-  - http://matt.might.net/articles/programming-with-continuations--exceptions-backtracking-search-threads-generators-coroutines/
-  - http://norvig.com/lispy.html
-  - https://github.com/copy/v86
-  - https://github.com/boynton/scheme
-  - https://github.com/kanaka/mal
-  - http://www.nongnu.org/libunwind/
-- Number type: http://www.dec64.com
