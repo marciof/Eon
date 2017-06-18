@@ -31,6 +31,7 @@
   - http://www.gigamonkeys.com/book/beyond-exception-handling-conditions-and-restarts.html
   - http://matt.might.net/articles/implementing-exceptions/
 - Evaluate typing difficulty of each identifier quantitatively. Use easier synonyms for hard to type words.
+- Add a Quick Start document with hyperlinks to the specification for further reading.
 - Look for best/worst features of other languages: JavaScript, Clojure, Kotlin, Python, Haskell, Erlang, PureScript, Elm, Io, Rust, Ruby, Smalltalk, Java, Scheme, Go, ML, Lua, Haxe, Tcl, Shen, Matlab, R, REBOL.
   - "Perl Pocket Reference"
 - http://www.infoq.com/presentations/Value-Identity-State-Rich-Hickey
