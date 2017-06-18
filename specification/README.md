@@ -22,6 +22,7 @@
   - https://picolisp.com
 - Decouple `load`: `read` + `parse`
 - Need table of contents and hyperlinks between terms.
+  - https://github.com/blog/1395-relative-links-in-markup-files
 - Indicate time and space complexity for each operation.
 - Specify prototypical inheritance (eg. intro, `get` `put` and `remove` handling, etc). http://steve-yegge.blogspot.com/2008/10/universal-design-pattern.html
 - Rename `debug` to `rescue` for something similar to Common Lisp conditions (signaling a condition, handling it, and restarting).
@@ -30,6 +31,7 @@
   - Make `rescue` calls very specific, eg. `(rescue 'illegal-argument function: get parameter: 'map argument: 123)`
   - http://www.gigamonkeys.com/book/beyond-exception-handling-conditions-and-restarts.html
   - http://matt.might.net/articles/implementing-exceptions/
+  - http://matt.might.net/articles/programming-with-continuations--exceptions-backtracking-search-threads-generators-coroutines/
 - Evaluate typing difficulty of each identifier quantitatively. Use easier synonyms for hard to type words.
 - Add a Quick Start document with hyperlinks to the specification for further reading.
 - Look for best/worst features of other languages: JavaScript, Clojure, Kotlin, Python, Haskell, Erlang, PureScript, Elm, Io, Rust, Ruby, Smalltalk, Java, Scheme, Go, ML, Lua, Haxe, Tcl, Shen, Matlab, R, REBOL.

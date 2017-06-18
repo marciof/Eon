@@ -90,9 +90,6 @@ namespace core {
     }
 
     void Log::print(const char* format, va_list arguments) {
-        char* string;
-        int integer;
-        
         for (; *format != '\0'; ++format) {
             if (*format == PLACEHOLDER_END) {
                 ++format;
@@ -123,11 +120,11 @@ namespace core {
                 this->print(static_cast<char>(va_arg(arguments, int)));
                 break;
             case 's':
-                string = va_arg(arguments, char*);
+                char* string = va_arg(arguments, char*);
                 this->print(string == NULL ? "(null)" : string);
                 break;
             case 'i':
-                integer = va_arg(arguments, int);
+                int integer = va_arg(arguments, int);
                 
                 if (*format == 'u') {
                     ++format;

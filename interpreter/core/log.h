@@ -16,13 +16,12 @@ namespace core {
      *     - "b": base 2
      *     - "h": base 16
      *     - none: base 10
+     *
+     * To print a literal curly brace, repeat it twice.
      */
     class Log {
     public:
-        enum {
-            TAB_NR_SPACES = 4
-        };
-        
+        enum {TAB_NR_SPACES = 4};
         static Log* get(); // = 0
         virtual ~Log() {};
         void error(const char* format, ...);
