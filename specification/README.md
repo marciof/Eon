@@ -7,6 +7,8 @@
 - Add section with goal, characteristics
   - http://iolanguage.org/about.html
   - http://iolanguage.org/guide/guide.html#Introduction-Goals
+  - https://software-lab.de/doc/faq.html
+  - https://picolisp.com
 - Decouple `load`: `read` + `parse`
 - Need table of contents and hyperlinks between terms.
 - Indicate time and space complexity for each operation.
