@@ -17,4 +17,4 @@ string(REGEX REPLACE "([^;]+)" "${CMAKE_CURRENT_SOURCE_DIR}/\\1"
     core_sources "${core_sources}")
 
 add_subdirectory(native)
-add_subdirectory(x86)
+add_subdirectory(i386)

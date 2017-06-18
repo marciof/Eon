@@ -6,7 +6,7 @@ addons:
    - cmake
    - make
    - g++
-   # x86
+   # i386
    - nasm
    - multiboot
    - g++-multilib

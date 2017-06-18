@@ -4,7 +4,7 @@ See `../.travis.yml` for details.
 
 Tested on Debian 9 64-bit.
 
-## x86 ##
+## i386 ##
 
 ```
 # test
@@ -32,7 +32,6 @@ apt install grub-common grub-pc-bin xorriso mtools virtualbox-5.1
     - http://www.nongnu.org/libunwind/
     - https://sourceware.org/libffi/
 - Create library folder that each implementation uses, so that it can be embedded.
-- Rename "x86" to "i386".
 - Use `grub-file` to verify kernel image is bootable.
 - Tests, coverage, lint, static analysis, continuous integration, memory check.
   - Automation: Vagrant, Docker?
