@@ -49,5 +49,4 @@ apt install grub-common grub-pc-bin xorriso mtools virtualbox-5.1
   - CCFLAGS += -m64
   - LINKFLAGS += -m elf_x86_64
 - Upgrade to Multiboot 2?
-- Modern C? `#pragma once`, etc (check show.sh project)
 - Use exceptions to reduce coupling between components? Eg. no need to call System::stop() directly, calls to Log::error() will throw an exception.

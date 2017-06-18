@@ -1,5 +1,6 @@
 enable_language(ASM_NASM)
 
+# Don't force 64-bit.
 string(REPLACE "-f elf64" ""
     CMAKE_ASM_NASM_COMPILE_OBJECT "${CMAKE_ASM_NASM_COMPILE_OBJECT}")
 
@@ -15,7 +16,7 @@ string(REGEX REPLACE "<(CMAKE_CXX_LINK_)?FLAGS>" ""
 # NASM requires include directories to end in a slash.
 set(CMAKE_ASM_NASM_FLAGS "${CMAKE_ASM_NASM_FLAGS} -f elf -i ${CMAKE_CURRENT_SOURCE_DIR}/")
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -m32 -fno-exceptions -fno-nonansi-builtins -fno-rtti -nostdlib -nodefaultlibs -nostartfiles -ffreestanding")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -m32 -fno-exceptions -fno-nonansi-builtins -fno-rtti -nostdlib -nodefaultlibs -nostartfiles -ffreestanding -pedantic-errors -Wall -Wextra")
 
 set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -m elf_i386 --fatal-warnings --script ${CMAKE_CURRENT_SOURCE_DIR}/layout.lds")
 
