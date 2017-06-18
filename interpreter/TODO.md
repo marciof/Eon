@@ -1,21 +1,5 @@
-# Dependencies #
-
-See `../.travis.yml` for details.
-
-Tested on Debian 9 64-bit.
-
-## i386 ##
-
-```
-# test
-apt install grub-common grub-pc-bin xorriso mtools virtualbox-5.1
-```
-
-# To Do #
-
 - Build library for the native architecture, and use it in the built executable, so that it can be embedded.
 - Use `grub-file` to verify kernel image is bootable.
-- Move dependencies to main README, and rename individual READMEs to TODOs.
 - Test on Windows, Debian 32-bit (check again 64-bit dependencies on a pristine image).
 - Tests, coverage, lint, static analysis, continuous integration, memory check (Valgrind).
   - Automation: Vagrant, Docker?
@@ -38,3 +22,8 @@ apt install grub-common grub-pc-bin xorriso mtools virtualbox-5.1
 - http://www.nongnu.org/libunwind/
 - https://sourceware.org/libffi/
 - libreadline
+- GNU MP / MPFR
+- Prototypes (reqs: immutable lists, maps, sets, Unicode, prototype inheritance, first class scope, unlimited precision arithmetic, homoiconic, unevaluated arguments)
+  - v1: Write in C/C++, translate to Common Lisp or PicoLisp (Clojure, JavaScript -- JavaScript is likely to stay and be useful unlike the others, save maybe for PicoLisp since it could be embedded). Might even embed ECL or PicoLisp to make this transparent. Decouple each stage. Easier to build the runtime support library initially in Lisp.
+  - v2: Skip translation, interpret directly. Look to PicoLisp for inspiratio.. Maybe still leave translation as an option.
+  - v3: Integrate with the "core" hooks.

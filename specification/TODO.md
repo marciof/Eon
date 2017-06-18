@@ -1,5 +1,3 @@
-# To Do #
-
 - Simplify grammar
   - http://iolanguage.org/guide/guide.html#Syntax-Expressions
   - http://iolanguage.org/guide/guide.html#Appendix-Grammar
