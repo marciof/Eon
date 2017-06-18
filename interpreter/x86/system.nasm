@@ -30,6 +30,7 @@ PUBLIC main:
     call c_main
 
 PUBLIC reset:
+    ; TODO: explain part about keyboard.
     ; Reset by causing a triple fault (which doesn't require a keyboard).
     int 3
     cli
