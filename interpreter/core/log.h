@@ -4,6 +4,19 @@
 
 namespace eon {
 namespace core {
+    /**
+     * Log format is a regular string with placeholders denoted by curly braces.
+     *
+     * Inside each curly brace is a conversion specifier:
+     * - "c": character
+     * - "s": string or `NULL`
+     * - "i": integer
+     *   - with "u": unsigned
+     *   - with one of:
+     *     - "b": base 2
+     *     - "h": base 16
+     *     - none: base 10
+     */
     class Log {
     public:
         enum {

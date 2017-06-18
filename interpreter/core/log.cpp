@@ -3,9 +3,10 @@
 #include "system.h"
 
 #define NUMERIC_BASE_CONVERSION_SYMBOLS "0123456789ABCDEF"
+#define PLACEHOLDER_BEGIN '{'
+#define PLACEHOLDER_END '}'
+
 #define ERROR_MESSAGE_PREFIX "[ERROR] "
-#define ESCAPE_SEQUENCE_BEGIN '{'
-#define ESCAPE_SEQUENCE_END '}'
 #define INFO_MESSAGE_PREFIX "[INFO] "
 #define WARNING_MESSAGE_PREFIX "[WARN] "
 
@@ -93,11 +94,11 @@ namespace core {
         int integer;
         
         for (; *format != '\0'; ++format) {
-            if (*format == ESCAPE_SEQUENCE_END) {
+            if (*format == PLACEHOLDER_END) {
                 ++format;
                 
-                if ((*format != '\0') && (*format == ESCAPE_SEQUENCE_END)) {
-                    this->print(ESCAPE_SEQUENCE_END);
+                if ((*format != '\0') && (*format == PLACEHOLDER_END)) {
+                    this->print(PLACEHOLDER_END);
                     continue;
                 }
                 else {
@@ -105,15 +106,15 @@ namespace core {
                     System::get()->stop(System::HALT);
                 }
             }
-            else if (*format != ESCAPE_SEQUENCE_BEGIN) {
+            else if (*format != PLACEHOLDER_BEGIN) {
                 this->print(*format);
                 continue;
             }
             
             ++format;
             
-            if (*format == ESCAPE_SEQUENCE_BEGIN) {
-                this->print(ESCAPE_SEQUENCE_BEGIN);
+            if (*format == PLACEHOLDER_BEGIN) {
+                this->print(PLACEHOLDER_BEGIN);
                 continue;
             }
             
@@ -158,7 +159,7 @@ namespace core {
                 break;
             }
             
-            if (*format != ESCAPE_SEQUENCE_END) {
+            if (*format != PLACEHOLDER_END) {
                 this->print("\n" FORMAT_STRING_ERROR);
                 System::get()->stop(System::HALT);
             }
