@@ -13,7 +13,8 @@ apt install grub-common grub-pc-bin xorriso mtools virtualbox-5.1
 
 # To Do #
 
-- Try embedding PicoLisp to check how easy/hard it is. (ECL?)
+- Try embedding PicoLisp to check how easy/hard it is. (ECL? Io?)
+  - Verify requirements: CFFI C/Java, immutable maps/sets/lists, unwind, Unicode, scope, prototype
   - Remove or cleanup Boynton Scheme?
     - Simple functional tests with Valgrind.
     - Fix no output when cwd isn't the source code path.
@@ -22,7 +23,6 @@ apt install grub-common grub-pc-bin xorriso mtools virtualbox-5.1
     - Use readline.
     - Reformat indentation.
     - Consistent naming.
-  - Verify requirements: CFFI C/Java, immutable maps/sets/lists, unwind, Unicode, scope, prototype
   - Resources:
     - https://news.ycombinator.com/item?id=1591172
     - https://github.com/kanaka/mal
@@ -31,7 +31,7 @@ apt install grub-common grub-pc-bin xorriso mtools virtualbox-5.1
     - https://github.com/copy/v86
     - http://www.nongnu.org/libunwind/
     - https://sourceware.org/libffi/
-- IDE (IntelliJ plugin? Emacs?), profiler, debugger, code coverage
+- IDE (IntelliJ plugin? Emacs?), profiler, debugger, code coverage, embeddable
 - Use `grub-file` to verify kernel image is bootable.
 - Tests, coverage, lint, static analysis, continuous integration, memory check.
   - Automation: Vagrant, Docker?

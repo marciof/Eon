@@ -1,5 +1,13 @@
 # To Do #
 
+- Simplify grammar
+  - http://iolanguage.org/guide/guide.html#Syntax-Expressions
+  - http://iolanguage.org/guide/guide.html#Appendix-Grammar
+  - https://iamwilhelm.github.io/bnf-examples/lisp
+- Add section with goal, characteristics
+  - http://iolanguage.org/about.html
+  - http://iolanguage.org/guide/guide.html#Introduction-Goals
+- Decouple `load`: `read` + `parse`
 - Need table of contents and hyperlinks between terms.
 - Indicate time and space complexity for each operation.
 - Specify prototypical inheritance (eg. intro, `get` `put` and `remove` handling, etc). http://steve-yegge.blogspot.com/2008/10/universal-design-pattern.html
@@ -12,14 +20,14 @@
 - Evaluate typing difficulty of each identifier quantitatively. Use easier synonyms for hard to type words.
 - Look for best/worst features of other languages: JavaScript, Clojure, Kotlin, Python, Haskell, Erlang, PureScript, Elm, Io, Rust, Ruby, Smalltalk, Java, Scheme, Go, ML, Lua, Haxe, Tcl, Shen, Matlab, R, REBOL.
   - "Perl Pocket Reference"
-
-Research:
 - http://www.infoq.com/presentations/Value-Identity-State-Rich-Hickey
+- Change `load` to allow specifying a language/type to make it part of the spec that it has hooks for FFI? It's more practical and realistic, and also enables using native parts of a OS runtime. Allow a string so that anything works? URLs, etc
 - Uniform zero handling? `0/n = 0*n = n*0 = 0%n = 0`
 - How to have references in literal data structures? Needed for persisting state or configuration files?
 - Indentation based, significant white-space? Useful for using the REPL as a shell itself.
 - Add `count` built-in or let it be defined via `reduce`? Performance?
 - Add `has?` built-in or let it be defined through conditions? Performance?
+- Opt-in static typing?
 
 # Checklist #
 
