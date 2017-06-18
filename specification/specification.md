@@ -402,7 +402,7 @@ If the `escape` argument isn't a symbol, it returns the result of `(debug 'proto
 
 ```
 (evaluate expression)
-(evaluate expression scope)
+(evaluate expression scope:List)
 ```
 
 A function that evaluates an `expression`, optionally in a different `scope`, and returns the result.
@@ -433,7 +433,7 @@ If zero or more than two arguments are passed, it returns the result of `(debug 
   (evaluate 'y {'y:8})
   # 8
 
-  (evaluate 'y scope))
+  (evaluate 'y (get scope)))
   # 2
 ```
 
