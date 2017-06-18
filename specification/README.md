@@ -5,6 +5,17 @@
   - http://iolanguage.org/guide/guide.html#Appendix-Grammar
   - https://iamwilhelm.github.io/bnf-examples/lisp
 - Add section with goal, characteristics
+  - Keyword arguments.
+  - Recursive anonymous functions.
+  - Varargs.
+  - Dynamic function calls.
+  - Unicode (text) strings != byte strings.
+  - Error handling.
+  - Debugger with call frames and local variables.
+  - Live changes (hot-reloading) support.
+  - Avoid verbs that are also nouns.
+  - Avoid the semipredicate problem.
+  - Low cognitive load and typing effort (US keyboard layout, favor home row keys).
   - http://iolanguage.org/about.html
   - http://iolanguage.org/guide/guide.html#Introduction-Goals
   - https://software-lab.de/doc/faq.html
@@ -30,30 +41,3 @@
 - Add `count` built-in or let it be defined via `reduce`? Performance?
 - Add `has?` built-in or let it be defined through conditions? Performance?
 - Opt-in static typing?
-
-# Checklist #
-
-- Data/code uniformity.
-- Easy literals: list, map, set and function.
-- Lazy arguments.
-- Keyword arguments.
-- Recursive anonymous functions.
-- Optional typing.
-- Varargs.
-- Dynamic function calls.
-- Type identification.
-- No null value.
-- Multiple return values.
-- Unicode (text) strings != byte strings.
-- Error handling.
-- Debugger with call frames and local variables.
-- REPL.
-- Shell scripting. http://rigaux.org/language-study/scripting-language/
-- Embeddable as a scripting language.
-- Documentation available at run-time.
-- Live changes (hot-reloading) support.
-- Package manager.
-- Avoid verbs that are also nouns.
-- Avoid the semipredicate problem.
-- "A programming language is low level when its programs require attention to the irrelevant." (Alan Perlis).
-- Low cognitive load and typing effort (US keyboard layout, favor home row keys).

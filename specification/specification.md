@@ -1,3 +1,34 @@
+# Introduction
+
+## Goals
+
+Simple:
+- Minimal syntax, but readable.
+- Prototype-based object model.
+- Flat over nested.
+- No undefined behavior, consistent.
+- No null value.
+- Right things easier than wrong things, encouraged, and the only way.
+- Immutable data structures (except for references).
+- Principle of Least Surprise: "The design should match the user's experience, expectations, and mental models."
+
+Powerful:
+- Homoiconic: "code as data".
+- No arbitrary limits: "Zero-one-infinity rule".
+- Unified macros and functions: callee controls argument evaluation.
+- High-level: "A programming language is low level when its programs require attention to the irrelevant."
+- Embeddable.
+- Documentation available at run-time.
+- Easy data type literals: lists, maps, sets, functions, strings, numbers.
+
+Practical:
+- Fast enough.
+- Multi-platform.
+- FFI support (Foreign Function Interface).
+- Shell-scripting (hash-bang `#!` syntax naturally supported).
+- REPL.
+- Permissive license.
+
 # Structure
 
 ## Module

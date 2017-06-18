@@ -13,7 +13,7 @@ apt install grub-common grub-pc-bin xorriso mtools virtualbox-5.1
 
 # To Do #
 
-- Try embedding PicoLisp to check how easy/hard it is. (ECL? Io?)
+- Try embedding PicoLisp to check how easy/hard it is. (ECL? Io? Chibi-Scheme?)
   - Verify requirements: CFFI C/Java, immutable maps/sets/lists, unwind, Unicode, scope, prototype
   - Remove or cleanup Boynton Scheme?
     - Simple functional tests with Valgrind.
@@ -31,7 +31,8 @@ apt install grub-common grub-pc-bin xorriso mtools virtualbox-5.1
     - https://github.com/copy/v86
     - http://www.nongnu.org/libunwind/
     - https://sourceware.org/libffi/
-- IDE (IntelliJ plugin? Emacs?), profiler, debugger, code coverage, embeddable
+- Create library folder that each implementation uses, so that it can be embedded.
+- Rename "x86" to "intel-x86".
 - Use `grub-file` to verify kernel image is bootable.
 - Tests, coverage, lint, static analysis, continuous integration, memory check.
   - Automation: Vagrant, Docker?
