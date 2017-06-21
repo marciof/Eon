@@ -1,7 +1,7 @@
 - Build library for the native architecture, and use it in the built executable, so that it can be embedded.
 - Use `grub-file` to verify kernel image is bootable.
 - Test on Windows, Debian 32-bit (check again 64-bit dependencies on a pristine image).
-- Tests, coverage, lint, static analysis, continuous integration, memory check (Valgrind).
+- Tests (unit, functional), coverage, lint, static analysis, continuous integration, memory check (Valgrind).
   - Automation: Vagrant, Docker?
   - https://autotest.github.io
   - https://scan.coverity.com
@@ -23,7 +23,8 @@
 - https://sourceware.org/libffi/
 - libreadline
 - GNU MP / MPFR
-- Prototypes (reqs: immutable lists, maps, sets, Unicode, prototype inheritance, first class scope, unlimited precision arithmetic, homoiconic, unevaluated arguments)
-  - v1: Write in C/C++, translate to Common Lisp or PicoLisp (Clojure, JavaScript -- JavaScript is likely to stay and be useful unlike the others, save maybe for PicoLisp since it could be embedded). Might even embed ECL or PicoLisp to make this transparent. Decouple each stage. Easier to build the runtime support library initially in Lisp.
-  - v2: Skip translation, interpret directly. Look to PicoLisp for inspiratio.. Maybe still leave translation as an option.
-  - v3: Integrate with the "core" hooks.
+- Prototypes (reqs: immutable collections, Unicode, prototype inheritance, first class scope, unlimited precision arithmetic, homoiconic, unevaluated arguments)
+  - v1: Create runtime support library only (eg. arithmetic, immutable collections, prototype inheritance). Easier and faster to experiment and test.
+  - v2: Write translator in C/C++, translate to PicoLisp (Common Lisp, Clojure, or JavaScript likely to stay and be useful unlike the others, save maybe for PicoLisp since it could be embedded). Might even embed ECL or PicoLisp to make this transparent. Decouple each stage. Use the runtime library created in the previous version.
+  - v3: Skip translation, interpret directly. Look to PicoLisp for inspiration. Maybe still leave translation in as an option, especially if to JavaScript since that also makes the browser another possible host and can be useful (lower barrier to entry and also ability to use a single language full-stack).
+  - v4: Integrate with the "core" hooks.

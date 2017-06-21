@@ -7,7 +7,7 @@ Simple:
 - Prototype-based object model.
 - Flat over nested.
 - No undefined behavior, consistent.
-- No null value.
+- Everything is a value, never null.
 - Right things easier than wrong things, encouraged, and the only way.
 - Immutable data structures (except for references).
 - Principle of Least Surprise: "The design should match the user's experience, expectations, and mental models."
@@ -66,7 +66,7 @@ Arguments in a function call are specified positionally or via keyword parameter
 
 ## List
 
-An immutable sequence of elements. It extends the map prototype by associating consecutive positive integers with elements in ascending order of keys, while keeping relative insertion order of other map keys.
+An immutable sequence of values. It extends the map prototype by associating consecutive positive integer keys in ascending order with values.
 
 ### Examples
 
@@ -86,7 +86,7 @@ An immutable sequence of elements. It extends the map prototype by associating c
 
 ## Map
 
-An immutable collection of unique keys and of values, where each unique key is associated with a single value.
+An immutable insertion ordered collection of unique keys each one associated with a single value.
 
 If a given key has no associated value, it's then handled as in a set where the key and value are the same, but still separate from each other.
 
