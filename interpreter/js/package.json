@@ -1,0 +1,15 @@
+{
+  "name": "eon",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "author": "",
+  "license": "",
+  "scripts": {
+    "test": "node index.js"
+  },
+  "dependencies": {
+    "immutable": "3.8.1",
+    "nerdamer": "0.7.10"
+  }
+}
