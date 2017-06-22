@@ -17,16 +17,16 @@ Powerful:
 - No arbitrary limits: "Zero-one-infinity rule".
 - Unified macros and functions: callee controls argument evaluation.
 - High-level: "A programming language is low level when its programs require attention to the irrelevant."
-- Embeddable.
-- Documentation available at run-time.
 - Easy data type literals: lists, maps, sets, functions, strings, numbers.
+- Documentation available at run-time.
+- Embeddable.
 
 Practical:
-- Fast enough.
-- Multi-platform.
-- FFI support (Foreign Function Interface).
-- Shell-scripting (hash-bang `#!` syntax naturally supported).
 - REPL.
+- Fast enough.
+- Multi-platform: "Write once, run everywhere".
+- Native code interop (FFI - Foreign Function Interface).
+- Shell-scripting (hash-bang `#!` syntax naturally supported).
 - Permissive license.
 
 # Structure
