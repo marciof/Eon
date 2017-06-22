@@ -16,7 +16,7 @@ function _chainOperator(operator, operands) {
     return nerdamer(variables.join(operator), substitutions);
 }
 
-function number(x) {
+function Number(x) {
     return nerdamer(x);
 }
 
@@ -36,17 +36,25 @@ function subtract(x, y, ...rest) {
     return _chainOperator('-', [x, y, ...rest]);
 }
 
+function Map(...keyValuePairs) {
+    return immutable.OrderedMap().merge(...keyValuePairs);
+}
+
+function put(map, key, value) {
+    return map.set(key, value);
+}
+
 console.log(
     multiply(
         add(
-            number(4),
-            divide(number(1), number(3))),
-        number(3))
+            Number(4),
+            divide(Number(1), Number(3))),
+        Number(3))
     .evaluate()
     .text());
 
-let Person = immutable.OrderedMap().set('name', '').set('age', 0);
-let bob = Person.set('name', 'Bob').set('age', 20);
+let Person = Map({'name': ''}, {'age': 0});
+let bob = put(put(Person, 'name', 'Bob'), 'age', 20);
 
 console.log(Person);
 console.log(bob);
