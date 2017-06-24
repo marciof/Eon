@@ -9,4 +9,8 @@ add_executable(${PROJECT_NAME}.js
     Any.c
     Err.h
     Str.h
-    Str.c)
+    Str.c
+    Token.h
+    Token.c
+    Input.h
+    Input.c)

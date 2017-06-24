@@ -2,6 +2,11 @@
 #include <string.h>
 #include "Str.h"
 
+static void Str_free(void* str) {
+    free(((struct Str*) str)->val);
+    free(str);
+}
+
 void Str_append(struct Str* target, struct Str* source, bool* has_err) {
     size_t target_size = (target->len * sizeof(*target->val));
     size_t source_size = (source->len * sizeof(*source->val));
@@ -15,11 +20,6 @@ void Str_append(struct Str* target, struct Str* source, bool* has_err) {
 
     target->val = new_val;
     strncpy(target->val + target->len, source->val, source->len);
-}
-
-void Str_free(void* str) {
-    free(((struct Str*) str)->val);
-    free(str);
 }
 
 struct Str* Str_from_chars(char* chars, size_t len, bool* has_err) {
