@@ -783,7 +783,6 @@ The grammar is expressed in Extended Backus-Naur Form syntax with the following 
 * `not(i)`: Everything but the enclosed item `i`.
 * `i (U+x)`: Terminal rule, as a Unicode character `i` with hexadecimal value of `x`.
 
-
 ```
 Expressions ::= White-Space* (Expression (White-Space+ Expression)* White-Space*)?
 Expression ::= Defer* (Symbol | Number | Quantity | List | Map | Text | Function-Call | Get-Expression)
