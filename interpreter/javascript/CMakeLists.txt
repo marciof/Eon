@@ -8,6 +8,5 @@ add_executable(${PROJECT_NAME}.js
     Any.h
     Any.c
     Err.h
-    Err.c
     Str.h
     Str.c)

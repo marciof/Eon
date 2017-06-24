@@ -1,4 +1,3 @@
-#include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -6,9 +5,40 @@
 #include "Err.h"
 #include "Str.h"
 
-#define INPUT_READ_ERROR "Input read error"
+enum Token_Type {
+    WHITE_SPACE
+};
 
-struct Str* read_input_fd(union Any fd, struct Err* err) {
+struct Token {
+    enum Token_Type type;
+    struct Str* val;
+    REF_FIELDS;
+};
+
+struct Token_Match {
+    bool is_match;
+    ssize_t line_delta;
+    ssize_t column_delta;
+};
+
+struct Input {
+    union Any arg;
+    char* location;
+    struct Str* (*read)(union Any arg, bool* has_err);
+};
+
+struct Token_Match match_whitespace(char ch) {
+    switch (ch) {
+        case 0x20:
+            return (struct Token_Match) {true, 0, +1};
+        case 0xA:
+            return (struct Token_Match) {true, +1, 0};
+        default:
+            return (struct Token_Match) {false, 0, 0};
+    }
+}
+
+struct Str* read_input_fd(union Any fd, bool* has_err) {
     char buffer[BUFSIZ];
     ssize_t len_bytes = read((int) fd.val, buffer, BUFSIZ * sizeof(*buffer));
 
@@ -16,33 +46,79 @@ struct Str* read_input_fd(union Any fd, struct Err* err) {
         return NULL;
     }
     else if (len_bytes == -1) {
-        ERR_ADD_ERRNO(err, errno);
-        return ERR_ADD_CSTRING(err, INPUT_READ_ERROR);
+        *has_err = true;
+        ERR_PRINT_ERRNO();
+        return NULL;
     }
 
-    struct Str* str = Str_from_chars(buffer, len_bytes / sizeof(*buffer), err);
-    return ERR_HAS(err) ? ERR_ADD_CSTRING(err, INPUT_READ_ERROR) : str;
+    return Str_from_chars(buffer, len_bytes / sizeof(*buffer), has_err);
 }
 
-int main() {
-    struct Err err = ERR_INIT_VAL;
-    union Any stdin_fd = Any_val(STDIN_FILENO);
+struct Token* read_token(struct Input* input, bool* has_err) {
+    struct Str* token = NULL;
+    size_t line = 1;
+    size_t column = 1;
 
     while (true) {
-        struct Str* buffer = read_input_fd(stdin_fd, &err);
+        struct Str* buffer = input->read(input->arg, has_err);
 
+        if (*has_err) {
+            REF_DEC(token);
+            ERR_PRINT("Input read error");
+            return NULL;
+        }
         if (buffer == NULL) {
             break;
         }
 
-        printf("%.*s", (int) buffer->len, buffer->val);
+        for (size_t i = 0; i < buffer->len; ++i) {
+            char ch = buffer->val[i];
+            struct Token_Match check = match_whitespace(ch);
+
+            if (check.is_match) {
+                line += check.line_delta;
+                column += check.column_delta;
+                continue;
+            }
+
+            *has_err = true;
+            REF_DEC(token);
+            REF_DEC(buffer);
+            ERR_PRINTF("Unexpected char '%c' at %s:%zu:%zu", ch, input->location, line, column);
+            return NULL;
+        }
+
+        if (token == NULL) {
+            token = buffer;
+            continue;
+        }
+
+        Str_append(token, buffer, has_err);
         REF_DEC(buffer);
+
+        if (*has_err) {
+            REF_DEC(token);
+            return NULL;
+        }
     }
 
-    if (ERR_HAS(&err)) {
-        Err_print(&err, stderr);
-        return EXIT_FAILURE;
+    if (token != NULL) {
+        printf("[%.*s]\n", (int) token->len, token->val);
+        REF_DEC(token);
     }
 
-    return EXIT_SUCCESS;
+    return NULL;
+}
+
+int main() {
+    bool has_err = false;
+
+    struct Input stdin_input = {
+        Any_val(STDIN_FILENO),
+        "<stdin>",
+        read_input_fd,
+    };
+
+    read_token(&stdin_input, &has_err);
+    return has_err ? EXIT_FAILURE : EXIT_SUCCESS;
 }

@@ -6,7 +6,7 @@
     (object))
 
 #define REF_DEC(object) \
-    ((void) (--(object)->ref_count == 0 \
+    ((void) (((object) != NULL) && (--(object)->ref_count == 0) \
         ? ((object)->free((object)), NULL) \
         : NULL))
 

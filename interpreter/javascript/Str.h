@@ -1,5 +1,5 @@
 #pragma once
-#include <stdint.h>
+#include <stddef.h>
 #include "Err.h"
 #include "Ref.h"
 
@@ -9,5 +9,6 @@ struct Str {
     REF_FIELDS;
 };
 
+void Str_append(struct Str* target, struct Str* source, bool* has_err);
 void Str_free(void* str);
-struct Str* Str_from_chars(char* chars, size_t len, struct Err* err);
+struct Str* Str_from_chars(char* chars, size_t len, bool* has_err);
