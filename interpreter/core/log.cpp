@@ -114,17 +114,20 @@ namespace core {
                 this->print(PLACEHOLDER_BEGIN);
                 continue;
             }
+
+            char* string;
+            int integer;
             
             switch (*format++) {
             case 'c':
                 this->print(static_cast<char>(va_arg(arguments, int)));
                 break;
             case 's':
-                char* string = va_arg(arguments, char*);
+                string = va_arg(arguments, char*);
                 this->print(string == NULL ? "(null)" : string);
                 break;
             case 'i':
-                int integer = va_arg(arguments, int);
+                integer = va_arg(arguments, int);
                 
                 if (*format == 'u') {
                     ++format;

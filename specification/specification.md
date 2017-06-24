@@ -9,24 +9,24 @@ Simple:
 - No undefined behavior, consistent.
 - Everything is a value, never null.
 - Right things easier than wrong things, encouraged, and the only way.
-- Immutable data structures (except for references).
+- Immutable data structures (except for references), no defensive copying.
 - Principle of Least Surprise: "The design should match the user's experience, expectations, and mental models."
 
 Powerful:
-- Homoiconic: "code as data".
+- Homoiconic, code as data.
 - No arbitrary limits: "Zero-one-infinity rule".
-- Unified macros and functions: callee controls argument evaluation.
+- Unified macros and functions, callee controls argument evaluation.
 - High-level: "A programming language is low level when its programs require attention to the irrelevant."
-- Easy data type literals: lists, maps, sets, functions, strings, numbers.
 - Documentation available at run-time.
 - Embeddable.
 
 Practical:
 - REPL.
 - Fast enough.
+- Easy data type literals: lists, maps, sets, functions, strings, numbers.
 - Multi-platform: "Write once, run everywhere".
-- Native code interop (FFI - Foreign Function Interface).
-- Shell-scripting (hash-bang `#!` syntax naturally supported).
+- Native code interop, FFI (Foreign Function Interface).
+- Shell-scripting (hash-bang syntax `#!` naturally supported).
 - Permissive license.
 
 # Structure
@@ -174,11 +174,14 @@ An immutable sequence of Unicode characters, each one identified by a code-point
 ""
 # ""
 
+"x"
+# "x"
+
 "Bob"
 # "Bob"
 
-"x"
-# "x"
+"café"
+# "café"
 
 "<a href=""http://www.example.com"">"
 # "<a href=""http://www.example.com"">"

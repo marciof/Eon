@@ -19,13 +19,15 @@
 - Upgrade to Multiboot 2?
 - Use exceptions to reduce coupling between components? Eg. no need to call System::stop() directly, calls to Log::error() will throw an exception.
 - https://github.com/copy/v86
-- Prototypes (reqs: immutable collections, Unicode, prototype inheritance, first class scope, unlimited precision arithmetic -- symbolic computation provided by computer algebra system, homoiconic, unevaluated arguments)
-  1. Create limited runtime support library only (eg. basic arithmetic, immutable collections, prototype inheritance). Easier and faster to experiment and test.
-    - http://mathjs.org/docs/datatypes/bignumbers.html
-  2. Write translator in C/C++, translate to PicoLisp (Common Lisp, Clojure with maybe even ClojureScript, or JavaScript likely to stay and be useful unlike the others, save maybe for PicoLisp since it could be embedded). Might even embed ECL or PicoLisp to make this transparent. Decouple each stage. Use the runtime library created in the previous version.
+- Prototyping:
+  - C++ frontend, AST, JavaScript backend: can reuse frontend and AST for the final version, and with JavaScript it's easy to get something running.
+  - Add requirements one by one, even if with limitations (eg. no fully unlimited precision arithmetic at first): immutable collections, Unicode text, prototypical inheritance, first class scope, unlimited precision arithmetic, homoiconic, unevaluated arguments.
+  - Improve interpreter step by step: REPL, local/remote debugger, `-e` expression flag, stdin/stdout filter.
+  - Write functional high-level black-box language tests, eg. input "(+ 1 2)", translate to JavaScript, run, output "3".
+  - When done with JavaScript backend, start translating to PicoLisp (or even ECL, Common Lisp, Clojure) since it can be embedded (verify first), and reuse the tests written previously.
+  - Skip translation and interpret directly. Look to PicoLisp for inspiration. Maybe still leave translation in as an option, especially if to JavaScript since that also makes the browser another possible host and can be useful (lower barrier to entry and also ability to use a single language full-stack).
     - http://www.nongnu.org/libunwind/
     - https://sourceware.org/libffi/
     - libreadline
     - GNU MP / MPFR
-  3. Skip translation, interpret directly. Look to PicoLisp for inspiration. Maybe still leave translation in as an option, especially if to JavaScript since that also makes the browser another possible host and can be useful (lower barrier to entry and also ability to use a single language full-stack).
-  4. Integrate with the "core" hooks.
+  - Finally integrate with the "core" hooks so that it works with any host layer available.

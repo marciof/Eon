@@ -32,7 +32,7 @@
   - http://matt.might.net/articles/programming-with-continuations--exceptions-backtracking-search-threads-generators-coroutines/
 - Evaluate typing difficulty of each identifier quantitatively. Use easier synonyms for hard to type words.
 - Add a Quick Start document with hyperlinks to the specification for further reading.
-- Look for best/worst features of other languages: JavaScript, Clojure, Kotlin, Python, Haskell, Erlang, PureScript, Elm, Io, Rust, Ruby, Smalltalk, Java, Scheme, Go, ML, Lua, Haxe, Tcl, Shen, Matlab, R, REBOL.
+- Look for best/worst features of other languages: JavaScript, Clojure, Kotlin, Python, Haskell, Erlang, PureScript, Elm, Io, Rust, Ruby, Smalltalk, Java, Scheme, Go, ML, Lua, Haxe, Tcl, Shen, Matlab, R, REBOL, Wolfram.
   - "Perl Pocket Reference"
 - http://www.infoq.com/presentations/Value-Identity-State-Rich-Hickey
 - Change `load` to allow specifying a language/type to make it part of the spec that it has hooks for FFI? It's more practical and realistic, and also enables using native parts of a OS runtime. Allow a string so that anything works? URLs, etc
