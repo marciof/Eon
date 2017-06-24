@@ -781,47 +781,83 @@ The grammar is expressed in Extended Backus-Naur Form syntax with the following 
 * `i?`: Optional item `i`.
 * `i{x}`: Exactly `x` occurrences of item `i`.
 * `not(i)`: Everything but the enclosed item `i`.
-* `(U+x)`: Unicode character with hexadecimal value of `x`.
+* `i (U+x)`: Terminal rule, as a Unicode character `i` with hexadecimal value of `x`.
+
 
 ```
 Expressions ::= White-Space* (Expression (White-Space+ Expression)* White-Space*)?
-Expression ::= Defer* (Symbol | Number | Quantity | List | Map | Text | Function | Get-Expression)
+Expression ::= Defer* (Symbol | Number | Quantity | List | Map | Text | Function-Call | Get-Expression)
+Defer ::= ' (U+27)
+```
+
+White-space:
+
+```
 White-Space ::= Space | End-of-Line | Comment
 Comment ::= Comment-Quote not(End-of-Line)* End-of-Line
-Symbol ::= not(Reserved-Character, White-Space, Sign, Digit) not(Reserved-Character, White-Space)* | Sign (not(Reserved-Character, White-Space, Digit) not(Reserved-Character, White-Space)*)?
-Reserved-Character ::= List-Begin | List-End | Parenthesis-Begin | Parenthesis-End | Map-Begin | Map-End | Comment-Quote | Text-Quote | Defer | Pair-Separator
+Comment-Quote ::= # (U+23)
+Space ::= (U+20)
+End-of-Line ::= (U+A)
+```
+
+Number:
+
+```
 Quantity ::= Number (Symbol | Get-Expression)
-Get-Expression ::= Symbol (Pair-Separator Pair-Separator Symbol)+
 Number ::= Terminating-Decimal | Repeating-Decimal
 Terminating-Decimal ::= Sign? Digits (Unit-Separator Digits)?
 Repeating-Decimal ::= Sign? Digits Unit-Separator Digits? Parenthesis-Begin Digits Parenthesis-End Digits?
 Digits ::= Digit+ (Digit-Group-Separator Digits)*
-Pair ::= Expression Pair-Separator White-Space* Expression
-Keyword-Parameter ::= Pair
-List-Value ::= Expression
-Set-Value ::= Expression
-Function ::= Parenthesis-Begin White-Space* ((Expression | Keyword-Parameter) (White-Space+ (Expression | Keyword-Parameter))* White-Space*)? Parenthesis-End
-List ::= List-Begin White-Space* ((List-Value | Pair) (White-Space+ (List-Value | Pair))* White-Space*)? List-End
-Map ::= Map-Begin White-Space* ((Set-Value | Pair) (White-Space+ (Set-Value | Pair))* White-Space*)? Map-End
+Digit-Group-Separator ::= _ (U+5E)
+Unit-Separator ::= . (U+2E)
+Sign ::= + (U+2B) | - (U+2D)
+Digit ::= 0 (U+30) | 1 (U+31) | 2 (U+32) | 3 (U+33) | 4 (U+34) | 5 (U+35) | 6 (U+36) | 7 (U+37) | 8 (U+38) | 9 (U+39)
+```
+
+Symbol:
+
+```
+Symbol ::= not(Reserved-Character, White-Space, Sign, Digit) not(Reserved-Character, White-Space)* | Sign (not(Reserved-Character, White-Space, Digit) not(Reserved-Character, White-Space)*)?
+Reserved-Character ::= List-Begin | List-End | Parenthesis-Begin | Parenthesis-End | Map-Begin | Map-End | Comment-Quote | Text-Quote | Defer | Pair-Separator
+```
+
+Text:
+
+```
 Text ::= Literal-Text | Tagged-Text
 Literal-Text ::= Text-Quote (not(Text-Quote) | Text-Quote{2})* Text-Quote
 Tagged-Text ::= (Symbol | Get-Expression) Literal-Text (Symbol | Get-Expression | Number | Quantity)?
-Space ::= (U+20)
-End-of-Line ::= (U+A)
-Comment-Quote ::= # (U+23)
 Text-Quote ::= " (U+22)
-Defer ::= ' (U+27)
-Parenthesis-Begin ::= ( (U+28)
-Parenthesis-End ::= ) (U+28)
+```
+
+Map:
+
+```
+Map ::= Map-Begin White-Space* ((Set-Value | Pair) (White-Space+ (Set-Value | Pair))* White-Space*)? Map-End
+Set-Value ::= Expression
+Pair ::= Expression Pair-Separator White-Space* Expression
+Pair-Separator ::= : (U+3A)
 Map-Begin ::= { (U+7B)
 Map-End ::= } (U+7D)
+```
+
+List:
+
+```
+List ::= List-Begin White-Space* ((List-Value | Pair) (White-Space+ (List-Value | Pair))* White-Space*)? List-End
+List-Value ::= Expression
 List-Begin ::= [ (U+5B)
 List-End ::= ] (U+5D)
-Unit-Separator ::= . (U+2E)
-Pair-Separator ::= : (U+3A)
-Digit-Group-Separator ::= _ (U+5E)
-Sign ::= + (U+2B) | - (U+2D)
-Digit ::= 0 (U+30) | 1 (U+31) | 2 (U+32) | 3 (U+33) | 4 (U+34) | 5 (U+35) | 6 (U+36) | 7 (U+37) | 8 (U+38) | 9 (U+39)
+```
+
+Function call:
+
+```
+Function-Call ::= Parenthesis-Begin White-Space* ((Expression | Keyword-Parameter) (White-Space+ (Expression | Keyword-Parameter))* White-Space*)? Parenthesis-End
+Keyword-Parameter ::= Pair
+Get-Expression ::= Symbol (Pair-Separator Pair-Separator Symbol)+
+Parenthesis-Begin ::= ( (U+28)
+Parenthesis-End ::= ) (U+28)
 ```
 
 ## Transformations
