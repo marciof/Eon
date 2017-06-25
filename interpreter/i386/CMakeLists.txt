@@ -40,8 +40,8 @@ add_executable(${PROJECT_NAME}.i386
     vga/Color.h
     vga/CRT.cpp
     vga/CRT.h
-    vga/general.cpp
-    vga/general.h
+    vga/Extern.cpp
+    vga/Extern.h
     vga/Gfx.cpp
     vga/Gfx.h
     vga/Seqr.cpp

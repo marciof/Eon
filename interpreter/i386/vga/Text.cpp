@@ -1,7 +1,7 @@
 #include "../../core/Log.h"
 #include "Attr.h"
 #include "CRT.h"
-#include "general.h"
+#include "Extern.h"
 #include "Gfx.h"
 #include "Text.h"
 
@@ -9,8 +9,6 @@
 
 #define ENCODE_COLOR(foreground, background) \
     (static_cast<uint8_t>(((background) << 4) + (foreground)))
-
-using namespace eon::i386::vga;
 
 static const e_VGA_Gfx_Memory_Map* gfx = NULL;
 static size_t line = 0;
@@ -62,7 +60,7 @@ void e_VGA_Text_init() {
     e_VGA_CRT_move_cursor(line, column);
     e_VGA_Attr_enable_text_blink_mode(false);
     e_VGA_CRT_enable_color_mode(gfx->is_color);
-    general::enable_color_mode(gfx->is_color);
+    e_VGA_Extern_enable_color_mode(gfx->is_color);
 }
 
 void e_VGA_Text_print(char ch) {

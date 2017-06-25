@@ -1,7 +1,7 @@
 #include "../Bit.h"
 #include "../IO.h"
 #include "Attr.h"
-#include "general.h"
+#include "Extern.h"
 
 typedef uint16_t Port;
 enum {
@@ -31,7 +31,7 @@ enum {
  * registers), discarding the value just read.
  */
 static inline void reset_state() {
-    eon::i386::vga::general::read_input_status(1);
+    e_VGA_Extern_read_input_status(1);
 }
 
 void e_VGA_Attr_enable_text_blink_mode(bool enable) {
