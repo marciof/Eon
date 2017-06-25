@@ -1,12 +1,12 @@
 #include <stdlib.h>
 #include <unistd.h>
-#include "eon/input.h"
-#include "eon/token.h"
+#include "eon/Input.h"
+#include "eon/Token.h"
 
 int main() {
     bool has_err = false;
 
-    struct eon_input* stdin_input = eon_input_from_fd(
+    struct e_Input* stdin_input = e_Input_from_fd(
         STDIN_FILENO, "<stdin>", &has_err);
 
     if (has_err) {
@@ -14,16 +14,16 @@ int main() {
     }
 
     while (true) {
-        struct eon_token* token = eon_token_parse(stdin_input, &has_err);
+        struct e_Token* token = e_Token_parse(stdin_input, &has_err);
 
         if (token == NULL) {
             break;
         }
 
         printf("%d[%.*s]", token->type, (int) token->str->len, token->str->val);
-        EON_REF_DEC(token);
+        E_REF_DEC(token);
     }
 
-    EON_REF_DEC(stdin_input);
+    E_REF_DEC(stdin_input);
     return has_err ? EXIT_FAILURE : EXIT_SUCCESS;
 }

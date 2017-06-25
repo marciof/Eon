@@ -1,13 +1,13 @@
 #include <stdint.h>
 #include <stdlib.h>
 #include <string.h>
-#include "str.h"
+#include "Str.h"
 
-static void str_increase_max_len(struct eon_str* str, bool* has_err) {
+static void e_Str_increase_max_len(struct e_Str* str, bool* has_err) {
     if (str->max_len == SIZE_MAX) {
         *has_err = true;
         errno = ENOMEM;
-        EON_ERR_ERRNO();
+        E_ERR_ERRNO();
         return;
     }
 
@@ -21,7 +21,7 @@ static void str_increase_max_len(struct eon_str* str, bool* has_err) {
 
     if (new_val == NULL) {
         *has_err = true;
-        EON_ERR_ERRNO();
+        E_ERR_ERRNO();
         return;
     }
 
@@ -29,14 +29,14 @@ static void str_increase_max_len(struct eon_str* str, bool* has_err) {
     str->max_len = new_max_len;
 }
 
-static void str_free(void* str) {
-    free(((struct eon_str*) str)->val);
+static void e_Str_free(void* str) {
+    free(((struct e_Str*) str)->val);
     free(str);
 }
 
-void eon_str_add_char(struct eon_str* str, char ch, bool* has_err) {
+void e_Str_add_char(struct e_Str* str, char ch, bool* has_err) {
     if (str->len == str->max_len) {
-        str_increase_max_len(str, has_err);
+        e_Str_increase_max_len(str, has_err);
 
         if (*has_err) {
             return;
@@ -46,21 +46,21 @@ void eon_str_add_char(struct eon_str* str, char ch, bool* has_err) {
     str->val[str->len++] = ch;
 }
 
-struct eon_str* eon_str_new(bool* has_err) {
+struct e_Str* e_Str_new(bool* has_err) {
     size_t max_len = 32;
     char* val = malloc(max_len * sizeof(*val));
 
     if (val == NULL) {
         *has_err = true;
-        EON_ERR_ERRNO();
+        E_ERR_ERRNO();
         return NULL;
     }
 
-    struct eon_str* str = malloc(sizeof(*str));
+    struct e_Str* str = malloc(sizeof(*str));
 
     if (str == NULL) {
         *has_err = true;
-        EON_ERR_ERRNO();
+        E_ERR_ERRNO();
         free(val);
         return NULL;
     }
@@ -68,5 +68,5 @@ struct eon_str* eon_str_new(bool* has_err) {
     str->val = val;
     str->len = 0;
     str->max_len = max_len;
-    return EON_REF_INIT(str, str_free);
+    return E_REF_INIT(str, e_Str_free);
 }

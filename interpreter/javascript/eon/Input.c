@@ -1,19 +1,19 @@
 #include <stdlib.h>
 #include <unistd.h>
-#include "input.h"
+#include "Input.h"
 
-struct fd_buffer {
+struct Fd_Buffer {
     int fd;
     char buf[BUFSIZ];
     size_t len;
     size_t pos;
-    EON_REF_FIELDS;
+    E_REF_FIELDS;
 };
 
-static int fd_buffer_read(
-        struct eon_input* input, bool is_peek, bool* has_err) {
+static int e_Fd_Buffer_read(
+        struct e_Input* input, bool is_peek, bool* has_err) {
 
-    struct fd_buffer* fd_buffer = input->arg.ptr;
+    struct Fd_Buffer* fd_buffer = input->arg.ptr;
 
     if (fd_buffer->pos >= fd_buffer->len) {
         ssize_t len_bytes = read(
@@ -21,7 +21,7 @@ static int fd_buffer_read(
 
         if (len_bytes == -1) {
             *has_err = true;
-            EON_ERR_ERRNO();
+            E_ERR_ERRNO();
             return EOF;
         }
         else if (len_bytes == 0) {
@@ -37,7 +37,7 @@ static int fd_buffer_read(
     if (!is_peek) {
         ++fd_buffer->pos;
 
-        if (ch == EON_END_OF_LINE) {
+        if (ch == E_END_OF_LINE) {
             ++input->line;
             input->col = 1;
         }
@@ -49,25 +49,25 @@ static int fd_buffer_read(
     return ch;
 }
 
-static void input_fd_buffer_free(void* ptr) {
-    EON_REF_DEC((struct fd_buffer*) ((struct eon_input*) ptr)->arg.ptr);
+static void e_Input_Fd_Buffer_free(void* ptr) {
+    E_REF_DEC((struct Fd_Buffer*) ((struct e_Input*) ptr)->arg.ptr);
     free(ptr);
 }
 
-struct eon_input* eon_input_from_fd(int fd, char* location, bool* has_err) {
-    struct fd_buffer* fd_buffer = malloc(sizeof(*fd_buffer));
+struct e_Input* e_Input_from_fd(int fd, char* location, bool* has_err) {
+    struct Fd_Buffer* fd_buffer = malloc(sizeof(*fd_buffer));
 
     if (fd_buffer == NULL) {
         *has_err = true;
-        EON_ERR_ERRNO();
+        E_ERR_ERRNO();
         return NULL;
     }
 
-    struct eon_input* input = malloc(sizeof(*input));
+    struct e_Input* input = malloc(sizeof(*input));
 
     if (input == NULL) {
         *has_err = true;
-        EON_ERR_ERRNO();
+        E_ERR_ERRNO();
         free(fd_buffer);
         return NULL;
     }
@@ -76,11 +76,11 @@ struct eon_input* eon_input_from_fd(int fd, char* location, bool* has_err) {
     fd_buffer->len = 0;
     fd_buffer->pos = 0;
 
-    input->arg = eon_any_ptr(EON_REF_INIT(fd_buffer, free));
+    input->arg = e_Any_ptr(E_REF_INIT(fd_buffer, free));
     input->location = location;
     input->line = 1;
     input->col = 1;
-    input->read = fd_buffer_read;
+    input->read = e_Fd_Buffer_read;
 
-    return EON_REF_INIT(input, input_fd_buffer_free);
+    return E_REF_INIT(input, e_Input_Fd_Buffer_free);
 }
