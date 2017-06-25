@@ -12,6 +12,9 @@ enum Token_Type {
 struct Token {
     enum Token_Type type;
     struct Str* str;
+    struct Input* input;
+    size_t line;
+    size_t column;
     REF_FIELDS;
 };
 

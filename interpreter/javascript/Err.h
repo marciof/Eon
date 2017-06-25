@@ -5,7 +5,7 @@
 #include <string.h>
 
 #define ERR_PRINT_LOCATION() \
-    fprintf(stderr, "\t%s() at %s:%d\n", __func__, __FILE__, __LINE__)
+    fprintf(stderr, "    `%s()` at %s:%d\n", __func__, __FILE__, __LINE__)
 
 #define ERR_PRINT_ERRNO() \
     fprintf(stderr, "%s (errno 0x%X)\n", strerror(errno), errno); \

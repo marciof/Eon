@@ -10,8 +10,8 @@ struct Fd_Buffer {
     REF_FIELDS;
 };
 
-static int Fd_Buffer_read(union Any arg, bool is_peek, bool* has_err) {
-    struct Fd_Buffer* fd_buffer = arg.ptr;
+static int Fd_Buffer_read(struct Input* input, bool is_peek, bool* has_err) {
+    struct Fd_Buffer* fd_buffer = input->arg.ptr;
 
     if (fd_buffer->pos >= fd_buffer->len) {
         ssize_t len_bytes = read(
@@ -34,6 +34,14 @@ static int Fd_Buffer_read(union Any arg, bool is_peek, bool* has_err) {
 
     if (!is_peek) {
         ++fd_buffer->pos;
+
+        if (ch == END_OF_LINE) {
+            ++input->line;
+            input->column = 1;
+        }
+        else {
+            ++input->column;
+        }
     }
 
     return ch;
@@ -68,6 +76,8 @@ struct Input* Input_from_stdin(bool* has_err) {
 
     input->arg = Any_ptr(REF_INIT(fd_buffer, free));
     input->location = "<stdin>";
+    input->line = 1;
+    input->column = 1;
     input->read = Fd_Buffer_read;
 
     return REF_INIT(input, Input_Fd_Buffer_free);

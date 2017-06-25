@@ -24,6 +24,7 @@
   - Add `getopt` with help screen, options, and version.
   - Add flag option to print token stream.
   - Add flag option for `-e` expressions.
+  - Add verbose option, print func/file/line on errors only in debug mode.
   - Add few functional high-level black-box language tests, eg. input "(+ 1 2)", translate to JavaScript, run, output "3". (Or even with the token stream option alone as well).
   - C frontend, JavaScript backend: can reuse frontend and AST for the final version, and with JavaScript it's easy to get something running.
   - Add requirements one by one, even if with limitations (eg. no fully unlimited precision arithmetic at first): immutable collections, Unicode text, prototypical inheritance, first class scope, unlimited precision arithmetic, homoiconic, unevaluated arguments.
