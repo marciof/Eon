@@ -47,7 +47,7 @@ namespace general {
                     ? COLOR_INPUT_STATUS_1_READ_PORT
                     : MONOCHROME_INPUT_STATUS_1_READ_PORT);
         default:
-            core::Log::get()->error("Invalid VGA general register: {iu}",
+            e_Log::get()->error("Invalid VGA general register: {iu}",
                 register_number);
             return 0;
         }

@@ -47,7 +47,7 @@ namespace i386 {
             switch (mode) {
             case HALT:
                 // TODO
-                core::Log::get()->warning("Halt shutdown not implemented.");
+                e_Log::get()->warning("Halt shutdown not implemented.");
                 support::finalize();
                 halt();
                 break;
@@ -56,7 +56,7 @@ namespace i386 {
                 reset();
                 break;
             default:
-                core::Log::get()->error("Invalid system stop mode.");
+                e_Log::get()->error("Invalid system stop mode.");
                 break;
             }
         }

@@ -5,7 +5,7 @@ namespace eon {
 namespace i386 {
 namespace multiboot {
     void Boot_Device::log() {
-        core::Log::get()->info(
+        e_Log::get()->info(
             "Boot device: drive={iuh}; partitions=[{iuh}, {iuh}, {iuh}]",
             this->drive_number,
             this->top_level_partition,

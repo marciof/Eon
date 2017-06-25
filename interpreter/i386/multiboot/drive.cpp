@@ -5,7 +5,7 @@ namespace eon {
 namespace i386 {
 namespace multiboot {
     void Drive::log() {
-        core::Log::get()->info(
+        e_Log::get()->info(
             "Drive: nr={iu}; mode={iu}; cylinders={iu}; "
             "heads={iu}; sectors={iu}; ports={iuh}",
             this->number, this->access_mode, this->cylinders,

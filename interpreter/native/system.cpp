@@ -17,12 +17,12 @@ namespace native {
                 break;
             case core::System::RESET:
                 if (execvp(_argv[0], _argv) != 0) {
-                    core::Log::get()->error("System reset error: errno={i}",
+                    e_Log::get()->error("System reset error: errno={i}",
                         errno);
                 }
                 break;
             default:
-                core::Log::get()->error("Invalid system stop mode.");
+                e_Log::get()->error("Invalid system stop mode.");
                 break;
             }
         }
