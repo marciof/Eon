@@ -1,5 +1,5 @@
 #include "../bit.h"
-#include "../io.h"
+#include "../IO.h"
 #include "sequencer.h"
 
 namespace eon {
@@ -21,12 +21,12 @@ namespace sequencer {
     }
     
     uint8_t read(Register reg) {
-        io::write_byte(ADDRESS_PORT, reg);
-        return io::read_byte(DATA_PORT);
+        e_IO_write_byte(ADDRESS_PORT, reg);
+        return e_IO_read_byte(DATA_PORT);
     }
 
     void write(Register reg, uint8_t data) {
-        io::write_byte(ADDRESS_PORT, reg);
-        io::write_byte(DATA_PORT, data);
+        e_IO_write_byte(ADDRESS_PORT, reg);
+        e_IO_write_byte(DATA_PORT, data);
     }
 }}}}

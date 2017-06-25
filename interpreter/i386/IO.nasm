@@ -1,7 +1,7 @@
 %include "support.nasm"
 
-%macro FUNCTION_READ 2
-PUBLIC read_%1:
+%macro E_IO_READ_FN 2
+PUBLIC e_IO_read_%1:
     enter 0, 0
     mov edx, ARG(1)
 
@@ -15,8 +15,8 @@ PUBLIC read_%1:
     ret
 %endmacro
 
-%macro FUNCTION_WRITE 2
-PUBLIC write_%1:
+%macro E_IO_WRITE_FN 2
+PUBLIC e_IO_write_%1:
     enter 0, 0
     
     mov edx, ARG(1)
@@ -29,10 +29,10 @@ PUBLIC write_%1:
 
 CODE_SECTION
 
-FUNCTION_READ byte, al
-FUNCTION_READ dword, eax
-FUNCTION_READ word, ax
+E_IO_READ_FN byte, al
+E_IO_READ_FN dword, eax
+E_IO_READ_FN word, ax
 
-FUNCTION_WRITE byte, al
-FUNCTION_WRITE dword, eax
-FUNCTION_WRITE word, ax
+E_IO_WRITE_FN byte, al
+E_IO_WRITE_FN dword, eax
+E_IO_WRITE_FN word, ax

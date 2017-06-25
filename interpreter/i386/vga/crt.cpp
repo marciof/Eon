@@ -1,5 +1,5 @@
 #include "../bit.h"
-#include "../io.h"
+#include "../IO.h"
 #include "crt.h"
 #include "text_mode.h"
 
@@ -39,29 +39,29 @@ namespace crt {
     }
     
     uint8_t read(Register reg) {
-        io::write_byte(
+        e_IO_write_byte(
             is_color_mode_enabled
-                ? COLOR_ADDRESS_PORT
-                : MONOCHROME_ADDRESS_PORT,
+            ? COLOR_ADDRESS_PORT
+            : MONOCHROME_ADDRESS_PORT,
             reg);
 
-        return io::read_byte(
+        return e_IO_read_byte(
             is_color_mode_enabled
-                ? COLOR_DATA_PORT
-                : MONOCHROME_DATA_PORT);
+            ? COLOR_DATA_PORT
+            : MONOCHROME_DATA_PORT);
     }
     
     void write(Register reg, uint8_t data) {
-        io::write_byte(
+        e_IO_write_byte(
             is_color_mode_enabled
-                ? COLOR_ADDRESS_PORT
-                : MONOCHROME_ADDRESS_PORT,
+            ? COLOR_ADDRESS_PORT
+            : MONOCHROME_ADDRESS_PORT,
             reg);
 
-        io::write_byte(
+        e_IO_write_byte(
             is_color_mode_enabled
-                ? COLOR_DATA_PORT
-                : MONOCHROME_DATA_PORT,
+            ? COLOR_DATA_PORT
+            : MONOCHROME_DATA_PORT,
             data);
     }
 }}}}

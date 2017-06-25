@@ -1,5 +1,5 @@
 #include "../bit.h"
-#include "../io.h"
+#include "../IO.h"
 #include "attribute.h"
 #include "general.h"
 
@@ -58,23 +58,23 @@ namespace attribute {
         reset_state();
 
         uint8_t status = static_cast<uint8_t>(
-            BIT_GET(io::read_byte(ADDRESS_PORT), PAS_BIT)
+            BIT_GET(e_IO_read_byte(ADDRESS_PORT), PAS_BIT)
             | (reg & ADDRESS_BITS));
         
         reset_state();
-        io::write_byte(ADDRESS_PORT, status);
-        return io::read_byte(DATA_READ_PORT);
+        e_IO_write_byte(ADDRESS_PORT, status);
+        return e_IO_read_byte(DATA_READ_PORT);
     }
 
     void write(Register reg, uint8_t data) {
         reset_state();
 
         uint8_t status = static_cast<uint8_t>(
-            BIT_GET(io::read_byte(ADDRESS_PORT), PAS_BIT)
+            BIT_GET(e_IO_read_byte(ADDRESS_PORT), PAS_BIT)
             | (reg & ADDRESS_BITS));
         
         reset_state();
-        io::write_byte(ADDRESS_PORT, status);
-        io::write_byte(DATA_WRITE_PORT, data);
+        e_IO_write_byte(ADDRESS_PORT, status);
+        e_IO_write_byte(DATA_WRITE_PORT, data);
     }
 }}}}

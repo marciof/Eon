@@ -49,8 +49,8 @@ add_executable(${PROJECT_NAME}.i386
     vga/text_mode.cpp
     vga/text_mode.h
     bit.h
-    io.nasm
-    io.h
+    IO.nasm
+    IO.h
     Log.cpp
     Memory.nasm
     Memory.cpp
