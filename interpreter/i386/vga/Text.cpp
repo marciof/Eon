@@ -1,6 +1,6 @@
 #include "../../core/Log.h"
 #include "attribute.h"
-#include "crt.h"
+#include "CRT.h"
 #include "general.h"
 #include "Gfx.h"
 #include "Text.h"
@@ -57,11 +57,11 @@ size_t e_VGA_Text_get_rows() {
 void e_VGA_Text_init() {
     gfx = e_VGA_Gfx_get_memory_map();
 
-    crt::enable_cursor(false);
+    e_VGA_CRT_enable_cursor(false);
     clear_screen();
-    crt::move_cursor(line, column);
+    e_VGA_CRT_move_cursor(line, column);
     attribute::enable_blink_mode(false);
-    crt::enable_color_mode(gfx->is_color);
+    e_VGA_CRT_enable_color_mode(gfx->is_color);
     general::enable_color_mode(gfx->is_color);
 }
 
