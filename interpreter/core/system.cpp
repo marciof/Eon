@@ -4,6 +4,6 @@
 namespace eon {
 namespace core {
     void System::start() {
-        Memory::get();
+        e_Memory::get();
     }
 }}

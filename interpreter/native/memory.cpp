@@ -1,15 +1,9 @@
 #include "../core/memory.h"
 
-namespace eon {
-namespace native {
-    class Malloc_Memory: public core::Memory {
-    };
-}}
+class e_Memory_Malloc: public e_Memory {
+};
 
-namespace eon {
-namespace core {
-    Memory* Memory::get() {
-        static native::Malloc_Memory memory;
-        return &memory;
-    }
-}}
+e_Memory* e_Memory::get() {
+    static e_Memory_Malloc memory;
+    return &memory;
+}

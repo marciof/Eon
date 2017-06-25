@@ -9,7 +9,7 @@ gdtr:
 
 CODE_SECTION
 
-PUBLIC set_gdtr:
+PUBLIC e_Memory_Physical_set_gdtr:
     enter 0, 0
     
     mov ax, ARG(1)
