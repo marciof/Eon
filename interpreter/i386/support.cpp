@@ -1,6 +1,5 @@
-#include "../core/log.h"
+#include "../core/Log.h"
 #include "support.h"
-
 
 #if defined(__GNUC__) || defined(DOXYGEN)
 #   include <cxxabi.h>
@@ -17,18 +16,15 @@ namespace __cxxabiv1 {
         void* object;
         void* dso_handle;
     };
-    
-    
+
     /**
      * Dynamic Shared Object handle.
      */
     extern "C" void* __dso_handle;
     void* __dso_handle = NULL;
-    
-    
+
     static At_Exit_Entry _at_exit_entries[MAX_AT_EXIT_ENTRIES];
     static size_t _at_exit_entries_length = 0;
-    
     
     extern "C" int __cxa_atexit(
         __cxa_cdtor_type destructor,
@@ -49,8 +45,7 @@ namespace __cxxabiv1 {
         ++_at_exit_entries_length;
         return 0;
     }
-    
-    
+
     /**
      * @param destructor `NULL` indicates it should finalize all objects
      */
@@ -62,23 +57,19 @@ namespace __cxxabiv1 {
 
         return 0;
     }
-    
-    
+
     extern "C" int __cxa_guard_acquire(__guard* guard) {
         return !_GLIBCXX_GUARD_TEST(guard);
     }
-    
-    
+
     extern "C" void __cxa_guard_release(__guard* guard) {
         _GLIBCXX_GUARD_SET(guard);
     }
-    
     
     extern "C" void __cxa_guard_abort(__guard* guard) {
         e_Log::get()->error("C++ ABI guard abort: guard={iuh}",
             *reinterpret_cast<unsigned int*>(guard));
     }
-
 
     /**
      * Handle pure virtual function calls, when the associated virtual table
@@ -92,19 +83,16 @@ namespace __cxxabiv1 {
 
 #endif
 
-
 typedef void (*Constructor)();
 typedef void (*Destructor)();
 
 extern "C" Constructor _cpp_ctors_begin[], _cpp_ctors_end[];
 extern "C" Destructor _cpp_dtors_begin[], _cpp_dtors_end[];
 
-
 void operator delete(void* object) {
     e_Log::get()->warning(
         "C++ operator delete not implemented: object={iuh}", object);
 }
-
 
 namespace eon {
 namespace i386 {
@@ -114,8 +102,7 @@ namespace support {
             (*ctor)();
         }
     }
-    
-    
+
     // Finalization functions are called in reverse order of their registration.
     void finalize() {
         for (Destructor* dtor = _cpp_dtors_begin; dtor < _cpp_dtors_end; ++dtor) {

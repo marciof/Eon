@@ -1,4 +1,5 @@
 - If global ctors/dtors are removed, then there's no need for the linker script which will fix the dependency issue.
+- Clean up, abbreviate a bit more since C is verbose, upper-case data type files, simplify, remove double blank lines, more flat less nested, remove useless TODO comments and documentation (document only what's need), remove stop modes and use only reset or halt.
 - Refactor duplicate compiler flags.
 - Build library for the native architecture, and use it in the built executable, so that it can be embedded.
 - Use `grub-file` to verify kernel image is bootable.
@@ -11,7 +12,6 @@
   - https://github.com/andrewrk/malcheck
   - https://github.com/google/sanitizers
   - http://clang-analyzer.llvm.org
-- Clean up, abbreviate a bit more since C is verbose, upper-case data type files, simplify, remove double blank lines, more flat less nested, remove useless TODO comments and documentation (document only what's need), remove stop modes and use only reset or halt.
 - Colored native logging.
 - Logging of long integers.
 - Add support for "amd64"?

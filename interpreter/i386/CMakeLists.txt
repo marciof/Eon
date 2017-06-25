@@ -26,14 +26,14 @@ set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -m elf_i386 --script ${CMA
 add_executable(${PROJECT_NAME}.i386
     ${core_sources}
     multiboot/header.c
-    multiboot/boot_device.cpp
-    multiboot/boot_device.h
-    multiboot/drive.cpp
-    multiboot/drive.h
-    multiboot/information.cpp
-    multiboot/information.h
-    multiboot/memory_region_iterator.cpp
-    multiboot/memory_region_iterator.h
+    multiboot/Boot_Device.cpp
+    multiboot/Boot_Device.h
+    multiboot/Drive.cpp
+    multiboot/Drive.h
+    multiboot/Information.cpp
+    multiboot/Information.h
+    multiboot/Memory_Region_Iterator.cpp
+    multiboot/Memory_Region_Iterator.h
     vga/attribute.cpp
     vga/attribute.h
     vga/color.cpp
@@ -51,11 +51,11 @@ add_executable(${PROJECT_NAME}.i386
     bit.h
     io.nasm
     io.h
-    log.cpp
-    memory.nasm
-    memory.cpp
+    Log.cpp
+    Memory.nasm
+    Memory.cpp
     support.nasm
     support.cpp
     support.h
-    system.nasm
-    system.cpp)
+    System.nasm
+    System.cpp)

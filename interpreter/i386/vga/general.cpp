@@ -1,4 +1,4 @@
-#include "../../core/log.h"
+#include "../../core/Log.h"
 #include "../bit.h"
 #include "../io.h"
 #include "general.h"

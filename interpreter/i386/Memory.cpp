@@ -1,5 +1,5 @@
 #include <stdint.h>
-#include "../core/memory.h"
+#include "../core/Memory.h"
 #include "bit.h"
 
 #define CONCAT(x, y) x##y

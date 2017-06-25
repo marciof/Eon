@@ -1,4 +1,4 @@
-#include "../core/memory.h"
+#include "../core/Memory.h"
 
 class e_Memory_Malloc: public e_Memory {
 };

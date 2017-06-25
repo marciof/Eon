@@ -2,9 +2,9 @@
  * @see http://www.intel.com/products/processor/manuals/
  */
 
-#include "../core/log.h"
-#include "../core/system.h"
-#include "multiboot/information.h"
+#include "../core/Log.h"
+#include "../core/System.h"
+#include "multiboot/Information.h"
 #include "support.h"
 
 /**

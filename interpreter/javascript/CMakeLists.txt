@@ -4,7 +4,7 @@ endif()
 
 add_executable(${PROJECT_NAME}.js
     main.c
-    eon/Ref.h
+    eon/ref.h
     eon/Any.h
     eon/Any.c
     eon/Err.h

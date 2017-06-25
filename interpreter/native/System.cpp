@@ -1,8 +1,8 @@
 #include <errno.h>
 #include <stdlib.h>
 #include <unistd.h>
-#include "../core/system.h"
-#include "../core/log.h"
+#include "../core/System.h"
+#include "../core/Log.h"
 
 // FIXME: don't make argv global state
 static char** _argv = NULL;

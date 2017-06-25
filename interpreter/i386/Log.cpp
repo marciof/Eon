@@ -1,4 +1,4 @@
-#include "../core/log.h"
+#include "../core/Log.h"
 #include "vga/text_mode.h"
 
 using namespace eon::i386;

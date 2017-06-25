@@ -4,7 +4,6 @@
  * @brief Runtime language support
  */
 
-
 namespace eon {
 namespace i386 {
 namespace support {
@@ -14,7 +13,6 @@ namespace support {
      * Ensures that C++ static/global constructors are called.
      */
     void initialize();
-    
     
     /**
      * Finalizes miscellaneous support sub-systems.

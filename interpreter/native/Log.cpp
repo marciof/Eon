@@ -1,5 +1,5 @@
 #include <iostream>
-#include "../core/log.h"
+#include "../core/Log.h"
 
 class e_Log_Stdout: public e_Log {
 protected:

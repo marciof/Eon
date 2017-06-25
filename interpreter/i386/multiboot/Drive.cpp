@@ -1,5 +1,5 @@
-#include "../../core/log.h"
-#include "drive.h"
+#include "../../core/Log.h"
+#include "Drive.h"
 
 namespace eon {
 namespace i386 {
