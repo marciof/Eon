@@ -1,33 +1,31 @@
 #include "../core/Log.h"
-#include "vga/text_mode.h"
-
-using namespace eon::i386;
+#include "vga/Text.h"
 
 class e_Log_Vga: public e_Log {
 public:
     e_Log_Vga() {
-        vga::text_mode::initialize();
+        e_VGA_Text_init();
     }
 
 protected:
     void prepare_error() {
-        vga::text_mode::set_color(vga::text_mode::RED);
+        e_VGA_Text_set_color(TEXT_RED);
     }
 
     void prepare_info() {
-        vga::text_mode::set_color(vga::text_mode::WHITE);
+        e_VGA_Text_set_color(TEXT_WHITE);
     }
 
     void prepare_warning() {
-        vga::text_mode::set_color(vga::text_mode::YELLOW);
+        e_VGA_Text_set_color(TEXT_YELLOW);
     }
 
     void print(char ch) {
-        vga::text_mode::print(ch);
+        e_VGA_Text_print(ch);
     }
 
     void print(const char* string) {
-        vga::text_mode::print(string);
+        e_VGA_Text_print(string);
     }
 };
 

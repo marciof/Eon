@@ -14,7 +14,7 @@ struct e_Token {
     struct e_Str* str;
     struct e_Input* input;
     size_t line;
-    size_t col;
+    size_t column;
     E_REF_FIELDS;
 };
 

@@ -39,10 +39,10 @@ static int e_Fd_Buffer_read(
 
         if (ch == E_END_OF_LINE) {
             ++input->line;
-            input->col = 1;
+            input->column = 1;
         }
         else {
-            ++input->col;
+            ++input->column;
         }
     }
 
@@ -79,7 +79,7 @@ struct e_Input* e_Input_from_fd(int fd, char* location, bool* has_err) {
     input->arg = e_Any_ptr(E_REF_INIT(fd_buffer, free));
     input->location = location;
     input->line = 1;
-    input->col = 1;
+    input->column = 1;
     input->read = e_Fd_Buffer_read;
 
     return E_REF_INIT(input, e_Input_Fd_Buffer_free);

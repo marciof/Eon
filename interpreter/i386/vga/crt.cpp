@@ -1,7 +1,7 @@
 #include "../Bit.h"
 #include "../IO.h"
 #include "crt.h"
-#include "text_mode.h"
+#include "Text.h"
 
 namespace eon {
 namespace i386 {
@@ -31,7 +31,7 @@ namespace crt {
     }
 
     void move_cursor(uint32_t row, uint32_t column) {
-        size_t columns = text_mode::get_columns();
+        size_t columns = e_VGA_Text_get_columns();
         uint16_t position = static_cast<uint16_t>((row * columns) + column);
         
         write(CURSOR_LOCATION_LOW, static_cast<uint8_t>(position & 0xFF));

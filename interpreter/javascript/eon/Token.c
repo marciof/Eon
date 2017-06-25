@@ -15,7 +15,7 @@ static struct e_Token* e_Token_new(
         struct e_Str* str,
         struct e_Input* input,
         size_t line,
-        size_t col,
+        size_t column,
         bool* has_err) {
 
     struct e_Token* token = malloc(sizeof(*token));
@@ -30,7 +30,7 @@ static struct e_Token* e_Token_new(
     token->str = E_REF_INC(str);
     token->input = E_REF_INC(input);
     token->line = line;
-    token->col = col;
+    token->column = column;
 
     return E_REF_INIT(token, e_Token_free);
 }
@@ -114,7 +114,7 @@ struct e_Token* e_Token_parse(struct e_Input* input, bool* has_err) {
     struct e_Str* str;
     enum e_Token_Type type;
     size_t line = input->line;
-    size_t col = input->col;
+    size_t column = input->column;
 
     if (ch == E_COMMENT_QUOTE) {
         str = e_Token_read_comment(input, has_err);
@@ -127,11 +127,11 @@ struct e_Token* e_Token_parse(struct e_Input* input, bool* has_err) {
     else {
         *has_err = true;
         E_ERR_PRINTF("Unexpected token '%c' at %s:%zu:%zu",
-            (char) ch, input->location, input->line, input->col);
+            (char) ch, input->location, input->line, input->column);
         return NULL;
     }
 
-    struct e_Token* token = e_Token_new(type, str, input, line, col, has_err);
+    struct e_Token* token = e_Token_new(type, str, input, line, column, has_err);
     E_REF_DEC(str);
     return token;
 }
