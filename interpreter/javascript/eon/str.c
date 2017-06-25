@@ -1,13 +1,13 @@
 #include <stdint.h>
 #include <stdlib.h>
 #include <string.h>
-#include "Str.h"
+#include "str.h"
 
-static void Str_increase_max_len(struct Str* str, bool* has_err) {
+static void str_increase_max_len(struct eon_str* str, bool* has_err) {
     if (str->max_len == SIZE_MAX) {
         *has_err = true;
         errno = ENOMEM;
-        ERR_PRINT_ERRNO();
+        EON_ERR_ERRNO();
         return;
     }
 
@@ -21,7 +21,7 @@ static void Str_increase_max_len(struct Str* str, bool* has_err) {
 
     if (new_val == NULL) {
         *has_err = true;
-        ERR_PRINT_ERRNO();
+        EON_ERR_ERRNO();
         return;
     }
 
@@ -29,14 +29,14 @@ static void Str_increase_max_len(struct Str* str, bool* has_err) {
     str->max_len = new_max_len;
 }
 
-static void Str_free(void* str) {
-    free(((struct Str*) str)->val);
+static void str_free(void* str) {
+    free(((struct eon_str*) str)->val);
     free(str);
 }
 
-void Str_append_char(struct Str* str, char ch, bool* has_err) {
+void eon_str_add_char(struct eon_str* str, char ch, bool* has_err) {
     if (str->len == str->max_len) {
-        Str_increase_max_len(str, has_err);
+        str_increase_max_len(str, has_err);
 
         if (*has_err) {
             return;
@@ -46,21 +46,21 @@ void Str_append_char(struct Str* str, char ch, bool* has_err) {
     str->val[str->len++] = ch;
 }
 
-struct Str* Str_new(bool* has_err) {
+struct eon_str* eon_str_new(bool* has_err) {
     size_t max_len = 32;
     char* val = malloc(max_len * sizeof(*val));
 
     if (val == NULL) {
         *has_err = true;
-        ERR_PRINT_ERRNO();
+        EON_ERR_ERRNO();
         return NULL;
     }
 
-    struct Str* str = malloc(sizeof(*str));
+    struct eon_str* str = malloc(sizeof(*str));
 
     if (str == NULL) {
         *has_err = true;
-        ERR_PRINT_ERRNO();
+        EON_ERR_ERRNO();
         free(val);
         return NULL;
     }
@@ -68,5 +68,5 @@ struct Str* Str_new(bool* has_err) {
     str->val = val;
     str->len = 0;
     str->max_len = max_len;
-    return REF_INIT(str, Str_free);
+    return EON_REF_INIT(str, str_free);
 }
