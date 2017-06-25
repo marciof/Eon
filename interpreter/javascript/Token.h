@@ -5,8 +5,8 @@
 #include "Str.h"
 
 enum Token_Type {
-    COMMENT,
-    WHITE_SPACE,
+    TOKEN_COMMENT,
+    TOKEN_WHITESPACE,
 };
 
 struct Token {
@@ -15,4 +15,4 @@ struct Token {
     REF_FIELDS;
 };
 
-struct Token* Token_read(struct Input* input, bool* has_err);
+struct Token* Token_read(struct Input* input, bool* has_err); // `NULL` on EOF

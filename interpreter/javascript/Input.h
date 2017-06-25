@@ -7,7 +7,7 @@
 struct Input {
     union Any arg;
     char* location;
-    struct Str* (*read)(union Any arg, bool* has_err);
+    int (*read)(union Any arg, bool is_peek, bool* has_err); // `EOF` on EOF
     REF_FIELDS;
 };
 

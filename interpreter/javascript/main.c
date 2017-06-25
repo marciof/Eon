@@ -17,7 +17,7 @@ int main() {
             break;
         }
 
-        printf("[%.*s]\n", (int) token->str->len, token->str->val);
+        printf("[%.*s]", (int) token->str->len, token->str->val);
         REF_DEC(token);
     }
 

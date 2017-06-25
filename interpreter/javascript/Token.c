@@ -3,23 +3,9 @@
 #include <unistd.h>
 #include "Token.h"
 
-struct Token_Match {
-    bool is_match;
-    bool want_more;
-    ssize_t line_delta;
-    ssize_t column_delta;
-};
-
-static struct Token_Match match_whitespace(char ch) {
-    switch (ch) {
-        case 0x20:
-            return (struct Token_Match) {true, true, 0, +1};
-        case 0xA:
-            return (struct Token_Match) {true, true, +1, 0};
-        default:
-            return (struct Token_Match) {false, false, 0, 0};
-    }
-}
+#define COMMENT_QUOTE 0x23
+#define END_OF_LINE 0xA
+#define SPACE 0x20
 
 static void Token_free(void* token) {
     REF_DEC(((struct Token*) token)->str);
@@ -42,65 +28,97 @@ static struct Token* Token_new(
     return REF_INIT(token, Token_free);
 }
 
-struct Token* Token_read(struct Input* input, bool* has_err) {
-    struct Str* str = NULL;
-    size_t line = 1;
-    size_t column = 1;
-
-    while (true) {
-        struct Str* buffer = input->read(input->arg, has_err);
-
-        if (*has_err) {
-            REF_DEC(str);
-            ERR_PRINT("Input read error");
-            return NULL;
-        }
-        if (buffer == NULL) {
-            break;
-        }
-
-        for (size_t i = 0; i < buffer->len; ++i) {
-            char ch = buffer->val[i];
-            struct Token_Match match = match_whitespace(ch);
-
-            if (match.is_match) {
-                line += match.line_delta;
-                column += match.column_delta;
-                continue;
-            }
-
-            *has_err = true;
-            REF_DEC(str);
-            REF_DEC(buffer);
-            ERR_PRINTF("Unexpected char '%c' at %s:%zu:%zu",
-                ch, input->location, line, column);
-            return NULL;
-        }
-
-        if (str == NULL) {
-            str = buffer;
-            continue;
-        }
-
-        Str_append(str, buffer, has_err);
-        REF_DEC(buffer);
-
-        if (*has_err) {
-            REF_DEC(str);
-            return NULL;
-        }
-    }
-
-    if (str == NULL) {
-        return NULL;
-    }
-
-    struct Token* token = Token_new(WHITE_SPACE, str, has_err);
-    REF_DEC(str);
+static struct Token* Token_read_comment(struct Input* input, bool* has_err) {
+    input->read(input->arg, false, has_err); // Discard.
 
     if (*has_err) {
         return NULL;
     }
 
+    struct Str* str = Str_new(has_err);
+
+    if (*has_err) {
+        return NULL;
+    }
+
+    while (true) {
+        int ch = input->read(input->arg, false, has_err);
+
+        if (*has_err) {
+            REF_DEC(str);
+            return NULL;
+        }
+        if (ch == EOF) {
+            break;
+        }
+
+        Str_append_char(str, (char) ch, has_err);
+
+        if (*has_err) {
+            REF_DEC(str);
+            return NULL;
+        }
+        if (ch == END_OF_LINE) {
+            break;
+        }
+    }
+
+    struct Token* token = Token_new(TOKEN_COMMENT, str, has_err);
+    REF_DEC(str);
     return token;
+}
+
+static struct Token* Token_read_whitespace(struct Input* input, bool* has_err) {
+    struct Str* str = Str_new(has_err);
+
+    if (*has_err) {
+        return NULL;
+    }
+
+    while (true) {
+        int ch = input->read(input->arg, true, has_err);
+
+        if (*has_err) {
+            REF_DEC(str);
+            return NULL;
+        }
+        if ((ch == EOF) || ((ch != SPACE) && (ch != END_OF_LINE))) {
+            break;
+        }
+
+        input->read(input->arg, false, has_err); // Discard.
+        Str_append_char(str, (char) ch, has_err);
+
+        if (*has_err) {
+            REF_DEC(str);
+            return NULL;
+        }
+    }
+
+    struct Token* token = Token_new(TOKEN_WHITESPACE, str, has_err);
+    REF_DEC(str);
+    return token;
+}
+
+struct Token* Token_read(struct Input* input, bool* has_err) {
+    while (true) {
+        int ch = input->read(input->arg, true, has_err);
+
+        if (*has_err || ch == EOF) {
+            return NULL;
+        }
+
+        switch (ch) {
+            case COMMENT_QUOTE:
+                return Token_read_comment(input, has_err);
+            case SPACE:
+            case END_OF_LINE:
+                return Token_read_whitespace(input, has_err);
+            default:
+                *has_err = true;
+                ERR_PRINTF("Unexpected token '%c' at %s:%d:%d",
+                    (char) ch, input->location, 0, 0);
+                return NULL;
+        }
+    }
 }

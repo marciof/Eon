@@ -1,16 +1,23 @@
+#include <stdint.h>
 #include <stdlib.h>
 #include <string.h>
 #include "Str.h"
 
-static void Str_free(void* str) {
-    free(((struct Str*) str)->val);
-    free(str);
-}
+static void Str_increase_max_len(struct Str* str, bool* has_err) {
+    if (str->max_len == SIZE_MAX) {
+        *has_err = true;
+        errno = ENOMEM;
+        ERR_PRINT_ERRNO();
+        return;
+    }
 
-void Str_append(struct Str* target, struct Str* source, bool* has_err) {
-    size_t target_size = (target->len * sizeof(*target->val));
-    size_t source_size = (source->len * sizeof(*source->val));
-    char* new_val = realloc(target->val, target_size + source_size);
+    size_t new_max_len = (size_t) (str->max_len * 1.5);
+
+    if (new_max_len < str->max_len) {
+        new_max_len = SIZE_MAX;
+    }
+
+    char* new_val = realloc(str->val, new_max_len * sizeof(*str->val));
 
     if (new_val == NULL) {
         *has_err = true;
@@ -18,12 +25,30 @@ void Str_append(struct Str* target, struct Str* source, bool* has_err) {
         return;
     }
 
-    target->val = new_val;
-    strncpy(target->val + target->len, source->val, source->len);
+    str->val = new_val;
+    str->max_len = new_max_len;
 }
 
-struct Str* Str_from_chars(char* chars, size_t len, bool* has_err) {
-    char* val = malloc(len * sizeof(*chars));
+static void Str_free(void* str) {
+    free(((struct Str*) str)->val);
+    free(str);
+}
+
+void Str_append_char(struct Str* str, char ch, bool* has_err) {
+    if (str->len == str->max_len) {
+        Str_increase_max_len(str, has_err);
+
+        if (*has_err) {
+            return;
+        }
+    }
+
+    str->val[str->len++] = ch;
+}
+
+struct Str* Str_new(bool* has_err) {
+    size_t max_len = 32;
+    char* val = malloc(max_len * sizeof(*val));
 
     if (val == NULL) {
         *has_err = true;
@@ -41,7 +66,7 @@ struct Str* Str_from_chars(char* chars, size_t len, bool* has_err) {
     }
 
     str->val = val;
-    str->len = len;
-    strncpy(str->val, chars, len);
+    str->len = 0;
+    str->max_len = max_len;
     return REF_INIT(str, Str_free);
 }

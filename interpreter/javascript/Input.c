@@ -2,33 +2,73 @@
 #include <unistd.h>
 #include "Input.h"
 
-static struct Str* read_stdin(union Any fd, bool* has_err) {
-    char buffer[BUFSIZ];
-    ssize_t len_bytes = read((int) fd.val, buffer, BUFSIZ * sizeof(*buffer));
+struct Fd_Buffer {
+    int fd;
+    char buf[BUFSIZ];
+    size_t len;
+    size_t pos;
+    REF_FIELDS;
+};
 
-    if (len_bytes == 0) {
-        return NULL;
+static int Fd_Buffer_read(union Any arg, bool is_peek, bool* has_err) {
+    struct Fd_Buffer* fd_buffer = arg.ptr;
+
+    if (fd_buffer->pos >= fd_buffer->len) {
+        ssize_t len_bytes = read(
+            fd_buffer->fd, fd_buffer->buf, BUFSIZ * sizeof(*fd_buffer->buf));
+
+        if (len_bytes == -1) {
+            *has_err = true;
+            ERR_PRINT_ERRNO();
+            return EOF;
+        }
+        else if (len_bytes == 0) {
+            return EOF;
+        }
+
+        fd_buffer->len = len_bytes / sizeof(*fd_buffer->buf);
+        fd_buffer->pos = 0;
     }
-    else if (len_bytes == -1) {
+
+    int ch = fd_buffer->buf[fd_buffer->pos];
+
+    if (!is_peek) {
+        ++fd_buffer->pos;
+    }
+
+    return ch;
+}
+
+static void Input_Fd_Buffer_free(void* ptr) {
+    REF_DEC((struct Fd_Buffer*) ((struct Input*) ptr)->arg.ptr);
+    free(ptr);
+}
+
+struct Input* Input_from_stdin(bool* has_err) {
+    struct Fd_Buffer* fd_buffer = malloc(sizeof(*fd_buffer));
+
+    if (fd_buffer == NULL) {
         *has_err = true;
         ERR_PRINT_ERRNO();
         return NULL;
     }
 
-    return Str_from_chars(buffer, len_bytes / sizeof(*buffer), has_err);
-}
-
-struct Input* Input_from_stdin(bool* has_err) {
     struct Input* input = malloc(sizeof(*input));
 
     if (input == NULL) {
         *has_err = true;
         ERR_PRINT_ERRNO();
+        free(fd_buffer);
         return NULL;
     }
 
-    input->arg = Any_val(STDIN_FILENO);
+    fd_buffer->fd = STDIN_FILENO;
+    fd_buffer->len = 0;
+    fd_buffer->pos = 0;
+
+    input->arg = Any_ptr(REF_INIT(fd_buffer, free));
     input->location = "<stdin>";
-    input->read = read_stdin;
-    return REF_INIT(input, free);
+    input->read = Fd_Buffer_read;
+
+    return REF_INIT(input, Input_Fd_Buffer_free);
 }

@@ -20,10 +20,14 @@
 - Use exceptions to reduce coupling between components? Eg. no need to call System::stop() directly, calls to Log::error() will throw an exception.
 - https://github.com/copy/v86
 - Prototyping:
-  - C++ frontend, AST, JavaScript backend: can reuse frontend and AST for the final version, and with JavaScript it's easy to get something running.
+  - Start adding unit tests.
+  - Add `getopt` with help screen, options, and version.
+  - Add flag option to print token stream.
+  - Add flag option for `-e` expressions.
+  - Add few functional high-level black-box language tests, eg. input "(+ 1 2)", translate to JavaScript, run, output "3". (Or even with the token stream option alone as well).
+  - C frontend, JavaScript backend: can reuse frontend and AST for the final version, and with JavaScript it's easy to get something running.
   - Add requirements one by one, even if with limitations (eg. no fully unlimited precision arithmetic at first): immutable collections, Unicode text, prototypical inheritance, first class scope, unlimited precision arithmetic, homoiconic, unevaluated arguments.
-  - Improve interpreter step by step: REPL, local/remote debugger, `-e` expression flag, stdin/stdout filter.
-  - Write functional high-level black-box language tests, eg. input "(+ 1 2)", translate to JavaScript, run, output "3".
+  - Improve interpreter step by step: REPL, local/remote debugger, stdin/stdout filter.
   - When done with JavaScript backend, start translating to PicoLisp (or even ECL, Common Lisp, Clojure) since it can be embedded (verify first), and reuse the tests written previously.
   - Skip translation and interpret directly. Look to PicoLisp for inspiration. Maybe still leave translation in as an option, especially if to JavaScript since that also makes the browser another possible host and can be useful (lower barrier to entry and also ability to use a single language full-stack).
     - http://www.nongnu.org/libunwind/
