@@ -35,17 +35,17 @@ static inline void reset_state() {
 }
 
 void e_VGA_Attr_enable_text_blink_mode(bool enable) {
-    uint8_t mode = e_VGA_Attr_read(VGA_ATTR_MODE_CONTROL);
+    uint8_t mode = e_VGA_Attr_read(E_VGA_ATTR_MODE_CONTROL);
 
-    e_VGA_Attr_write(VGA_ATTR_MODE_CONTROL, static_cast<uint8_t>(enable
+    e_VGA_Attr_write(E_VGA_ATTR_MODE_CONTROL, static_cast<uint8_t>(enable
         ? E_BIT_SET(mode, 3)
         : E_BIT_CLEAR(mode, 3)));
 }
 
 void e_VGA_Attr_enable_gfx_mode(bool enable) {
-    uint8_t mode = e_VGA_Attr_read(VGA_ATTR_MODE_CONTROL);
+    uint8_t mode = e_VGA_Attr_read(E_VGA_ATTR_MODE_CONTROL);
 
-    e_VGA_Attr_write(VGA_ATTR_MODE_CONTROL, static_cast<uint8_t>(enable
+    e_VGA_Attr_write(E_VGA_ATTR_MODE_CONTROL, static_cast<uint8_t>(enable
         ? E_BIT_SET(mode, 0)
         : E_BIT_CLEAR(mode, 0)));
 }

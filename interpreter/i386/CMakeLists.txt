@@ -44,8 +44,8 @@ add_executable(${PROJECT_NAME}.i386
     vga/general.h
     vga/Gfx.cpp
     vga/Gfx.h
-    vga/sequencer.cpp
-    vga/sequencer.h
+    vga/Seqr.cpp
+    vga/Seqr.h
     vga/Text.cpp
     vga/Text.h
     Bit.h

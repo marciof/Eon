@@ -15,7 +15,7 @@ using namespace eon::i386::vga;
 static const e_VGA_Gfx_Memory_Map* gfx = NULL;
 static size_t line = 0;
 static size_t column = 0;
-static uint8_t color_code = ENCODE_COLOR(VGA_TEXT_WHITE, VGA_TEXT_BLACK);
+static uint8_t color_code = ENCODE_COLOR(E_VGA_TEXT_WHITE, E_VGA_TEXT_BLACK);
 
 static void clear_screen() {
     const size_t END = 2 * gfx->lines * gfx->columns;

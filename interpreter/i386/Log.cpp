@@ -9,15 +9,15 @@ public:
 
 protected:
     void prepare_error() {
-        e_VGA_Text_set_color(VGA_TEXT_RED);
+        e_VGA_Text_set_color(E_VGA_TEXT_RED);
     }
 
     void prepare_info() {
-        e_VGA_Text_set_color(VGA_TEXT_WHITE);
+        e_VGA_Text_set_color(E_VGA_TEXT_WHITE);
     }
 
     void prepare_warning() {
-        e_VGA_Text_set_color(VGA_TEXT_YELLOW);
+        e_VGA_Text_set_color(E_VGA_TEXT_YELLOW);
     }
 
     void print(char ch) {
