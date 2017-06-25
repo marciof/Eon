@@ -2,7 +2,7 @@
 #include "attribute.h"
 #include "crt.h"
 #include "general.h"
-#include "graphics.h"
+#include "Gfx.h"
 #include "Text.h"
 
 #define CLEAR_CHARACTER ' '
@@ -12,7 +12,7 @@
 
 using namespace eon::i386::vga;
 
-static const graphics::Memory_Map* gfx = NULL;
+static const e_VGA_Gfx_Memory_Map* gfx = NULL;
 static size_t line = 0;
 static size_t column = 0;
 static uint8_t color_code = ENCODE_COLOR(TEXT_WHITE, TEXT_BLACK);
@@ -55,7 +55,7 @@ size_t e_VGA_Text_get_rows() {
 }
 
 void e_VGA_Text_init() {
-    gfx = graphics::get_memory_map();
+    gfx = e_VGA_Gfx_get_memory_map();
 
     crt::enable_cursor(false);
     clear_screen();
