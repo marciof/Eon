@@ -23,16 +23,17 @@ PUBLIC main:
     ; The stack pointer initial value isn't "stack + STACK_LENGTH - 1" because
     ; it always points to the last element.
     mov esp, (stack + STACK_LENGTH)
-    
+
+    ; FIXME: don't use global state, pass as arguments
     mov [_multiboot_magic_nr], eax
     mov [_multiboot_info], ebx
     
     call c_main
 
 PUBLIC reset:
-    ; TODO: explain part about keyboard.
+    ; FIXME: explain part about keyboard.
     ; Reset by causing a triple fault (which doesn't require a keyboard).
     int 3
-    ; TODO: can reuse `halt`?
+    ; FIXME: can reuse `halt`?
     cli
     hlt

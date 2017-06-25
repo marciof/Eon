@@ -1,9 +1,6 @@
 #include "memory.h"
 #include "system.h"
 
-namespace eon {
-namespace core {
-    void System::start() {
-        e_Memory::get();
-    }
-}}
+void e_System::start() {
+    e_Memory::get();
+}

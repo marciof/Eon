@@ -16,8 +16,6 @@
 #define STATIC_ARRAY_LENGTH(array) \
     (sizeof(array) / sizeof((array)[0]))
 
-using namespace eon::core;
-
 void e_Log::error(const char* format, ...) {
     this->prepare_error();
     this->print(ERROR_MESSAGE_PREFIX);
@@ -28,7 +26,7 @@ void e_Log::error(const char* format, ...) {
     va_end(arguments);
 
     this->print('\n');
-    System::get()->stop(System::HALT);
+    e_System::get()->stop(e_System::HALT);
 }
 
 void e_Log::info(const char* format, ...) {
@@ -100,7 +98,7 @@ void e_Log::print(const char* format, va_list arguments) {
             }
             else {
                 this->print("\n" FORMAT_STRING_ERROR);
-                System::get()->stop(System::HALT);
+                e_System::get()->stop(e_System::HALT);
             }
         }
         else if (*format != PLACEHOLDER_BEGIN) {
@@ -155,13 +153,13 @@ void e_Log::print(const char* format, va_list arguments) {
             break;
         default:
             this->print("\n" FORMAT_STRING_ERROR);
-                System::get()->stop(System::HALT);
+                e_System::get()->stop(e_System::HALT);
             break;
         }
 
         if (*format != PLACEHOLDER_END) {
             this->print("\n" FORMAT_STRING_ERROR);
-            System::get()->stop(System::HALT);
+            e_System::get()->stop(e_System::HALT);
         }
     }
 }

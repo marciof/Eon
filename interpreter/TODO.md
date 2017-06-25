@@ -11,7 +11,7 @@
   - https://github.com/andrewrk/malcheck
   - https://github.com/google/sanitizers
   - http://clang-analyzer.llvm.org
-- Clean up, abbreviate a bit more since C is verbose, simplify, remove double blank lines, more flat less nested, remove useless TODO comments and documentation (document only what's need), remove stop modes and use only reset or halt.
+- Clean up, abbreviate a bit more since C is verbose, upper-case data type files, simplify, remove double blank lines, more flat less nested, remove useless TODO comments and documentation (document only what's need), remove stop modes and use only reset or halt.
 - Colored native logging.
 - Logging of long integers.
 - Add support for "amd64"?
