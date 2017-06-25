@@ -14,8 +14,8 @@ struct Token {
     struct Str* str;
     struct Input* input;
     size_t line;
-    size_t column;
+    size_t col;
     REF_FIELDS;
 };
 
-struct Token* Token_read(struct Input* input, bool* has_err); // `NULL` on EOF
+struct Token* Token_parse(struct Input* input, bool* has_err); // `NULL` on EOF

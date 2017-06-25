@@ -14,7 +14,7 @@ struct Input {
     union Any arg;
     char* location;
     size_t line;
-    size_t column;
+    size_t col;
     int (*read)(struct Input* input, bool is_peek, bool* has_err); // `EOF`
     REF_FIELDS;
 };

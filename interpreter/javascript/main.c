@@ -11,7 +11,7 @@ int main() {
     }
 
     while (true) {
-        struct Token* token = Token_read(stdin_input, &has_err);
+        struct Token* token = Token_parse(stdin_input, &has_err);
 
         if (token == NULL) {
             break;

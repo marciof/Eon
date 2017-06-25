@@ -37,10 +37,10 @@ static int Fd_Buffer_read(struct Input* input, bool is_peek, bool* has_err) {
 
         if (ch == END_OF_LINE) {
             ++input->line;
-            input->column = 1;
+            input->col = 1;
         }
         else {
-            ++input->column;
+            ++input->col;
         }
     }
 
@@ -77,7 +77,7 @@ struct Input* Input_from_stdin(bool* has_err) {
     input->arg = Any_ptr(REF_INIT(fd_buffer, free));
     input->location = "<stdin>";
     input->line = 1;
-    input->column = 1;
+    input->col = 1;
     input->read = Fd_Buffer_read;
 
     return REF_INIT(input, Input_Fd_Buffer_free);

@@ -20,6 +20,7 @@
 - Use exceptions to reduce coupling between components? Eg. no need to call System::stop() directly, calls to Log::error() will throw an exception.
 - https://github.com/copy/v86
 - Prototyping:
+  - Prefix all identifiers.
   - Start adding unit tests.
   - Add `getopt` with help screen, options, and version.
   - Add flag option to print token stream.
