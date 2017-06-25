@@ -5,10 +5,9 @@
 #include "Information.h"
 #include "Memory_Region_Iterator.h"
 
-
+// FIXME: refactor with BIT macros
 #define IS_FLAG_SET(flags, flag) \
     (((flags) & (flag)) != 0)
-
 
 namespace eon {
 namespace i386 {
@@ -16,7 +15,6 @@ namespace multiboot {
 
     extern "C" Information* _multiboot_info;
     extern "C" uint32_t _multiboot_magic_nr;
-
 
     Information* Information::get() {
         if (_multiboot_magic_nr != MULTIBOOT_BOOTLOADER_MAGIC) {
@@ -34,7 +32,6 @@ namespace multiboot {
         
         return _multiboot_info;
     }
-
 
     void Information::log() {
         e_Log::get()->info("Multiboot: flags={iub}", this->flags);
@@ -79,17 +76,15 @@ namespace multiboot {
 
         this->log_vbe();
     }
-    
-    
+
     void Information::log_boot_device() {
         if (IS_FLAG_SET(this->flags, MULTIBOOT_INFO_BOOTDEV)) {
-            Boot_Device& device = reinterpret_cast<Boot_Device&>(
-                this->boot_device);
+            e_Multiboot_Boot_Device& device
+                = reinterpret_cast<e_Multiboot_Boot_Device&>(this->boot_device);
 
             device.log();
         }
     }
-    
     
     void Information::log_boot_modules() {
         if (!IS_FLAG_SET(this->flags, MULTIBOOT_INFO_MODS)) {
@@ -106,8 +101,7 @@ namespace multiboot {
                 reinterpret_cast<char*>(module.cmdline));
         }
     }
-    
-    
+
     void Information::log_drives() {
         if (!IS_FLAG_SET(this->flags, MULTIBOOT_INFO_DRIVE_INFO)) {
             return;
@@ -120,8 +114,7 @@ namespace multiboot {
             iterator.next()->log();
         }
     }
-    
-    
+
     void Information::log_memory_map() {
         if (!IS_FLAG_SET(this->flags, MULTIBOOT_INFO_MEM_MAP)) {
             return;
@@ -146,8 +139,7 @@ namespace multiboot {
                 region->type);
         }
     }
-    
-    
+
     void Information::log_symbol_table() {
         if (IS_FLAG_SET(this->flags, MULTIBOOT_INFO_AOUT_SYMS)) {
             multiboot_aout_symbol_table& table = this->u.aout_sym;
@@ -164,7 +156,6 @@ namespace multiboot {
                 table.num, table.size, table.addr, table.shndx);
         }
     }
-    
     
     void Information::log_vbe() {
         if (IS_FLAG_SET(this->flags, MULTIBOOT_INFO_VBE_INFO)) {
