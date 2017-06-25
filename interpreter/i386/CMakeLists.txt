@@ -18,12 +18,14 @@ set(CMAKE_ASM_NASM_FLAGS "${CMAKE_ASM_NASM_FLAGS} -f elf -i ${CMAKE_CURRENT_SOUR
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -m32 -fno-exceptions -fno-nonansi-builtins -fno-rtti -nostdlib -nodefaultlibs -nostartfiles -ffreestanding -pedantic-errors -Wall -Wextra")
 
-set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -m elf_i386 --fatal-warnings --script ${CMAKE_CURRENT_SOURCE_DIR}/layout.lds")
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -m32")
+
+set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -m elf_i386 --script ${CMAKE_CURRENT_SOURCE_DIR}/layout.lds")
 
 add_executable(${PROJECT_NAME}.i386
     # Order is important, check linker script for details.
     layout.lds
-    multiboot/header.cpp
+    multiboot/header.c
 
     ${core_sources}
 

@@ -1,3 +1,4 @@
+- Refactor duplicate compiler flags.
 - Build library for the native architecture, and use it in the built executable, so that it can be embedded.
 - Use `grub-file` to verify kernel image is bootable.
 - Test on Windows, Debian 32-bit (check again 64-bit dependencies on a pristine image).

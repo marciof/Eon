@@ -1,9 +1,9 @@
 enable_language(CXX)
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -ansi -pedantic-errors -Wall -Wextra -Weffc++ -Wold-style-cast -Wredundant-decls -Wshadow -Wswitch-default -Wundef -Wunused-macros -Wno-unused-parameter")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pedantic-errors -Wall -Wextra -ansi -Weffc++ -Wold-style-cast -Wredundant-decls -Wshadow -Wswitch-default -Wundef -Wunused-macros -Wno-unused-parameter")
 
-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${CMAKE_CXX_FLAGS}")
-string(REPLACE "-Weffc++ -Wold-style-cast" ""
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${CMAKE_CXX_FLAGS} -std=c11")
+string(REPLACE "-ansi -Weffc++ -Wold-style-cast" ""
     CMAKE_C_FLAGS "${CMAKE_C_FLAGS}")
 
 set(core_sources
