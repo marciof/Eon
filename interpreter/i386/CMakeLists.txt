@@ -34,8 +34,8 @@ add_executable(${PROJECT_NAME}.i386
     multiboot/Information.h
     multiboot/Memory_Region_Iterator.cpp
     multiboot/Memory_Region_Iterator.h
-    vga/attribute.cpp
-    vga/attribute.h
+    vga/Attr.cpp
+    vga/Attr.h
     vga/Color.cpp
     vga/Color.h
     vga/CRT.cpp

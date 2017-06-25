@@ -1,5 +1,5 @@
 #include "../../core/Log.h"
-#include "attribute.h"
+#include "Attr.h"
 #include "CRT.h"
 #include "general.h"
 #include "Gfx.h"
@@ -15,7 +15,7 @@ using namespace eon::i386::vga;
 static const e_VGA_Gfx_Memory_Map* gfx = NULL;
 static size_t line = 0;
 static size_t column = 0;
-static uint8_t color_code = ENCODE_COLOR(TEXT_WHITE, TEXT_BLACK);
+static uint8_t color_code = ENCODE_COLOR(VGA_TEXT_WHITE, VGA_TEXT_BLACK);
 
 static void clear_screen() {
     const size_t END = 2 * gfx->lines * gfx->columns;
@@ -60,7 +60,7 @@ void e_VGA_Text_init() {
     e_VGA_CRT_enable_cursor(false);
     clear_screen();
     e_VGA_CRT_move_cursor(line, column);
-    attribute::enable_blink_mode(false);
+    e_VGA_Attr_enable_text_blink_mode(false);
     e_VGA_CRT_enable_color_mode(gfx->is_color);
     general::enable_color_mode(gfx->is_color);
 }
