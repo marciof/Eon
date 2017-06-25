@@ -3,10 +3,8 @@
 #include <stdint.h>
 
 /**
- * @brief Graphics registers interface
- *
- * Defines the interface of the VGA graphics registers. These registers allow
- * to query display information such as color, width, and height.
+ * Graphics registers interface. These registers allow to query
+ * display information such as color, width, and height.
  */
 
 typedef uint8_t e_VGA_Gfx_Register;
@@ -30,7 +28,7 @@ struct e_VGA_Gfx_Memory_Map {
     bool is_color;
     uint8_t* start;
     size_t length;
-    size_t rows;
+    size_t lines;
     size_t columns;
 };
 

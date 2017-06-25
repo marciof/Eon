@@ -5,7 +5,7 @@
 #include "Gfx.h"
 #include "Text.h"
 
-#define CLEAR_CHARACTER ' '
+#define CLEAR_CHAR ' '
 
 #define ENCODE_COLOR(foreground, background) \
     (static_cast<uint8_t>(((background) << 4) + (foreground)))
@@ -18,29 +18,29 @@ static size_t column = 0;
 static uint8_t color_code = ENCODE_COLOR(TEXT_WHITE, TEXT_BLACK);
 
 static void clear_screen() {
-    const size_t END = 2 * gfx->rows * gfx->columns;
+    const size_t END = 2 * gfx->lines * gfx->columns;
 
     for (size_t i = 0; i < END; i += 2) {
-        gfx->start[i] = CLEAR_CHARACTER;
+        gfx->start[i] = CLEAR_CHAR;
         gfx->start[i + 1] = color_code;
     }
 }
 
-static void scroll_screen(int rows = +1) {
-    const size_t END = 2 * ((gfx->rows * gfx->columns) + gfx->columns);
-    size_t i = 2 * rows * gfx->columns;
-    size_t previous = 2 * (rows - 1) * gfx->columns;
+static void scroll_screen(int lines = +1) {
+    const size_t END = 2 * ((gfx->lines * gfx->columns) + gfx->columns);
+    size_t i = 2 * lines * gfx->columns;
+    size_t previous = 2 * (lines - 1) * gfx->columns;
 
     while (i < END) {
         gfx->start[previous++] = gfx->start[i++];
         gfx->start[previous++] = gfx->start[i++];
     }
 
-    // Clear last rows.
-    i = 2 * (gfx->rows - rows) * gfx->columns;
+    // Clear last lines.
+    i = 2 * (gfx->lines - lines) * gfx->columns;
 
     while (i < END) {
-        gfx->start[i] = CLEAR_CHARACTER;
+        gfx->start[i] = CLEAR_CHAR;
         gfx->start[i + 1] = color_code;
         i += 2;
     }
@@ -50,8 +50,8 @@ size_t e_VGA_Text_get_columns() {
     return gfx->columns;
 }
 
-size_t e_VGA_Text_get_rows() {
-    return gfx->rows;
+size_t e_VGA_Text_get_lines() {
+    return gfx->lines;
 }
 
 void e_VGA_Text_init() {
@@ -87,7 +87,7 @@ void e_VGA_Text_print(char ch) {
         ++line;
     }
 
-    if (line >= gfx->rows) {
+    if (line >= gfx->lines) {
         --line;
         scroll_screen();
     }

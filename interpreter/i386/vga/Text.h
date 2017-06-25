@@ -32,7 +32,7 @@ enum {
 };
 
 size_t e_VGA_Text_get_columns();
-size_t e_VGA_Text_get_rows();
+size_t e_VGA_Text_get_lines();
 void e_VGA_Text_init();
 void e_VGA_Text_print(char ch);
 void e_VGA_Text_print(const char* string);

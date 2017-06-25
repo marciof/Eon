@@ -2,10 +2,8 @@
 #include <stdint.h>
 
 /**
- * @brief CRT controller register interface
- *
- * Defines the interface of the VGA CRT controller register. This register adds
- * timing signals to allow the monitor to display analog color information.
+ * CRT controller register interface. This register adds timing signals
+ * to allow the monitor to display analog color information.
  */
 
 typedef uint8_t e_VGA_CRT_Register;
@@ -37,40 +35,8 @@ enum {
     CRT_LINE_COMPARE
 };
 
-/**
- * Enables or disables color mode.
- *
- * @param [in] enable true to enable or false to disable
- */
 void e_VGA_CRT_enable_color_mode(bool enable = true);
-
-/**
- * Enables or disables the cursor when in text mode.
- *
- * @param [in] enable true to enable or false to disable
- */
 void e_VGA_CRT_enable_cursor(bool enable = true);
-
-/**
- * Moves the cursor when in text mode.
- *
- * @param [in] row row where to move the cursor to
- * @param [in] column column where to move the cursor to
- */
-void e_VGA_CRT_move_cursor(uint32_t row, uint32_t column);
-
-/**
- * Reads a byte from a CRT controller register.
- *
- * @param [in] reg register to read from
- * @return byte read
- */
+void e_VGA_CRT_move_cursor(uint32_t line, uint32_t column);
 uint8_t e_VGA_CRT_read(e_VGA_CRT_Register reg);
-
-/**
- * Writes a byte to a CRT controller register.
- *
- * @param [in] reg register to write to
- * @param [in] data byte to write
- */
 void e_VGA_CRT_write(e_VGA_CRT_Register reg, uint8_t data);

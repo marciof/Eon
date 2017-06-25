@@ -26,9 +26,9 @@ void e_VGA_CRT_enable_cursor(bool enable) {
         : E_BIT_SET(status, 5)));
 }
 
-void e_VGA_CRT_move_cursor(uint32_t row, uint32_t column) {
+void e_VGA_CRT_move_cursor(uint32_t line, uint32_t column) {
     size_t columns = e_VGA_Text_get_columns();
-    uint16_t position = static_cast<uint16_t>((row * columns) + column);
+    uint16_t position = static_cast<uint16_t>((line * columns) + column);
 
     e_VGA_CRT_write(CRT_CURSOR_LOCATION_LOW,
         static_cast<uint8_t>(position & 0xFF));
