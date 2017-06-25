@@ -48,14 +48,14 @@ add_executable(${PROJECT_NAME}.i386
     vga/sequencer.h
     vga/text_mode.cpp
     vga/text_mode.h
-    bit.h
-    IO.nasm
+    Bit.h
+    IO.asm
     IO.h
     Log.cpp
-    Memory.nasm
+    Memory.asm
     Memory.cpp
-    support.nasm
+    arg.asm
     support.cpp
     support.h
-    System.nasm
+    System.asm
     System.cpp)

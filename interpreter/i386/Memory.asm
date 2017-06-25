@@ -1,4 +1,4 @@
-%include "support.nasm"
+%include "arg.asm"
 
 section .bss
 align 1
@@ -7,15 +7,17 @@ gdtr:
     resw 1
     resd 1
 
-CODE_SECTION
+section .text
+align 4
 
-PUBLIC e_Memory_Physical_set_gdtr:
+global e_Memory_Physical_set_gdtr
+e_Memory_Physical_set_gdtr:
     enter 0, 0
     
-    mov ax, ARG(1)
+    mov ax, E_ARG(1)
     mov [gdtr], ax
     
-    mov eax, ARG(2)
+    mov eax, E_ARG(2)
     mov [gdtr + 2], eax
     
     lgdt [gdtr]

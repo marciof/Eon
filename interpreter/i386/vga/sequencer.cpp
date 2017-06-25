@@ -1,4 +1,4 @@
-#include "../bit.h"
+#include "../Bit.h"
 #include "../IO.h"
 #include "sequencer.h"
 
@@ -16,8 +16,8 @@ namespace sequencer {
         uint8_t mode = read(CLOCKING_MODE);
 
         write(CLOCKING_MODE, static_cast<uint8_t>(enable
-            ? BIT_CLEAR(mode, 5)
-            : BIT_SET(mode, 5)));
+            ? E_BIT_CLEAR(mode, 5)
+            : E_BIT_SET(mode, 5)));
     }
     
     uint8_t read(Register reg) {

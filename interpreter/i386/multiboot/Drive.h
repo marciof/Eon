@@ -1,7 +1,7 @@
 #pragma once
 #include <stddef.h>
 #include <stdint.h>
-#include "../bit.h"
+#include "../Bit.h"
 
 namespace eon {
 namespace i386 {
@@ -23,7 +23,7 @@ namespace multiboot {
         FIRST_HARD_DISK_DRIVE = 0x80
     };
 
-    PACKED_STRUCT(struct Drive {
+    E_BIT_ATTR_PACKED(struct Drive {
         // Size doesn't equal `10 + 2 * nr. ports` due to alignment.
         uint32_t size;
         

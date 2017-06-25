@@ -1,6 +1,6 @@
 #include <stdint.h>
 #include "../core/Memory.h"
-#include "bit.h"
+#include "Bit.h"
 
 #define CONCAT(x, y) x##y
 #define CONCAT_EXPAND(x, y) CONCAT(x, y)
@@ -18,18 +18,18 @@
 extern "C" void e_Memory_Physical_set_gdtr(uint16_t size, uint32_t address);
 
 enum Segment_Attr {
-    ACCESSED = BIT(0),
-    EXECUTABLE = BIT(3)
+    ACCESSED = E_BIT(0),
+    EXECUTABLE = E_BIT(3)
 };
 
 enum Segment_Attr_Code {
-    EXECUTE_READ = BIT(1),
-    CONFORMING = BIT(2)
+    EXECUTE_READ = E_BIT(1),
+    CONFORMING = E_BIT(2)
 };
 
 enum Segment_Attr_Data {
-    READ_WRITE = BIT(1),
-    EXPAND_DOWN = BIT(2)
+    READ_WRITE = E_BIT(1),
+    EXPAND_DOWN = E_BIT(2)
 };
 
 enum Segment_Granularity {
@@ -55,7 +55,7 @@ enum Segment_Type {
     CODE_DATA = 1
 };
 
-PACKED_STRUCT(struct Segment_Descriptor {
+E_BIT_ATTR_PACKED(struct Segment_Descriptor {
     /**
      * @name Segment Limit
      * Specifies the segment size according to the granularity.

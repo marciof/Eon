@@ -1,9 +1,10 @@
-%include "support.nasm"
+%include "arg.asm"
 
 %macro E_IO_READ_FN 2
-PUBLIC e_IO_read_%1:
+global e_IO_read_%1
+e_IO_read_%1:
     enter 0, 0
-    mov edx, ARG(1)
+    mov edx, E_ARG(1)
 
     ; Clear return value register.
     mov eax, 0
@@ -16,18 +17,20 @@ PUBLIC e_IO_read_%1:
 %endmacro
 
 %macro E_IO_WRITE_FN 2
-PUBLIC e_IO_write_%1:
+global e_IO_write_%1
+e_IO_write_%1:
     enter 0, 0
     
-    mov edx, ARG(1)
-    mov eax, ARG(2)
+    mov edx, E_ARG(1)
+    mov eax, E_ARG(2)
     out dx, %2
     
     leave
     ret
 %endmacro
 
-CODE_SECTION
+section .text
+align 4
 
 E_IO_READ_FN byte, al
 E_IO_READ_FN dword, eax

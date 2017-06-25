@@ -1,4 +1,4 @@
-#include "../bit.h"
+#include "../Bit.h"
 #include "../IO.h"
 #include "attribute.h"
 #include "general.h"
@@ -42,23 +42,23 @@ namespace attribute {
         uint8_t mode = read(ATTRIBUTE_MODE_CONTROL);
         
         write(ATTRIBUTE_MODE_CONTROL, static_cast<uint8_t>(enable
-            ? BIT_SET(mode, 3)
-            : BIT_CLEAR(mode, 3)));
+            ? E_BIT_SET(mode, 3)
+            : E_BIT_CLEAR(mode, 3)));
     }
 
     void enable_graphics_mode(bool enable) {
         uint8_t mode = read(ATTRIBUTE_MODE_CONTROL);
         
         write(ATTRIBUTE_MODE_CONTROL, static_cast<uint8_t>(enable
-            ? BIT_SET(mode, 0)
-            : BIT_CLEAR(mode, 0)));
+            ? E_BIT_SET(mode, 0)
+            : E_BIT_CLEAR(mode, 0)));
     }
 
     uint8_t read(Register reg) {
         reset_state();
 
         uint8_t status = static_cast<uint8_t>(
-            BIT_GET(e_IO_read_byte(ADDRESS_PORT), PAS_BIT)
+            E_BIT_GET(e_IO_read_byte(ADDRESS_PORT), PAS_BIT)
             | (reg & ADDRESS_BITS));
         
         reset_state();
@@ -70,7 +70,7 @@ namespace attribute {
         reset_state();
 
         uint8_t status = static_cast<uint8_t>(
-            BIT_GET(e_IO_read_byte(ADDRESS_PORT), PAS_BIT)
+            E_BIT_GET(e_IO_read_byte(ADDRESS_PORT), PAS_BIT)
             | (reg & ADDRESS_BITS));
         
         reset_state();

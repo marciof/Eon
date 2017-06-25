@@ -1,5 +1,5 @@
 #include "../../core/Log.h"
-#include "../bit.h"
+#include "../Bit.h"
 #include "../IO.h"
 #include "general.h"
 
@@ -30,8 +30,8 @@ namespace general {
         if (enable != BIT_IS_SET(status, 0)) {
             e_IO_write_byte(MISCELLANEOUS_OUTPUT_WRITE_PORT,
                 static_cast<uint8_t>(enable
-                                     ? BIT_SET(status, 0)
-                                     : BIT_CLEAR(status, 0)));
+                                     ? E_BIT_SET(status, 0)
+                                     : E_BIT_CLEAR(status, 0)));
         }
 
         is_color_mode_enabled = enable;

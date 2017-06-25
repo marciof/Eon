@@ -1,4 +1,4 @@
-#include "../bit.h"
+#include "../Bit.h"
 #include "../IO.h"
 #include "graphics.h"
 
@@ -45,7 +45,7 @@ namespace graphics {
     
     const Memory_Map* get_memory_map() {
         size_t position = static_cast<size_t>(
-            (read(MISCELLANEOUS_GRAPHICS) & (BIT(3) | BIT(2))) >> 2);
+            (read(MISCELLANEOUS_GRAPHICS) & (E_BIT(3) | E_BIT(2))) >> 2);
         
         return &_MEMORY_MAPS[position];
     }

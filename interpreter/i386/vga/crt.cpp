@@ -1,4 +1,4 @@
-#include "../bit.h"
+#include "../Bit.h"
 #include "../IO.h"
 #include "crt.h"
 #include "text_mode.h"
@@ -26,8 +26,8 @@ namespace crt {
         uint8_t status = read(CURSOR_START);
         
         write(CURSOR_START, static_cast<uint8_t>(enable
-            ? BIT_CLEAR(status, 5)
-            : BIT_SET(status, 5)));
+            ? E_BIT_CLEAR(status, 5)
+            : E_BIT_SET(status, 5)));
     }
 
     void move_cursor(uint32_t row, uint32_t column) {
