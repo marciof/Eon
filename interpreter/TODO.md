@@ -1,3 +1,4 @@
+- If global ctors/dtors are removed, then there's no need for the linker script which will fix the dependency issue.
 - Refactor duplicate compiler flags.
 - Build library for the native architecture, and use it in the built executable, so that it can be embedded.
 - Use `grub-file` to verify kernel image is bootable.

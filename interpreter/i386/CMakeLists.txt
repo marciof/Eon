@@ -20,15 +20,12 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -m32 -fno-exceptions -fno-nonansi-builti
 
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -m32")
 
+# FIXME: missing build dependency on the linker script
 set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -m elf_i386 --script ${CMAKE_CURRENT_SOURCE_DIR}/layout.lds")
 
 add_executable(${PROJECT_NAME}.i386
-    # Order is important, check linker script for details.
-    layout.lds
-    multiboot/header.c
-
     ${core_sources}
-
+    multiboot/header.c
     multiboot/boot_device.cpp
     multiboot/boot_device.h
     multiboot/drive.cpp
