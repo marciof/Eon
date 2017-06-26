@@ -107,7 +107,8 @@ namespace multiboot {
             return;
         }
 
-        Drive_Iterator iterator(reinterpret_cast<Drive*>(this->drives_addr),
+        e_Multiboot_Drive_Iterator iterator(
+            reinterpret_cast<e_Multiboot_Drive*>(this->drives_addr),
             this->drives_length);
         
         while (iterator.has_next()) {
