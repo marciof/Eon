@@ -9,12 +9,12 @@ static char** _argv = NULL;
 
 class e_System_Process: public e_System {
 public:
-    void stop(e_System::Stop_Mode mode) {
+    void stop(e_System::e_System_Stop_Mode mode) {
         switch (mode) {
-        case e_System::HALT:
+        case e_System::E_SYSTEM_HALT:
             exit(EXIT_SUCCESS);
             break;
-        case e_System::RESET:
+        case e_System::E_SYSTEM_RESET:
             if (execvp(_argv[0], _argv) != 0) {
                 e_Log::get()->error("System reset error: errno={i}",
                     errno);

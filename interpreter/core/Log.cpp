@@ -26,7 +26,7 @@ void e_Log::error(const char* format, ...) {
     va_end(arguments);
 
     this->print('\n');
-    e_System::get()->stop(e_System::HALT);
+    e_System::get()->stop(e_System::E_SYSTEM_HALT);
 }
 
 void e_Log::info(const char* format, ...) {
@@ -98,7 +98,7 @@ void e_Log::print(const char* format, va_list arguments) {
             }
             else {
                 this->print("\n" FORMAT_STRING_ERROR);
-                e_System::get()->stop(e_System::HALT);
+                e_System::get()->stop(e_System::E_SYSTEM_HALT);
             }
         }
         else if (*format != PLACEHOLDER_BEGIN) {
@@ -153,13 +153,13 @@ void e_Log::print(const char* format, va_list arguments) {
             break;
         default:
             this->print("\n" FORMAT_STRING_ERROR);
-                e_System::get()->stop(e_System::HALT);
+                e_System::get()->stop(e_System::E_SYSTEM_HALT);
             break;
         }
 
         if (*format != PLACEHOLDER_END) {
             this->print("\n" FORMAT_STRING_ERROR);
-            e_System::get()->stop(e_System::HALT);
+            e_System::get()->stop(e_System::E_SYSTEM_HALT);
         }
     }
 }

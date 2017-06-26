@@ -30,8 +30,8 @@ add_executable(${PROJECT_NAME}.i386
     multiboot/Boot_Device.h
     multiboot/Drive.cpp
     multiboot/Drive.h
-    multiboot/Information.cpp
-    multiboot/Information.h
+    multiboot/Info.cpp
+    multiboot/Info.h
     multiboot/Memory_Region.cpp
     multiboot/Memory_Region.h
     vga/Attr.cpp

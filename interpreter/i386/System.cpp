@@ -4,7 +4,7 @@
 
 #include "../core/Log.h"
 #include "../core/System.h"
-#include "multiboot/Information.h"
+#include "multiboot/Info.h"
 #include "support.h"
 
 /**
@@ -31,19 +31,19 @@ extern "C" void reset();
 class e_System_Processor: public e_System {
 public:
     void start() {
-        eon::i386::multiboot::Information::get()->log();
+        e_Multiboot_Info::get()->log();
         e_System::start();
     }
 
-    void stop(Stop_Mode mode) {
+    void stop(e_System_Stop_Mode mode) {
         switch (mode) {
-        case HALT:
+        case E_SYSTEM_HALT:
             // TODO
             e_Log::get()->warning("Halt shutdown not implemented.");
             eon::i386::support::finalize();
             halt();
             break;
-        case RESET:
+        case E_SYSTEM_RESET:
             eon::i386::support::finalize();
             reset();
             break;
