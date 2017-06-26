@@ -2,11 +2,7 @@
 #include <stdarg.h>
 #include <stddef.h>
 
-struct e_Log {
-    virtual ~e_Log() {};
-    void print(unsigned int integer, size_t base);
-    void print(const char* format, va_list arguments);
-};
+struct e_Log {};
 
 enum {E_LOG_TAB_SIZE_SPACES = 4};
 enum e_Log_Level {E_LOG_ERROR, E_LOG_WARN, E_LOG_INFO};

@@ -16,6 +16,108 @@
 #define STATIC_ARRAY_LENGTH(array) \
     (sizeof(array) / sizeof((array)[0]))
 
+static void e_Log_print_int(struct e_Log* log, unsigned int n, size_t base) {
+    if (n == 0) {
+        e_Log_print_ch(log, NUMERIC_BASE_CONVERSION_SYMBOLS[n]);
+        return;
+    }
+
+    // Reserve 8 chars, which are enough for an 8 bits integer.
+    // If it isn't for a full range integer, call recursively until it is.
+    char byte[sizeof(char) * (8 + 1)];
+    ssize_t i = STATIC_ARRAY_LENGTH(byte) - 1 - 1;
+
+    byte[STATIC_ARRAY_LENGTH(byte) - 1] = '\0';
+
+    while ((i >= 0) && (n != 0)) {
+        byte[i--] = NUMERIC_BASE_CONVERSION_SYMBOLS[n % base];
+        n /= base;
+    }
+
+    if (n != 0) {
+        e_Log_print_int(log, n, base);
+    }
+
+    e_Log_print_str(log, byte + i + 1);
+}
+
+static void e_Log_print(struct e_Log* log, const char* format, va_list args) {
+    for (; *format != '\0'; ++format) {
+        if (*format == PLACEHOLDER_END) {
+            ++format;
+
+            if ((*format != '\0') && (*format == PLACEHOLDER_END)) {
+                e_Log_print_ch(log, PLACEHOLDER_END);
+                continue;
+            }
+            else {
+                e_Log_print_str(log, "\n" FORMAT_STRING_ERROR);
+                e_System::get()->stop(e_System::E_SYSTEM_HALT);
+            }
+        }
+        else if (*format != PLACEHOLDER_BEGIN) {
+            e_Log_print_ch(log, *format);
+            continue;
+        }
+
+        ++format;
+
+        if (*format == PLACEHOLDER_BEGIN) {
+            e_Log_print_ch(log, PLACEHOLDER_BEGIN);
+            continue;
+        }
+
+        char* string;
+        int integer;
+
+        switch (*format++) {
+        case 'c':
+            e_Log_print_ch(log, static_cast<char>(va_arg(args, int)));
+            break;
+        case 's':
+            string = va_arg(args, char*);
+            e_Log_print_str(log, string == NULL ? "(null)" : string);
+            break;
+        case 'i':
+            integer = va_arg(args, int);
+
+            if (*format == 'u') {
+                ++format;
+            }
+            else if (integer < 0) {
+                e_Log_print_ch(log, '-');
+                integer = -integer;
+            }
+
+            switch (*format++) {
+            case 'b':
+                e_Log_print_int(log, static_cast<unsigned>(integer), 2);
+                e_Log_print_ch(log, 'b');
+                break;
+            case 'h':
+                e_Log_print_int(log, static_cast<unsigned>(integer), 16);
+                e_Log_print_ch(log, 'h');
+                break;
+            default:
+                e_Log_print_int(log, static_cast<unsigned>(integer), 10);
+                --format;
+                break;
+            }
+
+            break;
+        default:
+            e_Log_print_str(log, "\n" FORMAT_STRING_ERROR);
+                e_System::get()->stop(e_System::E_SYSTEM_HALT);
+            break;
+        }
+
+        if (*format != PLACEHOLDER_END) {
+            e_Log_print_str(log, "\n" FORMAT_STRING_ERROR);
+            e_System::get()->stop(e_System::E_SYSTEM_HALT);
+        }
+    }
+}
+
 void e_Log_msg(
         struct e_Log* log, enum e_Log_Level level, const char* format, ...) {
 
@@ -34,115 +136,13 @@ void e_Log_msg(
 
     e_Log_print_str(log, msg_prefix);
 
-    va_list arguments;
-    va_start(arguments, format);
-    e_Log_get()->print(format, arguments);
-    va_end(arguments);
+    va_list args;
+    va_start(args, format);
+    e_Log_print(log, format, args);
+    va_end(args);
     e_Log_print_ch(log, '\n');
 
     if (level == E_LOG_ERROR) {
         e_System::get()->stop(e_System::E_SYSTEM_HALT);
-    }
-}
-
-void e_Log::print(unsigned int integer, size_t base) {
-    if (integer == 0) {
-        e_Log_print_ch(this, NUMERIC_BASE_CONVERSION_SYMBOLS[integer]);
-        return;
-    }
-
-    // Reserve 8 chars, which are enough for an 8 bits integer.
-    // If it isn't for a full range integer, call recursively until it is.
-    char byte[sizeof(char) * (8 + 1)];
-    ssize_t i = STATIC_ARRAY_LENGTH(byte) - 1 - 1;
-
-    byte[STATIC_ARRAY_LENGTH(byte) - 1] = '\0';
-
-    while ((i >= 0) && (integer != 0)) {
-        byte[i--] = NUMERIC_BASE_CONVERSION_SYMBOLS[integer % base];
-        integer /= base;
-    }
-
-    if (integer != 0) {
-        this->print(integer, base);
-    }
-
-    e_Log_print_str(this, byte + i + 1);
-}
-
-void e_Log::print(const char* format, va_list arguments) {
-    for (; *format != '\0'; ++format) {
-        if (*format == PLACEHOLDER_END) {
-            ++format;
-
-            if ((*format != '\0') && (*format == PLACEHOLDER_END)) {
-                e_Log_print_ch(this, PLACEHOLDER_END);
-                continue;
-            }
-            else {
-                e_Log_print_str(this, "\n" FORMAT_STRING_ERROR);
-                e_System::get()->stop(e_System::E_SYSTEM_HALT);
-            }
-        }
-        else if (*format != PLACEHOLDER_BEGIN) {
-            e_Log_print_ch(this, *format);
-            continue;
-        }
-
-        ++format;
-
-        if (*format == PLACEHOLDER_BEGIN) {
-            e_Log_print_ch(this, PLACEHOLDER_BEGIN);
-            continue;
-        }
-
-        char* string;
-        int integer;
-
-        switch (*format++) {
-        case 'c':
-            e_Log_print_ch(this, static_cast<char>(va_arg(arguments, int)));
-            break;
-        case 's':
-            string = va_arg(arguments, char*);
-            e_Log_print_str(this, string == NULL ? "(null)" : string);
-            break;
-        case 'i':
-            integer = va_arg(arguments, int);
-
-            if (*format == 'u') {
-                ++format;
-            }
-            else if (integer < 0) {
-                e_Log_print_ch(this, '-');
-                integer = -integer;
-            }
-
-            switch (*format++) {
-            case 'b':
-                this->print(integer, 2);
-                e_Log_print_ch(this, 'b');
-                break;
-            case 'h':
-                this->print(integer, 16);
-                e_Log_print_ch(this, 'h');
-                break;
-            default:
-                this->print(integer, 10);
-                --format;
-                break;
-            }
-
-            break;
-        default:
-            e_Log_print_str(this, "\n" FORMAT_STRING_ERROR);
-                e_System::get()->stop(e_System::E_SYSTEM_HALT);
-            break;
-        }
-
-        if (*format != PLACEHOLDER_END) {
-            e_Log_print_str(this, "\n" FORMAT_STRING_ERROR);
-            e_System::get()->stop(e_System::E_SYSTEM_HALT);
-        }
     }
 }
