@@ -32,8 +32,8 @@ add_executable(${PROJECT_NAME}.i386
     multiboot/Drive.h
     multiboot/Information.cpp
     multiboot/Information.h
-    multiboot/Memory_Region_Iterator.cpp
-    multiboot/Memory_Region_Iterator.h
+    multiboot/Memory_Region.cpp
+    multiboot/Memory_Region.h
     vga/Attr.cpp
     vga/Attr.h
     vga/Color.cpp

@@ -3,7 +3,7 @@
 #include "Boot_Device.h"
 #include "Drive.h"
 #include "Information.h"
-#include "Memory_Region_Iterator.h"
+#include "Memory_Region.h"
 
 // FIXME: refactor with BIT macros
 #define IS_FLAG_SET(flags, flag) \
@@ -120,8 +120,8 @@ namespace multiboot {
         if (!IS_FLAG_SET(this->flags, MULTIBOOT_INFO_MEM_MAP)) {
             return;
         }
-        
-        Memory_Region_Iterator iterator(
+
+        e_Multiboot_Memory_Region_Iterator iterator(
             reinterpret_cast<multiboot_mmap_entry*>(this->mmap_addr),
             this->mmap_length);
         
