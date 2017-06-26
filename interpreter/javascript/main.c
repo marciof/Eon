@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include <unistd.h>
-#include "eon/Input.h"
-#include "eon/Token.h"
+#include "Input.h"
+#include "Token.h"
 
 int main() {
     bool has_err = false;

@@ -4,13 +4,13 @@ endif()
 
 add_executable(${PROJECT_NAME}.js
     main.c
-    eon/Ref.h
-    eon/Any.h
-    eon/Any.c
-    eon/Err.h
-    eon/Str.h
-    eon/Str.c
-    eon/Token.h
-    eon/Token.c
-    eon/Input.h
-    eon/Input.c)
+    Ref.h
+    Any.h
+    Any.c
+    Err.h
+    Str.h
+    Str.c
+    Token.h
+    Token.c
+    Input.h
+    Input.c)
