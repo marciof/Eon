@@ -4,6 +4,8 @@
 #include <stdio.h>
 #include <string.h>
 
+// FIXME: decouple detecting an error from printing
+
 #define E_ERR_LOCATION() \
     fprintf(stderr, "    `%s()` at %s:%d\n", __func__, __FILE__, __LINE__)
 

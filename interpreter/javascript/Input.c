@@ -7,7 +7,7 @@ struct Fd_Buffer {
     char buf[BUFSIZ];
     size_t len;
     size_t pos;
-    E_REF_FIELDS;
+    E_REF_FIELD;
 };
 
 static int e_Fd_Buffer_read(

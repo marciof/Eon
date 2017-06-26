@@ -15,7 +15,7 @@ struct e_Token {
     struct e_Input* input;
     size_t line;
     size_t column;
-    E_REF_FIELDS;
+    E_REF_FIELD;
 };
 
 // `NULL` on EOF

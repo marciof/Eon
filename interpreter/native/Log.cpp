@@ -10,14 +10,13 @@ struct e_Log* e_Log_get() {
 
 void e_Log_prepare(struct e_Log* log, enum e_Log_Level level) {
     // FIXME: add colors
+    // FIXME: switch `log` to `stderr` or `stdout` according to `level`
 }
 
 void e_Log_print_ch(struct e_Log* log, char ch) {
-    // FIXME: use stdout for info only
     putchar(ch);
 }
 
 void e_Log_print_str(struct e_Log* log, const char* string) {
-    // FIXME: use stdout for info only
     printf("%s", string);
 }
