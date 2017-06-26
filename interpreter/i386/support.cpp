@@ -33,7 +33,7 @@ namespace __cxxabiv1 {
     _GLIBCXX_NOTHROW
     {
         if (_at_exit_entries_length >= MAX_AT_EXIT_ENTRIES) {
-            e_Log::get()->error(
+            e_Log_get()->error(
                 "Maximum number of C++ ABI at-exit entries reached: {iu}",
                 MAX_AT_EXIT_ENTRIES);
         }
@@ -51,7 +51,7 @@ namespace __cxxabiv1 {
      */
     extern "C" int __cxa_finalize(void* destructor) {
         // TODO
-        e_Log::get()->warning(
+        e_Log_get()->warning(
             "C++ ABI object finalization not implemented: destructor={iuh}",
             destructor);
 
@@ -67,7 +67,7 @@ namespace __cxxabiv1 {
     }
     
     extern "C" void __cxa_guard_abort(__guard* guard) {
-        e_Log::get()->error("C++ ABI guard abort: guard={iuh}",
+        e_Log_get()->error("C++ ABI guard abort: guard={iuh}",
             *reinterpret_cast<unsigned int*>(guard));
     }
 
@@ -76,7 +76,7 @@ namespace __cxxabiv1 {
      * pointer is not filled in.
      */
     extern "C" void __cxa_pure_virtual() {
-        e_Log::get()->error("C++ ABI pure virtual function call.");
+        e_Log_get()->error("C++ ABI pure virtual function call.");
         __builtin_unreachable();
     }
 }
@@ -90,7 +90,7 @@ extern "C" Constructor _cpp_ctors_begin[], _cpp_ctors_end[];
 extern "C" Destructor _cpp_dtors_begin[], _cpp_dtors_end[];
 
 void operator delete(void* object) {
-    e_Log::get()->warning(
+    e_Log_get()->warning(
         "C++ operator delete not implemented: object={iuh}", object);
 }
 

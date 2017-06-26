@@ -39,7 +39,7 @@ public:
         switch (mode) {
         case E_SYSTEM_HALT:
             // TODO
-            e_Log::get()->warning("Halt shutdown not implemented.");
+            e_Log_get()->warning("Halt shutdown not implemented.");
             eon::i386::support::finalize();
             halt();
             break;
@@ -48,7 +48,7 @@ public:
             reset();
             break;
         default:
-            e_Log::get()->error("Invalid system stop mode.");
+            e_Log_get()->error("Invalid system stop mode.");
             break;
         }
     }

@@ -14,14 +14,14 @@ extern "C" uint32_t _multiboot_magic_nr;
 
 e_Multiboot_Info* e_Multiboot_Info::get() {
     if (_multiboot_magic_nr != MULTIBOOT_BOOTLOADER_MAGIC) {
-        e_Log::get()->error(
+        e_Log_get()->error(
             "Invalid Multiboot magic number: {iuh}", _multiboot_magic_nr);
     }
 
     if (IS_FLAG_SET(_multiboot_info->flags, MULTIBOOT_INFO_AOUT_SYMS)
         && IS_FLAG_SET(_multiboot_info->flags, MULTIBOOT_INFO_ELF_SHDR))
     {
-        e_Log::get()->error(
+        e_Log_get()->error(
             "Invalid Multiboot information: "
             "Both bits 4 and 5 of the flags field are set.");
     }
@@ -30,10 +30,10 @@ e_Multiboot_Info* e_Multiboot_Info::get() {
 }
 
 void e_Multiboot_Info::log() {
-    e_Log::get()->info("Multiboot: flags={iub}", this->flags);
+    e_Log_get()->info("Multiboot: flags={iub}", this->flags);
 
     if (IS_FLAG_SET(this->flags, MULTIBOOT_INFO_MEMORY)) {
-        e_Log::get()->info("Memory: lower={iu} KiB; upper={iu} KiB",
+        e_Log_get()->info("Memory: lower={iu} KiB; upper={iu} KiB",
             this->mem_lower,        // From 0 to 640.
             this->mem_upper);       // Starting at 1024.
     }
@@ -41,7 +41,7 @@ void e_Multiboot_Info::log() {
     this->log_boot_device();
 
     if (IS_FLAG_SET(this->flags, MULTIBOOT_INFO_CMDLINE)) {
-        e_Log::get()->info("Command line: \"{s}\"", this->cmdline);
+        e_Log_get()->info("Command line: \"{s}\"", this->cmdline);
     }
 
     this->log_boot_modules();
@@ -53,12 +53,12 @@ void e_Multiboot_Info::log() {
         /* ROM configuration table as returned by the "get configuration"
            BIOS call. If it failed, the size of the table must be zero. */
 
-        e_Log::get()->info("ROM configuration: table={iuh}",
+        e_Log_get()->info("ROM configuration: table={iuh}",
             this->config_table);
     }
 
     if (IS_FLAG_SET(this->flags, MULTIBOOT_INFO_BOOT_LOADER_NAME)) {
-        e_Log::get()->info("Boot loader: \"{s}\"",
+        e_Log_get()->info("Boot loader: \"{s}\"",
             this->boot_loader_name);
     }
 
@@ -66,7 +66,7 @@ void e_Multiboot_Info::log() {
         multiboot_apm_info& table = *reinterpret_cast<multiboot_apm_info*>(
             this->apm_table);
 
-        e_Log::get()->info("APM table: version={iu}; flags={iub}",
+        e_Log_get()->info("APM table: version={iu}; flags={iub}",
             table.version, table.flags);
     }
 
@@ -91,7 +91,7 @@ void e_Multiboot_Info::log_boot_modules() {
         multiboot_mod_list& module = reinterpret_cast<multiboot_module_t*>(
             this->mods_addr)[i];
 
-        e_Log::get()->info(
+        e_Log_get()->info(
             "Boot module: start={iuh}; end={iuh}; string=\"{s}\"",
             module.mod_start, module.mod_end,
             reinterpret_cast<char*>(module.cmdline));
@@ -127,7 +127,7 @@ void e_Multiboot_Info::log_memory_map() {
     while (iterator.has_next()) {
         multiboot_mmap_entry* region = iterator.next();
 
-        e_Log::get()->info("Memory map region: addr=[{iuh}, {iuh}]; "
+        e_Log_get()->info("Memory map region: addr=[{iuh}, {iuh}]; "
             "size=[{iuh}, {iuh}] B; type={iu}",
             static_cast<unsigned>(region->addr >> 32),
             static_cast<unsigned>(region->addr & 0xFFFFFFFF),
@@ -141,14 +141,14 @@ void e_Multiboot_Info::log_symbol_table() {
     if (IS_FLAG_SET(this->flags, MULTIBOOT_INFO_AOUT_SYMS)) {
         multiboot_aout_symbol_table& table = this->u.aout_sym;
 
-        e_Log::get()->info("a.out symbol table: "
+        e_Log_get()->info("a.out symbol table: "
             "size={iu}; string table size={iu}; addr={iuh}",
             table.tabsize, table.strsize, table.addr);
     }
     else if (IS_FLAG_SET(this->flags, MULTIBOOT_INFO_ELF_SHDR)) {
         multiboot_elf_section_header_table& table = this->u.elf_sec;
 
-        e_Log::get()->info("ELF section header table: "
+        e_Log_get()->info("ELF section header table: "
             "num={iu}; size={iu} B; addr={iuh}; shndx={iu}",
             table.num, table.size, table.addr, table.shndx);
     }
@@ -156,7 +156,7 @@ void e_Multiboot_Info::log_symbol_table() {
 
 void e_Multiboot_Info::log_vbe() {
     if (IS_FLAG_SET(this->flags, MULTIBOOT_INFO_VBE_INFO)) {
-        e_Log::get()->info("VBE: control info={iuh}; mode info={iuh}; "
+        e_Log_get()->info("VBE: control info={iuh}; mode info={iuh}; "
             "current video mode={iu}",
             this->vbe_control_info,     // Obtained by VBE function 00h.
             this->vbe_mode_info,        // Obtained by VBE function 01h.
@@ -168,7 +168,7 @@ void e_Multiboot_Info::log_vbe() {
            interface defined in VBE version 2.0 or later. If it isn't
            available, those fields are set to zero. */
 
-        e_Log::get()->info("VBE 2.0+ interface table: segment={iuh}; "
+        e_Log_get()->info("VBE 2.0+ interface table: segment={iuh}; "
             "offset={iuh}; length={iu} B", this->vbe_interface_seg,
             this->vbe_interface_off, this->vbe_interface_len);
     }

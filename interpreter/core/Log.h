@@ -19,8 +19,6 @@
  */
 class e_Log {
 public:
-    enum {TAB_NR_SPACES = 4};
-    static e_Log* get(); // = 0
     virtual ~e_Log() {};
     void error(const char* format, ...);
     void info(const char* format, ...);
@@ -37,3 +35,7 @@ private:
     void print(unsigned int integer, size_t base);
     void print(const char* format, va_list arguments);
 };
+
+enum {E_LOG_TAB_SIZE_SPACES = 4};
+
+extern e_Log* e_Log_get();

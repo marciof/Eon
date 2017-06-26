@@ -43,8 +43,7 @@ uint8_t e_VGA_Extern_read_input_status(uint8_t register_nr) {
             ? COLOR_INPUT_STATUS_1_READ_PORT
             : MONOCHROME_INPUT_STATUS_1_READ_PORT);
     default:
-        e_Log::get()->error("Invalid VGA general register: {iu}",
-            register_nr);
+        e_Log_get()->error("Invalid VGA general register: {iu}", register_nr);
         return 0;
     }
 }

@@ -70,11 +70,11 @@ void e_VGA_Text_print(char ch) {
         column = 0;
         break;
     case '\t':
-        column += e_Log::TAB_NR_SPACES - (column % e_Log::TAB_NR_SPACES);
+        column += E_LOG_TAB_SIZE_SPACES - (column % E_LOG_TAB_SIZE_SPACES);
         break;
     default:
         size_t position = 2 * ((line * gfx->columns) + column);
-        gfx->start[position] = ch;
+        gfx->start[position] = static_cast<uint8_t>(ch);
         gfx->start[position + 1] = color_code;
         ++column;
         break;
