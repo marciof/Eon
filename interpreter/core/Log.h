@@ -33,5 +33,14 @@ struct e_Log {
 };
 
 enum {E_LOG_TAB_SIZE_SPACES = 4};
+
+enum e_Log_Level {
+    E_LOG_INFO,
+    E_LOG_WARNING,
+    E_LOG_ERROR
+};
+
 extern struct e_Log* e_Log_get();
-void e_Log_error(struct e_Log* log, const char* format, ...);
+
+void e_Log_msg(
+    struct e_Log* log, enum e_Log_Level level, const char* format, ...);

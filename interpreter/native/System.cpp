@@ -16,12 +16,12 @@ public:
             break;
         case e_System::E_SYSTEM_RESET:
             if (execvp(_argv[0], _argv) != 0) {
-                e_Log_error(e_Log_get(), "System reset error: errno={i}",
-                    errno);
+                e_Log_msg(e_Log_get(), E_LOG_ERROR,
+                    "System reset error: errno={i}", errno);
             }
             break;
         default:
-            e_Log_error(e_Log_get(), "Invalid system stop mode.");
+            e_Log_msg(e_Log_get(), E_LOG_ERROR, "Invalid system stop mode.");
             break;
         }
     }

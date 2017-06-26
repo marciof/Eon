@@ -14,16 +14,16 @@ extern "C" uint32_t _multiboot_magic_nr;
 
 e_Multiboot_Info* e_Multiboot_Info::get() {
     if (_multiboot_magic_nr != MULTIBOOT_BOOTLOADER_MAGIC) {
-        e_Log_error(e_Log_get(),
+        e_Log_msg(e_Log_get(), E_LOG_ERROR,
             "Invalid Multiboot magic number: {iuh}", _multiboot_magic_nr);
     }
 
     if (IS_FLAG_SET(_multiboot_info->flags, MULTIBOOT_INFO_AOUT_SYMS)
         && IS_FLAG_SET(_multiboot_info->flags, MULTIBOOT_INFO_ELF_SHDR))
     {
-        e_Log_error(e_Log_get(),
+        e_Log_msg(e_Log_get(), E_LOG_ERROR,
             "Invalid Multiboot information: "
-            "Both bits 4 and 5 of the flags field are set.");
+                "Both bits 4 and 5 of the flags field are set.");
     }
 
     return _multiboot_info;

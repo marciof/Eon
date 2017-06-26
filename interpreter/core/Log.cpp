@@ -16,9 +16,30 @@
 #define STATIC_ARRAY_LENGTH(array) \
     (sizeof(array) / sizeof((array)[0]))
 
-void e_Log_error(struct e_Log* log, const char* format, ...) {
-    e_Log_get()->prepare_error();
-    e_Log_get()->print(ERROR_MESSAGE_PREFIX);
+void e_Log_msg(
+        struct e_Log* log, enum e_Log_Level level, const char* format, ...) {
+
+    const char* msg_prefix;
+
+    if (level == E_LOG_INFO) {
+        e_Log_get()->prepare_info();
+        msg_prefix = INFO_MESSAGE_PREFIX;
+    }
+    else if (level == E_LOG_WARNING) {
+        e_Log_get()->prepare_warning();
+        msg_prefix = WARNING_MESSAGE_PREFIX;
+    }
+    else if (level == E_LOG_ERROR) {
+        e_Log_get()->prepare_error();
+        msg_prefix = ERROR_MESSAGE_PREFIX;
+    }
+    else {
+        e_Log_msg(log, E_LOG_WARNING, "Invalid logging level: {iu}", level);
+        e_Log_get()->prepare_warning();
+        msg_prefix = WARNING_MESSAGE_PREFIX;
+    }
+
+    e_Log_get()->print(msg_prefix);
 
     va_list arguments;
     va_start(arguments, format);
