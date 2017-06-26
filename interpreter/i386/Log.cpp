@@ -6,10 +6,6 @@ public:
     e_Log_Vga() {
         e_VGA_Text_init();
     }
-
-    void print(const char* string) {
-        e_VGA_Text_print(string);
-    }
 };
 
 struct e_Log* e_Log_get() {
@@ -31,4 +27,8 @@ void e_Log_prepare(struct e_Log* log, enum e_Log_Level level) {
 
 void e_Log_print_ch(struct e_Log* log, char ch) {
     e_VGA_Text_print(ch);
+}
+
+void e_Log_print_str(struct e_Log* log, const char* string) {
+    e_VGA_Text_print(string);
 }

@@ -32,7 +32,7 @@ void e_Log_msg(
         msg_prefix = INFO_MESSAGE_PREFIX;
     }
 
-    e_Log_get()->print(msg_prefix);
+    e_Log_print_str(log, msg_prefix);
 
     va_list arguments;
     va_start(arguments, format);
@@ -67,7 +67,7 @@ void e_Log::print(unsigned int integer, size_t base) {
         this->print(integer, base);
     }
 
-    this->print(byte + i + 1);
+    e_Log_print_str(this, byte + i + 1);
 }
 
 void e_Log::print(const char* format, va_list arguments) {
@@ -80,7 +80,7 @@ void e_Log::print(const char* format, va_list arguments) {
                 continue;
             }
             else {
-                this->print("\n" FORMAT_STRING_ERROR);
+                e_Log_print_str(this, "\n" FORMAT_STRING_ERROR);
                 e_System::get()->stop(e_System::E_SYSTEM_HALT);
             }
         }
@@ -105,7 +105,7 @@ void e_Log::print(const char* format, va_list arguments) {
             break;
         case 's':
             string = va_arg(arguments, char*);
-            this->print(string == NULL ? "(null)" : string);
+            e_Log_print_str(this, string == NULL ? "(null)" : string);
             break;
         case 'i':
             integer = va_arg(arguments, int);
@@ -135,13 +135,13 @@ void e_Log::print(const char* format, va_list arguments) {
 
             break;
         default:
-            this->print("\n" FORMAT_STRING_ERROR);
+            e_Log_print_str(this, "\n" FORMAT_STRING_ERROR);
                 e_System::get()->stop(e_System::E_SYSTEM_HALT);
             break;
         }
 
         if (*format != PLACEHOLDER_END) {
-            this->print("\n" FORMAT_STRING_ERROR);
+            e_Log_print_str(this, "\n" FORMAT_STRING_ERROR);
             e_System::get()->stop(e_System::E_SYSTEM_HALT);
         }
     }
