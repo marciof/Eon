@@ -8,15 +8,10 @@
 #define PLACEHOLDER_BEGIN '{'
 #define PLACEHOLDER_END '}'
 
-#define ERROR_MESSAGE_PREFIX "[ERROR] "
-#define INFO_MESSAGE_PREFIX "[INFO] "
-#define WARNING_MESSAGE_PREFIX "[WARN] "
+#define ERROR_MSG_PREFIX "[ERROR] "
+#define FORMAT_STR_ERROR ERROR_MSG_PREFIX "Invalid logging format string.\n"
 
-#define FORMAT_STRING_ERROR \
-    ERROR_MESSAGE_PREFIX "Invalid logging format string.\n"
-
-#define STATIC_ARRAY_LENGTH(array) \
-    (sizeof(array) / sizeof((array)[0]))
+#define STATIC_ARRAY_LEN(array) (sizeof((array)) / sizeof((array)[0]))
 
 static void e_Log_print_int(e_Log log, unsigned int integer, size_t base) {
     if (integer == 0) {
@@ -27,9 +22,9 @@ static void e_Log_print_int(e_Log log, unsigned int integer, size_t base) {
     // Reserve 8 chars, which are enough for an 8 bits integer.
     // If it isn't for a full range integer, call recursively until it is.
     char byte[sizeof(char) * (8 + 1)];
-    ssize_t i = STATIC_ARRAY_LENGTH(byte) - 1 - 1;
+    ssize_t i = STATIC_ARRAY_LEN(byte) - 1 - 1;
 
-    byte[STATIC_ARRAY_LENGTH(byte) - 1] = '\0';
+    byte[STATIC_ARRAY_LEN(byte) - 1] = '\0';
 
     while ((i >= 0) && (integer != 0)) {
         byte[i--] = NUMERIC_BASE_CONVERSION_SYMBOLS[integer % base];
@@ -53,7 +48,7 @@ static void e_Log_print(e_Log log, const char* format, va_list args) {
                 continue;
             }
             else {
-                e_Log_print_str(log, "\n" FORMAT_STRING_ERROR);
+                e_Log_print_str(log, "\n" FORMAT_STR_ERROR);
                 e_System::get()->stop(e_System::E_SYSTEM_HALT);
             }
         }
@@ -108,13 +103,13 @@ static void e_Log_print(e_Log log, const char* format, va_list args) {
 
             break;
         default:
-            e_Log_print_str(log, "\n" FORMAT_STRING_ERROR);
+            e_Log_print_str(log, "\n" FORMAT_STR_ERROR);
                 e_System::get()->stop(e_System::E_SYSTEM_HALT);
             break;
         }
 
         if (*format != PLACEHOLDER_END) {
-            e_Log_print_str(log, "\n" FORMAT_STRING_ERROR);
+            e_Log_print_str(log, "\n" FORMAT_STR_ERROR);
             e_System::get()->stop(e_System::E_SYSTEM_HALT);
         }
     }
@@ -125,13 +120,13 @@ void e_Log_msg(e_Log log, enum e_Log_Level level, const char* format, ...) {
     e_Log_prepare(log, level);
 
     if (level == E_LOG_ERROR) {
-        msg_prefix = ERROR_MESSAGE_PREFIX;
+        msg_prefix = ERROR_MSG_PREFIX;
     }
     else if (level == E_LOG_WARN) {
-        msg_prefix = WARNING_MESSAGE_PREFIX;
+        msg_prefix = "[WARN] ";
     }
     else {
-        msg_prefix = INFO_MESSAGE_PREFIX;
+        msg_prefix = "[INFO] ";
     }
 
     e_Log_print_str(log, msg_prefix);

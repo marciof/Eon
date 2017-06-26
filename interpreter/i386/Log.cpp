@@ -3,7 +3,7 @@
 
 e_Log e_Log_get() {
     // FIXME: remove globals in VGA and use this instance instead?
-    return e_Any_ptr(NULL);
+    return NULL;
 }
 
 void e_Log_prepare(e_Log log, enum e_Log_Level level) {

@@ -4,8 +4,8 @@ endif()
 
 # FIXME: merge into core
 add_executable(${PROJECT_NAME}.js
-    ../core/Any.h
-    ../core/Any.c
+    Any.h
+    Any.c
     main.c
     Ref.h
     Err.h

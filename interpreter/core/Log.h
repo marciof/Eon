@@ -1,7 +1,6 @@
 #pragma once
-#include "Any.h"
 
-typedef union e_Any e_Log;
+typedef void* e_Log;
 
 enum {E_LOG_TAB_SIZE_SPACES = 4};
 enum e_Log_Level {E_LOG_ERROR, E_LOG_WARN, E_LOG_INFO};
