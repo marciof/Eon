@@ -8,18 +8,6 @@ public:
     }
 
 protected:
-    void prepare_error() {
-        e_VGA_Text_set_color(E_VGA_TEXT_RED);
-    }
-
-    void prepare_info() {
-        e_VGA_Text_set_color(E_VGA_TEXT_WHITE);
-    }
-
-    void prepare_warning() {
-        e_VGA_Text_set_color(E_VGA_TEXT_YELLOW);
-    }
-
     void print(char ch) {
         e_VGA_Text_print(ch);
     }
@@ -32,4 +20,16 @@ protected:
 struct e_Log* e_Log_get() {
     static e_Log_Vga log;
     return &log;
+}
+
+void e_Log_prepare(struct e_Log* log, enum e_Log_Level level) {
+    if (level == E_LOG_ERROR) {
+        e_VGA_Text_set_color(E_VGA_TEXT_RED);
+    }
+    else if (level == E_LOG_WARNING) {
+        e_VGA_Text_set_color(E_VGA_TEXT_YELLOW);
+    }
+    else {
+        e_VGA_Text_set_color(E_VGA_TEXT_WHITE);
+    }
 }

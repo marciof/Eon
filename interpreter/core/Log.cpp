@@ -20,23 +20,16 @@ void e_Log_msg(
         struct e_Log* log, enum e_Log_Level level, const char* format, ...) {
 
     const char* msg_prefix;
+    e_Log_prepare(log, level);
 
-    if (level == E_LOG_INFO) {
-        e_Log_get()->prepare_info();
-        msg_prefix = INFO_MESSAGE_PREFIX;
-    }
-    else if (level == E_LOG_WARNING) {
-        e_Log_get()->prepare_warning();
-        msg_prefix = WARNING_MESSAGE_PREFIX;
-    }
-    else if (level == E_LOG_ERROR) {
-        e_Log_get()->prepare_error();
+    if (level == E_LOG_ERROR) {
         msg_prefix = ERROR_MESSAGE_PREFIX;
     }
-    else {
-        e_Log_msg(log, E_LOG_WARNING, "Invalid logging level: {iu}", level);
-        e_Log_get()->prepare_warning();
+    else if (level == E_LOG_WARNING) {
         msg_prefix = WARNING_MESSAGE_PREFIX;
+    }
+    else {
+        msg_prefix = INFO_MESSAGE_PREFIX;
     }
 
     e_Log_get()->print(msg_prefix);
@@ -51,7 +44,7 @@ void e_Log_msg(
 }
 
 void e_Log::info(const char* format, ...) {
-    this->prepare_info();
+    e_Log_prepare(this, E_LOG_INFO);
     this->print(INFO_MESSAGE_PREFIX);
 
     va_list arguments;
@@ -63,7 +56,7 @@ void e_Log::info(const char* format, ...) {
 }
 
 void e_Log::warning(const char* format, ...) {
-    this->prepare_warning();
+    e_Log_prepare(this, E_LOG_WARNING);
     this->print(WARNING_MESSAGE_PREFIX);
 
     va_list arguments;
@@ -72,15 +65,6 @@ void e_Log::warning(const char* format, ...) {
     va_end(arguments);
 
     this->print('\n');
-}
-
-void e_Log::prepare_error() {
-}
-
-void e_Log::prepare_info() {
-}
-
-void e_Log::prepare_warning() {
 }
 
 void e_Log::print(unsigned int integer, size_t base) {

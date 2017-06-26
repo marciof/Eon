@@ -16,3 +16,7 @@ struct e_Log* e_Log_get() {
     static e_Log_Stdout log;
     return &log;
 }
+
+void e_Log_prepare(struct e_Log* log, enum e_Log_Level level) {
+    // FIXME: add colors
+}
