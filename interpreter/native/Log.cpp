@@ -1,14 +1,10 @@
-#include <iostream>
+#include <stdio.h>
 #include "../core/Log.h"
 
 class e_Log_Stdout: public e_Log {
-protected:
-    void print(char ch) {
-        std::cout << ch;
-    }
-
     void print(const char* string) {
-        std::cout << string;
+        // FIXME: use stdout for info only
+        printf("%s", string);
     }
 };
 
@@ -19,4 +15,9 @@ struct e_Log* e_Log_get() {
 
 void e_Log_prepare(struct e_Log* log, enum e_Log_Level level) {
     // FIXME: add colors
+}
+
+void e_Log_print_ch(struct e_Log* log, char ch) {
+    // FIXME: use stdout for info only
+    putchar(ch);
 }

@@ -38,8 +38,7 @@ void e_Log_msg(
     va_start(arguments, format);
     e_Log_get()->print(format, arguments);
     va_end(arguments);
-
-    e_Log_get()->print('\n');
+    e_Log_print_ch(log, '\n');
 
     if (level == E_LOG_ERROR) {
         e_System::get()->stop(e_System::E_SYSTEM_HALT);
@@ -48,7 +47,7 @@ void e_Log_msg(
 
 void e_Log::print(unsigned int integer, size_t base) {
     if (integer == 0) {
-        this->print(NUMERIC_BASE_CONVERSION_SYMBOLS[integer]);
+        e_Log_print_ch(this, NUMERIC_BASE_CONVERSION_SYMBOLS[integer]);
         return;
     }
 
@@ -77,7 +76,7 @@ void e_Log::print(const char* format, va_list arguments) {
             ++format;
 
             if ((*format != '\0') && (*format == PLACEHOLDER_END)) {
-                this->print(PLACEHOLDER_END);
+                e_Log_print_ch(this, PLACEHOLDER_END);
                 continue;
             }
             else {
@@ -86,14 +85,14 @@ void e_Log::print(const char* format, va_list arguments) {
             }
         }
         else if (*format != PLACEHOLDER_BEGIN) {
-            this->print(*format);
+            e_Log_print_ch(this, *format);
             continue;
         }
 
         ++format;
 
         if (*format == PLACEHOLDER_BEGIN) {
-            this->print(PLACEHOLDER_BEGIN);
+            e_Log_print_ch(this, PLACEHOLDER_BEGIN);
             continue;
         }
 
@@ -102,7 +101,7 @@ void e_Log::print(const char* format, va_list arguments) {
 
         switch (*format++) {
         case 'c':
-            this->print(static_cast<char>(va_arg(arguments, int)));
+            e_Log_print_ch(this, static_cast<char>(va_arg(arguments, int)));
             break;
         case 's':
             string = va_arg(arguments, char*);
@@ -115,18 +114,18 @@ void e_Log::print(const char* format, va_list arguments) {
                 ++format;
             }
             else if (integer < 0) {
-                this->print('-');
+                e_Log_print_ch(this, '-');
                 integer = -integer;
             }
 
             switch (*format++) {
             case 'b':
                 this->print(integer, 2);
-                this->print('b');
+                e_Log_print_ch(this, 'b');
                 break;
             case 'h':
                 this->print(integer, 16);
-                this->print('h');
+                e_Log_print_ch(this, 'h');
                 break;
             default:
                 this->print(integer, 10);

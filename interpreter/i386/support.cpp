@@ -51,7 +51,7 @@ namespace __cxxabiv1 {
      */
     extern "C" int __cxa_finalize(void* destructor) {
         // FIXME
-        e_Log_msg(e_Log_get(), E_LOG_INFO,
+        e_Log_msg(e_Log_get(), E_LOG_WARN,
             "C++ ABI object finalization not implemented: destructor={iuh}",
             destructor);
 

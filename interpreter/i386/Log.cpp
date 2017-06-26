@@ -7,11 +7,6 @@ public:
         e_VGA_Text_init();
     }
 
-protected:
-    void print(char ch) {
-        e_VGA_Text_print(ch);
-    }
-
     void print(const char* string) {
         e_VGA_Text_print(string);
     }
@@ -32,4 +27,8 @@ void e_Log_prepare(struct e_Log* log, enum e_Log_Level level) {
     else {
         e_VGA_Text_set_color(E_VGA_TEXT_WHITE);
     }
+}
+
+void e_Log_print_ch(struct e_Log* log, char ch) {
+    e_VGA_Text_print(ch);
 }
