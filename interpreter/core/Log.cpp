@@ -40,19 +40,10 @@ void e_Log_msg(
     va_end(arguments);
 
     e_Log_get()->print('\n');
-    e_System::get()->stop(e_System::E_SYSTEM_HALT);
-}
 
-void e_Log::info(const char* format, ...) {
-    e_Log_prepare(this, E_LOG_INFO);
-    this->print(INFO_MESSAGE_PREFIX);
-
-    va_list arguments;
-    va_start(arguments, format);
-    this->print(format, arguments);
-    va_end(arguments);
-
-    this->print('\n');
+    if (level == E_LOG_ERROR) {
+        e_System::get()->stop(e_System::E_SYSTEM_HALT);
+    }
 }
 
 void e_Log::warning(const char* format, ...) {

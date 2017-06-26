@@ -2,7 +2,7 @@
 #include "Drive.h"
 
 void e_Multiboot_Drive::log() {
-    e_Log_get()->info(
+    e_Log_msg(e_Log_get(), E_LOG_INFO,
         "Drive: nr={iu}; mode={iu}; cylinders={iu}; "
         "heads={iu}; sectors={iu}; ports={iuh}",
         this->number, this->access_mode, this->cylinders,

@@ -19,7 +19,6 @@
  */
 struct e_Log {
     virtual ~e_Log() {};
-    void info(const char* format, ...);
     void warning(const char* format, ...);
 
     virtual void print(char ch) = 0;
