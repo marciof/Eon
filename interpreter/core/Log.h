@@ -1,16 +1,15 @@
 #pragma once
-#include <stdarg.h>
-#include <stddef.h>
+#include "Any.h"
 
-struct e_Log {};
+typedef union e_Any e_Log;
 
 enum {E_LOG_TAB_SIZE_SPACES = 4};
 enum e_Log_Level {E_LOG_ERROR, E_LOG_WARN, E_LOG_INFO};
 
-extern struct e_Log* e_Log_get();
-extern void e_Log_prepare(struct e_Log* log, enum e_Log_Level level);
-extern void e_Log_print_ch(struct e_Log* log, char ch);
-extern void e_Log_print_str(struct e_Log* log, const char* string);
+extern e_Log e_Log_get();
+extern void e_Log_prepare(e_Log log, enum e_Log_Level level);
+extern void e_Log_print_ch(e_Log log, char ch);
+extern void e_Log_print_str(e_Log log, const char* str);
 
 /**
  * Log format is a regular string with placeholders denoted by curly braces.
@@ -27,5 +26,4 @@ extern void e_Log_print_str(struct e_Log* log, const char* string);
  *
  * To print a literal curly brace, repeat it twice.
  */
-void e_Log_msg(
-    struct e_Log* log, enum e_Log_Level level, const char* format, ...);
+void e_Log_msg(e_Log log, enum e_Log_Level level, const char* format, ...);

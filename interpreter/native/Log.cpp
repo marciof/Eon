@@ -1,22 +1,19 @@
 #include <stdio.h>
 #include "../core/Log.h"
 
-class e_Log_Stdout: public e_Log {};
-
-struct e_Log* e_Log_get() {
-    static e_Log_Stdout log;
-    return &log;
+e_Log e_Log_get() {
+    return e_Any_ptr(NULL);
 }
 
-void e_Log_prepare(struct e_Log* log, enum e_Log_Level level) {
+void e_Log_prepare(e_Log log, enum e_Log_Level level) {
     // FIXME: add colors
-    // FIXME: switch `log` to `stderr` or `stdout` according to `level`
+    // FIXME: use `stdout` and `stderr` according to `level`
 }
 
-void e_Log_print_ch(struct e_Log* log, char ch) {
+void e_Log_print_ch(e_Log log, char ch) {
     putchar(ch);
 }
 
-void e_Log_print_str(struct e_Log* log, const char* string) {
-    printf("%s", string);
+void e_Log_print_str(e_Log log, const char* str) {
+    fputs(str, stdout);
 }

@@ -1,4 +1,5 @@
 enable_language(CXX)
+enable_language(C)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pedantic-errors -Wall -Wextra -ansi -Weffc++ -Wold-style-cast -Wredundant-decls -Wshadow -Wswitch-default -Wundef -Wunused-macros -Wno-unused-parameter")
 
@@ -11,7 +12,9 @@ set(core_sources
     core/Log.h
     core/Memory.h
     core/System.cpp
-    core/System.h)
+    core/System.h
+    core/Any.h
+    core/Any.c)
 
 string(REGEX REPLACE "([^;]+)" "${CMAKE_CURRENT_SOURCE_DIR}/\\1"
     core_sources "${core_sources}")

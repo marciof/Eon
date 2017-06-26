@@ -6,13 +6,15 @@
 #include "../core/System.h"
 #include "multiboot/Info.h"
 #include "support.h"
+#include "vga/Text.h"
 
 /**
  * Interfaces the assembly and C++ source code.
  */
 extern "C" void c_main() {
     eon::i386::support::initialize();
-    
+    e_VGA_Text_init();
+
     e_System* system = e_System::get();
     system->start();
     system->stop();

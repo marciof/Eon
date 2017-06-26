@@ -35,7 +35,7 @@ e_System* e_System::get() {
 int main(int argc, char* argv[]) {
     _argv = argv;
     e_System* system = e_System::get();
-    
+
     system->start();
     system->stop();
     

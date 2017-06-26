@@ -1,3 +1,5 @@
+#include <stdarg.h>
+#include <stddef.h>
 #include <sys/types.h>
 #include "Log.h"
 #include "System.h"
@@ -16,9 +18,9 @@
 #define STATIC_ARRAY_LENGTH(array) \
     (sizeof(array) / sizeof((array)[0]))
 
-static void e_Log_print_int(struct e_Log* log, unsigned int n, size_t base) {
-    if (n == 0) {
-        e_Log_print_ch(log, NUMERIC_BASE_CONVERSION_SYMBOLS[n]);
+static void e_Log_print_int(e_Log log, unsigned int integer, size_t base) {
+    if (integer == 0) {
+        e_Log_print_ch(log, NUMERIC_BASE_CONVERSION_SYMBOLS[integer]);
         return;
     }
 
@@ -29,19 +31,19 @@ static void e_Log_print_int(struct e_Log* log, unsigned int n, size_t base) {
 
     byte[STATIC_ARRAY_LENGTH(byte) - 1] = '\0';
 
-    while ((i >= 0) && (n != 0)) {
-        byte[i--] = NUMERIC_BASE_CONVERSION_SYMBOLS[n % base];
-        n /= base;
+    while ((i >= 0) && (integer != 0)) {
+        byte[i--] = NUMERIC_BASE_CONVERSION_SYMBOLS[integer % base];
+        integer /= base;
     }
 
-    if (n != 0) {
-        e_Log_print_int(log, n, base);
+    if (integer != 0) {
+        e_Log_print_int(log, integer, base);
     }
 
     e_Log_print_str(log, byte + i + 1);
 }
 
-static void e_Log_print(struct e_Log* log, const char* format, va_list args) {
+static void e_Log_print(e_Log log, const char* format, va_list args) {
     for (; *format != '\0'; ++format) {
         if (*format == PLACEHOLDER_END) {
             ++format;
@@ -67,7 +69,7 @@ static void e_Log_print(struct e_Log* log, const char* format, va_list args) {
             continue;
         }
 
-        char* string;
+        char* str;
         int integer;
 
         switch (*format++) {
@@ -75,8 +77,8 @@ static void e_Log_print(struct e_Log* log, const char* format, va_list args) {
             e_Log_print_ch(log, static_cast<char>(va_arg(args, int)));
             break;
         case 's':
-            string = va_arg(args, char*);
-            e_Log_print_str(log, string == NULL ? "(null)" : string);
+            str = va_arg(args, char*);
+            e_Log_print_str(log, str == NULL ? "(null)" : str);
             break;
         case 'i':
             integer = va_arg(args, int);
@@ -118,9 +120,7 @@ static void e_Log_print(struct e_Log* log, const char* format, va_list args) {
     }
 }
 
-void e_Log_msg(
-        struct e_Log* log, enum e_Log_Level level, const char* format, ...) {
-
+void e_Log_msg(e_Log log, enum e_Log_Level level, const char* format, ...) {
     const char* msg_prefix;
     e_Log_prepare(log, level);
 
