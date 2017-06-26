@@ -25,7 +25,7 @@ void e_Log_msg(
     if (level == E_LOG_ERROR) {
         msg_prefix = ERROR_MESSAGE_PREFIX;
     }
-    else if (level == E_LOG_WARNING) {
+    else if (level == E_LOG_WARN) {
         msg_prefix = WARNING_MESSAGE_PREFIX;
     }
     else {
@@ -44,18 +44,6 @@ void e_Log_msg(
     if (level == E_LOG_ERROR) {
         e_System::get()->stop(e_System::E_SYSTEM_HALT);
     }
-}
-
-void e_Log::warning(const char* format, ...) {
-    e_Log_prepare(this, E_LOG_WARNING);
-    this->print(WARNING_MESSAGE_PREFIX);
-
-    va_list arguments;
-    va_start(arguments, format);
-    this->print(format, arguments);
-    va_end(arguments);
-
-    this->print('\n');
 }
 
 void e_Log::print(unsigned int integer, size_t base) {

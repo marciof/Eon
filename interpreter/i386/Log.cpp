@@ -26,7 +26,7 @@ void e_Log_prepare(struct e_Log* log, enum e_Log_Level level) {
     if (level == E_LOG_ERROR) {
         e_VGA_Text_set_color(E_VGA_TEXT_RED);
     }
-    else if (level == E_LOG_WARNING) {
+    else if (level == E_LOG_WARN) {
         e_VGA_Text_set_color(E_VGA_TEXT_YELLOW);
     }
     else {

@@ -19,7 +19,6 @@
  */
 struct e_Log {
     virtual ~e_Log() {};
-    void warning(const char* format, ...);
 
     virtual void print(char ch) = 0;
     virtual void print(const char* string) = 0;
@@ -32,7 +31,7 @@ enum {E_LOG_TAB_SIZE_SPACES = 4};
 
 enum e_Log_Level {
     E_LOG_ERROR,
-    E_LOG_WARNING,
+    E_LOG_WARN,
     E_LOG_INFO
 };
 

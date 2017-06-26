@@ -38,8 +38,8 @@ public:
     void stop(e_System_Stop_Mode mode) {
         switch (mode) {
         case E_SYSTEM_HALT:
-            // TODO
-            e_Log_get()->warning("Halt shutdown not implemented.");
+            // FIXME: implement halt shutdown mode
+            e_Log_msg(e_Log_get(), E_LOG_WARN, "Halt shutdown not implemented.");
             eon::i386::support::finalize();
             halt();
             break;

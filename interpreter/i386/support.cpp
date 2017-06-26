@@ -50,8 +50,8 @@ namespace __cxxabiv1 {
      * @param destructor `NULL` indicates it should finalize all objects
      */
     extern "C" int __cxa_finalize(void* destructor) {
-        // TODO
-        e_Log_get()->warning(
+        // FIXME
+        e_Log_msg(e_Log_get(), E_LOG_INFO,
             "C++ ABI object finalization not implemented: destructor={iuh}",
             destructor);
 
@@ -91,7 +91,7 @@ extern "C" Constructor _cpp_ctors_begin[], _cpp_ctors_end[];
 extern "C" Destructor _cpp_dtors_begin[], _cpp_dtors_end[];
 
 void operator delete(void* object) {
-    e_Log_get()->warning(
+    e_Log_msg(e_Log_get(), E_LOG_INFO,
         "C++ operator delete not implemented: object={iuh}", object);
 }
 
