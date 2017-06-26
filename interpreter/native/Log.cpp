@@ -12,7 +12,7 @@ protected:
     }
 };
 
-e_Log* e_Log_get() {
+struct e_Log* e_Log_get() {
     static e_Log_Stdout log;
     return &log;
 }

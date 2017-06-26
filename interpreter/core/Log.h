@@ -17,25 +17,21 @@
  *
  * To print a literal curly brace, repeat it twice.
  */
-class e_Log {
-public:
+struct e_Log {
     virtual ~e_Log() {};
-    void error(const char* format, ...);
     void info(const char* format, ...);
     void warning(const char* format, ...);
 
-protected:
     virtual void prepare_error();
     virtual void prepare_info();
     virtual void prepare_warning();
     virtual void print(char ch) = 0;
     virtual void print(const char* string) = 0;
 
-private:
     void print(unsigned int integer, size_t base);
     void print(const char* format, va_list arguments);
 };
 
 enum {E_LOG_TAB_SIZE_SPACES = 4};
-
-extern e_Log* e_Log_get();
+extern struct e_Log* e_Log_get();
+void e_Log_error(struct e_Log* log, const char* format, ...);

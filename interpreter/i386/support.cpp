@@ -33,7 +33,7 @@ namespace __cxxabiv1 {
     _GLIBCXX_NOTHROW
     {
         if (_at_exit_entries_length >= MAX_AT_EXIT_ENTRIES) {
-            e_Log_get()->error(
+            e_Log_error(e_Log_get(),
                 "Maximum number of C++ ABI at-exit entries reached: {iu}",
                 MAX_AT_EXIT_ENTRIES);
         }
@@ -67,7 +67,7 @@ namespace __cxxabiv1 {
     }
     
     extern "C" void __cxa_guard_abort(__guard* guard) {
-        e_Log_get()->error("C++ ABI guard abort: guard={iuh}",
+        e_Log_error(e_Log_get(), "C++ ABI guard abort: guard={iuh}",
             *reinterpret_cast<unsigned int*>(guard));
     }
 
@@ -76,7 +76,7 @@ namespace __cxxabiv1 {
      * pointer is not filled in.
      */
     extern "C" void __cxa_pure_virtual() {
-        e_Log_get()->error("C++ ABI pure virtual function call.");
+        e_Log_error(e_Log_get(), "C++ ABI pure virtual function call.");
         __builtin_unreachable();
     }
 }

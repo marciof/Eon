@@ -48,7 +48,7 @@ public:
             reset();
             break;
         default:
-            e_Log_get()->error("Invalid system stop mode.");
+            e_Log_error(e_Log_get(), "Invalid system stop mode.");
             break;
         }
     }

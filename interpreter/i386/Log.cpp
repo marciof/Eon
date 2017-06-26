@@ -29,7 +29,7 @@ protected:
     }
 };
 
-e_Log* e_Log_get() {
+struct e_Log* e_Log_get() {
     static e_Log_Vga log;
     return &log;
 }

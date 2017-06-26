@@ -16,16 +16,16 @@
 #define STATIC_ARRAY_LENGTH(array) \
     (sizeof(array) / sizeof((array)[0]))
 
-void e_Log::error(const char* format, ...) {
-    this->prepare_error();
-    this->print(ERROR_MESSAGE_PREFIX);
+void e_Log_error(struct e_Log* log, const char* format, ...) {
+    e_Log_get()->prepare_error();
+    e_Log_get()->print(ERROR_MESSAGE_PREFIX);
 
     va_list arguments;
     va_start(arguments, format);
-    this->print(format, arguments);
+    e_Log_get()->print(format, arguments);
     va_end(arguments);
 
-    this->print('\n');
+    e_Log_get()->print('\n');
     e_System::get()->stop(e_System::E_SYSTEM_HALT);
 }
 
