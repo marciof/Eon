@@ -15,7 +15,9 @@ extern "C" void c_main() {
     eon::i386::support::initialize();
     e_VGA_Text_init();
     e_Multiboot_Info::get()->log();
-    e_System_stop(e_System_get());
+
+    e_System* system = e_System_get();
+    system->stop(system, E_SYSTEM_HALT);
 }
 
 /**
@@ -28,11 +30,7 @@ extern "C" void e_System_halt();
  */
 extern "C" void e_System_reset();
 
-struct e_System* e_System_get() {
-    return NULL;
-}
-
-void e_System_stop(struct e_System* system, enum e_System_Stop_Mode mode) {
+static void stop(struct e_System* system, enum e_System_Stop_Mode mode) {
     switch (mode) {
     case E_SYSTEM_HALT:
         // FIXME: implement halt shutdown mode
@@ -48,4 +46,9 @@ void e_System_stop(struct e_System* system, enum e_System_Stop_Mode mode) {
         e_Log_msg(e_Log_get(), E_LOG_ERROR, "Invalid system stop mode.");
         break;
     }
+}
+
+struct e_System* e_System_get() {
+    static struct e_System system = {stop};
+    return &system;
 }
