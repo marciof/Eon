@@ -10,12 +10,12 @@ enum e_Token_Type {
 };
 
 struct e_Token {
+    E_REF_FIELD;
     enum e_Token_Type type;
     struct e_Str* str;
     struct e_Input* input;
     size_t line;
     size_t column;
-    E_REF_FIELD;
 };
 
 // `NULL` on EOF

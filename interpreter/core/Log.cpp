@@ -13,9 +13,9 @@
 
 #define STATIC_ARRAY_LEN(array) (sizeof((array)) / sizeof((array)[0]))
 
-static void e_Log_print_int(e_Log log, unsigned int integer, size_t base) {
+static void print_int(struct e_Log* log, unsigned int integer, size_t base) {
     if (integer == 0) {
-        e_Log_print_ch(log, NUMERIC_BASE_CONVERSION_SYMBOLS[integer]);
+        log->print_ch(log, NUMERIC_BASE_CONVERSION_SYMBOLS[integer]);
         return;
     }
 
@@ -32,35 +32,35 @@ static void e_Log_print_int(e_Log log, unsigned int integer, size_t base) {
     }
 
     if (integer != 0) {
-        e_Log_print_int(log, integer, base);
+        print_int(log, integer, base);
     }
 
-    e_Log_print_str(log, byte + i + 1);
+    log->print_str(log, byte + i + 1);
 }
 
-static void e_Log_print(e_Log log, const char* format, va_list args) {
+static void print(struct e_Log* log, const char* format, va_list args) {
     for (; *format != '\0'; ++format) {
         if (*format == PLACEHOLDER_END) {
             ++format;
 
             if ((*format != '\0') && (*format == PLACEHOLDER_END)) {
-                e_Log_print_ch(log, PLACEHOLDER_END);
+                log->print_ch(log, PLACEHOLDER_END);
                 continue;
             }
             else {
-                e_Log_print_str(log, "\n" FORMAT_STR_ERROR);
+                log->print_str(log, "\n" FORMAT_STR_ERROR);
                 e_System::get()->stop(e_System::E_SYSTEM_HALT);
             }
         }
         else if (*format != PLACEHOLDER_BEGIN) {
-            e_Log_print_ch(log, *format);
+            log->print_ch(log, *format);
             continue;
         }
 
         ++format;
 
         if (*format == PLACEHOLDER_BEGIN) {
-            e_Log_print_ch(log, PLACEHOLDER_BEGIN);
+            log->print_ch(log, PLACEHOLDER_BEGIN);
             continue;
         }
 
@@ -69,11 +69,11 @@ static void e_Log_print(e_Log log, const char* format, va_list args) {
 
         switch (*format++) {
         case 'c':
-            e_Log_print_ch(log, static_cast<char>(va_arg(args, int)));
+            log->print_ch(log, static_cast<char>(va_arg(args, int)));
             break;
         case 's':
             str = va_arg(args, char*);
-            e_Log_print_str(log, str == NULL ? "(null)" : str);
+            log->print_str(log, str == NULL ? "(null)" : str);
             break;
         case 'i':
             integer = va_arg(args, int);
@@ -82,42 +82,44 @@ static void e_Log_print(e_Log log, const char* format, va_list args) {
                 ++format;
             }
             else if (integer < 0) {
-                e_Log_print_ch(log, '-');
+                log->print_ch(log, '-');
                 integer = -integer;
             }
 
             switch (*format++) {
             case 'b':
-                e_Log_print_int(log, static_cast<unsigned>(integer), 2);
-                e_Log_print_ch(log, 'b');
+                print_int(log, static_cast<unsigned>(integer), 2);
+                log->print_ch(log, 'b');
                 break;
             case 'h':
-                e_Log_print_int(log, static_cast<unsigned>(integer), 16);
-                e_Log_print_ch(log, 'h');
+                print_int(log, static_cast<unsigned>(integer), 16);
+                log->print_ch(log, 'h');
                 break;
             default:
-                e_Log_print_int(log, static_cast<unsigned>(integer), 10);
+                print_int(log, static_cast<unsigned>(integer), 10);
                 --format;
                 break;
             }
 
             break;
         default:
-            e_Log_print_str(log, "\n" FORMAT_STR_ERROR);
+            log->print_str(log, "\n" FORMAT_STR_ERROR);
                 e_System::get()->stop(e_System::E_SYSTEM_HALT);
             break;
         }
 
         if (*format != PLACEHOLDER_END) {
-            e_Log_print_str(log, "\n" FORMAT_STR_ERROR);
+            log->print_str(log, "\n" FORMAT_STR_ERROR);
             e_System::get()->stop(e_System::E_SYSTEM_HALT);
         }
     }
 }
 
-void e_Log_msg(e_Log log, enum e_Log_Level level, const char* format, ...) {
+void e_Log_msg(
+        struct e_Log* log, enum e_Log_Level level, const char* format, ...) {
+
     const char* msg_prefix;
-    e_Log_prepare(log, level);
+    log->prepare(log, level);
 
     if (level == E_LOG_ERROR) {
         msg_prefix = ERROR_MSG_PREFIX;
@@ -129,13 +131,13 @@ void e_Log_msg(e_Log log, enum e_Log_Level level, const char* format, ...) {
         msg_prefix = "[INFO] ";
     }
 
-    e_Log_print_str(log, msg_prefix);
+    log->print_str(log, msg_prefix);
 
     va_list args;
     va_start(args, format);
-    e_Log_print(log, format, args);
+    print(log, format, args);
     va_end(args);
-    e_Log_print_ch(log, '\n');
+    log->print_ch(log, '\n');
 
     if (level == E_LOG_ERROR) {
         e_System::get()->stop(e_System::E_SYSTEM_HALT);

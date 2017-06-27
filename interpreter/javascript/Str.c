@@ -3,7 +3,7 @@
 #include <string.h>
 #include "Str.h"
 
-static void e_Str_increase_max_len(struct e_Str* str, bool* has_err) {
+static void increase_max_len(struct e_Str* str, bool* has_err) {
     if (str->max_len == SIZE_MAX) {
         *has_err = true;
         errno = ENOMEM;
@@ -36,7 +36,7 @@ static void e_Str_free(void* str) {
 
 void e_Str_add_char(struct e_Str* str, char ch, bool* has_err) {
     if (str->len == str->max_len) {
-        e_Str_increase_max_len(str, has_err);
+        increase_max_len(str, has_err);
 
         if (*has_err) {
             return;

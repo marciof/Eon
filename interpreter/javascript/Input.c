@@ -4,15 +4,12 @@
 
 struct Fd_Buffer {
     int fd;
-    char buf[BUFSIZ];
     size_t len;
     size_t pos;
-    E_REF_FIELD;
+    char buf[BUFSIZ];
 };
 
-static int e_Fd_Buffer_read(
-        struct e_Input* input, bool is_peek, bool* has_err) {
-
+static int read_ch(struct e_Input* input, bool is_peek, bool* has_err) {
     struct Fd_Buffer* fd_buffer = (struct Fd_Buffer*) input->val;
 
     if (fd_buffer->pos >= fd_buffer->len) {
@@ -58,7 +55,7 @@ struct e_Input* e_Input_from_fd(int fd, char* location, bool* has_err) {
         return NULL;
     }
 
-    input->read_ch = e_Fd_Buffer_read;
+    input->read_ch = read_ch;
     input->location = location;
     input->line = 1;
     input->column = 1;

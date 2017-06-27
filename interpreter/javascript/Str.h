@@ -4,10 +4,10 @@
 #include "Ref.h"
 
 struct e_Str {
+    E_REF_FIELD;
     char* val;
     size_t len;
     size_t max_len;
-    E_REF_FIELD;
 };
 
 void e_Str_add_char(struct e_Str* str, char ch, bool* has_err);

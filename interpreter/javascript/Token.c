@@ -35,9 +35,7 @@ static struct e_Token* e_Token_new(
     return E_REF_INIT(token, e_Token_free);
 }
 
-static struct e_Str* e_Token_read_comment(
-        struct e_Input* input, bool* has_err) {
-
+static struct e_Str* read_comment(struct e_Input* input, bool* has_err) {
     input->read_ch(input, false, has_err); // Discard.
     if (*has_err) {
         return NULL;
@@ -73,9 +71,7 @@ static struct e_Str* e_Token_read_comment(
     return str;
 }
 
-static struct e_Str* e_Token_read_whitespace(
-        struct e_Input* input, bool* has_err) {
-
+static struct e_Str* read_whitespace(struct e_Input* input, bool* has_err) {
     struct e_Str* str = e_Str_new(has_err);
     if (*has_err) {
         return NULL;
@@ -117,11 +113,11 @@ struct e_Token* e_Token_parse(struct e_Input* input, bool* has_err) {
     size_t column = input->column;
 
     if (ch == E_COMMENT_QUOTE) {
-        str = e_Token_read_comment(input, has_err);
+        str = read_comment(input, has_err);
         type = E_TOKEN_COMMENT;
     }
     else if ((ch == E_SPACE) || (ch == E_END_OF_LINE)) {
-        str = e_Token_read_whitespace(input, has_err);
+        str = read_whitespace(input, has_err);
         type = E_TOKEN_WHITESPACE;
     }
     else {
