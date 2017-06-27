@@ -1,3 +1,4 @@
+- Make "i386" emulate the standard C library and runtime? (Or use something like Newlib?) More familiar and easier to use external libraries? "core" only adds language specific things.
 - Build native host layer by default with option to switch.
 - Build library from "core" and use it in each host built executable, so that it can be embedded. Can the remove the $core_sources CMake var.
 - If global ctors/dtors are removed, then there's no need for the linker script which will fix the dependency issue.

@@ -1,3 +1,4 @@
+#include <stddef.h>
 #include <stdint.h>
 #include "../core/Memory.h"
 #include "Bit.h"
@@ -93,13 +94,6 @@ E_BIT_ATTR_PACKED(struct Segment_Descriptor {
 STATIC_ASSERT(sizeof(Segment_Descriptor) == 8,
     "Memory segment descriptor structure not packed.");
 
-class e_Memory_Physical: public e_Memory {
-public:
-    e_Memory_Physical() {
-    }
-};
-
-e_Memory* e_Memory::get() {
-    static e_Memory_Physical memory;
-    return &memory;
+struct e_Memory* e_Memory_get() {
+    return NULL;
 }

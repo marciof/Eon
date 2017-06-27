@@ -1,7 +1,5 @@
 #pragma once
 
-class e_Memory {
-public:
-    static e_Memory* get(); // = 0
-    virtual ~e_Memory() {};
-};
+struct e_Memory;
+
+extern struct e_Memory* e_Memory_get();
