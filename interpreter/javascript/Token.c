@@ -38,7 +38,7 @@ static struct e_Token* e_Token_new(
 static struct e_Str* e_Token_read_comment(
         struct e_Input* input, bool* has_err) {
 
-    input->read(input, false, has_err); // Discard.
+    input->read_ch(input, false, has_err); // Discard.
     if (*has_err) {
         return NULL;
     }
@@ -49,7 +49,7 @@ static struct e_Str* e_Token_read_comment(
     }
 
     while (true) {
-        int ch = input->read(input, false, has_err);
+        int ch = input->read_ch(input, false, has_err);
 
         if (*has_err) {
             E_REF_DEC(str);
@@ -82,7 +82,7 @@ static struct e_Str* e_Token_read_whitespace(
     }
 
     while (true) {
-        int ch = input->read(input, true, has_err);
+        int ch = input->read_ch(input, true, has_err);
 
         if (*has_err) {
             E_REF_DEC(str);
@@ -92,7 +92,7 @@ static struct e_Str* e_Token_read_whitespace(
             break;
         }
 
-        input->read(input, false, has_err); // Discard.
+        input->read_ch(input, false, has_err); // Discard.
         e_Str_add_char(str, (char) ch, has_err);
 
         if (*has_err) {
@@ -105,7 +105,7 @@ static struct e_Str* e_Token_read_whitespace(
 }
 
 struct e_Token* e_Token_parse(struct e_Input* input, bool* has_err) {
-    int ch = input->read(input, true, has_err);
+    int ch = input->read_ch(input, true, has_err);
 
     if (*has_err || ch == EOF) {
         return NULL;

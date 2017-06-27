@@ -13,7 +13,7 @@ struct Fd_Buffer {
 static int e_Fd_Buffer_read(
         struct e_Input* input, bool is_peek, bool* has_err) {
 
-    struct Fd_Buffer* fd_buffer = input->arg.ptr;
+    struct Fd_Buffer* fd_buffer = (struct Fd_Buffer*) input->val;
 
     if (fd_buffer->pos >= fd_buffer->len) {
         ssize_t len_bytes = read(
@@ -49,38 +49,24 @@ static int e_Fd_Buffer_read(
     return ch;
 }
 
-static void e_Input_Fd_Buffer_free(void* ptr) {
-    E_REF_DEC((struct Fd_Buffer*) ((struct e_Input*) ptr)->arg.ptr);
-    free(ptr);
-}
-
 struct e_Input* e_Input_from_fd(int fd, char* location, bool* has_err) {
-    struct Fd_Buffer* fd_buffer = malloc(sizeof(*fd_buffer));
-
-    if (fd_buffer == NULL) {
-        *has_err = true;
-        E_ERR_ERRNO();
-        return NULL;
-    }
-
-    struct e_Input* input = malloc(sizeof(*input));
+    struct e_Input* input = malloc(sizeof(*input) + sizeof(struct Fd_Buffer));
 
     if (input == NULL) {
         *has_err = true;
         E_ERR_ERRNO();
-        free(fd_buffer);
         return NULL;
     }
 
+    input->read_ch = e_Fd_Buffer_read;
+    input->location = location;
+    input->line = 1;
+    input->column = 1;
+
+    struct Fd_Buffer* fd_buffer = (struct Fd_Buffer*) input->val;
     fd_buffer->fd = fd;
     fd_buffer->len = 0;
     fd_buffer->pos = 0;
 
-    input->arg = e_Any_ptr(E_REF_INIT(fd_buffer, free));
-    input->location = location;
-    input->line = 1;
-    input->column = 1;
-    input->read = e_Fd_Buffer_read;
-
-    return E_REF_INIT(input, e_Input_Fd_Buffer_free);
+    return E_REF_INIT(input, free);
 }
