@@ -1,5 +1,6 @@
 - Make "i386" emulate the standard C library and runtime? (Or use something like Newlib?) More familiar and easier to use external libraries? "core" only adds language specific things.
 - Build native host layer by default with option to switch.
+- Avoid all these repeated calls for `*_get()`?
 - Build library from "core" and use it in each host built executable, so that it can be embedded. Can the remove the $core_sources CMake var.
 - If global ctors/dtors are removed, then there's no need for the linker script which will fix the dependency issue.
 - Clean up, abbreviate a bit more since C is verbose, remove leading underscore in static data, upper-case data type files, simplify, remove double blank lines, more flat less nested, remove useless TODO comments and documentation (document only what's need), remove stop modes and use only reset or halt.

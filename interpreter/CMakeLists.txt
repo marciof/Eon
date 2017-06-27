@@ -11,7 +11,6 @@ set(core_sources
     core/Log.cpp
     core/Log.h
     core/Memory.h
-    core/System.cpp
     core/System.h)
 
 string(REGEX REPLACE "([^;]+)" "${CMAKE_CURRENT_SOURCE_DIR}/\\1"

@@ -49,7 +49,7 @@ static void print(struct e_Log* log, const char* format, va_list args) {
             }
             else {
                 log->print_str(log, "\n" FORMAT_STR_ERROR);
-                e_System::get()->stop(e_System::E_SYSTEM_HALT);
+                e_System_stop(e_System_get(), E_SYSTEM_HALT);
             }
         }
         else if (*format != PLACEHOLDER_BEGIN) {
@@ -104,13 +104,13 @@ static void print(struct e_Log* log, const char* format, va_list args) {
             break;
         default:
             log->print_str(log, "\n" FORMAT_STR_ERROR);
-                e_System::get()->stop(e_System::E_SYSTEM_HALT);
+            e_System_stop(e_System_get(), E_SYSTEM_HALT);
             break;
         }
 
         if (*format != PLACEHOLDER_END) {
             log->print_str(log, "\n" FORMAT_STR_ERROR);
-            e_System::get()->stop(e_System::E_SYSTEM_HALT);
+            e_System_stop(e_System_get(), E_SYSTEM_HALT);
         }
     }
 }
@@ -140,6 +140,6 @@ void e_Log_msg(
     log->print_ch(log, '\n');
 
     if (level == E_LOG_ERROR) {
-        e_System::get()->stop(e_System::E_SYSTEM_HALT);
+        e_System_stop(e_System_get(), E_SYSTEM_HALT);
     }
 }

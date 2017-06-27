@@ -14,49 +14,38 @@
 extern "C" void c_main() {
     eon::i386::support::initialize();
     e_VGA_Text_init();
-
-    e_System* system = e_System::get();
-    system->start();
-    system->stop();
+    e_Multiboot_Info::get()->log();
+    e_System_stop(e_System_get());
 }
 
 /**
  * Halts the computer.
  */
-extern "C" void halt();
+extern "C" void e_System_halt();
 
 /**
  * Resets the computer.
  */
-extern "C" void reset();
+extern "C" void e_System_reset();
 
-class e_System_Processor: public e_System {
-public:
-    void start() {
-        e_Multiboot_Info::get()->log();
-        e_System::start();
+struct e_System* e_System_get() {
+    return NULL;
+}
+
+void e_System_stop(struct e_System* system, enum e_System_Stop_Mode mode) {
+    switch (mode) {
+    case E_SYSTEM_HALT:
+        // FIXME: implement halt shutdown mode
+        e_Log_msg(e_Log_get(), E_LOG_WARN, "Halt shutdown not implemented.");
+        eon::i386::support::finalize();
+        e_System_halt();
+        break;
+    case E_SYSTEM_RESET:
+        eon::i386::support::finalize();
+        e_System_reset();
+        break;
+    default:
+        e_Log_msg(e_Log_get(), E_LOG_ERROR, "Invalid system stop mode.");
+        break;
     }
-
-    void stop(e_System_Stop_Mode mode) {
-        switch (mode) {
-        case E_SYSTEM_HALT:
-            // FIXME: implement halt shutdown mode
-            e_Log_msg(e_Log_get(), E_LOG_WARN, "Halt shutdown not implemented.");
-            eon::i386::support::finalize();
-            halt();
-            break;
-        case E_SYSTEM_RESET:
-            eon::i386::support::finalize();
-            reset();
-            break;
-        default:
-            e_Log_msg(e_Log_get(), E_LOG_ERROR, "Invalid system stop mode.");
-            break;
-        }
-    }
-};
-
-e_System* e_System::get() {
-    static e_System_Processor system;
-    return &system;
 }

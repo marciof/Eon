@@ -20,8 +20,8 @@ stack:
 section .text
 align 4
 
-global halt
-halt:
+global e_System_halt
+e_System_halt:
     cli
     hlt
 
@@ -37,8 +37,8 @@ main:
     
     call c_main
 
-global reset
-reset:
+global e_System_reset
+e_System_reset:
     ; FIXME: explain part about keyboard.
     ; Reset by causing a triple fault (which doesn't require a keyboard).
     int 3
