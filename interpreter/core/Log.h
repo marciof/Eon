@@ -1,10 +1,12 @@
 #pragma once
+#include "Any.h"
 
-typedef void* e_Log;
+typedef union e_Any e_Log;
 
 enum {E_LOG_TAB_SIZE_SPACES = 4};
 enum e_Log_Level {E_LOG_ERROR, E_LOG_WARN, E_LOG_INFO};
 
+// FIXME: use methods instead, as this doesn't allow implementations to co-exist
 extern e_Log e_Log_get();
 extern void e_Log_prepare(e_Log log, enum e_Log_Level level);
 extern void e_Log_print_ch(e_Log log, char ch);
