@@ -25,6 +25,112 @@ E_BIT_ATTR_PACKED(struct e_Multiboot_Boot_Device {
     e_Multiboot_Drive_BIOS_Nr drive_number;
 });
 
+static void log_boot_device(struct e_Multiboot_Info* info, struct e_Log* log) {
+    if (IS_FLAG_SET(info->flags, MULTIBOOT_INFO_BOOTDEV)) {
+        e_Multiboot_Boot_Device& device
+            = reinterpret_cast<e_Multiboot_Boot_Device&>(info->boot_device);
+
+        e_Log_msg(log, E_LOG_INFO,
+            "Boot device: drive={iuh}; partitions=[{iuh}, {iuh}, {iuh}]",
+            device.drive_number,
+            device.top_level_partition,
+            device.sub_partition,
+            device.sub_sub_partition);
+    }
+}
+
+static void log_boot_modules(struct e_Multiboot_Info* info, struct e_Log* log) {
+    if (!IS_FLAG_SET(info->flags, MULTIBOOT_INFO_MODS)) {
+        return;
+    }
+
+    for (size_t i = 0; i < info->mods_count; ++i) {
+        multiboot_mod_list& module = reinterpret_cast<multiboot_module_t*>(
+            info->mods_addr)[i];
+
+        e_Log_msg(log, E_LOG_INFO,
+            "Boot module: start={iuh}; end={iuh}; string=\"{s}\"",
+            module.mod_start, module.mod_end,
+            reinterpret_cast<char*>(module.cmdline));
+    }
+}
+
+static void log_drives(struct e_Multiboot_Info* info, struct e_Log* log) {
+    if (!IS_FLAG_SET(info->flags, MULTIBOOT_INFO_DRIVE_INFO)) {
+        return;
+    }
+
+    e_Multiboot_Drive_Iterator iterator(
+        reinterpret_cast<e_Multiboot_Drive*>(info->drives_addr),
+        info->drives_length);
+
+    while (iterator.has_next()) {
+        iterator.next()->log();
+    }
+}
+
+static void log_memory_map(struct e_Multiboot_Info* info, struct e_Log* log) {
+    if (!IS_FLAG_SET(info->flags, MULTIBOOT_INFO_MEM_MAP)) {
+        return;
+    }
+
+    e_Multiboot_Memory_Region_Iterator iterator(
+        reinterpret_cast<multiboot_mmap_entry*>(info->mmap_addr),
+        info->mmap_length);
+
+    // The memory map is provided by the BIOS and is guaranteed to list
+    // all standard memory that should be available for normal use.
+
+    while (iterator.has_next()) {
+        multiboot_mmap_entry* region = iterator.next();
+
+        e_Log_msg(log, E_LOG_INFO, "Memory map region: addr=[{iuh}, {iuh}]; "
+            "size=[{iuh}, {iuh}] B; type={iu}",
+            static_cast<unsigned>(region->addr >> 32),
+            static_cast<unsigned>(region->addr & 0xFFFFFFFF),
+            static_cast<unsigned>(region->len >> 32),
+            static_cast<unsigned>(region->len & 0xFFFFFFFF),
+            region->type);
+    }
+}
+
+static void log_symbol_table(struct e_Multiboot_Info* info, struct e_Log* log) {
+    if (IS_FLAG_SET(info->flags, MULTIBOOT_INFO_AOUT_SYMS)) {
+        multiboot_aout_symbol_table& table = info->u.aout_sym;
+
+        e_Log_msg(log, E_LOG_INFO, "a.out symbol table: "
+            "size={iu}; string table size={iu}; addr={iuh}",
+            table.tabsize, table.strsize, table.addr);
+    }
+    else if (IS_FLAG_SET(info->flags, MULTIBOOT_INFO_ELF_SHDR)) {
+        multiboot_elf_section_header_table& table = info->u.elf_sec;
+
+        e_Log_msg(log, E_LOG_INFO, "ELF section header table: "
+            "num={iu}; size={iu} B; addr={iuh}; shndx={iu}",
+            table.num, table.size, table.addr, table.shndx);
+    }
+}
+
+static void log_vbe(struct e_Multiboot_Info* info, struct e_Log* log) {
+    if (IS_FLAG_SET(info->flags, MULTIBOOT_INFO_VBE_INFO)) {
+        e_Log_msg(log, E_LOG_INFO, "VBE: control info={iuh}; mode info={iuh}; "
+            "current video mode={iu}",
+            info->vbe_control_info,     // Obtained by VBE function 00h.
+            info->vbe_mode_info,        // Obtained by VBE function 01h.
+            info->vbe_mode);            // In VBE 3.0 format.
+    }
+
+    if (IS_FLAG_SET(info->flags, MULTIBOOT_INFO_FRAMEBUFFER_INFO)) {
+        /* The following fields contain the table of a protected mode
+           interface defined in VBE version 2.0 or later. If it isn't
+           available, those fields are set to zero. */
+
+        e_Log_msg(log, E_LOG_INFO, "VBE 2.0+ interface table: segment={iuh}; "
+            "offset={iuh}; length={iu} B", info->vbe_interface_seg,
+            info->vbe_interface_off, info->vbe_interface_len);
+    }
+}
+
 struct e_Multiboot_Info* e_Multiboot_Info_get() {
     if (_multiboot_magic_nr != MULTIBOOT_BOOTLOADER_MAGIC) {
         e_Log_msg(e_Log_get(), E_LOG_ERROR,
@@ -51,16 +157,16 @@ void e_Multiboot_Info_log(struct e_Multiboot_Info* info, struct e_Log* log) {
             info->mem_upper);       // Starting at 1024.
     }
 
-    info->log_boot_device(log);
+    log_boot_device(info, log);
 
     if (IS_FLAG_SET(info->flags, MULTIBOOT_INFO_CMDLINE)) {
         e_Log_msg(log, E_LOG_INFO, "Command line: \"{s}\"", info->cmdline);
     }
 
-    info->log_boot_modules(log);
-    info->log_symbol_table(log);
-    info->log_memory_map(log);
-    info->log_drives(log);
+    log_boot_modules(info, log);
+    log_symbol_table(info, log);
+    log_memory_map(info, log);
+    log_drives(info, log);
 
     if (IS_FLAG_SET(info->flags, MULTIBOOT_INFO_CONFIG_TABLE)) {
         /* ROM configuration table as returned by the "get configuration"
@@ -83,111 +189,5 @@ void e_Multiboot_Info_log(struct e_Multiboot_Info* info, struct e_Log* log) {
             table.version, table.flags);
     }
 
-    info->log_vbe(log);
-}
-
-void e_Multiboot_Info::log_boot_device(struct e_Log* log) {
-    if (IS_FLAG_SET(this->flags, MULTIBOOT_INFO_BOOTDEV)) {
-        e_Multiboot_Boot_Device& device
-            = reinterpret_cast<e_Multiboot_Boot_Device&>(this->boot_device);
-
-        e_Log_msg(log, E_LOG_INFO,
-            "Boot device: drive={iuh}; partitions=[{iuh}, {iuh}, {iuh}]",
-            device.drive_number,
-            device.top_level_partition,
-            device.sub_partition,
-            device.sub_sub_partition);
-    }
-}
-
-void e_Multiboot_Info::log_boot_modules(struct e_Log* log) {
-    if (!IS_FLAG_SET(this->flags, MULTIBOOT_INFO_MODS)) {
-        return;
-    }
-
-    for (size_t i = 0; i < this->mods_count; ++i) {
-        multiboot_mod_list& module = reinterpret_cast<multiboot_module_t*>(
-            this->mods_addr)[i];
-
-        e_Log_msg(log, E_LOG_INFO, 
-            "Boot module: start={iuh}; end={iuh}; string=\"{s}\"",
-            module.mod_start, module.mod_end,
-            reinterpret_cast<char*>(module.cmdline));
-    }
-}
-
-void e_Multiboot_Info::log_drives(struct e_Log* log) {
-    if (!IS_FLAG_SET(this->flags, MULTIBOOT_INFO_DRIVE_INFO)) {
-        return;
-    }
-
-    e_Multiboot_Drive_Iterator iterator(
-        reinterpret_cast<e_Multiboot_Drive*>(this->drives_addr),
-        this->drives_length);
-
-    while (iterator.has_next()) {
-        iterator.next()->log();
-    }
-}
-
-void e_Multiboot_Info::log_memory_map(struct e_Log* log) {
-    if (!IS_FLAG_SET(this->flags, MULTIBOOT_INFO_MEM_MAP)) {
-        return;
-    }
-
-    e_Multiboot_Memory_Region_Iterator iterator(
-        reinterpret_cast<multiboot_mmap_entry*>(this->mmap_addr),
-        this->mmap_length);
-
-    // The memory map is provided by the BIOS and is guaranteed to list
-    // all standard memory that should be available for normal use.
-
-    while (iterator.has_next()) {
-        multiboot_mmap_entry* region = iterator.next();
-
-        e_Log_msg(log, E_LOG_INFO, "Memory map region: addr=[{iuh}, {iuh}]; "
-            "size=[{iuh}, {iuh}] B; type={iu}",
-            static_cast<unsigned>(region->addr >> 32),
-            static_cast<unsigned>(region->addr & 0xFFFFFFFF),
-            static_cast<unsigned>(region->len >> 32),
-            static_cast<unsigned>(region->len & 0xFFFFFFFF),
-            region->type);
-    }
-}
-
-void e_Multiboot_Info::log_symbol_table(struct e_Log* log) {
-    if (IS_FLAG_SET(this->flags, MULTIBOOT_INFO_AOUT_SYMS)) {
-        multiboot_aout_symbol_table& table = this->u.aout_sym;
-
-        e_Log_msg(log, E_LOG_INFO, "a.out symbol table: "
-            "size={iu}; string table size={iu}; addr={iuh}",
-            table.tabsize, table.strsize, table.addr);
-    }
-    else if (IS_FLAG_SET(this->flags, MULTIBOOT_INFO_ELF_SHDR)) {
-        multiboot_elf_section_header_table& table = this->u.elf_sec;
-
-        e_Log_msg(log, E_LOG_INFO, "ELF section header table: "
-            "num={iu}; size={iu} B; addr={iuh}; shndx={iu}",
-            table.num, table.size, table.addr, table.shndx);
-    }
-}
-
-void e_Multiboot_Info::log_vbe(struct e_Log* log) {
-    if (IS_FLAG_SET(this->flags, MULTIBOOT_INFO_VBE_INFO)) {
-        e_Log_msg(log, E_LOG_INFO, "VBE: control info={iuh}; mode info={iuh}; "
-            "current video mode={iu}",
-            this->vbe_control_info,     // Obtained by VBE function 00h.
-            this->vbe_mode_info,        // Obtained by VBE function 01h.
-            this->vbe_mode);            // In VBE 3.0 format.
-    }
-
-    if (IS_FLAG_SET(this->flags, MULTIBOOT_INFO_FRAMEBUFFER_INFO)) {
-        /* The following fields contain the table of a protected mode
-           interface defined in VBE version 2.0 or later. If it isn't
-           available, those fields are set to zero. */
-
-        e_Log_msg(log, E_LOG_INFO, "VBE 2.0+ interface table: segment={iuh}; "
-            "offset={iuh}; length={iu} B", this->vbe_interface_seg,
-            this->vbe_interface_off, this->vbe_interface_len);
-    }
+    log_vbe(info, log);
 }
