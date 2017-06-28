@@ -1,6 +1,6 @@
 #include <stddef.h>
 #include <stdint.h>
-#include "Drive.h"
+#include "../Bit.h"
 #include "Info.h"
 
 // FIXME: refactor with BIT macros
@@ -10,6 +10,38 @@
 extern "C" multiboot_info* e_multiboot_info;
 extern "C" uint32_t e_multiboot_magic_nr;
 
+typedef uint8_t Drive_Access_Mode;
+enum {
+    // Traditional Cylinder/Head/Sector addressing mode.
+    DRIVE_CHS_MODE = 0,
+
+    // Logical Block Addressing mode.
+    DRIVE_LBA_MODE = 1
+};
+
+// As read by the BIOS INT 13h disk interface.
+typedef uint8_t Drive_BIOS_Nr;
+enum {
+    DRIVE_FIRST_DISKETTE_DRIVE = 0,
+    DRIVE_FIRST_HARD_DISK_DRIVE = 0x80
+};
+
+E_BIT_ATTR_PACKED(struct Drive {
+    // Size doesn't equal `10 + 2 * nr. ports` due to alignment.
+    uint32_t size;
+
+    Drive_BIOS_Nr number;
+    Drive_Access_Mode access_mode;
+    uint16_t cylinders;
+    uint8_t heads;
+    uint8_t sectors;
+
+    // Array (ending in NULL) of I/O ports used for the drive in the BIOS
+    // code. This array may contain any number of I/O ports that are not
+    // related to the drive actually (such as DMA controllers' ports).
+    uint16_t* ports;
+});
+
 E_BIT_ATTR_PACKED(struct Boot_Device {
     // Partition numbers start at zero.
     enum {BOOT_DEVICE_UNUSED_PARTITION = 0xFF};
@@ -17,7 +49,7 @@ E_BIT_ATTR_PACKED(struct Boot_Device {
     uint8_t sub_sub_partition;
     uint8_t sub_partition;
     uint8_t top_level_partition;
-    e_Multiboot_Drive_BIOS_Nr drive_number;
+    Drive_BIOS_Nr drive_number;
 });
 
 static void log_boot_device(struct multiboot_info* info, struct e_Log* log) {
@@ -54,12 +86,21 @@ static void log_drives(struct multiboot_info* info, struct e_Log* log) {
         return;
     }
 
-    e_Multiboot_Drive_Iterator iterator(
-        reinterpret_cast<e_Multiboot_Drive*>(info->drives_addr),
-        info->drives_length);
+    Drive* array = reinterpret_cast<Drive*>(info->drives_addr);
+    size_t size_bytes = info->drives_length;
+    size_t position = 0;
 
-    while (iterator.has_next()) {
-        iterator.next()->log();
+    while (position < size_bytes) {
+        uint8_t* address = reinterpret_cast<uint8_t*>(array) + position;
+        Drive* drive = reinterpret_cast<Drive*>(address);
+
+        position += drive->size;
+
+        e_Log_msg(e_Log_get(), E_LOG_INFO,
+            "Drive: nr={iu}; mode={iu}; cylinders={iu}; "
+                "heads={iu}; sectors={iu}; ports={iuh}",
+            drive->number, drive->access_mode, drive->cylinders,
+            drive->heads, drive->sectors, drive->ports);
     }
 }
 
@@ -69,8 +110,8 @@ static void log_memory_map(struct multiboot_info* info, struct e_Log* log) {
     }
 
     multiboot_mmap_entry* array = reinterpret_cast<multiboot_mmap_entry*>(info->mmap_addr);
-    size_t position = 0;
     size_t size_bytes = info->mmap_length;
+    size_t position = 0;
 
     // The memory map is provided by the BIOS and is guaranteed to list
     // all standard memory that should be available for normal use.
