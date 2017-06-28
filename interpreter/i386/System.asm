@@ -6,12 +6,12 @@ extern c_main
 section .bss
 align 4
 
-global _multiboot_info
-_multiboot_info:
+global e_multiboot_info
+e_multiboot_info:
     resd 1
 
-global _multiboot_magic_nr
-_multiboot_magic_nr:
+global e_multiboot_magic_nr
+e_multiboot_magic_nr:
     resd 1
 
 stack:
@@ -32,8 +32,8 @@ main:
     mov esp, (stack + STACK_LENGTH)
 
     ; FIXME: don't use global state, pass as arguments
-    mov [_multiboot_magic_nr], eax
-    mov [_multiboot_info], ebx
+    mov [e_multiboot_magic_nr], eax
+    mov [e_multiboot_info], ebx
     
     call c_main
 

@@ -10,8 +10,8 @@
 #define IS_FLAG_SET(flags, flag) \
     (((flags) & (flag)) != 0)
 
-extern "C" e_Multiboot_Info* _multiboot_info;
-extern "C" uint32_t _multiboot_magic_nr;
+extern "C" multiboot_info* e_multiboot_info;
+extern "C" uint32_t e_multiboot_magic_nr;
 
 E_BIT_ATTR_PACKED(struct e_Multiboot_Boot_Device {
     // Partition numbers start at zero.
@@ -25,7 +25,7 @@ E_BIT_ATTR_PACKED(struct e_Multiboot_Boot_Device {
     e_Multiboot_Drive_BIOS_Nr drive_number;
 });
 
-static void log_boot_device(struct e_Multiboot_Info* info, struct e_Log* log) {
+static void log_boot_device(struct multiboot_info* info, struct e_Log* log) {
     if (IS_FLAG_SET(info->flags, MULTIBOOT_INFO_BOOTDEV)) {
         e_Multiboot_Boot_Device& device
             = reinterpret_cast<e_Multiboot_Boot_Device&>(info->boot_device);
@@ -39,7 +39,7 @@ static void log_boot_device(struct e_Multiboot_Info* info, struct e_Log* log) {
     }
 }
 
-static void log_boot_modules(struct e_Multiboot_Info* info, struct e_Log* log) {
+static void log_boot_modules(struct multiboot_info* info, struct e_Log* log) {
     if (!IS_FLAG_SET(info->flags, MULTIBOOT_INFO_MODS)) {
         return;
     }
@@ -55,7 +55,7 @@ static void log_boot_modules(struct e_Multiboot_Info* info, struct e_Log* log) {
     }
 }
 
-static void log_drives(struct e_Multiboot_Info* info, struct e_Log* log) {
+static void log_drives(struct multiboot_info* info, struct e_Log* log) {
     if (!IS_FLAG_SET(info->flags, MULTIBOOT_INFO_DRIVE_INFO)) {
         return;
     }
@@ -69,7 +69,7 @@ static void log_drives(struct e_Multiboot_Info* info, struct e_Log* log) {
     }
 }
 
-static void log_memory_map(struct e_Multiboot_Info* info, struct e_Log* log) {
+static void log_memory_map(struct multiboot_info* info, struct e_Log* log) {
     if (!IS_FLAG_SET(info->flags, MULTIBOOT_INFO_MEM_MAP)) {
         return;
     }
@@ -94,7 +94,7 @@ static void log_memory_map(struct e_Multiboot_Info* info, struct e_Log* log) {
     }
 }
 
-static void log_symbol_table(struct e_Multiboot_Info* info, struct e_Log* log) {
+static void log_symbol_table(struct multiboot_info* info, struct e_Log* log) {
     if (IS_FLAG_SET(info->flags, MULTIBOOT_INFO_AOUT_SYMS)) {
         multiboot_aout_symbol_table& table = info->u.aout_sym;
 
@@ -111,7 +111,7 @@ static void log_symbol_table(struct e_Multiboot_Info* info, struct e_Log* log) {
     }
 }
 
-static void log_vbe(struct e_Multiboot_Info* info, struct e_Log* log) {
+static void log_vbe(struct multiboot_info* info, struct e_Log* log) {
     if (IS_FLAG_SET(info->flags, MULTIBOOT_INFO_VBE_INFO)) {
         e_Log_msg(log, E_LOG_INFO, "VBE: control info={iuh}; mode info={iuh}; "
             "current video mode={iu}",
@@ -131,24 +131,24 @@ static void log_vbe(struct e_Multiboot_Info* info, struct e_Log* log) {
     }
 }
 
-struct e_Multiboot_Info* e_Multiboot_Info_get() {
-    if (_multiboot_magic_nr != MULTIBOOT_BOOTLOADER_MAGIC) {
+struct multiboot_info* e_Multiboot_Info_get() {
+    if (e_multiboot_magic_nr != MULTIBOOT_BOOTLOADER_MAGIC) {
         e_Log_msg(e_Log_get(), E_LOG_ERROR,
-            "Invalid Multiboot magic number: {iuh}", _multiboot_magic_nr);
+            "Invalid Multiboot magic number: {iuh}", e_multiboot_magic_nr);
     }
 
-    if (IS_FLAG_SET(_multiboot_info->flags, MULTIBOOT_INFO_AOUT_SYMS)
-        && IS_FLAG_SET(_multiboot_info->flags, MULTIBOOT_INFO_ELF_SHDR))
+    if (IS_FLAG_SET(e_multiboot_info->flags, MULTIBOOT_INFO_AOUT_SYMS)
+        && IS_FLAG_SET(e_multiboot_info->flags, MULTIBOOT_INFO_ELF_SHDR))
     {
         e_Log_msg(e_Log_get(), E_LOG_ERROR,
             "Invalid Multiboot information: "
                 "Both bits 4 and 5 of the flags field are set.");
     }
 
-    return _multiboot_info;
+    return e_multiboot_info;
 }
 
-void e_Multiboot_Info_log(struct e_Multiboot_Info* info, struct e_Log* log) {
+void e_Multiboot_Info_log(struct multiboot_info* info, struct e_Log* log) {
     e_Log_msg(log, E_LOG_INFO, "Multiboot: flags={iub}", info->flags);
 
     if (IS_FLAG_SET(info->flags, MULTIBOOT_INFO_MEMORY)) {
