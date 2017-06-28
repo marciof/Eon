@@ -1,6 +1,5 @@
 #pragma once
 #include <multiboot/multiboot.h>
-#include <stdint.h>
 #include "../../core/Log.h"
 
 /**

@@ -1,10 +1,7 @@
+#include <stddef.h>
 #include <stdint.h>
-#include "../../core/Log.h"
-#include "../../core/System.h"
-#include "../Bit.h"
 #include "Drive.h"
 #include "Info.h"
-#include "Memory_Region.h"
 
 // FIXME: refactor with BIT macros
 #define IS_FLAG_SET(flags, flag) \
@@ -13,11 +10,21 @@
 extern "C" multiboot_info* e_multiboot_info;
 extern "C" uint32_t e_multiboot_magic_nr;
 
-E_BIT_ATTR_PACKED(struct e_Multiboot_Boot_Device {
+class Memory_Region_Iterator {
+public:
+    Memory_Region_Iterator(multiboot_mmap_entry* array, size_t size_bytes);
+    bool has_next();
+    multiboot_mmap_entry* next();
+
+private:
+    multiboot_mmap_entry* _array;
+    size_t _position;
+    size_t _size_bytes;
+};
+
+E_BIT_ATTR_PACKED(struct Boot_Device {
     // Partition numbers start at zero.
-    enum {
-        E_MULTIBOOT_BOOT_DEVICE_UNUSED_PARTITION = 0xFF
-    };
+    enum {BOOT_DEVICE_UNUSED_PARTITION = 0xFF};
 
     uint8_t sub_sub_partition;
     uint8_t sub_partition;
@@ -25,10 +32,27 @@ E_BIT_ATTR_PACKED(struct e_Multiboot_Boot_Device {
     e_Multiboot_Drive_BIOS_Nr drive_number;
 });
 
+Memory_Region_Iterator::Memory_Region_Iterator(
+    multiboot_mmap_entry* array, size_t size_bytes) :
+    _array(array), _position(0), _size_bytes(size_bytes) {
+}
+
+bool Memory_Region_Iterator::has_next() {
+    return this->_position < this->_size_bytes;
+}
+
+multiboot_mmap_entry* Memory_Region_Iterator::next() {
+    uint8_t* address = reinterpret_cast<uint8_t*>(_array) + _position;
+    multiboot_mmap_entry* region
+        = reinterpret_cast<multiboot_mmap_entry*>(address);
+
+    _position += sizeof(region->size) + region->size;
+    return region;
+}
+
 static void log_boot_device(struct multiboot_info* info, struct e_Log* log) {
     if (IS_FLAG_SET(info->flags, MULTIBOOT_INFO_BOOTDEV)) {
-        e_Multiboot_Boot_Device& device
-            = reinterpret_cast<e_Multiboot_Boot_Device&>(info->boot_device);
+        Boot_Device& device = reinterpret_cast<Boot_Device&>(info->boot_device);
 
         e_Log_msg(log, E_LOG_INFO,
             "Boot device: drive={iuh}; partitions=[{iuh}, {iuh}, {iuh}]",
@@ -74,7 +98,7 @@ static void log_memory_map(struct multiboot_info* info, struct e_Log* log) {
         return;
     }
 
-    e_Multiboot_Memory_Region_Iterator iterator(
+    Memory_Region_Iterator iterator(
         reinterpret_cast<multiboot_mmap_entry*>(info->mmap_addr),
         info->mmap_length);
 
