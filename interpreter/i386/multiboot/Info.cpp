@@ -1,6 +1,7 @@
+#include <stdint.h>
 #include "../../core/Log.h"
 #include "../../core/System.h"
-#include "Boot_Device.h"
+#include "../Bit.h"
 #include "Drive.h"
 #include "Info.h"
 #include "Memory_Region.h"
@@ -11,6 +12,18 @@
 
 extern "C" e_Multiboot_Info* _multiboot_info;
 extern "C" uint32_t _multiboot_magic_nr;
+
+E_BIT_ATTR_PACKED(struct e_Multiboot_Boot_Device {
+    // Partition numbers start at zero.
+    enum {
+        E_MULTIBOOT_BOOT_DEVICE_UNUSED_PARTITION = 0xFF
+    };
+
+    uint8_t sub_sub_partition;
+    uint8_t sub_partition;
+    uint8_t top_level_partition;
+    e_Multiboot_Drive_BIOS_Nr drive_number;
+});
 
 e_Multiboot_Info* e_Multiboot_Info::get() {
     if (_multiboot_magic_nr != MULTIBOOT_BOOTLOADER_MAGIC) {
@@ -78,7 +91,12 @@ void e_Multiboot_Info::log_boot_device() {
         e_Multiboot_Boot_Device& device
             = reinterpret_cast<e_Multiboot_Boot_Device&>(this->boot_device);
 
-        device.log();
+        e_Log_msg(e_Log_get(), E_LOG_INFO,
+            "Boot device: drive={iuh}; partitions=[{iuh}, {iuh}, {iuh}]",
+            device.drive_number,
+            device.top_level_partition,
+            device.sub_partition,
+            device.sub_sub_partition);
     }
 }
 
