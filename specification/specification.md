@@ -520,7 +520,7 @@ If the specified `module` doesn't exist, it returns the result of `(debug 'unkno
 (local map:Map): Map
 ```
 
-A function that returns a map with the non-inherited key/values pairs from a prototyped `map`.
+A function that returns a map with the non-inherited key/value pairs from a prototyped `map`.
 
 ### Conditions
 
