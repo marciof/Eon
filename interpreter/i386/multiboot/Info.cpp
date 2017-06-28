@@ -25,7 +25,7 @@ E_BIT_ATTR_PACKED(struct e_Multiboot_Boot_Device {
     e_Multiboot_Drive_BIOS_Nr drive_number;
 });
 
-e_Multiboot_Info* e_Multiboot_Info::get() {
+struct e_Multiboot_Info* e_Multiboot_Info_get() {
     if (_multiboot_magic_nr != MULTIBOOT_BOOTLOADER_MAGIC) {
         e_Log_msg(e_Log_get(), E_LOG_ERROR,
             "Invalid Multiboot magic number: {iuh}", _multiboot_magic_nr);
@@ -42,56 +42,56 @@ e_Multiboot_Info* e_Multiboot_Info::get() {
     return _multiboot_info;
 }
 
-void e_Multiboot_Info::log() {
-    e_Log_msg(e_Log_get(), E_LOG_INFO, "Multiboot: flags={iub}", this->flags);
+void e_Multiboot_Info_log(struct e_Multiboot_Info* info, struct e_Log* log) {
+    e_Log_msg(log, E_LOG_INFO, "Multiboot: flags={iub}", info->flags);
 
-    if (IS_FLAG_SET(this->flags, MULTIBOOT_INFO_MEMORY)) {
-        e_Log_msg(e_Log_get(), E_LOG_INFO, "Memory: lower={iu} KiB; upper={iu} KiB",
-            this->mem_lower,        // From 0 to 640.
-            this->mem_upper);       // Starting at 1024.
+    if (IS_FLAG_SET(info->flags, MULTIBOOT_INFO_MEMORY)) {
+        e_Log_msg(log, E_LOG_INFO, "Memory: lower={iu} KiB; upper={iu} KiB",
+            info->mem_lower,        // From 0 to 640.
+            info->mem_upper);       // Starting at 1024.
     }
 
-    this->log_boot_device();
+    info->log_boot_device(log);
 
-    if (IS_FLAG_SET(this->flags, MULTIBOOT_INFO_CMDLINE)) {
-        e_Log_msg(e_Log_get(), E_LOG_INFO, "Command line: \"{s}\"", this->cmdline);
+    if (IS_FLAG_SET(info->flags, MULTIBOOT_INFO_CMDLINE)) {
+        e_Log_msg(log, E_LOG_INFO, "Command line: \"{s}\"", info->cmdline);
     }
 
-    this->log_boot_modules();
-    this->log_symbol_table();
-    this->log_memory_map();
-    this->log_drives();
+    info->log_boot_modules(log);
+    info->log_symbol_table(log);
+    info->log_memory_map(log);
+    info->log_drives(log);
 
-    if (IS_FLAG_SET(this->flags, MULTIBOOT_INFO_CONFIG_TABLE)) {
+    if (IS_FLAG_SET(info->flags, MULTIBOOT_INFO_CONFIG_TABLE)) {
         /* ROM configuration table as returned by the "get configuration"
            BIOS call. If it failed, the size of the table must be zero. */
 
-        e_Log_msg(e_Log_get(), E_LOG_INFO, "ROM configuration: table={iuh}",
-            this->config_table);
+        e_Log_msg(log, E_LOG_INFO, "ROM configuration: table={iuh}",
+            info->config_table);
     }
 
-    if (IS_FLAG_SET(this->flags, MULTIBOOT_INFO_BOOT_LOADER_NAME)) {
-        e_Log_msg(e_Log_get(), E_LOG_INFO, "Boot loader: \"{s}\"",
-            this->boot_loader_name);
+    if (IS_FLAG_SET(info->flags, MULTIBOOT_INFO_BOOT_LOADER_NAME)) {
+        e_Log_msg(log, E_LOG_INFO, "Boot loader: \"{s}\"",
+            info->boot_loader_name);
     }
 
-    if (IS_FLAG_SET(this->flags, MULTIBOOT_INFO_APM_TABLE)) {
+    if (IS_FLAG_SET(info->flags, MULTIBOOT_INFO_APM_TABLE)) {
         multiboot_apm_info& table = *reinterpret_cast<multiboot_apm_info*>(
-            this->apm_table);
+            info->apm_table);
 
-        e_Log_msg(e_Log_get(), E_LOG_INFO, "APM table: version={iu}; flags={iub}",
+        e_Log_msg(log, E_LOG_INFO, "APM table: version={iu}; flags={iub}",
             table.version, table.flags);
     }
 
-    this->log_vbe();
+    info->log_vbe(log);
 }
 
-void e_Multiboot_Info::log_boot_device() {
+void e_Multiboot_Info::log_boot_device(struct e_Log* log) {
     if (IS_FLAG_SET(this->flags, MULTIBOOT_INFO_BOOTDEV)) {
         e_Multiboot_Boot_Device& device
             = reinterpret_cast<e_Multiboot_Boot_Device&>(this->boot_device);
 
-        e_Log_msg(e_Log_get(), E_LOG_INFO,
+        e_Log_msg(log, E_LOG_INFO,
             "Boot device: drive={iuh}; partitions=[{iuh}, {iuh}, {iuh}]",
             device.drive_number,
             device.top_level_partition,
@@ -100,7 +100,7 @@ void e_Multiboot_Info::log_boot_device() {
     }
 }
 
-void e_Multiboot_Info::log_boot_modules() {
+void e_Multiboot_Info::log_boot_modules(struct e_Log* log) {
     if (!IS_FLAG_SET(this->flags, MULTIBOOT_INFO_MODS)) {
         return;
     }
@@ -109,14 +109,14 @@ void e_Multiboot_Info::log_boot_modules() {
         multiboot_mod_list& module = reinterpret_cast<multiboot_module_t*>(
             this->mods_addr)[i];
 
-        e_Log_msg(e_Log_get(), E_LOG_INFO, 
+        e_Log_msg(log, E_LOG_INFO, 
             "Boot module: start={iuh}; end={iuh}; string=\"{s}\"",
             module.mod_start, module.mod_end,
             reinterpret_cast<char*>(module.cmdline));
     }
 }
 
-void e_Multiboot_Info::log_drives() {
+void e_Multiboot_Info::log_drives(struct e_Log* log) {
     if (!IS_FLAG_SET(this->flags, MULTIBOOT_INFO_DRIVE_INFO)) {
         return;
     }
@@ -130,7 +130,7 @@ void e_Multiboot_Info::log_drives() {
     }
 }
 
-void e_Multiboot_Info::log_memory_map() {
+void e_Multiboot_Info::log_memory_map(struct e_Log* log) {
     if (!IS_FLAG_SET(this->flags, MULTIBOOT_INFO_MEM_MAP)) {
         return;
     }
@@ -145,7 +145,7 @@ void e_Multiboot_Info::log_memory_map() {
     while (iterator.has_next()) {
         multiboot_mmap_entry* region = iterator.next();
 
-        e_Log_msg(e_Log_get(), E_LOG_INFO, "Memory map region: addr=[{iuh}, {iuh}]; "
+        e_Log_msg(log, E_LOG_INFO, "Memory map region: addr=[{iuh}, {iuh}]; "
             "size=[{iuh}, {iuh}] B; type={iu}",
             static_cast<unsigned>(region->addr >> 32),
             static_cast<unsigned>(region->addr & 0xFFFFFFFF),
@@ -155,26 +155,26 @@ void e_Multiboot_Info::log_memory_map() {
     }
 }
 
-void e_Multiboot_Info::log_symbol_table() {
+void e_Multiboot_Info::log_symbol_table(struct e_Log* log) {
     if (IS_FLAG_SET(this->flags, MULTIBOOT_INFO_AOUT_SYMS)) {
         multiboot_aout_symbol_table& table = this->u.aout_sym;
 
-        e_Log_msg(e_Log_get(), E_LOG_INFO, "a.out symbol table: "
+        e_Log_msg(log, E_LOG_INFO, "a.out symbol table: "
             "size={iu}; string table size={iu}; addr={iuh}",
             table.tabsize, table.strsize, table.addr);
     }
     else if (IS_FLAG_SET(this->flags, MULTIBOOT_INFO_ELF_SHDR)) {
         multiboot_elf_section_header_table& table = this->u.elf_sec;
 
-        e_Log_msg(e_Log_get(), E_LOG_INFO, "ELF section header table: "
+        e_Log_msg(log, E_LOG_INFO, "ELF section header table: "
             "num={iu}; size={iu} B; addr={iuh}; shndx={iu}",
             table.num, table.size, table.addr, table.shndx);
     }
 }
 
-void e_Multiboot_Info::log_vbe() {
+void e_Multiboot_Info::log_vbe(struct e_Log* log) {
     if (IS_FLAG_SET(this->flags, MULTIBOOT_INFO_VBE_INFO)) {
-        e_Log_msg(e_Log_get(), E_LOG_INFO, "VBE: control info={iuh}; mode info={iuh}; "
+        e_Log_msg(log, E_LOG_INFO, "VBE: control info={iuh}; mode info={iuh}; "
             "current video mode={iu}",
             this->vbe_control_info,     // Obtained by VBE function 00h.
             this->vbe_mode_info,        // Obtained by VBE function 01h.
@@ -186,7 +186,7 @@ void e_Multiboot_Info::log_vbe() {
            interface defined in VBE version 2.0 or later. If it isn't
            available, those fields are set to zero. */
 
-        e_Log_msg(e_Log_get(), E_LOG_INFO, "VBE 2.0+ interface table: segment={iuh}; "
+        e_Log_msg(log, E_LOG_INFO, "VBE 2.0+ interface table: segment={iuh}; "
             "offset={iuh}; length={iu} B", this->vbe_interface_seg,
             this->vbe_interface_off, this->vbe_interface_len);
     }
