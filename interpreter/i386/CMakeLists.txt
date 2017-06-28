@@ -25,9 +25,8 @@ set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -m elf_i386 --script ${CMA
 
 add_executable(${PROJECT_NAME}.i386
     ${core_sources}
-    multiboot/header.c
-    multiboot/Info.cpp
-    multiboot/Info.h
+    Multiboot.cpp
+    Multiboot.h
     vga/Attr.cpp
     vga/Attr.h
     vga/Color.cpp

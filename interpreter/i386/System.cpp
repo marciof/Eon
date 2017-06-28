@@ -4,7 +4,7 @@
 
 #include "../core/Log.h"
 #include "../core/System.h"
-#include "multiboot/Info.h"
+#include "Multiboot.h"
 #include "support.h"
 #include "vga/Text.h"
 
@@ -14,7 +14,7 @@
 extern "C" void c_main() {
     eon::i386::support::initialize();
     e_VGA_Text_init();
-    e_Multiboot_Info_log(e_Multiboot_Info_get(), e_Log_get());
+    e_Multiboot_log_info(e_Multiboot_get_info(), e_Log_get());
 
     e_System* system = e_System_get();
     system->stop(system, E_SYSTEM_HALT);

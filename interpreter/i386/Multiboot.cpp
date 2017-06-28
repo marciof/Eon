@@ -1,14 +1,11 @@
 #include <stddef.h>
 #include <stdint.h>
-#include "../Bit.h"
-#include "Info.h"
+#include "Bit.h"
+#include "Multiboot.h"
 
 // FIXME: refactor with BIT macros
 #define IS_FLAG_SET(flags, flag) \
     (((flags) & (flag)) != 0)
-
-extern "C" multiboot_info* e_multiboot_info;
-extern "C" uint32_t e_multiboot_magic_nr;
 
 typedef uint8_t Drive_Access_Mode;
 enum {
@@ -51,6 +48,25 @@ E_BIT_ATTR_PACKED(struct Boot_Device {
     uint8_t top_level_partition;
     Drive_BIOS_Nr drive_number;
 });
+
+extern "C" multiboot_info* e_multiboot_info;
+extern "C" uint32_t e_multiboot_magic_nr;
+
+// FIXME: use macro for GCC extension
+const struct multiboot_header e_Multiboot_header __attribute__((section(".multiboot"))) = {
+    MULTIBOOT_HEADER_MAGIC,
+    MULTIBOOT_MEMORY_INFO,
+    static_cast<multiboot_uint32_t>(-(MULTIBOOT_HEADER_MAGIC + MULTIBOOT_MEMORY_INFO)),
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+};
 
 static void log_boot_device(struct multiboot_info* info, struct e_Log* log) {
     if (IS_FLAG_SET(info->flags, MULTIBOOT_INFO_BOOTDEV)) {
@@ -169,7 +185,7 @@ static void log_vbe(struct multiboot_info* info, struct e_Log* log) {
     }
 }
 
-struct multiboot_info* e_Multiboot_Info_get() {
+struct multiboot_info* e_Multiboot_get_info() {
     if (e_multiboot_magic_nr != MULTIBOOT_BOOTLOADER_MAGIC) {
         e_Log_msg(e_Log_get(), E_LOG_ERROR,
             "Invalid Multiboot magic number: {iuh}", e_multiboot_magic_nr);
@@ -186,7 +202,7 @@ struct multiboot_info* e_Multiboot_Info_get() {
     return e_multiboot_info;
 }
 
-void e_Multiboot_Info_log(struct multiboot_info* info, struct e_Log* log) {
+void e_Multiboot_log_info(struct multiboot_info* info, struct e_Log* log) {
     e_Log_msg(log, E_LOG_INFO, "Multiboot: flags={iub}", info->flags);
 
     if (IS_FLAG_SET(info->flags, MULTIBOOT_INFO_MEMORY)) {
