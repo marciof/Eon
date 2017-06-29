@@ -87,11 +87,11 @@ static void log_boot_modules(struct multiboot_info* info, struct e_Log* log) {
     }
 
     for (size_t i = 0; i < info->mods_count; ++i) {
-        multiboot_mod_list& module = ((multiboot_module_t*) info->mods_addr)[i];
+        multiboot_mod_list* module = (multiboot_module_t*) info->mods_addr + i;
 
         e_Log_msg(log, E_LOG_INFO,
             "Boot module: start={iuh}; end={iuh}; string=\"{s}\"",
-            module.mod_start, module.mod_end, (char*) module.cmdline);
+            module->mod_start, module->mod_end, (char*) module->cmdline);
     }
 }
 
@@ -148,18 +148,18 @@ static void log_memory_map(struct multiboot_info* info, struct e_Log* log) {
 
 static void log_symbol_table(struct multiboot_info* info, struct e_Log* log) {
     if (IS_FLAG_SET(info->flags, MULTIBOOT_INFO_AOUT_SYMS)) {
-        multiboot_aout_symbol_table& table = info->u.aout_sym;
+        multiboot_aout_symbol_table* table = &info->u.aout_sym;
 
         e_Log_msg(log, E_LOG_INFO, "a.out symbol table: "
             "size={iu}; string table size={iu}; addr={iuh}",
-            table.tabsize, table.strsize, table.addr);
+            table->tabsize, table->strsize, table->addr);
     }
     else if (IS_FLAG_SET(info->flags, MULTIBOOT_INFO_ELF_SHDR)) {
-        multiboot_elf_section_header_table& table = info->u.elf_sec;
+        multiboot_elf_section_header_table* table = &info->u.elf_sec;
 
         e_Log_msg(log, E_LOG_INFO, "ELF section header table: "
             "num={iu}; size={iu} B; addr={iuh}; shndx={iu}",
-            table.num, table.size, table.addr, table.shndx);
+            table->num, table->size, table->addr, table->shndx);
     }
 }
 
@@ -234,10 +234,10 @@ void e_Multiboot_log_info(struct multiboot_info* info, struct e_Log* log) {
     }
 
     if (IS_FLAG_SET(info->flags, MULTIBOOT_INFO_APM_TABLE)) {
-        multiboot_apm_info& table = *(multiboot_apm_info*) info->apm_table;
+        multiboot_apm_info* table = (multiboot_apm_info*) info->apm_table;
 
         e_Log_msg(log, E_LOG_INFO, "APM table: version={iu}; flags={iub}",
-            table.version, table.flags);
+            table->version, table->flags);
     }
 
     log_vbe(info, log);
