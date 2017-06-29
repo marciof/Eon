@@ -22,7 +22,7 @@ struct e_VGA_Color {
  * @param [in] length number of DAC entries to read
  * @param [out] colors where to write the DAC entries read
  */
-void e_VGA_Color_read(uint8_t start, size_t length, e_VGA_Color* colors);
+void e_VGA_Color_read(uint8_t start, size_t length, struct e_VGA_Color* colors);
 
 /**
  * Writes to the DAC color registers.
@@ -31,4 +31,4 @@ void e_VGA_Color_read(uint8_t start, size_t length, e_VGA_Color* colors);
  * @param [in] length number of DAC entries to write
  * @param [in] colors DAC entries to write
  */
-void e_VGA_Color_write(uint8_t start, size_t length, e_VGA_Color* colors);
+void e_VGA_Color_write(uint8_t start, size_t length, struct e_VGA_Color* colors);

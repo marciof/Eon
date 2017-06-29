@@ -1,4 +1,5 @@
 #pragma once
+#include <stdbool.h>
 #include <stddef.h>
 #include <stdint.h>
 
@@ -32,6 +33,6 @@ struct e_VGA_Gfx_Memory_Map {
     size_t columns;
 };
 
-const e_VGA_Gfx_Memory_Map* e_VGA_Gfx_get_memory_map();
+const struct e_VGA_Gfx_Memory_Map* e_VGA_Gfx_get_memory_map();
 uint8_t e_VGA_Gfx_read(e_VGA_Gfx_Register reg);
 void e_VGA_Gfx_write(e_VGA_Gfx_Register reg, uint8_t data);

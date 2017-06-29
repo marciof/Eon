@@ -16,7 +16,7 @@
  * @param [in] size size in bytes of the GDT
  * @param [in] address starting address of the GDT
  */
-extern "C" void e_Memory_Physical_set_gdtr(uint16_t size, uint32_t address);
+extern void e_Memory_Physical_set_gdtr(uint16_t size, uint32_t address);
 
 enum Segment_Attr {
     ACCESSED = E_BIT(0),
@@ -91,7 +91,7 @@ E_BIT_ATTR_PACKED(struct Segment_Descriptor {
     uint8_t base_addr_high_upper;          ///< @ingroup Base Address
 });
 
-STATIC_ASSERT(sizeof(Segment_Descriptor) == 8,
+STATIC_ASSERT(sizeof(struct Segment_Descriptor) == 8,
     "Memory segment descriptor structure not packed.");
 
 struct e_Memory* e_Memory_get() {

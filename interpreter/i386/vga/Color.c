@@ -9,7 +9,7 @@ enum {
     DAC_STATE_READ_PORT = 0x3C7
 };
 
-void e_VGA_Color_read(uint8_t start, size_t length, e_VGA_Color* colors) {
+void e_VGA_Color_read(uint8_t start, size_t length, struct e_VGA_Color* colors) {
     e_IO_write_byte(DAC_ADDRESS_READ_MODE_WRITE_PORT, start);
 
     for (size_t i = 0; i < length; ++i) {
@@ -19,7 +19,7 @@ void e_VGA_Color_read(uint8_t start, size_t length, e_VGA_Color* colors) {
     }
 }
 
-void e_VGA_Color_write(uint8_t start, size_t length, e_VGA_Color* colors) {
+void e_VGA_Color_write(uint8_t start, size_t length, struct e_VGA_Color* colors) {
     e_IO_write_byte(DAC_ADDRESS_WRITE_MODE_PORT, start);
 
     for (size_t i = 0; i < length; ++i) {

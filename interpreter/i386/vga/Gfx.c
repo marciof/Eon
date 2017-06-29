@@ -39,7 +39,7 @@ static const struct e_VGA_Gfx_Memory_Map MEMORY_MAPS[] = {
     },
 };
 
-const e_VGA_Gfx_Memory_Map* e_VGA_Gfx_get_memory_map() {
+const struct e_VGA_Gfx_Memory_Map* e_VGA_Gfx_get_memory_map() {
     size_t position = (size_t)
         ((e_VGA_Gfx_read(E_VGA_GFX_MISC) & (E_BIT(3) | E_BIT(2))) >> 2);
 

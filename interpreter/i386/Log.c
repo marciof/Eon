@@ -14,11 +14,11 @@ static void prepare(struct e_Log* log, enum e_Log_Level level) {
 }
 
 static void print_ch(struct e_Log* log, char ch) {
-    e_VGA_Text_print(ch);
+    e_VGA_Text_print_ch(ch);
 }
 
 static void print_str(struct e_Log* log, const char* str) {
-    e_VGA_Text_print(str);
+    e_VGA_Text_print_str(str);
 }
 
 // FIXME: remove globals in VGA and use this instance instead?

@@ -40,17 +40,17 @@ E_BIT_ATTR_PACKED(struct Drive {
 });
 
 E_BIT_ATTR_PACKED(struct Boot_Device {
-    // Partition numbers start at zero.
-    enum {BOOT_DEVICE_UNUSED_PARTITION = 0xFF};
-
     uint8_t sub_sub_partition;
     uint8_t sub_partition;
     uint8_t top_level_partition;
     Drive_BIOS_Nr drive_number;
 });
 
-extern "C" multiboot_info* e_multiboot_info;
-extern "C" uint32_t e_multiboot_magic_nr;
+// Partition numbers start at zero.
+enum {BOOT_DEVICE_UNUSED_PARTITION = 0xFF};
+
+extern struct multiboot_info* e_multiboot_info;
+extern uint32_t e_multiboot_magic_nr;
 
 // FIXME: use macro for GCC extension
 const struct multiboot_header e_Multiboot_header __attribute__((section(".multiboot"))) = {
@@ -70,7 +70,7 @@ const struct multiboot_header e_Multiboot_header __attribute__((section(".multib
 
 static void log_boot_device(struct multiboot_info* info, struct e_Log* log) {
     if (IS_FLAG_SET(info->flags, MULTIBOOT_INFO_BOOTDEV)) {
-        Boot_Device* device = (Boot_Device*) &info->boot_device;
+        struct Boot_Device* device = (struct Boot_Device*) &info->boot_device;
 
         e_Log_msg(log, E_LOG_INFO,
             "Boot device: drive={iuh}; partitions=[{iuh}, {iuh}, {iuh}]",
@@ -86,8 +86,11 @@ static void log_boot_modules(struct multiboot_info* info, struct e_Log* log) {
         return;
     }
 
+    struct multiboot_mod_list* modules =
+        (struct multiboot_mod_list*) info->mods_addr;
+
     for (size_t i = 0; i < info->mods_count; ++i) {
-        multiboot_mod_list* module = (multiboot_module_t*) info->mods_addr + i;
+        struct multiboot_mod_list* module = &modules[i];
 
         e_Log_msg(log, E_LOG_INFO,
             "Boot module: start={iuh}; end={iuh}; string=\"{s}\"",
@@ -100,13 +103,13 @@ static void log_drives(struct multiboot_info* info, struct e_Log* log) {
         return;
     }
 
-    Drive* array = (Drive*) info->drives_addr;
+    struct Drive* array = (struct Drive*) info->drives_addr;
     size_t size_bytes = info->drives_length;
     size_t position = 0;
 
     while (position < size_bytes) {
         uint8_t* address = ((uint8_t*) array) + position;
-        Drive* drive = (Drive*) address;
+        struct Drive* drive = (struct Drive*) address;
 
         position += drive->size;
 
@@ -123,7 +126,7 @@ static void log_memory_map(struct multiboot_info* info, struct e_Log* log) {
         return;
     }
 
-    multiboot_mmap_entry* array = (multiboot_mmap_entry*) info->mmap_addr;
+    struct multiboot_mmap_entry* array = (struct multiboot_mmap_entry*) info->mmap_addr;
     size_t size_bytes = info->mmap_length;
     size_t position = 0;
 
@@ -132,7 +135,7 @@ static void log_memory_map(struct multiboot_info* info, struct e_Log* log) {
 
     while (position < size_bytes) {
         uint8_t* address = ((uint8_t*) array) + position;
-        multiboot_mmap_entry* region = (multiboot_mmap_entry*) address;
+        struct multiboot_mmap_entry* region = (struct multiboot_mmap_entry*) address;
 
         position += sizeof(region->size) + region->size;
 
@@ -148,14 +151,14 @@ static void log_memory_map(struct multiboot_info* info, struct e_Log* log) {
 
 static void log_symbol_table(struct multiboot_info* info, struct e_Log* log) {
     if (IS_FLAG_SET(info->flags, MULTIBOOT_INFO_AOUT_SYMS)) {
-        multiboot_aout_symbol_table* table = &info->u.aout_sym;
+        struct multiboot_aout_symbol_table* table = &info->u.aout_sym;
 
         e_Log_msg(log, E_LOG_INFO, "a.out symbol table: "
             "size={iu}; string table size={iu}; addr={iuh}",
             table->tabsize, table->strsize, table->addr);
     }
     else if (IS_FLAG_SET(info->flags, MULTIBOOT_INFO_ELF_SHDR)) {
-        multiboot_elf_section_header_table* table = &info->u.elf_sec;
+        struct multiboot_elf_section_header_table* table = &info->u.elf_sec;
 
         e_Log_msg(log, E_LOG_INFO, "ELF section header table: "
             "num={iu}; size={iu} B; addr={iuh}; shndx={iu}",
@@ -234,7 +237,7 @@ void e_Multiboot_log_info(struct multiboot_info* info, struct e_Log* log) {
     }
 
     if (IS_FLAG_SET(info->flags, MULTIBOOT_INFO_APM_TABLE)) {
-        multiboot_apm_info* table = (multiboot_apm_info*) info->apm_table;
+        struct multiboot_apm_info* table = (struct multiboot_apm_info*) info->apm_table;
 
         e_Log_msg(log, E_LOG_INFO, "APM table: version={iu}; flags={iub}",
             table->version, table->flags);

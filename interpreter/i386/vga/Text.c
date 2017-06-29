@@ -10,7 +10,7 @@
 #define ENCODE_COLOR(foreground, background) \
     ((uint8_t) (((background) << 4) + (foreground)))
 
-static const e_VGA_Gfx_Memory_Map* gfx = NULL;
+static const struct e_VGA_Gfx_Memory_Map* gfx = NULL;
 static size_t line = 0;
 static size_t column = 0;
 static uint8_t color_code = ENCODE_COLOR(E_VGA_TEXT_WHITE, E_VGA_TEXT_BLACK);
@@ -24,7 +24,7 @@ static void clear_screen() {
     }
 }
 
-static void scroll_screen(int lines = +1) {
+static void scroll_screen(int lines) {
     const size_t END = 2 * ((gfx->lines * gfx->columns) + gfx->columns);
     size_t i = 2 * lines * gfx->columns;
     size_t previous = 2 * (lines - 1) * gfx->columns;
@@ -63,7 +63,9 @@ void e_VGA_Text_init() {
     e_VGA_Extern_enable_color_mode(gfx->is_color);
 }
 
-void e_VGA_Text_print(char ch) {
+void e_VGA_Text_print_ch(char ch) {
+    size_t position;
+
     switch (ch) {
     case '\n':
         ++line;
@@ -73,7 +75,7 @@ void e_VGA_Text_print(char ch) {
         column += E_LOG_TAB_SIZE_SPACES - (column % E_LOG_TAB_SIZE_SPACES);
         break;
     default:
-        size_t position = 2 * ((line * gfx->columns) + column);
+        position = 2 * ((line * gfx->columns) + column);
         gfx->start[position] = (uint8_t) ch;
         gfx->start[position + 1] = color_code;
         ++column;
@@ -87,13 +89,13 @@ void e_VGA_Text_print(char ch) {
 
     if (line >= gfx->lines) {
         --line;
-        scroll_screen();
+        scroll_screen(+1);
     }
 }
 
-void e_VGA_Text_print(const char* string) {
+void e_VGA_Text_print_str(const char* string) {
     while (*string != '\0') {
-        e_VGA_Text_print(*string++);
+        e_VGA_Text_print_ch(*string++);
     }
 }
 

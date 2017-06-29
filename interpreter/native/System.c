@@ -30,7 +30,7 @@ struct e_System* e_System_get() {
 
 int main(int argc, char* argv[]) {
     _argv = argv;
-    e_System* system = e_System_get();
+    struct e_System* system = e_System_get();
     system->stop(system, E_SYSTEM_HALT);
     return EXIT_FAILURE;
 }
