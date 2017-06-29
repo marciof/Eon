@@ -35,8 +35,8 @@ enum {
     E_VGA_CRT_LINE_COMPARE
 };
 
-void e_VGA_CRT_enable_color_mode(bool enable = true);
-void e_VGA_CRT_enable_cursor(bool enable = true);
+void e_VGA_CRT_enable_color_mode(bool enable);
+void e_VGA_CRT_enable_cursor(bool enable);
 void e_VGA_CRT_move_cursor(uint32_t line, uint32_t column);
 uint8_t e_VGA_CRT_read(e_VGA_CRT_Register reg);
 void e_VGA_CRT_write(e_VGA_CRT_Register reg, uint8_t data);

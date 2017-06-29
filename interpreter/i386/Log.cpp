@@ -3,13 +3,13 @@
 
 static void prepare(struct e_Log* log, enum e_Log_Level level) {
     if (level == E_LOG_ERROR) {
-        e_VGA_Text_set_color(E_VGA_TEXT_RED);
+        e_VGA_Text_set_color(E_VGA_TEXT_RED, E_VGA_TEXT_BLACK);
     }
     else if (level == E_LOG_WARN) {
-        e_VGA_Text_set_color(E_VGA_TEXT_YELLOW);
+        e_VGA_Text_set_color(E_VGA_TEXT_YELLOW, E_VGA_TEXT_BLACK);
     }
     else {
-        e_VGA_Text_set_color(E_VGA_TEXT_WHITE);
+        e_VGA_Text_set_color(E_VGA_TEXT_WHITE, E_VGA_TEXT_BLACK);
     }
 }
 

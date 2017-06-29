@@ -22,7 +22,7 @@ enum {
  *
  * @param [in] enable true to enable (on) or false to disable (off)
  */
-void e_VGA_Seqr_enable_screen(bool enable = true);
+void e_VGA_Seqr_enable_screen(bool enable);
 
 /**
  * Reads a byte from a sequencer register.

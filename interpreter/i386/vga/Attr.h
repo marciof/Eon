@@ -24,7 +24,7 @@ enum {
  * @param [in] enable true to enable or false to disable
  * @note The text mode must be initialized.
  */
-void e_VGA_Attr_enable_text_blink_mode(bool enable = true);
+void e_VGA_Attr_enable_text_blink_mode(bool enable);
 
 /**
  * Enables or disables graphics mode.
@@ -32,7 +32,7 @@ void e_VGA_Attr_enable_text_blink_mode(bool enable = true);
  * @param [in] enable true to enable or false to disable
  * @note The text mode must be initialized.
  */
-void e_VGA_Attr_enable_gfx_mode(bool enable = true);
+void e_VGA_Attr_enable_gfx_mode(bool enable);
 
 /**
  * Reads a byte from an attribute controller register.

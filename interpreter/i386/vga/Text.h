@@ -40,5 +40,5 @@ void e_VGA_Text_print(char ch);
 void e_VGA_Text_print(const char* string);
 
 void e_VGA_Text_set_color(
-    e_VGA_Text_Color foreground = E_VGA_TEXT_LIGHT_GRAY,
-    e_VGA_Text_Color background = E_VGA_TEXT_BLACK);
+    e_VGA_Text_Color foreground,
+    e_VGA_Text_Color background);
