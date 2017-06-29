@@ -56,7 +56,7 @@ extern "C" uint32_t e_multiboot_magic_nr;
 const struct multiboot_header e_Multiboot_header __attribute__((section(".multiboot"))) = {
     MULTIBOOT_HEADER_MAGIC,
     MULTIBOOT_MEMORY_INFO,
-    static_cast<multiboot_uint32_t>(-(MULTIBOOT_HEADER_MAGIC + MULTIBOOT_MEMORY_INFO)),
+    (multiboot_uint32_t) -(MULTIBOOT_HEADER_MAGIC + MULTIBOOT_MEMORY_INFO),
     0,
     0,
     0,
@@ -70,14 +70,14 @@ const struct multiboot_header e_Multiboot_header __attribute__((section(".multib
 
 static void log_boot_device(struct multiboot_info* info, struct e_Log* log) {
     if (IS_FLAG_SET(info->flags, MULTIBOOT_INFO_BOOTDEV)) {
-        Boot_Device& device = reinterpret_cast<Boot_Device&>(info->boot_device);
+        Boot_Device* device = (Boot_Device*) &info->boot_device;
 
         e_Log_msg(log, E_LOG_INFO,
             "Boot device: drive={iuh}; partitions=[{iuh}, {iuh}, {iuh}]",
-            device.drive_number,
-            device.top_level_partition,
-            device.sub_partition,
-            device.sub_sub_partition);
+            device->drive_number,
+            device->top_level_partition,
+            device->sub_partition,
+            device->sub_sub_partition);
     }
 }
 
@@ -87,13 +87,11 @@ static void log_boot_modules(struct multiboot_info* info, struct e_Log* log) {
     }
 
     for (size_t i = 0; i < info->mods_count; ++i) {
-        multiboot_mod_list& module = reinterpret_cast<multiboot_module_t*>(
-            info->mods_addr)[i];
+        multiboot_mod_list& module = ((multiboot_module_t*) info->mods_addr)[i];
 
         e_Log_msg(log, E_LOG_INFO,
             "Boot module: start={iuh}; end={iuh}; string=\"{s}\"",
-            module.mod_start, module.mod_end,
-            reinterpret_cast<char*>(module.cmdline));
+            module.mod_start, module.mod_end, (char*) module.cmdline);
     }
 }
 
@@ -102,13 +100,13 @@ static void log_drives(struct multiboot_info* info, struct e_Log* log) {
         return;
     }
 
-    Drive* array = reinterpret_cast<Drive*>(info->drives_addr);
+    Drive* array = (Drive*) info->drives_addr;
     size_t size_bytes = info->drives_length;
     size_t position = 0;
 
     while (position < size_bytes) {
-        uint8_t* address = reinterpret_cast<uint8_t*>(array) + position;
-        Drive* drive = reinterpret_cast<Drive*>(address);
+        uint8_t* address = ((uint8_t*) array) + position;
+        Drive* drive = (Drive*) address;
 
         position += drive->size;
 
@@ -125,7 +123,7 @@ static void log_memory_map(struct multiboot_info* info, struct e_Log* log) {
         return;
     }
 
-    multiboot_mmap_entry* array = reinterpret_cast<multiboot_mmap_entry*>(info->mmap_addr);
+    multiboot_mmap_entry* array = (multiboot_mmap_entry*) info->mmap_addr;
     size_t size_bytes = info->mmap_length;
     size_t position = 0;
 
@@ -133,17 +131,17 @@ static void log_memory_map(struct multiboot_info* info, struct e_Log* log) {
     // all standard memory that should be available for normal use.
 
     while (position < size_bytes) {
-        uint8_t* address = reinterpret_cast<uint8_t*>(array) + position;
-        multiboot_mmap_entry* region = reinterpret_cast<multiboot_mmap_entry*>(address);
+        uint8_t* address = ((uint8_t*) array) + position;
+        multiboot_mmap_entry* region = (multiboot_mmap_entry*) address;
 
         position += sizeof(region->size) + region->size;
 
         e_Log_msg(log, E_LOG_INFO, "Memory map region: addr=[{iuh}, {iuh}]; "
             "size=[{iuh}, {iuh}] B; type={iu}",
-            static_cast<unsigned>(region->addr >> 32),
-            static_cast<unsigned>(region->addr & 0xFFFFFFFF),
-            static_cast<unsigned>(region->len >> 32),
-            static_cast<unsigned>(region->len & 0xFFFFFFFF),
+            (unsigned) (region->addr >> 32),
+            (unsigned) (region->addr & 0xFFFFFFFF),
+            (unsigned) (region->len >> 32),
+            (unsigned) (region->len & 0xFFFFFFFF),
             region->type);
     }
 }
@@ -236,8 +234,7 @@ void e_Multiboot_log_info(struct multiboot_info* info, struct e_Log* log) {
     }
 
     if (IS_FLAG_SET(info->flags, MULTIBOOT_INFO_APM_TABLE)) {
-        multiboot_apm_info& table = *reinterpret_cast<multiboot_apm_info*>(
-            info->apm_table);
+        multiboot_apm_info& table = *(multiboot_apm_info*) info->apm_table;
 
         e_Log_msg(log, E_LOG_INFO, "APM table: version={iu}; flags={iub}",
             table.version, table.flags);

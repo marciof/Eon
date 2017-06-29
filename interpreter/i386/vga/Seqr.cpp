@@ -11,7 +11,7 @@ enum {
 void e_VGA_Seqr_enable_screen(bool enable) {
     uint8_t mode = e_VGA_Seqr_read(E_VGA_SEQR_CLOCKING_MODE);
 
-    e_VGA_Seqr_write(E_VGA_SEQR_CLOCKING_MODE, static_cast<uint8_t>(enable
+    e_VGA_Seqr_write(E_VGA_SEQR_CLOCKING_MODE, (uint8_t) (enable
         ? E_BIT_CLEAR(mode, 5)
         : E_BIT_SET(mode, 5)));
 }

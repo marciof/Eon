@@ -8,7 +8,7 @@
 #define CLEAR_CHAR ' '
 
 #define ENCODE_COLOR(foreground, background) \
-    (static_cast<uint8_t>(((background) << 4) + (foreground)))
+    ((uint8_t) (((background) << 4) + (foreground)))
 
 static const e_VGA_Gfx_Memory_Map* gfx = NULL;
 static size_t line = 0;
@@ -74,7 +74,7 @@ void e_VGA_Text_print(char ch) {
         break;
     default:
         size_t position = 2 * ((line * gfx->columns) + column);
-        gfx->start[position] = static_cast<uint8_t>(ch);
+        gfx->start[position] = (uint8_t) ch;
         gfx->start[position + 1] = color_code;
         ++column;
         break;

@@ -11,28 +11,28 @@ enum {
 static const struct e_VGA_Gfx_Memory_Map MEMORY_MAPS[] = {
     {
         false,
-        reinterpret_cast<uint8_t*>(0xA0000),
+        (uint8_t*) 0xA0000,
         128 * 1024,
         25,
         80,
     },
     {
         true,
-        reinterpret_cast<uint8_t*>(0xA0000),
+        (uint8_t*) 0xA0000,
         64 * 1024,
         25,
         80,
     },
     {
         false,
-        reinterpret_cast<uint8_t*>(0xB0000),
+        (uint8_t*) 0xB0000,
         32 * 1024,
         25,
         80,
     },
     {
         true,
-        reinterpret_cast<uint8_t*>(0xB8000),
+        (uint8_t*) 0xB8000,
         32 * 1024,
         25,
         80,
@@ -40,8 +40,8 @@ static const struct e_VGA_Gfx_Memory_Map MEMORY_MAPS[] = {
 };
 
 const e_VGA_Gfx_Memory_Map* e_VGA_Gfx_get_memory_map() {
-    size_t position = static_cast<size_t>(
-        (e_VGA_Gfx_read(E_VGA_GFX_MISCELLANEOUS) & (E_BIT(3) | E_BIT(2))) >> 2);
+    size_t position = (size_t)
+        ((e_VGA_Gfx_read(E_VGA_GFX_MISC) & (E_BIT(3) | E_BIT(2))) >> 2);
 
     return &MEMORY_MAPS[position];
 }

@@ -69,7 +69,7 @@ static void print(struct e_Log* log, const char* format, va_list args) {
 
         switch (*format++) {
         case 'c':
-            log->print_ch(log, static_cast<char>(va_arg(args, int)));
+            log->print_ch(log, (char) va_arg(args, int));
             break;
         case 's':
             str = va_arg(args, char*);
@@ -88,15 +88,15 @@ static void print(struct e_Log* log, const char* format, va_list args) {
 
             switch (*format++) {
             case 'b':
-                print_int(log, static_cast<unsigned>(integer), 2);
+                print_int(log, (unsigned) integer, 2);
                 log->print_ch(log, 'b');
                 break;
             case 'h':
-                print_int(log, static_cast<unsigned>(integer), 16);
+                print_int(log, (unsigned) integer, 16);
                 log->print_ch(log, 'h');
                 break;
             default:
-                print_int(log, static_cast<unsigned>(integer), 10);
+                print_int(log, (unsigned) integer, 10);
                 --format;
                 break;
             }

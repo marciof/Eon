@@ -68,7 +68,7 @@ namespace __cxxabiv1 {
     
     extern "C" void __cxa_guard_abort(__guard* guard) {
         e_Log_msg(e_Log_get(), E_LOG_ERROR, "C++ ABI guard abort: guard={iuh}",
-            *reinterpret_cast<unsigned int*>(guard));
+            *(unsigned int*)guard);
     }
 
     /**

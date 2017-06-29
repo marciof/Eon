@@ -23,11 +23,8 @@ void e_VGA_Color_write(uint8_t start, size_t length, e_VGA_Color* colors) {
     e_IO_write_byte(DAC_ADDRESS_WRITE_MODE_PORT, start);
 
     for (size_t i = 0; i < length; ++i) {
-        e_IO_write_byte(DAC_DATA_PORT,
-            static_cast<uint8_t>(colors[i].red));
-        e_IO_write_byte(DAC_DATA_PORT,
-            static_cast<uint8_t>(colors[i].green));
-        e_IO_write_byte(DAC_DATA_PORT,
-            static_cast<uint8_t>(colors[i].blue));
+        e_IO_write_byte(DAC_DATA_PORT, (uint8_t) colors[i].red);
+        e_IO_write_byte(DAC_DATA_PORT, (uint8_t) colors[i].green);
+        e_IO_write_byte(DAC_DATA_PORT, (uint8_t) colors[i].blue);
     }
 }

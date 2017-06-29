@@ -21,19 +21,19 @@ void e_VGA_CRT_enable_color_mode(bool enable) {
 void e_VGA_CRT_enable_cursor(bool enable) {
     uint8_t status = e_VGA_CRT_read(E_VGA_CRT_CURSOR_START);
 
-    e_VGA_CRT_write(E_VGA_CRT_CURSOR_START, static_cast<uint8_t>(enable
+    e_VGA_CRT_write(E_VGA_CRT_CURSOR_START, (uint8_t) (enable
         ? E_BIT_CLEAR(status, 5)
         : E_BIT_SET(status, 5)));
 }
 
 void e_VGA_CRT_move_cursor(uint32_t line, uint32_t column) {
     size_t columns = e_VGA_Text_get_columns();
-    uint16_t position = static_cast<uint16_t>((line * columns) + column);
+    uint16_t position = (uint16_t) ((line * columns) + column);
 
     e_VGA_CRT_write(E_VGA_CRT_CURSOR_LOCATION_LOW,
-        static_cast<uint8_t>(position & 0xFF));
+        (uint8_t) (position & 0xFF));
     e_VGA_CRT_write(E_VGA_CRT_CURSOR_LOCATION_HIGH,
-        static_cast<uint8_t>(position >> 8));
+        (uint8_t) (position >> 8));
 }
 
 uint8_t e_VGA_CRT_read(e_VGA_CRT_Register reg) {
