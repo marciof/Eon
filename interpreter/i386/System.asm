@@ -10,8 +10,8 @@ global e_multiboot_info
 e_multiboot_info:
     resd 1
 
-global e_multiboot_magic_nr
-e_multiboot_magic_nr:
+global e_multiboot_magic_num
+e_multiboot_magic_num:
     resd 1
 
 stack:
@@ -32,7 +32,7 @@ main:
     mov esp, (stack + STACK_LENGTH)
 
     ; FIXME: don't use global state, pass as arguments
-    mov [e_multiboot_magic_nr], eax
+    mov [e_multiboot_magic_num], eax
     mov [e_multiboot_info], ebx
     
     call c_main

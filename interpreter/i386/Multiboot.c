@@ -17,17 +17,17 @@ enum {
 };
 
 // As read by the BIOS INT 13h disk interface.
-typedef uint8_t Drive_BIOS_Nr;
+typedef uint8_t Drive_BIOS_Num;
 enum {
     DRIVE_FIRST_DISKETTE_DRIVE = 0,
     DRIVE_FIRST_HARD_DISK_DRIVE = 0x80
 };
 
 E_BIT_ATTR_PACKED(struct Drive {
-    // Size doesn't equal `10 + 2 * nr. ports` due to alignment.
+    // Size doesn't equal `10 + 2 * num. ports` due to alignment.
     uint32_t size;
 
-    Drive_BIOS_Nr number;
+    Drive_BIOS_Num number;
     Drive_Access_Mode access_mode;
     uint16_t cylinders;
     uint8_t heads;
@@ -43,14 +43,14 @@ E_BIT_ATTR_PACKED(struct Boot_Device {
     uint8_t sub_sub_partition;
     uint8_t sub_partition;
     uint8_t top_level_partition;
-    Drive_BIOS_Nr drive_number;
+    Drive_BIOS_Num drive_num;
 });
 
 // Partition numbers start at zero.
 enum {BOOT_DEVICE_UNUSED_PARTITION = 0xFF};
 
 extern struct multiboot_info* e_multiboot_info;
-extern uint32_t e_multiboot_magic_nr;
+extern uint32_t e_multiboot_magic_num;
 
 // FIXME: use macro for GCC extension
 const struct multiboot_header e_Multiboot_header __attribute__((section(".multiboot"))) = {
@@ -74,7 +74,7 @@ static void log_boot_device(struct multiboot_info* info, struct e_Log* log) {
 
         e_Log_msg(log, E_LOG_INFO,
             "Boot device: drive={iuh}; partitions=[{iuh}, {iuh}, {iuh}]",
-            device->drive_number,
+            device->drive_num,
             device->top_level_partition,
             device->sub_partition,
             device->sub_sub_partition);
@@ -114,7 +114,7 @@ static void log_drives(struct multiboot_info* info, struct e_Log* log) {
         position += drive->size;
 
         e_Log_msg(e_Log_get(), E_LOG_INFO,
-            "Drive: nr={iu}; mode={iu}; cylinders={iu}; "
+            "Drive: num={iu}; mode={iu}; cylinders={iu}; "
                 "heads={iu}; sectors={iu}; ports={iuh}",
             drive->number, drive->access_mode, drive->cylinders,
             drive->heads, drive->sectors, drive->ports);
@@ -187,9 +187,9 @@ static void log_vbe(struct multiboot_info* info, struct e_Log* log) {
 }
 
 struct multiboot_info* e_Multiboot_get_info() {
-    if (e_multiboot_magic_nr != MULTIBOOT_BOOTLOADER_MAGIC) {
+    if (e_multiboot_magic_num != MULTIBOOT_BOOTLOADER_MAGIC) {
         e_Log_msg(e_Log_get(), E_LOG_ERROR,
-            "Invalid Multiboot magic number: {iuh}", e_multiboot_magic_nr);
+            "Invalid Multiboot magic number: {iuh}", e_multiboot_magic_num);
     }
 
     if (IS_FLAG_SET(e_multiboot_info->flags, MULTIBOOT_INFO_AOUT_SYMS)

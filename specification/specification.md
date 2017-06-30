@@ -11,6 +11,7 @@ Simple:
 - Right things easier than wrong things, encouraged, and the only way.
 - Immutable data structures (except for references), no defensive copying.
 - Principle of Least Surprise: "The design should match the user's experience, expectations, and mental models."
+- "Keep the language specification simple enough to hold in a programmer's head."
 
 Powerful:
 - Homoiconic, code as data.
@@ -129,9 +130,6 @@ A quantity.
 
 1.(3)
 # 1.(3)
-
-4_294_967_296
-# 4294967296
 ```
 
 ## Reference
@@ -804,10 +802,8 @@ Number:
 ```
 Quantity ::= Number (Symbol | Get-Expression)
 Number ::= Terminating-Decimal | Repeating-Decimal
-Terminating-Decimal ::= Sign? Digits (Unit-Separator Digits)?
-Repeating-Decimal ::= Sign? Digits Unit-Separator Digits? Parenthesis-Begin Digits Parenthesis-End Digits?
-Digits ::= Digit+ (Digit-Group-Separator Digits)*
-Digit-Group-Separator ::= _ (U+5E)
+Terminating-Decimal ::= Sign? Digit+ (Unit-Separator Digit+)?
+Repeating-Decimal ::= Sign? Digit+ Unit-Separator Digit* Parenthesis-Begin Digit+ Parenthesis-End
 Unit-Separator ::= . (U+2E)
 Sign ::= + (U+2B) | - (U+2D)
 Digit ::= 0 (U+30) | 1 (U+31) | 2 (U+32) | 3 (U+33) | 4 (U+34) | 5 (U+35) | 6 (U+36) | 7 (U+37) | 8 (U+38) | 9 (U+39)

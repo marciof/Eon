@@ -32,8 +32,8 @@ void e_VGA_Extern_enable_color_mode(bool enable) {
     is_color_mode_enabled = enable;
 }
 
-uint8_t e_VGA_Extern_read_input_status(uint8_t register_nr) {
-    switch (register_nr) {
+uint8_t e_VGA_Extern_read_input_status(uint8_t register_num) {
+    switch (register_num) {
     case 0:
         return e_IO_read_byte(INPUT_STATUS_0_READ_PORT);
     case 1:
@@ -42,7 +42,7 @@ uint8_t e_VGA_Extern_read_input_status(uint8_t register_nr) {
             : MONOCHROME_INPUT_STATUS_1_READ_PORT);
     default:
         e_Log_msg(e_Log_get(), E_LOG_ERROR,
-            "Invalid VGA general register: {iu}", register_nr);
+            "Invalid VGA general register: {iu}", register_num);
         return 0;
     }
 }

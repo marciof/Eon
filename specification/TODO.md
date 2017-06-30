@@ -42,6 +42,7 @@
 - Add `count` built-in or let it be defined via `reduce`? Performance?
 - Add `has?` built-in or let it be defined through conditions? Performance?
 - Opt-in static typing?
-- Add fraction syntax sugar support? More practical? There's already `_` for grouping which means it doesn't allow number suffix symbols starting with `_`.
+- Add fraction literal syntax? More practical? Or just use number suffix functions named `/2`, `/3`, etc?
+- Add syntax support for number digit grouping? Similar to C++14, `4'294'967'296`
 - Make Reference use a Function to update the value for async and concurrency?
 - Make defer's escape able to accept multiple arguments in which case it does unquote splice?
