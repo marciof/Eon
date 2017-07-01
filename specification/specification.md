@@ -58,11 +58,14 @@ Arguments in a function call are specified positionally or via keyword parameter
 (+ 1 2)
 # 3
 
-'(- 1)
+\(- 1)
 # (- 1)
 
-(/ dividend:20 divisor:5)
-# 4
+(* 4 5)
+# 20
+
+(* multiplicand:4 multiplier:5)
+# 20
 ```
 
 ## List
@@ -75,14 +78,14 @@ An immutable sequence of values. It extends the map prototype by associating con
 []
 # []
 
-["x" "y"]
-# ["x" "y"]
+['x' 'y']
+# ['x' 'y']
 
-[8 2 2 'key:'value]
+[8 2 2 \key:\value]
 # [8 2 2 key:value]
 
-['name:"Bob"]
-# [name:"Bob"]
+[\name:'Bob']
+# [name:'Bob']
 ```
 
 ## Map
@@ -99,17 +102,17 @@ If the same key is repeated multiple times, it's associated with only the last v
 {}
 # {}
 
-{'name:"Bob" 'age:30}
-# {name:"Bob" age:30}
+{\name:'Bob' \age:30}
+# {name:'Bob' age:30}
 
-{"x" "y"}
-# {"x" "y"}
+{'x' 'y'}
+# {'x' 'y'}
 
-{8 2 2 'key:'value}
+{8 2 2 \key:\value}
 # {8 2 key:value}
 
-{'name 'name:"Bob"}
-# {name:"Bob"}
+{\name \name:'Bob'}
+# {name:'Bob'}
 ```
 
 ## Number
@@ -139,7 +142,7 @@ A mutable container for a value. It extends the list prototype by restricting it
 ### Examples
 
 ```
-(reference "Bob")
+(reference 'Bob')
 ```
 
 ## Symbol
@@ -149,16 +152,16 @@ An immutable case-sensitive name. It extends the text prototype by restricting t
 ### Examples
 
 ```
-'abc
+\abc
 # abc
 
-'is?
+\is?
 # is?
 
-'!
+\!
 # !
 
-'...
+\...
 # ...
 ```
 
@@ -169,20 +172,20 @@ An immutable sequence of Unicode characters, each one identified by a code-point
 ### Examples
 
 ```
-""
-# ""
+''
+# ''
 
-"x"
-# "x"
+'x'
+# 'x'
 
-"Bob"
-# "Bob"
+'Bob'
+# 'Bob'
 
-"café"
-# "café"
+'café'
+# 'café'
 
-"<a href=""http://www.example.com"">"
-# "<a href=""http://www.example.com"">"
+'<a href=''http://www.example.com''>'
+# '<a href=''http://www.example.com''>'
 ```
 
 # Built-ins
@@ -197,7 +200,7 @@ A function that compares two or more values and returns true if they are all equ
 
 ### Conditions
 
-If less than two arguments are passed, it returns the result of `(debug 'parameter-mismatch)`.
+If less than two arguments are passed, it returns the result of `(debug \parameter-mismatch)`.
 
 ### Examples
 
@@ -211,10 +214,10 @@ If less than two arguments are passed, it returns the result of `(debug 'paramet
 (= -0 +0)
 # true
 
-(= "A" "A" "A")
+(= 'A' 'A' 'A')
 # true
 
-(= "A" "a")
+(= 'A' 'a')
 # false
 
 (= [1 2 3] [1 2 3])
@@ -226,7 +229,7 @@ If less than two arguments are passed, it returns the result of `(debug 'paramet
 (= {0 1} {1 0})
 # true
 
-(= 0 "")
+(= 0 '')
 # false
 ```
 
@@ -240,9 +243,9 @@ A function that compares two or more numbers and returns true if each one is les
 
 ### Conditions
 
-If less than two arguments are passed, it returns the result of `(debug 'parameter-mismatch)`.
+If less than two arguments are passed, it returns the result of `(debug \parameter-mismatch)`.
 
-If any of the arguments isn't a number, it returns the result of `(debug 'prototype-mismatch)`.
+If any of the arguments isn't a number, it returns the result of `(debug \prototype-mismatch)`.
 
 ### Examples
 
@@ -264,9 +267,9 @@ A function that compares two or more numbers and returns true if each one is gre
 
 ### Conditions
 
-If less than two arguments are passed, it returns the result of `(debug 'parameter-mismatch)`.
+If less than two arguments are passed, it returns the result of `(debug \parameter-mismatch)`.
 
-If any of the arguments isn't a number, it returns the result of `(debug 'prototype-mismatch)`.
+If any of the arguments isn't a number, it returns the result of `(debug \prototype-mismatch)`.
 
 ## `+`
 
@@ -278,11 +281,11 @@ A function that adds one or more numbers.
 
 ### Conditions
 
-If no arguments are passed, it returns the result of `(debug 'parameter-mismatch)`.
+If no arguments are passed, it returns the result of `(debug \parameter-mismatch)`.
 
-If any of the arguments isn't a number, it returns the result of `(debug 'prototype-mismatch)`.
+If any of the arguments isn't a number, it returns the result of `(debug \prototype-mismatch)`.
 
-Adding negative infinity to positive infinity returns the result of `(debug 'undefined-arithmetic)`.
+Adding negative infinity to positive infinity returns the result of `(debug \undefined-arithmetic)`.
 
 ## `-`
 
@@ -294,11 +297,11 @@ A function that subtracts one or more numbers.
 
 ### Conditions
 
-If no arguments are passed, it returns the result of `(debug 'parameter-mismatch)`.
+If no arguments are passed, it returns the result of `(debug \parameter-mismatch)`.
 
-If any of the arguments isn't a number, it returns the result of `(debug 'prototype-mismatch)`.
+If any of the arguments isn't a number, it returns the result of `(debug \prototype-mismatch)`.
 
-Subtracting infinity from infinity returns the result of `(debug 'undefined-arithmetic)`.
+Subtracting infinity from infinity returns the result of `(debug \undefined-arithmetic)`.
 
 ## `*`
 
@@ -310,11 +313,11 @@ A function that multiplies two or more numbers.
 
 ### Conditions
 
-If less than two arguments are passed, it returns the result of `(debug 'parameter-mismatch)`.
+If less than two arguments are passed, it returns the result of `(debug \parameter-mismatch)`.
 
-If any of the arguments isn't a number, it returns the result of `(debug 'prototype-mismatch)`.
+If any of the arguments isn't a number, it returns the result of `(debug \prototype-mismatch)`.
 
-Multiplying zero and infinity returns the result of `(debug 'undefined-arithmetic)`.
+Multiplying zero and infinity returns the result of `(debug \undefined-arithmetic)`.
 
 ## `/`
 
@@ -326,11 +329,11 @@ A function that divides two or more numbers.
 
 ### Conditions
 
-If less than two arguments are passed, it returns the result of `(debug 'parameter-mismatch)`.
+If less than two arguments are passed, it returns the result of `(debug \parameter-mismatch)`.
 
-If any of the arguments isn't a number, it returns the result of `(debug 'prototype-mismatch)`.
+If any of the arguments isn't a number, it returns the result of `(debug \prototype-mismatch)`.
 
-Dividing any number by zero or infinity by infinity returns the result of `(debug 'undefined-arithmetic)`.
+Dividing any number by zero or infinity by infinity returns the result of `(debug \undefined-arithmetic)`.
 
 ### Examples
 
@@ -362,9 +365,9 @@ A function that interrupts normal execution flow. In development mode it trigger
 
 ### Conditions
 
-If more than one argument is passed, it returns the result of `(debug 'parameter-mismatch)`.
+If more than one argument is passed, it returns the result of `(debug \parameter-mismatch)`.
 
-If the `name` argument isn't a symbol, it returns the result of `(debug 'prototype-mismatch)`.
+If the `name` argument isn't a symbol, it returns the result of `(debug \prototype-mismatch)`.
 
 ## `defer`
 
@@ -377,9 +380,9 @@ A function that creates a snapshot of an `expression`, optionally with an `escap
 
 ### Conditions
 
-If less than one or more than two arguments are passed, it returns the result of `(debug 'parameter-mismatch)`.
+If less than one or more than two arguments are passed, it returns the result of `(debug \parameter-mismatch)`.
 
-If the `escape` argument isn't a symbol, it returns the result of `(debug 'prototype-mismatch)`.
+If the `escape` argument isn't a symbol, it returns the result of `(debug \prototype-mismatch)`.
 
 ### Examples
 
@@ -389,13 +392,13 @@ If the `escape` argument isn't a symbol, it returns the result of `(debug 'proto
   (+ 1 x)
   # 3
 
-  '(+ 1 x)
+  \(+ 1 x)
   # (+ 1 x)
 
   (defer (+ 1 x))
   # (+ 1 x)
 
-  (defer (+ 1 (escape x)) 'escape))
+  (defer (+ 1 (escape x)) \escape))
   # (+ 1 2)
 ```
 
@@ -410,31 +413,31 @@ A function that evaluates an `expression`, optionally in a different `scope`, an
 
 ### Conditions
 
-If zero or more than two arguments are passed, it returns the result of `(debug 'parameter-mismatch)`.
+If zero or more than two arguments are passed, it returns the result of `(debug \parameter-mismatch)`.
 
 ### Examples
 
 ```
-(evaluate "Bob")
-# "Bob"
+(evaluate 'Bob')
+# 'Bob'
 
-(let x: '(+ 8 2)
+(let x: \(+ 8 2)
 
   (evaluate x)
   # 10
 
-  (evaluate 'x))
+  (evaluate \x))
   # (+ 8 2)
 
 (let y: 2
 
-  (evaluate 'y)
+  (evaluate \y)
   # 2
 
-  (evaluate 'y {'y:8})
+  (evaluate \y {\y:8})
   # 8
 
-  (evaluate 'y (get scope)))
+  (evaluate \y (get scope)))
   # 2
 ```
 
@@ -454,13 +457,13 @@ A function that dereferences a `reference`.
 
 ### Conditions
 
-If one or three arguments aren't passed, it returns the result of `(debug 'parameter-mismatch)`.
+If one or three arguments aren't passed, it returns the result of `(debug \parameter-mismatch)`.
 
-If the `map` argument isn't a map, it returns the result of `(debug 'prototype-mismatch)`.
+If the `map` argument isn't a map, it returns the result of `(debug \prototype-mismatch)`.
 
-If the `reference` argument isn't a reference, it returns the result of `(debug 'prototype-mismatch)`.
+If the `reference` argument isn't a reference, it returns the result of `(debug \prototype-mismatch)`.
 
-If the association doesn't exist and the `default` argument is present, it returns `default`, otherwise it returns the result of `(debug 'unkown-key)`.
+If the association doesn't exist and the `default` argument is present, it returns `default`, otherwise it returns the result of `(debug \unkown-key)`.
 
 ### Examples
 
@@ -468,22 +471,22 @@ If the association doesn't exist and the `default` argument is present, it retur
 (get [8 2 2] 1)
 # 8
 
-(get {"a" "b"} "b")
-# "b"
+(get {'a' 'b'} 'b')
+# 'b'
 
-(get '(+ 6 7) 2)
+(get \(+ 6 7) 2)
 # 6
 
-(get {} 'name "John")
-# "John"
+(get {} \name 'John')
+# 'John'
 
-(let user: {'name:"Bob"}
+(let user: {\name:'Bob'}
 
-  (get user 'name)
-  # "Bob"
+  (get user \name)
+  # 'Bob'
 
   user::name)
-  # "Bob"
+  # 'Bob'
 
 (get (reference 123))
 # 123
@@ -499,17 +502,17 @@ A function that loads a module by `path`, and returns it as a function. A `path`
 
 ### Conditions
 
-If less or more than one argument is passed, it returns the result of `(debug 'parameter-mismatch)`.
+If less or more than one argument is passed, it returns the result of `(debug \parameter-mismatch)`.
 
-If the `module` argument isn't a non-empty list of symbols, it returns the result of `(debug 'prototype-mismatch)`.
+If the `module` argument isn't a non-empty list of symbols, it returns the result of `(debug \prototype-mismatch)`.
 
-If the specified `module` doesn't exist, it returns the result of `(debug 'unknown-module)`.
+If the specified `module` doesn't exist, it returns the result of `(debug \unknown-module)`.
 
 ### Examples
 
 ```
-(load ['server])
-(load ['image 'parser])
+(load [\server])
+(load [\image \parser])
 ```
 
 ## `local`
@@ -522,9 +525,9 @@ A function that returns a map with the non-inherited key/value pairs from a prot
 
 ### Conditions
 
-If less or more than one argument is passed, it returns the result of `(debug 'parameter-mismatch)`.
+If less or more than one argument is passed, it returns the result of `(debug \parameter-mismatch)`.
 
-If the `map` argument isn't a map, it returns the result of `(debug 'prototype-mismatch)`.
+If the `map` argument isn't a map, it returns the result of `(debug \prototype-mismatch)`.
 
 ### Examples
 
@@ -555,18 +558,18 @@ A function that extends the prototype hierarchy using `base-prototype` thereby c
 
 ### Conditions
 
-If zero or more than two arguments are passed, it returns the result of `(debug 'parameter-mismatch)`.
+If zero or more than two arguments are passed, it returns the result of `(debug \parameter-mismatch)`.
 
-When extending the prototype hierarchy, if both the `value` and `base-prototype` don't share a common ancestor prototype, it returns the result of `(debug 'prototype-mismatch)`.
+When extending the prototype hierarchy, if both the `value` and `base-prototype` don't share a common ancestor prototype, it returns the result of `(debug \prototype-mismatch)`.
 
 ### Examples
 
 ```
-(prototype "Bob")
-# ""
+(prototype 'Bob')
+# ''
 
-(prototype "")
-# ""
+(prototype '')
+# ''
 
 (prototype [8 2 2])
 # []
@@ -577,22 +580,22 @@ When extending the prototype hierarchy, if both the `value` and `base-prototype`
 (prototype 8)
 # 0
 
-(let Person: (prototype {'name:""} {})
-     bob: (put Person 'name "Bob")
+(let Person: (prototype {\name:''} {})
+     bob: (put Person \name 'Bob')
 
   Person
-  # {name:"" age:0}
+  # {name:'' age:0}
 
   (prototype Person)
   # {}
 
   bob
-  # {name:"Bob" age:20}
+  # {name:'Bob' age:20}
   
   (prototype bob)
   # Person
 
-  (prototype {'name:"Bob" 'age:20}))
+  (prototype {\name:'Bob' \age:20}))
   # {}
 ```
 
@@ -615,11 +618,11 @@ A function that modifies a `reference` to point to a new `value`.
 
 ### Conditions
 
-If less than two or more than three arguments are passed, it returns the result of `(debug 'parameter-mismatch)`.
+If less than two or more than three arguments are passed, it returns the result of `(debug \parameter-mismatch)`.
 
-If the `map` argument isn't a map, it returns the result of `(debug 'prototype-mismatch)`.
+If the `map` argument isn't a map, it returns the result of `(debug \prototype-mismatch)`.
 
-If the `reference` argument isn't a reference, it returns the result of `(debug 'prototype-mismatch)`.
+If the `reference` argument isn't a reference, it returns the result of `(debug \prototype-mismatch)`.
 
 ### Examples
 
@@ -630,22 +633,22 @@ If the `reference` argument isn't a reference, it returns the result of `(debug 
 (put [8] 9)
 # [8 9]
 
-(put ["x" "y"] 3 "z")
-# ["x" "y" "z"]
+(put ['x' 'y'] 3 'z')
+# ['x' 'y' 'z']
 
-(put ["x" "y"] 4 "z")
+(put ['x' 'y'] 4 'z')
 # [x y 4:z]
 
 (put {1 2} 3)
 # {1 2 3}
 
-(put {} 'name "Bob")
-# {name:"Bob"}
+(put {} \name 'Bob')
+# {name:'Bob'}
 
-(put {'name:"Bob"} 'name "John")
-# {name:"John"}
+(put {\name:'Bob'} \name 'John')
+# {name:'John'}
 
-(put {'name:"Bob"} 'name)
+(put {\name:'Bob'} \name)
 # {name}
 
 (get (put (reference 123) 321))
@@ -664,14 +667,14 @@ If the `map` is empty the `default` value is returned immediately.
 
 ### Conditions
 
-If less or more than three arguments are passed, it returns the result of `(debug 'parameter-mismatch)`.
+If less or more than three arguments are passed, it returns the result of `(debug \parameter-mismatch)`.
 
-If the `map` argument isn't a map or the `reducer` argument isn't a function, it returns the result of `(debug 'prototype-mismatch)`.
+If the `map` argument isn't a map or the `reducer` argument isn't a function, it returns the result of `(debug \prototype-mismatch)`.
 
 ### Examples
 
 ```
-(reduce [8 3 4] 0 '(+ accumulator key)
+(reduce [8 3 4] 0 \(+ accumulator key))
 # 15
 ```
 
@@ -685,20 +688,20 @@ A function that creates a new reference to a `value`.
 
 ### Conditions
 
-If less or more than one argument is passed, it returns the result of `(debug 'parameter-mismatch)`.
+If less or more than one argument is passed, it returns the result of `(debug \parameter-mismatch)`.
 
 ### Examples
 
 ```
-(let name: (reference "Bob")
+(let name: (reference 'Bob')
 
   (get name)
-  # "Bob"
+  # 'Bob'
 
-  (put name "John")
+  (put name 'John')
 
   (get name))
-  # "John"
+  # 'John'
 ```
 
 ## `remove`
@@ -711,9 +714,9 @@ A function that disassociates a `key` from a value in a `map`, and returns the n
 
 ### Conditions
 
-If less or more than two arguments are passed, it returns the result of `(debug 'parameter-mismatch)`.
+If less or more than two arguments are passed, it returns the result of `(debug \parameter-mismatch)`.
 
-If the `map` argument isn't a map, it returns the result of `(debug 'prototype-mismatch)`.
+If the `map` argument isn't a map, it returns the result of `(debug \prototype-mismatch)`.
 
 ### Examples
 
@@ -721,14 +724,14 @@ If the `map` argument isn't a map, it returns the result of `(debug 'prototype-m
 (remove [8] 1)
 # []
 
-(remove ["x" "y"] 3)
-# ["x" "y"]
+(remove ['x' 'y'] 3)
+# ['x' 'y']
 
-(remove {"x" "y"} "y")
-# {"x"}
+(remove {'x' 'y'} 'y')
+# {'x'}
 
-(remove {'name:"Bob" 'age:20} 'age)
-# {name:"Bob"}
+(remove {\name:'Bob' \age:20} \age)
+# {name:'Bob'}
 ```
 
 ## `scope`
@@ -745,7 +748,7 @@ The scope list always prototypically inherits from the previous scope list, or n
   x
   # 2
 
-  (get (get scope) 'x)
+  (get (get scope) \x)
   # 2
 
   (let x: 8
@@ -753,10 +756,10 @@ The scope list always prototypically inherits from the previous scope list, or n
     x
     # 8
 
-    (get (get scope) 'x)
+    (get (get scope) \x)
     # 8
 
-    (get (prototype (get scope)) 'x)))
+    (get (prototype (get scope)) \x)))
     # 2
 
 (let y: 3
@@ -764,7 +767,7 @@ The scope list always prototypically inherits from the previous scope list, or n
   y
   # 3
 
-  (put scope (put (get scope) 'y 5))
+  (put scope (put (get scope) \y 5))
 
   y
   # 5)
@@ -784,7 +787,7 @@ The grammar is expressed in Extended Backus-Naur Form syntax with the following 
 ```
 Expressions ::= White-Space* (Expression (White-Space+ Expression)* White-Space*)?
 Expression ::= Defer* (Symbol | Number | Quantity | List | Map | Text | Function-Call | Get-Expression)
-Defer ::= ' (U+27)
+Defer ::= \ (U+27)
 ```
 
 White-space:
@@ -822,7 +825,7 @@ Text:
 Text ::= Literal-Text | Tagged-Text
 Literal-Text ::= Text-Quote (not(Text-Quote) | Text-Quote{2})* Text-Quote
 Tagged-Text ::= (Symbol | Get-Expression) Literal-Text (Symbol | Get-Expression | Number | Quantity)?
-Text-Quote ::= " (U+22)
+Text-Quote ::= ' (U+22)
 ```
 
 Map:
@@ -861,13 +864,13 @@ These are the syntactic transformations that occur for each associated non-termi
 
 |Non-Terminal       |Syntax|Transformation|Example       |Notes         |
 |-------------------|------|--------------|--------------|--------------|
-|*Get-Expression*   |`x::y`|`(get x 'y)`  |`user::name`  |Left to right.|
-|*Tagged-Text*      |`xyz` |`(x y z)`     |`hex"1F"`     |              |
-|*Keyword-Parameter*|`x:y` |`'x:y`        |`(range to:9)`|              |
-|*List-Value*       |`x`   |`N:x`         |`["a"]`       |Position `N`. |
+|*Get-Expression*   |`x::y`|`(get x \y)`  |`user::name`  |Left to right.|
+|*Tagged-Text*      |`xyz` |`(x y z)`     |`hex'1F'`     |              |
+|*Keyword-Parameter*|`x:y` |`\x:y`        |`(range to:9)`|              |
+|*List-Value*       |`x`   |`N:x`         |`['a']`       |Position `N`. |
 |*Set-Value*        |`x`   |`x:x`         |`{123}`       |              |
 |*Quantity*         |`xy`  |`(y x)`       |`2Km`         |              |
-|*Defer*            |`'x`  |`(defer x)`   |`'length`     |              |
+|*Defer*            |`\x`  |`(defer x)`   |`\length`     |              |
 
 # Coding Style
 
