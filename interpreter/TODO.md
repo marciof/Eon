@@ -4,7 +4,6 @@
 - Build library from "core" and use it in each host built executable, so that it can be embedded. Can the remove the $core_sources CMake var.
 - If global ctors/dtors are removed, then there's no need for the linker script which will fix the dependency issue.
 - Clean up, abbreviate a bit more since C is verbose, remove leading underscore in static data, upper-case data type files, simplify, remove double blank lines, more flat less nested, remove useless TODO comments and documentation (document only what's need), remove stop modes and use only reset or halt.
-- Refactor duplicate compiler flags.
 - Make it more resilient, warn instead of aborting.
 - Add location to log calls? function, file, line? Or to warnings and errors only?
 - Encapsulate more Multiboot handling in a single file?
@@ -26,7 +25,6 @@
   - CCFLAGS += -m64
   - LINKFLAGS += -m elf_x86_64
 - Upgrade to Multiboot 2?
-- Use exceptions to reduce coupling between components? Eg. no need to call System::stop() directly, calls to Log::error() will throw an exception.
 - https://github.com/copy/v86
 - Prototyping:
   - Start adding unit tests.

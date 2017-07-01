@@ -1,6 +1,8 @@
 enable_language(C)
 
-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -std=c11 -pedantic-errors -Wall -Wextra -Wredundant-decls -Wshadow -Wswitch-default -Wundef -Wunused-macros -Wno-unused-parameter")
+if(CMAKE_COMPILER_IS_GNUCC)
+    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -std=c11 -pedantic-errors -Wall -Wextra -Wredundant-decls -Wshadow -Wswitch-default -Wundef -Wunused-macros")
+endif()
 
 set(core_sources
     core/Log.c
@@ -8,6 +10,7 @@ set(core_sources
     core/Memory.h
     core/System.h)
 
+# FIXME: build library instead of hardcoding direct paths to it
 string(REGEX REPLACE "([^;]+)" "${CMAKE_CURRENT_SOURCE_DIR}/\\1"
     core_sources "${core_sources}")
 
