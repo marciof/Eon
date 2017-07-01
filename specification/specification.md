@@ -781,36 +781,32 @@ The grammar is expressed in Extended Backus-Naur Form syntax with the following 
 * `i+`: One or more occurrences of item `i`.
 * `i?`: Optional item `i`.
 * `i{x}`: Exactly `x` occurrences of item `i`.
-* `not(i)`: Everything but the enclosed item `i`.
-* `i (U+x)`: Terminal rule, as a Unicode character `i` with hexadecimal value of `x`.
+* `not(i)`: Anything except the enclosed item `i`.
+* `"i" <U+x>`: Unicode character `i` with hexadecimal value of `x`.
 
 Expression:
 
 ```
 Expressions ::= White-Space* (Expression (White-Space+ Expression)* White-Space*)?
-Expression ::= Defer* (Symbol | Number | List | Map | Text | Function-Call | Get-Chain)
-Defer ::= \ (U+27)
+Expression ::= Defer* (Number | Symbol | Text | Map | List | Function | Get-Chain)
+Defer ::= "\" <U+27>
 ```
 
 White-space:
 
 ```
-White-Space ::= Space | End-of-Line | Comment
+White-Space ::= " " <U+20> | End-of-Line | Comment
 Comment ::= Comment-Quote not(End-of-Line)* End-of-Line
-Comment-Quote ::= # (U+23)
-Space ::= (U+20)
-End-of-Line ::= (U+A)
+Comment-Quote ::= "#" <U+23>
+End-of-Line ::= "" <U+A>
 ```
 
 Number:
 
 ```
-Number ::= (Terminating-Decimal | Repeating-Decimal) Symbol?
-Terminating-Decimal ::= Sign? Digit+ (Unit-Separator Digit+)?
-Repeating-Decimal ::= Sign? Digit+ Unit-Separator Digit* Parenthesis-Begin Digit+ Parenthesis-End
-Unit-Separator ::= . (U+2E)
-Sign ::= + (U+2B) | - (U+2D)
-Digit ::= 0 (U+30) | 1 (U+31) | 2 (U+32) | 3 (U+33) | 4 (U+34) | 5 (U+35) | 6 (U+36) | 7 (U+37) | 8 (U+38) | 9 (U+39)
+Number ::= Sign? Digit+ ("." <U+2E> (Digit+ | Digit* Parenthesis-Begin Digit+ Parenthesis-End))? Symbol?
+Sign ::= "+" <U+2B> | "-" <U+2D>
+Digit ::= "0" <U+30> | "1" <U+31> | "2" <U+32> | "3" <U+33> | "4" <U+34> | "5" <U+35> | "6" <U+36> | "7" <U+37> | "8" <U+38> | "9" <U+39>
 ```
 
 Symbol:
@@ -824,7 +820,7 @@ Text:
 
 ```
 Text ::= Symbol? Text-Quote (not(Text-Quote) | Text-Quote{2})* Text-Quote
-Text-Quote ::= ' (U+22)
+Text-Quote ::= "'" <U+22>
 ```
 
 Map:
@@ -833,9 +829,9 @@ Map:
 Map ::= Map-Begin White-Space* ((Set-Value | Pair) (White-Space+ (Set-Value | Pair))* White-Space*)? Map-End
 Set-Value ::= Expression
 Pair ::= Expression Pair-Separator White-Space* Expression
-Pair-Separator ::= : (U+3A)
-Map-Begin ::= { (U+7B)
-Map-End ::= } (U+7D)
+Pair-Separator ::= ":" <U+3A>
+Map-Begin ::= "{" <U+7B>
+Map-End ::= "}" <U+7D>
 ```
 
 List:
@@ -843,18 +839,18 @@ List:
 ```
 List ::= List-Begin White-Space* ((List-Value | Pair) (White-Space+ (List-Value | Pair))* White-Space*)? List-End
 List-Value ::= Expression
-List-Begin ::= [ (U+5B)
-List-End ::= ] (U+5D)
+List-Begin ::= "[" <U+5B>
+List-End ::= "]" <U+5D>
 ```
 
-Function call:
+Function:
 
 ```
-Function-Call ::= Parenthesis-Begin White-Space* ((Expression | Keyword-Parameter) (White-Space+ (Expression | Keyword-Parameter))* White-Space*)? Parenthesis-End
+Function ::= Parenthesis-Begin White-Space* ((Expression | Keyword-Parameter) (White-Space+ (Expression | Keyword-Parameter))* White-Space*)? Parenthesis-End
 Keyword-Parameter ::= Pair
-Get-Chain ::= Symbol (Pair-Separator Pair-Separator Symbol)+
-Parenthesis-Begin ::= ( (U+28)
-Parenthesis-End ::= ) (U+28)
+Get-Chain ::= Symbol (Pair-Separator{2} Symbol)+
+Parenthesis-Begin ::= "(" <U+28>
+Parenthesis-End ::= ")" <U+28>
 ```
 
 ## Transformations
