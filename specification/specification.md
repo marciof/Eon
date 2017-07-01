@@ -1,3 +1,22 @@
+# Table of Contents
+
+- [Introduction](#introduction)
+- [Structure](#structure)
+- [Prototypes](#prototypes)
+  - [Boolean](#boolean)
+  - [Function](#function)
+  - [List](#list)
+  - [Map](#map)
+  - [Number](#number)
+  - [Reference](#reference)
+  - [Symbol](#symbol)
+  - [Text](#text)
+- [Built-ins](#built-ins)
+- [Grammar](#grammar)
+- [Coding Style](#coding-style)
+  - [Documentation](#documentation)
+  - [Naming](#naming)
+
 # Introduction
 
 ## Goals
@@ -34,7 +53,7 @@ Practical:
 
 ## Module
 
-A Unicode textual representation of expressions encoded in UTF-8 without a Byte Order Mark, with a valid symbol for its name.
+A Unicode textual representation of expressions encoded in UTF-8 without a Byte Order Mark, with a valid [symbol](#symbol) for its name.
 
 # Prototypes
 
@@ -46,9 +65,9 @@ A binary logical value that can only be either true or false.
 
 ## Function
 
-An immutable sequence composed of a function followed by zero or more values, the arguments. It extends the list prototype.
+An immutable sequence composed of a function followed by zero or more values, the arguments. It extends the [list](#list) prototype.
 
-Calling a function creates a new scope using the function call list with deferred arguments, prototypically inherited from the previous scope, and then evaluates it in this new scope returning the result.
+Calling a function creates a new [scope](#scope) using the [deferred](#defer) function call list, [prototypically](#prototype) inherited from the previous scope, and then evaluates it in this new scope returning the result.
 
 Arguments in a function call are specified positionally or via keyword parameters.
 
@@ -70,7 +89,7 @@ Arguments in a function call are specified positionally or via keyword parameter
 
 ## List
 
-An immutable sequence of values. It extends the map prototype by associating consecutive positive integer keys in ascending order with values.
+An immutable sequence of values. It extends the [map](#map) prototype by associating consecutive positive integer keys in ascending order with values.
 
 ### Examples
 
@@ -137,7 +156,7 @@ A rational number.
 
 ## Reference
 
-A mutable container for a value. It extends the list prototype by restricting its length to exactly one element and making the key and value one and the same.
+A mutable container for a value. It extends the [list](#list) prototype by restricting its length to exactly one element and making the key and value one and the same.
 
 ### Examples
 
@@ -147,7 +166,7 @@ A mutable container for a value. It extends the list prototype by restricting it
 
 ## Symbol
 
-An immutable case-sensitive name. It extends the text prototype by restricting the character set used.
+An immutable case-sensitive name. It extends the [text](#text) prototype by restricting the character set used.
 
 ### Examples
 
@@ -167,7 +186,7 @@ An immutable case-sensitive name. It extends the text prototype by restricting t
 
 ## Text
 
-An immutable sequence of Unicode characters, each one identified by a code-point. It extends the list prototype by associating non-negative integer elements to code-points.
+An immutable sequence of Unicode characters, each one identified by a code-point. It extends the [list](#list) prototype by associating non-negative integer elements to code-points.
 
 ### Examples
 
@@ -196,7 +215,7 @@ An immutable sequence of Unicode characters, each one identified by a code-point
 (= x y ...): Boolean
 ```
 
-A function that compares two or more values and returns true if they are all equal, or false otherwise.
+A [function](#function) that compares two or more values and returns true if they are all equal, or false otherwise.
 
 ### Conditions
 
@@ -239,7 +258,7 @@ If less than two arguments are passed, it returns the result of `(debug \paramet
 (< x y ...): Boolean
 ```
 
-A function that compares two or more numbers and returns true if each one is less than the next, or false otherwise.
+A [function](#function) that compares two or more [numbers](#number) and returns true if each one is less than the next, or false otherwise.
 
 ### Conditions
 
@@ -263,7 +282,7 @@ If any of the arguments isn't a number, it returns the result of `(debug \protot
 (> x y ...): Boolean
 ```
 
-A function that compares two or more numbers and returns true if each one is greater than the next, or false otherwise.
+A [function](#function) that compares two or more [numbers](#number) and returns true if each one is greater than the next, or false otherwise.
 
 ### Conditions
 
@@ -277,7 +296,7 @@ If any of the arguments isn't a number, it returns the result of `(debug \protot
 (+ x:Number ...): Number
 ```
 
-A function that adds one or more numbers.
+A [function](#function) that adds one or more [numbers](#number).
 
 ### Conditions
 
@@ -293,7 +312,7 @@ Adding negative infinity to positive infinity returns the result of `(debug \und
 (- x:Number ...): Number
 ```
 
-A function that subtracts one or more numbers.
+A [function](#function) that subtracts one or more [numbers](#number).
 
 ### Conditions
 
@@ -309,7 +328,7 @@ Subtracting infinity from infinity returns the result of `(debug \undefined-arit
 (* multiplicand:Number multiplier:Number ...): Number
 ```
 
-A function that multiplies two or more numbers.
+A [function](#function) that multiplies two or more [numbers](#number).
 
 ### Conditions
 
@@ -325,7 +344,7 @@ Multiplying zero and infinity returns the result of `(debug \undefined-arithmeti
 (/ dividend:Number divisor:Number ...): Number
 ```
 
-A function that divides two or more numbers.
+A [function](#function) that divides two or more [numbers](#number).
 
 ### Conditions
 
@@ -361,7 +380,7 @@ Dividing any number by zero or infinity by infinity returns the result of `(debu
 (debug name:Symbol)
 ```
 
-A function that interrupts normal execution flow. In development mode it triggers a debugger, while in production mode it halts execution with an appropriate error message.
+A [function](#function) that interrupts normal execution flow. In development mode it triggers a debugger, while in production mode it halts execution with an appropriate error message.
 
 ### Conditions
 
@@ -376,7 +395,7 @@ If the `name` argument isn't a symbol, it returns the result of `(debug \prototy
 (defer expression escape:Symbol)
 ```
 
-A function that creates a snapshot of an `expression`, optionally with an `escape` symbol for re-enabling evaluation inside it, thereby preventing it from being evaluated.
+A [function](#function) that creates a snapshot of an `expression`, optionally with an `escape` [symbol](#symbol) for re-enabling [evaluation](#evaluate) inside it, thereby preventing it from being evaluated.
 
 ### Conditions
 
@@ -409,7 +428,7 @@ If the `escape` argument isn't a symbol, it returns the result of `(debug \proto
 (evaluate expression scope:List)
 ```
 
-A function that evaluates an `expression`, optionally in a different `scope`, and returns the result.
+A [function](#function) that evaluates an `expression`, optionally in a different `scope`, and returns the result.
 
 ### Conditions
 
@@ -447,7 +466,7 @@ If zero or more than two arguments are passed, it returns the result of `(debug 
 (get map:Map key default)
 ```
 
-A function that retrieves the value associated with a `key` in a `map`, with an optional `default` value to use if the `key` doesn't exist.
+A [function](#function) that retrieves the value associated with a `key` in a `map`, with an optional `default` value to use if the `key` doesn't exist.
 
 ```
 (get reference:Reference)
@@ -498,7 +517,7 @@ If the association doesn't exist and the `default` argument is present, it retur
 (load path:List): Function
 ```
 
-A function that loads a module by `path`, and returns it as a function. A `path` is a list of zero or more names, ending with the module name.
+A [function](#function) that loads a [module](#module) by `path`, and returns it as a [function](#function). A `path` is a list of zero or more names, ending with the module name.
 
 ### Conditions
 
@@ -521,7 +540,7 @@ If the specified `module` doesn't exist, it returns the result of `(debug \unkno
 (local map:Map): Map
 ```
 
-A function that returns a map with the non-inherited key/value pairs from a prototyped `map`.
+A [function](#function) that returns a [map](#map) with the non-inherited key/value pairs from a [prototyped](#prototype) `map`.
 
 ### Conditions
 
@@ -548,13 +567,13 @@ If the `map` argument isn't a map, it returns the result of `(debug \prototype-m
 (prototype value)
 ```
 
-A function that retrieves the prototype of `value`.
+A [function](#function) that retrieves the prototype of `value`.
 
 ```
 (prototype value base-prototype)
 ```
 
-A function that extends the prototype hierarchy using `base-prototype` thereby creating a new prototype.
+A [function](#function) that extends the prototype hierarchy using `base-prototype` thereby creating a new prototype.
 
 ### Conditions
 
@@ -606,15 +625,15 @@ When extending the prototype hierarchy, if both the `value` and `base-prototype`
 (put map:Map key value): Map
 ```
 
-A function that associates a `key` with a `value` in a `map`, and returns the new map.
+A [function](#function) that associates a `key` with a `value` in a `map`, and returns the new [map](#map).
 
-If no `key` is passed and the `map` is a list, then the `value` is inserted at the end of the list. Otherwise `key` defaults to `value`.
+If no `key` is passed and the `map` is a [list](#list), then the `value` is inserted at the end of the list. Otherwise `key` defaults to `value`.
 
 ```
 (put reference:Reference value): Reference
 ```
 
-A function that modifies a `reference` to point to a new `value`.
+A [function](#function) that modifies a `reference` to point to a new `value`.
 
 ### Conditions
 
@@ -661,7 +680,7 @@ If the `reference` argument isn't a reference, it returns the result of `(debug 
 (reduce map:Map default reducer:Function)
 ```
 
-A function that iterates over a `map`, calling the `reducer` function with each previously returned value (starting with the initial `default` value) as parameter `accumulator`, each map value as parameter `value`, and each map key as parameter `key`, and then returns the last reduced value.
+A [function](#function) that iterates over a `map`, calling the `reducer` function with each previously returned value (starting with the initial `default` value) as parameter `accumulator`, each map value as parameter `value`, and each map key as parameter `key`, and then returns the last reduced value.
 
 If the `map` is empty the `default` value is returned immediately.
 
@@ -684,7 +703,7 @@ If the `map` argument isn't a map or the `reducer` argument isn't a function, it
 (reference value)
 ```
 
-A function that creates a new reference to a `value`.
+A [function](#function) that creates a new reference to a `value`.
 
 ### Conditions
 
@@ -710,7 +729,7 @@ If less or more than one argument is passed, it returns the result of `(debug \p
 (remove map:Map key): Map
 ```
 
-A function that disassociates a `key` from a value in a `map`, and returns the new map.
+A [function](#function) that disassociates a `key` from a value in a `map`, and returns the new [map](#map).
 
 ### Conditions
 
@@ -736,9 +755,9 @@ If the `map` argument isn't a map, it returns the result of `(debug \prototype-m
 
 ## `scope`
 
-A reference to a list mapping identifiers to values in the current scope.
+A [reference](#reference) to a [list](#list) mapping identifiers to values in the current scope.
 
-The scope list always prototypically inherits from the previous scope list, or none if it's the module scope. Each function call creates a new scope list that prototypically inherits from the previous one, and this reference always points to the current one.
+The scope list always [prototypically](#prototype) inherits from the previous scope list, or none if it's the [module](#module) scope. Each [function](#function) call creates a new scope list that prototypically inherits from the previous one, and this reference always points to the current one.
 
 ### Examples
 

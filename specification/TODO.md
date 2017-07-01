@@ -1,9 +1,7 @@
 - Add section with goal, characteristics
-  - Keyword arguments.
   - Recursive anonymous functions.
   - Varargs.
   - Dynamic function calls.
-  - Unicode (text) strings != byte strings.
   - Error handling.
   - Debugger with call frames and local variables.
   - Live changes (hot-reloading) support.
@@ -15,8 +13,6 @@
   - https://software-lab.de/doc/faq.html
   - https://picolisp.com
 - Decouple `load`: `read` + `parse`
-- Need table of contents and hyperlinks between terms.
-  - https://github.com/blog/1395-relative-links-in-markup-files
 - Indicate time and space complexity for each operation.
 - Specify prototypical inheritance (eg. intro, `get` `put` and `remove` handling, etc). http://steve-yegge.blogspot.com/2008/10/universal-design-pattern.html
 - Rename `debug` to `rescue` for something similar to Common Lisp conditions (signaling a condition, handling it, and restarting).
