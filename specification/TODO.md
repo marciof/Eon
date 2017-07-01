@@ -35,14 +35,15 @@
 - Look for best/worst features of other languages: JavaScript, Clojure, Kotlin, Python, Haskell, Erlang, PureScript, Elm, Io, Rust, Ruby, Smalltalk, Java, Scheme, Go, ML, Lua, Haxe, Tcl, Shen, Matlab, R, REBOL, Wolfram.
   - "Perl Pocket Reference"
 - http://www.infoq.com/presentations/Value-Identity-State-Rich-Hickey
+- Opt-in static typing?
 - Change `load` to allow specifying a language/type to make it part of the spec that it has hooks for FFI? It's more practical and realistic, and also enables using native parts of a OS runtime. Allow a string so that anything works? URLs, etc
 - Uniform zero handling? `0/n = 0*n = n*0 = 0%n = 0`
 - How to have references in literal data structures? Needed for persisting state or configuration files?
 - Indentation based, significant white-space? Useful for using the REPL as a shell itself.
 - Add `count` built-in or let it be defined via `reduce`? Performance?
 - Add `has?` built-in or let it be defined through conditions? Performance?
-- Opt-in static typing?
 - Add fraction literal syntax? More practical? Or just use number suffix functions named `/2`, `/3`, etc?
 - Add syntax support for number digit grouping? Similar to C++14, `4'294'967'296`
 - Make Reference use a Function to update the value for async and concurrency?
 - Make defer's escape able to accept multiple arguments in which case it does unquote splice?
+- Allow suffixes in tagged text literals? Unnecessarily complicated? No good use-cases?

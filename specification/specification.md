@@ -117,7 +117,7 @@ If the same key is repeated multiple times, it's associated with only the last v
 
 ## Number
 
-A quantity.
+A rational number.
 
 ### Examples
 
@@ -784,9 +784,11 @@ The grammar is expressed in Extended Backus-Naur Form syntax with the following 
 * `not(i)`: Everything but the enclosed item `i`.
 * `i (U+x)`: Terminal rule, as a Unicode character `i` with hexadecimal value of `x`.
 
+Expression:
+
 ```
 Expressions ::= White-Space* (Expression (White-Space+ Expression)* White-Space*)?
-Expression ::= Defer* (Symbol | Number | Quantity | List | Map | Text | Function-Call | Get-Expression)
+Expression ::= Defer* (Symbol | Number | List | Map | Text | Function-Call | Get-Expression)
 Defer ::= \ (U+27)
 ```
 
@@ -803,8 +805,7 @@ End-of-Line ::= (U+A)
 Number:
 
 ```
-Quantity ::= Number (Symbol | Get-Expression)
-Number ::= Terminating-Decimal | Repeating-Decimal
+Number ::= (Terminating-Decimal | Repeating-Decimal) Symbol?
 Terminating-Decimal ::= Sign? Digit+ (Unit-Separator Digit+)?
 Repeating-Decimal ::= Sign? Digit+ Unit-Separator Digit* Parenthesis-Begin Digit+ Parenthesis-End
 Unit-Separator ::= . (U+2E)
@@ -822,9 +823,7 @@ Reserved-Character ::= List-Begin | List-End | Parenthesis-Begin | Parenthesis-E
 Text:
 
 ```
-Text ::= Literal-Text | Tagged-Text
-Literal-Text ::= Text-Quote (not(Text-Quote) | Text-Quote{2})* Text-Quote
-Tagged-Text ::= (Symbol | Get-Expression) Literal-Text (Symbol | Get-Expression | Number | Quantity)?
+Text ::= Symbol? Text-Quote (not(Text-Quote) | Text-Quote{2})* Text-Quote
 Text-Quote ::= ' (U+22)
 ```
 
@@ -865,11 +864,11 @@ These are the syntactic transformations that occur for each associated non-termi
 |Non-Terminal       |Syntax|Transformation|Example       |Notes         |
 |-------------------|------|--------------|--------------|--------------|
 |*Get-Expression*   |`x::y`|`(get x \y)`  |`user::name`  |Left to right.|
-|*Tagged-Text*      |`xyz` |`(x y z)`     |`hex'1F'`     |              |
+|*Text*             |`xy`  |`(x y)`       |`hex'1F'`     |              |
 |*Keyword-Parameter*|`x:y` |`\x:y`        |`(range to:9)`|              |
 |*List-Value*       |`x`   |`N:x`         |`['a']`       |Position `N`. |
 |*Set-Value*        |`x`   |`x:x`         |`{123}`       |              |
-|*Quantity*         |`xy`  |`(y x)`       |`2Km`         |              |
+|*Number*           |`xy`  |`(y x)`       |`2Km`         |              |
 |*Defer*            |`\x`  |`(defer x)`   |`\length`     |              |
 
 # Coding Style
