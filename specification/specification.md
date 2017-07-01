@@ -92,7 +92,7 @@ An immutable sequence of values. It extends the map prototype by associating con
 
 An immutable insertion ordered collection of unique keys each one associated with a single value.
 
-If a given key has no associated value, it's then handled as in a set where the key and value are the same, but still separate from each other.
+If a given key has no associated value, it's then handled as in a set where the key and value are the same, however they're still separate from each other. A set element is only evaluated once even though it's used for both the key and value.
 
 If the same key is repeated multiple times, it's associated with only the last value.
 
@@ -788,7 +788,7 @@ Expression:
 
 ```
 Expressions ::= White-Space* (Expression (White-Space+ Expression)* White-Space*)?
-Expression ::= Defer* (Symbol | Number | List | Map | Text | Function-Call | Get-Expression)
+Expression ::= Defer* (Symbol | Number | List | Map | Text | Function-Call | Get-Chain)
 Defer ::= \ (U+27)
 ```
 
@@ -852,7 +852,7 @@ Function call:
 ```
 Function-Call ::= Parenthesis-Begin White-Space* ((Expression | Keyword-Parameter) (White-Space+ (Expression | Keyword-Parameter))* White-Space*)? Parenthesis-End
 Keyword-Parameter ::= Pair
-Get-Expression ::= Symbol (Pair-Separator Pair-Separator Symbol)+
+Get-Chain ::= Symbol (Pair-Separator Pair-Separator Symbol)+
 Parenthesis-Begin ::= ( (U+28)
 Parenthesis-End ::= ) (U+28)
 ```
@@ -863,7 +863,7 @@ These are the syntactic transformations that occur for each associated non-termi
 
 |Non-Terminal       |Syntax|Transformation|Example       |Notes         |
 |-------------------|------|--------------|--------------|--------------|
-|*Get-Expression*   |`x::y`|`(get x \y)`  |`user::name`  |Left to right.|
+|*Get-Chain*        |`x::y`|`(get x \y)`  |`user::name`  |Left to right.|
 |*Text*             |`xy`  |`(x y)`       |`hex'1F'`     |              |
 |*Keyword-Parameter*|`x:y` |`\x:y`        |`(range to:9)`|              |
 |*List-Value*       |`x`   |`N:x`         |`['a']`       |Position `N`. |

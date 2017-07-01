@@ -47,3 +47,4 @@
 - Make Reference use a Function to update the value for async and concurrency?
 - Make defer's escape able to accept multiple arguments in which case it does unquote splice?
 - Allow suffixes in tagged text literals? Unnecessarily complicated? No good use-cases?
+- Allow Get Chain expressions to contain numbers? `names::1`
