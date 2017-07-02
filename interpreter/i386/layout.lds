@@ -3,22 +3,8 @@ ENTRY("main")
 SECTIONS {
     /* The Multiboot header must stay in the first 8 KiB of the final
        binary file so that Multiboot compliant boot loaders can find it. */
-    .multiboot : {
-        *(.multiboot)
-    }
-
-    .rodata : {
-        *(.rodata .rdata)
-
-        /* C++ static/global constructors list. */
-        _cpp_ctors_begin = .;
-        *(.ctor*)
-        _cpp_ctors_end = .;
-        
-        /* Ditto for destructors. */
-        _cpp_dtors_begin = .;
-        *(.dtor*)
-        _cpp_dtors_end = .;
+    .multiboot_header : {
+        *(.multiboot_header)
     }
 
     .data : {
@@ -31,9 +17,5 @@ SECTIONS {
 
     .text : {
         *(.text)
-    }
-
-    /DISCARD/ : {
-        *(.comment)
     }
 }

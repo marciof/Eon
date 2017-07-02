@@ -14,8 +14,6 @@
 - [Built-ins](#built-ins)
 - [Grammar](#grammar)
 - [Coding Style](#coding-style)
-  - [Documentation](#documentation)
-  - [Naming](#naming)
 
 # Introduction
 

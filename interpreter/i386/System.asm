@@ -39,7 +39,7 @@ main:
 
 global e_System_reset
 e_System_reset:
-    ; FIXME: explain part about keyboard.
+    ; FIXME: explain part about keyboard
     ; Reset by causing a triple fault (which doesn't require a keyboard).
     int 3
     ; FIXME: can reuse `halt`?

@@ -5,6 +5,7 @@ enum {E_LOG_TAB_SIZE_SPACES = 4};
 enum e_Log_Level {E_LOG_ERROR, E_LOG_WARN, E_LOG_INFO};
 
 // FIXME: use ref?
+// FIMXE: add timestamps?
 struct e_Log {
     void (*prepare)(struct e_Log* log, enum e_Log_Level level);
     void (*print_ch)(struct e_Log* log, char ch);

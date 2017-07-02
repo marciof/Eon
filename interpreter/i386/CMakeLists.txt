@@ -19,7 +19,7 @@ set(CMAKE_ASM_NASM_FLAGS "${CMAKE_ASM_NASM_FLAGS} -f elf -i ${CMAKE_CURRENT_SOUR
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -m32 -fno-exceptions -nostdlib -nodefaultlibs -nostartfiles -ffreestanding")
 
 # FIXME: missing build dependency on the linker script
-set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -m elf_i386 --script ${CMAKE_CURRENT_SOURCE_DIR}/layout.lds")
+set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -m elf_i386 --script=${CMAKE_CURRENT_SOURCE_DIR}/layout.lds")
 
 add_executable(${PROJECT_NAME}.i386
     ${core_sources}
