@@ -53,6 +53,7 @@ extern struct multiboot_info* e_multiboot_info;
 extern uint32_t e_multiboot_magic_num;
 
 // FIXME: use macro for GCC extension
+/** Depends on the linker script to place the header at the correct location. */
 const struct multiboot_header e_Multiboot_header __attribute__((section(".multiboot_header"))) = {
     MULTIBOOT_HEADER_MAGIC,
     MULTIBOOT_MEMORY_INFO,

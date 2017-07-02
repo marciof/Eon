@@ -13,16 +13,18 @@ string(REPLACE "<CMAKE_C_COMPILER>" "<CMAKE_LINKER>"
 string(REGEX REPLACE "<(CMAKE_C_LINK_)?FLAGS>" ""
     CMAKE_C_LINK_EXECUTABLE "${CMAKE_C_LINK_EXECUTABLE}")
 
+set(LINKER_SCRIPT ${CMAKE_CURRENT_SOURCE_DIR}/layout.lds)
+
 # NASM requires include directories to end in a slash.
 set(CMAKE_ASM_NASM_FLAGS "${CMAKE_ASM_NASM_FLAGS} -f elf -i ${CMAKE_CURRENT_SOURCE_DIR}/")
 
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -m32 -fno-exceptions -nostdlib -nodefaultlibs -nostartfiles -ffreestanding")
 
-# FIXME: missing build dependency on the linker script
-set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -m elf_i386 --script=${CMAKE_CURRENT_SOURCE_DIR}/layout.lds")
+set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -m elf_i386 --script=${LINKER_SCRIPT}")
 
 add_executable(${PROJECT_NAME}.i386
-    ${core_sources}
+    ${LINKER_SCRIPT}
+    ${CORE_SOURCES}
     Multiboot.c
     Multiboot.h
     vga/Attr.c
@@ -48,3 +50,5 @@ add_executable(${PROJECT_NAME}.i386
     arg.asm
     System.asm
     System.c)
+
+set_target_properties(${PROJECT_NAME}.i386 PROPERTIES LINK_DEPENDS ${LINKER_SCRIPT})

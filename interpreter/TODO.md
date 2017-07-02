@@ -26,6 +26,7 @@
 - Upgrade to Multiboot 2?
 - https://github.com/copy/v86
 - Prototyping:
+  - lexical analysis: Lexer, Tokenizer, Scanner / syntax analysis: Parser, Syntax Tree, Parse Tree
   - Start adding unit tests.
   - Add `getopt` with help screen, options, and version.
   - Add flag option to print token stream.

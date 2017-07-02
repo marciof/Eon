@@ -1,5 +1,5 @@
 add_executable(${PROJECT_NAME}.native
-    ${core_sources}
+    ${CORE_SOURCES}
     Log.c
     Memory.c
     System.c)
