@@ -3,10 +3,6 @@
 #include "Bit.h"
 #include "Multiboot.h"
 
-// FIXME: refactor with BIT macros
-#define IS_FLAG_SET(flags, flag) \
-    (((flags) & (flag)) != 0)
-
 typedef uint8_t Drive_Access_Mode;
 enum {
     // Traditional Cylinder/Head/Sector addressing mode.
@@ -70,7 +66,7 @@ const struct multiboot_header e_Multiboot_header __attribute__((section(".multib
 };
 
 static void log_boot_device(struct multiboot_info* info, struct e_Log* log) {
-    if (IS_FLAG_SET(info->flags, MULTIBOOT_INFO_BOOTDEV)) {
+    if (E_BIT_IS_SET(info->flags, MULTIBOOT_INFO_BOOTDEV)) {
         struct Boot_Device* device = (struct Boot_Device*) &info->boot_device;
 
         e_Log_msg(log, E_LOG_INFO,
@@ -83,7 +79,7 @@ static void log_boot_device(struct multiboot_info* info, struct e_Log* log) {
 }
 
 static void log_boot_modules(struct multiboot_info* info, struct e_Log* log) {
-    if (!IS_FLAG_SET(info->flags, MULTIBOOT_INFO_MODS)) {
+    if (!E_BIT_IS_SET(info->flags, MULTIBOOT_INFO_MODS)) {
         return;
     }
 
@@ -100,7 +96,7 @@ static void log_boot_modules(struct multiboot_info* info, struct e_Log* log) {
 }
 
 static void log_drives(struct multiboot_info* info, struct e_Log* log) {
-    if (!IS_FLAG_SET(info->flags, MULTIBOOT_INFO_DRIVE_INFO)) {
+    if (!E_BIT_IS_SET(info->flags, MULTIBOOT_INFO_DRIVE_INFO)) {
         return;
     }
 
@@ -123,7 +119,7 @@ static void log_drives(struct multiboot_info* info, struct e_Log* log) {
 }
 
 static void log_memory_map(struct multiboot_info* info, struct e_Log* log) {
-    if (!IS_FLAG_SET(info->flags, MULTIBOOT_INFO_MEM_MAP)) {
+    if (!E_BIT_IS_SET(info->flags, MULTIBOOT_INFO_MEM_MAP)) {
         return;
     }
 
@@ -151,14 +147,14 @@ static void log_memory_map(struct multiboot_info* info, struct e_Log* log) {
 }
 
 static void log_symbol_table(struct multiboot_info* info, struct e_Log* log) {
-    if (IS_FLAG_SET(info->flags, MULTIBOOT_INFO_AOUT_SYMS)) {
+    if (E_BIT_IS_SET(info->flags, MULTIBOOT_INFO_AOUT_SYMS)) {
         struct multiboot_aout_symbol_table* table = &info->u.aout_sym;
 
         e_Log_msg(log, E_LOG_INFO, "a.out symbol table: "
             "size={iu}; string table size={iu}; addr={iuh}",
             table->tabsize, table->strsize, table->addr);
     }
-    else if (IS_FLAG_SET(info->flags, MULTIBOOT_INFO_ELF_SHDR)) {
+    else if (E_BIT_IS_SET(info->flags, MULTIBOOT_INFO_ELF_SHDR)) {
         struct multiboot_elf_section_header_table* table = &info->u.elf_sec;
 
         e_Log_msg(log, E_LOG_INFO, "ELF section header table: "
@@ -168,7 +164,7 @@ static void log_symbol_table(struct multiboot_info* info, struct e_Log* log) {
 }
 
 static void log_vbe(struct multiboot_info* info, struct e_Log* log) {
-    if (IS_FLAG_SET(info->flags, MULTIBOOT_INFO_VBE_INFO)) {
+    if (E_BIT_IS_SET(info->flags, MULTIBOOT_INFO_VBE_INFO)) {
         e_Log_msg(log, E_LOG_INFO, "VBE: control info={iuh}; mode info={iuh}; "
             "current video mode={iu}",
             info->vbe_control_info,     // Obtained by VBE function 00h.
@@ -176,7 +172,7 @@ static void log_vbe(struct multiboot_info* info, struct e_Log* log) {
             info->vbe_mode);            // In VBE 3.0 format.
     }
 
-    if (IS_FLAG_SET(info->flags, MULTIBOOT_INFO_FRAMEBUFFER_INFO)) {
+    if (E_BIT_IS_SET(info->flags, MULTIBOOT_INFO_FRAMEBUFFER_INFO)) {
         /* The following fields contain the table of a protected mode
            interface defined in VBE version 2.0 or later. If it isn't
            available, those fields are set to zero. */
@@ -193,8 +189,8 @@ struct multiboot_info* e_Multiboot_get_info() {
             "Invalid Multiboot magic number: {iuh}", e_multiboot_magic_num);
     }
 
-    if (IS_FLAG_SET(e_multiboot_info->flags, MULTIBOOT_INFO_AOUT_SYMS)
-        && IS_FLAG_SET(e_multiboot_info->flags, MULTIBOOT_INFO_ELF_SHDR))
+    if (E_BIT_IS_SET(e_multiboot_info->flags, MULTIBOOT_INFO_AOUT_SYMS)
+        && E_BIT_IS_SET(e_multiboot_info->flags, MULTIBOOT_INFO_ELF_SHDR))
     {
         e_Log_msg(e_Log_get(), E_LOG_ERROR,
             "Invalid Multiboot information: "
@@ -207,7 +203,7 @@ struct multiboot_info* e_Multiboot_get_info() {
 void e_Multiboot_log_info(struct multiboot_info* info, struct e_Log* log) {
     e_Log_msg(log, E_LOG_INFO, "Multiboot: flags={iub}", info->flags);
 
-    if (IS_FLAG_SET(info->flags, MULTIBOOT_INFO_MEMORY)) {
+    if (E_BIT_IS_SET(info->flags, MULTIBOOT_INFO_MEMORY)) {
         e_Log_msg(log, E_LOG_INFO, "Memory: lower={iu} KiB; upper={iu} KiB",
             info->mem_lower,        // From 0 to 640.
             info->mem_upper);       // Starting at 1024.
@@ -215,7 +211,7 @@ void e_Multiboot_log_info(struct multiboot_info* info, struct e_Log* log) {
 
     log_boot_device(info, log);
 
-    if (IS_FLAG_SET(info->flags, MULTIBOOT_INFO_CMDLINE)) {
+    if (E_BIT_IS_SET(info->flags, MULTIBOOT_INFO_CMDLINE)) {
         e_Log_msg(log, E_LOG_INFO, "Command line: \"{s}\"", info->cmdline);
     }
 
@@ -224,7 +220,7 @@ void e_Multiboot_log_info(struct multiboot_info* info, struct e_Log* log) {
     log_memory_map(info, log);
     log_drives(info, log);
 
-    if (IS_FLAG_SET(info->flags, MULTIBOOT_INFO_CONFIG_TABLE)) {
+    if (E_BIT_IS_SET(info->flags, MULTIBOOT_INFO_CONFIG_TABLE)) {
         /* ROM configuration table as returned by the "get configuration"
            BIOS call. If it failed, the size of the table must be zero. */
 
@@ -232,12 +228,12 @@ void e_Multiboot_log_info(struct multiboot_info* info, struct e_Log* log) {
             info->config_table);
     }
 
-    if (IS_FLAG_SET(info->flags, MULTIBOOT_INFO_BOOT_LOADER_NAME)) {
+    if (E_BIT_IS_SET(info->flags, MULTIBOOT_INFO_BOOT_LOADER_NAME)) {
         e_Log_msg(log, E_LOG_INFO, "Boot loader: \"{s}\"",
             info->boot_loader_name);
     }
 
-    if (IS_FLAG_SET(info->flags, MULTIBOOT_INFO_APM_TABLE)) {
+    if (E_BIT_IS_SET(info->flags, MULTIBOOT_INFO_APM_TABLE)) {
         struct multiboot_apm_info* table = (struct multiboot_apm_info*) info->apm_table;
 
         e_Log_msg(log, E_LOG_INFO, "APM table: version={iu}; flags={iub}",
