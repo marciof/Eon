@@ -39,7 +39,7 @@ void e_VGA_Attr_enable_text_blink_mode(bool enable) {
 
     e_VGA_Attr_write(E_VGA_ATTR_MODE_CONTROL, (uint8_t) (enable
         ? E_BIT_SET(mode, 3)
-        : E_BIT_CLEAR(mode, 3)));
+        : E_FLAG_CLEAR(mode, E_BIT(3))));
 }
 
 void e_VGA_Attr_enable_gfx_mode(bool enable) {
@@ -47,7 +47,7 @@ void e_VGA_Attr_enable_gfx_mode(bool enable) {
 
     e_VGA_Attr_write(E_VGA_ATTR_MODE_CONTROL, (uint8_t) (enable
         ? E_BIT_SET(mode, 0)
-        : E_BIT_CLEAR(mode, 0)));
+        : E_FLAG_CLEAR(mode, E_BIT(0))));
 }
 
 uint8_t e_VGA_Attr_read(e_VGA_Attr_Register reg) {

@@ -12,15 +12,8 @@
 #define E_BIT(position) \
     (1 << (position))
 
-/**
- * Clears a bit.
- *
- * @param [in] integer integer on which to clear a bit
- * @param [in] position zero indexed position of the bit to clear
- * @return new integer with the given bit cleared
- */
-#define E_BIT_CLEAR(integer, position) \
-    ((integer) & (~0 ^ E_BIT(position)))
+#define E_FLAG_CLEAR(value, bit_flag) \
+    ((value) & (~0 ^ (bit_flag)))
 
 /**
  * Gets a bit.
