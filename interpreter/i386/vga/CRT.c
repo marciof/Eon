@@ -22,8 +22,8 @@ void e_VGA_CRT_enable_cursor(bool enable) {
     uint8_t status = e_VGA_CRT_read(E_VGA_CRT_CURSOR_START);
 
     e_VGA_CRT_write(E_VGA_CRT_CURSOR_START, (uint8_t) (enable
-        ? E_FLAG_CLEAR(status, E_BIT(5))
-        : E_BIT_SET(status, 5)));
+        ? E_BIT_CLEAR(status, E_BIT(5))
+        : (status | E_BIT(5))));
 }
 
 void e_VGA_CRT_move_cursor(uint32_t line, uint32_t column) {

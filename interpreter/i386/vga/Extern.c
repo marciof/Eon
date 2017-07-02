@@ -23,10 +23,10 @@ void e_VGA_Extern_enable_color_mode(bool enable) {
     uint8_t status = e_IO_read_byte(MISC_OUTPUT_READ_PORT);
 
     // Extract the I/O address select bit and infer the compatibility mode.
-    if (enable != BIT_IS_SET(status, 0)) {
+    if (enable != E_BIT_IS_SET(status, E_BIT(0))) {
         e_IO_write_byte(MISC_OUTPUT_WRITE_PORT, (uint8_t) (enable
-            ? E_BIT_SET(status, 0)
-            : E_FLAG_CLEAR(status, E_BIT(0))));
+            ? (status | E_BIT(0))
+            : E_BIT_CLEAR(status, E_BIT(0))));
     }
 
     is_color_mode_enabled = enable;

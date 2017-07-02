@@ -38,23 +38,23 @@ void e_VGA_Attr_enable_text_blink_mode(bool enable) {
     uint8_t mode = e_VGA_Attr_read(E_VGA_ATTR_MODE_CONTROL);
 
     e_VGA_Attr_write(E_VGA_ATTR_MODE_CONTROL, (uint8_t) (enable
-        ? E_BIT_SET(mode, 3)
-        : E_FLAG_CLEAR(mode, E_BIT(3))));
+        ? (mode | E_BIT(3))
+        : E_BIT_CLEAR(mode, E_BIT(3))));
 }
 
 void e_VGA_Attr_enable_gfx_mode(bool enable) {
     uint8_t mode = e_VGA_Attr_read(E_VGA_ATTR_MODE_CONTROL);
 
     e_VGA_Attr_write(E_VGA_ATTR_MODE_CONTROL, (uint8_t) (enable
-        ? E_BIT_SET(mode, 0)
-        : E_FLAG_CLEAR(mode, E_BIT(0))));
+        ? (mode | E_BIT(0))
+        : E_BIT_CLEAR(mode, E_BIT(0))));
 }
 
 uint8_t e_VGA_Attr_read(e_VGA_Attr_Register reg) {
     reset_state();
 
     uint8_t status = (uint8_t) (
-        E_BIT_GET(e_IO_read_byte(ADDRESS_PORT), PAS_BIT)
+        (e_IO_read_byte(ADDRESS_PORT) & E_BIT(PAS_BIT))
         | (reg & ADDRESS_BITS));
 
     reset_state();
@@ -66,7 +66,7 @@ void e_VGA_Attr_write(e_VGA_Attr_Register reg, uint8_t data) {
     reset_state();
 
     uint8_t status = (uint8_t) (
-        E_BIT_GET(e_IO_read_byte(ADDRESS_PORT), PAS_BIT)
+        (e_IO_read_byte(ADDRESS_PORT) & E_BIT(PAS_BIT))
         | (reg & ADDRESS_BITS));
 
     reset_state();

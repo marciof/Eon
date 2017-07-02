@@ -12,8 +12,8 @@ void e_VGA_Seqr_enable_screen(bool enable) {
     uint8_t mode = e_VGA_Seqr_read(E_VGA_SEQR_CLOCKING_MODE);
 
     e_VGA_Seqr_write(E_VGA_SEQR_CLOCKING_MODE, (uint8_t) (enable
-        ? E_FLAG_CLEAR(mode, E_BIT(5))
-        : E_BIT_SET(mode, 5)));
+        ? E_BIT_CLEAR(mode, E_BIT(5))
+        : (mode | E_BIT(5))));
 }
 
 uint8_t e_VGA_Seqr_read(e_VGA_Seqr_Register reg) {
