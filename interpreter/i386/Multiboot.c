@@ -9,14 +9,14 @@ enum {
     DRIVE_CHS_MODE = 0,
 
     // Logical Block Addressing mode.
-    DRIVE_LBA_MODE = 1
+    DRIVE_LBA_MODE = 1,
 };
 
 // As read by the BIOS INT 13h disk interface.
 typedef uint8_t Drive_BIOS_Num;
 enum {
     DRIVE_FIRST_DISKETTE_DRIVE = 0,
-    DRIVE_FIRST_HARD_DISK_DRIVE = 0x80
+    DRIVE_FIRST_HARD_DISK_DRIVE = 0x80,
 };
 
 E_BIT_ATTR_PACKED(struct Drive {
@@ -42,7 +42,7 @@ E_BIT_ATTR_PACKED(struct Boot_Device {
     Drive_BIOS_Num drive_num;
 });
 
-// Partition numbers start at zero.
+/** Partition numbers start at zero. */
 enum {BOOT_DEVICE_UNUSED_PARTITION = 0xFF};
 
 extern struct multiboot_info* e_multiboot_info;
@@ -60,7 +60,7 @@ E_BIT_ATTR_SECTION(".multiboot_header", const struct multiboot_header e_Multiboo
     0,
     0,
     0,
-    0
+    0,
 };
 
 static void log_boot_device(struct multiboot_info* info, struct e_Log* log) {

@@ -7,10 +7,7 @@
 #include "Multiboot.h"
 #include "vga/Text.h"
 
-/**
- * Interfaces the assembly and C++ source code.
- */
-extern void c_main() {
+void main() {
     e_VGA_Text_init();
     e_Multiboot_log_info(e_Multiboot_get_info(), e_Log_get());
 
@@ -18,14 +15,8 @@ extern void c_main() {
     system->stop(system, E_SYSTEM_HALT);
 }
 
-/**
- * Halts the computer.
- */
 extern void e_System_halt();
 
-/**
- * Resets the computer.
- */
 extern void e_System_reset();
 
 static void stop(struct e_System* system, enum e_System_Stop_Mode mode) {

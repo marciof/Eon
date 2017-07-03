@@ -5,7 +5,7 @@
 typedef uint16_t Port;
 enum {
     ADDRESS_PORT = 0x3CE,
-    DATA_PORT = 0x3CF
+    DATA_PORT = 0x3CF,
 };
 
 static const struct e_VGA_Gfx_Memory_Map MEMORY_MAPS[] = {

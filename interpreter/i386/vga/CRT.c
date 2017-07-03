@@ -9,7 +9,7 @@ enum {
     COLOR_DATA_PORT = 0x3D5,
 
     MONOCHROME_ADDRESS_PORT = 0x3B4,
-    MONOCHROME_DATA_PORT = 0x3B5
+    MONOCHROME_DATA_PORT = 0x3B5,
 };
 
 static bool is_color_mode_enabled = true;

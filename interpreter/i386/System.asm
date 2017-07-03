@@ -1,7 +1,7 @@
 %include "arg.asm"
-
 %define STACK_LENGTH (16 * 1024)
-extern c_main
+
+extern main
 
 section .bss
 align 4
@@ -25,8 +25,8 @@ e_System_halt:
     cli
     hlt
 
-global main
-main:
+global _start
+_start:
     ; The stack pointer initial value isn't "stack + STACK_LENGTH - 1" because
     ; it always points to the last element.
     mov esp, (stack + STACK_LENGTH)
@@ -35,7 +35,7 @@ main:
     mov [e_multiboot_magic_num], eax
     mov [e_multiboot_info], ebx
     
-    call c_main
+    call main
 
 global e_System_reset
 e_System_reset:

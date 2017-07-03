@@ -7,7 +7,7 @@ typedef uint16_t Port;
 enum {
     ADDRESS_PORT = 0x3C0,
     DATA_WRITE_PORT = 0x3C0,
-    DATA_READ_PORT = 0x3C1
+    DATA_READ_PORT = 0x3C1,
 };
 
 enum {
@@ -15,7 +15,7 @@ enum {
     PAS_BIT = 5,
 
     /** Attribute address bits. */
-    ADDRESS_BITS = 0x1F
+    ADDRESS_BITS = 0x1F,
 };
 
 /**

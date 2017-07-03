@@ -5,7 +5,7 @@
 typedef uint16_t Port;
 enum {
     ADDRESS_PORT = 0x3C4,
-    DATA_PORT = 0x3C5
+    DATA_PORT = 0x3C5,
 };
 
 void e_VGA_Seqr_enable_screen(bool enable) {

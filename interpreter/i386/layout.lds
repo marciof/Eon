@@ -1,4 +1,4 @@
-ENTRY("main")
+ENTRY("_start")
 
 SECTIONS {
     /* The Multiboot header must stay in the first 8 KiB of the final

@@ -18,7 +18,7 @@ enum {
     E_VGA_GFX_MODE,
     E_VGA_GFX_MISC,
     E_VGA_GFX_COLOR_DONT_CARE,
-    E_VGA_GFX_BIT_MASK
+    E_VGA_GFX_BIT_MASK,
 };
 
 /**
