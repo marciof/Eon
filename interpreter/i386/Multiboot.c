@@ -45,8 +45,8 @@ E_BIT_ATTR_PACKED(struct Boot_Device {
 /** Partition numbers start at zero. */
 enum {BOOT_DEVICE_UNUSED_PARTITION = 0xFF};
 
-extern struct multiboot_info* e_multiboot_info;
-extern uint32_t e_multiboot_magic_num;
+extern struct multiboot_info* e_Multiboot_info;
+extern uint32_t e_Multiboot_magic_num;
 
 E_BIT_ATTR_SECTION(".multiboot_header", const struct multiboot_header e_Multiboot_header) = {
     MULTIBOOT_HEADER_MAGIC,
@@ -182,20 +182,20 @@ static void log_vbe(struct multiboot_info* info, struct e_Log* log) {
 }
 
 struct multiboot_info* e_Multiboot_get_info() {
-    if (e_multiboot_magic_num != MULTIBOOT_BOOTLOADER_MAGIC) {
+    if (e_Multiboot_magic_num != MULTIBOOT_BOOTLOADER_MAGIC) {
         e_Log_msg(e_Log_get(), E_LOG_ERROR,
-            "Invalid Multiboot magic number: {iuh}", e_multiboot_magic_num);
+            "Invalid Multiboot magic number: {iuh}", e_Multiboot_magic_num);
     }
 
-    if (E_BIT_IS_SET(e_multiboot_info->flags, MULTIBOOT_INFO_AOUT_SYMS)
-        && E_BIT_IS_SET(e_multiboot_info->flags, MULTIBOOT_INFO_ELF_SHDR))
+    if (E_BIT_IS_SET(e_Multiboot_info->flags, MULTIBOOT_INFO_AOUT_SYMS)
+        && E_BIT_IS_SET(e_Multiboot_info->flags, MULTIBOOT_INFO_ELF_SHDR))
     {
         e_Log_msg(e_Log_get(), E_LOG_ERROR,
             "Invalid Multiboot information: "
                 "Both bits 4 and 5 of the flags field are set.");
     }
 
-    return e_multiboot_info;
+    return e_Multiboot_info;
 }
 
 void e_Multiboot_log_info(struct multiboot_info* info, struct e_Log* log) {
