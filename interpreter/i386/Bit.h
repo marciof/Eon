@@ -12,3 +12,6 @@
 
 #define E_BIT_ATTR_PACKED(type) \
     type __attribute__((__packed__))
+
+#define E_BIT_ATTR_SECTION(name, declaration) \
+    declaration __attribute__((section(name)))
