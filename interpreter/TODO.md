@@ -1,13 +1,18 @@
-- Make "i386" emulate the standard C library and runtime? (Or use something like Newlib?) More familiar and easier to use external libraries? "core" only adds language specific things.
+- Let each host provide a (semi-)working C stdlib that "core" can rely on. More familiar and easier to use external libraries? Use Newlib? Check license.
+  - https://www.sourceware.org/newlib/
+  - http://www.sourceware.org/newlib/libc.html#Syscalls
+  - http://wiki.osdev.org/Porting_Newlib
 - Build native host layer by default with option to switch.
 - Avoid all these repeated calls for `*_get()`?
-- Build library from "core" and use it in each host built executable, so that it can be embedded. Can the remove the $CORE_SOURCES CMake var.
 - Clean up, abbreviate a bit more since C is verbose, remove leading underscore in static data, simplify, remove double blank lines, more flat less nested, remove useless documentation (document only what's need), remove stop modes and use only reset or halt.
 - Make it more resilient, warn instead of aborting.
 - Add location to log calls? function, file, line? Or to warnings and errors only?
 - Add color to native logging.
 - Use `grub-file` to verify kernel image is bootable.
-- Test on Windows, Debian 32-bit (check again 64-bit dependencies on a pristine image).
+- Test on Windows, Debian 32-bit (check again 64-bit dependencies on a pristine image, and document).
+  - See `.travis.yml` for details.
+  - Tested on Debian 9 64-bit.
+  - i386 testing: `apt install grub-common grub-pc-bin xorriso mtools virtualbox-5.1`
 - Tests (unit, functional), coverage, lint, static analysis, continuous integration, memory check (Valgrind).
   - Automation: Vagrant, Docker?
   - https://autotest.github.io

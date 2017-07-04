@@ -9,3 +9,5 @@ add_executable(${PROJECT_NAME}.js
     Token.c
     Input.h
     Input.c)
+
+target_link_libraries(${PROJECT_NAME}.js ${PROJECT_NAME})

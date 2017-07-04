@@ -10,10 +10,13 @@ set(CORE_SOURCES
     core/Memory.h
     core/System.h)
 
-# FIXME: build library instead of hardcoding direct paths to it
+# Build absolute paths for the core sources so that hosts that can't link
+# directly against its library (eg. i386 cross-compiled from a amd64 machine)
+# can instead reference each file.
 string(REGEX REPLACE "([^;]+)" "${CMAKE_CURRENT_SOURCE_DIR}/\\1"
     CORE_SOURCES "${CORE_SOURCES}")
 
+add_subdirectory(core)
 add_subdirectory(native)
 add_subdirectory(i386)
 add_subdirectory(javascript)
