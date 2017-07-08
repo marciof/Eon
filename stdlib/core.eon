@@ -1,56 +1,56 @@
 {
-  'Boolean: (prototype (= 0 0)))
-  'Function: (prototype '())
-  'List: (prototype []))
-  'Map: (prototype {}))
-  'Number: (prototype 0))
-  'Reference: (prototype (reference 0))
-  'Symbol: (prototype 'x))
-  'Text: (prototype ""))
+  \Boolean: (prototype (= 0 0)))
+  \Function: (prototype ())
+  \List: (prototype []))
+  \Map: (prototype {}))
+  \Number: (prototype 0))
+  \Reference: (prototype (reference 0))
+  \Symbol: (prototype \x))
+  \Text: (prototype ''))
 
-  'true: (= 0 0))
-  'false: (= 0 1))
-  'infinity: (/ 1 0.(0)1))
+  \true: (= 0 0))
+  \false: (= 0 1))
+  \infinity: (/ 1 0.(0)1))
 
-  'if: '(evaluate (get
+  \if: \(evaluate (get
     {
       true: (get scope 2)
       false: (get scope 3)
     }
     (evaluate (get scope 1))))
 
-  'and: '(evaluate (get
+  \and: \(evaluate (get
     {
       true: (get scope 2)
       false: false
     }
     (evaluate (get scope 1))))
 
-  'not: '(get
+  \not: \(get
     {true: false false: true}
     (evaluate (get scope 1)))
 
-  'or: '(evaluate (get
+  \or: \(evaluate (get
     {
       true: true
       false: (get scope 2)
     }
     (evaluate (get scope 1))))
 
-  '<>: '(not (=
+  \<>: \(not (=
     (evaluate (get scope 1))
     (evaluate (get scope 2))))
 
-  '<=: '(not (>
+  \<=: \(not (>
     (evaluate (get scope 1))
     (evaluate (get scope 2))))
 
-  '>=: '(not (<
+  \>=: \(not (<
     (evaluate (get scope 1))
     (evaluate (get scope 2))))
 
-  'do: '(reduce
+  \do: \(reduce
     (splice scope {1} [])
     (evaluate (get scope 1))
-    '(evaluate (get scope 2)))
+    \(evaluate (get scope 2)))
 }

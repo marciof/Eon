@@ -83,6 +83,9 @@ Arguments in a function call are specified positionally or via keyword parameter
 
 (* multiplicand:4 multiplier:5)
 # 20
+
+()
+# ()
 ```
 
 ## List
@@ -461,10 +464,10 @@ If zero or more than two arguments are passed, it returns the result of `(debug 
 ## `get`
 
 ```
-(get map:Map key default)
+(get map:Map key)
 ```
 
-A [function](#function) that retrieves the value associated with a `key` in a `map`, with an optional `default` value to use if the `key` doesn't exist.
+A [function](#function) that retrieves the value associated with a `key` in a `map`.
 
 ```
 (get reference:Reference)
@@ -474,13 +477,13 @@ A function that dereferences a `reference`.
 
 ### Conditions
 
-If one or three arguments aren't passed, it returns the result of `(debug \parameter-mismatch)`.
+If less than one or more than two arguments are passed, it returns the result of `(debug \parameter-mismatch)`.
 
 If the `map` argument isn't a map, it returns the result of `(debug \prototype-mismatch)`.
 
 If the `reference` argument isn't a reference, it returns the result of `(debug \prototype-mismatch)`.
 
-If the association doesn't exist and the `default` argument is present, it returns `default`, otherwise it returns the result of `(debug \unkown-key)`.
+If the association doesn't exist, it returns the result of `(debug \unkown-key)`.
 
 ### Examples
 
