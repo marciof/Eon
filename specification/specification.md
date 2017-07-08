@@ -81,7 +81,7 @@ Arguments in a function call are specified positionally or via keyword parameter
 (* 4 5)
 # 20
 
-(* multiplicand:4 multiplier:5)
+(* multiplicand: 4 multiplier: 5)
 # 20
 
 ()
@@ -101,11 +101,11 @@ An immutable sequence of values. It extends the [map](#map) prototype by associa
 ['x' 'y']
 # ['x' 'y']
 
-[8 2 2 \key:\value]
-# [8 2 2 key:value]
+[8 2 2 \key: \value]
+# [8 2 2 key: value]
 
-[\name:'Bob']
-# [name:'Bob']
+[\name: 'Bob']
+# [name: 'Bob']
 ```
 
 ## Map
@@ -122,17 +122,17 @@ If the same key is repeated multiple times, it's associated with only the last v
 {}
 # {}
 
-{\name:'Bob' \age:30}
-# {name:'Bob' age:30}
+{\name: 'Bob' \age: 30}
+# {name: 'Bob' age: 30}
 
 {'x' 'y'}
 # {'x' 'y'}
 
-{8 2 2 \key:\value}
-# {8 2 key:value}
+{8 2 2 \key: \value}
+# {8 2 key: value}
 
-{\name \name:'Bob'}
-# {name:'Bob'}
+{\name \name: 'Bob'}
+# {name: 'Bob'}
 ```
 
 ## Number
@@ -374,6 +374,42 @@ Dividing any number by zero or infinity by infinity returns the result of `(debu
 # infinity
 ```
 
+## `count`
+
+```
+(count map:Map): Number
+```
+
+A [function](#function) that returns the number of key/value pairs in a `map`.
+
+### Conditions
+
+If less or more than one argument is passed, it returns the result of `(debug \parameter-mismatch)`.
+
+If the `map` argument isn't a map, it returns the result of `(debug \prototype-mismatch)`.
+
+### Examples
+
+```
+(count {})
+# 0
+
+(count {\name: 'Bob'})
+# 1
+
+(count [\x \y])
+# 2
+
+(count {\x \y})
+# 2
+
+(count ())
+# 0
+
+(count \xyz)
+# 3
+```
+
 ## `debug`
 
 ```
@@ -454,7 +490,7 @@ If zero or more than two arguments are passed, it returns the result of `(debug 
   (evaluate \y)
   # 2
 
-  (evaluate \y {\y:8})
+  (evaluate \y {\y: 8})
   # 8
 
   (evaluate \y (get scope)))
@@ -500,7 +536,7 @@ If the association doesn't exist, it returns the result of `(debug \unkown-key)`
 (get {} \name 'John')
 # 'John'
 
-(let user: {\name:'Bob'}
+(let user: {\name: 'Bob'}
 
   (get user \name)
   # 'Bob'
@@ -552,14 +588,14 @@ If the `map` argument isn't a map, it returns the result of `(debug \prototype-m
 ### Examples
 
 ```
-(let x:1
-  (let y:2
+(let x: 1
+  (let y: 2
 
     (local (get scope))
-    # {y:2}
+    # {y: 2}
 
     (prototype (get scope))))
-    # {x:1}
+    # {x: 1}
 ```
 
 ## `prototype`
@@ -600,22 +636,22 @@ When extending the prototype hierarchy, if both the `value` and `base-prototype`
 (prototype 8)
 # 0
 
-(let Person: (prototype {\name:''} {})
+(let Person: (prototype {\name: ''} {})
      bob: (put Person \name 'Bob')
 
   Person
-  # {name:'' age:0}
+  # {name: '' age: 0}
 
   (prototype Person)
   # {}
 
   bob
-  # {name:'Bob' age:20}
+  # {name: 'Bob' age: 20}
   
   (prototype bob)
   # Person
 
-  (prototype {\name:'Bob' \age:20}))
+  (prototype {\name: 'Bob' \age: 20}))
   # {}
 ```
 
@@ -657,18 +693,18 @@ If the `reference` argument isn't a reference, it returns the result of `(debug 
 # ['x' 'y' 'z']
 
 (put ['x' 'y'] 4 'z')
-# [x y 4:z]
+# [x y 4: z]
 
 (put {1 2} 3)
 # {1 2 3}
 
 (put {} \name 'Bob')
-# {name:'Bob'}
+# {name: 'Bob'}
 
-(put {\name:'Bob'} \name 'John')
-# {name:'John'}
+(put {\name: 'Bob'} \name 'John')
+# {name: 'John'}
 
-(put {\name:'Bob'} \name)
+(put {\name: 'Bob'} \name)
 # {name}
 
 (get (put (reference 123) 321))
@@ -750,8 +786,8 @@ If the `map` argument isn't a map, it returns the result of `(debug \prototype-m
 (remove {'x' 'y'} 'y')
 # {'x'}
 
-(remove {\name:'Bob' \age:20} \age)
-# {name:'Bob'}
+(remove {\name: 'Bob' \age: 20} \age)
+# {name: 'Bob'}
 ```
 
 ## `scope`

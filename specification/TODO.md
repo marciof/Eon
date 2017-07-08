@@ -33,7 +33,6 @@
     - Uniform zero handling? `0/n = 0*n = n*0 = 0%n = 0`
     - How to have references in literal data structures? Needed for persisting state or configuration files?
     - Indentation based, significant white-space? Useful for using the REPL as a shell itself.
-    - Add `count` built-in or let it be defined via `reduce`? Performance?
     - Add `has?` built-in or let it be defined through conditions? Performance?
     - Add fraction literal syntax? More practical? Or just use number suffix functions named `/2`, `/3`, etc?
     - Add syntax support for number digit grouping? Similar to C++14, `4'294'967'296`
