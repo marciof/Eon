@@ -768,6 +768,8 @@ If less or more than one argument is passed, it returns the result of `(debug \p
 
 A [function](#function) that disassociates a `key` from a value in a `map`, and returns the new [map](#map).
 
+If there's no such `key`, the same `map` is returned unchanged.
+
 ### Conditions
 
 If less or more than two arguments are passed, it returns the result of `(debug \parameter-mismatch)`.
@@ -787,6 +789,9 @@ If the `map` argument isn't a map, it returns the result of `(debug \prototype-m
 # {'x'}
 
 (remove {\name: 'Bob' \age: 20} \age)
+# {name: 'Bob'}
+
+(remove {\name: 'Bob'} \age)
 # {name: 'Bob'}
 ```
 
