@@ -548,6 +548,64 @@ If the association doesn't exist, it returns the result of `(debug \unkown-key)`
 # 123
 ```
 
+## `insert`
+
+```
+(insert map:Map value): Map
+(insert map:Map key value): Map
+```
+
+A [function](#function) that associates a `key` with a `value` in a `map`, and returns the new [map](#map).
+
+If the `key` already exists, its value is instead replaced in [maps](#map) or displaced in [lists](#list).
+
+If no `key` is passed, then the `value` is inserted at the end of the `map`.
+
+```
+(insert reference:Reference value): Reference
+```
+
+A [function](#function) that modifies a `reference` to point to a new `value`.
+
+### Conditions
+
+If less than two or more than three arguments are passed, it returns the result of `(debug \parameter-mismatch)`.
+
+If the `map` argument isn't a map, it returns the result of `(debug \prototype-mismatch)`.
+
+If the `reference` argument isn't a reference, it returns the result of `(debug \prototype-mismatch)`.
+
+### Examples
+
+```
+(insert [8] 1 9)
+# [9 8]
+
+(insert [8] 9)
+# [8 9]
+
+(insert ['x' 'y'] 3 'z')
+# ['x' 'y' 'z']
+
+(insert ['x' 'y'] 4 'z')
+# [x y 4: z]
+
+(insert {1 2} 3)
+# {1 2 3}
+
+(insert {} \name 'Bob')
+# {name: 'Bob'}
+
+(insert {\name: 'Bob'} \name 'John')
+# {name: 'John'}
+
+(insert {\name: 'Bob'} \name)
+# {name}
+
+(get (insert (reference 123) 321))
+# 321
+```
+
 ## `load`
 
 ```
@@ -637,7 +695,7 @@ When extending the prototype hierarchy, if both the `value` and `base-prototype`
 # 0
 
 (let Person: (prototype {\name: ''} {})
-     bob: (put Person \name 'Bob')
+     bob: (insert Person \name 'Bob')
 
   Person
   # {name: '' age: 0}
@@ -653,62 +711,6 @@ When extending the prototype hierarchy, if both the `value` and `base-prototype`
 
   (prototype {\name: 'Bob' \age: 20}))
   # {}
-```
-
-## `put`
-
-```
-(put map:Map value): Map
-(put map:Map key value): Map
-```
-
-A [function](#function) that associates a `key` with a `value` in a `map`, and returns the new [map](#map).
-
-If no `key` is passed and the `map` is a [list](#list), then the `value` is inserted at the end of the list. Otherwise `key` defaults to `value`.
-
-```
-(put reference:Reference value): Reference
-```
-
-A [function](#function) that modifies a `reference` to point to a new `value`.
-
-### Conditions
-
-If less than two or more than three arguments are passed, it returns the result of `(debug \parameter-mismatch)`.
-
-If the `map` argument isn't a map, it returns the result of `(debug \prototype-mismatch)`.
-
-If the `reference` argument isn't a reference, it returns the result of `(debug \prototype-mismatch)`.
-
-### Examples
-
-```
-(put [8] 1 9)
-# [9]
-
-(put [8] 9)
-# [8 9]
-
-(put ['x' 'y'] 3 'z')
-# ['x' 'y' 'z']
-
-(put ['x' 'y'] 4 'z')
-# [x y 4: z]
-
-(put {1 2} 3)
-# {1 2 3}
-
-(put {} \name 'Bob')
-# {name: 'Bob'}
-
-(put {\name: 'Bob'} \name 'John')
-# {name: 'John'}
-
-(put {\name: 'Bob'} \name)
-# {name}
-
-(get (put (reference 123) 321))
-# 321
 ```
 
 ## `reduce`
@@ -754,7 +756,7 @@ If less or more than one argument is passed, it returns the result of `(debug \p
   (get name)
   # 'Bob'
 
-  (put name 'John')
+  (insert name 'John')
 
   (get name))
   # 'John'
@@ -828,7 +830,7 @@ The scope list always [prototypically](#prototype) inherits from the previous sc
   y
   # 3
 
-  (put scope (put (get scope) \y 5))
+  (insert scope (insert (get scope) \y 5))
 
   y
   # 5)
