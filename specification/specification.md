@@ -656,6 +656,36 @@ If the `map` argument isn't a map, it returns the result of `(debug \prototype-m
     # {x: 1}
 ```
 
+## `next`
+
+```
+(next map:Map)
+(next map:Map key)
+```
+
+A [function](#function) that returns the first key or the key following `key` in a `map`.
+
+### Conditions
+
+If less than one or more than two arguments are passed, it returns the result of `(debug \parameter-mismatch)`.
+
+If the `map` argument isn't a map, it returns the result of `(debug \prototype-mismatch)`.
+
+If the `map` is empty or `key` is the last key, it returns the result of `(debug \unknown-key)`.
+
+### Examples
+
+```
+(next [\x \y \z])
+# x
+
+(next [\x \y \z] \y)
+# z
+
+(next {\name: 'Bob' \age: 20})
+# name
+```
+
 ## `prototype`
 
 ```
@@ -711,29 +741,6 @@ When extending the prototype hierarchy, if both the `value` and `base-prototype`
 
   (prototype {\name: 'Bob' \age: 20}))
   # {}
-```
-
-## `reduce`
-
-```
-(reduce map:Map default reducer:Function)
-```
-
-A [function](#function) that iterates over a `map`, calling the `reducer` function with each previously returned value (starting with the initial `default` value) as parameter `accumulator`, each map value as parameter `value`, and each map key as parameter `key`, and then returns the last reduced value.
-
-If the `map` is empty the `default` value is returned immediately.
-
-### Conditions
-
-If less or more than three arguments are passed, it returns the result of `(debug \parameter-mismatch)`.
-
-If the `map` argument isn't a map or the `reducer` argument isn't a function, it returns the result of `(debug \prototype-mismatch)`.
-
-### Examples
-
-```
-(reduce [8 3 4] 0 \(+ accumulator key))
-# 15
 ```
 
 ## `reference`
