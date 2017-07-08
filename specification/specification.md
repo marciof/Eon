@@ -33,7 +33,7 @@ Simple:
 Powerful:
 - Homoiconic, code as data.
 - No arbitrary limits: "Zero-one-infinity rule".
-- Unified macros and functions, callee controls argument evaluation.
+- Unified macros, methods and functions. Callee controls argument evaluation.
 - High-level: "A programming language is low level when its programs require attention to the irrelevant."
 - Documentation available at run-time.
 - Embeddable.
@@ -46,6 +46,7 @@ Practical:
 - Native code interop, FFI (Foreign Function Interface).
 - Shell-scripting (hash-bang syntax `#!` naturally supported).
 - Permissive license.
+- Low cognitive load and typing effort (US keyboard layout, favor home row keys).
 
 # Structure
 
@@ -951,7 +952,7 @@ All names should use hyphens as the word delimiter.
 
 ### Function
 
-The name of a function should generally use a verb as the first word. Predicate functions should end in `?`. Accessor functions should instead start with a noun and end in `-of`.
+The name of a function should generally use a verb as the first word. Predicate functions should end in `?`. Mutator functions should end in `!`. Accessor functions should start with a noun instead of a verb and end in `-of`.
 
 ### Module
 

@@ -1,20 +1,6 @@
-- Add section with goal, characteristics
-  - Recursive anonymous functions.
-  - Varargs.
-  - Dynamic function calls.
-  - Error handling.
-  - Debugger with call frames and local variables.
-  - Live changes (hot-reloading) support.
-  - Avoid verbs that are also nouns.
-  - Avoid the semipredicate problem.
-  - Low cognitive load and typing effort (US keyboard layout, favor home row keys).
-  - http://iolanguage.org/about.html
-  - http://iolanguage.org/guide/guide.html#Introduction-Goals
-  - https://software-lab.de/doc/faq.html
-  - https://picolisp.com
 - Decouple `load`: `read` + `parse`
 - Indicate time and space complexity for each operation.
-- Specify prototypical inheritance (eg. intro, `get` `put` and `remove` handling, etc). http://steve-yegge.blogspot.com/2008/10/universal-design-pattern.html
+- Specify prototypical inheritance (differential inheritance, eg. intro, `get` `put` and `remove` handling, etc). http://steve-yegge.blogspot.com/2008/10/universal-design-pattern.html
 - Rename `debug` to `rescue` for something similar to Common Lisp conditions (signaling a condition, handling it, and restarting).
   - The specification doesn't dictate how it's handled, but the core library uses continuations to implement a full condition system?
   - Add a `continuation` built-in to create (escape?) continuations?
@@ -22,21 +8,23 @@
   - http://www.gigamonkeys.com/book/beyond-exception-handling-conditions-and-restarts.html
   - http://matt.might.net/articles/implementing-exceptions/
   - http://matt.might.net/articles/programming-with-continuations--exceptions-backtracking-search-threads-generators-coroutines/
-- Evaluate typing difficulty of each identifier quantitatively. Use easier synonyms for hard to type words.
+- Evaluate typing difficulty of each identifier quantitatively. Use easier synonyms for hard to type words. Avoid verbs that are also nouns.
 - Add a Quick Start document with hyperlinks to the specification for further reading.
 - http://www.infoq.com/presentations/Value-Identity-State-Rich-Hickey
 - Look for best/worst features of other languages: JavaScript, Clojure, Kotlin, Python, Haskell, Erlang, PureScript, Elm, Io, Rust, Ruby, Smalltalk, Java, Scheme, Go, ML, Lua, Haxe, Tcl, Shen, Matlab, R, REBOL, Wolfram.
   - "Perl Pocket Reference"
 - Open questions:
-    - Opt-in static typing?
-    - Change `load` to allow specifying a language/type to make it part of the spec that it has hooks for FFI? It's more practical and realistic, and also enables using native parts of a OS runtime. Allow a string so that anything works? URLs, etc
-    - Uniform zero handling? `0/n = 0*n = n*0 = 0%n = 0`
-    - How to have references in literal data structures? Needed for persisting state or configuration files?
-    - Indentation based, significant white-space? Useful for using the REPL as a shell itself.
-    - Add `has?` built-in or let it be defined through conditions? Performance?
-    - Add fraction literal syntax? More practical? Or just use number suffix functions named `/2`, `/3`, etc?
-    - Add syntax support for number digit grouping? Similar to C++14, `4'294'967'296`
-    - Make Reference use a Function to update the value for async and concurrency?
-    - Make defer's escape able to accept multiple arguments in which case it does unquote splice?
-    - Allow suffixes in tagged text literals? Unnecessarily complicated? No good use-cases?
-    - Allow Get Chain expressions to contain numbers? `names::1`
+  - Live changes (hot-reloading) support.
+  - Abbreviate longer built-in names? Eg. `eval`, `proto`, `ref`?
+  - Opt-in static typing?
+  - Change `load` to allow specifying a language/type to make it part of the spec that it has hooks for FFI? It's more practical and realistic, and also enables using native parts of a OS runtime. Allow a string so that anything works? URLs, etc
+  - Uniform zero handling? `0/n = 0*n = n*0 = 0%n = 0`
+  - How to have references in literal data structures? Needed for persisting state or configuration files?
+  - Indentation based, significant white-space? Useful for using the REPL as a shell itself.
+  - Add `has?` built-in or let it be defined through conditions? Performance?
+  - Add fraction literal syntax? More practical? Or just use number suffix functions named `/2`, `/3`, etc?
+  - Add syntax support for number digit grouping? Similar to C++14, `4'294'967'296`
+  - Make Reference use a Function to update the value for async and concurrency?
+  - Make defer's escape able to accept multiple arguments in which case it does unquote splice?
+  - Allow suffixes in tagged text literals? Unnecessarily complicated? No good use-cases?
+  - Allow Get Chain expressions to contain numbers? `names::1`
