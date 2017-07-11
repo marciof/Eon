@@ -23,7 +23,6 @@
   - Indentation based, significant white-space? Useful for using the REPL as a shell itself.
   - Add `has?` built-in or let it be defined through conditions? Performance?
   - Add fraction literal syntax? More practical? Or just use number suffix functions named `/2`, `/3`, etc?
-  - Add syntax support for number digit grouping? Similar to C++14, `4'294'967'296`
   - Make Reference use a Function to update the value for async and concurrency?
   - Make defer's escape able to accept multiple arguments in which case it does unquote splice?
   - Allow suffixes in tagged text literals? Unnecessarily complicated? No good use-cases?

@@ -146,14 +146,20 @@ A rational number.
 2
 # 2
 
--7.3
-# -7.3
+-17.3
+# -17.3
 
 +9
 # 9
 
 1.(3)
 # 1.(3)
+
+4'294'967'296
+# 4294967296
+
+1'000.0
+# 1000
 ```
 
 ## Reference
@@ -510,7 +516,7 @@ A [function](#function) that retrieves the value associated with a `key` in a `m
 (get reference:Reference)
 ```
 
-A function that dereferences a `reference`.
+A [function](#function) that dereferences a `reference`.
 
 ### Conditions
 
@@ -875,8 +881,9 @@ End-of-Line ::= "" <U+A>
 Number:
 
 ```
-Number ::= Sign? Digit+ ("." <U+2E> (Digit+ | Digit* Parenthesis-Begin Digit+ Parenthesis-End))? Symbol?
+Number ::= Sign? Digit+ ("." <U+2E> (Digits | Digits? Parenthesis-Begin Digits Parenthesis-End))? Symbol?
 Sign ::= "+" <U+2B> | "-" <U+2D>
+Digits ::= Digit+ (Text-Quote? Digit+)*
 Digit ::= "0" <U+30> | "1" <U+31> | "2" <U+32> | "3" <U+33> | "4" <U+34> | "5" <U+35> | "6" <U+36> | "7" <U+37> | "8" <U+38> | "9" <U+39>
 ```
 
@@ -917,8 +924,7 @@ List-End ::= "]" <U+5D>
 Function:
 
 ```
-Function ::= Parenthesis-Begin White-Space* ((Expression | Keyword-Parameter) (White-Space+ (Expression | Keyword-Parameter))* White-Space*)? Parenthesis-End
-Keyword-Parameter ::= Pair
+Function ::= Parenthesis-Begin White-Space* (Expression (White-Space+ Expression)* White-Space*)? Parenthesis-End
 Get-Chain ::= Symbol (Pair-Separator{2} Symbol)+
 Parenthesis-Begin ::= "(" <U+28>
 Parenthesis-End ::= ")" <U+28>
@@ -932,7 +938,6 @@ These are the syntactic transformations that occur for each associated non-termi
 |-------------------|------|--------------|--------------|--------------|
 |*Get-Chain*        |`x::y`|`(get x \y)`  |`user::name`  |Left to right.|
 |*Text*             |`xy`  |`(x y)`       |`hex'1F'`     |              |
-|*Keyword-Parameter*|`x:y` |`\x:y`        |`(range to:9)`|              |
 |*List-Value*       |`x`   |`N:x`         |`['a']`       |Position `N`. |
 |*Set-Value*        |`x`   |`x:x`         |`{123}`       |              |
 |*Number*           |`xy`  |`(y x)`       |`2Km`         |              |
