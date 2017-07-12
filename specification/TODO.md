@@ -18,7 +18,6 @@
   - Abbreviate longer built-in names? Eg. `eval`, `proto`, `ref`?
   - Opt-in static typing?
   - Change `load` to allow specifying a language/type to make it part of the spec that it has hooks for FFI? It's more practical and realistic, and also enables using native parts of a OS runtime. Allow a string so that anything works? URLs, etc
-  - Uniform zero handling? `0/n = 0*n = n*0 = 0%n = 0`
   - How to have references in literal data structures? Needed for persisting state or configuration files?
   - Indentation based, significant white-space? Useful for using the REPL as a shell itself.
   - Add `has?` built-in or let it be defined through conditions? Performance?
@@ -27,3 +26,4 @@
   - Make defer's escape able to accept multiple arguments in which case it does unquote splice?
   - Allow suffixes in tagged text literals? Unnecessarily complicated? No good use-cases?
   - Allow Get Chain expressions to contain numbers? `names::1`
+  - Add a built-in CAS (Computer Algebra System) to not loose any precision even when dealing with irrational numbers? Make math functions allow symbols? Would also allow to remove `infinity` as a built-in, using the sum of the harmonic series? (See Maxima Algebra System, which uses Lisp.)

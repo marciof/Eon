@@ -376,9 +376,6 @@ Dividing any number by zero or infinity by infinity returns the result of `(debu
 
 (/ 0 6)
 # 0
-
-(/ 1 0.(0)1)
-# infinity
 ```
 
 ## `count`
@@ -553,6 +550,20 @@ If the association doesn't exist, it returns the result of `(debug \unkown-key)`
 
 (get (reference 123))
 # 123
+```
+
+## `infinity`
+
+A quantity greater than any [number](#number).
+
+### Examples
+
+```
+(* 2 infinity)
+# infinity
+
+(/ 1 infinity)
+# 0
 ```
 
 ## `insert`
