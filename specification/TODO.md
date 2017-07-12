@@ -13,17 +13,15 @@
 - http://www.infoq.com/presentations/Value-Identity-State-Rich-Hickey
 - Look for best/worst features of other languages: JavaScript, Clojure, Kotlin, Python, Haskell, Erlang, PureScript, Elm, Io, Rust, Ruby, Smalltalk, Java, Scheme, Go, ML, Lua, Haxe, Tcl, Shen, Matlab, R, REBOL, Wolfram.
   - "Perl Pocket Reference"
+- Stdlib: regex, math, io, json, xml, csv, yaml, ini
 - Open questions:
   - Live changes (hot-reloading) support.
   - Abbreviate longer built-in names? Eg. `eval`, `proto`, `ref`?
-  - Opt-in static typing?
+  - Optional static typing?
   - Change `load` to allow specifying a language/type to make it part of the spec that it has hooks for FFI? It's more practical and realistic, and also enables using native parts of a OS runtime. Allow a string so that anything works? URLs, etc
-  - How to have references in literal data structures? Needed for persisting state or configuration files?
   - Indentation based, significant white-space? Useful for using the REPL as a shell itself.
   - Add `has?` built-in or let it be defined through conditions? Performance?
   - Add fraction literal syntax? More practical? Or just use number suffix functions named `/2`, `/3`, etc?
-  - Make Reference use a Function to update the value for async and concurrency?
-  - Make defer's escape able to accept multiple arguments in which case it does unquote splice?
   - Allow suffixes in tagged text literals? Unnecessarily complicated? No good use-cases?
   - Allow Get Chain expressions to contain numbers? `names::1`
   - Add a built-in CAS (Computer Algebra System) to not loose any precision even when dealing with irrational numbers? Make math functions allow symbols? Would also allow to remove `infinity` as a built-in, using the sum of the harmonic series? (See Maxima Algebra System, which uses Lisp.)

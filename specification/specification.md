@@ -113,7 +113,7 @@ An immutable sequence of values. It extends the [map](#map) prototype by associa
 
 An immutable insertion ordered collection of unique keys each one associated with a single value.
 
-If a given key has no associated value, it's then handled as in a set where the key and value are the same, however they're still separate from each other. A set element is only evaluated once even though it's used for both the key and value.
+If a given key has no associated value, it's then handled as in a set where the key and value are the same, however they're still separate from each other. A set element expression is only evaluated once even though it's used for both the key and value.
 
 If the same key is repeated multiple times, it's associated with only the last value.
 
@@ -164,12 +164,13 @@ A rational number.
 
 ## Reference
 
-A mutable container for a value. It extends the [list](#list) prototype by restricting its length to exactly one element and making the key and value one and the same.
+A mutable container for a value. It extends the [map](#map) prototype by restricting its size to exactly one element and making the key and value one and the same.
 
 ### Examples
 
 ```
 (reference 'Bob')
+# (reference 'Bob')
 ```
 
 ## Symbol
@@ -548,8 +549,16 @@ If the association doesn't exist, it returns the result of `(debug \unkown-key)`
   user::name)
   # 'Bob'
 
-(get (reference 123))
-# 123
+(let ref: (reference 123)
+
+  (get ref)
+  # 123
+
+  (get ref 123)
+  # 123
+
+  (get ref (next ref)))
+  # 123
 ```
 
 ## `infinity`
@@ -579,11 +588,7 @@ If the `key` already exists, its value is instead replaced in [maps](#map) or di
 
 If no `key` is passed, then the `value` is inserted at the end of the `map`.
 
-```
-(insert reference:Reference value): Reference
-```
-
-A [function](#function) that modifies a `reference` to point to a new `value`.
+If the `map` argument is a [reference](#reference), the `key` and `value` always replaces the previous referenced value.
 
 ### Conditions
 
@@ -591,7 +596,7 @@ If less than two or more than three arguments are passed, it returns the result 
 
 If the `map` argument isn't a map, it returns the result of `(debug \prototype-mismatch)`.
 
-If the `reference` argument isn't a reference, it returns the result of `(debug \prototype-mismatch)`.
+If the `map` argument is a reference and `key` isn't equal to `value`, it returns the result of `(debug \prototype-mismatch)`.
 
 ### Examples
 
@@ -702,6 +707,9 @@ If the `map` is empty or `key` is the last key, it returns the result of `(debug
 
 (next {\name: 'Bob' \age: 20})
 # name
+
+(next (reference 8))
+# 8
 ```
 
 ## `prototype`
@@ -801,7 +809,7 @@ If there's no such `key`, the same `map` is returned unchanged.
 
 If less or more than two arguments are passed, it returns the result of `(debug \parameter-mismatch)`.
 
-If the `map` argument isn't a map, it returns the result of `(debug \prototype-mismatch)`.
+If the `map` argument isn't a map or is a reference, it returns the result of `(debug \prototype-mismatch)`.
 
 ### Examples
 
