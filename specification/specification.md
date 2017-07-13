@@ -158,13 +158,13 @@ A rational number.
 4'294'967'296
 # 4294967296
 
-1'000.0
-# 1000
+infinity
+# infinity
 ```
 
 ## Reference
 
-A mutable container for a value. It extends the [map](#map) prototype by restricting its size to exactly one element and making the key and value one and the same.
+A mutable container for a value.
 
 ### Examples
 
@@ -520,9 +520,7 @@ A [function](#function) that dereferences a `reference`.
 
 If less than one or more than two arguments are passed, it returns the result of `(debug \parameter-mismatch)`.
 
-If the `map` argument isn't a map, it returns the result of `(debug \prototype-mismatch)`.
-
-If the `reference` argument isn't a reference, it returns the result of `(debug \prototype-mismatch)`.
+If the `map` argument isn't a map or the `reference` argument isn't a reference, it returns the result of `(debug \prototype-mismatch)`.
 
 If the association doesn't exist, it returns the result of `(debug \unkown-key)`.
 
@@ -549,16 +547,8 @@ If the association doesn't exist, it returns the result of `(debug \unkown-key)`
   user::name)
   # 'Bob'
 
-(let ref: (reference 123)
-
-  (get ref)
-  # 123
-
-  (get ref 123)
-  # 123
-
-  (get ref (next ref)))
-  # 123
+(get (reference 123))
+# 123
 ```
 
 ## `infinity`
@@ -588,15 +578,17 @@ If the `key` already exists, its value is instead replaced in [maps](#map) or di
 
 If no `key` is passed, then the `value` is inserted at the end of the `map`.
 
-If the `map` argument is a [reference](#reference), the `key` and `value` always replaces the previous referenced value.
+```
+(insert reference:Reference value): Reference
+```
+
+A [function](#function) that changes the referenced value in a `reference`, and returns the same [reference](#reference).
 
 ### Conditions
 
 If less than two or more than three arguments are passed, it returns the result of `(debug \parameter-mismatch)`.
 
-If the `map` argument isn't a map, it returns the result of `(debug \prototype-mismatch)`.
-
-If the `map` argument is a reference and `key` isn't equal to `value`, it returns the result of `(debug \prototype-mismatch)`.
+If the `map` argument isn't a map or the `reference` argument isn't a reference, it returns the result of `(debug \prototype-mismatch)`.
 
 ### Examples
 
