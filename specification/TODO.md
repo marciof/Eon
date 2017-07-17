@@ -15,8 +15,9 @@
   - "Perl Pocket Reference"
 - Stdlib: regex, math, io, json, xml, csv, yaml, ini
 - Open questions:
+  - Prototype of a boolean? Of a reference?
   - Live changes (hot-reloading) support.
-  - Abbreviate longer built-in names? Eg. `eval`, `proto`, `ref`?
+  - Abbreviate longer built-in names? Eg. `eval`, `proto`, `ref`, `inf`?
   - Optional static typing?
   - Change `load` to allow specifying a language/type to make it part of the spec that it has hooks for FFI? It's more practical and realistic, and also enables using native parts of a OS runtime. Allow a string so that anything works? URLs, etc
   - Indentation based, significant white-space? Useful for using the REPL as a shell itself.

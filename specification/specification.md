@@ -2,6 +2,7 @@
 
 - [Introduction](#introduction)
 - [Structure](#structure)
+  - [Module](#module)
 - [Prototypes](#prototypes)
   - [Boolean](#boolean)
   - [Function](#function)
@@ -44,7 +45,7 @@ Practical:
 - Easy data type literals: lists, maps, sets, functions, strings, numbers.
 - Multi-platform: "Write once, run everywhere".
 - Native code interop, FFI (Foreign Function Interface).
-- Shell-scripting (hash-bang syntax `#!` naturally supported).
+- Shell-scripting (hash-bang syntax, `#!`, naturally supported).
 - Permissive license.
 - Low cognitive load and typing effort (US keyboard layout, favor home row keys).
 
@@ -73,17 +74,14 @@ Arguments in a function call are specified positionally or via keyword parameter
 ### Examples
 
 ```
-(+ 1 2)
-# 3
-
-\(- 1)
-# (- 1)
-
 (* 4 5)
-# 20
+# 3
 
 (* multiplicand: 4 multiplier: 5)
 # 20
+
+\(- 1)
+# (- 1)
 
 ()
 # ()
@@ -104,9 +102,6 @@ An immutable sequence of values. It extends the [map](#map) prototype by associa
 
 [8 2 2 \key: \value]
 # [8 2 2 key: value]
-
-[\name: 'Bob']
-# [name: 'Bob']
 ```
 
 ## Map
@@ -131,9 +126,6 @@ If the same key is repeated multiple times, it's associated with only the last v
 
 {8 2 2 \key: \value}
 # {8 2 key: value}
-
-{\name \name: 'Bob'}
-# {name: 'Bob'}
 ```
 
 ## Number
@@ -203,12 +195,6 @@ An immutable sequence of Unicode characters, each one identified by a code-point
 ''
 # ''
 
-'x'
-# 'x'
-
-'Bob'
-# 'Bob'
-
 'café'
 # 'café'
 
@@ -236,13 +222,7 @@ If less than two arguments are passed, it returns the result of `(debug \paramet
 (= 1 1.0)
 # true
 
-(= 1 +1)
-# true
-
 (= -0 +0)
-# true
-
-(= 'A' 'A' 'A')
 # true
 
 (= 'A' 'a')
@@ -256,9 +236,6 @@ If less than two arguments are passed, it returns the result of `(debug \paramet
 
 (= {0 1} {1 0})
 # true
-
-(= 0 '')
-# false
 ```
 
 ## `<`
@@ -274,16 +251,6 @@ A [function](#function) that compares two or more [numbers](#number) and returns
 If less than two arguments are passed, it returns the result of `(debug \parameter-mismatch)`.
 
 If any of the arguments isn't a number, it returns the result of `(debug \prototype-mismatch)`.
-
-### Examples
-
-```
-(< 1 -2)
-# false
-
-(< 8 10 10.1)
-# true
-```
 
 ## `>`
 
@@ -369,14 +336,8 @@ Dividing any number by zero or infinity by infinity returns the result of `(debu
 (/ 12 3)
 # 4
 
-(/ 7 10)
-# 0.7
-
 (/ 1 3)
 # 0.(3)
-
-(/ 0 6)
-# 0
 ```
 
 ## `count`
@@ -624,24 +585,25 @@ If the `map` argument isn't a map or the `reference` argument isn't a reference,
 ## `load`
 
 ```
-(load path:List): Function
+(load path:List ...)
 ```
 
-A [function](#function) that loads a [module](#module) by `path`, and returns it as a [function](#function). A `path` is a list of zero or more names, ending with the module name.
+A [function](#function) that loads a [module](#module) by `path` with zero or more arguments, and returns the value from the last evaluated expression. A `path` is a list of zero or more names, ending with the [module](#module) name.
 
 ### Conditions
 
-If less or more than one argument is passed, it returns the result of `(debug \parameter-mismatch)`.
+If less than one argument is passed, it returns the result of `(debug \parameter-mismatch)`.
 
-If the `module` argument isn't a non-empty list of symbols, it returns the result of `(debug \prototype-mismatch)`.
+If the `path` argument isn't a non-empty list of symbols, it returns the result of `(debug \prototype-mismatch)`.
 
-If the specified `module` doesn't exist, it returns the result of `(debug \unknown-module)`.
+If the specified module doesn't exist, it returns the result of `(debug \unknown-module)`.
+
+If the specified module is empty, meaning it doesn't evaluate to least one value, it returns the  result of `(debug \empty-module)`.
 
 ### Examples
 
 ```
-(load [\server])
-(load [\image \parser])
+(load [\io])
 ```
 
 ## `local`
@@ -710,13 +672,13 @@ If the `map` is empty or `key` is the last key, it returns the result of `(debug
 (prototype value)
 ```
 
-A [function](#function) that retrieves the prototype of `value`.
+A [function](#function) that retrieves the [prototype](#prototypes) of `value`.
 
 ```
 (prototype value base-prototype)
 ```
 
-A [function](#function) that extends the prototype hierarchy using `base-prototype` thereby creating a new prototype.
+A [function](#function) that extends the prototype hierarchy using `base-prototype` thereby creating a new [prototype](#prototypes).
 
 ### Conditions
 
@@ -731,7 +693,13 @@ When extending the prototype hierarchy, if both the `value` and `base-prototype`
 # ''
 
 (prototype '')
-# ''
+# []
+
+(prototype [])
+# {}
+
+(prototype {})
+# {}
 
 (prototype [8 2 2])
 # []
@@ -757,7 +725,7 @@ When extending the prototype hierarchy, if both the `value` and `base-prototype`
   (prototype bob)
   # Person
 
-  (prototype {\name: 'Bob' \age: 20}))
+  (prototype (prototype bob)))
   # {}
 ```
 
@@ -968,12 +936,12 @@ All names should use hyphens as the word delimiter.
 
 ### Function
 
-The name of a function should generally use a verb as the first word. Predicate functions should end in `?`. Mutator functions should end in `!`. Accessor functions should start with a noun instead of a verb and end in `-of`.
+The name of a [function](#function) should generally use a verb as the first word. Predicate functions should end in `?`. Mutator functions should end in `!`. Accessor functions should start with a noun instead of a verb and end in `-of`.
 
 ### Module
 
-The name of a module should be a noun, in lower-case.
+The name of a [module](#module) should be a noun, in lower-case.
 
 ### Prototype
 
-The name of a prototype should be a noun, capitalized.
+The name of a [prototype](#prototype) should be a noun, capitalized.
