@@ -1,5 +1,9 @@
-- Decouple `load`: `read` + `parse`
-- Indicate time and space complexity for each operation.
+- Check licenses of everything being used.
+- In each prototype, indicate the base prototype (and reduce examples in the `prototype` builtin). Eg. empty string for strings.
+- Indicate data type for "anything", eg. `(evaluate expr: Any): Any`
+- More specific parameters and return value documentation.
+- Indicate time and space complexity for each operation and data type.
+- Document any side-effects for each operation and data type.
 - Specify prototypical inheritance (differential inheritance, eg. intro, `get` `put` and `remove` handling, etc). http://steve-yegge.blogspot.com/2008/10/universal-design-pattern.html
 - Rename `debug` to `rescue` for something similar to Common Lisp conditions (signaling a condition, handling it, and restarting).
   - The specification doesn't dictate how it's handled, but the core library uses continuations to implement a full condition system?
@@ -8,14 +12,20 @@
   - http://www.gigamonkeys.com/book/beyond-exception-handling-conditions-and-restarts.html
   - http://matt.might.net/articles/implementing-exceptions/
   - http://matt.might.net/articles/programming-with-continuations--exceptions-backtracking-search-threads-generators-coroutines/
-- Evaluate typing difficulty of each identifier quantitatively. Use easier synonyms for hard to type words. Avoid verbs that are also nouns.
+- Evaluate typing difficulty of each identifier and syntax quantitatively.
+  - Use easier synonyms for hard to type words.`
+  - Avoid verbs that are also nouns.
+  - Bulk analyze source code out there for analysis?
+  - Frequency of syntax tokens, familiarity, ease of typing, speaking, identifiers.
+  - https://en.wikipedia.org/wiki/Comparison_of_programming_languages_(syntax)
+  - https://github.com/anvaka/common-words/blob/master/README.md
 - Add a Quick Start document with hyperlinks to the specification for further reading.
 - http://www.infoq.com/presentations/Value-Identity-State-Rich-Hickey
 - Look for best/worst features of other languages: JavaScript, Clojure, Kotlin, Python, Haskell, Erlang, PureScript, Elm, Io, Rust, Ruby, Smalltalk, Java, Scheme, Go, ML, Lua, Haxe, Tcl, Shen, Matlab, R, REBOL, Wolfram.
   - "Perl Pocket Reference"
 - Stdlib: regex, math, io, json, xml, csv, yaml, ini
 - Open questions:
-  - Prototype of a boolean? Of a reference?
+  - Prototype of a boolean? Of a reference? "It extends the [number](#number) prototype by associating `1` to true and `0` to false."
   - Live changes (hot-reloading) support.
   - Abbreviate longer built-in names? Eg. `eval`, `proto`, `ref`, `inf`?
   - Optional static typing?
@@ -25,4 +35,5 @@
   - Add fraction literal syntax? More practical? Or just use number suffix functions named `/2`, `/3`, etc?
   - Allow suffixes in tagged text literals? Unnecessarily complicated? No good use-cases?
   - Allow Get Chain expressions to contain numbers? `names::1`
+  - Built-in concurrency?
   - Add a built-in CAS (Computer Algebra System) to not loose any precision even when dealing with irrational numbers? Make math functions allow symbols? Would also allow to remove `infinity` as a built-in, using the sum of the harmonic series? (See Maxima Algebra System, which uses Lisp.)
