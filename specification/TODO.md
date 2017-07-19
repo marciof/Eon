@@ -25,7 +25,7 @@
   - "Perl Pocket Reference"
 - Stdlib: regex, math, io, json, xml, csv, yaml, ini
 - Open questions:
-  - Prototype of a boolean? Of a reference? "It extends the [number](#number) prototype by associating `1` to true and `0` to false."
+  - Prototype value of a boolean? Of a Symbol? "It extends the [number](#number) prototype by associating `1` to true and `0` to false."
   - Live changes (hot-reloading) support.
   - Abbreviate longer built-in names? Eg. `eval`, `proto`, `ref`, `inf`?
   - Optional static typing?

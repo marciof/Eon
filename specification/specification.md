@@ -9,7 +9,6 @@
   - [List](#list)
   - [Map](#map)
   - [Number](#number)
-  - [Reference](#reference)
   - [Symbol](#symbol)
   - [Text](#text)
 - [Built-ins](#built-ins)
@@ -27,7 +26,7 @@ Simple:
 - No undefined behavior, consistent.
 - Everything is a value, never null.
 - Right things easier than wrong things, encouraged, and the only way.
-- Immutable data structures (except for references), no defensive copying.
+- Immutable data structures, no defensive copying.
 - Principle of Least Surprise: "The design should match the user's experience, expectations, and mental models."
 - "Keep the language specification simple enough to hold in a programmer's head."
 
@@ -152,17 +151,6 @@ A rational number.
 
 infinity
 # infinity
-```
-
-## Reference
-
-A mutable container for a value.
-
-### Examples
-
-```
-(reference 'Bob')
-# (reference 'Bob')
 ```
 
 ## Symbol
@@ -459,7 +447,7 @@ If zero or more than two arguments are passed, it returns the result of `(debug 
   (evaluate \y {\y: 8})
   # 8
 
-  (evaluate \y (get scope)))
+  (evaluate \y (scope)))
   # 2
 ```
 
@@ -471,17 +459,11 @@ If zero or more than two arguments are passed, it returns the result of `(debug 
 
 A [function](#function) that retrieves the value associated with a `key` in a `map`.
 
-```
-(get reference:Reference)
-```
-
-A [function](#function) that dereferences a `reference`.
-
 ### Conditions
 
 If less than one or more than two arguments are passed, it returns the result of `(debug \parameter-mismatch)`.
 
-If the `map` argument isn't a map or the `reference` argument isn't a reference, it returns the result of `(debug \prototype-mismatch)`.
+If the `map` argument isn't a map, it returns the result of `(debug \prototype-mismatch)`.
 
 If the association doesn't exist, it returns the result of `(debug \unkown-key)`.
 
@@ -507,9 +489,6 @@ If the association doesn't exist, it returns the result of `(debug \unkown-key)`
 
   user::name)
   # 'Bob'
-
-(get (reference 123))
-# 123
 ```
 
 ## `infinity`
@@ -539,17 +518,11 @@ If the `key` already exists, its value is instead replaced in [maps](#map) or di
 
 If no `key` is passed, then the `value` is inserted at the end of the `map`.
 
-```
-(insert reference:Reference value): Reference
-```
-
-A [function](#function) that changes the referenced value in a `reference`, and returns the same [reference](#reference).
-
 ### Conditions
 
 If less than two or more than three arguments are passed, it returns the result of `(debug \parameter-mismatch)`.
 
-If the `map` argument isn't a map or the `reference` argument isn't a reference, it returns the result of `(debug \prototype-mismatch)`.
+If the `map` argument isn't a map, it returns the result of `(debug \prototype-mismatch)`.
 
 ### Examples
 
@@ -577,9 +550,6 @@ If the `map` argument isn't a map or the `reference` argument isn't a reference,
 
 (insert {\name: 'Bob'} \name)
 # {name}
-
-(get (insert (reference 123) 321))
-# 321
 ```
 
 ## `load`
@@ -626,10 +596,10 @@ If the `map` argument isn't a map, it returns the result of `(debug \prototype-m
 (let x: 1
   (let y: 2
 
-    (local (get scope))
+    (local (scope))
     # {y: 2}
 
-    (prototype (get scope))))
+    (prototype (scope))))
     # {x: 1}
 ```
 
@@ -661,9 +631,6 @@ If the `map` is empty or `key` is the last key, it returns the result of `(debug
 
 (next {\name: 'Bob' \age: 20})
 # name
-
-(next (reference 8))
-# 8
 ```
 
 ## `prototype`
@@ -729,32 +696,6 @@ When extending the prototype hierarchy, if both the `value` and `base-prototype`
   # {}
 ```
 
-## `reference`
-
-```
-(reference value)
-```
-
-A [function](#function) that creates a new reference to a `value`.
-
-### Conditions
-
-If less or more than one argument is passed, it returns the result of `(debug \parameter-mismatch)`.
-
-### Examples
-
-```
-(let name: (reference 'Bob')
-
-  (get name)
-  # 'Bob'
-
-  (insert name 'John')
-
-  (get name))
-  # 'John'
-```
-
 ## `remove`
 
 ```
@@ -769,7 +710,7 @@ If there's no such `key`, the same `map` is returned unchanged.
 
 If less or more than two arguments are passed, it returns the result of `(debug \parameter-mismatch)`.
 
-If the `map` argument isn't a map or is a reference, it returns the result of `(debug \prototype-mismatch)`.
+If the `map` argument isn't a map, it returns the result of `(debug \prototype-mismatch)`.
 
 ### Examples
 
@@ -792,9 +733,14 @@ If the `map` argument isn't a map or is a reference, it returns the result of `(
 
 ## `scope`
 
-A [reference](#reference) to a [list](#list) mapping identifiers to values in the current scope.
+```
+(scope): List
+(scope symbols:List): List
+```
 
-The scope list always [prototypically](#prototype) inherits from the previous scope list, or none if it's the [module](#module) scope. Each [function](#function) call creates a new scope list that prototypically inherits from the previous one, and this reference always points to the current one.
+A [function](#function) that gets or sets the current scope, a [list](#list) mapping [symbols](#symbol) to values.
+
+The scope list always [prototypically](#prototype) inherits from the previous scope list, or none if it's the [module](#module) scope. Each [function](#function) call creates a new scope list that prototypically inherits from the previous one, and this always points to the current one.
 
 ### Examples
 
@@ -804,7 +750,7 @@ The scope list always [prototypically](#prototype) inherits from the previous sc
   x
   # 2
 
-  (get (get scope) \x)
+  (get (scope) \x)
   # 2
 
   (let x: 8
@@ -812,10 +758,10 @@ The scope list always [prototypically](#prototype) inherits from the previous sc
     x
     # 8
 
-    (get (get scope) \x)
+    (get (scope) \x)
     # 8
 
-    (get (prototype (get scope)) \x)))
+    (get (prototype (scope)) \x)))
     # 2
 
 (let y: 3
@@ -823,7 +769,7 @@ The scope list always [prototypically](#prototype) inherits from the previous sc
   y
   # 3
 
-  (insert scope (insert (get scope) \y 5))
+  (scope (insert (scope) \y 5))
 
   y
   # 5)
