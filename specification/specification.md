@@ -62,13 +62,27 @@ A prototype is the original value used to create another one from. The prototype
 
 A binary logical value that can only be either true or false.
 
+- **Prototype**: `true`
+- **Base Prototype**: -
+
+### Examples
+
+```
+(prototype true)
+# true
+
+(prototype false)
+# true
+```
+
 ## Function
 
-An immutable sequence composed of a function followed by zero or more values, the arguments. It extends the [list](#list) prototype.
+An immutable sequence composed of a function followed by zero or more values, the arguments.
 
 Calling a function creates a new [scope](#scope) using the [deferred](#defer) function call list, [prototypically](#prototype) inherited from the previous scope, and then evaluates it in this new scope returning the result.
 
-Arguments in a function call are specified positionally or via keyword parameters.
+- **Prototype**: `()`
+- **Base Prototype**: [List](#list), `[]`
 
 ### Examples
 
@@ -84,11 +98,20 @@ Arguments in a function call are specified positionally or via keyword parameter
 
 ()
 # ()
+
+(prototype \(+ 1 2))
+# ()
+
+(prototype ())
+# []
 ```
 
 ## List
 
-An immutable sequence of values. It extends the [map](#map) prototype by associating consecutive positive integer keys in ascending order with values.
+An immutable sequence of elements, that associates consecutive positive integer keys in ascending order with values.
+
+- **Prototype**: `[]`
+- **Base Prototype**: [Map](#map), `{}`
 
 ### Examples
 
@@ -101,15 +124,24 @@ An immutable sequence of values. It extends the [map](#map) prototype by associa
 
 [8 2 2 \key: \value]
 # [8 2 2 key: value]
+
+(prototype ['x'])
+# []
+
+(prototype [])
+# {}
 ```
 
 ## Map
 
-An immutable insertion ordered collection of unique keys each one associated with a single value.
+An immutable insertion ordered collection, of unique keys each one associated with a single value.
 
-If a given key has no associated value, it's then handled as in a set where the key and value are the same, however they're still separate from each other. A set element expression is only evaluated once even though it's used for both the key and value.
+If a given key has no associated value, it's then handled as in a set where the key and value are the same and identical, however they're still separate from each other. An expression used as a set element is only evaluated once, even though it's used for both the key and value.
 
-If the same key is repeated multiple times, it's associated with only the last value.
+If the same key appears multiple times, the last associated value takes precedence over all previous ones.
+
+- **Prototype**: `{}`
+- **Base Prototype**: -
 
 ### Examples
 
@@ -125,11 +157,20 @@ If the same key is repeated multiple times, it's associated with only the last v
 
 {8 2 2 \key: \value}
 # {8 2 key: value}
+
+(prototype {'x'})
+# {}
+
+(prototype {})
+# {}
 ```
 
 ## Number
 
 A rational number.
+
+- **Prototype**: `0`
+- **Base Prototype**: -
 
 ### Examples
 
@@ -151,11 +192,23 @@ A rational number.
 
 infinity
 # infinity
+
+(prototype 3)
+# 0
+
+(prototype infinity)
+# 0
+
+(prototype 0)
+# 0
 ```
 
 ## Symbol
 
-An immutable case-sensitive name. It extends the [text](#text) prototype by restricting the character set used.
+An immutable case-sensitive name, that restricts the character set used according to the [grammar](#grammar).
+
+- **Prototype**:
+- **Base Prototype**: [Text](#text), `''`
 
 ### Examples
 
@@ -175,7 +228,10 @@ An immutable case-sensitive name. It extends the [text](#text) prototype by rest
 
 ## Text
 
-An immutable sequence of Unicode characters, each one identified by a code-point. It extends the [list](#list) prototype by associating non-negative integer elements to code-points.
+An immutable sequence of Unicode characters, each one identified by a numeric code-point.
+
+- **Prototype**: `''`
+- **Base Prototype**: [List](#list), `[]`
 
 ### Examples
 
@@ -188,6 +244,12 @@ An immutable sequence of Unicode characters, each one identified by a code-point
 
 '<a href=''http://www.example.com''>'
 # '<a href=''http://www.example.com''>'
+
+(prototype 'Bob')
+# ''
+
+(prototype '')
+# []
 ```
 
 # Built-ins
@@ -658,24 +720,6 @@ When extending the prototype hierarchy, if both the `value` and `base-prototype`
 ```
 (prototype 'Bob')
 # ''
-
-(prototype '')
-# []
-
-(prototype [])
-# {}
-
-(prototype {})
-# {}
-
-(prototype [8 2 2])
-# []
-
-(prototype get)
-# ()
-
-(prototype 8)
-# 0
 
 (let Person: (prototype {\name: ''} {})
      bob: (insert Person \name 'Bob')

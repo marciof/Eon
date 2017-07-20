@@ -1,5 +1,5 @@
 - Check licenses of everything being used.
-- In each prototype, indicate the base prototype (and reduce examples in the `prototype` builtin). Eg. empty string for strings.
+- Document collection operations on texts and symbols.
 - Indicate data type for "anything", eg. `(evaluate expr: Any): Any`
 - More specific parameters and return value documentation.
 - Indicate time and space complexity for each operation and data type.
@@ -25,7 +25,7 @@
   - "Perl Pocket Reference"
 - Stdlib: regex, math, io, json, xml, csv, yaml, ini
 - Open questions:
-  - Prototype value of a boolean? Of a Symbol? "It extends the [number](#number) prototype by associating `1` to true and `0` to false."
+  - Prototype value of a Symbol?
   - Live changes (hot-reloading) support.
   - Abbreviate longer built-in names? Eg. `eval`, `proto`, `ref`, `inf`?
   - Optional static typing?
