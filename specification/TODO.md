@@ -18,6 +18,7 @@
   - Bulk analyze source code out there for analysis?
   - Frequency of syntax tokens, familiarity, ease of typing, speaking, identifiers.
   - https://en.wikipedia.org/wiki/Comparison_of_programming_languages_(syntax)
+  - http://hyperpolyglot.org/scripting
   - https://github.com/anvaka/common-words/blob/master/README.md
 - Add a Quick Start document with hyperlinks to the specification for further reading.
 - http://www.infoq.com/presentations/Value-Identity-State-Rich-Hickey

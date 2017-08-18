@@ -1,14 +1,14 @@
 {
-  \Boolean: (prototype (= 0 0)))
-  \Function: (prototype ())
-  \List: (prototype []))
-  \Map: (prototype {}))
-  \Number: (prototype 0))
-  \Symbol: (prototype \x))
-  \Text: (prototype ''))
+  \Boolean: (= 0 0)
+  \Function: ()
+  \List: []
+  \Map: {}
+  \Number: 0
+  \Symbol: (prototype \x)
+  \Text: ''
 
-  \true: (= 0 0))
-  \false: (= 0 1))
+  \true: (= 0 0)
+  \false: (= 0 1)
 
   \if: \(evaluate (get
     {
