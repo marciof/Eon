@@ -40,13 +40,14 @@ Powerful:
 
 Practical:
 - REPL.
-- Fast enough.
+- Fast enough (quick feedback / low latency; maximum resource usage when appropriate).
 - Easy data type literals: lists, maps, sets, functions, strings, numbers.
 - Multi-platform: "Write once, run everywhere".
 - Native code interop, FFI (Foreign Function Interface).
-- Shell-scripting (hash-bang syntax, `#!`, naturally supported).
+- Shell-scripting (hash-bang syntax naturally supported, `#!`).
 - Permissive license.
 - Low cognitive load and typing effort (US keyboard layout, favor home row keys).
+- Standard tooling: single-style source code formatter, testing, profiler, local/remote debugger, package manager, command-line documentation viewer
 
 # Structure
 

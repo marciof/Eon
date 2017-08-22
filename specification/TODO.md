@@ -13,7 +13,7 @@
   - http://matt.might.net/articles/implementing-exceptions/
   - http://matt.might.net/articles/programming-with-continuations--exceptions-backtracking-search-threads-generators-coroutines/
 - Evaluate typing difficulty of each identifier and syntax quantitatively.
-  - Use easier synonyms for hard to type words.`
+  - Use easier synonyms for hard to type words.
   - Avoid verbs that are also nouns.
   - Bulk analyze source code out there for analysis?
   - Frequency of syntax tokens, familiarity, ease of typing, speaking, identifiers.
