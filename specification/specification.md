@@ -208,7 +208,7 @@ infinity
 
 An immutable case-sensitive name, that restricts the character set used according to the [grammar](#grammar).
 
-- **Prototype**:
+- **Prototype**: empty symbol
 - **Base Prototype**: [Text](#text), `''`
 
 ### Examples
@@ -225,6 +225,9 @@ An immutable case-sensitive name, that restricts the character set used accordin
 
 \...
 # ...
+
+(prototype (prototype \xyz))
+# ''
 ```
 
 ## Text
