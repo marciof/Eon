@@ -26,7 +26,6 @@
   - "Perl Pocket Reference"
 - Stdlib: regex, math, io, json, xml, csv, yaml, ini
 - Open questions:
-  - Empty symbol can't be represented literally, but booleans have a representation? (See boolean prototype section.) No example for an empty symbol?
   - Live changes (hot-reloading) support.
   - Abbreviate longer built-in names? Eg. `eval`, `proto`, `ref`, `inf`?
   - Optional static typing?

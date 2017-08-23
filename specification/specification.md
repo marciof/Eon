@@ -40,14 +40,14 @@ Powerful:
 
 Practical:
 - REPL.
-- Fast enough (quick feedback / low latency; maximum resource usage when appropriate).
+- Fast enough (quick feedback, low latency; or maximum resource usage when appropriate).
 - Easy data type literals: lists, maps, sets, functions, strings, numbers.
 - Multi-platform: "Write once, run everywhere".
 - Native code interop, FFI (Foreign Function Interface).
-- Shell-scripting (hash-bang syntax naturally supported, `#!`).
+- Shell-scripting (`#!`, hash-bang syntax naturally supported).
 - Permissive license.
 - Low cognitive load and typing effort (US keyboard layout, favor home row keys).
-- Standard tooling: single-style source code formatter, testing, profiler, local/remote debugger, package manager, command-line documentation viewer
+- Standard tooling: single-style source code formatter, testing framework, profiler, debugger local/remote, package manager, command-line documentation viewer.
 
 # Structure
 
@@ -57,19 +57,27 @@ A Unicode textual representation of expressions encoded in UTF-8 without a Byte 
 
 # Prototypes
 
-A prototype is the original value used to create another one from. The prototype of a prototype is its base prototype, or itself if it doesn't have one (root prototype).
+A [prototype](#prototype) is the original value used to create another one from. The prototype of a prototype is its base prototype, or itself if it doesn't have one.
+
+Not all values can be literally represented in source code, since not all have an associated [grammar](#grammar) production (such as [booleans](#boolean)). They can however be named using [symbols](#symbol) in the [scope](#scope).
 
 ## Boolean
 
-A binary logical value that can only be either true or false.
+A binary logical value that can only be either true or false. It does not have a literal source code representation.
 
-- **Prototype**: `true`
+- **Prototype**: true
 - **Base Prototype**: -
 
 ### Examples
 
 ```
+(prototype (= 1 1))
+# true
+
 (prototype true)
+# true
+
+(prototype (= 1 2))
 # true
 
 (prototype false)
@@ -82,8 +90,8 @@ An immutable sequence composed of a function followed by zero or more values, th
 
 Calling a function creates a new [scope](#scope) using the [deferred](#defer) function call list, [prototypically](#prototype) inherited from the previous scope, and then evaluates it in this new scope returning the result.
 
-- **Prototype**: `()`
-- **Base Prototype**: [List](#list), `[]`
+- **Prototype**: empty [function](#function), `()`
+- **Base Prototype**: empty [list](#list), `[]`
 
 ### Examples
 
@@ -111,8 +119,8 @@ Calling a function creates a new [scope](#scope) using the [deferred](#defer) fu
 
 An immutable sequence of elements, that associates consecutive positive integer keys in ascending order with values.
 
-- **Prototype**: `[]`
-- **Base Prototype**: [Map](#map), `{}`
+- **Prototype**: empty [list](#list), `[]`
+- **Base Prototype**: empty [map](#map), `{}`
 
 ### Examples
 
@@ -135,13 +143,13 @@ An immutable sequence of elements, that associates consecutive positive integer 
 
 ## Map
 
-An immutable insertion ordered collection, of unique keys each one associated with a single value.
+An immutable insertion ordered collection, that associates unique keys with values.
 
 If a given key has no associated value, it's then handled as in a set where the key and value are the same and identical, however they're still separate from each other. An expression used as a set element is only evaluated once, even though it's used for both the key and value.
 
 If the same key appears multiple times, the last associated value takes precedence over all previous ones.
 
-- **Prototype**: `{}`
+- **Prototype**: empty [map](#map), `{}`
 - **Base Prototype**: -
 
 ### Examples
@@ -170,7 +178,7 @@ If the same key appears multiple times, the last associated value takes preceden
 
 A rational number.
 
-- **Prototype**: `0`
+- **Prototype**: integer zero, `0`
 - **Base Prototype**: -
 
 ### Examples
@@ -206,10 +214,10 @@ infinity
 
 ## Symbol
 
-An immutable case-sensitive name, that restricts the character set used according to the [grammar](#grammar).
+An immutable case-sensitive name, that restricts the character set used according to the [grammar](#grammar). The empty symbol does not have a literal source code representation.
 
 - **Prototype**: empty symbol
-- **Base Prototype**: [Text](#text), `''`
+- **Base Prototype**: empty [text](#text), `''`
 
 ### Examples
 
@@ -234,8 +242,8 @@ An immutable case-sensitive name, that restricts the character set used accordin
 
 An immutable sequence of Unicode characters, each one identified by a numeric code-point.
 
-- **Prototype**: `''`
-- **Base Prototype**: [List](#list), `[]`
+- **Prototype**: empty [text](#text), `''`
+- **Base Prototype**: empty [list](#list), `[]`
 
 ### Examples
 
