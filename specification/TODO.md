@@ -1,4 +1,3 @@
-- Check licenses of everything being used.
 - Document collection operations on texts and symbols.
 - Indicate data type for "anything", eg. `(evaluate expr: Any): Any`
 - More specific parameters and return value documentation.
