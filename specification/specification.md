@@ -40,7 +40,7 @@ Powerful:
 
 Practical:
 - REPL.
-- Fast enough (quick feedback, low latency; or maximum resource usage when appropriate).
+- Fast enough (zero-copy; quick feedback, low latency; or maximum resource usage when appropriate).
 - Easy data type literals: lists, maps, sets, functions, strings, numbers.
 - Multi-platform: "Write once, run everywhere".
 - Native code interop, FFI (Foreign Function Interface).
