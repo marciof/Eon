@@ -1,4 +1,4 @@
-- Document collection operations on texts and symbols, and module loading syntax errors.
+- Document collection operations on texts and symbols, module loading errors, inserting invalid positions and values for each type.
 - More specific parameters and return value documentation.
 - Indicate time and space complexity for each operation and data type.
 - Document any side-effects for each operation and data type.
@@ -24,7 +24,7 @@
   - "Perl Pocket Reference"
 - Stdlib: regex, math, io, json, xml, csv, yaml, ini
 - Open questions:
-  - Zero-copy? `(splice map at-key directional-delete-count insert-items)`
+  - Reactive programming.
   - Live changes (hot-reloading) support.
   - Abbreviate longer built-in names? Eg. `eval`, `proto`, `ref`, `inf`?
   - Optional static typing?
@@ -35,4 +35,4 @@
   - Allow suffixes in tagged text literals? Unnecessarily complicated? No good use-cases?
   - Allow Get Chain expressions to contain numbers? `names::1`
   - Built-in concurrency?
-  - Add a built-in CAS (Computer Algebra System) to not loose any precision even when dealing with irrational numbers? Make math functions allow symbols? Would also allow to remove `infinity` as a built-in, using the sum of the harmonic series? (See Maxima Algebra System, which uses Lisp.)
+  - Add a built-in CAS (Computer Algebra System) to not loose any precision even when dealing with irrational numbers? Make math functions allow symbols? Would also allow to remove `infinity` as a built-in, using the sum of the harmonic series? (See Maxima Algebra System which uses Lisp, and GNU Octave.)

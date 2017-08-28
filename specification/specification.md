@@ -516,15 +516,16 @@ A [function](#function) that evaluates an `expression`, optionally in a differen
 
 ```
 (get map:Map key:Any): Any
+(get map:Map key:Any default:Any): Any
 ```
 
-A [function](#function) that retrieves the value associated with a `key` in a `map`.
+A [function](#function) that retrieves the value associated with a `key` in a `map`, optionally using a `default`.
 
 ### Conditions
 
-- *Less than one or more than two arguments:* returns the result of `(debug \parameter-mismatch)`
+- *Less than two or more than three arguments:* returns the result of `(debug \parameter-mismatch)`
 - *`map` argument isn't a map:* returns the result of `(debug \prototype-mismatch)`
-- *Association doesn't exist:* returns the result of `(debug \unkown-key)`
+- *Association doesn't exist, and `default` value isn't provided:* returns the result of `(debug \unkown-key)`
 
 ### Examples
 
@@ -604,6 +605,9 @@ A [function](#function) that associates a `key` with a `value` in a `map`, and r
 
 (insert {\name: 'Bob'} \name)
 # {name}
+
+(insert \x (get 'y' 1))
+# xy
 ```
 
 ## `load`
