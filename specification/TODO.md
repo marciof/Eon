@@ -1,5 +1,4 @@
-- Document collection operations on texts and symbols.
-- Indicate data type for "anything", eg. `(evaluate expr: Any): Any`
+- Document collection operations on texts and symbols, and module loading syntax errors.
 - More specific parameters and return value documentation.
 - Indicate time and space complexity for each operation and data type.
 - Document any side-effects for each operation and data type.

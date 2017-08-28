@@ -59,14 +59,14 @@ A Unicode textual representation of expressions encoded in UTF-8 without a Byte 
 
 A [prototype](#prototype) is the original value used to create another one from. The prototype of a prototype is its base prototype, or itself if it doesn't have one.
 
-Not all values can be literally represented in source code, since not all have an associated [grammar](#grammar) production (such as [booleans](#boolean)). They can however be named using [symbols](#symbol) in the [scope](#scope).
+Not all values can be literally represented in source code, since not all have an associated [grammar](#grammar) production. They can however be assigned names using [symbols](#symbol) in the [scope](#scope).
 
 ## Boolean
 
 A binary logical value that can only be either true or false. It does not have a literal source code representation.
 
-- **Prototype**: true
-- **Base Prototype**: -
+- **Prototype:** true
+- **Base Prototype:** -
 
 ### Examples
 
@@ -90,8 +90,8 @@ An immutable sequence composed of a function followed by zero or more values, th
 
 Calling a function creates a new [scope](#scope) using the [deferred](#defer) function call list, [prototypically](#prototype) inherited from the previous scope, and then evaluates it in this new scope returning the result.
 
-- **Prototype**: empty [function](#function), `()`
-- **Base Prototype**: empty [list](#list), `[]`
+- **Prototype:** empty [function](#function), `()`
+- **Base Prototype:** empty [list](#list), `[]`
 
 ### Examples
 
@@ -119,8 +119,8 @@ Calling a function creates a new [scope](#scope) using the [deferred](#defer) fu
 
 An immutable sequence of elements, that associates consecutive positive integer keys in ascending order with values.
 
-- **Prototype**: empty [list](#list), `[]`
-- **Base Prototype**: empty [map](#map), `{}`
+- **Prototype:** empty [list](#list), `[]`
+- **Base Prototype:** empty [map](#map), `{}`
 
 ### Examples
 
@@ -149,8 +149,8 @@ If a given key has no associated value, it's then handled as in a set where the 
 
 If the same key appears multiple times, the last associated value takes precedence over all previous ones.
 
-- **Prototype**: empty [map](#map), `{}`
-- **Base Prototype**: -
+- **Prototype:** empty [map](#map), `{}`
+- **Base Prototype:** -
 
 ### Examples
 
@@ -178,8 +178,8 @@ If the same key appears multiple times, the last associated value takes preceden
 
 A rational number.
 
-- **Prototype**: integer zero, `0`
-- **Base Prototype**: -
+- **Prototype:** integer zero, `0`
+- **Base Prototype:** -
 
 ### Examples
 
@@ -216,8 +216,8 @@ infinity
 
 An immutable case-sensitive name, that restricts the character set used according to the [grammar](#grammar). The empty symbol does not have a literal source code representation.
 
-- **Prototype**: empty symbol
-- **Base Prototype**: empty [text](#text), `''`
+- **Prototype:** empty symbol
+- **Base Prototype:** empty [text](#text), `''`
 
 ### Examples
 
@@ -242,8 +242,8 @@ An immutable case-sensitive name, that restricts the character set used accordin
 
 An immutable sequence of Unicode characters, each one identified by a numeric code-point.
 
-- **Prototype**: empty [text](#text), `''`
-- **Base Prototype**: empty [list](#list), `[]`
+- **Prototype:** empty [text](#text), `''`
+- **Base Prototype:** empty [list](#list), `[]`
 
 ### Examples
 
@@ -269,14 +269,14 @@ An immutable sequence of Unicode characters, each one identified by a numeric co
 ## `=`
 
 ```
-(= x y ...): Boolean
+(= x:Any y:Any ...:Any): Boolean
 ```
 
 A [function](#function) that compares two or more values and returns true if they are all equal, or false otherwise.
 
 ### Conditions
 
-If less than two arguments are passed, it returns the result of `(debug \parameter-mismatch)`.
+- *Less than two arguments:* returns the result of `(debug \parameter-mismatch)`
 
 ### Examples
 
@@ -303,94 +303,84 @@ If less than two arguments are passed, it returns the result of `(debug \paramet
 ## `<`
 
 ```
-(< x y ...): Boolean
+(< x:Number y:Number ...:Number): Boolean
 ```
 
 A [function](#function) that compares two or more [numbers](#number) and returns true if each one is less than the next, or false otherwise.
 
 ### Conditions
 
-If less than two arguments are passed, it returns the result of `(debug \parameter-mismatch)`.
-
-If any of the arguments isn't a number, it returns the result of `(debug \prototype-mismatch)`.
+- *Less than two arguments:* returns the result of `(debug \parameter-mismatch)`
+- *Non-number argument:* returns the result of `(debug \prototype-mismatch)`
 
 ## `>`
 
 ```
-(> x y ...): Boolean
+(> x:Number y:Number ...:Number): Boolean
 ```
 
 A [function](#function) that compares two or more [numbers](#number) and returns true if each one is greater than the next, or false otherwise.
 
 ### Conditions
 
-If less than two arguments are passed, it returns the result of `(debug \parameter-mismatch)`.
-
-If any of the arguments isn't a number, it returns the result of `(debug \prototype-mismatch)`.
+- *Less than two arguments:* returns the result of `(debug \parameter-mismatch)`
+- *Non-number argument:* returns the result of `(debug \prototype-mismatch)`
 
 ## `+`
 
 ```
-(+ x:Number ...): Number
+(+ x:Number ...:Number): Number
 ```
 
 A [function](#function) that adds one or more [numbers](#number).
 
 ### Conditions
 
-If no arguments are passed, it returns the result of `(debug \parameter-mismatch)`.
-
-If any of the arguments isn't a number, it returns the result of `(debug \prototype-mismatch)`.
-
-Adding negative infinity to positive infinity returns the result of `(debug \undefined-arithmetic)`.
+- *No arguments:* returns the result of `(debug \parameter-mismatch)`
+- *Non-number argument:* returns the result of `(debug \prototype-mismatch)`
+- *Adding negative and positive infinity:* returns the result of `(debug \undefined-arithmetic)`
 
 ## `-`
 
 ```
-(- x:Number ...): Number
+(- x:Number ...:Number): Number
 ```
 
 A [function](#function) that subtracts one or more [numbers](#number).
 
 ### Conditions
 
-If no arguments are passed, it returns the result of `(debug \parameter-mismatch)`.
-
-If any of the arguments isn't a number, it returns the result of `(debug \prototype-mismatch)`.
-
-Subtracting infinity from infinity returns the result of `(debug \undefined-arithmetic)`.
+- *No arguments:* returns the result of `(debug \parameter-mismatch)`
+- *Non-number argument:* returns the result of `(debug \prototype-mismatch)`
+- *Subtracting infinity from infinity:* returns the result of `(debug \undefined-arithmetic)`
 
 ## `*`
 
 ```
-(* multiplicand:Number multiplier:Number ...): Number
+(* multiplicand:Number multiplier:Number ...:Number): Number
 ```
 
 A [function](#function) that multiplies two or more [numbers](#number).
 
 ### Conditions
 
-If less than two arguments are passed, it returns the result of `(debug \parameter-mismatch)`.
-
-If any of the arguments isn't a number, it returns the result of `(debug \prototype-mismatch)`.
-
-Multiplying zero and infinity returns the result of `(debug \undefined-arithmetic)`.
+- *Less than two arguments:* returns the result of `(debug \parameter-mismatch)`
+- *Non-number argument:* returns the result of `(debug \prototype-mismatch)`
+- *Multiplying zero and infinity:* returns the result of `(debug \undefined-arithmetic)`
 
 ## `/`
 
 ```
-(/ dividend:Number divisor:Number ...): Number
+(/ dividend:Number divisor:Number ...:Number): Number
 ```
 
 A [function](#function) that divides two or more [numbers](#number).
 
 ### Conditions
 
-If less than two arguments are passed, it returns the result of `(debug \parameter-mismatch)`.
-
-If any of the arguments isn't a number, it returns the result of `(debug \prototype-mismatch)`.
-
-Dividing any number by zero or infinity by infinity returns the result of `(debug \undefined-arithmetic)`.
+- *Less than two arguments:* returns the result of `(debug \parameter-mismatch)`
+- *Non-number argument:* returns the result of `(debug \prototype-mismatch)`
+- *Dividing any number by zero or infinity by infinity:* returns the result of `(debug \undefined-arithmetic)`
 
 ### Examples
 
@@ -412,9 +402,8 @@ A [function](#function) that returns the number of key/value pairs in a `map`.
 
 ### Conditions
 
-If less or more than one argument is passed, it returns the result of `(debug \parameter-mismatch)`.
-
-If the `map` argument isn't a map, it returns the result of `(debug \prototype-mismatch)`.
+- *Less or more than one argument:* returns the result of `(debug \parameter-mismatch)`
+- *`map` argument isn't a map:* returns the result of `(debug \prototype-mismatch)`
 
 ### Examples
 
@@ -441,32 +430,30 @@ If the `map` argument isn't a map, it returns the result of `(debug \prototype-m
 ## `debug`
 
 ```
-(debug)
-(debug name:Symbol)
+(debug): Any
+(debug name:Symbol): Any
 ```
 
 A [function](#function) that interrupts normal execution flow. In development mode it triggers a debugger, while in production mode it halts execution with an appropriate error message.
 
 ### Conditions
 
-If more than one argument is passed, it returns the result of `(debug \parameter-mismatch)`.
-
-If the `name` argument isn't a symbol, it returns the result of `(debug \prototype-mismatch)`.
+- *More than one argument:* returns the result of `(debug \parameter-mismatch)`
+- *`name` argument isn't a symbol:* returns the result of `(debug \prototype-mismatch)`
 
 ## `defer`
 
 ```
-(defer expression)
-(defer expression escape:Symbol)
+(defer expression:Any): Any
+(defer expression:Any escape:Symbol): Any
 ```
 
 A [function](#function) that creates a snapshot of an `expression`, optionally with an `escape` [symbol](#symbol) for re-enabling [evaluation](#evaluate) inside it, thereby preventing it from being evaluated.
 
 ### Conditions
 
-If less than one or more than two arguments are passed, it returns the result of `(debug \parameter-mismatch)`.
-
-If the `escape` argument isn't a symbol, it returns the result of `(debug \prototype-mismatch)`.
+- *Less than one or more than two arguments:* returns the result of `(debug \parameter-mismatch)`
+- *`escape` argument isn't a symbol:* returns the result of `(debug \prototype-mismatch)`
 
 ### Examples
 
@@ -489,15 +476,15 @@ If the `escape` argument isn't a symbol, it returns the result of `(debug \proto
 ## `evaluate`
 
 ```
-(evaluate expression)
-(evaluate expression scope:List)
+(evaluate expression:Any)
+(evaluate expression:Any scope:List): Any
 ```
 
 A [function](#function) that evaluates an `expression`, optionally in a different `scope`, and returns the result.
 
 ### Conditions
 
-If zero or more than two arguments are passed, it returns the result of `(debug \parameter-mismatch)`.
+- *Zero or more than two arguments:* returns the result of `(debug \parameter-mismatch)`
 
 ### Examples
 
@@ -528,18 +515,16 @@ If zero or more than two arguments are passed, it returns the result of `(debug 
 ## `get`
 
 ```
-(get map:Map key)
+(get map:Map key:Any): Any
 ```
 
 A [function](#function) that retrieves the value associated with a `key` in a `map`.
 
 ### Conditions
 
-If less than one or more than two arguments are passed, it returns the result of `(debug \parameter-mismatch)`.
-
-If the `map` argument isn't a map, it returns the result of `(debug \prototype-mismatch)`.
-
-If the association doesn't exist, it returns the result of `(debug \unkown-key)`.
+- *Less than one or more than two arguments:* returns the result of `(debug \parameter-mismatch)`
+- *`map` argument isn't a map:* returns the result of `(debug \prototype-mismatch)`
+- *Association doesn't exist:* returns the result of `(debug \unkown-key)`
 
 ### Examples
 
@@ -582,21 +567,16 @@ A quantity greater than any [number](#number).
 ## `insert`
 
 ```
-(insert map:Map value): Map
-(insert map:Map key value): Map
+(insert map:Map value:Any): Map
+(insert map:Map key:Any value:Any): Map
 ```
 
-A [function](#function) that associates a `key` with a `value` in a `map`, and returns the new [map](#map).
-
-If the `key` already exists, its value is instead replaced in [maps](#map) or displaced in [lists](#list).
-
-If no `key` is passed, then the `value` is inserted at the end of the `map`.
+A [function](#function) that associates a `key` with a `value` in a `map`, and returns the new [map](#map). If the `key` already exists, its value is instead replaced in [maps](#map) or displaced in [lists](#list). If no `key` is passed, then the `value` is inserted at the end of the `map`.
 
 ### Conditions
 
-If less than two or more than three arguments are passed, it returns the result of `(debug \parameter-mismatch)`.
-
-If the `map` argument isn't a map, it returns the result of `(debug \prototype-mismatch)`.
+- *Less than two or more than three arguments:* returns the result of `(debug \parameter-mismatch)`
+- *`map` argument isn't a map:* returns the result of `(debug \prototype-mismatch)`
 
 ### Examples
 
@@ -629,20 +609,17 @@ If the `map` argument isn't a map, it returns the result of `(debug \prototype-m
 ## `load`
 
 ```
-(load path:List ...)
+(load path:List ...:Any): Any
 ```
 
 A [function](#function) that loads a [module](#module) by `path` with zero or more arguments, and returns the value from the last evaluated expression. A `path` is a list of zero or more names, ending with the [module](#module) name.
 
 ### Conditions
 
-If less than one argument is passed, it returns the result of `(debug \parameter-mismatch)`.
-
-If the `path` argument isn't a non-empty list of symbols, it returns the result of `(debug \prototype-mismatch)`.
-
-If the specified module doesn't exist, it returns the result of `(debug \unknown-module)`.
-
-If the specified module is empty, meaning it doesn't evaluate to least one value, it returns the  result of `(debug \empty-module)`.
+- *Less than one argument:* returns the result of `(debug \parameter-mismatch)`
+- *`path` argument isn't a non-empty list of symbols:* returns the result of `(debug \prototype-mismatch)`
+- *Module can't be found:* returns the result of `(debug \unknown-module)`
+- *Module doesn't evaluate to least one value:* returns the  result of `(debug \empty-module)`
 
 ### Examples
 
@@ -660,9 +637,8 @@ A [function](#function) that returns a [map](#map) with the non-inherited key/va
 
 ### Conditions
 
-If less or more than one argument is passed, it returns the result of `(debug \parameter-mismatch)`.
-
-If the `map` argument isn't a map, it returns the result of `(debug \prototype-mismatch)`.
+- *Less or more than one argument:* returns the result of `(debug \parameter-mismatch)`
+- *`map` argument isn't a map:* returns the result of `(debug \prototype-mismatch)`
 
 ### Examples
 
@@ -680,19 +656,17 @@ If the `map` argument isn't a map, it returns the result of `(debug \prototype-m
 ## `next`
 
 ```
-(next map:Map)
-(next map:Map key)
+(next map:Map): Any
+(next map:Map key:Any): Any
 ```
 
 A [function](#function) that returns the first key or the key following `key` in a `map`.
 
 ### Conditions
 
-If less than one or more than two arguments are passed, it returns the result of `(debug \parameter-mismatch)`.
-
-If the `map` argument isn't a map, it returns the result of `(debug \prototype-mismatch)`.
-
-If the `map` is empty or `key` is the last key, it returns the result of `(debug \unknown-key)`.
+- *Less than one or more than two arguments:* returns the result of `(debug \parameter-mismatch)`
+- *`map` argument isn't a map:* returns the result of `(debug \prototype-mismatch)`
+- *`map` is empty or `key` is the last key:* returns the result of `(debug \unknown-key)`
 
 ### Examples
 
@@ -710,22 +684,21 @@ If the `map` is empty or `key` is the last key, it returns the result of `(debug
 ## `prototype`
 
 ```
-(prototype value)
+(prototype value:Any): Any
 ```
 
 A [function](#function) that retrieves the [prototype](#prototypes) of `value`.
 
 ```
-(prototype value base-prototype)
+(prototype value:Any base:Any): Any
 ```
 
-A [function](#function) that extends the prototype hierarchy using `base-prototype` thereby creating a new [prototype](#prototypes).
+A [function](#function) that extends the prototype hierarchy using `base` thereby creating a new [prototype](#prototypes).
 
 ### Conditions
 
-If zero or more than two arguments are passed, it returns the result of `(debug \parameter-mismatch)`.
-
-When extending the prototype hierarchy, if both the `value` and `base-prototype` don't share a common ancestor prototype, it returns the result of `(debug \prototype-mismatch)`.
+- *Zero or more than two arguments:* returns the result of `(debug \parameter-mismatch)`
+- *`value` and `base-prototype` don't share a common ancestor prototype:* returns the result of `(debug \prototype-mismatch)`
 
 ### Examples
 
@@ -755,18 +728,15 @@ When extending the prototype hierarchy, if both the `value` and `base-prototype`
 ## `remove`
 
 ```
-(remove map:Map key): Map
+(remove map:Map key:Any): Map
 ```
 
-A [function](#function) that disassociates a `key` from a value in a `map`, and returns the new [map](#map).
-
-If there's no such `key`, the same `map` is returned unchanged.
+A [function](#function) that disassociates a `key` from a value in a `map`, and returns the new [map](#map). If there's no such `key`, the same `map` is returned unchanged.
 
 ### Conditions
 
-If less or more than two arguments are passed, it returns the result of `(debug \parameter-mismatch)`.
-
-If the `map` argument isn't a map, it returns the result of `(debug \prototype-mismatch)`.
+- *Less or more than two arguments:* returns the result of `(debug \parameter-mismatch)`
+- *`map` argument isn't a map:* returns the result of `(debug \prototype-mismatch)`
 
 ### Examples
 
@@ -797,6 +767,11 @@ If the `map` argument isn't a map, it returns the result of `(debug \prototype-m
 A [function](#function) that gets or sets the current scope, a [list](#list) mapping [symbols](#symbol) to values.
 
 The scope list always [prototypically](#prototype) inherits from the previous scope list, or none if it's the [module](#module) scope. Each [function](#function) call creates a new scope list that prototypically inherits from the previous one, and this always points to the current one.
+
+### Conditions
+
+- *More than one argument:* returns the result of `(debug \parameter-mismatch)`
+- *`symbols` argument isn't a list of symbols:* returns the result of `(debug \prototype-mismatch)`
 
 ### Examples
 
