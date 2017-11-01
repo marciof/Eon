@@ -1,3 +1,12 @@
+- Redesign architecture, to make it easier to embed, no singletons, and easier to unit test:
+  - // dynamic (eg. native, multiple interpreters)
+  - System_new(Log, Memory, argc, argv)
+  - // static, not part of the interface, it's up to each host
+  - System_get(Log, Memory, argc, argv)
+  - //
+  - System_stop(System)
+  - //
+  - main(multiboot_magic_num, multiboot_info)
 - Let each host provide a (semi-)working C stdlib that "core" can rely on. More familiar and easier to use external libraries? Use Newlib? Check license.
   - https://www.sourceware.org/newlib/
   - http://www.sourceware.org/newlib/libc.html#Syscalls
