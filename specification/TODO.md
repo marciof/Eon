@@ -18,7 +18,7 @@
   - https://en.wikipedia.org/wiki/Comparison_of_programming_languages_(syntax)
   - http://hyperpolyglot.org/scripting
   - https://github.com/anvaka/common-words/blob/master/README.md
-- Add a Quick Start document with hyperlinks to the specification for further reading.
+- Documentation: man pages, tutorial, FAQ, quick start.
 - http://www.infoq.com/presentations/Value-Identity-State-Rich-Hickey
 - Look for best/worst features of other languages: JavaScript, Clojure, Kotlin, Python, Haskell, Erlang, PureScript, Elm, Io, Rust, Ruby, Smalltalk, Java, Scheme, Go, ML, Lua, Haxe, Tcl, Shen, Matlab, R, REBOL, Wolfram.
   - "Perl Pocket Reference"
