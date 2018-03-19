@@ -9,7 +9,7 @@ struct Fd_Buffer {
     char buf[BUFSIZ];
 };
 
-static int read_ch(struct e_Input* input, bool is_peek, bool* has_err) {
+static int peek_ch(struct e_Input* input, bool* has_err) {
     struct Fd_Buffer* fd_buffer = (struct Fd_Buffer*) input->val;
 
     if (fd_buffer->pos >= fd_buffer->len) {
@@ -29,18 +29,21 @@ static int read_ch(struct e_Input* input, bool is_peek, bool* has_err) {
         fd_buffer->pos = 0;
     }
 
-    int ch = fd_buffer->buf[fd_buffer->pos];
+    return fd_buffer->buf[fd_buffer->pos];
+}
 
-    if (!is_peek) {
-        ++fd_buffer->pos;
+static int read_ch(struct e_Input* input, bool* has_err) {
+    struct Fd_Buffer* fd_buffer = (struct Fd_Buffer*) input->val;
+    int ch = peek_ch(input, has_err);
 
-        if (ch == E_END_OF_LINE) {
-            ++input->line;
-            input->column = 1;
-        }
-        else {
-            ++input->column;
-        }
+    ++fd_buffer->pos;
+
+    if (ch == E_END_OF_LINE) {
+        ++input->line;
+        input->column = 1;
+    }
+    else {
+        ++input->column;
     }
 
     return ch;
@@ -56,6 +59,7 @@ struct e_Input* e_Input_from_fd(int fd, char* location, bool* has_err) {
     }
 
     input->read_ch = read_ch;
+    input->peek_ch = peek_ch;
     input->location = location;
     input->line = 1;
     input->column = 1;

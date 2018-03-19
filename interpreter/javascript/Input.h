@@ -13,7 +13,8 @@
 struct e_Input {
     E_REF_FIELD;
     // `EOF` on EOF
-    int (*read_ch)(struct e_Input* input, bool is_peek, bool* has_err);
+    int (*read_ch)(struct e_Input* input, bool* has_err);
+    int (*peek_ch)(struct e_Input* input, bool* has_err);
     char* location;
     size_t line;
     size_t column;
