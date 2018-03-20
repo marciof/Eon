@@ -41,7 +41,7 @@ Powerful:
 Practical:
 - REPL.
 - Fast enough (zero-copy; quick feedback, low latency; or maximum resource usage when appropriate).
-- Easy data type literals: lists, maps, sets, functions, strings, numbers.
+- Easy data type literals: lists, maps, sets, functions, text (strings), numbers.
 - Multi-platform: "Write once, run everywhere".
 - Native code interop, FFI (Foreign Function Interface).
 - Shell-scripting (`#!`, hash-bang syntax naturally supported).
@@ -240,7 +240,7 @@ An immutable case-sensitive name, that restricts the character set used accordin
 
 ## Text
 
-An immutable sequence of Unicode characters, each one identified by a numeric code-point.
+An immutable sequence of Unicode characters, each one identified by a numeric code-point. Also known as a string.
 
 - **Prototype:** empty [text](#text), `''`
 - **Base Prototype:** empty [list](#list), `[]`
