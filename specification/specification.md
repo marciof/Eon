@@ -59,7 +59,7 @@ A Unicode textual representation of expressions encoded in UTF-8 without a Byte 
 
 A [prototype](#prototype) is the original value used to create another one from. The prototype of a prototype is its base prototype, or itself if it doesn't have one.
 
-Not all values can be literally represented in source code, since not all have an associated [grammar](#grammar) production. They can however be assigned names using [symbols](#symbol) in the [scope](#scope).
+Not all values can be literally represented in source code, since not all have an associated [grammar](#grammar) production. They can however be assigned names using [symbols](#symbol) and stored in the [bindings](#bindings) list.
 
 ## Boolean
 
@@ -88,7 +88,7 @@ A binary logical value that can only be either true or false. It does not have a
 
 An immutable sequence composed of a function followed by zero or more values, the arguments.
 
-Calling a function creates a new [scope](#scope) using the [deferred](#defer) function call list, [prototypically](#prototype) inherited from the previous scope, and then evaluates it in this new scope returning the result.
+Calling a function creates a new [bindings](#bindings) list using the [deferred](#defer) function call list, [prototypically](#prototype) inherited from the current bindings in scope, and then evaluates it using the new bindings returning the result.
 
 - **Prototype:** empty [function](#function), `()`
 - **Base Prototype:** empty [list](#list), `[]`
@@ -392,6 +392,16 @@ A [function](#function) that divides two or more [numbers](#number).
 # 0.(3)
 ```
 
+## `bindings`
+
+```
+bindings: List
+```
+
+Bindings currently in scope, which is a [list](#list) mapping [symbols](#symbol) to values.
+
+The bindings list always [prototypically](#prototype) inherits from the previous bindings list in scope, or none if it's at the [module](#module) or scope (also known as global scope). Each [function](#function) call creates a new bindings list that prototypically inherits from the previous one, and this always points to the one currently in scope.
+
 ## `count`
 
 ```
@@ -477,10 +487,10 @@ A [function](#function) that creates a snapshot of an `expression`, optionally w
 
 ```
 (evaluate expression:Any)
-(evaluate expression:Any scope:List): Any
+(evaluate expression:Any bindings:List): Any
 ```
 
-A [function](#function) that evaluates an `expression`, optionally in a different `scope`, and returns the result.
+A [function](#function) that evaluates an `expression`, optionally using different `bindings`, and returns the result.
 
 ### Conditions
 
@@ -508,7 +518,7 @@ A [function](#function) that evaluates an `expression`, optionally in a differen
   (evaluate \y {\y: 8})
   # 8
 
-  (evaluate \y (scope)))
+  (evaluate \y bindings))
   # 2
 ```
 
@@ -552,6 +562,10 @@ A [function](#function) that retrieves the value associated with a `key` in a `m
 ```
 
 ## `infinity`
+
+```
+infinity: Number
+```
 
 A quantity greater than any [number](#number).
 
@@ -650,10 +664,10 @@ A [function](#function) that returns a [map](#map) with the non-inherited key/va
 (let x: 1
   (let y: 2
 
-    (local (scope))
+    (local bindings)
     # {y: 2}
 
-    (prototype (scope))))
+    (local (prototype bindings))))
     # {x: 1}
 ```
 
@@ -760,17 +774,6 @@ A [function](#function) that disassociates a `key` from a value in a `map`, and 
 (remove {\name: 'Bob'} \age)
 # {name: 'Bob'}
 ```
-
-## `scope`
-
-```
-(scope): List
-(scope symbols:List): List
-```
-
-A [function](#function) that gets or sets the current scope, a [list](#list) mapping [symbols](#symbol) to values.
-
-The scope list always [prototypically](#prototype) inherits from the previous scope list, or none if it's the [module](#module) scope. Each [function](#function) call creates a new scope list that prototypically inherits from the previous one, and this always points to the current one.
 
 ### Conditions
 
