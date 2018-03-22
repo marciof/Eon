@@ -1,9 +1,9 @@
 #pragma once
 
-enum e_System_Stop_Mode {E_SYSTEM_HALT, E_SYSTEM_RESET};
+enum k_System_Stop_Mode {K_SYSTEM_HALT, K_SYSTEM_RESET};
 
-struct e_System {
-    void (*stop)(struct e_System* system, enum e_System_Stop_Mode mode);
+struct k_System {
+    void (*stop)(struct k_System* system, enum k_System_Stop_Mode mode);
 };
 
-extern struct e_System* e_System_get();
+extern struct k_System* k_System_get();

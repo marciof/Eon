@@ -13,7 +13,7 @@
 
 #define STATIC_ARRAY_LEN(array) (sizeof((array)) / sizeof((array)[0]))
 
-static void print_int(struct e_Log* log, unsigned int integer, size_t base) {
+static void print_int(struct k_Log* log, unsigned int integer, size_t base) {
     if (integer == 0) {
         log->print_ch(log, NUMERIC_BASE_CONVERSION_SYMBOLS[integer]);
         return;
@@ -38,7 +38,7 @@ static void print_int(struct e_Log* log, unsigned int integer, size_t base) {
     log->print_str(log, byte + i + 1);
 }
 
-static void print(struct e_Log* log, const char* format, va_list args) {
+static void print(struct k_Log* log, const char* format, va_list args) {
     for (; *format != '\0'; ++format) {
         if (*format == PLACEHOLDER_END) {
             ++format;
@@ -49,7 +49,7 @@ static void print(struct e_Log* log, const char* format, va_list args) {
             }
             else {
                 log->print_str(log, "\n" FORMAT_STR_ERROR);
-                e_System_get()->stop(e_System_get(), E_SYSTEM_HALT);
+                k_System_get()->stop(k_System_get(), K_SYSTEM_HALT);
             }
         }
         else if (*format != PLACEHOLDER_BEGIN) {
@@ -104,27 +104,27 @@ static void print(struct e_Log* log, const char* format, va_list args) {
             break;
         default:
             log->print_str(log, "\n" FORMAT_STR_ERROR);
-            e_System_get()->stop(e_System_get(), E_SYSTEM_HALT);
+            k_System_get()->stop(k_System_get(), K_SYSTEM_HALT);
             break;
         }
 
         if (*format != PLACEHOLDER_END) {
             log->print_str(log, "\n" FORMAT_STR_ERROR);
-            e_System_get()->stop(e_System_get(), E_SYSTEM_HALT);
+            k_System_get()->stop(k_System_get(), K_SYSTEM_HALT);
         }
     }
 }
 
-void e_Log_msg(
-        struct e_Log* log, enum e_Log_Level level, const char* format, ...) {
+void k_Log_msg(
+        struct k_Log* log, enum k_Log_Level level, const char* format, ...) {
 
     const char* msg_prefix;
     log->prepare(log, level);
 
-    if (level == E_LOG_ERROR) {
+    if (level == K_LOG_ERROR) {
         msg_prefix = ERROR_MSG_PREFIX;
     }
-    else if (level == E_LOG_WARN) {
+    else if (level == K_LOG_WARN) {
         msg_prefix = "[WARN] ";
     }
     else {
@@ -139,7 +139,7 @@ void e_Log_msg(
     va_end(args);
     log->print_ch(log, '\n');
 
-    if (level == E_LOG_ERROR) {
-        e_System_get()->stop(e_System_get(), E_SYSTEM_HALT);
+    if (level == K_LOG_ERROR) {
+        k_System_get()->stop(k_System_get(), K_SYSTEM_HALT);
     }
 }

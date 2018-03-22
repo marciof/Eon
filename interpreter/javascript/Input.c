@@ -9,7 +9,7 @@ struct Fd_Buffer {
     char buf[BUFSIZ];
 };
 
-static int peek_ch(struct e_Input* input, bool* has_err) {
+static int peek_ch(struct k_Input* input, bool* has_err) {
     struct Fd_Buffer* fd_buffer = (struct Fd_Buffer*) input->val;
 
     if (fd_buffer->pos >= fd_buffer->len) {
@@ -18,7 +18,7 @@ static int peek_ch(struct e_Input* input, bool* has_err) {
 
         if (len_bytes == -1) {
             *has_err = true;
-            E_ERR_ERRNO();
+            K_ERR_ERRNO();
             return EOF;
         }
         else if (len_bytes == 0) {
@@ -32,13 +32,13 @@ static int peek_ch(struct e_Input* input, bool* has_err) {
     return fd_buffer->buf[fd_buffer->pos];
 }
 
-static int read_ch(struct e_Input* input, bool* has_err) {
+static int read_ch(struct k_Input* input, bool* has_err) {
     struct Fd_Buffer* fd_buffer = (struct Fd_Buffer*) input->val;
     int ch = peek_ch(input, has_err);
 
     ++fd_buffer->pos;
 
-    if (ch == E_END_OF_LINE) {
+    if (ch == K_END_OF_LINE) {
         ++input->line;
         input->column = 1;
     }
@@ -49,12 +49,12 @@ static int read_ch(struct e_Input* input, bool* has_err) {
     return ch;
 }
 
-struct e_Input* e_Input_from_fd(int fd, char* location, bool* has_err) {
-    struct e_Input* input = malloc(sizeof(*input) + sizeof(struct Fd_Buffer));
+struct k_Input* k_Input_from_fd(int fd, char* location, bool* has_err) {
+    struct k_Input* input = malloc(sizeof(*input) + sizeof(struct Fd_Buffer));
 
     if (input == NULL) {
         *has_err = true;
-        E_ERR_ERRNO();
+        K_ERR_ERRNO();
         return NULL;
     }
 
@@ -69,5 +69,5 @@ struct e_Input* e_Input_from_fd(int fd, char* location, bool* has_err) {
     fd_buffer->len = 0;
     fd_buffer->pos = 0;
 
-    return E_REF_INIT(input, free);
+    return K_REF_INIT(input, free);
 }

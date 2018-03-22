@@ -7,5 +7,5 @@
  * @see http://www.gnu.org/software/grub/manual/multiboot/
  */
 
-struct multiboot_info* e_Multiboot_get_info();
-void e_Multiboot_log_info(struct multiboot_info* info, struct e_Log* log);
+struct multiboot_info* k_Multiboot_get_info();
+void k_Multiboot_log_info(struct multiboot_info* info, struct k_Log* log);

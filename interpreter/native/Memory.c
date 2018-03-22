@@ -1,6 +1,6 @@
 #include <stddef.h>
 #include "../core/Memory.h"
 
-struct e_Memory* e_Memory_get() {
+struct k_Memory* k_Memory_get() {
     return NULL;
 }

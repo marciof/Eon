@@ -8,7 +8,7 @@ enum {
     DATA_PORT = 0x3CF,
 };
 
-static const struct e_VGA_Gfx_Memory_Map MEMORY_MAPS[] = {
+static const struct k_VGA_Gfx_Memory_Map MEMORY_MAPS[] = {
     {
         false,
         (uint8_t*) 0xA0000,
@@ -39,19 +39,19 @@ static const struct e_VGA_Gfx_Memory_Map MEMORY_MAPS[] = {
     },
 };
 
-const struct e_VGA_Gfx_Memory_Map* e_VGA_Gfx_get_memory_map() {
+const struct k_VGA_Gfx_Memory_Map* k_VGA_Gfx_get_memory_map() {
     size_t position = (size_t)
-        ((e_VGA_Gfx_read(E_VGA_GFX_MISC) & (E_BIT(3) | E_BIT(2))) >> 2);
+        ((k_VGA_Gfx_read(K_VGA_GFX_MISC) & (K_BIT(3) | K_BIT(2))) >> 2);
 
     return &MEMORY_MAPS[position];
 }
 
-uint8_t e_VGA_Gfx_read(e_VGA_Gfx_Register reg) {
-    e_IO_write_byte(ADDRESS_PORT, reg);
-    return e_IO_read_byte(DATA_PORT);
+uint8_t k_VGA_Gfx_read(k_VGA_Gfx_Register reg) {
+    k_IO_write_byte(ADDRESS_PORT, reg);
+    return k_IO_read_byte(DATA_PORT);
 }
 
-void e_VGA_Gfx_write(e_VGA_Gfx_Register reg, uint8_t data) {
-    e_IO_write_byte(ADDRESS_PORT, reg);
-    e_IO_write_byte(DATA_PORT, data);
+void k_VGA_Gfx_write(k_VGA_Gfx_Register reg, uint8_t data) {
+    k_IO_write_byte(ADDRESS_PORT, reg);
+    k_IO_write_byte(DATA_PORT, data);
 }

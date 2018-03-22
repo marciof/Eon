@@ -1,5 +1,5 @@
 #pragma once
 
-struct e_Memory;
+struct k_Memory;
 
-extern struct e_Memory* e_Memory_get();
+extern struct k_Memory* k_Memory_get();

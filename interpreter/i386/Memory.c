@@ -10,21 +10,21 @@
 #define STATIC_ASSERT(expr, message) \
     enum {CONCAT_EXPAND(STATIC_ASSERTION_, __LINE__) = 1 / ((expr) ? 1 : 0)}
 
-extern void e_Memory_Physical_set_gdt_reg(uint16_t size_bytes, uint32_t addr);
+extern void k_Memory_Physical_set_gdt_reg(uint16_t size_bytes, uint32_t addr);
 
 enum Segment_Attr {
-    ACCESSED = E_BIT(0),
-    EXECUTABLE = E_BIT(3),
+    ACCESSED = K_BIT(0),
+    EXECUTABLE = K_BIT(3),
 };
 
 enum Segment_Attr_Code {
-    EXECUTE_READ = E_BIT(1),
-    CONFORMING = E_BIT(2),
+    EXECUTE_READ = K_BIT(1),
+    CONFORMING = K_BIT(2),
 };
 
 enum Segment_Attr_Data {
-    READ_WRITE = E_BIT(1),
-    EXPAND_DOWN = E_BIT(2),
+    READ_WRITE = K_BIT(1),
+    EXPAND_DOWN = K_BIT(2),
 };
 
 enum Segment_Granularity {
@@ -50,7 +50,7 @@ enum Segment_Type {
     CODE_DATA = 1,
 };
 
-E_BIT_ATTR_PACKED(struct Segment_Descriptor {
+K_BIT_ATTR_PACKED(struct Segment_Descriptor {
     /** Specifies the segment size according to the granularity. */
     uint16_t segment_limit_low;
 
@@ -79,6 +79,6 @@ E_BIT_ATTR_PACKED(struct Segment_Descriptor {
 STATIC_ASSERT(sizeof(struct Segment_Descriptor) == 8,
     "Memory segment descriptor structure not packed.");
 
-struct e_Memory* e_Memory_get() {
+struct k_Memory* k_Memory_get() {
     return NULL;
 }

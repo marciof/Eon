@@ -1,8 +1,8 @@
 {
-  "name": "eon",
+  "name": "karyon",
   "version": "0.1.0",
   "description": "",
-  "main": "eon.js",
+  "main": "main.js",
   "author": "",
   "license": "",
   "scripts": {

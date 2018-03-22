@@ -31,45 +31,45 @@ enum {
  * registers), discarding the value just read.
  */
 static inline void reset_state() {
-    e_VGA_Extern_read_input_status(1);
+    k_VGA_Extern_read_input_status(1);
 }
 
-void e_VGA_Attr_enable_text_blink_mode(bool enable) {
-    uint8_t mode = e_VGA_Attr_read(E_VGA_ATTR_MODE_CONTROL);
+void k_VGA_Attr_enable_text_blink_mode(bool enable) {
+    uint8_t mode = k_VGA_Attr_read(K_VGA_ATTR_MODE_CONTROL);
 
-    e_VGA_Attr_write(E_VGA_ATTR_MODE_CONTROL, (uint8_t) (enable
-        ? (mode | E_BIT(3))
-        : E_BIT_CLEAR(mode, E_BIT(3))));
+    k_VGA_Attr_write(K_VGA_ATTR_MODE_CONTROL, (uint8_t) (enable
+        ? (mode | K_BIT(3))
+        : K_BIT_CLEAR(mode, K_BIT(3))));
 }
 
-void e_VGA_Attr_enable_gfx_mode(bool enable) {
-    uint8_t mode = e_VGA_Attr_read(E_VGA_ATTR_MODE_CONTROL);
+void k_VGA_Attr_enable_gfx_mode(bool enable) {
+    uint8_t mode = k_VGA_Attr_read(K_VGA_ATTR_MODE_CONTROL);
 
-    e_VGA_Attr_write(E_VGA_ATTR_MODE_CONTROL, (uint8_t) (enable
-        ? (mode | E_BIT(0))
-        : E_BIT_CLEAR(mode, E_BIT(0))));
+    k_VGA_Attr_write(K_VGA_ATTR_MODE_CONTROL, (uint8_t) (enable
+        ? (mode | K_BIT(0))
+        : K_BIT_CLEAR(mode, K_BIT(0))));
 }
 
-uint8_t e_VGA_Attr_read(e_VGA_Attr_Register reg) {
+uint8_t k_VGA_Attr_read(k_VGA_Attr_Register reg) {
     reset_state();
 
     uint8_t status = (uint8_t) (
-        (e_IO_read_byte(ADDRESS_PORT) & E_BIT(PAS_BIT))
+        (k_IO_read_byte(ADDRESS_PORT) & K_BIT(PAS_BIT))
         | (reg & ADDRESS_BITS));
 
     reset_state();
-    e_IO_write_byte(ADDRESS_PORT, status);
-    return e_IO_read_byte(DATA_READ_PORT);
+    k_IO_write_byte(ADDRESS_PORT, status);
+    return k_IO_read_byte(DATA_READ_PORT);
 }
 
-void e_VGA_Attr_write(e_VGA_Attr_Register reg, uint8_t data) {
+void k_VGA_Attr_write(k_VGA_Attr_Register reg, uint8_t data) {
     reset_state();
 
     uint8_t status = (uint8_t) (
-        (e_IO_read_byte(ADDRESS_PORT) & E_BIT(PAS_BIT))
+        (k_IO_read_byte(ADDRESS_PORT) & K_BIT(PAS_BIT))
         | (reg & ADDRESS_BITS));
 
     reset_state();
-    e_IO_write_byte(ADDRESS_PORT, status);
-    e_IO_write_byte(DATA_WRITE_PORT, data);
+    k_IO_write_byte(ADDRESS_PORT, status);
+    k_IO_write_byte(DATA_WRITE_PORT, data);
 }

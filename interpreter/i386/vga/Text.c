@@ -10,10 +10,10 @@
 #define ENCODE_COLOR(foreground, background) \
     ((uint8_t) (((background) << 4) + (foreground)))
 
-static const struct e_VGA_Gfx_Memory_Map* gfx = NULL;
+static const struct k_VGA_Gfx_Memory_Map* gfx = NULL;
 static size_t line = 0;
 static size_t column = 0;
-static uint8_t color_code = ENCODE_COLOR(E_VGA_TEXT_WHITE, E_VGA_TEXT_BLACK);
+static uint8_t color_code = ENCODE_COLOR(K_VGA_TEXT_WHITE, K_VGA_TEXT_BLACK);
 
 static void clear_screen() {
     const size_t END = 2 * gfx->lines * gfx->columns;
@@ -44,26 +44,26 @@ static void scroll_screen(int lines) {
     }
 }
 
-size_t e_VGA_Text_get_columns() {
+size_t k_VGA_Text_get_columns() {
     return gfx->columns;
 }
 
-size_t e_VGA_Text_get_lines() {
+size_t k_VGA_Text_get_lines() {
     return gfx->lines;
 }
 
-void e_VGA_Text_init() {
-    gfx = e_VGA_Gfx_get_memory_map();
+void k_VGA_Text_init() {
+    gfx = k_VGA_Gfx_get_memory_map();
 
-    e_VGA_CRT_enable_cursor(false);
+    k_VGA_CRT_enable_cursor(false);
     clear_screen();
-    e_VGA_CRT_move_cursor(line, column);
-    e_VGA_Attr_enable_text_blink_mode(false);
-    e_VGA_CRT_enable_color_mode(gfx->is_color);
-    e_VGA_Extern_enable_color_mode(gfx->is_color);
+    k_VGA_CRT_move_cursor(line, column);
+    k_VGA_Attr_enable_text_blink_mode(false);
+    k_VGA_CRT_enable_color_mode(gfx->is_color);
+    k_VGA_Extern_enable_color_mode(gfx->is_color);
 }
 
-void e_VGA_Text_print_ch(char ch) {
+void k_VGA_Text_print_ch(char ch) {
     size_t position;
 
     switch (ch) {
@@ -72,7 +72,7 @@ void e_VGA_Text_print_ch(char ch) {
         column = 0;
         break;
     case '\t':
-        column += E_LOG_TAB_SIZE_SPACES - (column % E_LOG_TAB_SIZE_SPACES);
+        column += K_LOG_TAB_SIZE_SPACES - (column % K_LOG_TAB_SIZE_SPACES);
         break;
     default:
         position = 2 * ((line * gfx->columns) + column);
@@ -93,13 +93,13 @@ void e_VGA_Text_print_ch(char ch) {
     }
 }
 
-void e_VGA_Text_print_str(const char* string) {
+void k_VGA_Text_print_str(const char* string) {
     while (*string != '\0') {
-        e_VGA_Text_print_ch(*string++);
+        k_VGA_Text_print_ch(*string++);
     }
 }
 
-void e_VGA_Text_set_color(e_VGA_Text_Color foreground,
-    e_VGA_Text_Color background) {
+void k_VGA_Text_set_color(k_VGA_Text_Color foreground,
+    k_VGA_Text_Color background) {
     color_code = ENCODE_COLOR(foreground, background);
 }

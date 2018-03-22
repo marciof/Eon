@@ -4,19 +4,19 @@
 #include "Ref.h"
 #include "Str.h"
 
-enum e_Token_Type {
-    E_TOKEN_COMMENT,
-    E_TOKEN_WHITESPACE,
+enum k_Token_Type {
+    K_TOKEN_COMMENT,
+    K_TOKEN_WHITESPACE,
 };
 
-struct e_Token {
-    E_REF_FIELD;
-    enum e_Token_Type type;
-    struct e_Str* str;
-    struct e_Input* input;
+struct k_Token {
+    K_REF_FIELD;
+    enum k_Token_Type type;
+    struct k_Str* str;
+    struct k_Input* input;
     size_t line;
     size_t column;
 };
 
 // `NULL` on EOF
-struct e_Token* e_Token_parse(struct e_Input* input, bool* has_err);
+struct k_Token* k_Token_parse(struct k_Input* input, bool* has_err);

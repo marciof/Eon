@@ -8,20 +8,20 @@ enum {
     DATA_PORT = 0x3C5,
 };
 
-void e_VGA_Seqr_enable_screen(bool enable) {
-    uint8_t mode = e_VGA_Seqr_read(E_VGA_SEQR_CLOCKING_MODE);
+void k_VGA_Seqr_enable_screen(bool enable) {
+    uint8_t mode = k_VGA_Seqr_read(K_VGA_SEQR_CLOCKING_MODE);
 
-    e_VGA_Seqr_write(E_VGA_SEQR_CLOCKING_MODE, (uint8_t) (enable
-        ? E_BIT_CLEAR(mode, E_BIT(5))
-        : (mode | E_BIT(5))));
+    k_VGA_Seqr_write(K_VGA_SEQR_CLOCKING_MODE, (uint8_t) (enable
+        ? K_BIT_CLEAR(mode, K_BIT(5))
+        : (mode | K_BIT(5))));
 }
 
-uint8_t e_VGA_Seqr_read(e_VGA_Seqr_Register reg) {
-    e_IO_write_byte(ADDRESS_PORT, reg);
-    return e_IO_read_byte(DATA_PORT);
+uint8_t k_VGA_Seqr_read(k_VGA_Seqr_Register reg) {
+    k_IO_write_byte(ADDRESS_PORT, reg);
+    return k_IO_read_byte(DATA_PORT);
 }
 
-void e_VGA_Seqr_write(e_VGA_Seqr_Register reg, uint8_t data) {
-    e_IO_write_byte(ADDRESS_PORT, reg);
-    e_IO_write_byte(DATA_PORT, data);
+void k_VGA_Seqr_write(k_VGA_Seqr_Register reg, uint8_t data) {
+    k_IO_write_byte(ADDRESS_PORT, reg);
+    k_IO_write_byte(DATA_PORT, data);
 }

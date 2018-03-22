@@ -6,12 +6,12 @@ extern main
 section .bss
 align 4
 
-global e_Multiboot_info
-e_Multiboot_info:
+global k_Multiboot_info
+k_Multiboot_info:
     resd 1
 
-global e_Multiboot_magic_num
-e_Multiboot_magic_num:
+global k_Multiboot_magic_num
+k_Multiboot_magic_num:
     resd 1
 
 stack:
@@ -20,8 +20,8 @@ stack:
 section .text
 align 4
 
-global e_System_halt
-e_System_halt:
+global k_System_halt
+k_System_halt:
     cli
     hlt
 
@@ -32,13 +32,13 @@ _start:
     mov esp, (stack + STACK_LENGTH)
 
     ; FIXME: don't use global state, pass as arguments
-    mov [e_Multiboot_magic_num], eax
-    mov [e_Multiboot_info], ebx
+    mov [k_Multiboot_magic_num], eax
+    mov [k_Multiboot_info], ebx
     
     call main
 
-global e_System_reset
-e_System_reset:
+global k_System_reset
+k_System_reset:
     ; FIXME: explain part about keyboard
     ; Reset by causing a triple fault (which doesn't require a keyboard).
     int 3

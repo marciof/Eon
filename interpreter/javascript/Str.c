@@ -3,11 +3,11 @@
 #include <string.h>
 #include "Str.h"
 
-static void increase_max_len(struct e_Str* str, bool* has_err) {
+static void increase_max_len(struct k_Str* str, bool* has_err) {
     if (str->max_len == SIZE_MAX) {
         *has_err = true;
         errno = ENOMEM;
-        E_ERR_ERRNO();
+        K_ERR_ERRNO();
         return;
     }
 
@@ -21,7 +21,7 @@ static void increase_max_len(struct e_Str* str, bool* has_err) {
 
     if (new_val == NULL) {
         *has_err = true;
-        E_ERR_ERRNO();
+        K_ERR_ERRNO();
         return;
     }
 
@@ -29,12 +29,12 @@ static void increase_max_len(struct e_Str* str, bool* has_err) {
     str->max_len = new_max_len;
 }
 
-static void e_Str_free(void* str) {
-    free(((struct e_Str*) str)->val);
+static void Str_free(void* str) {
+    free(((struct k_Str*) str)->val);
     free(str);
 }
 
-void e_Str_add_char(struct e_Str* str, char ch, bool* has_err) {
+void k_Str_add_char(struct k_Str* str, char ch, bool* has_err) {
     if (str->len == str->max_len) {
         increase_max_len(str, has_err);
 
@@ -46,21 +46,21 @@ void e_Str_add_char(struct e_Str* str, char ch, bool* has_err) {
     str->val[str->len++] = ch;
 }
 
-struct e_Str* e_Str_new(bool* has_err) {
+struct k_Str* k_Str_new(bool* has_err) {
     size_t max_len = 32;
     char* val = malloc(max_len * sizeof(*val));
 
     if (val == NULL) {
         *has_err = true;
-        E_ERR_ERRNO();
+        K_ERR_ERRNO();
         return NULL;
     }
 
-    struct e_Str* str = malloc(sizeof(*str));
+    struct k_Str* str = malloc(sizeof(*str));
 
     if (str == NULL) {
         *has_err = true;
-        E_ERR_ERRNO();
+        K_ERR_ERRNO();
         free(val);
         return NULL;
     }
@@ -68,5 +68,5 @@ struct e_Str* e_Str_new(bool* has_err) {
     str->val = val;
     str->len = 0;
     str->max_len = max_len;
-    return E_REF_INIT(str, e_Str_free);
+    return K_REF_INIT(str, Str_free);
 }

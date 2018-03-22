@@ -1,28 +1,28 @@
 #include "../core/Log.h"
 #include "vga/Text.h"
 
-static void prepare(struct e_Log* log, enum e_Log_Level level) {
-    if (level == E_LOG_ERROR) {
-        e_VGA_Text_set_color(E_VGA_TEXT_RED, E_VGA_TEXT_BLACK);
+static void prepare(struct k_Log* log, enum k_Log_Level level) {
+    if (level == K_LOG_ERROR) {
+        k_VGA_Text_set_color(K_VGA_TEXT_RED, K_VGA_TEXT_BLACK);
     }
-    else if (level == E_LOG_WARN) {
-        e_VGA_Text_set_color(E_VGA_TEXT_YELLOW, E_VGA_TEXT_BLACK);
+    else if (level == K_LOG_WARN) {
+        k_VGA_Text_set_color(K_VGA_TEXT_YELLOW, K_VGA_TEXT_BLACK);
     }
     else {
-        e_VGA_Text_set_color(E_VGA_TEXT_WHITE, E_VGA_TEXT_BLACK);
+        k_VGA_Text_set_color(K_VGA_TEXT_WHITE, K_VGA_TEXT_BLACK);
     }
 }
 
-static void print_ch(struct e_Log* log, char ch) {
-    e_VGA_Text_print_ch(ch);
+static void print_ch(struct k_Log* log, char ch) {
+    k_VGA_Text_print_ch(ch);
 }
 
-static void print_str(struct e_Log* log, const char* str) {
-    e_VGA_Text_print_str(str);
+static void print_str(struct k_Log* log, const char* str) {
+    k_VGA_Text_print_str(str);
 }
 
 // FIXME: remove globals in VGA and use this instance instead?
-struct e_Log* e_Log_get() {
-    static struct e_Log log = {prepare, print_ch, print_str};
+struct k_Log* k_Log_get() {
+    static struct k_Log log = {prepare, print_ch, print_str};
     return &log;
 }

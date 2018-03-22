@@ -3,12 +3,12 @@
 #include "Err.h"
 #include "Ref.h"
 
-struct e_Str {
-    E_REF_FIELD;
+struct k_Str {
+    K_REF_FIELD;
     char* val;
     size_t len;
     size_t max_len;
 };
 
-void e_Str_add_char(struct e_Str* str, char ch, bool* has_err);
-struct e_Str* e_Str_new(bool* has_err);
+void k_Str_add_char(struct k_Str* str, char ch, bool* has_err);
+struct k_Str* k_Str_new(bool* has_err);

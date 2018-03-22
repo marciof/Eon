@@ -6,19 +6,19 @@
 #include "Ref.h"
 #include "Str.h"
 
-#define E_COMMENT_QUOTE 0x23
-#define E_END_OF_LINE 0xA
-#define E_SPACE 0x20
+#define K_COMMENT_QUOTE 0x23
+#define K_END_OF_LINE 0xA
+#define K_SPACE 0x20
 
-struct e_Input {
-    E_REF_FIELD;
+struct k_Input {
+    K_REF_FIELD;
     // `EOF` on EOF
-    int (*read_ch)(struct e_Input* input, bool* has_err);
-    int (*peek_ch)(struct e_Input* input, bool* has_err);
+    int (*read_ch)(struct k_Input* input, bool* has_err);
+    int (*peek_ch)(struct k_Input* input, bool* has_err);
     char* location;
     size_t line;
     size_t column;
     uint8_t val[];
 };
 
-struct e_Input* e_Input_from_fd(int fd, char* location, bool* has_err);
+struct k_Input* k_Input_from_fd(int fd, char* location, bool* has_err);

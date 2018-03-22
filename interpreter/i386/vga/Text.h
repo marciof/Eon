@@ -8,37 +8,37 @@
  * @see http://www.acid.org/info/xbin/x_tut.htm
  */
 
-typedef uint8_t e_VGA_Text_Color;
+typedef uint8_t k_VGA_Text_Color;
 enum {
     // Normal color set.
-    E_VGA_TEXT_BLACK = 0,
-    E_VGA_TEXT_BLUE,
-    E_VGA_TEXT_GREEN,
-    E_VGA_TEXT_CYAN,
-    E_VGA_TEXT_RED,
-    E_VGA_TEXT_MAGENTA,
-    E_VGA_TEXT_BROWN,
-    E_VGA_TEXT_LIGHT_GRAY,
+    K_VGA_TEXT_BLACK = 0,
+    K_VGA_TEXT_BLUE,
+    K_VGA_TEXT_GREEN,
+    K_VGA_TEXT_CYAN,
+    K_VGA_TEXT_RED,
+    K_VGA_TEXT_MAGENTA,
+    K_VGA_TEXT_BROWN,
+    K_VGA_TEXT_LIGHT_GRAY,
 
     // Brighter/Blinking color set.
-    E_VGA_TEXT_DARK_GRAY = (E_VGA_TEXT_BLACK | E_BIT(3)),
-    E_VGA_TEXT_LIGHT_BLUE = (E_VGA_TEXT_BLUE | E_BIT(3)),
-    E_VGA_TEXT_LIGHT_GREEN = (E_VGA_TEXT_GREEN | E_BIT(3)),
-    E_VGA_TEXT_LIGHT_CYAN = (E_VGA_TEXT_CYAN | E_BIT(3)),
-    E_VGA_TEXT_LIGHT_RED = (E_VGA_TEXT_RED | E_BIT(3)),
-    E_VGA_TEXT_LIGHT_MAGENTA = (E_VGA_TEXT_MAGENTA | E_BIT(3)),
-    E_VGA_TEXT_YELLOW = (E_VGA_TEXT_BROWN | E_BIT(3)),
-    E_VGA_TEXT_WHITE = (E_VGA_TEXT_LIGHT_GRAY | E_BIT(3)),
+    K_VGA_TEXT_DARK_GRAY = (K_VGA_TEXT_BLACK | K_BIT(3)),
+    K_VGA_TEXT_LIGHT_BLUE = (K_VGA_TEXT_BLUE | K_BIT(3)),
+    K_VGA_TEXT_LIGHT_GREEN = (K_VGA_TEXT_GREEN | K_BIT(3)),
+    K_VGA_TEXT_LIGHT_CYAN = (K_VGA_TEXT_CYAN | K_BIT(3)),
+    K_VGA_TEXT_LIGHT_RED = (K_VGA_TEXT_RED | K_BIT(3)),
+    K_VGA_TEXT_LIGHT_MAGENTA = (K_VGA_TEXT_MAGENTA | K_BIT(3)),
+    K_VGA_TEXT_YELLOW = (K_VGA_TEXT_BROWN | K_BIT(3)),
+    K_VGA_TEXT_WHITE = (K_VGA_TEXT_LIGHT_GRAY | K_BIT(3)),
 };
 
-size_t e_VGA_Text_get_columns();
-size_t e_VGA_Text_get_lines();
+size_t k_VGA_Text_get_columns();
+size_t k_VGA_Text_get_lines();
 
-void e_VGA_Text_init();
+void k_VGA_Text_init();
 
-void e_VGA_Text_print_ch(char ch);
-void e_VGA_Text_print_str(const char* string);
+void k_VGA_Text_print_ch(char ch);
+void k_VGA_Text_print_str(const char* string);
 
-void e_VGA_Text_set_color(
-    e_VGA_Text_Color foreground,
-    e_VGA_Text_Color background);
+void k_VGA_Text_set_color(
+    k_VGA_Text_Color foreground,
+    k_VGA_Text_Color background);

@@ -8,34 +8,34 @@
 #include "vga/Text.h"
 
 void main() {
-    e_VGA_Text_init();
-    e_Multiboot_log_info(e_Multiboot_get_info(), e_Log_get());
+    k_VGA_Text_init();
+    k_Multiboot_log_info(k_Multiboot_get_info(), k_Log_get());
 
-    struct e_System* system = e_System_get();
-    system->stop(system, E_SYSTEM_HALT);
+    struct k_System* system = k_System_get();
+    system->stop(system, K_SYSTEM_HALT);
 }
 
-extern void e_System_halt();
+extern void k_System_halt();
 
-extern void e_System_reset();
+extern void k_System_reset();
 
-static void stop(struct e_System* system, enum e_System_Stop_Mode mode) {
+static void stop(struct k_System* system, enum k_System_Stop_Mode mode) {
     switch (mode) {
-    case E_SYSTEM_HALT:
+    case K_SYSTEM_HALT:
         // FIXME: implement halt shutdown mode
-        e_Log_msg(e_Log_get(), E_LOG_WARN, "Halt shutdown not implemented.");
-        e_System_halt();
+        k_Log_msg(k_Log_get(), K_LOG_WARN, "Halt shutdown not implemented.");
+        k_System_halt();
         break;
-    case E_SYSTEM_RESET:
-        e_System_reset();
+    case K_SYSTEM_RESET:
+        k_System_reset();
         break;
     default:
-        e_Log_msg(e_Log_get(), E_LOG_ERROR, "Invalid system stop mode.");
+        k_Log_msg(k_Log_get(), K_LOG_ERROR, "Invalid system stop mode.");
         break;
     }
 }
 
-struct e_System* e_System_get() {
-    static struct e_System system = {stop};
+struct k_System* k_System_get() {
+    static struct k_System system = {stop};
     return &system;
 }

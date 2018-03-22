@@ -6,7 +6,7 @@
 int main() {
     bool has_err = false;
 
-    struct e_Input* stdin_input = e_Input_from_fd(
+    struct k_Input* stdin_input = k_Input_from_fd(
         STDIN_FILENO, "<stdin>", &has_err);
 
     if (has_err) {
@@ -14,16 +14,16 @@ int main() {
     }
 
     while (true) {
-        struct e_Token* token = e_Token_parse(stdin_input, &has_err);
+        struct k_Token* token = k_Token_parse(stdin_input, &has_err);
 
         if (token == NULL) {
             break;
         }
 
         printf("%d[%.*s]", token->type, (int) token->str->len, token->str->val);
-        E_REF_DEC(token);
+        K_REF_DEC(token);
     }
 
-    E_REF_DEC(stdin_input);
+    K_REF_DEC(stdin_input);
     return has_err ? EXIT_FAILURE : EXIT_SUCCESS;
 }
