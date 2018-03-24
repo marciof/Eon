@@ -1,7 +1,14 @@
 #include <stdbool.h>
 #include <stdlib.h>
-#include <unistd.h>
 #include "Token.h"
+
+static void Token_describe_err(struct k_Err* err, FILE* output) {
+    struct k_Input* input = (struct k_Input*) err->arg;
+    int ch = input->peek_ch(input, err);
+
+    fprintf(output, "Unexpected token '%c' at %s:%zu:%zu\n",
+        (char) ch, input->location, input->line, input->column);
+}
 
 static void Token_free(void* ptr) {
     struct k_Token* token = ptr;
@@ -16,13 +23,12 @@ static struct k_Token* Token_new(
         struct k_Input* input,
         size_t line,
         size_t column,
-        bool* has_err) {
+        struct k_Err* err) {
 
     struct k_Token* token = malloc(sizeof(*token));
 
     if (token == NULL) {
-        *has_err = true;
-        K_ERR_ERRNO();
+        K_ERR_SET_ERRNO(err, errno);
         return NULL;
     }
 
@@ -35,21 +41,21 @@ static struct k_Token* Token_new(
     return K_REF_INIT(token, Token_free);
 }
 
-static struct k_Str* read_comment(struct k_Input* input, bool* has_err) {
-    input->read_ch(input, has_err);
-    if (*has_err) {
+static struct k_Str* read_comment(struct k_Input* input, struct k_Err* err) {
+    input->read_ch(input, err);
+    if (k_Err_has(err)) {
         return NULL;
     }
 
-    struct k_Str* str = k_Str_new(has_err);
-    if (*has_err) {
+    struct k_Str* str = k_Str_new(err);
+    if (k_Err_has(err)) {
         return NULL;
     }
 
     while (true) {
-        int ch = input->read_ch(input, has_err);
+        int ch = input->read_ch(input, err);
 
-        if (*has_err) {
+        if (k_Err_has(err)) {
             K_REF_DEC(str);
             return NULL;
         }
@@ -57,9 +63,9 @@ static struct k_Str* read_comment(struct k_Input* input, bool* has_err) {
             break;
         }
 
-        k_Str_add_char(str, (char) ch, has_err);
+        k_Str_add_char(str, (char) ch, err);
 
-        if (*has_err) {
+        if (k_Err_has(err)) {
             K_REF_DEC(str);
             return NULL;
         }
@@ -71,16 +77,16 @@ static struct k_Str* read_comment(struct k_Input* input, bool* has_err) {
     return str;
 }
 
-static struct k_Str* read_whitespace(struct k_Input* input, bool* has_err) {
-    struct k_Str* str = k_Str_new(has_err);
-    if (*has_err) {
+static struct k_Str* read_whitespace(struct k_Input* input, struct k_Err* err) {
+    struct k_Str* str = k_Str_new(err);
+    if (k_Err_has(err)) {
         return NULL;
     }
 
     while (true) {
-        int ch = input->peek_ch(input, has_err);
+        int ch = input->peek_ch(input, err);
 
-        if (*has_err) {
+        if (k_Err_has(err)) {
             K_REF_DEC(str);
             return NULL;
         }
@@ -88,10 +94,10 @@ static struct k_Str* read_whitespace(struct k_Input* input, bool* has_err) {
             break;
         }
 
-        input->read_ch(input, has_err);
-        k_Str_add_char(str, (char) ch, has_err);
+        input->read_ch(input, err);
+        k_Str_add_char(str, (char) ch, err);
 
-        if (*has_err) {
+        if (k_Err_has(err)) {
             K_REF_DEC(str);
             return NULL;
         }
@@ -100,10 +106,10 @@ static struct k_Str* read_whitespace(struct k_Input* input, bool* has_err) {
     return str;
 }
 
-struct k_Token* k_Token_parse(struct k_Input* input, bool* has_err) {
-    int ch = input->peek_ch(input, has_err);
+struct k_Token* k_Token_parse(struct k_Input* input, struct k_Err* err) {
+    int ch = input->peek_ch(input, err);
 
-    if (*has_err || ch == EOF) {
+    if ((ch == EOF) || k_Err_has(err)) {
         return NULL;
     }
 
@@ -113,21 +119,19 @@ struct k_Token* k_Token_parse(struct k_Input* input, bool* has_err) {
     size_t column = input->column;
 
     if (ch == K_COMMENT_QUOTE) {
-        str = read_comment(input, has_err);
+        str = read_comment(input, err);
         type = K_TOKEN_COMMENT;
     }
     else if ((ch == K_SPACE) || (ch == K_END_OF_LINE)) {
-        str = read_whitespace(input, has_err);
+        str = read_whitespace(input, err);
         type = K_TOKEN_WHITESPACE;
     }
     else {
-        *has_err = true;
-        K_ERR_PRINTF("Unexpected token '%c' at %s:%zu:%zu",
-            (char) ch, input->location, input->line, input->column);
+        K_ERR_SET(err, Token_describe_err, input);
         return NULL;
     }
 
-    struct k_Token* token = Token_new(type, str, input, line, column, has_err);
+    struct k_Token* token = Token_new(type, str, input, line, column, err);
     K_REF_DEC(str);
     return token;
 }

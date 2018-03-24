@@ -1,13 +1,10 @@
 #include <stdint.h>
 #include <stdlib.h>
-#include <string.h>
 #include "Str.h"
 
-static void increase_max_len(struct k_Str* str, bool* has_err) {
+static void increase_max_len(struct k_Str* str, struct k_Err* err) {
     if (str->max_len == SIZE_MAX) {
-        *has_err = true;
-        errno = ENOMEM;
-        K_ERR_ERRNO();
+        K_ERR_SET_ERRNO(err, ENOMEM);
         return;
     }
 
@@ -20,8 +17,7 @@ static void increase_max_len(struct k_Str* str, bool* has_err) {
     char* new_val = realloc(str->val, new_max_len * sizeof(*str->val));
 
     if (new_val == NULL) {
-        *has_err = true;
-        K_ERR_ERRNO();
+        K_ERR_SET_ERRNO(err, errno);
         return;
     }
 
@@ -34,11 +30,11 @@ static void Str_free(void* str) {
     free(str);
 }
 
-void k_Str_add_char(struct k_Str* str, char ch, bool* has_err) {
+void k_Str_add_char(struct k_Str* str, char ch, struct k_Err* err) {
     if (str->len == str->max_len) {
-        increase_max_len(str, has_err);
+        increase_max_len(str, err);
 
-        if (*has_err) {
+        if (k_Err_has(err)) {
             return;
         }
     }
@@ -46,21 +42,19 @@ void k_Str_add_char(struct k_Str* str, char ch, bool* has_err) {
     str->val[str->len++] = ch;
 }
 
-struct k_Str* k_Str_new(bool* has_err) {
+struct k_Str* k_Str_new(struct k_Err* err) {
     size_t max_len = 32;
     char* val = malloc(max_len * sizeof(*val));
 
     if (val == NULL) {
-        *has_err = true;
-        K_ERR_ERRNO();
+        K_ERR_SET_ERRNO(err, errno);
         return NULL;
     }
 
     struct k_Str* str = malloc(sizeof(*str));
 
     if (str == NULL) {
-        *has_err = true;
-        K_ERR_ERRNO();
+        K_ERR_SET_ERRNO(err, errno);
         free(val);
         return NULL;
     }

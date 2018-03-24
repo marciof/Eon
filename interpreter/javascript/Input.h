@@ -13,12 +13,12 @@
 struct k_Input {
     K_REF_FIELD;
     // `EOF` on EOF
-    int (*read_ch)(struct k_Input* input, bool* has_err);
-    int (*peek_ch)(struct k_Input* input, bool* has_err);
+    int (*read_ch)(struct k_Input* input, struct k_Err* err);
+    int (*peek_ch)(struct k_Input* input, struct k_Err* err);
     char* location;
     size_t line;
     size_t column;
     uint8_t val[];
 };
 
-struct k_Input* k_Input_from_fd(int fd, char* location, bool* has_err);
+struct k_Input* k_Input_from_fd(int fd, char* location, struct k_Err* err);

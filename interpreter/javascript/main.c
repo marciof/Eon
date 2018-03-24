@@ -1,20 +1,20 @@
 #include <stdlib.h>
 #include <unistd.h>
+#include "Err.h"
 #include "Input.h"
 #include "Token.h"
 
 int main() {
-    bool has_err = false;
-
+    struct k_Err err = K_ERR_NONE;
     struct k_Input* stdin_input = k_Input_from_fd(
-        STDIN_FILENO, "<stdin>", &has_err);
+        STDIN_FILENO, "<stdin>", &err);
 
-    if (has_err) {
+    if (k_Err_has(&err)) {
         return EXIT_FAILURE;
     }
 
     while (true) {
-        struct k_Token* token = k_Token_parse(stdin_input, &has_err);
+        struct k_Token* token = k_Token_parse(stdin_input, &err);
 
         if (token == NULL) {
             break;
@@ -24,6 +24,16 @@ int main() {
         K_REF_DEC(token);
     }
 
+    int exit_status;
+
+    if (k_Err_has(&err)) {
+        k_Err_describe(&err, stderr);
+        exit_status = EXIT_FAILURE;
+    }
+    else {
+        exit_status = EXIT_SUCCESS;
+    }
+
     K_REF_DEC(stdin_input);
-    return has_err ? EXIT_FAILURE : EXIT_SUCCESS;
+    return exit_status;
 }

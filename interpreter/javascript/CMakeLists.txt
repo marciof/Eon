@@ -3,6 +3,7 @@ add_executable(${PROJECT_NAME}.js
     main.c
     Ref.h
     Err.h
+    Err.c
     Str.h
     Str.c
     Token.h

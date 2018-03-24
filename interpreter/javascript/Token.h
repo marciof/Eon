@@ -19,4 +19,4 @@ struct k_Token {
 };
 
 // `NULL` on EOF
-struct k_Token* k_Token_parse(struct k_Input* input, bool* has_err);
+struct k_Token* k_Token_parse(struct k_Input* input, struct k_Err* err);

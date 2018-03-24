@@ -1,19 +1,43 @@
 #pragma once
 #include <errno.h>
 #include <stdbool.h>
+#include <stddef.h>
+#include <stdint.h>
 #include <stdio.h>
-#include <string.h>
 
-// FIXME: decouple detecting an error from printing
+#define K_ERR_NONE {NULL}
 
-#define K_ERR_LOCATION() \
-    fprintf(stderr, "    `%s()` at %s:%d\n", __func__, __FILE__, __LINE__)
+struct k_Err {
+    // Description ends in a newline.
+    void (*describe)(struct k_Err* err, FILE* output);
+    const char* function;
+    char* file;
+    size_t line;
+    intptr_t arg;
+};
 
-#define K_ERR_ERRNO() \
-    fprintf(stderr, "%s (errno 0x%X)\n", strerror(errno), errno); \
-    K_ERR_LOCATION()
+void k_Err_describe(struct k_Err* err, FILE* output);
 
-#define K_ERR_PRINTF(format, ...) \
-    fprintf(stderr, (format), __VA_ARGS__); \
-    fprintf(stderr, "\n"); \
-    K_ERR_LOCATION()
+void k_Err_describe_errno(struct k_Err* err, FILE* output);
+
+bool k_Err_has(struct k_Err* err);
+
+void k_Err_set(
+    struct k_Err* err,
+    void (* describe)(struct k_Err*, FILE*),
+    const char* function,
+    char* file,
+    size_t line,
+    intptr_t arg);
+
+#define K_ERR_SET(err, describe, arg) \
+    k_Err_set( \
+        (err), \
+        (describe), \
+        __func__, \
+        __FILE__, \
+        __LINE__, \
+        (intptr_t) (arg))
+
+#define K_ERR_SET_ERRNO(err, num) \
+    K_ERR_SET((err), k_Err_describe_errno, (num))

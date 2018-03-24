@@ -10,5 +10,5 @@ struct k_Str {
     size_t max_len;
 };
 
-void k_Str_add_char(struct k_Str* str, char ch, bool* has_err);
-struct k_Str* k_Str_new(bool* has_err);
+void k_Str_add_char(struct k_Str* str, char ch, struct k_Err* err);
+struct k_Str* k_Str_new(struct k_Err* err);
