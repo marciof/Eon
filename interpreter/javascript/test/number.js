@@ -11,7 +11,7 @@ describe('Number', () => {
             .equal('123');
     });
 
-    it.skip('should read/write roundtrip large integers (2^128)', () => {
+    it('should read/write roundtrip large integers (2^128)', () => {
         should(lang.writeNumber(lang.readNumber('340282366920938463463374607431768211456')))
             .equal('340282366920938463463374607431768211456');
     });
@@ -21,7 +21,7 @@ describe('Number', () => {
             .equal('0.123');
     });
 
-    it.skip('should read/write roundtrip large decimals', () => {
+    it('should read/write roundtrip large decimals', () => {
         should(lang.writeNumber(lang.readNumber('0.123456789123456789123456789')))
             .equal('0.123456789123456789123456789');
     });
@@ -31,7 +31,7 @@ describe('Number', () => {
             .equal('0.(123)');
     });
 
-    it.skip('should read/write roundtrip large repeating decimals (1/97)', () => {
+    it('should read/write roundtrip large repeating decimals (1/97)', () => {
         should(lang.writeNumber(lang.readNumber('0.(010309278350515463917525773195876288659793814432989690721649484536082474226804123711340206185567)')))
             .equal('0.(010309278350515463917525773195876288659793814432989690721649484536082474226804123711340206185567)');
     });

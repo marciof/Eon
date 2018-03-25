@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "immutable": "3.8.1",
-    "mathjs": "3.13.3"
+    "mathjs": "3.17.0"
   },
   "devDependencies": {
     "mocha": "3.4.2",
