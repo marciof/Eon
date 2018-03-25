@@ -41,7 +41,6 @@ add_executable(${PROJECT_NAME}.i386
     vga/Seqr.h
     vga/Text.c
     vga/Text.h
-    Bit.h
     IO.asm
     IO.h
     Log.c

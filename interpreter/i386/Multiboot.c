@@ -1,6 +1,6 @@
 #include <stddef.h>
 #include <stdint.h>
-#include "Bit.h"
+#include "../core/Bit.h"
 #include "Multiboot.h"
 
 typedef uint8_t Drive_Access_Mode;
@@ -110,7 +110,7 @@ static void log_drives(struct multiboot_info* info, struct k_Log* log) {
 
         position += drive->size;
 
-        k_Log_msg(k_Log_get(), K_LOG_INFO,
+        k_Log_msg(log, K_LOG_INFO,
             "Drive: num={iu}; mode={iu}; cylinders={iu}; "
                 "heads={iu}; sectors={iu}; ports={iuh}",
             drive->number, drive->access_mode, drive->cylinders,

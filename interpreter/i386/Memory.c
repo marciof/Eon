@@ -1,7 +1,7 @@
 #include <stddef.h>
 #include <stdint.h>
 #include "../core/Memory.h"
-#include "Bit.h"
+#include "../core/Bit.h"
 
 #define CONCAT(x, y) x##y
 #define CONCAT_EXPAND(x, y) CONCAT(x, y)

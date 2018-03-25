@@ -15,3 +15,6 @@
 
 #define K_BIT_ATTR_SECTION(name, declaration) \
     declaration __attribute__((section(name)))
+
+#define K_BIT_ATTR_UNUSED(param) \
+    param __attribute__((unused))

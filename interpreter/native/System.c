@@ -1,13 +1,17 @@
 #include <errno.h>
 #include <stdlib.h>
 #include <unistd.h>
-#include "../core/System.h"
+#include "../core/Bit.h"
 #include "../core/Log.h"
+#include "../core/System.h"
 
 // FIXME: don't make argv global state
 static char** _argv = NULL;
 
-static void stop(struct k_System* system, enum k_System_Stop_Mode mode) {
+static void stop(
+        K_BIT_ATTR_UNUSED(struct k_System* system),
+        enum k_System_Stop_Mode mode) {
+
     switch (mode) {
     case K_SYSTEM_HALT:
         exit(EXIT_SUCCESS);
@@ -28,7 +32,7 @@ struct k_System* k_System_get() {
     return &system;
 }
 
-int main(int argc, char* argv[]) {
+int main(K_BIT_ATTR_UNUSED(int argc), char* argv[]) {
     _argv = argv;
     struct k_System* system = k_System_get();
     system->stop(system, K_SYSTEM_HALT);

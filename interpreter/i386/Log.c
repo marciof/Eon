@@ -1,7 +1,10 @@
+#include "../core/Bit.h"
 #include "../core/Log.h"
 #include "vga/Text.h"
 
-static void prepare(struct k_Log* log, enum k_Log_Level level) {
+static void prepare(
+        K_BIT_ATTR_UNUSED(struct k_Log* log), enum k_Log_Level level) {
+
     if (level == K_LOG_ERROR) {
         k_VGA_Text_set_color(K_VGA_TEXT_RED, K_VGA_TEXT_BLACK);
     }
@@ -13,11 +16,11 @@ static void prepare(struct k_Log* log, enum k_Log_Level level) {
     }
 }
 
-static void print_ch(struct k_Log* log, char ch) {
+static void print_ch(K_BIT_ATTR_UNUSED(struct k_Log* log), char ch) {
     k_VGA_Text_print_ch(ch);
 }
 
-static void print_str(struct k_Log* log, const char* str) {
+static void print_str(K_BIT_ATTR_UNUSED(struct k_Log* log), const char* str) {
     k_VGA_Text_print_str(str);
 }
 

@@ -1,5 +1,6 @@
 /** @see http://www.intel.com/products/processor/manuals/ */
 
+#include "../core/Bit.h"
 #include "../core/Log.h"
 #include "../core/System.h"
 #include "Multiboot.h"
@@ -17,7 +18,10 @@ extern void k_System_halt();
 
 extern void k_System_reset();
 
-static void stop(struct k_System* system, enum k_System_Stop_Mode mode) {
+static void stop(
+        K_BIT_ATTR_UNUSED(struct k_System* system),
+        enum k_System_Stop_Mode mode) {
+
     switch (mode) {
     case K_SYSTEM_HALT:
         // FIXME: implement halt shutdown mode

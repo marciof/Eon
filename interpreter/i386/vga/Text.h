@@ -1,7 +1,7 @@
 #pragma once
 #include <stddef.h>
 #include <stdint.h>
-#include "../Bit.h"
+#include "../../core/Bit.h"
 
 /**
  * @see http://www.osdever.net/FreeVGA/home.htm

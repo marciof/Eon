@@ -6,6 +6,7 @@ endif()
 
 set(CORE_SOURCES
     core/Ref.h
+    core/Bit.h
     core/Log.c
     core/Log.h
     core/Memory.h
