@@ -15,7 +15,7 @@
 
 #define K_REF_INIT(object, free_fn) \
     ((object)->ref.count = 0, \
-    (object)->ref.free = free_fn, \
+    (object)->ref.free = (free_fn), \
     K_REF_INC((object)))
 
 struct k_Ref {

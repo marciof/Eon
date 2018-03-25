@@ -5,6 +5,7 @@ if(CMAKE_COMPILER_IS_GNUCC)
 endif()
 
 set(CORE_SOURCES
+    core/Ref.h
     core/Log.c
     core/Log.h
     core/Memory.h
@@ -12,7 +13,7 @@ set(CORE_SOURCES
 
 # Build absolute paths for the core sources so that hosts that can't link
 # directly against its library (eg. i386 cross-compiled from a amd64 machine)
-# can instead reference each file.
+# can instead reference each file directly.
 string(REGEX REPLACE "([^;]+)" "${CMAKE_CURRENT_SOURCE_DIR}/\\1"
     CORE_SOURCES "${CORE_SOURCES}")
 
