@@ -5,7 +5,7 @@ enum {K_LOG_TAB_SIZE_SPACES = 4};
 enum k_Log_Level {K_LOG_ERROR, K_LOG_WARN, K_LOG_INFO};
 
 // FIXME: use ref?
-// FIMXE: add timestamps?
+// FIXME: add timestamps?
 struct k_Log {
     void (*prepare)(struct k_Log* log, enum k_Log_Level level);
     void (*print_ch)(struct k_Log* log, char ch);
