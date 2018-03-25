@@ -1,8 +1,9 @@
 # Architecture
 
 - `interpreter/`: implementation of the language specification
-  - `core/`: host-independent core of the implementation, with host-dependent hooks for each system component, builds an embeddable library
-  - `i386/`: Intel x86 32-bit host, builds a Multiboot-compliant executable
-  - `native/`: native OS host (eg. Linux, Windows), builds a standalone executable
+  - `core/`: builds an embeddable library with the host-independent core of the implementation and host-dependent hooks
+  - `i386/`: builds a Multiboot-compliant executable to run on a Intel x86 32-bit host
+  - `javascript/`: builds a standalone executable to compile to JavaScript
+  - `native/`: builds a standalone executable to run natively (eg. Linux, Windows)
 - `specification/`: language specification
 - `stdlib/`: standard library for the interpreter

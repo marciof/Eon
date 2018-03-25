@@ -4,7 +4,7 @@
 enum {K_LOG_TAB_SIZE_SPACES = 4};
 enum k_Log_Level {K_LOG_ERROR, K_LOG_WARN, K_LOG_INFO};
 
-// FIXME: use ref?
+// FIXME: use Ref?
 // FIXME: add timestamps?
 struct k_Log {
     void (*prepare)(struct k_Log* log, enum k_Log_Level level);
@@ -30,5 +30,6 @@ extern struct k_Log* k_Log_get();
  *
  * To print a literal curly brace, repeat it twice.
  */
+// FIXME: use Err? to decouple from needing a System instance?
 void k_Log_msg(
     struct k_Log* log, enum k_Log_Level level, const char* format, ...);

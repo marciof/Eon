@@ -1,4 +1,10 @@
+- Clean up, abbreviate a bit more since C is verbose, remove leading underscore in static data, simplify, remove double blank lines, more flat less nested, remove useless documentation (document only what's need), remove stop modes and use only reset or halt.
+- Let each host provide a (semi-)working C stdlib that "core" can rely on. More familiar and easier to use external libraries? Use Newlib? (libnewlib-dev) Check license first.
+  - https://www.sourceware.org/newlib/
+  - http://www.sourceware.org/newlib/libc.html#Syscalls
+  - http://wiki.osdev.org/Porting_Newlib
 - Redesign architecture, to make it easier to embed, no singletons, and easier to unit test:
+  - Avoid all these repeated calls for `*_get()`?
   - // dynamic (eg. native, multiple interpreters)
   - System_new(Log, Memory, argc, argv)
   - // static, not part of the interface, it's up to each host
@@ -7,13 +13,7 @@
   - System_stop(System)
   - //
   - main(multiboot_magic_num, multiboot_info)
-- Let each host provide a (semi-)working C stdlib that "core" can rely on. More familiar and easier to use external libraries? Use Newlib? Check license.
-  - https://www.sourceware.org/newlib/
-  - http://www.sourceware.org/newlib/libc.html#Syscalls
-  - http://wiki.osdev.org/Porting_Newlib
 - Build native host layer by default with option to switch.
-- Avoid all these repeated calls for `*_get()`?
-- Clean up, abbreviate a bit more since C is verbose, remove leading underscore in static data, simplify, remove double blank lines, more flat less nested, remove useless documentation (document only what's need), remove stop modes and use only reset or halt.
 - Make it more resilient, warn instead of aborting.
 - Add location to log calls? function, file, line? Or to warnings and errors only?
 - Add color to native logging.

@@ -43,7 +43,7 @@ static void print(struct k_Log* log, const char* format, va_list args) {
         if (*format == PLACEHOLDER_END) {
             ++format;
 
-            if ((*format != '\0') && (*format == PLACEHOLDER_END)) {
+            if (*format == PLACEHOLDER_END) {
                 log->print_ch(log, PLACEHOLDER_END);
                 continue;
             }
