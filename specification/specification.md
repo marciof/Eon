@@ -400,7 +400,7 @@ bindings: List
 
 Bindings currently in scope, which is a [list](#list) mapping [symbols](#symbol) to values.
 
-The bindings list always [prototypically](#prototype) inherits from the previous bindings list in scope, or none if it's at the [module](#module) or scope (also known as global scope). Each [function](#function) call creates a new bindings list that prototypically inherits from the previous one, and this always points to the one currently in scope.
+The bindings list always [prototypically](#prototype) inherits from the previous bindings list in scope, or none if it's at the [module](#module) scope (also known as global scope). Each [function](#function) call creates a new bindings list that prototypically inherits from the previous one, and this always points to the one currently in scope.
 
 ## `count`
 
