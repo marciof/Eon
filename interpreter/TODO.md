@@ -1,10 +1,10 @@
-- Clean up, abbreviate a bit more since C is verbose, simplify, more flat less nested, remove stop modes and use only reset or halt.
 - Let each host provide a (semi-)working C stdlib that "core" can rely on. More familiar and easier to use external libraries? Use Newlib? (libnewlib-dev) Check license first.
   - https://www.sourceware.org/newlib/
   - http://www.sourceware.org/newlib/libc.html#Syscalls
   - http://wiki.osdev.org/Porting_Newlib
 - Redesign architecture, to make it easier to embed, no singletons, and easier to unit test:
   - Avoid all these repeated calls for `*_get()`?
+  - Remove stop modes and use only reset or halt
   - // dynamic (eg. native, multiple interpreters)
   - System_new(Log, Memory, argc, argv)
   - // static, not part of the interface, it's up to each host
