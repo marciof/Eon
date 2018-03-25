@@ -8,7 +8,7 @@
 #define K_ERR_NONE {NULL}
 
 struct k_Err {
-    // Description ends in a newline.
+    /** Description ends in a newline. */
     void (*describe)(struct k_Err* err, FILE* output);
     const char* function;
     char* file;

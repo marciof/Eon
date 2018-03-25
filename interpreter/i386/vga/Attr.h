@@ -19,36 +19,7 @@ enum {
     K_VGA_ATTR_COLOR_SELECT,
 };
 
-/**
- * Enables or disables blink mode when in text mode.
- *
- * @param [in] enable true to enable or false to disable
- * @note The text mode must be initialized.
- */
 void k_VGA_Attr_enable_text_blink_mode(bool enable);
-
-/**
- * Enables or disables graphics mode.
- *
- * @param [in] enable true to enable or false to disable
- * @note The text mode must be initialized.
- */
 void k_VGA_Attr_enable_gfx_mode(bool enable);
-
-/**
- * Reads a byte from an attribute controller register.
- *
- * @param [in] reg register to read from
- * @return byte read
- * @note The text mode must be initialized.
- */
 uint8_t k_VGA_Attr_read(k_VGA_Attr_Register reg);
-
-/**
- * Writes a byte to an attribute controller register.
- *
- * @param [in] reg register to write to
- * @param [in] data byte to write
- * @note The text mode must be initialized.
- */
 void k_VGA_Attr_write(k_VGA_Attr_Register reg, uint8_t data);

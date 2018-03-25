@@ -1,4 +1,4 @@
-- Clean up, abbreviate a bit more since C is verbose, remove leading underscore in static data, simplify, remove double blank lines, more flat less nested, remove useless documentation (document only what's need), remove stop modes and use only reset or halt.
+- Clean up, abbreviate a bit more since C is verbose, simplify, more flat less nested, remove stop modes and use only reset or halt.
 - Let each host provide a (semi-)working C stdlib that "core" can rely on. More familiar and easier to use external libraries? Use Newlib? (libnewlib-dev) Check license first.
   - https://www.sourceware.org/newlib/
   - http://www.sourceware.org/newlib/libc.html#Syscalls

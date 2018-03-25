@@ -5,14 +5,14 @@
 
 typedef uint8_t Drive_Access_Mode;
 enum {
-    // Traditional Cylinder/Head/Sector addressing mode.
+    /** Traditional Cylinder/Head/Sector addressing mode. */
     DRIVE_CHS_MODE = 0,
 
-    // Logical Block Addressing mode.
+    /** Logical Block Addressing mode. */
     DRIVE_LBA_MODE = 1,
 };
 
-// As read by the BIOS INT 13h disk interface.
+/** As read by the BIOS INT 13h disk interface. */
 typedef uint8_t Drive_BIOS_Num;
 enum {
     DRIVE_FIRST_DISKETTE_DRIVE = 0,
@@ -20,7 +20,7 @@ enum {
 };
 
 K_BIT_ATTR_PACKED(struct Drive {
-    // Size doesn't equal `10 + 2 * num. ports` due to alignment.
+    /** Size doesn't equal `10 + 2 * num. ports` due to alignment. */
     uint32_t size;
 
     Drive_BIOS_Num number;
@@ -29,9 +29,11 @@ K_BIT_ATTR_PACKED(struct Drive {
     uint8_t heads;
     uint8_t sectors;
 
-    // Array (ending in NULL) of I/O ports used for the drive in the BIOS
-    // code. This array may contain any number of I/O ports that are not
-    // related to the drive actually (such as DMA controllers' ports).
+    /**
+     * Array (ending in NULL) of I/O ports used for the drive in the BIOS
+     * code. This array may contain any number of I/O ports that are not
+     * related to the drive actually (such as DMA controllers' ports).
+     */
     uint16_t* ports;
 });
 

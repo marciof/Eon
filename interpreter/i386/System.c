@@ -1,6 +1,4 @@
-/**
- * @see http://www.intel.com/products/processor/manuals/
- */
+/** @see http://www.intel.com/products/processor/manuals/ */
 
 #include "../core/Log.h"
 #include "../core/System.h"

@@ -18,25 +18,6 @@ enum {
     K_VGA_SEQR_SEQUENCER_MEMORY_MODE,
 };
 
-/**
- * Turns the screen on or off.
- *
- * @param [in] enable true to enable (on) or false to disable (off)
- */
 void k_VGA_Seqr_enable_screen(bool enable);
-
-/**
- * Reads a byte from a sequencer register.
- *
- * @param [in] reg register to read from
- * @return byte read
- */
 uint8_t k_VGA_Seqr_read(k_VGA_Seqr_Register reg);
-
-/**
- * Writes a byte to a sequencer register.
- *
- * @param [in] reg register to write to
- * @param [in] data byte to write
- */
 void k_VGA_Seqr_write(k_VGA_Seqr_Register reg, uint8_t data);
