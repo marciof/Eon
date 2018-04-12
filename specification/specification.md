@@ -105,13 +105,13 @@ Calling a function creates a new [bindings](#bindings) list using the [deferred]
 \(- 1)
 # (- 1)
 
-()
+\()
 # ()
 
 (prototype \(+ 1 2))
 # ()
 
-(prototype ())
+(prototype \())
 # []
 ```
 
@@ -430,7 +430,10 @@ A [function](#function) that returns the number of key/value pairs in a `map`.
 (count {\x \y})
 # 2
 
-(count ())
+(count 'Bob')
+# 3
+
+(count \())
 # 0
 
 (count \xyz)
@@ -548,6 +551,12 @@ A [function](#function) that retrieves the value associated with a `key` in a `m
 
 (get \(+ 6 7) 2)
 # 6
+
+(get 3 'Bob')
+# 98
+
+(get 3 \Bob)
+# 98
 
 (get {} \name 'John')
 # 'John'
