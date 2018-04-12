@@ -552,10 +552,10 @@ A [function](#function) that retrieves the value associated with a `key` in a `m
 (get \(+ 6 7) 2)
 # 6
 
-(get 3 'Bob')
+(get 'Bob' 3)
 # 98
 
-(get 3 \Bob)
+(get \Bob 3)
 # 98
 
 (get {} \name 'John')
@@ -619,6 +619,12 @@ A [function](#function) that associates a `key` with a `value` in a `map`, and r
 
 (insert {1 2} 3)
 # {1 2 3}
+
+(insert 'Bo' 98)
+# 'Bob'
+
+(insert 'ob' 1 66)
+# 'Bob'
 
 (insert {} \name 'Bob')
 # {name: 'Bob'}
@@ -777,49 +783,14 @@ A [function](#function) that disassociates a `key` from a value in a `map`, and 
 (remove {'x' 'y'} 'y')
 # {'x'}
 
+(remove 'Bob' 2)
+# 'Bb'
+
 (remove {\name: 'Bob' \age: 20} \age)
 # {name: 'Bob'}
 
 (remove {\name: 'Bob'} \age)
 # {name: 'Bob'}
-```
-
-### Conditions
-
-- *More than one argument:* returns the result of `(debug \parameter-mismatch)`
-- *`symbols` argument isn't a list of symbols:* returns the result of `(debug \prototype-mismatch)`
-
-### Examples
-
-```
-(let x: 2
-
-  x
-  # 2
-
-  (get (scope) \x)
-  # 2
-
-  (let x: 8
-
-    x
-    # 8
-
-    (get (scope) \x)
-    # 8
-
-    (get (prototype (scope)) \x)))
-    # 2
-
-(let y: 3
-
-  y
-  # 3
-
-  (scope (insert (scope) \y 5))
-
-  y
-  # 5)
 ```
 
 # Grammar
