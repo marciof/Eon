@@ -461,7 +461,7 @@ A [function](#function) that interrupts normal execution flow. In development mo
 (defer expression:Any escape:Symbol): Any
 ```
 
-A [function](#function) that creates a snapshot of an `expression`, optionally with an `escape` [symbol](#symbol) for re-enabling [evaluation](#evaluate) inside it, thereby preventing it from being evaluated.
+A [function](#function) that creates a snapshot of an `expression` thereby preventing it from being evaluated, optionally with an `escape` [symbol](#symbol) for re-enabling [evaluation](#evaluate) inside it.
 
 ### Conditions
 
@@ -493,7 +493,7 @@ A [function](#function) that creates a snapshot of an `expression`, optionally w
 (evaluate expression:Any bindings:List): Any
 ```
 
-A [function](#function) that evaluates an `expression`, optionally using different `bindings`, and returns the result.
+A [function](#function) that evaluates an `expression` and returns the result, optionally using different `bindings`.
 
 ### Conditions
 
@@ -532,7 +532,7 @@ A [function](#function) that evaluates an `expression`, optionally using differe
 (get map:Map key:Any default:Any): Any
 ```
 
-A [function](#function) that retrieves the value associated with a `key` in a `map`, optionally using a `default`.
+A [function](#function) that retrieves the value associated with a `key` in a `map`, optionally using a `default` value if no such association exists.
 
 ### Conditions
 
