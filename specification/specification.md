@@ -59,7 +59,7 @@ A Unicode textual representation of expressions encoded in UTF-8 without a Byte 
 
 A [prototype](#prototype) is the original value used to create another one from. The prototype of a prototype is its base prototype, or itself if it doesn't have one.
 
-Not all values can be literally represented in source code, since not all have an associated [grammar](#grammar) production. They can however be assigned names using [symbols](#symbol) and stored in the [bindings](#bindings) list.
+Not all values can be literally represented in source code, since not all have an associated [grammar](#grammar) production. They can however be assigned names using [symbols](#symbol) and stored in the [bindings](#bindings) map.
 
 ## Boolean
 
@@ -86,12 +86,14 @@ A binary logical value that can only be either true or false. It does not have a
 
 ## Function
 
-An immutable sequence composed of a function followed by zero or more values, the arguments.
+An immutable sequence composed of a function followed by zero or more values, as the arguments.
 
-Calling a function creates a new [bindings](#bindings) list using the [deferred](#defer) function call list, [prototypically](#prototype) inherited from the current bindings in scope, and then evaluates it using the new bindings returning the result.
+This sequence associates the number zero with the function, and consecutive positive integer keys in ascending order with positional arguments, including any keyword arguments as well.
+
+Calling a function creates a new [bindings](#bindings) map using the [deferred](#defer) function call, [prototypically](#prototype) inherited from the current bindings in scope, and then evaluates it using the new bindings returning the result.
 
 - **Prototype:** empty [function](#function), `()`
-- **Base Prototype:** empty [list](#list), `[]`
+- **Base Prototype:** empty [map](#map), `{}`
 
 ### Examples
 
@@ -112,7 +114,7 @@ Calling a function creates a new [bindings](#bindings) list using the [deferred]
 # ()
 
 (prototype \())
-# []
+# {}
 ```
 
 ## List
@@ -131,8 +133,8 @@ An immutable sequence of elements, that associates consecutive positive integer 
 ['x' 'y']
 # ['x' 'y']
 
-[8 2 2 \key: \value]
-# [8 2 2 key: value]
+[8 2 2 \abc]
+# [8 2 2 \abc]
 
 (prototype ['x'])
 # []
@@ -395,12 +397,12 @@ A [function](#function) that divides two or more [numbers](#number).
 ## `bindings`
 
 ```
-bindings: List
+bindings: Map
 ```
 
-Bindings currently in scope, which is a [list](#list) mapping [symbols](#symbol) to values.
+Bindings currently in scope, which is a [map](#map) that associates [symbols](#symbol) to values.
 
-The bindings list always [prototypically](#prototype) inherits from the previous bindings list in scope, or none if it's at the [module](#module) scope (also known as global scope). Each [function](#function) call creates a new bindings list that prototypically inherits from the previous one, and this always points to the one currently in scope.
+The bindings map always [prototypically](#prototype) inherits from the previous bindings map in scope, or none if it's at the [module](#module) (or global) scope. Each [function](#function) call creates a new bindings map that prototypically inherits from the previous one, and this always points to the one currently in scope.
 
 ## `count`
 
@@ -427,7 +429,7 @@ A [function](#function) that returns the number of key/value pairs in a `map`.
 (count [\x \y])
 # 2
 
-(count {\x \y})
+(count {\x \y \y})
 # 2
 
 (count 'Bob')
@@ -490,7 +492,7 @@ A [function](#function) that creates a snapshot of an `expression` thereby preve
 
 ```
 (evaluate expression:Any)
-(evaluate expression:Any bindings:List): Any
+(evaluate expression:Any bindings:Map): Any
 ```
 
 A [function](#function) that evaluates an `expression` and returns the result, optionally using different `bindings`.
@@ -618,9 +620,6 @@ If the `key` already exists, its value is instead replaced in [maps](#map) or di
 (insert ['x' 'y'] 3 'z')
 # ['x' 'y' 'z']
 
-(insert ['x' 'y'] 4 'z')
-# [x y 4: z]
-
 (insert {1 2} 3)
 # {1 2 3}
 
@@ -713,7 +712,7 @@ A [function](#function) that returns the first key or the key following `key` in
 (next [\x \y \z])
 # x
 
-(next [\x \y \z] \y)
+(next [\x \y \z] 2)
 # z
 
 (next {\name: 'Bob' \age: 20})
@@ -744,6 +743,9 @@ A [function](#function) that extends the prototype hierarchy using `base` thereb
 ```
 (prototype 'Bob')
 # ''
+
+(prototype '')
+# []
 
 (let Person: (prototype {\name: ''} {})
      bob: (insert Person \name 'Bob')
