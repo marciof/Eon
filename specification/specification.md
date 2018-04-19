@@ -595,7 +595,11 @@ A quantity greater than any [number](#number).
 (insert map:Map key:Any value:Any): Map
 ```
 
-A [function](#function) that associates a `key` with a `value` in a `map`, and returns the new [map](#map). If the `key` already exists, its value is instead replaced in [maps](#map) or displaced in [lists](#list). If no `key` is passed, then the `value` is inserted at the end of the `map`.
+A [function](#function) that associates a `key` with a `value` in a `map`, and returns the new [map](#map).
+
+If no `key` is passed, then the `value` is inserted at the end of the `map`, and is associated with itself.
+
+If the `key` already exists, its value is instead replaced in [maps](#map) or displaced in [lists](#list).
 
 ### Conditions
 
@@ -645,7 +649,9 @@ A [function](#function) that associates a `key` with a `value` in a `map`, and r
 (load path:List ...:Any): Any
 ```
 
-A [function](#function) that loads a [module](#module) by `path` with zero or more arguments, and returns the value from the last evaluated expression. A `path` is a list of zero or more names, ending with the [module](#module) name.
+A [function](#function) that loads a [module](#module) by `path`, with zero or more arguments, and returns the value from the last evaluated expression.
+
+A `path` is a list of zero or more names, ending with the [module](#module) name.
 
 ### Conditions
 
