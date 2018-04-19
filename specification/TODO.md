@@ -1,4 +1,4 @@
-- Document module loading errors, inserting invalid positions and values for each type.
+- Document inserting invalid positions and values for data types that restrict the set of allowed values.
 - Indicate time and space complexity for each operation and data type.
 - Document any side-effects for each operation and data type.
 - Specify prototypical inheritance (differential inheritance, eg. intro, `get` `put` and `remove` handling, etc). http://steve-yegge.blogspot.com/2008/10/universal-design-pattern.html

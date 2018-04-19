@@ -658,7 +658,7 @@ A `path` is a list of zero or more names, ending with the [module](#module) name
 - *Less than one argument:* returns the result of `(debug \parameter-mismatch)`
 - *`path` argument isn't a non-empty list of symbols:* returns the result of `(debug \prototype-mismatch)`
 - *Module can't be found:* returns the result of `(debug \unknown-module)`
-- *Module doesn't evaluate to least one value:* returns the  result of `(debug \empty-module)`
+- *Module doesn't evaluate to at least one value:* returns the result of `(debug \empty-module)`
 
 ### Examples
 
