@@ -868,8 +868,7 @@ Map-End ::= "}" <U+7D>
 List:
 
 ```
-List ::= List-Begin White-Space* ((List-Value | Pair) (White-Space+ (List-Value | Pair))* White-Space*)? List-End
-List-Value ::= Expression
+List ::= List-Begin White-Space* (Expression (White-Space+ Expression)* White-Space*)? List-End
 List-Begin ::= "[" <U+5B>
 List-End ::= "]" <U+5D>
 ```
@@ -877,7 +876,8 @@ List-End ::= "]" <U+5D>
 Function:
 
 ```
-Function ::= Parenthesis-Begin White-Space* (Expression (White-Space+ Expression)* White-Space*)? Parenthesis-End
+Function ::= Parenthesis-Begin White-Space* (Function-Value (White-Space+ Function-Value)* White-Space*)? Parenthesis-End
+Function-Value ::= Expression | Pair
 Get-Chain ::= Symbol (Pair-Separator{2} Symbol)+
 Parenthesis-Begin ::= "(" <U+28>
 Parenthesis-End ::= ")" <U+28>
@@ -891,7 +891,7 @@ These are the syntactic transformations that occur for each associated non-termi
 |-------------------|------|--------------|--------------|--------------|
 |*Get-Chain*        |`x::y`|`(get x \y)`  |`user::name`  |Left to right.|
 |*Text*             |`xy`  |`(x y)`       |`hex'1F'`     |              |
-|*List-Value*       |`x`   |`N:x`         |`['a']`       |Position `N`. |
+|*Function-Value*.  |`x`   |`N:x`         |`(f)`         |Position `N`. |
 |*Set-Value*        |`x`   |`x:x`         |`{123}`       |              |
 |*Number*           |`xy`  |`(y x)`       |`2Km`         |              |
 |*Defer*            |`\x`  |`(defer x)`   |`\length`     |              |
