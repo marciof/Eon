@@ -93,7 +93,7 @@ This sequence associates the number zero with the function, and consecutive posi
 Calling a function creates a new [bindings](#bindings) map using the [deferred](#defer) function call, [prototypically](#prototype) inherited from the current bindings in scope, and then evaluates it using the new bindings returning the result.
 
 - **Prototype:** empty [function](#function), `()`
-- **Base Prototype:** empty [map](#map), `{}`
+- **Base Prototype:** empty [map](#map), `{:}`
 
 ### Examples
 
@@ -114,7 +114,7 @@ Calling a function creates a new [bindings](#bindings) map using the [deferred](
 # ()
 
 (prototype \())
-# {}
+# {:}
 ```
 
 ## List
@@ -122,7 +122,7 @@ Calling a function creates a new [bindings](#bindings) map using the [deferred](
 An immutable sequence of elements, that associates consecutive positive integer keys in ascending order with values.
 
 - **Prototype:** empty [list](#list), `[]`
-- **Base Prototype:** empty [map](#map), `{}`
+- **Base Prototype:** empty [map](#map), `{:}`
 
 ### Examples
 
@@ -140,40 +140,35 @@ An immutable sequence of elements, that associates consecutive positive integer 
 # []
 
 (prototype [])
-# {}
+# {:}
 ```
 
 ## Map
 
 An immutable insertion ordered collection, that associates unique keys with values.
 
-If a given key has no associated value, it's then handled as in a set where the key and value are the same and identical, however they're still separate from each other. An expression used as a set element is only evaluated once, even though it's used for both the key and value.
-
 If the same key appears multiple times, the last associated value takes precedence over all previous ones.
 
-- **Prototype:** empty [map](#map), `{}`
+- **Prototype:** empty [map](#map), `{:}`
 - **Base Prototype:** -
 
 ### Examples
 
 ```
-{}
-# {}
+{:}
+# {:}
 
 {\name: 'Bob' \age: 30}
 # {name: 'Bob' age: 30}
 
-{'x' 'y'}
-# {'x' 'y'}
+{\key: 8 \key: \value}
+# {key: value}
 
-{8 2 2 \key: \value}
-# {8 2 key: value}
+(prototype {\name: 'Bob'})
+# {:}
 
-(prototype {'x'})
-# {}
-
-(prototype {})
-# {}
+(prototype {:})
+# {:}
 ```
 
 ## Number
@@ -212,6 +207,32 @@ infinity
 
 (prototype 0)
 # 0
+```
+
+## Set
+
+An immutable collection of unique elements, that associates keys to be the same as values.
+
+- **Prototype:** empty [set](#set), `{}`
+- **Base Prototype:** empty [map](#map), `{:}`
+
+### Examples
+
+```
+{}
+# {}
+
+{'x' 'y'}
+# {'x' 'y'}
+
+{8 2 2 \abc}
+# {8 2 \abc}
+
+(prototype {'x'})
+# {}
+
+(prototype {})
+# {:}
 ```
 
 ## Symbol
@@ -562,7 +583,7 @@ A [function](#function) that retrieves the value associated with a `key` in a `m
 (get \Bob 3)
 # 98
 
-(get {} \name 'John')
+(get {:} \name 'John')
 # 'John'
 
 (let user: {\name: 'Bob'}
@@ -631,7 +652,7 @@ If the `key` already exists, its value is instead replaced in [maps](#map) or di
 (insert 'ob' 1 66)
 # 'Bob'
 
-(insert {} \name 'Bob')
+(insert {:} \name 'Bob')
 # {name: 'Bob'}
 
 (insert {\name: 'Bob'} \name 'John')
@@ -749,14 +770,14 @@ A [function](#function) that extends the prototype hierarchy using `base` thereb
 (prototype '')
 # []
 
-(let Person: (prototype {\name: ''} {})
+(let Person: (prototype {\name: ''} {:})
      bob: (insert Person \name 'Bob')
 
   Person
   # {name: '' age: 0}
 
   (prototype Person)
-  # {}
+  # {:}
 
   bob
   # {name: 'Bob' age: 20}
@@ -765,7 +786,7 @@ A [function](#function) that extends the prototype hierarchy using `base` thereb
   # Person
 
   (prototype (prototype bob)))
-  # {}
+  # {:}
 ```
 
 ## `remove`
@@ -857,8 +878,8 @@ Text-Quote ::= "'" <U+22>
 Map:
 
 ```
-Map ::= Map-Begin White-Space* ((Set-Value | Pair) (White-Space+ (Set-Value | Pair))* White-Space*)? Map-End
-Set-Value ::= Expression
+Map ::= Map-Empty | Map-Begin White-Space* Pair (White-Space+ Pair)* White-Space* Map-End
+Map-Empty ::= Map-Begin Pair-Separator Map-End
 Pair ::= Expression Pair-Separator White-Space* Expression
 Pair-Separator ::= ":" <U+3A>
 Map-Begin ::= "{" <U+7B>
@@ -871,6 +892,12 @@ List:
 List ::= List-Begin White-Space* (Expression (White-Space+ Expression)* White-Space*)? List-End
 List-Begin ::= "[" <U+5B>
 List-End ::= "]" <U+5D>
+```
+
+Set:
+
+```
+Set ::= Map-Begin White-Space* (Expression (White-Space+ Expression)* White-Space*)? Map-End
 ```
 
 Function:
@@ -891,8 +918,7 @@ These are the syntactic transformations that occur for each associated non-termi
 |-------------------|------|--------------|--------------|--------------|
 |*Get-Chain*        |`x::y`|`(get x \y)`  |`user::name`  |Left to right.|
 |*Text*             |`xy`  |`(x y)`       |`hex'1F'`     |              |
-|*Function-Value*.  |`x`   |`N:x`         |`(f)`         |Position `N`. |
-|*Set-Value*        |`x`   |`x:x`         |`{123}`       |              |
+|*Function-Value*   |`x`   |`N:x`         |`(f)`         |Position `N`. |
 |*Number*           |`xy`  |`(y x)`       |`2Km`         |              |
 |*Defer*            |`\x`  |`(defer x)`   |`\length`     |              |
 
