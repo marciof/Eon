@@ -446,6 +446,9 @@ A [function](#function) that returns the number of key/value pairs in a `map`.
 (count {})
 # 0
 
+(count {:})
+# 0
+
 (count {\name: 'Bob'})
 # 1
 
