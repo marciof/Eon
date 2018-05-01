@@ -1,5 +1,4 @@
 - Document inserting and removing invalid positions and values for data types that restrict the set of allowed values. And also removing values from lists and how it displaces.
-- Should get's default be a function for laziness?
 - Indicate time and space complexity for each operation and data type.
 - Document any side-effects for each operation and data type.
 - Specify prototypical inheritance (differential inheritance, eg. intro, `get` `put` and `remove` handling, etc). http://steve-yegge.blogspot.com/2008/10/universal-design-pattern.html
@@ -20,11 +19,10 @@
   - https://github.com/anvaka/common-words/blob/master/README.md
 - Documentation: man pages, tutorial, FAQ, quick start.
 - http://www.infoq.com/presentations/Value-Identity-State-Rich-Hickey
-- Look for best/worst features of other languages: JavaScript, Clojure, Kotlin, Python, Haskell, Erlang, PureScript, Elm, Io, Rust, Ruby, Smalltalk, Java, Scheme, Go, ML, Lua, Haxe, Tcl, Shen, Matlab, R, REBOL, Wolfram, HyperCard, Julia.
+- Look for best/worst features of other languages: Matlab, Go, Julia, JavaScript, Clojure, Kotlin, Python, Haskell, Erlang, PureScript, Elm, Io, Rust, Ruby, Smalltalk, Java, Scheme, ML, Lua, Haxe, Tcl, Shen R, REBOL, Wolfram, HyperCard 
   - "Perl Pocket Reference"
 - Stdlib: regex, math, io, json, xml, csv, yaml, ini
 - Open questions:
-  - Allow calling non-functions for conciseness? Could be confusing.
   - Reactive programming.
   - Live changes (hot-reloading) support.
   - Abbreviate longer built-in names? Eg. `eval`, `proto`, `ref`, `inf`?

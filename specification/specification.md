@@ -74,13 +74,13 @@ A binary logical value that can only be either true or false. It does not have a
 (prototype (= 1 1))
 # true
 
-(prototype true)
+(prototype (prototype (= 1 1)))
 # true
 
 (prototype (= 1 2))
 # true
 
-(prototype false)
+(prototype (prototype (= 1 2)))
 # true
 ```
 
@@ -158,8 +158,8 @@ If the same key appears multiple times, the last associated value takes preceden
 {:}
 # {:}
 
-{\name: 'Bob' \age: 30}
-# {name: 'Bob' age: 30}
+{\name: 'Bob' \age: 20}
+# {name: 'Bob' age: 20}
 
 {\key: 8 \key: \value}
 # {key: value}
@@ -560,13 +560,13 @@ A [function](#function) that evaluates an `expression` and returns the result, o
 (get map:Map key:Any default:Any): Any
 ```
 
-A [function](#function) that retrieves the value associated with a `key` in a `map`, optionally using a `default` value if no such association exists.
+A [function](#function) that retrieves the value associated with a `key` in a `map`, optionally using a lazily evaluated `default` value if no such association exists.
 
 ### Conditions
 
 - *Less than two or more than three arguments:* returns the result of `(debug \parameter-mismatch)`
 - *`map` argument isn't a map:* returns the result of `(debug \prototype-mismatch)`
-- *Association doesn't exist, and `default` value isn't provided:* returns the result of `(debug \unkown-key)`
+- *Association doesn't exist, and `default` function isn't provided:* returns the result of `(debug \unkown-key)`
 
 ### Examples
 
@@ -586,8 +586,11 @@ A [function](#function) that retrieves the value associated with a `key` in a `m
 (get \Bob 3)
 # 98
 
-(get {:} \name 'John')
-# 'John'
+(get {:} \age 20)
+# 20
+
+(get {\age: 30} \age 20)
+# 30
 
 (let user: {\name: 'Bob'}
 
