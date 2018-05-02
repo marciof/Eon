@@ -28,7 +28,7 @@
   - Optional static typing?
   - Change `load` to allow specifying a language/type to make it part of the spec that it has hooks for FFI? It's more practical and realistic, and also enables using native parts of a OS runtime. Allow a string so that anything works? URLs, etc
   - Indentation based, contextual, optional, significant white-space? Useful for using the REPL as a shell itself.
-    - Multiline will parenthesis: each line is a function call.
+    - Multiline with parenthesis: each line is a function call.
     - Multiline with parenthesis: each line is passed verbatim.
   - Allow suffixes in tagged text literals? Unnecessarily complicated? No good use-cases?
   - Allow Get Chain expressions to contain numbers? `names::1`
