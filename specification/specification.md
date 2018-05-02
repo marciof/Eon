@@ -9,6 +9,7 @@
   - [List](#list)
   - [Map](#map)
   - [Number](#number)
+  - [Set](#set)
   - [Symbol](#symbol)
   - [Text](#text)
 - [Built-ins](#built-ins)
@@ -861,7 +862,7 @@ End-of-Line ::= "" <U+A>
 Number:
 
 ```
-Number ::= Sign? Digit+ ("." <U+2E> (Digits | Digits? Parenthesis-Begin Digits Parenthesis-End))? Symbol?
+Number ::= Sign? Digit+ ("." <U+2E> (Digits | Digits? Function-Begin Digits Function-End))? Symbol?
 Sign ::= "+" <U+2B> | "-" <U+2D>
 Digits ::= Digit+ (Text-Quote? Digit+)*
 Digit ::= "0" <U+30> | "1" <U+31> | "2" <U+32> | "3" <U+33> | "4" <U+34> | "5" <U+35> | "6" <U+36> | "7" <U+37> | "8" <U+38> | "9" <U+39>
@@ -871,7 +872,7 @@ Symbol:
 
 ```
 Symbol ::= not(Reserved-Character, White-Space, Sign, Digit) not(Reserved-Character, White-Space)* | Sign (not(Reserved-Character, White-Space, Digit) not(Reserved-Character, White-Space)*)?
-Reserved-Character ::= List-Begin | List-End | Parenthesis-Begin | Parenthesis-End | Map-Begin | Map-End | Comment-Quote | Text-Quote | Defer | Pair-Separator
+Reserved-Character ::= List-Begin | List-End | Function-Begin | Function-End | Map-Begin | Map-End | Comment-Quote | Text-Quote | Defer | Pair-Separator
 ```
 
 Text:
@@ -909,11 +910,11 @@ Set ::= Map-Begin White-Space* (Expression (White-Space+ Expression)* White-Spac
 Function:
 
 ```
-Function ::= Parenthesis-Begin White-Space* (Function-Value (White-Space+ Function-Value)* White-Space*)? Parenthesis-End
+Function ::= Function-Begin White-Space* (Function-Value (White-Space+ Function-Value)* White-Space*)? Function-End
 Function-Value ::= Expression | Pair
 Get-Chain ::= Symbol (Pair-Separator{2} Symbol)+
-Parenthesis-Begin ::= "(" <U+28>
-Parenthesis-End ::= ")" <U+28>
+Function-Begin ::= "(" <U+28>
+Function-End ::= ")" <U+28>
 ```
 
 ## Transformations
