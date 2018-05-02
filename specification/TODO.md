@@ -1,4 +1,5 @@
 - Document inserting and removing invalid positions and values for data types that restrict the set of allowed values. And also removing values from lists and how it displaces.
+- Make insert giving only a value not work for maps, since it doesn't make much sense.
 - Indicate time and space complexity for each operation and data type.
 - Document any side-effects for each operation and data type.
 - Specify prototypical inheritance (differential inheritance, eg. intro, `get` `put` and `remove` handling, etc). http://steve-yegge.blogspot.com/2008/10/universal-design-pattern.html
@@ -19,19 +20,18 @@
   - https://github.com/anvaka/common-words/blob/master/README.md
 - Documentation: man pages, tutorial, FAQ, quick start.
 - http://www.infoq.com/presentations/Value-Identity-State-Rich-Hickey
-- Look for best/worst features of other languages: Matlab, Go, Julia, JavaScript, Clojure, Kotlin, Python, Haskell, Erlang, PureScript, Elm, Io, Rust, Ruby, Smalltalk, Java, Scheme, ML, Lua, Haxe, Tcl, Shen R, REBOL, Wolfram, HyperCard 
-  - "Perl Pocket Reference"
-- Stdlib: regex, math, io, json, xml, csv, yaml, ini
+- Look for best/worst features of other languages: Perl, Matlab, Go, Julia, JavaScript, Clojure, Kotlin, Python, Haskell, Erlang, PureScript, Elm, Io, Rust, Ruby, Smalltalk, Java, Scheme, ML, Lua, Haxe, Tcl, Shen R, REBOL, Wolfram, HyperCard
 - Open questions:
   - Reactive programming.
   - Live changes (hot-reloading) support.
   - Abbreviate longer built-in names? Eg. `eval`, `proto`, `ref`, `inf`?
   - Optional static typing?
   - Change `load` to allow specifying a language/type to make it part of the spec that it has hooks for FFI? It's more practical and realistic, and also enables using native parts of a OS runtime. Allow a string so that anything works? URLs, etc
-  - Indentation based, significant white-space? Useful for using the REPL as a shell itself.
-  - Add `has?` built-in or let it be defined through conditions? Performance?
-  - Add fraction literal syntax? More practical? Or just use number suffix functions named `/2`, `/3`, etc?
+  - Indentation based, contextual, optional, significant white-space? Useful for using the REPL as a shell itself.
+    - Multiline will parenthesis: each line is a function call.
+    - Multiline with parenthesis: each line is passed verbatim.
   - Allow suffixes in tagged text literals? Unnecessarily complicated? No good use-cases?
   - Allow Get Chain expressions to contain numbers? `names::1`
   - Built-in concurrency?
+  - Guarantee efficient self-recursive function calls, tail function calls, and self-tail function calls?
   - Add a built-in CAS (Computer Algebra System) to not loose any precision even when dealing with irrational numbers? Make math functions allow symbols? Would also allow to remove `infinity` as a built-in, using the sum of the harmonic series? (See Maxima Algebra System which uses Lisp, and GNU Octave.)
