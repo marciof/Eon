@@ -629,9 +629,9 @@ A quantity greater than any [number](#number).
 
 A [function](#function) that associates a `key` with a `value` in a `map`, and returns the new [map](#map).
 
-If no `key` is passed, then the `value` is inserted at the end. In maps and sets it's associated with itself, and in lists and functions it's associated with the next highest positive integer key.
+If no `key` is passed, then the `value` is associated with itself in [maps](#map) and [sets](#set), or associated with the next highest positive integer key in [lists](#list) and [functions](#function).
 
-If the `key` already exists, its value is instead replaced in [maps](#map) or displaced in [lists](#list).
+If the `key` already exists, its value is replaced in [maps](#map) and [sets](#set), as well as in [functions](#function) unless it's a positive integer. Otherwise in [lists](#list) and [functions](#function) it displaces instead the existing key, shifting all values to the right and incrementing keys by one.
 
 ### Conditions
 
