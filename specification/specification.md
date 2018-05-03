@@ -24,7 +24,7 @@ Simple:
 - Minimal syntax, but readable.
 - Prototype-based object model.
 - Flat over nested.
-- No undefined behavior, consistent.
+- No undefined behavior, consistent, uniform.
 - Everything is a value, never null.
 - Right things easier than wrong things, encouraged, and the only way.
 - Immutable data structures, no defensive copying.
@@ -629,7 +629,7 @@ A quantity greater than any [number](#number).
 
 A [function](#function) that associates a `key` with a `value` in a `map`, and returns the new [map](#map).
 
-If no `key` is passed, then the `value` is inserted at the end of the `map`, and is associated with itself.
+If no `key` is passed, then the `value` is inserted at the end. In maps and sets it's associated with itself, and in lists and functions it's associated with the next highest positive integer key.
 
 If the `key` already exists, its value is instead replaced in [maps](#map) or displaced in [lists](#list).
 
@@ -637,6 +637,7 @@ If the `key` already exists, its value is instead replaced in [maps](#map) or di
 
 - *Less than two or more than three arguments:* returns the result of `(debug \parameter-mismatch)`
 - *`map` argument isn't a map:* returns the result of `(debug \prototype-mismatch)`
+- *`map` argument is a set and `key` isn't equal to `value`:* returns the result of `(debug \prototype-mismatch)`
 
 ### Examples
 
