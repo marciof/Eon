@@ -1,6 +1,6 @@
-- Add a replace collection operation?
-- Disallow maps for insert with no value? Disallow sets for insert with both key and value? Disallow maps for replace? Disallow sets for replace?
+- Add a replace collection operation? Yes, since it preserves insertion order and is also faster.
 - Document inserting and removing invalid positions and values for data types that restrict the set of allowed values. And also removing values from lists and how it displaces.
+- Data type validation should mention that sub prototypes are also allowed.
 - Indicate time and space complexity for each operation and data type.
 - Document any side-effects for each operation and data type.
 - Specify prototypical inheritance (differential inheritance, eg. intro, `get` `put` and `remove` handling, etc). http://steve-yegge.blogspot.com/2008/10/universal-design-pattern.html
