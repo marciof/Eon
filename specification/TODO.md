@@ -1,3 +1,5 @@
+- Add a replace collection operation?
+- Disallow maps for insert with no value? Disallow sets for insert with both key and value? Disallow maps for replace? Disallow sets for replace?
 - Document inserting and removing invalid positions and values for data types that restrict the set of allowed values. And also removing values from lists and how it displaces.
 - Indicate time and space complexity for each operation and data type.
 - Document any side-effects for each operation and data type.

@@ -638,6 +638,7 @@ If the `key` already exists, its value is replaced in [maps](#map) and [sets](#s
 - *Less than two or more than three arguments:* returns the result of `(debug \parameter-mismatch)`
 - *`map` argument isn't a map:* returns the result of `(debug \prototype-mismatch)`
 - *`map` argument is a set and `key` isn't equal to `value`:* returns the result of `(debug \prototype-mismatch)`
+- *`map` argument is a list and `key` isn't a positive integer less than or equal to its length:* returns the result of `(debug \prototype-mismatch)`
 
 ### Examples
 
