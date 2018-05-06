@@ -1,9 +1,9 @@
-- Add a replace collection operation? Yes, since it preserves insertion order and is also faster.
+- Add a replace collection operation.
 - Document inserting and removing invalid positions and values for data types that restrict the set of allowed values. And also removing values from lists and how it displaces.
 - Data type validation should mention that sub prototypes are also allowed.
 - Indicate time and space complexity for each operation and data type.
 - Document any side-effects for each operation and data type.
-- Specify prototypical inheritance (differential inheritance, eg. intro, `get` `put` and `remove` handling, etc). http://steve-yegge.blogspot.com/2008/10/universal-design-pattern.html
+- Specify prototypical inheritance (differential inheritance, eg. intro, `get`, `put` and `remove` handling, etc). http://steve-yegge.blogspot.com/2008/10/universal-design-pattern.html
 - Rename `debug` to `rescue` for something similar to Common Lisp conditions (signaling a condition, handling it, and restarting).
   - The specification doesn't dictate how it's handled, but the core library uses continuations to implement a full condition system?
   - Add a `continuation` built-in to create (escape?) continuations?
