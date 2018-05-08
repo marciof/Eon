@@ -628,7 +628,7 @@ A quantity greater than any [number](#number).
 
 A [function](#function) that associates a `value` with itself in a `map`, and returns the new [map](#map).
 
-If `value` already exists as a key in a `map`, then its associated value becomes `value`.
+If the `value` already exists as a key, then its associated value becomes `value`.
 
 ```
 (insert set:Set value:Any): Set
@@ -636,14 +636,14 @@ If `value` already exists as a key in a `map`, then its associated value becomes
 
 A [function](#function) that adds a `value` to a `set`, and returns the new [set](#set).
 
-If `value` already exists as a key in a `set`, then `set` is returned unchanged.
+If the `value` is already present, then the `set` is returned unchanged.
 
 ```
 (insert list:List value:Any): List
 (insert function:Function value:Any): Function
 ```
 
-A [function](#function) that associates a `value` with the next highest positive integer key to a `list` or `function`, and returns the new [list](#list) or [function](#function).
+A [function](#function) that associates a `value` with the next highest positive integer key in a `list` or `function`, and returns the new [list](#list) or [function](#function) respectively.
 
 ```
 (insert map:Map key:Any value:Any): Map

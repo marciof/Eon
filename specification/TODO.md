@@ -25,12 +25,13 @@
 - Open questions:
   - Reactive programming.
   - Live changes (hot-reloading) support.
-  - Abbreviate longer built-in names? Eg. `eval`, `proto`, `ref`, `inf`?
   - Optional static typing?
   - Change `load` to allow specifying a language/type to make it part of the spec that it has hooks for FFI? It's more practical and realistic, and also enables using native parts of a OS runtime. Allow a string so that anything works? URLs, etc
   - Indentation based, contextual, optional, significant white-space? Useful for using the REPL as a shell itself.
-    - Multiline with parenthesis: each line is a function call.
+    - Multiline without parenthesis: each line is a function call (always?).
     - Multiline with parenthesis: each line is passed verbatim.
+    - All shell commands are instances of a type that can be detected to be automatically run, so that commands without arguments are invoked.
+    - The REPL still works fine for inspecting single objects since they won't be called automatically unless it follows the multiline parenthesis rule.
   - Allow suffixes in tagged text literals? Unnecessarily complicated? No good use-cases?
   - Allow Get Chain expressions to contain numbers? `names::1`
   - Built-in concurrency?
