@@ -27,12 +27,10 @@
   - Live changes (hot-reloading) support.
   - Optional static typing?
   - Change `load` to allow specifying a language/type to make it part of the spec that it has hooks for FFI? It's more practical and realistic, and also enables using native parts of a OS runtime. Allow a string so that anything works? URLs, etc
-  - Indentation based syntax?
-    - Enables its use as a shell.
-    - Unifies the REPL and shell.
-    - Rules:
-      - Multiline without parenthesis: each line is a function call always.
-      - Multiline with parenthesis: each line is passed verbatim.
+  - Indentation based syntax? The REPL becomes the shell, it just adds global functions as commands and other niceties.
+    - If a line starts with a parenthesis it disables significant indentation inside the entire expression.
+    - Otherwise each new line is a function call, with same-line arguments passed as-is, and indented new lines passed as function calls, unless it's a keyword argument.
+    - All data types are callable as functions, and except for functions each value returns itself as the result.
   - Allow suffixes in tagged text literals? Unnecessarily complicated? No good use-cases?
   - Allow Get Chain expressions to contain numbers? `names::1`
   - Built-in concurrency?
