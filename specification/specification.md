@@ -628,7 +628,7 @@ A quantity greater than any [number](#number).
 
 A [function](#function) that associates a `value` with itself in a `map`, and returns the new [map](#map).
 
-If the `value` already exists as a key, then its associated value becomes `value`.
+If `value` already exists as a key, then its associated value becomes `value`.
 
 ```
 (insert set:Set value:Any): Set
@@ -636,7 +636,7 @@ If the `value` already exists as a key, then its associated value becomes `value
 
 A [function](#function) that adds a `value` to a `set`, and returns the new [set](#set).
 
-If the `value` is already present, then the `set` is returned unchanged.
+If `value` is already present, then `set` is returned unchanged.
 
 ```
 (insert list:List value:Any): List
@@ -651,7 +651,14 @@ A [function](#function) that associates a `value` with the next highest positive
 
 A [function](#function) that associates a `key` with a `value` in a `map`, and returns the new [map](#map).
 
-If the `key` already exists, its value is replaced in [maps](#map) and [sets](#set), as well as in [functions](#function) unless it's a positive integer. Otherwise in [lists](#list) and [functions](#function) it displaces instead the existing key, shifting all values to the right and incrementing keys by one.
+If `key` already exists, then its associated value becomes `value`.
+
+```
+(insert list:List key:Number value:Any): List
+(insert function:Function key:Any value:Any): Function
+```
+
+If the `key` already exists, its value is replaced in [functions](#function) unless it's a positive integer. Otherwise in [lists](#list) and [functions](#function) it displaces instead the existing key, shifting all values to the right and incrementing keys by one.
 
 ### Conditions
 
