@@ -21,7 +21,7 @@
   - https://github.com/anvaka/common-words/blob/master/README.md
 - Documentation: man pages, tutorial, FAQ, quick start.
 - http://www.infoq.com/presentations/Value-Identity-State-Rich-Hickey
-- Look for best/worst features of other languages: Perl, Matlab, Rust, Ruby, Go, Julia, JavaScript, Clojure, Kotlin, Python, Haskell, Erlang, PureScript, Elm, Io, Smalltalk, Java, Scheme, ML, Lua, Haxe, Tcl, Shen R, REBOL, Wolfram, HyperCard
+- Look for best/worst features of other languages: Perl, F#, Matlab, Rust, Ruby, Go, Julia, JavaScript, Clojure, Kotlin, Python, Haskell, Erlang, PureScript, Elm, Io, Smalltalk, Java, Scheme, ML, Lua, Haxe, Tcl, Shen R, REBOL, Wolfram, HyperCard
 - Open questions:
   - Reactive programming.
   - Live changes (hot-reloading) support.
