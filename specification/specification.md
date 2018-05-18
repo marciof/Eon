@@ -660,7 +660,9 @@ If `key` already exists, then its associated value becomes `value`.
 
 A [function](#function) that associates a `key` with a `value` in a `list` or `function`, and returns the new [list](#list) or [function](#function) respectively.
 
-If `key` already exists, its value is replaced in [functions](#function) unless it's a positive integer. Otherwise in [lists](#list) and [functions](#function) it displaces instead the existing key, shifting all values to the right and incrementing keys by one.
+If `key` already exists and isn't a positive integer, then its associated value becomes `value` in a [function](#function).
+
+If `key` already exists and is a positive integer, then it displaces instead the existing key and all following integer keys, by incrementing them by one.
 
 ### Conditions
 
