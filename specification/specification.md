@@ -567,7 +567,7 @@ A [function](#function) that retrieves the value associated with a `key` in a `m
 
 - *Less than two or more than three arguments:* returns the result of `(debug \parameter-mismatch)`
 - *`map` argument isn't a map:* returns the result of `(debug \prototype-mismatch)`
-- *Association doesn't exist, and `default` function isn't provided:* returns the result of `(debug \unkown-key)`
+- *Association doesn't exist, and `default` value isn't provided:* returns the result of `(debug \unkown-key)`
 
 ### Examples
 
@@ -689,9 +689,6 @@ If `key` already exists and is a positive integer, then it displaces instead the
 
 (insert {\name: 'Bob'} \name 'John')
 # {name: 'John'}
-
-(insert {\name: 'Bob'} \name)
-# {name}
 
 (insert \x (get 'y' 1))
 # xy
