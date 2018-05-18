@@ -623,14 +623,6 @@ A quantity greater than any [number](#number).
 ## `insert`
 
 ```
-(insert map:Map value:Any): Map
-```
-
-A [function](#function) that associates a `value` with itself in a `map`, and returns the new [map](#map).
-
-If `value` already exists as a key, then its associated value becomes `value`.
-
-```
 (insert set:Set value:Any): Set
 ```
 
@@ -660,9 +652,9 @@ If `key` already exists, then its associated value becomes `value`.
 
 A [function](#function) that associates a `key` with a `value` in a `list` or `function`, and returns the new [list](#list) or [function](#function) respectively.
 
-If `key` already exists and isn't a positive integer, then its associated value becomes `value` in a [function](#function).
+If `key` already exists and isn't a positive integer, then its associated value becomes `value`.
 
-If `key` already exists and is a positive integer, then it displaces instead the existing key and all following integer keys, by incrementing them by one.
+If `key` already exists and is a positive integer, then it displaces instead the existing key and all following integer keys, incrementing them by one.
 
 ### Conditions
 
