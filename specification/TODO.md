@@ -1,5 +1,6 @@
 - Add a replace collection operation.
 - Document inserting and removing invalid positions and values for data types that restrict the set of allowed values. And also removing values from lists and how it displaces.
+  - for functions, if key is an integer, it must be between or equal to 1 and the next highest -- condition
 - Data type validation should mention that sub prototypes are also allowed.
 - Indicate time and space complexity for each operation and data type.
 - Document any side-effects for each operation and data type.
