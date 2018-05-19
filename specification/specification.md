@@ -649,9 +649,7 @@ A quantity greater than any [number](#number).
 (insert set:Set value:Any): Set
 ```
 
-A [function](#function) that adds a `value` to a `set`, and returns the new [set](#set).
-
-If `value` is already present, then `set` is returned unchanged.
+A [function](#function) that adds a `value` to a `set`, and returns the new [set](#set). If `value` is already present, then `set` is returned unchanged.
 
 ```
 (insert list:List value:Any): List
@@ -664,20 +662,14 @@ A [function](#function) that associates a `value` with the next highest positive
 (insert map:Map key:Any value:Any): Map
 ```
 
-A [function](#function) that associates a `key` with a `value` in a `map`, and returns the new [map](#map).
-
-If `key` already exists, then its associated value becomes `value`.
+A [function](#function) that associates a `key` with a `value` in a `map`, and returns the new [map](#map). If `key` already exists, then its associated value becomes `value`.
 
 ```
 (insert list:List key:Number value:Any): List
 (insert function:Function key:Any value:Any): Function
 ```
 
-A [function](#function) that associates a `key` with a `value` in a `list` or `function`, and returns the new [list](#list) or [function](#function) respectively.
-
-If `key` already exists and isn't a positive integer, then its associated value becomes `value`.
-
-If `key` already exists and is a positive integer, then it displaces instead the existing key and all following integer keys, incrementing them by one.
+A [function](#function) that associates a `key` with a `value` in a `list` or `function`, and returns the new [list](#list) or [function](#function) respectively. If `key` already exists and isn't a positive integer, then its associated value becomes `value`. If `key` already exists and is a positive integer, then it displaces instead the existing key and all following integer keys, if any, incrementing each by one.
 
 ### Conditions
 
@@ -725,9 +717,7 @@ If `key` already exists and is a positive integer, then it displaces instead the
 (load path:List ...:Any): Any
 ```
 
-A [function](#function) that loads a [module](#module) by `path`, with zero or more arguments, and returns the value from the last evaluated expression.
-
-A `path` is a list of zero or more names, ending with the [module](#module) name.
+A [function](#function) that loads a [module](#module) by `path`, with zero or more arguments, and returns the value from the last evaluated expression. A `path` is a list of zero or more names, ending with the [module](#module) name.
 
 ### Conditions
 
@@ -849,18 +839,27 @@ A [function](#function) that extends the prototype hierarchy using `base` thereb
 (remove map:Map key:Any): Map
 ```
 
-A [function](#function) that disassociates a `key` from a value in a `map`, and returns the new [map](#map). If there's no such `key`, the same `map` is returned unchanged.
+A [function](#function) that disassociates a `key` from a value in a `map`, and returns the new [map](#map). If `key` isn't present, then `map` is returned unchanged.
+
+```
+(remove list:List key:Number): List
+(remove function:Function key:Any): Function
+```
+
+A [function](#function) that disassociates a `key` from a value in a `list` or `function`, and returns the new [list](#list) or [function](#function) respectively. If `key` isn't present, then `list` or `function` is returned unchanged. If `key` is present and is a positive integer, then it displaces instead all following integer keys, if any, decrementing each by one.
 
 ### Conditions
 
 - *Less or more than two arguments:* returns `(debug \parameter-mismatch)`
 - *`map` argument isn't a prototype of nor a map:* returns `(debug \prototype-mismatch)`
+- *`list` argument is a prototype of or a list and `key` isn't a positive integer:* returns `(debug \parameter-mismatch)`
+- *`function` argument is a prototype of or a function and when `key` is a number it isn't a positive integer:* returns `(debug \parameter-mismatch)`
 
 ### Examples
 
 ```
-(remove [8] 1)
-# []
+(remove [7 8 9] 2)
+# [7 9]
 
 (remove ['x' 'y'] 3)
 # ['x' 'y']
