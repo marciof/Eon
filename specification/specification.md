@@ -310,7 +310,7 @@ An immutable sequence of Unicode characters, each one identified by a numeric co
 
 # Built-ins
 
-In the following examples `Any` is a placeholder that denotes any possible data type.
+In the following examples, `Any` is a placeholder that denotes any possible data type, and `...` is a placeholder that denotes zero or more arguments.
 
 ## `=` <a id="equal"/>
 
