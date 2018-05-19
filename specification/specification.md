@@ -2,7 +2,6 @@
 
 - [Introduction](#introduction)
 - [Structure](#structure)
-  - [Module](#module)
 - [Prototypes](#prototypes)
   - [Boolean](#boolean)
   - [Function](#function)
@@ -13,7 +12,28 @@
   - [Symbol](#symbol)
   - [Text](#text)
 - [Built-ins](#built-ins)
+  - [`=`](#equal)
+  - [`<`](#less-than)
+  - [`>`](#greater-than)
+  - [`+`](#add)
+  - [`-`](#subtract)
+  - [`*`](#multiply)
+  - [`/`](#divide)
+  - [`bindings`](#bindings)
+  - [`count`](#count)
+  - [`debug`](#debug)
+  - [`defer`](#defer)
+  - [`evaluate`](#evaluate)
+  - [`get`](#get)
+  - [`infinity`](#infinity)
+  - [`insert`](#insert)
+  - [`load`](#load)
+  - [`local`](#local)
+  - [`next`](#next)
+  - [`prototype`](#prototype)
+  - [`remove`](#remove)
 - [Grammar](#grammar)
+  - [Transformations](#transformations)
 - [Coding Style](#coding-style)
 
 # Introduction
@@ -292,7 +312,7 @@ An immutable sequence of Unicode characters, each one identified by a numeric co
 
 In the following examples `Any` is a placeholder that denotes any possible data type.
 
-## `=`
+## `=` <a id="equal"/>
 
 ```
 (= x:Any y:Any ...:Any): Boolean
@@ -326,7 +346,7 @@ A [function](#function) that compares two or more values and returns true if the
 # true
 ```
 
-## `<`
+## `<` <a id="less-than"/>
 
 ```
 (< x:Number y:Number ...:Number): Boolean
@@ -339,7 +359,7 @@ A [function](#function) that compares two or more [numbers](#number) and returns
 - *Less than two arguments:* returns the result of `(debug \parameter-mismatch)`
 - *Argument isn't a prototype of nor a number:* returns the result of `(debug \prototype-mismatch)`
 
-## `>`
+## `>` <a id="greater-than"/>
 
 ```
 (> x:Number y:Number ...:Number): Boolean
@@ -352,7 +372,7 @@ A [function](#function) that compares two or more [numbers](#number) and returns
 - *Less than two arguments:* returns the result of `(debug \parameter-mismatch)`
 - *Argument isn't a prototype of nor a number:* returns the result of `(debug \prototype-mismatch)`
 
-## `+`
+## `+` <a id="add"/>
 
 ```
 (+ x:Number ...:Number): Number
@@ -366,7 +386,7 @@ A [function](#function) that adds one or more [numbers](#number).
 - *Argument isn't a prototype of nor a number:* returns the result of `(debug \prototype-mismatch)`
 - *Adding negative and positive infinity:* returns the result of `(debug \undefined-arithmetic)`
 
-## `-`
+## `-` <a id="subtract"/>
 
 ```
 (- x:Number ...:Number): Number
@@ -380,7 +400,7 @@ A [function](#function) that subtracts one or more [numbers](#number).
 - *Argument isn't a prototype of nor a number:* returns the result of `(debug \prototype-mismatch)`
 - *Subtracting infinity from infinity:* returns the result of `(debug \undefined-arithmetic)`
 
-## `*`
+## `*` <a id="multiply"/>
 
 ```
 (* multiplicand:Number multiplier:Number ...:Number): Number
@@ -394,7 +414,7 @@ A [function](#function) that multiplies two or more [numbers](#number).
 - *Argument isn't a prototype of nor a number:* returns the result of `(debug \prototype-mismatch)`
 - *Multiplying zero and infinity:* returns the result of `(debug \undefined-arithmetic)`
 
-## `/`
+## `/` <a id="divide"/>
 
 ```
 (/ dividend:Number divisor:Number ...:Number): Number
