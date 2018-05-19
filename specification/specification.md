@@ -43,7 +43,7 @@
 Simple:
 - Minimal syntax, but readable.
 - Prototype-based object model.
-- Flat over nested.
+- Flat over nested, helpers over wrappers.
 - No undefined behavior, consistent, uniform.
 - Everything is a value, never null.
 - Right things easier than wrong things, encouraged, and the only way.
@@ -55,7 +55,6 @@ Powerful:
 - Homoiconic, code as data.
 - No arbitrary limits: *"Zero-one-infinity rule."*
 - Unified macros, methods and functions via multiple dispatch and callee controlling argument evaluation.
-- Unified classes and instances via prototypes.
 - High-level: *"A programming language is low level when its programs require attention to the irrelevant."*
 - Documentation available at run-time.
 - Embeddable.

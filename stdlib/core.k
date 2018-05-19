@@ -1,9 +1,10 @@
 {
   \Boolean: (= 0 0)
-  \Function: ()
+  \Function: \()
   \List: []
-  \Map: {}
+  \Map: {:}
   \Number: 0
+  \Set: {}
   \Symbol: (prototype \x)
   \Text: ''
 
@@ -12,43 +13,43 @@
 
   \if: \(evaluate (get
     {
-      true: (get scope 2)
-      false: (get scope 3)
+      true: (get bindings 2)
+      false: (get bindings 3)
     }
-    (evaluate (get scope 1))))
+    (evaluate (get bindings 1))))
 
   \and: \(evaluate (get
     {
-      true: (get scope 2)
+      true: (get bindings 2)
       false: false
     }
-    (evaluate (get scope 1))))
+    (evaluate (get bindings 1))))
 
   \not: \(get
     {true: false false: true}
-    (evaluate (get scope 1)))
+    (evaluate (get bindings 1)))
 
   \or: \(evaluate (get
     {
       true: true
-      false: (get scope 2)
+      false: (get bindings 2)
     }
-    (evaluate (get scope 1))))
+    (evaluate (get bindings 1))))
 
   \<>: \(not (=
-    (evaluate (get scope 1))
-    (evaluate (get scope 2))))
+    (evaluate (get bindings 1))
+    (evaluate (get bindings 2))))
 
   \<=: \(not (>
-    (evaluate (get scope 1))
-    (evaluate (get scope 2))))
+    (evaluate (get bindings 1))
+    (evaluate (get bindings 2))))
 
   \>=: \(not (<
-    (evaluate (get scope 1))
-    (evaluate (get scope 2))))
+    (evaluate (get bindings 1))
+    (evaluate (get bindings 2))))
 
   \do: \(reduce
-    (splice scope {1} [])
-    (evaluate (get scope 1))
-    \(evaluate (get scope 2)))
+    (splice bindings {1} [])
+    (evaluate (get bindings 1))
+    \(evaluate (get bindings 2)))
 }

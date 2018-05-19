@@ -1,4 +1,4 @@
-- Make an empty function invalid both in syntax, as well as removing the last element, so as to avoid error conditions from it?
+- Function position zero?
 - Add a replace collection operation?
 - Indicate time and space complexity for each operation and data type.
 - Document any side-effects for each operation and data type.
@@ -20,6 +20,8 @@
   - https://github.com/anvaka/common-words/blob/master/README.md
 - Documentation: man pages, tutorial, FAQ, quick start.
 - http://www.infoq.com/presentations/Value-Identity-State-Rich-Hickey
+- "Empirical Analysis of Programming Language Adoption", Leo A. Meyerovich, Ariel Rabkin: http://sns.cs.princeton.edu/docs/asr-oopsla13.pdf
+- "Structural Regular Expressions", Rob Pike: http://doc.cat-v.org/bell_labs/structural_regexps/se.pdf
 - Look for best/worst features of other languages: Perl, F#, Matlab, Rust, Ruby, Go, Julia, JavaScript, Clojure, Kotlin, Python, Haskell, Erlang, PureScript, Elm, Io, Smalltalk, Java, Scheme, ML, Lua, Haxe, Tcl, Shen R, REBOL, Wolfram, HyperCard
 - Open questions:
   - Reactive programming.

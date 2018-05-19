@@ -39,6 +39,8 @@
 - Upgrade to Multiboot 2?
 - https://github.com/copy/v86
 - Prototyping:
+  - "Crafting Interpreters", Bob Nystrom: http://craftinginterpreters.com
+  - "LispOS - Specification of a Lisp operating system.", Robert Strandh: http://metamodular.com/lispos.pdf
   - lexical analysis: Lexer, Tokenizer, Scanner / syntax analysis: Parser, Syntax Tree, Parse Tree
   - Start adding unit tests.
   - Add `getopt` with help screen, options, and version.
@@ -47,8 +49,15 @@
   - Add verbose option, print func/file/line on errors only in debug mode.
   - Add few functional high-level black-box language tests, eg. input "(+ 1 2)", translate to JavaScript, run, output "3". (Or even with the token stream option alone as well). With Valgrind.
   - C frontend, JavaScript backend: can reuse frontend and AST for the final version, and with JavaScript it's easy to get something running.
-  - Add requirements one by one, even if with limitations (eg. no fully unlimited precision arithmetic at first): immutable collections, Unicode text, prototypical inheritance, first class scope, unlimited precision arithmetic, homoiconic, unevaluated arguments.
+  - Unix tools philosophy for the interpreter?
+    - Make a shell/REPL so that I can start using it ASAP.
+    - Makes it easier to integrate in/with other tools?
+    - Command line options for each stage for textual output. Easier to debug and integrate.
+      - stream tokens from input, one per line
+      - then parser
+      - etc
   - Improve interpreter step by step: REPL/shell, local/remote debugger, stdin/stdout filter.
+  - Add requirements one by one, even if with limitations (eg. no fully unlimited precision arithmetic at first): immutable collections, Unicode text, prototypical inheritance, first class scope, unlimited precision arithmetic, homoiconic, unevaluated arguments.
   - When done with JavaScript backend, start translating to PicoLisp (or even ECL, Common Lisp, Clojure) since it can be embedded (verify first), and reuse the tests written previously.
   - Skip translation and interpret directly. Look to PicoLisp for inspiration. Maybe still leave translation in as an option, especially if to JavaScript since that also makes the browser another possible host and can be useful (lower barrier to entry and also ability to use a single language full-stack).
     - http://www.nongnu.org/libunwind/
