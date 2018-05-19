@@ -1,5 +1,6 @@
-- Add a replace collection operation.
-- Document removing invalid positions and values for data types that restrict the set of allowed values. Also how removing values displaces items in lists and functions.
+- Document removing invalid positions and values for data types that restrict the set of allowed values. Also document how it displaces items in lists and functions.
+- Make an empty function invalid both in syntax, as well as removing the last element, so as to avoid error conditions from it?
+- Add a replace collection operation?
 - Indicate time and space complexity for each operation and data type.
 - Document any side-effects for each operation and data type.
 - Specify prototypical inheritance (differential inheritance, eg. intro, `get`, `put` and `remove` handling, etc). http://steve-yegge.blogspot.com/2008/10/universal-design-pattern.html
