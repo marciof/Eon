@@ -384,7 +384,7 @@ A [function](#function) that adds one or more [numbers](#number).
 
 - *No arguments:* returns `(debug \parameter-mismatch)`
 - *Argument isn't a prototype of nor a number:* returns `(debug \prototype-mismatch)`
-- *Adding negative and positive infinity:* returns `(debug \undefined-arithmetic)`
+- *Adding negative and positive infinity:* returns `(debug \undefined-result)`
 
 ## `-` <a id="subtract"/>
 
@@ -398,7 +398,7 @@ A [function](#function) that subtracts one or more [numbers](#number).
 
 - *No arguments:* returns `(debug \parameter-mismatch)`
 - *Argument isn't a prototype of nor a number:* returns `(debug \prototype-mismatch)`
-- *Subtracting infinity from infinity:* returns `(debug \undefined-arithmetic)`
+- *Subtracting infinity from infinity:* returns `(debug \undefined-result)`
 
 ## `*` <a id="multiply"/>
 
@@ -412,7 +412,7 @@ A [function](#function) that multiplies two or more [numbers](#number).
 
 - *Less than two arguments:* returns `(debug \parameter-mismatch)`
 - *Argument isn't a prototype of nor a number:* returns `(debug \prototype-mismatch)`
-- *Multiplying zero and infinity:* returns `(debug \undefined-arithmetic)`
+- *Multiplying zero and infinity:* returns `(debug \undefined-result)`
 
 ## `/` <a id="divide"/>
 
@@ -426,7 +426,7 @@ A [function](#function) that divides two or more [numbers](#number).
 
 - *Less than two arguments:* returns `(debug \parameter-mismatch)`
 - *Argument isn't a prototype of nor a number:* returns `(debug \prototype-mismatch)`
-- *Dividing by zero or infinity by infinity:* returns `(debug \undefined-arithmetic)`
+- *Dividing by zero or infinity by infinity:* returns `(debug \undefined-result)`
 
 ### Examples
 
@@ -548,6 +548,7 @@ A [function](#function) that evaluates an `expression` and returns the result, o
 
 - *Zero or more than two arguments:* returns `(debug \parameter-mismatch)`
 - *`bindings` argument isn't a prototype of nor a map:* returns `(debug \prototype-mismatch)`
+- *`expression` argument is an empty function:* returns `(debug \undefined-result)`
 
 ### Examples
 
@@ -732,7 +733,7 @@ A `path` is a list of zero or more names, ending with the [module](#module) name
 - *Less than one argument:* returns `(debug \parameter-mismatch)`
 - *`path` argument isn't a prototype of nor a non-empty list of symbols:* returns `(debug \prototype-mismatch)`
 - *Module can't be found:* returns `(debug \unknown-module)`
-- *Module doesn't evaluate to at least one value:* returns `(debug \empty-module)`
+- *Module doesn't evaluate to at least one value:* returns `(debug \undefined-result)`
 
 ### Examples
 
