@@ -54,7 +54,8 @@ Simple:
 Powerful:
 - Homoiconic, code as data.
 - No arbitrary limits: *"Zero-one-infinity rule."*
-- Unified macros, methods and functions. Multiple dispatch and callee controls argument evaluation.
+- Unified macros, methods and functions via multiple dispatch and callee controlling argument evaluation.
+- Unified classes and instances via prototypes.
 - High-level: *"A programming language is low level when its programs require attention to the irrelevant."*
 - Documentation available at run-time.
 - Embeddable.
