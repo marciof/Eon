@@ -48,14 +48,14 @@ Simple:
 - Everything is a value, never null.
 - Right things easier than wrong things, encouraged, and the only way.
 - Immutable data structures, no defensive copying.
-- Principle of Least Surprise: "The design should match the user's experience, expectations, and mental models."
-- "Keep the language specification simple enough to hold in a programmer's head."
+- Principle of Least Surprise: *"The design should match the user's experience, expectations, and mental models."*
+- *"Keep the language specification simple enough to hold in a programmer's head."*
 
 Powerful:
 - Homoiconic, code as data.
-- No arbitrary limits: "Zero-one-infinity rule".
-- Unified macros, methods and functions. Callee controls argument evaluation.
-- High-level: "A programming language is low level when its programs require attention to the irrelevant."
+- No arbitrary limits: *"Zero-one-infinity rule."*
+- Unified macros, methods and functions. Multiple dispatch and callee controls argument evaluation.
+- High-level: *"A programming language is low level when its programs require attention to the irrelevant."*
 - Documentation available at run-time.
 - Embeddable.
 
@@ -63,7 +63,7 @@ Practical:
 - REPL.
 - Fast enough (zero-copy; quick feedback, low latency; or maximum resource usage when appropriate).
 - Easy data type literals: lists, maps, sets, functions, text (strings), numbers.
-- Multi-platform: "Write once, run everywhere".
+- Multi-platform: *"Write once, run everywhere."*
 - Native code interop, FFI (Foreign Function Interface).
 - Shell-scripting (`#!`, hash-bang syntax naturally supported).
 - Permissive license.
