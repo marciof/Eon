@@ -337,7 +337,7 @@ A [function](#function) that compares two or more [numbers](#number) and returns
 ### Conditions
 
 - *Less than two arguments:* returns the result of `(debug \parameter-mismatch)`
-- *Non-number argument:* returns the result of `(debug \prototype-mismatch)`
+- *Argument isn't a prototype of nor a number:* returns the result of `(debug \prototype-mismatch)`
 
 ## `>`
 
@@ -350,7 +350,7 @@ A [function](#function) that compares two or more [numbers](#number) and returns
 ### Conditions
 
 - *Less than two arguments:* returns the result of `(debug \parameter-mismatch)`
-- *Non-number argument:* returns the result of `(debug \prototype-mismatch)`
+- *Argument isn't a prototype of nor a number:* returns the result of `(debug \prototype-mismatch)`
 
 ## `+`
 
@@ -363,7 +363,7 @@ A [function](#function) that adds one or more [numbers](#number).
 ### Conditions
 
 - *No arguments:* returns the result of `(debug \parameter-mismatch)`
-- *Non-number argument:* returns the result of `(debug \prototype-mismatch)`
+- *Argument isn't a prototype of nor a number:* returns the result of `(debug \prototype-mismatch)`
 - *Adding negative and positive infinity:* returns the result of `(debug \undefined-arithmetic)`
 
 ## `-`
@@ -377,7 +377,7 @@ A [function](#function) that subtracts one or more [numbers](#number).
 ### Conditions
 
 - *No arguments:* returns the result of `(debug \parameter-mismatch)`
-- *Non-number argument:* returns the result of `(debug \prototype-mismatch)`
+- *Argument isn't a prototype of nor a number:* returns the result of `(debug \prototype-mismatch)`
 - *Subtracting infinity from infinity:* returns the result of `(debug \undefined-arithmetic)`
 
 ## `*`
@@ -391,7 +391,7 @@ A [function](#function) that multiplies two or more [numbers](#number).
 ### Conditions
 
 - *Less than two arguments:* returns the result of `(debug \parameter-mismatch)`
-- *Non-number argument:* returns the result of `(debug \prototype-mismatch)`
+- *Argument isn't a prototype of nor a number:* returns the result of `(debug \prototype-mismatch)`
 - *Multiplying zero and infinity:* returns the result of `(debug \undefined-arithmetic)`
 
 ## `/`
@@ -405,8 +405,8 @@ A [function](#function) that divides two or more [numbers](#number).
 ### Conditions
 
 - *Less than two arguments:* returns the result of `(debug \parameter-mismatch)`
-- *Non-number argument:* returns the result of `(debug \prototype-mismatch)`
-- *Dividing any number by zero or infinity by infinity:* returns the result of `(debug \undefined-arithmetic)`
+- *Argument isn't a prototype of nor a number:* returns the result of `(debug \prototype-mismatch)`
+- *Dividing by zero or infinity by infinity:* returns the result of `(debug \undefined-arithmetic)`
 
 ### Examples
 
@@ -439,7 +439,7 @@ A [function](#function) that returns the number of key/value pairs in a `map`.
 ### Conditions
 
 - *Less or more than one argument:* returns the result of `(debug \parameter-mismatch)`
-- *`map` argument isn't a map:* returns the result of `(debug \prototype-mismatch)`
+- *`map` argument isn't a prototype of nor a map:* returns the result of `(debug \prototype-mismatch)`
 
 ### Examples
 
@@ -481,7 +481,7 @@ A [function](#function) that interrupts normal execution flow. In development mo
 ### Conditions
 
 - *More than one argument:* returns the result of `(debug \parameter-mismatch)`
-- *`name` argument isn't a symbol:* returns the result of `(debug \prototype-mismatch)`
+- *`name` argument isn't a prototype of nor a symbol:* returns the result of `(debug \prototype-mismatch)`
 
 ## `defer`
 
@@ -495,7 +495,7 @@ A [function](#function) that creates a snapshot of an `expression` thereby preve
 ### Conditions
 
 - *Less than one or more than two arguments:* returns the result of `(debug \parameter-mismatch)`
-- *`escape` argument isn't a symbol:* returns the result of `(debug \prototype-mismatch)`
+- *`escape` argument isn't a prototype of nor a symbol:* returns the result of `(debug \prototype-mismatch)`
 
 ### Examples
 
@@ -527,6 +527,7 @@ A [function](#function) that evaluates an `expression` and returns the result, o
 ### Conditions
 
 - *Zero or more than two arguments:* returns the result of `(debug \parameter-mismatch)`
+- *`bindings` argument isn't a prototype of nor a map:* returns the result of `(debug \prototype-mismatch)`
 
 ### Examples
 
@@ -566,8 +567,8 @@ A [function](#function) that retrieves the value associated with a `key` in a `m
 ### Conditions
 
 - *Less than two or more than three arguments:* returns the result of `(debug \parameter-mismatch)`
-- *`map` argument isn't a map:* returns the result of `(debug \prototype-mismatch)`
-- *Association doesn't exist, and `default` value isn't provided:* returns the result of `(debug \unkown-key)`
+- *`map` argument isn't a prototype of nor a map:* returns the result of `(debug \prototype-mismatch)`
+- *Association doesn't exist and a `default` value isn't provided:* returns the result of `(debug \unkown-key)`
 
 ### Examples
 
@@ -659,9 +660,9 @@ If `key` already exists and is a positive integer, then it displaces instead the
 ### Conditions
 
 - *Less than two or more than three arguments:* returns the result of `(debug \parameter-mismatch)`
-- *`map` argument isn't a map:* returns the result of `(debug \prototype-mismatch)`
-- *`map` argument is a set and `key` isn't equal to `value`:* returns the result of `(debug \prototype-mismatch)`
-- *`map` argument is a list and `key` isn't a positive integer less than or equal to its length:* returns the result of `(debug \prototype-mismatch)`
+- *`map` argument isn't a prototype of nor a map:* returns the result of `(debug \prototype-mismatch)`
+- *`map` argument is a prototype of or a set and `key` isn't equal to `value`:* returns the result of `(debug \prototype-mismatch)`
+- *`map` argument is a prototype of or a list and `key` isn't a positive integer less than or equal to its length:* returns the result of `(debug \prototype-mismatch)`
 
 ### Examples
 
@@ -707,7 +708,7 @@ A `path` is a list of zero or more names, ending with the [module](#module) name
 ### Conditions
 
 - *Less than one argument:* returns the result of `(debug \parameter-mismatch)`
-- *`path` argument isn't a non-empty list of symbols:* returns the result of `(debug \prototype-mismatch)`
+- *`path` argument isn't a prototype of nor a non-empty list of symbols:* returns the result of `(debug \prototype-mismatch)`
 - *Module can't be found:* returns the result of `(debug \unknown-module)`
 - *Module doesn't evaluate to at least one value:* returns the result of `(debug \empty-module)`
 
@@ -728,7 +729,7 @@ A [function](#function) that returns a [map](#map) with the non-inherited key/va
 ### Conditions
 
 - *Less or more than one argument:* returns the result of `(debug \parameter-mismatch)`
-- *`map` argument isn't a map:* returns the result of `(debug \prototype-mismatch)`
+- *`map` argument isn't a prototype of nor a map:* returns the result of `(debug \prototype-mismatch)`
 
 ### Examples
 
@@ -755,7 +756,7 @@ A [function](#function) that returns the first key or the key following `key` in
 ### Conditions
 
 - *Less than one or more than two arguments:* returns the result of `(debug \parameter-mismatch)`
-- *`map` argument isn't a map:* returns the result of `(debug \prototype-mismatch)`
+- *`map` argument isn't a prototype of nor a map:* returns the result of `(debug \prototype-mismatch)`
 - *`map` is empty or `key` is the last key:* returns the result of `(debug \unknown-key)`
 
 ### Examples
@@ -829,7 +830,7 @@ A [function](#function) that disassociates a `key` from a value in a `map`, and 
 ### Conditions
 
 - *Less or more than two arguments:* returns the result of `(debug \parameter-mismatch)`
-- *`map` argument isn't a map:* returns the result of `(debug \prototype-mismatch)`
+- *`map` argument isn't a prototype of nor a map:* returns the result of `(debug \prototype-mismatch)`
 
 ### Examples
 
