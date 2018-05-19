@@ -588,7 +588,7 @@ A [function](#function) that retrieves the value associated with a `key` in a `m
 
 - *Less than two or more than three arguments:* returns the result of `(debug \parameter-mismatch)`
 - *`map` argument isn't a prototype of nor a map:* returns the result of `(debug \prototype-mismatch)`
-- *Association doesn't exist and a `default` value isn't provided:* returns the result of `(debug \unkown-key)`
+- *Association doesn't exist and a `default` value isn't provided:* returns the result of `(debug \unknown-key)`
 
 ### Examples
 
@@ -681,8 +681,10 @@ If `key` already exists and is a positive integer, then it displaces instead the
 
 - *Less than two or more than three arguments:* returns the result of `(debug \parameter-mismatch)`
 - *`map` argument isn't a prototype of nor a map:* returns the result of `(debug \prototype-mismatch)`
-- *`map` argument is a prototype of or a set and `key` isn't equal to `value`:* returns the result of `(debug \prototype-mismatch)`
-- *`map` argument is a prototype of or a list and `key` isn't a positive integer less than or equal to its length:* returns the result of `(debug \prototype-mismatch)`
+- *`map` argument is a prototype of or a set and `key` isn't equal to `value`:* returns the result of `(debug \parameter-mismatch)`
+- *`set` argument isn't a prototype of nor a set:* returns the result of `(debug \prototype-mismatch)`
+- *`list` argument is a prototype of or a list and `key` isn't a positive integer less than or equal to its length plus one:* returns the result of `(debug \parameter-mismatch)`
+- *`function` argument is a prototype of or a function and when `key` is a number it isn't a positive integer less than or equal to its highest positive integer key plus one:* returns the result of `(debug \parameter-mismatch)`
 
 ### Examples
 
