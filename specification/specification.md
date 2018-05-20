@@ -107,9 +107,7 @@ A binary logical value that can only be either true or false. It does not have a
 
 ## Function
 
-An immutable sequence composed of a function followed by zero or more values, as the arguments.
-
-This sequence associates the number zero with the function, and consecutive positive integer keys in ascending order with positional arguments, including any keyword arguments as well.
+An immutable sequence composed of a function followed by zero or more values as the arguments. This sequence associates consecutive positive integer keys in ascending order with positional arguments, including any keyword arguments as well.
 
 Calling a function creates a new [bindings](#bindings) map using the [deferred](#defer) function call, [prototypically](#prototype) inherited from the current bindings in scope, and then evaluates it using the new bindings returning the result.
 
@@ -548,7 +546,7 @@ A [function](#function) that evaluates an `expression` and returns the result, o
 
 - *Zero or more than two arguments:* returns `(debug \parameter-mismatch)`
 - *`bindings` argument isn't a prototype of nor a map:* returns `(debug \prototype-mismatch)`
-- *`expression` argument is an empty function:* returns `(debug \undefined-result)`
+- *`expression` argument is a prototype of or a function that's empty or doesn't have a valid function as its first element:* returns `(debug \undefined-result)`
 
 ### Examples
 
@@ -776,10 +774,10 @@ A [function](#function) that returns the first key or the key following `key` in
 
 ```
 (next [\x \y \z])
-# x
+# 1
 
 (next [\x \y \z] 2)
-# z
+# 3
 
 (next {\name: 'Bob' \age: 20})
 # name
