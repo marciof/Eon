@@ -24,7 +24,6 @@
 - Open questions:
   - Reactive programming.
   - Live changes (hot-reloading) support.
-  - Optional static typing with inference?
   - Change `load` to allow specifying a language/type to make it part of the spec that it has hooks for FFI? It's more practical and realistic, and also enables using native parts of a OS runtime. Allow a string so that anything works? URLs, etc
   - Indentation based syntax? The REPL becomes the shell, it just adds global functions as commands and other niceties.
     - If a line starts with a parenthesis it disables significant indentation inside the entire expression.

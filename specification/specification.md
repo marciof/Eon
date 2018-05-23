@@ -107,7 +107,7 @@ A binary logical value that can only be either true or false. It does not have a
 
 ## Function
 
-An immutable sequence composed of a function followed by zero or more values as the arguments. This sequence associates consecutive positive integer keys in ascending order with positional arguments, including any keyword arguments as well.
+An immutable sequence composed of a function followed by zero or more values as the arguments. This sequence associates consecutive positive integer keys in ascending order with positional arguments, including any keyword arguments as well. An empty function evaluates to itself. 
 
 Calling a function creates a new [bindings](#bindings) map using the [deferred](#defer) function call, [prototypically](#prototype) inherited from the current bindings in scope, and then evaluates it using the new bindings returning the result.
 
@@ -118,7 +118,7 @@ Calling a function creates a new [bindings](#bindings) map using the [deferred](
 
 ```
 (* 4 5)
-# 3
+# 20
 
 (* multiplicand: 4 multiplier: 5)
 # 20
@@ -127,6 +127,9 @@ Calling a function creates a new [bindings](#bindings) map using the [deferred](
 # (- 1)
 
 \()
+# ()
+
+()
 # ()
 
 (prototype \(+ 1 2))
@@ -546,7 +549,6 @@ A [function](#function) that evaluates an `expression` and returns the result, o
 
 - *Zero or more than two arguments:* returns `(debug \parameter-mismatch)`
 - *`bindings` argument isn't a prototype of nor a map:* returns `(debug \prototype-mismatch)`
-- *`expression` argument is a prototype of or a function that's empty or doesn't have a valid function as its first element:* returns `(debug \undefined-result)`
 
 ### Examples
 
@@ -676,6 +678,7 @@ A [function](#function) that associates a `key` with a `value` in a `list` or `f
 - *`set` argument isn't a prototype of nor a set:* returns `(debug \prototype-mismatch)`
 - *`list` argument is a prototype of or a list and `key` isn't a positive integer less than or equal to its length plus one:* returns `(debug \parameter-mismatch)`
 - *`function` argument is a prototype of or a function and when `key` is a number it isn't a positive integer less than or equal to its highest positive integer key plus one:* returns `(debug \parameter-mismatch)`
+- *`function` argument is a prototype of or a function and `value` isn't a prototype of or a function when inserting it into the first position:* returns `(debug \parameter-mismatch)`
 
 ### Examples
 
@@ -851,6 +854,7 @@ A [function](#function) that disassociates a `key` from a value in a `list` or `
 - *`map` argument isn't a prototype of nor a map:* returns `(debug \prototype-mismatch)`
 - *`list` argument is a prototype of or a list and `key` isn't a positive integer:* returns `(debug \parameter-mismatch)`
 - *`function` argument is a prototype of or a function and when `key` is a number it isn't a positive integer:* returns `(debug \parameter-mismatch)`
+- *`function` argument is a prototype of or a non-empty function and `key` is `1`:* returns `(debug \parameter-mismatch)`
 
 ### Examples
 
@@ -953,7 +957,7 @@ Set ::= Map-Begin White-Space* (Expression (White-Space+ Expression)* White-Spac
 Function:
 
 ```
-Function ::= Function-Begin White-Space* (Function-Value (White-Space+ Function-Value)* White-Space*)? Function-End
+Function ::= Function-Begin White-Space* (Function (White-Space+ Function-Value)* White-Space*)? Function-End
 Function-Value ::= Expression | Pair
 Get-Chain ::= Symbol (Pair-Separator{2} Symbol)+
 Function-Begin ::= "(" <U+28>
