@@ -52,4 +52,7 @@
     (splice bindings {1} [])
     (evaluate (get bindings 1))
     \(evaluate (get bindings 2)))
+
+  # Helper to have lexical binding by closing open bindings at creation (`bindings` built-in).
+  \function: \...
 }
