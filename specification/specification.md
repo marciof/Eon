@@ -772,7 +772,7 @@ A [function](#function) that returns the first key or the key following `key` in
 
 - *Less than one or more than two arguments:* returns `(debug \parameter-mismatch)`
 - *`map` argument isn't a prototype of nor a map:* returns `(debug \prototype-mismatch)`
-- *`map` is empty or a prototype of or a built-in function, or `key` is the last key:* returns `(debug \unknown-key)`
+- *`map` is empty or `key` is the last key:* returns `(debug \unknown-key)`
 
 ### Examples
 
@@ -856,7 +856,6 @@ A [function](#function) that disassociates a `key` from a value in a `list` or `
 - *`list` argument is a prototype of or a list and `key` isn't a positive integer:* returns `(debug \parameter-mismatch)`
 - *`function` argument is a prototype of or a function and when `key` is a number it isn't a positive integer:* returns `(debug \parameter-mismatch)`
 - *`function` argument is a prototype of or a non-empty function and `key` is `1`:* returns `(debug \parameter-mismatch)`
-- *`function` argument is a prototype of or a built-in function:* returns `(debug \prototype-mismatch)`
 
 ### Examples
 
