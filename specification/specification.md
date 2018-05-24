@@ -107,9 +107,9 @@ A binary logical value that can only be either true or false. It does not have a
 
 ## Function
 
-An immutable sequence composed of a function followed by zero or more values as the arguments. This sequence associates consecutive positive integer keys in ascending order with positional arguments, including any keyword arguments as well. An empty function evaluates to itself. 
+An immutable sequence composed of a function followed by zero or more values as the arguments. This sequence associates consecutive positive integer keys in ascending order with positional arguments, including any keyword arguments as well.
 
-Calling a function creates a new [bindings](#bindings) map using the [deferred](#defer) function call, [prototypically](#prototype) inherited from the current bindings in scope, and then evaluates it using the new bindings returning the result.
+Calling a function creates a new [bindings](#bindings) map using the [deferred](#defer) function call, [prototypically](#prototype) inherited from the current bindings in scope, and then evaluates it using the new bindings returning the result. Calling an empty function evaluates to itself. 
 
 - **Prototype:** empty [function](#function), `()`
 - **Base Prototype:** empty [map](#map), `{:}`
@@ -455,7 +455,7 @@ The bindings map always [prototypically](#prototype) inherits from the previous 
 (count map:Map): Number
 ```
 
-A [function](#function) that returns the number of key/value pairs in a `map`.
+A [function](#function) that returns the number of key/value pairs in a `map`. If `map` is a prototype of or a [built-in](#built-in) [function](#function) then it returns `0`.
 
 ### Conditions
 
@@ -679,6 +679,7 @@ A [function](#function) that associates a `key` with a `value` in a `list` or `f
 - *`list` argument is a prototype of or a list and `key` isn't a positive integer less than or equal to its length plus one:* returns `(debug \parameter-mismatch)`
 - *`function` argument is a prototype of or a function and when `key` is a number it isn't a positive integer less than or equal to its highest positive integer key plus one:* returns `(debug \parameter-mismatch)`
 - *`function` argument is a prototype of or a function and `value` isn't a prototype of or a function when inserting it into the first position:* returns `(debug \parameter-mismatch)`
+- *`function` argument is a prototype of or a built-in function:* returns `(debug \prototype-mismatch)`
 
 ### Examples
 
@@ -771,7 +772,7 @@ A [function](#function) that returns the first key or the key following `key` in
 
 - *Less than one or more than two arguments:* returns `(debug \parameter-mismatch)`
 - *`map` argument isn't a prototype of nor a map:* returns `(debug \prototype-mismatch)`
-- *`map` is empty or `key` is the last key:* returns `(debug \unknown-key)`
+- *`map` is empty or a prototype of or a built-in function, or `key` is the last key:* returns `(debug \unknown-key)`
 
 ### Examples
 
@@ -855,6 +856,7 @@ A [function](#function) that disassociates a `key` from a value in a `list` or `
 - *`list` argument is a prototype of or a list and `key` isn't a positive integer:* returns `(debug \parameter-mismatch)`
 - *`function` argument is a prototype of or a function and when `key` is a number it isn't a positive integer:* returns `(debug \parameter-mismatch)`
 - *`function` argument is a prototype of or a non-empty function and `key` is `1`:* returns `(debug \parameter-mismatch)`
+- *`function` argument is a prototype of or a built-in function:* returns `(debug \prototype-mismatch)`
 
 ### Examples
 
