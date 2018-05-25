@@ -21,7 +21,6 @@
   - [`/`](#divide)
   - [`bindings`](#bindings)
   - [`count`](#count)
-  - [`debug`](#debug)
   - [`defer`](#defer)
   - [`evaluate`](#evaluate)
   - [`get`](#get)
@@ -32,6 +31,7 @@
   - [`next`](#next)
   - [`prototype`](#prototype)
   - [`remove`](#remove)
+  - [`unwind`](#unwind)
 - [Grammar](#grammar)
   - [Transformations](#transformations)
 - [Coding Style](#coding-style)
@@ -492,20 +492,6 @@ A [function](#function) that returns the number of key/value pairs in a `map`. I
 # 3
 ```
 
-## `debug`
-
-```
-(debug): Any
-(debug name:Symbol): Any
-```
-
-A [function](#function) that interrupts normal execution flow. In development mode it triggers a debugger, while in production mode it halts execution with an appropriate error message.
-
-### Conditions
-
-- *More than one argument:* returns `(debug \parameter-mismatch)`
-- *`name` argument isn't a prototype of nor a symbol:* returns `(debug \prototype-mismatch)`
-
 ## `defer`
 
 ```
@@ -517,7 +503,7 @@ A [function](#function) that creates a snapshot of an `expression` thereby preve
 
 ### Conditions
 
-- *Less than one or more than two arguments:* returns `(debug \parameter-mismatch)`
+- *Zero or more than two arguments:* returns `(debug \parameter-mismatch)`
 - *`escape` argument isn't a prototype of nor a symbol:* returns `(debug \prototype-mismatch)`
 
 ### Examples
@@ -772,7 +758,7 @@ A [function](#function) that returns the first key or the key following `key` in
 
 ### Conditions
 
-- *Less than one or more than two arguments:* returns `(debug \parameter-mismatch)`
+- *Zero or more than two arguments:* returns `(debug \parameter-mismatch)`
 - *`map` argument isn't a prototype of nor a map:* returns `(debug \prototype-mismatch)`
 - *`map` is empty or `key` is the last key:* returns `(debug \unknown-key)`
 
@@ -880,6 +866,20 @@ A [function](#function) that disassociates a `key` from a value in a `list` or `
 (remove {\name: 'Bob'} \age)
 # {name: 'Bob'}
 ```
+
+## `unwind`
+
+```
+(unwind value:Any): Any
+(unwind value:Any bindings:Map): Any
+```
+
+A [function](#function) that interrupts normal execution flow. In development mode it triggers a debugger, while in production mode it halts execution with an appropriate error message.
+
+### Conditions
+
+- *Zero or more than two arguments:* returns `(debug \parameter-mismatch)`
+- *`name` argument isn't a prototype of nor a symbol:* returns `(debug \prototype-mismatch)`
 
 # Grammar
 
