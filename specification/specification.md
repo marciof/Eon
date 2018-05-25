@@ -874,12 +874,36 @@ A [function](#function) that disassociates a `key` from a value in a `list` or `
 (unwind value:Any bindings:Map): Any
 ```
 
-A [function](#function) that interrupts normal execution flow. In development mode it triggers a debugger, while in production mode it halts execution with an appropriate error message.
+A [function](#function) that aborts the current scope or the scope associated with the given `bindings`, and returns `value` as the result.
+
+Unwinding is a non-local early exit of a given scope. Unwinding the [module](#module) (or global) scope exits the currently executing [module](#module).
 
 ### Conditions
 
 - *Zero or more than two arguments:* returns `(debug \parameter-mismatch)`
-- *`name` argument isn't a prototype of nor a symbol:* returns `(debug \prototype-mismatch)`
+- *`bindings` argument isn't a prototype of nor a map:* returns `(debug \prototype-mismatch)`
+
+### Examples
+
+```
+(let x: 1
+
+  (let y: 2
+    y)
+  # 2
+
+  (let y: 2
+    (unwind 3)
+    y)
+  # 3
+
+  (let y: 2
+    (unwind 3 (prototype bindings))
+    y)
+
+  x)
+# 3  
+```
 
 # Grammar
 
