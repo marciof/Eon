@@ -881,7 +881,7 @@ Unwinding is a non-local early exit of a given scope. Unwinding the [module](#mo
 ### Conditions
 
 - *Zero or more than two arguments:* returns `(debug \parameter-mismatch)`
-- *`bindings` argument isn't a prototype of nor a map:* returns `(debug \prototype-mismatch)`
+- *`bindings` argument isn't a prototype of nor a bindings map:* returns `(debug \prototype-mismatch)`
 
 ### Examples
 
