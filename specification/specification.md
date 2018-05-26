@@ -325,7 +325,7 @@ A [function](#function) that compares two or more values and returns true if the
 
 ### Conditions
 
-- *Less than two arguments:* returns `(debug \parameter-mismatch)`
+- *Less than two arguments:* [unwinds](#unwind) global scope with `\parameter-mismatch`
 
 ### Examples
 
@@ -359,8 +359,8 @@ A [function](#function) that compares two or more [numbers](#number) and returns
 
 ### Conditions
 
-- *Less than two arguments:* returns `(debug \parameter-mismatch)`
-- *Argument isn't a prototype of nor a number:* returns `(debug \prototype-mismatch)`
+- *Less than two arguments:* [unwinds](#unwind) global scope with `\parameter-mismatch`
+- *Argument isn't a prototype of nor a number:* [unwinds](#unwind) global scope with `\prototype-mismatch`
 
 ## `>` <a id="greater-than"/>
 
@@ -372,8 +372,8 @@ A [function](#function) that compares two or more [numbers](#number) and returns
 
 ### Conditions
 
-- *Less than two arguments:* returns `(debug \parameter-mismatch)`
-- *Argument isn't a prototype of nor a number:* returns `(debug \prototype-mismatch)`
+- *Less than two arguments:* [unwinds](#unwind) global scope with `\parameter-mismatch`
+- *Argument isn't a prototype of nor a number:* [unwinds](#unwind) global scope with `\prototype-mismatch`
 
 ## `+` <a id="add"/>
 
@@ -385,9 +385,9 @@ A [function](#function) that adds one or more [numbers](#number).
 
 ### Conditions
 
-- *No arguments:* returns `(debug \parameter-mismatch)`
-- *Argument isn't a prototype of nor a number:* returns `(debug \prototype-mismatch)`
-- *Adding negative and positive infinity:* returns `(debug \undefined-result)`
+- *No arguments:* [unwinds](#unwind) global scope with `\parameter-mismatch`
+- *Argument isn't a prototype of nor a number:* [unwinds](#unwind) global scope with `\prototype-mismatch`
+- *Adding negative and positive infinity:* [unwinds](#unwind) global scope with `\undefined-result`
 
 ## `-` <a id="subtract"/>
 
@@ -399,9 +399,9 @@ A [function](#function) that subtracts one or more [numbers](#number).
 
 ### Conditions
 
-- *No arguments:* returns `(debug \parameter-mismatch)`
-- *Argument isn't a prototype of nor a number:* returns `(debug \prototype-mismatch)`
-- *Subtracting infinity from infinity:* returns `(debug \undefined-result)`
+- *No arguments:* [unwinds](#unwind) global scope with `\parameter-mismatch`
+- *Argument isn't a prototype of nor a number:* [unwinds](#unwind) global scope with `\prototype-mismatch`
+- *Subtracting infinity from infinity:* [unwinds](#unwind) global scope with `\undefined-result`
 
 ## `*` <a id="multiply"/>
 
@@ -413,9 +413,9 @@ A [function](#function) that multiplies two or more [numbers](#number).
 
 ### Conditions
 
-- *Less than two arguments:* returns `(debug \parameter-mismatch)`
-- *Argument isn't a prototype of nor a number:* returns `(debug \prototype-mismatch)`
-- *Multiplying zero and infinity:* returns `(debug \undefined-result)`
+- *Less than two arguments:* [unwinds](#unwind) global scope with `\parameter-mismatch`
+- *Argument isn't a prototype of nor a number:* [unwinds](#unwind) global scope with `\prototype-mismatch`
+- *Multiplying zero and infinity:* [unwinds](#unwind) global scope with `\undefined-result`
 
 ## `/` <a id="divide"/>
 
@@ -427,9 +427,9 @@ A [function](#function) that divides two or more [numbers](#number).
 
 ### Conditions
 
-- *Less than two arguments:* returns `(debug \parameter-mismatch)`
-- *Argument isn't a prototype of nor a number:* returns `(debug \prototype-mismatch)`
-- *Dividing by zero or infinity by infinity:* returns `(debug \undefined-result)`
+- *Less than two arguments:* [unwinds](#unwind) global scope with `\parameter-mismatch`
+- *Argument isn't a prototype of nor a number:* [unwinds](#unwind) global scope with `\prototype-mismatch`
+- *Dividing by zero or infinity by infinity:* [unwinds](#unwind) global scope with `\undefined-result`
 
 ### Examples
 
@@ -461,8 +461,8 @@ A [function](#function) that returns the number of key/value pairs in a `map`. I
 
 ### Conditions
 
-- *Less or more than one argument:* returns `(debug \parameter-mismatch)`
-- *`map` argument isn't a prototype of nor a map:* returns `(debug \prototype-mismatch)`
+- *Less or more than one argument:* [unwinds](#unwind) global scope with `\parameter-mismatch`
+- *`map` argument isn't a prototype of nor a map:* [unwinds](#unwind) global scope with `\prototype-mismatch`
 
 ### Examples
 
@@ -503,8 +503,8 @@ A [function](#function) that creates a snapshot of an `expression` thereby preve
 
 ### Conditions
 
-- *Zero or more than two arguments:* returns `(debug \parameter-mismatch)`
-- *`escape` argument isn't a prototype of nor a symbol:* returns `(debug \prototype-mismatch)`
+- *Zero or more than two arguments:* [unwinds](#unwind) global scope with `\parameter-mismatch`
+- *`escape` argument isn't a prototype of nor a symbol:* [unwinds](#unwind) global scope with `\prototype-mismatch`
 
 ### Examples
 
@@ -535,8 +535,8 @@ A [function](#function) that evaluates an `expression` and returns the result, o
 
 ### Conditions
 
-- *Zero or more than two arguments:* returns `(debug \parameter-mismatch)`
-- *`bindings` argument isn't a prototype of nor a map:* returns `(debug \prototype-mismatch)`
+- *Zero or more than two arguments:* [unwinds](#unwind) global scope with `\parameter-mismatch`
+- *`bindings` argument isn't a prototype of nor a map:* [unwinds](#unwind) global scope with `\prototype-mismatch`
 
 ### Examples
 
@@ -575,9 +575,9 @@ A [function](#function) that retrieves the value associated with a `key` in a `m
 
 ### Conditions
 
-- *Less than two or more than three arguments:* returns `(debug \parameter-mismatch)`
-- *`map` argument isn't a prototype of nor a map:* returns `(debug \prototype-mismatch)`
-- *Association doesn't exist and a `default` value isn't provided:* returns `(debug \unknown-key)`
+- *Less than two or more than three arguments:* [unwinds](#unwind) global scope with `\parameter-mismatch`
+- *`map` argument isn't a prototype of nor a map:* [unwinds](#unwind) global scope with `\prototype-mismatch`
+- *Association doesn't exist and a `default` value isn't provided:* [unwinds](#unwind) global scope with `\unknown-key`
 
 ### Examples
 
@@ -660,14 +660,14 @@ A [function](#function) that associates a `key` with a `value` in a `list` or `f
 
 ### Conditions
 
-- *Less than two or more than three arguments:* returns `(debug \parameter-mismatch)`
-- *`map` argument isn't a prototype of nor a map:* returns `(debug \prototype-mismatch)`
-- *`map` argument is a prototype of or a set and `key` isn't equal to `value`:* returns `(debug \parameter-mismatch)`
-- *`set` argument isn't a prototype of nor a set:* returns `(debug \prototype-mismatch)`
-- *`list` argument is a prototype of or a list and `key` isn't a positive integer less than or equal to its length plus one:* returns `(debug \parameter-mismatch)`
-- *`function` argument is a prototype of or a function and when `key` is a number it isn't a positive integer less than or equal to its highest positive integer key plus one:* returns `(debug \parameter-mismatch)`
-- *`function` argument is a prototype of or a function and `value` isn't a prototype of or a function when inserting it into the first position:* returns `(debug \parameter-mismatch)`
-- *`function` argument is a prototype of or a built-in function:* returns `(debug \prototype-mismatch)`
+- *Less than two or more than three arguments:* [unwinds](#unwind) global scope with `\parameter-mismatch`
+- *`map` argument isn't a prototype of nor a map:* [unwinds](#unwind) global scope with `\prototype-mismatch`
+- *`map` argument is a prototype of or a set and `key` isn't equal to `value`:* [unwinds](#unwind) global scope with `\parameter-mismatch`
+- *`set` argument isn't a prototype of nor a set:* [unwinds](#unwind) global scope with `\prototype-mismatch`
+- *`list` argument is a prototype of or a list and `key` isn't a positive integer less than or equal to its length plus one:* [unwinds](#unwind) global scope with `\parameter-mismatch`
+- *`function` argument is a prototype of or a function and when `key` is a number it isn't a positive integer less than or equal to its highest positive integer key plus one:* [unwinds](#unwind) global scope with `\parameter-mismatch`
+- *`function` argument is a prototype of or a function and `value` isn't a prototype of or a function when inserting it into the first position:* [unwinds](#unwind) global scope with `\parameter-mismatch`
+- *`function` argument is a prototype of or a built-in function:* [unwinds](#unwind) global scope with `\prototype-mismatch`
 
 ### Examples
 
@@ -710,10 +710,10 @@ A [function](#function) that loads a [module](#module) by `path`, with zero or m
 
 ### Conditions
 
-- *Less than one argument:* returns `(debug \parameter-mismatch)`
-- *`path` argument isn't a prototype of nor a non-empty list of symbols:* returns `(debug \prototype-mismatch)`
-- *Module can't be found:* returns `(debug \unknown-module)`
-- *Module doesn't evaluate to at least one value:* returns `(debug \undefined-result)`
+- *Less than one argument:* [unwinds](#unwind) global scope with `\parameter-mismatch`
+- *`path` argument isn't a prototype of nor a non-empty list of symbols:* [unwinds](#unwind) global scope with `\prototype-mismatch`
+- *Module can't be found:* [unwinds](#unwind) global scope with `\unknown-module`
+- *Module doesn't evaluate to at least one value:* [unwinds](#unwind) global scope with `\undefined-result`
 
 ### Examples
 
@@ -731,8 +731,8 @@ A [function](#function) that returns a [map](#map) with the non-inherited key/va
 
 ### Conditions
 
-- *Less or more than one argument:* returns `(debug \parameter-mismatch)`
-- *`map` argument isn't a prototype of nor a map:* returns `(debug \prototype-mismatch)`
+- *Less or more than one argument:* [unwinds](#unwind) global scope with `\parameter-mismatch`
+- *`map` argument isn't a prototype of nor a map:* [unwinds](#unwind) global scope with `\prototype-mismatch`
 
 ### Examples
 
@@ -758,9 +758,9 @@ A [function](#function) that returns the first key or the key following `key` in
 
 ### Conditions
 
-- *Zero or more than two arguments:* returns `(debug \parameter-mismatch)`
-- *`map` argument isn't a prototype of nor a map:* returns `(debug \prototype-mismatch)`
-- *`map` is empty or `key` is the last key:* returns `(debug \unknown-key)`
+- *Zero or more than two arguments:* [unwinds](#unwind) global scope with `\parameter-mismatch`
+- *`map` argument isn't a prototype of nor a map:* [unwinds](#unwind) global scope with `\prototype-mismatch`
+- *`map` is empty or `key` is the last key:* [unwinds](#unwind) global scope with `\unknown-key`
 
 ### Examples
 
@@ -791,8 +791,8 @@ A [function](#function) that extends the prototype hierarchy using `base` thereb
 
 ### Conditions
 
-- *Zero or more than two arguments:* returns `(debug \parameter-mismatch)`
-- *`value` and `base-prototype` don't share a common ancestor prototype:* returns `(debug \prototype-mismatch)`
+- *Zero or more than two arguments:* [unwinds](#unwind) global scope with `\parameter-mismatch`
+- *`value` and `base-prototype` don't share a common ancestor prototype:* [unwinds](#unwind) global scope with `\prototype-mismatch`
 
 ### Examples
 
@@ -839,11 +839,11 @@ A [function](#function) that disassociates a `key` from a value in a `list` or `
 
 ### Conditions
 
-- *Less or more than two arguments:* returns `(debug \parameter-mismatch)`
-- *`map` argument isn't a prototype of nor a map:* returns `(debug \prototype-mismatch)`
-- *`list` argument is a prototype of or a list and `key` isn't a positive integer:* returns `(debug \parameter-mismatch)`
-- *`function` argument is a prototype of or a function and when `key` is a number it isn't a positive integer:* returns `(debug \parameter-mismatch)`
-- *`function` argument is a prototype of or a non-empty function and `key` is `1`:* returns `(debug \parameter-mismatch)`
+- *Less or more than two arguments:* [unwinds](#unwind) global scope with `\parameter-mismatch`
+- *`map` argument isn't a prototype of nor a map:* [unwinds](#unwind) global scope with `\prototype-mismatch`
+- *`list` argument is a prototype of or a list and `key` isn't a positive integer:* [unwinds](#unwind) global scope with `\parameter-mismatch`
+- *`function` argument is a prototype of or a function and when `key` is a number it isn't a positive integer:* [unwinds](#unwind) global scope with `\parameter-mismatch`
+- *`function` argument is a prototype of or a non-empty function and `key` is `1`:* [unwinds](#unwind) global scope with `\parameter-mismatch`
 
 ### Examples
 
@@ -876,12 +876,12 @@ A [function](#function) that disassociates a `key` from a value in a `list` or `
 
 A [function](#function) that aborts the current scope or the scope associated with the given `bindings`, and returns `value` as the result.
 
-Unwinding is a non-local early exit of a given scope. Unwinding the [module](#module) (or global) scope exits the currently executing [module](#module).
+Unwinding is a non-local early exit of a given scope. Unwinding the [module](#module) (or global) scope exits the currently executing module.
 
 ### Conditions
 
-- *Zero or more than two arguments:* returns `(debug \parameter-mismatch)`
-- *`bindings` argument isn't a prototype of nor a bindings map:* returns `(debug \prototype-mismatch)`
+- *Zero or more than two arguments:* [unwinds](#unwind) global scope with `\parameter-mismatch`
+- *`bindings` argument isn't a prototype of nor a bindings map:* [unwinds](#unwind) global scope with `\prototype-mismatch`
 
 ### Examples
 
