@@ -10,49 +10,49 @@
 
   \true: (= 0 0)
   \false: (= 0 1)
+  
+  # Creates a function list from arguments.
+  \lambda: \...
 
-  \if: \(evaluate (get
+  \if: (lambda evaluate (get
     {
-      true: (get bindings 2)
-      false: (get bindings 3)
+      true: (get bindings 3)
+      false: (get bindings 4)
     }
-    (evaluate (get bindings 1))))
+    (evaluate (get bindings 2)))
 
-  \and: \(evaluate (get
+  \and: (lambda evaluate (get
     {
-      true: (get bindings 2)
+      true: (get bindings 3)
       false: false
     }
-    (evaluate (get bindings 1))))
+    (evaluate (get bindings 2))))
 
-  \not: \(get
+  \not: (lambda get
     {true: false false: true}
-    (evaluate (get bindings 1)))
+    (evaluate (get bindings 2)))
 
-  \or: \(evaluate (get
+  \or: (lambda evaluate (get
     {
       true: true
-      false: (get bindings 2)
+      false: (get bindings 3)
     }
-    (evaluate (get bindings 1))))
-
-  \<>: \(not (=
-    (evaluate (get bindings 1))
     (evaluate (get bindings 2))))
 
-  \<=: \(not (>
-    (evaluate (get bindings 1))
-    (evaluate (get bindings 2))))
+  \<>: (lambda not (=
+    (evaluate (get bindings 2))
+    (evaluate (get bindings 3))))
 
-  \>=: \(not (<
-    (evaluate (get bindings 1))
-    (evaluate (get bindings 2))))
+  \<=: (lambda not (>
+    (evaluate (get bindings 2))
+    (evaluate (get bindings 3))))
 
-  \do: \(reduce
-    (splice bindings {1} [])
-    (evaluate (get bindings 1))
-    \(evaluate (get bindings 2)))
+  \>=: (lambda not (<
+    (evaluate (get bindings 2))
+    (evaluate (get bindings 3))))
+
+  \do: \...
 
   # Helper to have lexical binding by closing open bindings at creation.
-  \function: \()
+  \function: \...
 }

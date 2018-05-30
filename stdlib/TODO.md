@@ -1,3 +1,5 @@
+- Add documentation.
+- Add validation.
 - Build exceptions/conditions on top of `unwind`.
   - `(rescue function handler)`
   - `(rescue \parameter-mismatch)`

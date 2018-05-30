@@ -1009,7 +1009,7 @@ The human language used should be English.
 
 ## Documentation
 
-Documentation should be written in [CommonMark](http://commonmark.org) format.
+Documentation should be written in [CommonMark](http://commonmark.org) format. Avoid verbs that are also nouns to prevent ambiguity.
 
 ## Naming
 

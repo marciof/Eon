@@ -38,6 +38,7 @@
   - LINKFLAGS += -m elf_x86_64
 - Upgrade to Multiboot 2?
 - https://github.com/copy/v86
+- Option or tool to validate Coding Style guidelines.
 - Prototyping:
   - "Crafting Interpreters", Bob Nystrom: http://craftinginterpreters.com
   - "LispOS - Specification of a Lisp operating system.", Robert Strandh: http://metamodular.com/lispos.pdf
