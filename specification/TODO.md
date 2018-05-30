@@ -1,16 +1,9 @@
 - Indicate time and space complexity for each operation and data type.
 - Document any side-effects for each operation and data type.
-- Specify prototypical inheritance (differential inheritance, eg. intro, `get`, `put` and `remove` handling, etc). http://steve-yegge.blogspot.com/2008/10/universal-design-pattern.html
-- Rename `debug` to `rescue` for something similar to Common Lisp conditions (signaling a condition, handling it, and restarting).
-  - The specification doesn't dictate how it's handled, but the core library uses continuations to implement a full condition system?
-  - Add a `continuation` built-in to create (escape?) continuations?
-  - Make `rescue` calls very specific, eg. `(rescue 'illegal-argument function: get parameter: 'map argument: 123)`
-  - http://www.gigamonkeys.com/book/beyond-exception-handling-conditions-and-restarts.html
-  - http://matt.might.net/articles/implementing-exceptions/
-  - http://matt.might.net/articles/programming-with-continuations--exceptions-backtracking-search-threads-generators-coroutines/
+- Specify prototypical inheritance (differential inheritance, eg. intro, `get`, `put` and `remove` handling, etc): http://steve-yegge.blogspot.com/2008/10/universal-design-pattern.html
 - Evaluate typing difficulty of each identifier and syntax quantitatively.
   - Use easier synonyms for hard to type words.
-  - Avoid verbs that are also nouns.
+  - Avoid verbs that are also nouns. (Put this in the coding style guide.)
   - Bulk analyze source code out there for analysis?
   - Frequency of syntax tokens, familiarity, ease of typing, speaking, identifiers.
   - https://en.wikipedia.org/wiki/Comparison_of_programming_languages_(syntax)
