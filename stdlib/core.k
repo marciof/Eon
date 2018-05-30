@@ -11,8 +11,23 @@
   \true: (= 0 0)
   \false: (= 0 1)
   
+  \global-bindings: bindings
+  
   # Creates a function list from arguments.
   \lambda: \...
+
+# TODO: unwind global scope
+
+(defer 
+  (((_ get)
+    {
+      1: ((_ unwind) parameter-mismatch)
+      2:
+      3:
+    }
+    ((_ count) ((_ local) (_ bindings)))
+    3))
+  \_)
 
   \if: (lambda evaluate (get
     {
