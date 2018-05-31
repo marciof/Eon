@@ -14,20 +14,13 @@
   \global-bindings: bindings
   
   # Creates a function list from arguments.
-  \lambda: \...
-
-# TODO: unwind global scope
-
-(defer 
-  (((_ get)
-    {
-      1: ((_ unwind) parameter-mismatch)
-      2:
-      3:
-    }
-    ((_ count) ((_ local) (_ bindings)))
-    3))
-  \_)
+  # TODO: unwind global scope
+  # TODO: evaluate arguments?
+  \lambda: (defer
+    ((_ remove)
+      ((_ local) ((_ evaluate) bindings))
+      1)
+    \_)
 
   \if: (lambda evaluate (get
     {
