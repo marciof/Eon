@@ -1,9 +1,10 @@
 - Add documentation.
 - Add validation.
+- Close bindings in library functions.
+- Add a fuzzy matching operator: `=~`
 - Build exceptions/conditions on top of `unwind`.
   - `(rescue function handler)`
   - `(rescue \parameter-mismatch)`
   - http://www.gigamonkeys.com/book/beyond-exception-handling-conditions-and-restarts.html
   - http://matt.might.net/articles/implementing-exceptions/
   - http://matt.might.net/articles/programming-with-continuations--exceptions-backtracking-search-threads-generators-coroutines/
-- Add a fuzzy matching operator: `=~`

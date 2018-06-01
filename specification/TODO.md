@@ -1,4 +1,3 @@
-- Make `unwind` use global scope by default? Easier for non-built-ins to unwind to global scope.
 - Indicate time and space complexity for each operation and data type.
 - Document any side-effects for each operation and data type.
 - Specify prototypical inheritance (differential inheritance, eg. intro, `get`, `put` and `remove` handling, etc): http://steve-yegge.blogspot.com/2008/10/universal-design-pattern.html

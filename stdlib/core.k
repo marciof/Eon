@@ -10,12 +10,14 @@
 
   \true: (= 0 0)
   \false: (= 0 1)
+  
+  \global-bindings: bindings
 
   \if: \(evaluate (get
     {
       true: (get bindings 3)
       false: (get bindings 4)
-      \non-boolean: (unwind \parameter-mismatch)
+      \non-boolean: (unwind \parameter-mismatch global-bindings)
     }
     (evaluate (get bindings 2))
     \non-boolean))
