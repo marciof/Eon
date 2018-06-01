@@ -125,14 +125,17 @@ Code is decoupled from data, which means dynamic binding is the default behavior
 (* multiplicand: 4 multiplier: 5)
 # 20
 
-\(- 1)
-# (- 1)
+(\(* 4 5))
+# 20
 
 \()
 # ()
 
 ()
 # ()
+
+\(- 1)
+# (- 1)
 
 (prototype \(+ 1 2))
 # ()

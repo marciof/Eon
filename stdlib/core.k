@@ -10,57 +10,49 @@
 
   \true: (= 0 0)
   \false: (= 0 1)
-  
-  \global-bindings: bindings
-  
-  # Creates a function list from arguments.
-  # TODO: unwind global scope
-  # TODO: evaluate arguments?
-  \lambda: (defer
-    ((_ remove)
-      ((_ local) ((_ evaluate) bindings))
-      1)
-    \_)
 
-  \if: (lambda evaluate (get
+  \if: \(evaluate (get
     {
       true: (get bindings 3)
       false: (get bindings 4)
+      \non-boolean: (unwind \parameter-mismatch)
     }
-    (evaluate (get bindings 2)))
+    (evaluate (get bindings 2))
+    \non-boolean))
 
-  \and: (lambda evaluate (get
+  \and: \(evaluate (get
     {
       true: (get bindings 3)
       false: false
     }
     (evaluate (get bindings 2))))
 
-  \not: (lambda get
+  \not: \(get
     {true: false false: true}
     (evaluate (get bindings 2)))
 
-  \or: (lambda evaluate (get
+  \or: \(evaluate (get
     {
       true: true
       false: (get bindings 3)
     }
     (evaluate (get bindings 2))))
 
-  \<>: (lambda not (=
+  \<>: \(not (=
     (evaluate (get bindings 2))
     (evaluate (get bindings 3))))
 
-  \<=: (lambda not (>
+  \<=: \(not (>
     (evaluate (get bindings 2))
     (evaluate (get bindings 3))))
 
-  \>=: (lambda not (<
+  \>=: \(not (<
     (evaluate (get bindings 2))
     (evaluate (get bindings 3))))
 
   \do: \...
 
+  # Helper for named arguments.
   # Helper to have lexical binding by closing open bindings at creation.
   \function: \...
 }
