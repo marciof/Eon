@@ -581,6 +581,11 @@ A [function](#function) that creates a snapshot of an `expression` thereby preve
 
 A [function](#function) that evaluates an `expression` and returns the result, optionally using different `bindings`.
 
+### Complexity
+
+- Time: `O(n)`
+- Space: `O(1)`
+
 ### Conditions
 
 - *Zero or more than two arguments:* [unwinds](#unwind) global scope with `\parameter-mismatch`
@@ -620,6 +625,11 @@ A [function](#function) that evaluates an `expression` and returns the result, o
 ```
 
 A [function](#function) that retrieves the value associated with a `key` in a `map`, optionally using a lazily evaluated `default` value if no such association exists.
+
+### Complexity
+
+- Time: `O(1)`
+- Space: `O(1)`
 
 ### Conditions
 
@@ -756,6 +766,11 @@ A [function](#function) that associates a `key` with a `value` in a `list` or `f
 
 A [function](#function) that loads a [module](#module) by `path`, with zero or more arguments, and returns the value from the last evaluated expression. A `path` is a list of zero or more names, ending with the [module](#module) name.
 
+### Complexity
+
+- Time: `O(1)`
+- Space: `O(n)`
+
 ### Conditions
 
 - *Less than one argument:* [unwinds](#unwind) global scope with `\parameter-mismatch`
@@ -776,6 +791,11 @@ A [function](#function) that loads a [module](#module) by `path`, with zero or m
 ```
 
 A [function](#function) that returns a [map](#map) with the non-inherited key/value pairs from a [prototyped](#prototype) `map`.
+
+### Complexity
+
+- Time: `O(1)`
+- Space: `O(1)`
 
 ### Conditions
 
@@ -803,6 +823,11 @@ A [function](#function) that returns a [map](#map) with the non-inherited key/va
 ```
 
 A [function](#function) that returns the first key or the key following `key` in a `map`.
+
+### Complexity
+
+- Time: `O(1)`
+- Space: `O(1)`
 
 ### Conditions
 
@@ -925,6 +950,11 @@ A [function](#function) that disassociates a `key` from a value in a `list` or `
 A [function](#function) that aborts the current scope or the scope associated with the given `bindings`, and returns `value` as the result.
 
 Unwinding is a non-local early exit of a given scope. Unwinding the [module](#module) (or global) scope exits the currently executing module.
+
+### Complexity
+
+- Time: `O(1)`
+- Space: `O(1)`
 
 ### Conditions
 
