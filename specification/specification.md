@@ -324,7 +324,12 @@ In the following examples, `Any` is a placeholder that denotes any possible data
 (= x:Any y:Any ...:Any): Boolean
 ```
 
-A [function](#function) that compares two or more values and returns true if they are all equal, or false otherwise.
+A [function](#function) that compares two or more values (with short-circuit) and returns true if they are all equal, or false otherwise.
+
+### Complexity
+
+- Time: `O(n)`
+- Space: `O(1)`
 
 ### Conditions
 
@@ -358,7 +363,12 @@ A [function](#function) that compares two or more values and returns true if the
 (< x:Number y:Number ...:Number): Boolean
 ```
 
-A [function](#function) that compares two or more [numbers](#number) and returns true if each one is less than the next, or false otherwise.
+A [function](#function) that compares two or more [numbers](#number) (with short-circuit) and returns true if each one is less than the next, or false otherwise.
+
+### Complexity
+
+- Time: `O(n)`
+- Space: `O(1)`
 
 ### Conditions
 
@@ -371,7 +381,12 @@ A [function](#function) that compares two or more [numbers](#number) and returns
 (> x:Number y:Number ...:Number): Boolean
 ```
 
-A [function](#function) that compares two or more [numbers](#number) and returns true if each one is greater than the next, or false otherwise.
+A [function](#function) that compares two or more [numbers](#number) (with short-circuit) and returns true if each one is greater than the next, or false otherwise.
+
+### Complexity
+
+- Time: `O(n)`
+- Space: `O(1)`
 
 ### Conditions
 
@@ -385,6 +400,11 @@ A [function](#function) that compares two or more [numbers](#number) and returns
 ```
 
 A [function](#function) that adds one or more [numbers](#number).
+
+### Complexity
+
+- Time: `O(n)`
+- Space: `O(1)`
 
 ### Conditions
 
@@ -400,6 +420,11 @@ A [function](#function) that adds one or more [numbers](#number).
 
 A [function](#function) that subtracts one or more [numbers](#number).
 
+### Complexity
+
+- Time: `O(n)`
+- Space: `O(1)`
+
 ### Conditions
 
 - *No arguments:* [unwinds](#unwind) global scope with `\parameter-mismatch`
@@ -414,6 +439,11 @@ A [function](#function) that subtracts one or more [numbers](#number).
 
 A [function](#function) that multiplies two or more [numbers](#number).
 
+### Complexity
+
+- Time: `O(n)`
+- Space: `O(1)`
+
 ### Conditions
 
 - *Less than two arguments:* [unwinds](#unwind) global scope with `\parameter-mismatch`
@@ -427,6 +457,11 @@ A [function](#function) that multiplies two or more [numbers](#number).
 ```
 
 A [function](#function) that divides two or more [numbers](#number).
+
+### Complexity
+
+- Time: `O(n)`
+- Space: `O(1)`
 
 ### Conditions
 
@@ -461,6 +496,11 @@ The bindings map always [prototypically](#prototype) inherits from the previous 
 ```
 
 A [function](#function) that returns the number of key/value pairs in a `map`. If `map` is a prototype of or a [built-in](#built-in) [function](#function) then it returns `0`.
+
+### Complexity
+
+- Time: `O(1)`
+- Space: `O(1)`
 
 ### Conditions
 
@@ -503,6 +543,11 @@ A [function](#function) that returns the number of key/value pairs in a `map`. I
 ```
 
 A [function](#function) that creates a snapshot of an `expression` thereby preventing it from being evaluated, optionally with an `escape` [symbol](#symbol) for re-enabling [evaluation](#evaluate) inside it.
+
+### Complexity
+
+- Time: `O(1+k)` where `k` is the number of `escape` calls
+- Space: `O(1)`
 
 ### Conditions
 
