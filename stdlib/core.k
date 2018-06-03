@@ -12,15 +12,29 @@
   \false: (= 0 1)
   
   \global-bindings: bindings
-
-  \if: \(evaluate (get
+  
+  \function: \((get
     {
-      true: (get bindings 3)
-      false: (get bindings 4)
-      \non-boolean: (unwind \parameter-mismatch global-bindings)
+      1: \(unwind \parameter-mismatch global-bindings)
+      3: \()
     }
-    (evaluate (get bindings 2))
-    \non-boolean))
+    (count (local bindings))
+    1))
+
+  \if: \((get
+    {
+      1: \(unwind \parameter-mismatch global-bindings)
+      4: \(get
+        {
+          true: \(evaluate (get bindings 3))
+          false: \(evaluate (get bindings 4))
+          \unknown: \(unwind \prototype-mismatch global-bindings)
+        }
+        (evaluate (get bindings 2))
+        \unknown)
+    }
+    (count (local bindings))
+    1))
 
   \and: \(evaluate (get
     {
