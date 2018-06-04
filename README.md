@@ -1,3 +1,18 @@
+# Dependencies
+
+## Linux
+
+See `.travis.yml`.
+
+## OSX
+
+See `.travis.yml`.
+
+## Windows
+
+- CMake
+- [Visual Studio Build Tools](https://www.visualstudio.com/thank-you-downloading-visual-studio/?sku=BuildTools)
+
 # Architecture
 
 - `interpreter/`: implementation of the language specification
