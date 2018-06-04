@@ -26,11 +26,11 @@
       1: \(unwind \parameter-mismatch global-bindings)
       4: \(get
         {
-          true: \(evaluate (get bindings 3))
-          false: \(evaluate (get bindings 4))
+          true: \(evaluate bindings::3)
+          false: \(evaluate bindings::4)
           \unknown: \(unwind \prototype-mismatch global-bindings)
         }
-        (evaluate (get bindings 2))
+        (evaluate bindings::2)
         \unknown)
     }
     (count (local bindings))
