@@ -662,11 +662,15 @@ A [function](#function) that retrieves the value associated with a `key` in a `m
 # 30
 
 (let user: {\name: 'Bob'}
+     users: [user]
 
   (get user \name)
   # 'Bob'
 
-  user::name)
+  user::name
+  # 'Bob'
+
+  users::1::name)
   # 'Bob'
 ```
 
@@ -1064,7 +1068,7 @@ Function:
 ```
 Function ::= Function-Begin White-Space* (Function (White-Space+ Function-Value)* White-Space*)? Function-End
 Function-Value ::= Expression | Pair
-Get-Chain ::= Symbol (Pair-Separator{2} Symbol)+
+Get-Chain ::= Symbol (Pair-Separator{2} (Symbol | Number))+
 Function-Begin ::= "(" <U+28>
 Function-End ::= ")" <U+28>
 ```

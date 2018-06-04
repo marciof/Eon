@@ -38,33 +38,33 @@
 
   \and: \(evaluate (get
     {
-      true: (get bindings 3)
+      true: bindings::3
       false: false
     }
-    (evaluate (get bindings 2))))
+    (evaluate bindings::2)))
 
   \not: \(get
     {true: false false: true}
-    (evaluate (get bindings 2)))
+    (evaluate bindings::2))
 
   \or: \(evaluate (get
     {
       true: true
-      false: (get bindings 3)
+      false: bindings::3
     }
-    (evaluate (get bindings 2))))
+    (evaluate bindings::2)))
 
   \<>: \(not (=
-    (evaluate (get bindings 2))
-    (evaluate (get bindings 3))))
+    (evaluate bindings::2)
+    (evaluate bindings::3)))
 
   \<=: \(not (>
-    (evaluate (get bindings 2))
-    (evaluate (get bindings 3))))
+    (evaluate bindings::2)
+    (evaluate bindings::3)))
 
   \>=: \(not (<
-    (evaluate (get bindings 2))
-    (evaluate (get bindings 3))))
+    (evaluate bindings::2)
+    (evaluate bindings::3)))
 
   \do: \...
 
