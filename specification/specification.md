@@ -226,6 +226,9 @@ A rational number.
 infinity
 # infinity
 
+3Km
+# (Km 3)
+
 (prototype 3)
 # 0
 
@@ -306,6 +309,9 @@ An immutable sequence of Unicode characters, each one identified by a numeric co
 
 '<a href=''http://www.example.com''>'
 # '<a href=''http://www.example.com''>'
+
+hex'1F'
+# (hex '1F')
 
 (prototype 'Bob')
 # ''
