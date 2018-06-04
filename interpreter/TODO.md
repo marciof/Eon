@@ -1,9 +1,10 @@
-- Use `grub-file` to verify kernel image is bootable.
-- Regularly test building on Debian 32-bit 64-bit, Windows, OSX.
-- Let each host provide a (semi-)working C stdlib that "core" can rely on. More familiar and easier to use external libraries? Use Newlib? (libnewlib-dev) Check license first. Does it support OSX, Windows, Debian 64-bit?
+- Build native host layer only by default with option to switch.
+- Let each host provide a (semi-)working C stdlib that "core" can rely on. More familiar and easier to use external libraries? Use Newlib? (libnewlib-dev) Check license first. Does it support OSX, Windows (easier to use it, than having to add specific definitions for MSVC, such as ssize_t), Debian 64-bit?
   - https://www.sourceware.org/newlib/
   - http://www.sourceware.org/newlib/libc.html#Syscalls
   - http://wiki.osdev.org/Porting_Newlib
+- Use `grub-file` to verify kernel image is bootable.
+- Regularly test building on Debian 32-bit 64-bit, Windows, OSX.
 - Redesign architecture, to make it easier to embed, no singletons, and easier to unit test:
   - Avoid all these repeated calls for `*_get()`?
   - Remove stop modes and use only reset or halt
@@ -11,7 +12,6 @@
   - System_get(Log, Memory, argc, argv) // it's static, not part of the interface, it's up to each host
   - System_stop(System)
   - main(multiboot_magic_num, multiboot_info)
-- Build native host layer only by default with option to switch.
 - Make it more resilient, warn more instead of aborting.
 - Add location to log calls? function, file, line? Or to warnings and errors only?
 - Add color to native logging.
