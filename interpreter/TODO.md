@@ -1,6 +1,6 @@
 - Use `grub-file` to verify kernel image is bootable.
 - Regularly test building on Debian 32-bit 64-bit, Windows, OSX.
-- Let each host provide a (semi-)working C stdlib that "core" can rely on. More familiar and easier to use external libraries? Use Newlib? (libnewlib-dev) Check license first.
+- Let each host provide a (semi-)working C stdlib that "core" can rely on. More familiar and easier to use external libraries? Use Newlib? (libnewlib-dev) Check license first. Does it support OSX, Windows, Debian 64-bit?
   - https://www.sourceware.org/newlib/
   - http://www.sourceware.org/newlib/libc.html#Syscalls
   - http://wiki.osdev.org/Porting_Newlib
