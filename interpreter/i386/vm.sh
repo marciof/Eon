@@ -2,7 +2,7 @@
 set -e -u
 
 create_grub_cd_image() {
-    local kernel_file=$1
+    local kernel_file="$1"
     local cd_image="$(mktemp -t "$kernel_file.grub-cd.XXXXX.iso")"
     local cd_contents="$(mktemp -d)"
 
@@ -17,14 +17,21 @@ menuentry "$(basename "$kernel_file")" {
 }
 CONFIG
 
+    echo "Creating CD ISO from: $cd_contents" >&2
     grub-mkrescue -o "$cd_image" "$cd_contents"
     rm -rf "$cd_contents"
+
+    if [ ! -s "$cd_image" ]; then
+        echo "Failed to create a GRUB boot CD ISO: $cd_image" >&2
+        return 1
+    fi
+
     echo "$cd_image"
     return 0
 }
 
 if [ $# -ne 1 ]; then
-    echo "Usage: $(basename "$0") <kernel>" >&2
+    echo "Usage: $(basename "$0") <kernel-executable>" >&2
     exit 1
 fi
 
@@ -34,6 +41,7 @@ storage_name=ide
 kernel_cd="$(create_grub_cd_image "$kernel_file")"
 
 trap 'rm "$kernel_cd"' EXIT
+echo "Creating VM and booting CD ISO: $kernel_cd" >&2
 
 vboxmanage createvm --name "$vm_name" --ostype Other_64 --register
 vboxmanage storagectl "$vm_name" --name "$storage_name" --add ide

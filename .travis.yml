@@ -9,5 +9,10 @@ addons:
    # i386
    - nasm
    - multiboot
-   - g++-multilib
-   - libc6-dev-i386
+   - g++-multilib # cross-compile 32-bit applications on 64-bit systems
+   # vm.sh
+   - grub-common # contains grub-mkrescue
+   - grub-pc-bin # PC/BIOS architecture version of GRUB (eg. non-UEFI)
+   - mtools # symlinked from mformat, needed by grub-mkrescue
+   - xorriso # create ISO files, needed by grub-mkrescue
+   # - VirtualBox
