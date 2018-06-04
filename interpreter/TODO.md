@@ -1,3 +1,5 @@
+- Use `grub-file` to verify kernel image is bootable.
+- Regularly test building on Debian 32-bit 64-bit, Windows, OSX.
 - Let each host provide a (semi-)working C stdlib that "core" can rely on. More familiar and easier to use external libraries? Use Newlib? (libnewlib-dev) Check license first.
   - https://www.sourceware.org/newlib/
   - http://www.sourceware.org/newlib/libc.html#Syscalls
@@ -5,23 +7,14 @@
 - Redesign architecture, to make it easier to embed, no singletons, and easier to unit test:
   - Avoid all these repeated calls for `*_get()`?
   - Remove stop modes and use only reset or halt
-  - // dynamic (eg. native, multiple interpreters)
-  - System_new(Log, Memory, argc, argv)
-  - // static, not part of the interface, it's up to each host
-  - System_get(Log, Memory, argc, argv)
-  - //
+  - System_new(Log, Memory, argc, argv) // it's dynamic (eg. native, multiple interpreters)
+  - System_get(Log, Memory, argc, argv) // it's static, not part of the interface, it's up to each host
   - System_stop(System)
-  - //
   - main(multiboot_magic_num, multiboot_info)
-- Build native host layer by default with option to switch.
-- Make it more resilient, warn instead of aborting.
+- Build native host layer only by default with option to switch.
+- Make it more resilient, warn more instead of aborting.
 - Add location to log calls? function, file, line? Or to warnings and errors only?
 - Add color to native logging.
-- Use `grub-file` to verify kernel image is bootable.
-- Test on Windows, Debian 32-bit (check again 64-bit dependencies on a pristine image, and document).
-  - See `.travis.yml` for details.
-  - Tested on Debian 9 64-bit.
-  - i386 testing: `apt install grub-common grub-pc-bin xorriso mtools virtualbox-5.1`
 - Tests (unit, functional), coverage, lint, static analysis, continuous integration, memory check (Valgrind).
   - Automation: Vagrant, Docker?
   - https://autotest.github.io
@@ -30,7 +23,6 @@
   - https://github.com/andrewrk/malcheck
   - https://github.com/google/sanitizers
   - http://clang-analyzer.llvm.org
-- Colored native logging.
 - Logging of long integers.
 - Add support for "amd64"?
   - ASFLAGS += -f elf64
