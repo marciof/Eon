@@ -1,6 +1,6 @@
 %include "arg.asm"
 
-%macro K_IO_READ_FN 2
+%macro K_IO_READ_FUNCTION 2
 global k_IO_read_%1
 k_IO_read_%1:
     enter 0, 0
@@ -16,7 +16,7 @@ k_IO_read_%1:
     ret
 %endmacro
 
-%macro K_IO_WRITE_FN 2
+%macro K_IO_WRITE_FUNCTION 2
 global k_IO_write_%1
 k_IO_write_%1:
     enter 0, 0
@@ -32,10 +32,10 @@ k_IO_write_%1:
 section .text
 align 4
 
-K_IO_READ_FN byte, al
-K_IO_READ_FN dword, eax
-K_IO_READ_FN word, ax
+K_IO_READ_FUNCTION byte, al
+K_IO_READ_FUNCTION dword, eax
+K_IO_READ_FUNCTION word, ax
 
-K_IO_WRITE_FN byte, al
-K_IO_WRITE_FN dword, eax
-K_IO_WRITE_FN word, ax
+K_IO_WRITE_FUNCTION byte, al
+K_IO_WRITE_FUNCTION dword, eax
+K_IO_WRITE_FUNCTION word, ax

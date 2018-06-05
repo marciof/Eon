@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
 #include "Err.h"
@@ -27,7 +28,7 @@ int main() {
     int exit_status;
 
     if (k_Err_has(&err)) {
-        k_Err_describe(&err, stderr);
+        k_Err_describe(&err);
         exit_status = EXIT_FAILURE;
     }
     else {

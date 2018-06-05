@@ -11,6 +11,9 @@ addons:
    - nasm
    - multiboot
    - grub-common # contains grub-file to verify Multiboot compliance
+   # native
+   # javascript
+   - valgrind
    # vm.sh
    - grub-common # contains grub-mkrescue to build a bootable ISO
    - grub-pc-bin # PC/BIOS architecture version of GRUB (eg. non-UEFI)

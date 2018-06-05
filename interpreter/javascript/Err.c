@@ -1,15 +1,16 @@
+#include <stdio.h>
 #include <string.h>
 #include "Err.h"
 
-void k_Err_describe(struct k_Err* err, FILE* output) {
-    err->describe(err, output);
-    fprintf(output, "  `%s()` at %s:%zu\n",
+void k_Err_describe(struct k_Err* err) {
+    err->describe(err);
+    fprintf(stderr, "  `%s()` at %s:%zu\n",
         err->function, err->file, err->line);
 }
 
-void k_Err_describe_errno(struct k_Err* err, FILE* output) {
+void k_Err_describe_errno(struct k_Err* err) {
     int num = (int) err->arg;
-    fprintf(output, "%s (errno 0x%X)\n", strerror(num), num);
+    fprintf(stderr, "%s (errno 0x%X)\n", strerror(num), num);
 }
 
 bool k_Err_has(struct k_Err* err) {
@@ -18,7 +19,7 @@ bool k_Err_has(struct k_Err* err) {
 
 void k_Err_set(
         struct k_Err* err,
-        void (* describe)(struct k_Err*, FILE*),
+        void (*describe)(struct k_Err*),
         const char* function,
         char* file,
         size_t line,

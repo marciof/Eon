@@ -1,12 +1,13 @@
 #include <stdbool.h>
+#include <stdio.h>
 #include <stdlib.h>
 #include "Token.h"
 
-static void Token_describe_err(struct k_Err* err, FILE* output) {
+static void Token_describe_err(struct k_Err* err) {
     struct k_Input* input = (struct k_Input*) err->arg;
     int ch = input->peek_ch(input, err);
 
-    fprintf(output, "Unexpected token '%c' at %s:%zu:%zu\n",
+    fprintf(stderr, "Unexpected token '%c' at %s:%zu:%zu\n",
         (char) ch, input->location, input->line, input->column);
 }
 

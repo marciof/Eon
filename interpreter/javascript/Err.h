@@ -3,28 +3,27 @@
 #include <stdbool.h>
 #include <stddef.h>
 #include <stdint.h>
-#include <stdio.h>
 
 #define K_ERR_NONE {NULL}
 
 struct k_Err {
     /** Description ends in a newline. */
-    void (*describe)(struct k_Err* err, FILE* output);
+    void (*describe)(struct k_Err* err);
     const char* function;
     char* file;
     size_t line;
     intptr_t arg;
 };
 
-void k_Err_describe(struct k_Err* err, FILE* output);
+void k_Err_describe(struct k_Err* err);
 
-void k_Err_describe_errno(struct k_Err* err, FILE* output);
+void k_Err_describe_errno(struct k_Err* err);
 
 bool k_Err_has(struct k_Err* err);
 
 void k_Err_set(
     struct k_Err* err,
-    void (* describe)(struct k_Err*, FILE*),
+    void (*describe)(struct k_Err*),
     const char* function,
     char* file,
     size_t line,

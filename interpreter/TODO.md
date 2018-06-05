@@ -1,9 +1,5 @@
+- Make Err use Log, to avoid needing a C stdlib. Build a native library, that can be used by the javascript build.
 - Add Travis CI build matrix for the different builds (native, javascript, i386) and OSes.
-- Let each host provide a (semi-)working C stdlib that "core" can rely on. More familiar and easier to use external libraries? Use Newlib? (libnewlib-dev) Check license first. Does it support OSX, Windows (easier to use it, than having to add specific definitions for MSVC, such as ssize_t), Debian 64-bit? PDCLib?
-  - Make Err use Log, and create my own stripped down version of stdint? Simpler.
-  - https://www.sourceware.org/newlib/
-  - http://www.sourceware.org/newlib/libc.html#Syscalls
-  - http://wiki.osdev.org/Porting_Newlib
 - Regularly test building on Debian 32-bit 64-bit, Windows, OSX.
 - Redesign architecture, to make it easier to embed, no singletons, and easier to unit test:
   - Avoid all these repeated calls for `*_get()`?
