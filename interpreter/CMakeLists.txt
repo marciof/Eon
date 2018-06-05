@@ -1,5 +1,9 @@
 enable_language(C)
 
+option(BUILD_FOR_NATIVE_HOST "Build the interpreter to run natively" ON)
+option(BUILD_FOR_I386_HOST "Build the interpreter for an Intel x86 32-bit host" OFF)
+option(BUILD_FOR_JAVASCRIPT_HOST "Build the interpreter for a JavaScript host" OFF)
+
 if(CMAKE_COMPILER_IS_GNUCC)
     set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -std=c11 -pedantic-errors -Wall -Wextra -Wredundant-decls -Wshadow -Wswitch-default -Wundef -Wunused-macros")
 endif()
@@ -19,6 +23,13 @@ string(REGEX REPLACE "([^;]+)" "${CMAKE_CURRENT_SOURCE_DIR}/\\1"
     CORE_SOURCES "${CORE_SOURCES}")
 
 add_subdirectory(core)
-add_subdirectory(native)
-add_subdirectory(i386)
-add_subdirectory(javascript)
+
+if(BUILD_FOR_NATIVE_HOST)
+    add_subdirectory(native)
+endif()
+if(BUILD_FOR_I386_HOST)
+    add_subdirectory(i386)
+endif()
+if(BUILD_FOR_JAVASCRIPT_HOST)
+    add_subdirectory(javascript)
+endif()

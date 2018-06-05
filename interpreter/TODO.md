@@ -1,4 +1,3 @@
-- Build native host layer only by default with option to switch.
 - Let each host provide a (semi-)working C stdlib that "core" can rely on. More familiar and easier to use external libraries? Use Newlib? (libnewlib-dev) Check license first. Does it support OSX, Windows (easier to use it, than having to add specific definitions for MSVC, such as ssize_t), Debian 64-bit? PDCLib?
   - Make Err use Log, and create my own stripped down version of stdint? Simpler.
   - https://www.sourceware.org/newlib/
