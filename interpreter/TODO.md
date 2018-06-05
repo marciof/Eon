@@ -3,7 +3,6 @@
   - https://www.sourceware.org/newlib/
   - http://www.sourceware.org/newlib/libc.html#Syscalls
   - http://wiki.osdev.org/Porting_Newlib
-- Use `grub-file` to verify kernel image is bootable.
 - Regularly test building on Debian 32-bit 64-bit, Windows, OSX.
 - Redesign architecture, to make it easier to embed, no singletons, and easier to unit test:
   - Avoid all these repeated calls for `*_get()`?

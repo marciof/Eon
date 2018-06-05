@@ -7,12 +7,13 @@ addons:
    - make
    - g++
    # i386
+   - g++-multilib # cross-compile 32-bit applications on 64-bit systems
    - nasm
    - multiboot
-   - g++-multilib # cross-compile 32-bit applications on 64-bit systems
+   - grub-common # contains grub-file to verify Multiboot compliance
    # vm.sh
-   - grub-common # contains grub-mkrescue
+   - grub-common # contains grub-mkrescue to build a bootable ISO
    - grub-pc-bin # PC/BIOS architecture version of GRUB (eg. non-UEFI)
    - mtools # symlinked from mformat, needed by grub-mkrescue
    - xorriso # create ISO files, needed by grub-mkrescue
-   # - VirtualBox
+   # VirtualBox

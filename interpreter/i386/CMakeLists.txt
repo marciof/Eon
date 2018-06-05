@@ -1,6 +1,6 @@
 enable_language(ASM_NASM)
 
-# Don't force 64-bit.
+# Don't force 64-bit in case it's cross-compiling on a 32-bit system.
 string(REPLACE "-f elf64" ""
     CMAKE_ASM_NASM_COMPILE_OBJECT "${CMAKE_ASM_NASM_COMPILE_OBJECT}")
 
@@ -51,3 +51,8 @@ add_executable(${PROJECT_NAME}.i386
     System.c)
 
 set_target_properties(${PROJECT_NAME}.i386 PROPERTIES LINK_DEPENDS ${LINKER_SCRIPT})
+
+add_custom_command(TARGET ${PROJECT_NAME}.i386
+    POST_BUILD
+    COMMAND grub-file --is-x86-multiboot $<TARGET_FILE:${PROJECT_NAME}.i386>
+    COMMENT "Verifying executable is Multiboot-compliant via `grub-file`")
