@@ -4,15 +4,15 @@ let mathjs = require('mathjs');
 mathjs.config({number: 'Fraction'});
 
 module.exports = {
-    readNumber: function (text) {
+    readNumber(text) {
         return mathjs.fraction(text);
     },
 
-    writeNumber: function (number) {
-        return mathjs.format(number, {fraction: 'decimal', notation: 'fixed'})
+    writeNumber(number) {
+        return mathjs.format(number, {fraction: 'decimal', notation: 'fixed'});
     },
 
-    isEqualNumber: function (x, y, ...rest) {
+    isNumberEqual(x, y, ...rest) {
         for (let n of [y, ...rest]) {
             if (!mathjs.equal(x, n)) {
                 return false;
@@ -21,23 +21,21 @@ module.exports = {
         return true;
     },
 
-    divide: function (x, y, ...rest) {
-        return [x, y, ...rest].reduce((acc, value) => {
-            return mathjs.divide(acc, value);
-        });
+    divide(x, y, ...rest) {
+        return [x, y, ...rest].reduce(
+            (result, value) => mathjs.divide(result, value));
     },
 
-    multiply: function (x, y, ...rest) {
+    multiply(x, y, ...rest) {
         return mathjs.multiply(x, y, ...rest);
     },
 
-    add: function (x, y, ...rest) {
+    add(x, y, ...rest) {
         return mathjs.add(x, y, ...rest);
     },
 
-    subtract: function (x, y, ...rest) {
-        return [x, y, ...rest].reduce((acc, value) => {
-            return mathjs.subtract(acc, value);
-        });
+    subtract(x, y, ...rest) {
+        return [x, y, ...rest].reduce(
+            (result, value) => mathjs.subtract(result, value));
     },
 };

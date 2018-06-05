@@ -45,12 +45,12 @@ describe('Number', () => {
     it('should compare equal a repeating decimal and a fraction', () => {
         let x = lang.readNumber('0.(032258064516129)');
         let y = lang.divide(lang.readNumber('1'), lang.readNumber('31'));
-        should(lang.isEqualNumber(x, y)).ok();
+        should(lang.isNumberEqual(x, y)).ok();
     });
 
     it('should compare equal a decimal and a fraction', () => {
         let x = lang.readNumber('0.5');
         let y = lang.divide(lang.readNumber('1'), lang.readNumber('2'));
-        should(lang.isEqualNumber(x, y)).ok();
+        should(lang.isNumberEqual(x, y)).ok();
     });
 });
