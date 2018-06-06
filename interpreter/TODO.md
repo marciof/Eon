@@ -8,9 +8,6 @@
   - System_get(Log, Memory, argc, argv) // it's static, not part of the interface, it's up to each host
   - System_stop(System)
   - main(multiboot_magic_num, multiboot_info)
-- Make it more resilient, warn more instead of aborting.
-- Add location to log calls? function, file, line? Or to warnings and errors only?
-- Add color to native logging.
 - Tests (unit, functional), coverage, lint, static analysis, continuous integration, memory check (Valgrind).
   - Automation: Vagrant, Docker?
   - https://autotest.github.io
@@ -19,6 +16,9 @@
   - https://github.com/andrewrk/malcheck
   - https://github.com/google/sanitizers
   - http://clang-analyzer.llvm.org
+- Make it more resilient, warn more instead of aborting.
+- Add location to log calls? function, file, line? Or to warnings and errors only?
+- Add color to native logging.
 - Logging of long integers.
 - Add support for "amd64"?
   - ASFLAGS += -f elf64

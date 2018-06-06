@@ -22,7 +22,7 @@ set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -m32 -fno-exceptions -nostdlib -nodefaultlib
 
 set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -m elf_i386 --script=${LINKER_SCRIPT}")
 
-add_executable(${PROJECT_NAME}.i386
+add_executable(${PROJECT_NAME}-i386
     ${LINKER_SCRIPT}
     ${CORE_SOURCES}
     Multiboot.c
@@ -50,9 +50,9 @@ add_executable(${PROJECT_NAME}.i386
     System.asm
     System.c)
 
-set_target_properties(${PROJECT_NAME}.i386 PROPERTIES LINK_DEPENDS ${LINKER_SCRIPT})
+set_target_properties(${PROJECT_NAME}-i386 PROPERTIES LINK_DEPENDS ${LINKER_SCRIPT})
 
-add_custom_command(TARGET ${PROJECT_NAME}.i386
+add_custom_command(TARGET ${PROJECT_NAME}-i386
     POST_BUILD
-    COMMAND grub-file --is-x86-multiboot $<TARGET_FILE:${PROJECT_NAME}.i386>
+    COMMAND grub-file --is-x86-multiboot $<TARGET_FILE:${PROJECT_NAME}-i386>
     COMMENT "Verifying executable is Multiboot-compliant via `grub-file`")
