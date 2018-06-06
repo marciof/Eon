@@ -1,4 +1,9 @@
-- Make Err use Log, to avoid needing a C stdlib. Build a native library, that can be used by the js build (need to split "System.c" into "main.c"; also add a "main.c" in i386?)
+- Make 0-param functions use void.
+- Make Err use Log, to avoid needing a C stdlib.
+- Split "System.c" into "main.c"; also add a "main.c" in i386?
+- Combine libkaryon-core.a with libkaryon-native.a to build karyon-native, or also to allow it to be embedded in other programs.
+- Make System not be a singleton and also to make it easier to test. Receive dependencies, such as Log, through an init function.
+- JS uses the same native System, since it's just a backend for code generation, just like a real-time interpreter is another backend. So don't merge it into native to allow an embedded systems to just pick core+native.  
 - Add Travis CI build matrix for the different builds (native, js, i386) and OSes.
 - Regularly test building on Debian 32-bit 64-bit, Windows, OSX.
 - Add simple v86 HTML demo?
