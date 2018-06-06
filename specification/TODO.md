@@ -1,4 +1,4 @@
-- Indicate time and space complexity for remove, insert and prototype.
+- Indicate time and space complexity for remove and insert.
 - Specify prototypical inheritance (differential inheritance, eg. intro, `get`, `put` and `remove` handling, etc): http://steve-yegge.blogspot.com/2008/10/universal-design-pattern.html
 - Evaluate typing difficulty of each identifier and syntax quantitatively.
   - Use easier synonyms for hard to type words.

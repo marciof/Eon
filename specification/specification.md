@@ -872,6 +872,11 @@ A [function](#function) that retrieves the [prototype](#prototypes) of `value`.
 
 A [function](#function) that extends the prototype hierarchy using `base` thereby creating a new [prototype](#prototypes).
 
+### Complexity
+
+- Time: `O(1)`
+- Space: `O(1)`
+
 ### Conditions
 
 - *Zero or more than two arguments:* [unwinds](#unwind) global scope with `\parameter-mismatch`
