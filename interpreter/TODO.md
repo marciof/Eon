@@ -1,4 +1,4 @@
-- Make Err use Log, to avoid needing a C stdlib. Build a native library, that can be used by the js build.
+- Make Err use Log, to avoid needing a C stdlib. Build a native library, that can be used by the js build (need to split "System.c" into "main.c"; also add a "main.c" in i386?)
 - Add Travis CI build matrix for the different builds (native, js, i386) and OSes.
 - Regularly test building on Debian 32-bit 64-bit, Windows, OSX.
 - Add simple v86 HTML demo?

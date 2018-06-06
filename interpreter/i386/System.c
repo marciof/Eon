@@ -8,6 +8,8 @@
 
 void main() {
     k_VGA_Text_init();
+
+    // FIXME: move logging and other dependencies to k_System_start()
     k_Multiboot_log_info(k_Multiboot_get_info(), k_Log_get());
 
     struct k_System* system = k_System_get();
