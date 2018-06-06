@@ -32,8 +32,12 @@ struct k_System* k_System_get() {
     return &system;
 }
 
-int main(K_BIT_ATTR_UNUSED(int argc), char* argv[]) {
+int main(int argc, char* argv[]) {
     _argv = argv;
+
+    // FIXME: log full command line
+    k_Log_msg(k_Log_get(), K_LOG_INFO, "Command line: count={i}", argc);
+
     struct k_System* system = k_System_get();
     system->stop(system, K_SYSTEM_HALT);
     return EXIT_FAILURE;
