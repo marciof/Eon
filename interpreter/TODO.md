@@ -1,5 +1,5 @@
-- Make Err use Log, to avoid needing a C stdlib. Build a native library, that can be used by the javascript build.
-- Add Travis CI build matrix for the different builds (native, javascript, i386) and OSes.
+- Make Err use Log, to avoid needing a C stdlib. Build a native library, that can be used by the js build.
+- Add Travis CI build matrix for the different builds (native, js, i386) and OSes.
 - Regularly test building on Debian 32-bit 64-bit, Windows, OSX.
 - Redesign architecture, to make it easier to embed, no singletons, and easier to unit test:
   - Avoid all these repeated calls for `*_get()`?
