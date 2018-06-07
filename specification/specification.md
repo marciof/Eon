@@ -892,18 +892,16 @@ A [function](#function) that extends the prototype hierarchy using `base` thereb
 # []
 
 (let Person: (prototype {\name: ''} {:})
-     bob: (insert
-            (insert Person \name 'Bob')
-            \age 20))
+     bob: (insert Person \name 'Bob')
 
   Person
-  # {name: '' age: 0}
+  # {name: ''}
 
   (prototype Person)
   # {:}
 
   bob
-  # {name: 'Bob' age: 20}
+  # {name: 'Bob'}
   
   (prototype bob)
   # Person
