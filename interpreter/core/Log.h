@@ -13,7 +13,7 @@ struct k_Log {
     uint8_t val[];
 };
 
-extern struct k_Log* k_Log_get();
+extern struct k_Log* k_Log_get(void);
 
 /**
  * Log format is a regular string with placeholders denoted by curly braces.

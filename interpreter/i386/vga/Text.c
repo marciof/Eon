@@ -15,7 +15,7 @@ static size_t line = 0;
 static size_t column = 0;
 static uint8_t color_code = ENCODE_COLOR(K_VGA_TEXT_WHITE, K_VGA_TEXT_BLACK);
 
-static void clear_screen() {
+static void clear_screen(void) {
     const size_t END = 2 * gfx->lines * gfx->columns;
 
     for (size_t i = 0; i < END; i += 2) {
@@ -44,15 +44,15 @@ static void scroll_screen(int lines) {
     }
 }
 
-size_t k_VGA_Text_get_columns() {
+size_t k_VGA_Text_get_columns(void) {
     return gfx->columns;
 }
 
-size_t k_VGA_Text_get_lines() {
+size_t k_VGA_Text_get_lines(void) {
     return gfx->lines;
 }
 
-void k_VGA_Text_init() {
+void k_VGA_Text_init(void) {
     gfx = k_VGA_Gfx_get_memory_map();
 
     k_VGA_CRT_enable_cursor(false);

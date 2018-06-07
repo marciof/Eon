@@ -23,7 +23,7 @@ static void print_str(struct k_Log* log, const char* str) {
     fputs(str, ((struct Native_Log*) log->val)->stream);
 }
 
-struct k_Log* k_Log_get() {
+struct k_Log* k_Log_get(void) {
     static uint8_t data_area[sizeof(struct k_Log) + sizeof(struct Native_Log)];
     static struct k_Log* log = NULL;
 

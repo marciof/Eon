@@ -79,6 +79,6 @@ K_BIT_ATTR_PACKED(struct Segment_Descriptor {
 STATIC_ASSERT(sizeof(struct Segment_Descriptor) == 8,
     "Memory segment descriptor structure not packed.");
 
-struct k_Memory* k_Memory_get() {
+struct k_Memory* k_Memory_get(void) {
     return NULL;
 }

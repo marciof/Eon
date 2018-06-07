@@ -25,7 +25,7 @@ static void print_str(K_BIT_ATTR_UNUSED(struct k_Log* log), const char* str) {
 }
 
 // FIXME: remove globals in VGA and use this instance instead?
-struct k_Log* k_Log_get() {
+struct k_Log* k_Log_get(void) {
     static struct k_Log log = {prepare, print_ch, print_str};
     return &log;
 }

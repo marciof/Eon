@@ -8,4 +8,4 @@ struct k_System {
     uint8_t val[];
 };
 
-extern struct k_System* k_System_get();
+extern struct k_System* k_System_get(void);

@@ -6,7 +6,7 @@
 #include "Multiboot.h"
 #include "vga/Text.h"
 
-void main() {
+void main(void) {
     k_VGA_Text_init();
 
     // FIXME: move logging and other dependencies to k_System_start()
@@ -16,9 +16,9 @@ void main() {
     system->stop(system, K_SYSTEM_HALT);
 }
 
-extern void k_System_halt();
+extern void k_System_halt(void);
 
-extern void k_System_reset();
+extern void k_System_reset(void);
 
 static void stop(
         K_BIT_ATTR_UNUSED(struct k_System* system),
@@ -39,7 +39,7 @@ static void stop(
     }
 }
 
-struct k_System* k_System_get() {
+struct k_System* k_System_get(void) {
     static struct k_System system = {stop};
     return &system;
 }

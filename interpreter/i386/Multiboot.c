@@ -183,7 +183,7 @@ static void log_vbe(struct multiboot_info* info, struct k_Log* log) {
     }
 }
 
-struct multiboot_info* k_Multiboot_get_info() {
+struct multiboot_info* k_Multiboot_get_info(void) {
     if (k_Multiboot_magic_num != MULTIBOOT_BOOTLOADER_MAGIC) {
         k_Log_msg(k_Log_get(), K_LOG_ERROR,
             "Invalid Multiboot magic number: {iuh}", k_Multiboot_magic_num);

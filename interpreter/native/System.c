@@ -31,7 +31,7 @@ static void stop(
     }
 }
 
-struct k_System* k_System_get() {
+struct k_System* k_System_get(void) {
     static uint8_t data_area[sizeof(struct k_Log) + sizeof(struct Native_System)];
     static struct k_System* system = NULL;
 
