@@ -1,16 +1,14 @@
-#include <stdio.h>
 #include <string.h>
 #include "Err.h"
+#include "Log.h"
 
 void k_Err_describe(struct k_Err* err) {
+    // FIXME: pass k_Log over
     err->describe(err);
-    fprintf(stderr, "  `%s()` at %s:%zu\n",
-        err->function, err->file, err->line);
-}
 
-void k_Err_describe_errno(struct k_Err* err) {
-    int num = (int) err->arg;
-    fprintf(stderr, "%s (errno 0x%X)\n", strerror(num), num);
+    // FIXME: avoid direct use of the singleton
+    k_Log_msg(k_Log_get(), K_LOG_WARN, "  `{s}()` at {s}:{iu}u",
+        err->function, err->file, err->line);
 }
 
 bool k_Err_has(struct k_Err* err) {

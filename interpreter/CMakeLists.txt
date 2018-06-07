@@ -10,6 +10,8 @@ endif()
 
 set(CORE_SOURCES
     core/Ref.h
+    core/Err.c
+    core/Err.h
     core/Bit.h
     core/Log.c
     core/Log.h
