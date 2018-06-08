@@ -925,6 +925,28 @@ A [function](#function) that disassociates a `key` from a value in a `map`, and 
 
 A [function](#function) that disassociates a `key` from a value in a `list` or `function`, and returns the new [list](#list) or [function](#function) respectively. If `key` isn't present, then `list` or `function` is returned unchanged. If `key` is present and is a positive integer, then it displaces instead all following integer keys, if any, decrementing each by one.
 
+### Complexity
+
+Map:
+
+- Time: `O(1)`
+- Space: `O(1)`
+
+Set:
+
+- Time: `O(1)`
+- Space: `O(1)`
+
+List:
+
+- Time: `O(n)`
+- Space: `O(1)`
+
+Function:
+
+- Time: `O(n)` for number keys, otherwise `O(1)`
+- Space: `O(1)`
+
 ### Conditions
 
 - *Less or more than two arguments:* [unwinds](#unwind) global scope with `\parameter-mismatch`

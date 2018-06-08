@@ -1,6 +1,6 @@
-- Indicate time and space complexity for remove and insert.
+- Indicate time and space complexity for insert.
 - Specify prototypical inheritance (differential inheritance, eg. intro, `get`, `put` and `remove` handling, etc): http://steve-yegge.blogspot.com/2008/10/universal-design-pattern.html
-- How to get filename, line, etc for errors? `(debug bindings)`
+- How to get filename, line, etc for errors? `(debug) # (debug bindings) # {\module: path \line: number} # full call stack?`
 - Evaluate typing difficulty of each identifier and syntax quantitatively.
   - Use easier synonyms for hard to type words.
   - Bulk analyze source code out there for analysis?
