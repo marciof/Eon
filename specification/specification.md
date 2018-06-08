@@ -726,6 +726,28 @@ A [function](#function) that associates a `key` with a `value` in a `map`, and r
 
 A [function](#function) that associates a `key` with a `value` in a `list` or `function`, and returns the new [list](#list) or [function](#function) respectively. If `key` already exists and isn't a positive integer, then its associated value becomes `value`. If `key` already exists and is a positive integer, then it displaces instead the existing key and all following integer keys, if any, incrementing each by one.
 
+### Complexity
+
+Map:
+
+- Time: `O(1)`
+- Space: `O(1)`
+
+Set:
+
+- Time: `O(1)`
+- Space: `O(1)`
+
+List:
+
+- Time: `O(n)`
+- Space: `O(1)`
+
+Function:
+
+- Time: `O(n)` for number keys, otherwise `O(1)`
+- Space: `O(1)`
+
 ### Conditions
 
 - *Less than two or more than three arguments:* [unwinds](#unwind) global scope with `\parameter-mismatch`
