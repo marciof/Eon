@@ -10,12 +10,13 @@
 
   \true: (= 0 0)
   \false: (= 0 1)
-  
+
+  \...: \...
   \global-bindings: bindings
 
   \if: \((get
     {
-      1: \(unwind \parameter-mismatch global-bindings)
+      \argument-mismatch: \(unwind \parameter-mismatch global-bindings)
       4: \(get
         {
           true: \(evaluate bindings::3)
@@ -26,12 +27,9 @@
         \non-boolean)
     }
     (count (local bindings))
-    1))
-  
-  \function:
-  \(if (= (count (local bindings)) 3)
-    ...
-    (unwind \parameter-mismatch global-bindings))
+    \argument-mismatch))
+
+  \do: \...
 
   \and: \(evaluate (get
     {
@@ -62,8 +60,6 @@
   \>=: \(not (<
     (evaluate bindings::2)
     (evaluate bindings::3)))
-
-  \do: \...
 
   # Helper for named arguments.
   # Helper to have lexical binding by closing open bindings at creation.

@@ -314,6 +314,9 @@ An immutable sequence of Unicode characters, each one identified by a numeric co
 hex'1F'
 # (hex '1F')
 
+re'\d+'g
+# (re '\d+' \g)
+
 (prototype 'Bob')
 # ''
 
@@ -1094,7 +1097,7 @@ Expression:
 
 ```
 Expressions ::= White-Space* (Expression (White-Space+ Expression)* White-Space*)?
-Expression ::= Defer* (Number | Symbol | Text | Map | List | Function | Get-Chain)
+Expression ::= Defer* (Number | Symbol | Text | Map | Set | List | Function)
 Defer ::= "\" <U+27>
 ```
 
@@ -1119,14 +1122,16 @@ Digit ::= "0" <U+30> | "1" <U+31> | "2" <U+32> | "3" <U+33> | "4" <U+34> | "5" <
 Symbol:
 
 ```
-Symbol ::= not(Reserved-Character, White-Space, Sign, Digit) not(Reserved-Character, White-Space)* | Sign (not(Reserved-Character, White-Space, Digit) not(Reserved-Character, White-Space)*)?
+Symbol ::= not(Reserved-Character, White-Space, Sign, Digit) not(Reserved-Character, White-Space)*
 Reserved-Character ::= List-Begin | List-End | Function-Begin | Function-End | Map-Begin | Map-End | Comment-Quote | Text-Quote | Defer | Pair-Separator
 ```
 
 Text:
 
 ```
-Text ::= Symbol? Text-Quote (not(Text-Quote) | Text-Quote{2})* Text-Quote
+Text ::= Simple-Text | Tagged-Text
+Simple-Text ::= Text-Quote (not(Text-Quote) | Text-Quote{2})* Text-Quote
+Tagged-Text ::= Symbol Simple-Text Symbol?
 Text-Quote ::= "'" <U+22>
 ```
 
@@ -1158,7 +1163,7 @@ Set ::= Map-Begin White-Space* (Expression (White-Space+ Expression)* White-Spac
 Function:
 
 ```
-Function ::= Function-Begin White-Space* (Function (White-Space+ Function-Value)* White-Space*)? Function-End
+Function ::= (Function-Begin White-Space* (Function (White-Space+ Function-Value)* White-Space*)? Function-End) | Get-Chain
 Function-Value ::= Expression | Pair
 Get-Chain ::= Symbol (Pair-Separator{2} (Symbol | Number))+
 Function-Begin ::= "(" <U+28>
