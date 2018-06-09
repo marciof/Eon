@@ -1,5 +1,7 @@
 - Specify prototypical inheritance (differential inheritance, eg. intro, `get`, `put` and `remove` handling, etc): http://steve-yegge.blogspot.com/2008/10/universal-design-pattern.html
-- How to get filename, line, etc for errors? `(debug) # (debug bindings) # {\module: path \line: number} # full call stack?`
+- Uniform division by zero handling?
+  - `1 / 0.(0)1 = infinity`
+  - `1 / 0 = 0`
 - Evaluate typing difficulty of each identifier and syntax quantitatively.
   - Use easier synonyms for hard to type words.
   - Bulk analyze source code out there for analysis?
