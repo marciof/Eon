@@ -1,12 +1,11 @@
-- Check CLang warnings?
 - Check places where it assumed K_LOG_ERROR was stopping the system.
 - Verify all uses of Err (where it's missing, where it's not needed, etc).
 - Split "System.c" into "main.c"; also add a "main.c" in i386?
 - Make Err be the 2nd param always for consistency.
-- Don't access struct members directly? eg. `system->stop(system)`.
+- Don't use wrappers to access struct members directly.
 - How to add full stack trace information to `Err` instances?
 - Make System/etc not be a singleton and also to make it easier to test. Receive dependencies, such as Log, through an init function.
-- JS uses the same native System, since it's just a backend for code generation, just like a real-time interpreter is another backend. So don't merge it into native to allow an embedded systems to just pick core+native, but merge into core.
+- JS uses the same native System, since it's just a backend for code generation, just like a real-time interpreter is another backend. So don't merge it into native to allow an embedded systems to just pick core+native, but merge JS-independent parts into core.
 - Add Travis CI build matrix for the different builds (native, js, i386) and OSes.
 - Regularly test building on Debian 32-bit 64-bit, Windows, OSX.
 - Add simple v86 HTML demo?

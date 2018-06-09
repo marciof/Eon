@@ -6,11 +6,14 @@
 #include "Multiboot.h"
 #include "vga/Text.h"
 
+extern void k_System_halt(void);
+extern void k_System_reset(void);
+
 void main(void) {
-    struct k_Err err = K_ERR_NONE;
+    struct k_Err err = K_ERR_INIT;
     k_VGA_Text_init();
 
-    // FIXME: move logging and other dependencies to k_System_start()
+    // FIXME: move logging and other dependencies to a k_System_start?
     struct multiboot_info* multiboot_info = k_Multiboot_get_info(&err);
 
     if (!k_Err_has(&err)) {
@@ -18,37 +21,40 @@ void main(void) {
     }
 
     struct k_System* system = k_System_get();
-    system->stop(system, &err, K_SYSTEM_HALT);
+    system->stop(system, &err);
 }
 
-extern void k_System_halt(void);
+static void reset(
+        K_BIT_UNUSED(struct k_System* system),
+        K_BIT_UNUSED(struct k_Err* err)) {
 
-extern void k_System_reset(void);
+    if (k_Err_has(err)) {
+        k_Err_describe(err);
+    }
+
+    k_System_reset();
+}
 
 static void stop(
-        K_BIT_ATTR_UNUSED(struct k_System* system),
-        struct k_Err* err,
-        enum k_System_Stop_Mode mode) {
+        K_BIT_UNUSED(struct k_System* system),
+        struct k_Err* err) {
 
-    switch (mode) {
-    case K_SYSTEM_HALT:
-        // FIXME: implement halt shutdown mode
-        k_Log_msg(k_Log_get(), err, K_LOG_WARN, "Halt shutdown not implemented.");
-        if (k_Err_has(err)) {
-            k_Err_describe(err);
-        }
-        k_System_halt();
-        break;
-    case K_SYSTEM_RESET:
-        k_System_reset();
-        break;
-    default:
-        k_Log_msg(k_Log_get(), err, K_LOG_ERROR, "Invalid system stop mode.");
-        break;
+    if (k_Err_has(err)) {
+        k_Err_describe(err);
+        k_Err_reset(err);
     }
+
+    // FIXME: implement shutdown
+    k_Log_msg(k_Log_get(), err, K_LOG_WARN, "Shutdown not implemented");
+
+    if (k_Err_has(err)) {
+        k_Err_describe(err);
+    }
+
+    k_System_halt();
 }
 
 struct k_System* k_System_get(void) {
-    static struct k_System system = {stop};
+    static struct k_System system = {reset, stop};
     return &system;
 }

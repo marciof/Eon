@@ -3,8 +3,8 @@
 #include "vga/Text.h"
 
 static void prepare(
-        K_BIT_ATTR_UNUSED(struct k_Log* log),
-        struct k_Err* err,
+        K_BIT_UNUSED(struct k_Log* log),
+        K_BIT_UNUSED(struct k_Err* err),
         enum k_Log_Level lvl) {
 
     if (lvl == K_LOG_ERROR) {
@@ -19,16 +19,16 @@ static void prepare(
 }
 
 static void print_ch(
-        K_BIT_ATTR_UNUSED(struct k_Log* log),
-        struct k_Err* err,
+        K_BIT_UNUSED(struct k_Log* log),
+        K_BIT_UNUSED(struct k_Err* err),
         char ch) {
 
     k_VGA_Text_print_ch(ch);
 }
 
 static void print_str(
-        K_BIT_ATTR_UNUSED(struct k_Log* log),
-        struct k_Err* err,
+        K_BIT_UNUSED(struct k_Log* log),
+        K_BIT_UNUSED(struct k_Err* err),
         const char* str) {
 
     k_VGA_Text_print_str(str);

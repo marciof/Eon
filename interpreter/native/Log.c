@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include "../core/Bit.h"
 #include "../core/Log.h"
 
 struct Native_Log {
@@ -8,7 +9,7 @@ struct Native_Log {
 // FIXME: add colors
 static void prepare(
         struct k_Log* log,
-        struct k_Err* err,
+        K_BIT_UNUSED(struct k_Err* err),
         enum k_Log_Level lvl) {
 
     struct Native_Log* native_log = (struct Native_Log*) log->val;
@@ -20,12 +21,20 @@ static void prepare(
 }
 
 // FIXME: error handling fputc
-static void print_ch(struct k_Log* log, struct k_Err* err, char ch) {
+static void print_ch(
+        struct k_Log* log,
+        K_BIT_UNUSED(struct k_Err* err),
+        char ch) {
+
     fputc(ch, ((struct Native_Log*) log->val)->stream);
 }
 
 // FIXME: error handling fputs
-static void print_str(struct k_Log* log, struct k_Err* err, const char* str) {
+static void print_str(
+        struct k_Log* log,
+        K_BIT_UNUSED(struct k_Err* err),
+        const char* str) {
+
     fputs(str, ((struct Native_Log*) log->val)->stream);
 }
 

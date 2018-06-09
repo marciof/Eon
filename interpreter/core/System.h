@@ -2,13 +2,9 @@
 #include <stdint.h>
 #include "Err.h"
 
-enum k_System_Stop_Mode {K_SYSTEM_HALT, K_SYSTEM_RESET};
-
 struct k_System {
-    void (*stop)(
-        struct k_System* system,
-        struct k_Err* err,
-        enum k_System_Stop_Mode mode);
+    void (*reset)(struct k_System* system, struct k_Err* err);
+    void (*stop)(struct k_System* system, struct k_Err* err);
     uint8_t val[];
 };
 

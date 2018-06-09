@@ -19,7 +19,7 @@ enum {
     DRIVE_FIRST_HARD_DISK_DRIVE = 0x80,
 };
 
-K_BIT_ATTR_PACKED(struct Drive {
+K_BIT_PACKED(struct Drive {
     /** Size doesn't equal `10 + 2 * num. ports` due to alignment. */
     uint32_t size;
 
@@ -37,7 +37,7 @@ K_BIT_ATTR_PACKED(struct Drive {
     uint16_t* ports;
 });
 
-K_BIT_ATTR_PACKED(struct Boot_Device {
+K_BIT_PACKED(struct Boot_Device {
     uint8_t sub_sub_partition;
     uint8_t sub_partition;
     uint8_t top_level_partition;
@@ -50,7 +50,7 @@ enum {BOOT_DEVICE_UNUSED_PARTITION = 0xFF};
 extern struct multiboot_info* k_Multiboot_info;
 extern uint32_t k_Multiboot_magic_num;
 
-K_BIT_ATTR_SECTION(
+K_BIT_SECTION(
     ".multiboot_header",
     const struct multiboot_header k_Multiboot_header) = {
         MULTIBOOT_HEADER_MAGIC,
@@ -96,7 +96,7 @@ static void log_boot_modules(
         struct multiboot_mod_list* module = &modules[i];
 
         k_Log_msg(log, err, K_LOG_INFO,
-            "Boot module: start={iuh}; end={iuh}; string=\"{s}\"",
+            "Boot module: start={iuh}; end={iuh}; string='{s}'",
             module->mod_start, module->mod_end, (char*) module->cmdline);
 
         if (k_Err_has(err)) {
@@ -234,7 +234,7 @@ struct multiboot_info* k_Multiboot_get_info(struct k_Err* err) {
     {
         k_Log_msg(k_Log_get(), err, K_LOG_ERROR,
             "Invalid Multiboot information: "
-            "Both bits 4 and 5 of the flags field are set.");
+            "Both bits 4 and 5 of the flags field are set");
 
         if (k_Err_has(err)) {
             return NULL;
@@ -269,7 +269,7 @@ void k_Multiboot_log_info(
     }
 
     if (K_BIT_IS_SET(info->flags, MULTIBOOT_INFO_CMDLINE)) {
-        k_Log_msg(log, err, K_LOG_INFO, "Command line: \"{s}\"", info->cmdline);
+        k_Log_msg(log, err, K_LOG_INFO, "Command line: '{s}'", info->cmdline);
         if (k_Err_has(err)) {
             return;
         }
@@ -304,7 +304,7 @@ void k_Multiboot_log_info(
     }
 
     if (K_BIT_IS_SET(info->flags, MULTIBOOT_INFO_BOOT_LOADER_NAME)) {
-        k_Log_msg(log, err, K_LOG_INFO, "Boot loader: \"{s}\"",
+        k_Log_msg(log, err, K_LOG_INFO, "Boot loader: {s}",
             info->boot_loader_name);
         if (k_Err_has(err)) {
             return;

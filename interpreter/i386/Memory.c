@@ -50,7 +50,7 @@ enum Segment_Type {
     CODE_DATA = 1,
 };
 
-K_BIT_ATTR_PACKED(struct Segment_Descriptor {
+K_BIT_PACKED(struct Segment_Descriptor {
     /** Specifies the segment size according to the granularity. */
     uint16_t segment_limit_low;
 

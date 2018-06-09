@@ -3,7 +3,7 @@
 #include <stddef.h>
 #include <stdint.h>
 
-#define K_ERR_NONE {NULL}
+#define K_ERR_INIT {NULL}
 
 struct k_Err {
     /** Description ends in a newline. */
@@ -19,6 +19,8 @@ void k_Err_describe(struct k_Err* err);
 void k_Err_describe_text(struct k_Err* err);
 
 bool k_Err_has(struct k_Err* err);
+
+void k_Err_reset(struct k_Err* err);
 
 void k_Err_set(
     struct k_Err* err,

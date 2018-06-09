@@ -5,29 +5,37 @@
 #include "../core/Log.h"
 #include "System.h"
 
-static void stop(
-        K_BIT_ATTR_UNUSED(struct k_System* system),
-        struct k_Err* err,
-        enum k_System_Stop_Mode mode) {
+static void reset(
+        K_BIT_UNUSED(struct k_System* system),
+        struct k_Err* err) {
+
+    if (k_Err_has(err)) {
+        k_Err_describe(err);
+        k_Err_reset(err);
+    }
 
     struct Native_System* native_system = (struct Native_System*) system->val;
 
-    switch (mode) {
-    case K_SYSTEM_HALT:
+    // FIXME: use Err/Errno
+    if (execvp(native_system->argv[0], native_system->argv) != 0) {
+        k_Log_msg(k_Log_get(), err, K_LOG_ERROR,
+            "System reset error: errno={i}", errno);
+
         if (k_Err_has(err)) {
             k_Err_describe(err);
         }
-        exit(EXIT_SUCCESS);
-    case K_SYSTEM_RESET:
-        if (execvp(native_system->argv[0], native_system->argv) != 0) {
-            k_Log_msg(k_Log_get(), err, K_LOG_ERROR,
-                "System reset error: errno={i}", errno);
-        }
-        break;
-    default:
-        k_Log_msg(k_Log_get(), err, K_LOG_ERROR, "Invalid system stop mode.");
-        break;
     }
+}
+
+static void stop(
+        K_BIT_UNUSED(struct k_System* system),
+        struct k_Err* err) {
+
+    if (k_Err_has(err)) {
+        k_Err_describe(err);
+    }
+
+    exit(EXIT_SUCCESS);
 }
 
 struct k_System* k_System_get(void) {
@@ -36,6 +44,7 @@ struct k_System* k_System_get(void) {
 
     if (system == NULL) {
         system = (struct k_System*) data_area;
+        system->reset = reset;
         system->stop = stop;
     }
 

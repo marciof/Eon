@@ -25,7 +25,7 @@ static void increase_max_len(struct k_Str* str, struct k_Err* err) {
     str->max_len = new_max_len;
 }
 
-static void Str_free(void* str) {
+static void free_str(void* str) {
     free(((struct k_Str*) str)->val);
     free(str);
 }
@@ -62,5 +62,5 @@ struct k_Str* k_Str_new(struct k_Err* err) {
     str->val = val;
     str->len = 0;
     str->max_len = max_len;
-    return K_REF_INIT(str, Str_free);
+    return K_REF_INIT(str, free_str);
 }

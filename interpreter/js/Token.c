@@ -4,8 +4,8 @@
 #include "../core/Log.h"
 #include "Token.h"
 
-static void Token_describe_err(struct k_Err* err) {
-    struct k_Err discard_log_err = K_ERR_NONE;
+static void describe_token_err(struct k_Err* err) {
+    struct k_Err discard_log_err = K_ERR_INIT;
     struct k_Input* input = (struct k_Input*) err->arg;
     int ch = input->peek_ch(input, &discard_log_err);
 
@@ -15,14 +15,14 @@ static void Token_describe_err(struct k_Err* err) {
         (char) ch, input->location, input->line, input->column);
 }
 
-static void Token_free(void* ptr) {
+static void free_token(void* ptr) {
     struct k_Token* token = ptr;
     K_REF_DEC(token->str);
     K_REF_DEC(token->input);
     free(ptr);
 }
 
-static struct k_Token* Token_new(
+static struct k_Token* new_token(
         enum k_Token_Type type,
         struct k_Str* str,
         struct k_Input* input,
@@ -43,7 +43,7 @@ static struct k_Token* Token_new(
     token->line = line;
     token->column = column;
 
-    return K_REF_INIT(token, Token_free);
+    return K_REF_INIT(token, free_token);
 }
 
 static struct k_Str* read_comment(struct k_Input* input, struct k_Err* err) {
@@ -132,11 +132,11 @@ struct k_Token* k_Token_parse(struct k_Input* input, struct k_Err* err) {
         type = K_TOKEN_WHITESPACE;
     }
     else {
-        K_ERR_SET(err, Token_describe_err, input);
+        K_ERR_SET(err, describe_token_err, input);
         return NULL;
     }
 
-    struct k_Token* token = Token_new(type, str, input, line, column, err);
+    struct k_Token* token = new_token(type, str, input, line, column, err);
     K_REF_DEC(str);
     return token;
 }

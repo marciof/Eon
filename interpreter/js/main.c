@@ -6,7 +6,7 @@
 #include "Token.h"
 
 int main(void) {
-    struct k_Err err = K_ERR_NONE;
+    struct k_Err err = K_ERR_INIT;
     struct k_Input* stdin_input = k_Input_from_fd(
         STDIN_FILENO, "<stdin>", &err);
 
