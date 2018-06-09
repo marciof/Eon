@@ -1,7 +1,11 @@
-- Specify prototypical inheritance (differential inheritance, eg. intro, `get`, `put` and `remove` handling, etc): http://steve-yegge.blogspot.com/2008/10/universal-design-pattern.html
-- Uniform division by zero handling?
+- Specify prototypical inheritance (differential inheritance, eg. intro, `get`, `insert` and `remove` handling, etc): http://steve-yegge.blogspot.com/2008/10/universal-design-pattern.html
+- Uniform zero and infinity handling? Even if not completely correct?
   - `1 / 0.(0)1 = infinity`
   - `1 / 0 = 0`
+  - `0 / 0 = 0`
+  - `infinity - infinity = infinity`
+  - `0 * infinity = 0`
+  - `infinity / infinity = infinity`
 - Evaluate typing difficulty of each identifier and syntax quantitatively.
   - Use easier synonyms for hard to type words.
   - Bulk analyze source code out there for analysis?
@@ -15,14 +19,14 @@
 - "Structural Regular Expressions", Rob Pike: http://doc.cat-v.org/bell_labs/structural_regexps/se.pdf
 - Look for best/worst features of other languages: Perl, F#, Matlab, Rust, Ruby, Go, Julia, JavaScript, Clojure, Kotlin, Python, Haskell, Erlang, Typed Racket, PureScript, Elm, Io, Smalltalk, Java, Scheme, ML, Lua, Haxe, Tcl, Shen, REBOL, Wolfram, HyperCard, Awk, Parabola.io
 - Open questions:
-  - Reactive programming.
+  - Reactive programming?
   - Live changes (hot-reloading) support.
   - Change `load` to allow specifying a language/type to make it part of the spec that it has hooks for FFI? It's more practical and realistic, and also enables using native parts of a OS runtime. Allow a string so that anything works? URLs, etc
   - Indentation based syntax? The REPL becomes the shell, it just adds global functions as commands and other niceties.
     - If a line starts with a parenthesis it disables significant indentation inside the entire expression.
     - Otherwise each new line is a function call, with same-line arguments passed as-is, and indented new lines passed as function calls, unless it's a keyword argument.
     - All data types are callable as functions, and except for functions each value returns itself as the result.
-  - Allow suffixes in tagged text literals? Unnecessarily complicated? No good use-cases? Flags for regular expressions?
+  - Allow suffixes in tagged text literals? Unnecessarily complicated? No good use-cases? Flags for regular expressions is a good use case.
   - Built-in concurrency?
   - Guarantee efficient self-recursive function calls, tail function calls, and self-tail function calls?
   - Add a built-in CAS (Computer Algebra System) to not loose any precision even when dealing with irrational numbers? Make math functions allow symbols? Would also allow to remove `infinity` as a built-in, using the sum of the harmonic series? (See Maxima Algebra System which uses Lisp, and GNU Octave.)
