@@ -7,4 +7,5 @@
  */
 
 void k_VGA_Extern_enable_color_mode(bool enable);
-uint8_t k_VGA_Extern_read_input_status(uint8_t register_num);
+uint8_t k_VGA_Extern_read_input_status_reg_0(void);
+uint8_t k_VGA_Extern_read_input_status_reg_1(void);

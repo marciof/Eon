@@ -2,20 +2,21 @@
 #include <stddef.h>
 #include <sys/types.h>
 #include "Log.h"
-#include "System.h"
 
 #define NUMERIC_BASE_CONVERSION_SYMBOLS "0123456789ABCDEF"
 #define PLACEHOLDER_BEGIN '{'
 #define PLACEHOLDER_END '}'
-
-#define ERROR_MSG_PREFIX "[ERROR] "
-#define FORMAT_STR_ERROR ERROR_MSG_PREFIX "Invalid logging format string.\n"
-
+#define FORMAT_STR_ERROR "Invalid logging format string"
 #define STATIC_ARRAY_LEN(array) (sizeof((array)) / sizeof((array)[0]))
 
-static void print_int(struct k_Log* log, unsigned int integer, size_t base) {
+static void print_int(
+        struct k_Log* log,
+        struct k_Err* err,
+        unsigned int integer,
+        size_t base) {
+
     if (integer == 0) {
-        log->print_ch(log, NUMERIC_BASE_CONVERSION_SYMBOLS[integer]);
+        log->print_ch(log, err, NUMERIC_BASE_CONVERSION_SYMBOLS[integer]);
         return;
     }
 
@@ -32,35 +33,54 @@ static void print_int(struct k_Log* log, unsigned int integer, size_t base) {
     }
 
     if (integer != 0) {
-        print_int(log, integer, base);
+        print_int(log, err, integer, base);
+        if (k_Err_has(err)) {
+            return;
+        }
     }
 
-    log->print_str(log, byte + i + 1);
+    log->print_str(log, err, byte + i + 1);
 }
 
-static void print(struct k_Log* log, const char* format, va_list args) {
+// FIXME: too long, refactor
+static void print(
+        struct k_Log* log,
+        struct k_Err* err,
+        const char* format,
+        va_list args) {
+
     for (; *format != '\0'; ++format) {
         if (*format == PLACEHOLDER_END) {
             ++format;
 
             if (*format == PLACEHOLDER_END) {
-                log->print_ch(log, PLACEHOLDER_END);
+                log->print_ch(log, err, PLACEHOLDER_END);
+                if (k_Err_has(err)) {
+                    return;
+                }
                 continue;
             }
             else {
-                log->print_str(log, "\n" FORMAT_STR_ERROR);
-                k_System_get()->stop(k_System_get(), K_SYSTEM_HALT);
+                log->print_ch(log, err, '\n');
+                K_ERR_SET_TEXT(err, FORMAT_STR_ERROR);
+                return;
             }
         }
         else if (*format != PLACEHOLDER_BEGIN) {
-            log->print_ch(log, *format);
+            log->print_ch(log, err, *format);
+            if (k_Err_has(err)) {
+                return;
+            }
             continue;
         }
 
         ++format;
 
         if (*format == PLACEHOLDER_BEGIN) {
-            log->print_ch(log, PLACEHOLDER_BEGIN);
+            log->print_ch(log, err, PLACEHOLDER_BEGIN);
+            if (k_Err_has(err)) {
+                return;
+            }
             continue;
         }
 
@@ -69,11 +89,11 @@ static void print(struct k_Log* log, const char* format, va_list args) {
 
         switch (*format++) {
         case 'c':
-            log->print_ch(log, (char) va_arg(args, int));
+            log->print_ch(log, err, (char) va_arg(args, int));
             break;
         case 's':
             str = va_arg(args, char*);
-            log->print_str(log, str == NULL ? "(null)" : str);
+            log->print_str(log, err, str == NULL ? "(null)" : str);
             break;
         case 'i':
             integer = va_arg(args, int);
@@ -82,64 +102,89 @@ static void print(struct k_Log* log, const char* format, va_list args) {
                 ++format;
             }
             else if (integer < 0) {
-                log->print_ch(log, '-');
+                log->print_ch(log, err, '-');
+                if (k_Err_has(err)) {
+                    return;
+                }
                 integer = -integer;
             }
 
             switch (*format++) {
             case 'b':
-                print_int(log, (unsigned) integer, 2);
-                log->print_ch(log, 'b');
+                print_int(log, err, (unsigned) integer, 2);
+                if (k_Err_has(err)) {
+                    return;
+                }
+                log->print_ch(log, err, 'b');
                 break;
             case 'h':
-                print_int(log, (unsigned) integer, 16);
-                log->print_ch(log, 'h');
+                print_int(log, err, (unsigned) integer, 16);
+                if (k_Err_has(err)) {
+                    return;
+                }
+                log->print_ch(log, err, 'h');
                 break;
             default:
-                print_int(log, (unsigned) integer, 10);
+                print_int(log, err, (unsigned) integer, 10);
                 --format;
                 break;
             }
 
             break;
         default:
-            log->print_str(log, "\n" FORMAT_STR_ERROR);
-            k_System_get()->stop(k_System_get(), K_SYSTEM_HALT);
+            log->print_ch(log, err, '\n');
+            K_ERR_SET_TEXT(err, FORMAT_STR_ERROR);
             break;
         }
 
+        if (k_Err_has(err)) {
+            return;
+        }
         if (*format != PLACEHOLDER_END) {
-            log->print_str(log, "\n" FORMAT_STR_ERROR);
-            k_System_get()->stop(k_System_get(), K_SYSTEM_HALT);
+            log->print_ch(log, err, '\n');
+            K_ERR_SET_TEXT(err, FORMAT_STR_ERROR);
+            return;
         }
     }
 }
 
 void k_Log_msg(
-        struct k_Log* log, enum k_Log_Level level, const char* format, ...) {
+        struct k_Log* log,
+        struct k_Err* err,
+        enum k_Log_Level lvl,
+        const char* format,
+        ...) {
 
     const char* msg_prefix;
-    log->prepare(log, level);
 
-    if (level == K_LOG_ERROR) {
-        msg_prefix = ERROR_MSG_PREFIX;
+    log->prepare(log, err, lvl);
+    if (k_Err_has(err)) {
+        return;
     }
-    else if (level == K_LOG_WARN) {
+
+    if (lvl == K_LOG_ERROR) {
+        msg_prefix = "[ERROR] ";
+    }
+    else if (lvl == K_LOG_WARN) {
         msg_prefix = "[WARN] ";
     }
     else {
         msg_prefix = "[INFO] ";
     }
 
-    log->print_str(log, msg_prefix);
+    log->print_str(log, err, msg_prefix);
+    if (k_Err_has(err)) {
+        return;
+    }
 
     va_list args;
     va_start(args, format);
-    print(log, format, args);
+    print(log, err, format, args);
     va_end(args);
-    log->print_ch(log, '\n');
 
-    if (level == K_LOG_ERROR) {
-        k_System_get()->stop(k_System_get(), K_SYSTEM_HALT);
+    if (k_Err_has(err)) {
+        return;
     }
+
+    log->print_ch(log, err, '\n');
 }

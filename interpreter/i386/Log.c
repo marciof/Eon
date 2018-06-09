@@ -3,12 +3,14 @@
 #include "vga/Text.h"
 
 static void prepare(
-        K_BIT_ATTR_UNUSED(struct k_Log* log), enum k_Log_Level level) {
+        K_BIT_ATTR_UNUSED(struct k_Log* log),
+        struct k_Err* err,
+        enum k_Log_Level lvl) {
 
-    if (level == K_LOG_ERROR) {
+    if (lvl == K_LOG_ERROR) {
         k_VGA_Text_set_color(K_VGA_TEXT_RED, K_VGA_TEXT_BLACK);
     }
-    else if (level == K_LOG_WARN) {
+    else if (lvl == K_LOG_WARN) {
         k_VGA_Text_set_color(K_VGA_TEXT_YELLOW, K_VGA_TEXT_BLACK);
     }
     else {
@@ -16,11 +18,19 @@ static void prepare(
     }
 }
 
-static void print_ch(K_BIT_ATTR_UNUSED(struct k_Log* log), char ch) {
+static void print_ch(
+        K_BIT_ATTR_UNUSED(struct k_Log* log),
+        struct k_Err* err,
+        char ch) {
+
     k_VGA_Text_print_ch(ch);
 }
 
-static void print_str(K_BIT_ATTR_UNUSED(struct k_Log* log), const char* str) {
+static void print_str(
+        K_BIT_ATTR_UNUSED(struct k_Log* log),
+        struct k_Err* err,
+        const char* str) {
+
     k_VGA_Text_print_str(str);
 }
 

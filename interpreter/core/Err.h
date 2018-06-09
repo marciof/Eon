@@ -16,6 +16,8 @@ struct k_Err {
 
 void k_Err_describe(struct k_Err* err);
 
+void k_Err_describe_text(struct k_Err* err);
+
 bool k_Err_has(struct k_Err* err);
 
 void k_Err_set(
@@ -34,3 +36,6 @@ void k_Err_set(
         __FILE__, \
         __LINE__, \
         (intptr_t) (arg))
+
+#define K_ERR_SET_TEXT(err, text) \
+    K_ERR_SET((err), k_Err_describe_text, (text))

@@ -1,13 +1,17 @@
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include "../core/Log.h"
 #include "Token.h"
 
 static void Token_describe_err(struct k_Err* err) {
+    struct k_Err discard_log_err = K_ERR_NONE;
     struct k_Input* input = (struct k_Input*) err->arg;
-    int ch = input->peek_ch(input, err);
+    int ch = input->peek_ch(input, &discard_log_err);
 
-    fprintf(stderr, "Unexpected token '%c' at %s:%zu:%zu\n",
+    // FIXME: avoid direct use of the singleton
+    k_Log_msg(k_Log_get(), &discard_log_err, K_LOG_ERROR,
+        "Unexpected token '{c}' at {s}:{iu}:{iu}",
         (char) ch, input->location, input->line, input->column);
 }
 

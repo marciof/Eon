@@ -6,6 +6,7 @@
 #include "System.h"
 
 int main(int argc, char* argv[]) {
+    struct k_Err err = K_ERR_NONE;
     struct k_System* system = k_System_get();
 
     // FIXME: move to initialization once Log and System are decoupled via Err
@@ -15,8 +16,8 @@ int main(int argc, char* argv[]) {
 
     // FIXME: log full command line
     // FIXME: move logging to k_System_start()
-    k_Log_msg(k_Log_get(), K_LOG_INFO, "Command line: count={i}", argc);
+    k_Log_msg(k_Log_get(), &err, K_LOG_INFO, "Command line: count={i}", argc);
 
-    system->stop(system, K_SYSTEM_HALT);
+    system->stop(system, &err, K_SYSTEM_HALT);
     return EXIT_FAILURE;
 }

@@ -29,9 +29,11 @@ add_subdirectory(core)
 if(BUILD_FOR_NATIVE_HOST)
     add_subdirectory(native)
 endif()
+
 if(BUILD_FOR_I386_HOST)
     add_subdirectory(i386)
 endif()
+
 if(BUILD_FOR_JAVASCRIPT_HOST)
     add_subdirectory(js)
 endif()

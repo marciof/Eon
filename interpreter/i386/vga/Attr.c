@@ -31,7 +31,7 @@ enum {
  * registers), discarding the value just read.
  */
 static inline void reset_state(void) {
-    k_VGA_Extern_read_input_status(1);
+    k_VGA_Extern_read_input_status_reg_1();
 }
 
 void k_VGA_Attr_enable_text_blink_mode(bool enable) {

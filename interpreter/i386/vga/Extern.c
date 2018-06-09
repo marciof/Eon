@@ -1,7 +1,6 @@
 #include "../../core/Log.h"
 #include "../../core/Bit.h"
 #include "../IO.h"
-#include "Extern.h"
 
 typedef uint16_t Port;
 enum {
@@ -32,17 +31,12 @@ void k_VGA_Extern_enable_color_mode(bool enable) {
     is_color_mode_enabled = enable;
 }
 
-uint8_t k_VGA_Extern_read_input_status(uint8_t register_num) {
-    switch (register_num) {
-    case 0:
-        return k_IO_read_byte(INPUT_STATUS_0_READ_PORT);
-    case 1:
-        return k_IO_read_byte(is_color_mode_enabled
-            ? COLOR_INPUT_STATUS_1_READ_PORT
-            : MONOCHROME_INPUT_STATUS_1_READ_PORT);
-    default:
-        k_Log_msg(k_Log_get(), K_LOG_ERROR,
-            "Invalid VGA general register: {iu}", register_num);
-        return 0;
-    }
+uint8_t k_VGA_Extern_read_input_status_reg_0(void) {
+    return k_IO_read_byte(INPUT_STATUS_0_READ_PORT);
+}
+
+uint8_t k_VGA_Extern_read_input_status_reg_1(void) {
+    return k_IO_read_byte(is_color_mode_enabled
+        ? COLOR_INPUT_STATUS_1_READ_PORT
+        : MONOCHROME_INPUT_STATUS_1_READ_PORT);
 }

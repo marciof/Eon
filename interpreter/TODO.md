@@ -1,9 +1,16 @@
+- Check CLang warnings?
+- Check places where it assumed K_LOG_ERROR was stopping the system.
+- Verify all uses of Err (where it's missing, where it's not needed, etc).
 - Split "System.c" into "main.c"; also add a "main.c" in i386?
+- Make Err be the 2nd param always for consistency.
+- Don't access struct members directly? eg. `system->stop(system)`.
+- How to add full stack trace information to `Err` instances?
 - Make System/etc not be a singleton and also to make it easier to test. Receive dependencies, such as Log, through an init function.
 - JS uses the same native System, since it's just a backend for code generation, just like a real-time interpreter is another backend. So don't merge it into native to allow an embedded systems to just pick core+native, but merge into core.
 - Add Travis CI build matrix for the different builds (native, js, i386) and OSes.
 - Regularly test building on Debian 32-bit 64-bit, Windows, OSX.
 - Add simple v86 HTML demo?
+- Replace flexible struct member (`val[]`) with a `void*` for portability and also to allow the struct interface to grow without breaking implementations.
 - Redesign architecture, to make it easier to embed, no singletons, and easier to unit test:
   - Avoid all these repeated calls for `*_get()`?
   - Remove stop modes and use only reset or halt
@@ -30,6 +37,7 @@
 - Upgrade to Multiboot 2?
 - https://github.com/copy/v86
 - Option or tool to validate Coding Style guidelines.
+- Verify space/time complexity in the specification matches the implementation.
 - Prototyping:
   - "Crafting Interpreters", Bob Nystrom: http://craftinginterpreters.com
   - "LispOS - Specification of a Lisp operating system.", Robert Strandh: http://metamodular.com/lispos.pdf

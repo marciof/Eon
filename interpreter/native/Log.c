@@ -6,20 +6,26 @@ struct Native_Log {
 };
 
 // FIXME: add colors
-static void prepare(struct k_Log* log, enum k_Log_Level level) {
+static void prepare(
+        struct k_Log* log,
+        struct k_Err* err,
+        enum k_Log_Level lvl) {
+
     struct Native_Log* native_log = (struct Native_Log*) log->val;
 
     // FIXME: find an alternative to mutating this every time
-    native_log->stream = (level == K_LOG_ERROR) || (level == K_LOG_WARN)
+    native_log->stream = (lvl == K_LOG_ERROR) || (lvl == K_LOG_WARN)
         ? stderr
         : stdout;
 }
 
-static void print_ch(struct k_Log* log, char ch) {
+// FIXME: error handling fputc
+static void print_ch(struct k_Log* log, struct k_Err* err, char ch) {
     fputc(ch, ((struct Native_Log*) log->val)->stream);
 }
 
-static void print_str(struct k_Log* log, const char* str) {
+// FIXME: error handling fputs
+static void print_str(struct k_Log* log, struct k_Err* err, const char* str) {
     fputs(str, ((struct Native_Log*) log->val)->stream);
 }
 

@@ -1,5 +1,6 @@
 #pragma once
 #include <stdint.h>
+#include "Err.h"
 
 enum {K_LOG_TAB_SIZE_SPACES = 4};
 enum k_Log_Level {K_LOG_ERROR, K_LOG_WARN, K_LOG_INFO};
@@ -7,9 +8,9 @@ enum k_Log_Level {K_LOG_ERROR, K_LOG_WARN, K_LOG_INFO};
 // FIXME: use Ref?
 // FIXME: add timestamps?
 struct k_Log {
-    void (*prepare)(struct k_Log* log, enum k_Log_Level level);
-    void (*print_ch)(struct k_Log* log, char ch);
-    void (*print_str)(struct k_Log* log, const char* str);
+    void (*prepare)(struct k_Log* log, struct k_Err* err, enum k_Log_Level lvl);
+    void (*print_ch)(struct k_Log* log, struct k_Err* err, char ch);
+    void (*print_str)(struct k_Log* log, struct k_Err* err, const char* str);
     uint8_t val[];
 };
 
@@ -32,4 +33,7 @@ extern struct k_Log* k_Log_get(void);
  */
 // FIXME: use Err? to decouple from needing a System instance?
 void k_Log_msg(
-    struct k_Log* log, enum k_Log_Level level, const char* format, ...);
+    struct k_Log* log,
+    struct k_Err* err,
+    enum k_Log_Level lvl,
+    const char* format, ...);

@@ -3,12 +3,21 @@
 #include "Log.h"
 
 void k_Err_describe(struct k_Err* err) {
-    // FIXME: pass k_Log over
+    struct k_Err discard_log_err = K_ERR_NONE;
+
+    // FIXME: pass Log over
     err->describe(err);
 
     // FIXME: avoid direct use of the singleton
-    k_Log_msg(k_Log_get(), K_LOG_WARN, "  `{s}()` at {s}:{iu}u",
-        err->function, err->file, err->line);
+    k_Log_msg(k_Log_get(), &discard_log_err, K_LOG_ERROR,
+        "  `{s}()` at {s}:{iu}", err->function, err->file, err->line);
+}
+
+void k_Err_describe_text(struct k_Err* err) {
+    struct k_Err discard_log_err = K_ERR_NONE;
+
+    k_Log_msg(k_Log_get(), &discard_log_err, K_LOG_ERROR,
+        "{s}", (char*) err->arg);
 }
 
 bool k_Err_has(struct k_Err* err) {

@@ -99,7 +99,8 @@ void k_VGA_Text_print_str(const char* string) {
     }
 }
 
-void k_VGA_Text_set_color(k_VGA_Text_Color foreground,
-    k_VGA_Text_Color background) {
+void k_VGA_Text_set_color(
+        k_VGA_Text_Color foreground, k_VGA_Text_Color background) {
+
     color_code = ENCODE_COLOR(foreground, background);
 }
