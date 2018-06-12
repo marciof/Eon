@@ -24,7 +24,6 @@
   - [`defer`](#defer)
   - [`evaluate`](#evaluate)
   - [`get`](#get)
-  - [`infinity`](#infinity)
   - [`insert`](#insert)
   - [`load`](#load)
   - [`local`](#local)
@@ -224,16 +223,13 @@ A rational number.
 4'294'967'296
 # 4294967296
 
-infinity
+(/ 1 0.(0)1)
 # infinity
 
 3Km
 # (Km 3)
 
 (prototype 3)
-# 0
-
-(prototype infinity)
 # 0
 
 (prototype 0)
@@ -682,24 +678,6 @@ A [function](#function) that retrieves the value associated with a `key` in a `m
 
   users::1::name)
   # 'Bob'
-```
-
-## `infinity`
-
-```
-infinity: Number
-```
-
-A quantity greater than any [number](#number).
-
-### Examples
-
-```
-(* 2 infinity)
-# infinity
-
-(/ 1 infinity)
-# 0
 ```
 
 ## `insert`

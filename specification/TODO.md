@@ -1,11 +1,4 @@
 - Specify prototypical inheritance (differential inheritance, eg. intro, `get`, `insert` and `remove` handling, etc): http://steve-yegge.blogspot.com/2008/10/universal-design-pattern.html
-- Uniform zero and infinity handling? Even if not completely correct?
-  - `1 / 0.(0)1 = infinity`
-  - `1 / 0 = 0`
-  - `0 / 0 = 0`
-  - `infinity - infinity = infinity`
-  - `0 * infinity = 0`
-  - `infinity / infinity = infinity`
 - Evaluate typing difficulty of each identifier and syntax quantitatively.
   - Use easier synonyms for hard to type words.
   - Bulk analyze source code out there for analysis?
@@ -26,7 +19,5 @@
     - If a line starts with a parenthesis it disables significant indentation inside the entire expression.
     - Otherwise each new line is a function call, with same-line arguments passed as-is, and indented new lines passed as function calls, unless it's a keyword argument.
     - All data types are callable as functions, and except for functions each value returns itself as the result.
-  - Allow suffixes in tagged text literals? Unnecessarily complicated? No good use-cases? Flags for regular expressions is a good use case.
-  - Built-in concurrency?
   - Guarantee efficient self-recursive function calls, tail function calls, and self-tail function calls?
   - Add a built-in CAS (Computer Algebra System) to not loose any precision even when dealing with irrational numbers? Make math functions allow symbols? Would also allow to remove `infinity` as a built-in, using the sum of the harmonic series? (See Maxima Algebra System which uses Lisp, and GNU Octave.)
