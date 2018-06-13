@@ -6,18 +6,14 @@
   - https://en.wikipedia.org/wiki/Comparison_of_programming_languages_(syntax)
   - http://hyperpolyglot.org/scripting
   - https://github.com/anvaka/common-words/blob/master/README.md
-- Documentation: man pages, tutorial, FAQ, quick start.
 - http://www.infoq.com/presentations/Value-Identity-State-Rich-Hickey
 - "Empirical Analysis of Programming Language Adoption", Leo A. Meyerovich, Ariel Rabkin: http://sns.cs.princeton.edu/docs/asr-oopsla13.pdf
-- "Structural Regular Expressions", Rob Pike: http://doc.cat-v.org/bell_labs/structural_regexps/se.pdf
 - Look for best/worst features of other languages: Perl, F#, Matlab, Rust, Ruby, Go, Julia, JavaScript, Clojure, Kotlin, Python, Haskell, Erlang, Typed Racket, PureScript, Elm, Io, Smalltalk, Java, Scheme, ML, Lua, Haxe, Tcl, Shen, REBOL, Wolfram, HyperCard, Awk, Parabola.io
-- Open questions:
-  - Reactive programming?
-  - Live changes (hot-reloading) support.
-  - Change `load` to allow specifying a language/type to make it part of the spec that it has hooks for FFI? It's more practical and realistic, and also enables using native parts of a OS runtime. Allow a string so that anything works? URLs, etc
-  - Indentation based syntax? The REPL becomes the shell, it just adds global functions as commands and other niceties.
-    - If a line starts with a parenthesis it disables significant indentation inside the entire expression.
-    - Otherwise each new line is a function call, with same-line arguments passed as-is, and indented new lines passed as function calls, unless it's a keyword argument.
-    - All data types are callable as functions, and except for functions each value returns itself as the result.
-  - Guarantee efficient self-recursive function calls, tail function calls, and self-tail function calls?
-  - Add a built-in CAS (Computer Algebra System) to not loose any precision even when dealing with irrational numbers? Make math functions allow symbols? Would also allow to remove `infinity` as a built-in, using the sum of the harmonic series? (See Maxima Algebra System which uses Lisp, and GNU Octave.)
+- Reactive programming?
+- Change `load` to allow specifying a language/type to make it part of the spec that it has hooks for FFI? It's more practical and realistic, and also enables using native parts of a OS runtime. Allow a string so that anything works? URLs, etc
+- Indentation based syntax? The REPL becomes the shell, it just adds global functions as commands and other niceties.
+  - If a line starts with a parenthesis it disables significant indentation inside the entire expression.
+  - Otherwise each new line is a function call, with same-line arguments passed as-is, and indented new lines passed as function calls, unless it's a keyword argument.
+  - All data types are callable as functions, and except for functions each value returns itself as the result.
+- Guarantee efficient self-recursive function calls, tail function calls, and self-tail function calls?
+- Add a built-in CAS (Computer Algebra System) to not loose any precision even when dealing with irrational numbers? Make math functions allow symbols? See Maxima Algebra System which uses Lisp, and GNU Octave.
