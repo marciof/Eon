@@ -1155,7 +1155,7 @@ These are the syntactic transformations that occur for each associated non-termi
 |Non-Terminal       |Syntax|Transformation|Example       |Notes         |
 |-------------------|------|--------------|--------------|--------------|
 |*Get-Chain*        |`x::y`|`(get x \y)`  |`user::name`  |Left to right.|
-|*Text*             |`xy`  |`(x y)`       |`hex'1F'`     |              |
+|*Tagged-Text*      |`xyz` |`(x y z)`     |`base'1F'16`  |              |
 |*Function-Value*   |`x`   |`N:x`         |`(f)`         |Position `N`. |
 |*Number*           |`xy`  |`(y x)`       |`2Km`         |              |
 |*Defer*            |`\x`  |`(defer x)`   |`\length`     |              |
