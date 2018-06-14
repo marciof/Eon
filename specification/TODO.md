@@ -1,3 +1,7 @@
+- Not very homoiconic? No need to have a function data type due to significant indentation making every data type callable? What about iterating lists that have non-number keys?
+  - `()` creates a list and immediately calls it as code
+  - `[]` creates a list
+  - `[x] = (defer ((escape x)) \escape)`
 - Specify prototypical inheritance (differential inheritance, eg. intro, `get`, `insert` and `remove` handling, etc): http://steve-yegge.blogspot.com/2008/10/universal-design-pattern.html
 - Evaluate typing difficulty of each identifier and syntax quantitatively.
   - Use easier synonyms for hard to type words.
