@@ -501,7 +501,7 @@ The bindings map always [prototypically](#prototype) inherits from the previous 
 (count map:Map): Number
 ```
 
-A [function](#function) that returns the number of key/value pairs in a `map`. If `map` is a prototype of or a [built-in](#built-in) [function](#function) then it returns `0`.
+A [function](#function) that returns the number of key/value pairs in a `map`. If `map` is a prototype of, or a [built-in](#built-in) or [foreign](#load) [function](#function) then it returns `0`.
 
 ### Complexity
 
@@ -780,6 +780,12 @@ Function:
 
 A [function](#function) that loads a [module](#module) by `path`, with zero or more arguments, and returns the value from the last evaluated expression. A `path` is a list of zero or more names, ending with the [module](#module) name.
 
+```
+(load path:Text format:Symbol ...:Any): Any
+```
+
+A [function](#function) that loads a foreign [module](#module) for the given `format` by `path`, with zero or more arguments, and returns it. The `path` format is `format` dependent.
+
 ### Complexity
 
 - Time: `O(1)`
@@ -796,6 +802,8 @@ A [function](#function) that loads a [module](#module) by `path`, with zero or m
 
 ```
 (load [\io])
+
+(load 'java.util.ArrayList' \java)
 ```
 
 ## `local`

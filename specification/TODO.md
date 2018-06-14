@@ -10,7 +10,6 @@
 - "Empirical Analysis of Programming Language Adoption", Leo A. Meyerovich, Ariel Rabkin: http://sns.cs.princeton.edu/docs/asr-oopsla13.pdf
 - Look for best/worst features of other languages: Perl, F#, Matlab, Rust, Ruby, Go, Julia, JavaScript, Clojure, Kotlin, Python, Haskell, Erlang, Typed Racket, PureScript, Elm, Io, Smalltalk, Java, Scheme, ML, Lua, Haxe, Tcl, Shen, REBOL, Wolfram, HyperCard, Awk, Parabola.io
 - Reactive programming?
-- Change `load` to allow specifying a language/type to make it part of the spec that it has hooks for FFI? It's more practical and realistic, and also enables using native parts of a OS runtime. Allow a string so that anything works? URLs, etc
 - Indentation based syntax? The REPL becomes the shell, it just adds global functions as commands and other niceties.
   - If a line starts with a parenthesis it disables significant indentation inside the entire expression.
   - Otherwise each new line is a function call, with same-line arguments passed as-is, and indented new lines passed as function calls, unless it's a keyword argument.
