@@ -501,7 +501,7 @@ The bindings map always [prototypically](#prototype) inherits from the previous 
 (count map:Map): Number
 ```
 
-A [function](#function) that returns the number of key/value pairs in a `map`. If `map` is a prototype of, or a [built-in](#built-in) or [foreign](#load) [function](#function) then it returns `0`.
+A [function](#function) that returns the number of key/value pairs in a `map`. If `map` is a prototype of, or a [built-in](#built-in) or [foreign-loaded](#load) [function](#function) then it returns `0`.
 
 ### Complexity
 
@@ -596,6 +596,7 @@ A [function](#function) that evaluates an `expression` and returns the result, o
 
 - *Zero or more than two arguments:* [unwinds](#unwind) global scope with `\parameter-mismatch`
 - *`bindings` argument isn't a prototype of nor a map:* [unwinds](#unwind) global scope with `\prototype-mismatch`
+- *`expression` argument contains an unbound identifier:* [unwinds](#unwind) global scope with `\unbound-identifier`
 
 ### Examples
 
@@ -780,12 +781,6 @@ Function:
 
 A [function](#function) that loads a [module](#module) by `path`, with zero or more arguments, and returns the value from the last evaluated expression. A `path` is a list of zero or more names, ending with the [module](#module) name.
 
-```
-(load path:Text format:Symbol ...:Any): Any
-```
-
-A [function](#function) that loads a foreign [module](#module) for the given `format` by `path`, with zero or more arguments, and returns it. The `path` format is `format` dependent.
-
 ### Complexity
 
 - Time: `O(1)`
@@ -796,14 +791,12 @@ A [function](#function) that loads a foreign [module](#module) for the given `fo
 - *Less than one argument:* [unwinds](#unwind) global scope with `\parameter-mismatch`
 - *`path` argument isn't a prototype of nor a non-empty list of symbols:* [unwinds](#unwind) global scope with `\prototype-mismatch`
 - *Module can't be found:* [unwinds](#unwind) global scope with `\unknown-module`
-- *Module doesn't evaluate to at least one value:* [unwinds](#unwind) global scope with `\undefined-result`
+- *Module doesn't evaluate to at least one value or is invalid:* [unwinds](#unwind) global scope with `\undefined-result`
 
 ### Examples
 
 ```
 (load [\io])
-
-(load 'java.util.ArrayList' \java)
 ```
 
 ## `local`
