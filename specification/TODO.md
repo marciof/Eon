@@ -2,6 +2,7 @@
   - `()` creates a list and immediately calls it as code
   - `[]` creates a list
   - `[x] = (defer ((escape x)) \escape)`
+  - Modify `local` to accept a filter parameter to filter out non-number keys in lists?
 - Specify prototypical inheritance (differential inheritance, eg. intro, `get`, `insert` and `remove` handling, etc): http://steve-yegge.blogspot.com/2008/10/universal-design-pattern.html
 - Evaluate typing difficulty of each identifier and syntax quantitatively.
   - Use easier synonyms for hard to type words.
