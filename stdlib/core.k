@@ -1,6 +1,5 @@
 {
   \Boolean: (= 0 0)
-  \Function: \()
   \List: []
   \Map: {:}
   \Number: 0
