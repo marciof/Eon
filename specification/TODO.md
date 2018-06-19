@@ -2,6 +2,8 @@
   - `()` creates a list and immediately calls it as code (function) 
   - `[]` creates a list
   - `[x] = (defer ((escape x)) \escape)`
+  - Grammar for function value shouldn't accept any first key and value?
+  - Update list prototype, get, insert and remove. 
 - Specify prototypical inheritance (differential inheritance, eg. intro, `get`, `insert` and `remove` handling, etc): http://steve-yegge.blogspot.com/2008/10/universal-design-pattern.html
 - Evaluate typing difficulty of each identifier and syntax quantitatively.
   - Use easier synonyms for hard to type words.
