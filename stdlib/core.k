@@ -1,6 +1,6 @@
 {
   \Boolean: (= 0 0)
-  \Function: \()
+  \Function: ()
   \List: []
   \Map: {:}
   \Number: 0
@@ -11,8 +11,8 @@
   \true: (= 0 0)
   \false: (= 0 1)
   \infinity: (/ 1 0.(0)1)
-  \...: \...
   \global-bindings: bindings
+  \...: \...
 
   \if: \((get
     {

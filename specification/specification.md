@@ -107,14 +107,14 @@ A binary logical value that can only be either true or false. It does not have a
 
 ## Function
 
-An immutable sequence composed of a function followed by zero or more values as the arguments. This sequence associates consecutive positive integer keys in ascending order with positional arguments, including any keyword arguments as well.
+An immutable sequence composed of a function followed by zero or more values as the arguments.
 
 Calling a function creates a new [bindings](#bindings) map using the [deferred](#defer) function call, [prototypically](#prototype) inherited from the current bindings in scope, and then evaluates it using the new bindings returning the result. Calling an empty function evaluates to itself.
 
 Code is decoupled from data, which means dynamic binding is the default behavior. However, lexical binding can also be implemented by closing `bindings`.
 
 - **Prototype:** empty [function](#function), `()`
-- **Base Prototype:** empty [map](#map), `{:}`
+- **Base Prototype:** empty [list](#list), `[]`
 
 ### Examples
 
@@ -137,16 +137,19 @@ Code is decoupled from data, which means dynamic binding is the default behavior
 \(- 1)
 # (- 1)
 
+(prototype -)
+# ()
+
 (prototype \(+ 1 2))
 # ()
 
 (prototype \())
-# {:}
+# []
 ```
 
 ## List
 
-An immutable sequence of elements, that associates consecutive positive integer keys in ascending order with values.
+An immutable sequence of elements, that associates consecutive positive integer keys in ascending order with positional values, including any keyword values as well.
 
 - **Prototype:** empty [list](#list), `[]`
 - **Base Prototype:** empty [map](#map), `{:}`
@@ -161,7 +164,10 @@ An immutable sequence of elements, that associates consecutive positive integer 
 # ['x' 'y']
 
 [8 2 2 \abc]
-# [8 2 2 \abc]
+# [8 2 2 abc]
+
+['x' 'y' \key: \value]
+# ['x' 'y' key: value]
 
 (prototype ['x'])
 # []
@@ -533,6 +539,9 @@ A [function](#function) that returns the number of key/value pairs in a `map`. I
 
 (count 'Bob')
 # 3
+
+(count +)
+# 0
 
 (count \())
 # 0
@@ -1128,7 +1137,8 @@ Map-End ::= "}" <U+7D>
 List:
 
 ```
-List ::= List-Begin White-Space* (Expression (White-Space+ Expression)* White-Space*)? List-End
+List ::= List-Begin White-Space* (List-Value (White-Space+ List-Value)* White-Space*)? List-End
+List-Value ::= Expression | Pair
 List-Begin ::= "[" <U+5B>
 List-End ::= "]" <U+5D>
 ```
@@ -1142,8 +1152,7 @@ Set ::= Map-Begin White-Space* (Expression (White-Space+ Expression)* White-Spac
 Function:
 
 ```
-Function ::= (Function-Begin White-Space* (Function (White-Space+ Function-Value)* White-Space*)? Function-End) | Get-Chain
-Function-Value ::= Expression | Pair
+Function ::= (Function-Begin White-Space* ((Function | Expression Pair-Separator White-Space* Function) (White-Space+ List-Value)* White-Space*)? Function-End) | Get-Chain
 Get-Chain ::= Symbol (Pair-Separator{2} (Symbol | Number))+
 Function-Begin ::= "(" <U+28>
 Function-End ::= ")" <U+28>
@@ -1157,7 +1166,7 @@ These are the syntactic transformations that occur for each associated non-termi
 |-------------------|------|--------------|--------------|--------------|
 |*Get-Chain*        |`x::y`|`(get x \y)`  |`user::name`  |Left to right.|
 |*Tagged-Text*      |`xyz` |`(x y z)`     |`base'1F'16`  |              |
-|*Function-Value*   |`x`   |`N:x`         |`(f)`         |Position `N`. |
+|*List-Value*       |`x`   |`N:x`         |`['Bob']`     |Position `N`. |
 |*Number*           |`xy`  |`(y x)`       |`2Km`         |              |
 |*Defer*            |`\x`  |`(defer x)`   |`\length`     |              |
 
