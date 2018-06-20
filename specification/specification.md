@@ -109,7 +109,7 @@ A binary logical value that can only be either true or false. It does not have a
 
 A [list](#list) composed of a function followed by zero or more values as the arguments. 
 
-Due to homoiconicity there's no separate function prototype. Instead, the [list](#list) prototype is used to denote functions. It also means that dynamic binding is the default behavior. However, lexical binding can also be implemented by closing [`bindings`](#bindings).
+Due to homoiconicity there's no separate function prototype. Instead, the [list](#list) prototype is used to denote both functions and function calls. It also means that dynamic binding is the default behavior. However, lexical binding can also be implemented by closing [`bindings`](#bindings).
 
 Calling a function creates a new [bindings](#bindings) map using the [deferred](#defer) function call, [prototypically](#prototype) inherited from the current bindings in scope, and then evaluates it using the new bindings returning the result. Calling an empty function evaluates to itself.
 
@@ -143,9 +143,6 @@ Calling a function creates a new [bindings](#bindings) map using the [deferred](
 \(- 1)
 # [- 1]
 
-(prototype -)
-# []
-
 (prototype \(+ 1 2))
 # []
 
@@ -155,7 +152,9 @@ Calling a function creates a new [bindings](#bindings) map using the [deferred](
 
 ## List
 
-An immutable sequence of elements, that associates consecutive positive integer keys in ascending order with positional values, including any keyword values as well.
+An immutable sequence of elements, that associates consecutive positive integer keys in ascending order with values.
+
+This sequence associates consecutive positive integer keys in ascending order with positional arguments, including any keyword arguments as well.
 
 - **Prototype:** empty [list](#list), `[]`
 - **Base Prototype:** empty [map](#map), `{:}`
@@ -166,11 +165,8 @@ An immutable sequence of elements, that associates consecutive positive integer 
 []
 # []
 
-['x']
-# ['x']
-
-['x' 'y' \key: \value]
-# ['x' 'y' \key: \value]
+['x' 'y']
+# ['x' 'y']
 
 [8 2 2 \abc]
 # [8 2 2 \abc]
@@ -1169,7 +1165,7 @@ These are the syntactic transformations that occur for each associated non-termi
 |-------------------|------|--------------|--------------|--------------|
 |*Get-Chain*        |`x::y`|`(get x \y)`  |`user::name`  |Left to right.|
 |*Tagged-Text*      |`xyz` |`(x y z)`     |`base'1F'16`  |              |
-|*List-Value*       |`x`   |`N:x`         |`['Bob']`     |Position `N`. |
+|*List-Value*       |`x`   |`N:x`         |`(f)`         |Position `N`. |
 |*Number*           |`xy`  |`(y x)`       |`2Km`         |              |
 |*Defer*            |`\x`  |`(defer x)`   |`\length`     |              |
 
