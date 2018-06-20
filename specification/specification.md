@@ -107,14 +107,16 @@ A binary logical value that can only be either true or false. It does not have a
 
 ## Function
 
-A [list](#list) composed of a function followed by zero or more values as the arguments. 
+A list composed of a function followed by zero or more values as the arguments. 
 
-Due to homoiconicity there's no separate function prototype. Instead, the [list](#list) prototype is used to denote both functions and function calls. It also means that dynamic binding is the default behavior. However, lexical binding can also be implemented by closing [`bindings`](#bindings).
+Due to homoiconicity there's no separate function prototype. Instead, the [list](#list) prototype is used to denote both functions and function calls.
 
 Calling a function creates a new [bindings](#bindings) map using the [deferred](#defer) function call, [prototypically](#prototype) inherited from the current bindings in scope, and then evaluates it using the new bindings returning the result. Calling an empty function evaluates to itself.
 
-- **Prototype:** see [list](#list)
-- **Base Prototype:** see [list](#list)
+Code is decoupled from data, which means dynamic binding is the default behavior. However, lexical binding can also be implemented by closing `bindings`.
+
+- **Prototype:** empty [function](#function), `()`
+- **Base Prototype:** empty [map](#map), `{:}`
 
 ### Examples
 
@@ -128,23 +130,17 @@ Calling a function creates a new [bindings](#bindings) map using the [deferred](
 (\(* 4 5))
 # 20
 
-([\* 4 5])
-# 20
-
-(= \(- 1) [\- 1])
-# true
-
 \()
-# []
+# ()
 
 ()
-# []
+# ()
 
 \(- 1)
-# [- 1]
+# (- 1)
 
 (prototype \(+ 1 2))
-# []
+# ()
 
 (prototype \())
 # {:}
@@ -1084,7 +1080,7 @@ Expression:
 
 ```
 Expressions ::= White-Space* (Expression (White-Space+ Expression)* White-Space*)?
-Expression ::= Defer* (Number | Symbol | Text | Map | Set | List | Function-Call)
+Expression ::= Defer* (Number | Symbol | Text | Map | Set | List | Function)
 Defer ::= "\" <U+27>
 ```
 
@@ -1100,7 +1096,7 @@ End-of-Line ::= "" <U+A>
 Number:
 
 ```
-Number ::= Sign? Digit+ ("." <U+2E> (Digits | Digits? Function-Call-Begin Digits Function-Call-End))? Symbol?
+Number ::= Sign? Digit+ ("." <U+2E> (Digits | Digits? Function-Begin Digits Function-End))? Symbol?
 Sign ::= "+" <U+2B> | "-" <U+2D>
 Digits ::= Digit+ (Text-Quote? Digit+)*
 Digit ::= "0" <U+30> | "1" <U+31> | "2" <U+32> | "3" <U+33> | "4" <U+34> | "5" <U+35> | "6" <U+36> | "7" <U+37> | "8" <U+38> | "9" <U+39>
@@ -1110,7 +1106,7 @@ Symbol:
 
 ```
 Symbol ::= not(Reserved-Character, White-Space, Sign, Digit) not(Reserved-Character, White-Space)*
-Reserved-Character ::= List-Begin | List-End | Function-Call-Begin | Function-Call-End | Map-Begin | Map-End | Comment-Quote | Text-Quote | Defer | Pair-Separator
+Reserved-Character ::= List-Begin | List-End | Function-Begin | Function-End | Map-Begin | Map-End | Comment-Quote | Text-Quote | Defer | Pair-Separator
 ```
 
 Text:
@@ -1136,8 +1132,7 @@ Map-End ::= "}" <U+7D>
 List:
 
 ```
-List ::= List-Begin White-Space* (List-Value (White-Space+ List-Value)* White-Space*)? List-End
-List-Value ::= Expression | Pair
+List ::= List-Begin White-Space* (Expression (White-Space+ Expression)* White-Space*)? List-End
 List-Begin ::= "[" <U+5B>
 List-End ::= "]" <U+5D>
 ```
@@ -1148,13 +1143,14 @@ Set:
 Set ::= Map-Begin White-Space* (Expression (White-Space+ Expression)* White-Space*)? Map-End
 ```
 
-Function-Call:
+Function:
 
 ```
-Function-Call ::= Function-Call-Begin White-Space* (List-Value (White-Space+ List-Value)* White-Space*)? Function-Call-End
+Function ::= (Function-Begin White-Space* (Function (White-Space+ Function-Value)* White-Space*)? Function-End) | Get-Chain
+Function-Value ::= Expression | Pair
 Get-Chain ::= Symbol (Pair-Separator{2} (Symbol | Number))+
-Function-Call-Begin ::= "(" <U+28>
-Function-Call-End ::= ")" <U+28>
+Function-Begin ::= "(" <U+28>
+Function-End ::= ")" <U+28>
 ```
 
 ## Transformations
@@ -1165,7 +1161,7 @@ These are the syntactic transformations that occur for each associated non-termi
 |-------------------|------|--------------|--------------|--------------|
 |*Get-Chain*        |`x::y`|`(get x \y)`  |`user::name`  |Left to right.|
 |*Tagged-Text*      |`xyz` |`(x y z)`     |`base'1F'16`  |              |
-|*List-Value*       |`x`   |`N:x`         |`(f)`         |Position `N`. |
+|*Function-Value*   |`x`   |`N:x`         |`(f)`         |Position `N`. |
 |*Number*           |`xy`  |`(y x)`       |`2Km`         |              |
 |*Defer*            |`\x`  |`(defer x)`   |`\length`     |              |
 
