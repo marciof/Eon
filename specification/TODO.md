@@ -1,3 +1,4 @@
+- Fix insert and remove from lists since it now accepts non-number keys.
 - Can't have a symbol as the first value in a function list? (Fix defer and evaluate examples.) The problem is with created deferred functions since that quotes everything inside.
   - Have a helper to create simple anonymous functions? Won't have super easy and concise function literals anymore.
   - `(code + 1 2)`

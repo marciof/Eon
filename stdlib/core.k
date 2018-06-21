@@ -13,13 +13,32 @@
   \infinity: (/ 1 0.(0)1)
   \global-bindings: bindings
   \...: \...
-  
-  \code: (get
+
+  # TODO: evaluate arguments
+  # TODO: validate arguments
+  \concat:
+  (get
     {
-      true:
-      false:
+      true: bindings::2
+      false: (concat
+        (insert
+          bindings::2
+          (next bindings::3)
+          (get
+            bindings::3
+            (next bindings::3)))
+        (remove
+          bindings::3
+          (next bindings::3)))
     }
-    (> (count (local bindings)) 0)
+    (= (count bindings::3) 0)
+
+  # TODO: can't remove key 1 from bindings
+  \code:
+  (concat
+    ()
+    (evaluate
+      (remove (local bindings) 1)))
 
   \if: \((get
     {
