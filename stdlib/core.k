@@ -13,6 +13,13 @@
   \infinity: (/ 1 0.(0)1)
   \global-bindings: bindings
   \...: \...
+  
+  \code: (get
+    {
+      true:
+      false:
+    }
+    (> (count (local bindings)) 0)
 
   \if: \((get
     {

@@ -1,6 +1,10 @@
 - Can't have a symbol as the first value in a function list? (Fix defer and evaluate examples.) The problem is with created deferred functions since that quotes everything inside.
+  - Have a helper to create simple anonymous functions? Won't have super easy and concise function literals anymore.
+  - `(code + 1 2)`
+  - It simply evaluates all its arguments and then adds them to an empty function list. Won't need specific syntax.
 - Specify prototypical inheritance (differential inheritance, eg. intro, `get`, `insert` and `remove` handling, etc): http://steve-yegge.blogspot.com/2008/10/universal-design-pattern.html
 - Evaluate typing difficulty of each identifier and syntax quantitatively.
+  - Can the syntax grammar be simplified without hurting readability and flexibility?
   - Use easier synonyms for hard to type words.
   - Bulk analyze source code out there for analysis?
   - Frequency of syntax tokens, familiarity, ease of typing, speaking, identifiers.
