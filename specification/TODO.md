@@ -18,7 +18,7 @@
   - https://github.com/anvaka/common-words/blob/master/README.md
 - http://www.infoq.com/presentations/Value-Identity-State-Rich-Hickey
 - "Empirical Analysis of Programming Language Adoption", Leo A. Meyerovich, Ariel Rabkin: http://sns.cs.princeton.edu/docs/asr-oopsla13.pdf
-- Look for best/worst features of other languages: Perl, F#, Matlab, Rust, Ruby, Go, Julia, JavaScript, Clojure, Kotlin, Python, Haskell, Erlang, Typed Racket, PureScript, Elm, Io, Smalltalk, Java, Scheme, ML, Lua, Haxe, Tcl, Shen, REBOL, Wolfram, HyperCard, Awk, Parabola.io
+- Look for best/worst features of other languages: Wren, Perl, F#, Matlab, Rust, Ruby, Go, Julia, JavaScript, Clojure, Kotlin, Python, Haskell, Erlang, Typed Racket, PureScript, Elm, Io, Smalltalk, Java, Scheme, ML, Lua, Haxe, Tcl, Shen, REBOL, Wolfram, HyperCard, Awk, Parabola.io
 - Reactive programming?
 - Indentation based syntax? The REPL becomes the shell, it just adds global functions as commands and other niceties.
   - If a line starts with a parenthesis it disables significant indentation inside the entire expression.
