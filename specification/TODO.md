@@ -1,8 +1,12 @@
 - Fix insert and remove from lists since it now accepts non-number keys.
-- Can't have a symbol as the first value in a function list? (Fix defer and evaluate examples.) The problem is with created deferred functions since that quotes everything inside.
-  - Have a helper to create simple anonymous functions? Won't have super easy and concise function literals anymore.
-  - `(code + 1 2)`
-  - It simply evaluates all its arguments and then adds them to an empty function list. Won't need specific syntax.
+- Can't have a symbol as the first value in a function list? (Fix defer and evaluate examples.) The problem is with creating deferred functions since that quotes everything inside.
+  - Have a helper to create simple anonymous functions? Won't have super easy and concise function literals anymore. Ok anyway for readability? Not a huge loss since it would have dynamic binding anyway, which wouldn't be used often? Or allow lists to be callable as well? Won't work well for whitespace indentation since it'll behave differently than other non function prototypes. No need for more specific syntax, and still needs to call evaluate since unbound variables in function lists need to also be evaluated.
+  - `(code + 1 \x)`
+  - `(function [x y] (+ x y))`
+  - It only evaluates all its arguments and then adds them to an empty function list. Has the benefit of not needing specific syntax.
+  - `()` calls a function list
+  - `\()` creates a deferred function list
+  - `[]` creates a function list
 - Specify prototypical inheritance (differential inheritance, eg. intro, `get`, `insert` and `remove` handling, etc): http://steve-yegge.blogspot.com/2008/10/universal-design-pattern.html
 - Evaluate typing difficulty of each identifier and syntax quantitatively.
   - Can the syntax grammar be simplified without hurting readability and flexibility?
