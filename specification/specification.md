@@ -111,8 +111,6 @@ An immutable sequence composed of a function followed by zero or more values as 
 
 Calling a function creates a new [bindings](#bindings) map using the [deferred](#defer) function call, [prototypically](#prototype) inherited from the current bindings in scope, and then evaluates it using the new bindings returning the result. Calling an empty function evaluates to itself.
 
-Code is decoupled from data, which means dynamic binding is the default behavior. However, lexical binding can also be implemented by closing `bindings`.
-
 - **Prototype:** empty [function](#function), `()`
 - **Base Prototype:** empty [list](#list), `[]`
 
@@ -559,6 +557,8 @@ A [function](#function) that returns the number of key/value pairs in a `map`. I
 
 A [function](#function) that creates a snapshot of an `expression` thereby preventing it from being evaluated, optionally with an `escape` [symbol](#symbol) for re-enabling [evaluation](#evaluate) inside it.
 
+Deferring a [function](#function) implicitly binds free symbols lexically. However, the deferred function can still be [evaluated](#evaluate) using different [bindings](#bindings).
+
 ### Complexity
 
 - Time: `O(1+k)` where `k` is the number of `escape` calls
@@ -615,11 +615,20 @@ A [function](#function) that evaluates an `expression` and returns the result, o
 
 (let x: \(+ 8 2)
 
+  x
+  # (+ 8 2)
+
+  (x)
+  # 10
+
   (evaluate x)
   # 10
 
-  (evaluate \x))
+  (evaluate \x)
   # (+ 8 2)
+
+  (evaluate \(x))) 
+  # 10
 
 (let y: 2
 

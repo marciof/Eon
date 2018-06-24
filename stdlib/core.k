@@ -55,7 +55,9 @@
     (count (local bindings))
     \argument-mismatch))
 
-  \do: \...
+  \do: ...
+  \function: ...
+  \let: ...
 
   \and: \(evaluate (get
     {
@@ -86,8 +88,4 @@
   \>=: \(not (<
     (evaluate bindings::2)
     (evaluate bindings::3)))
-
-  # Helper for named arguments.
-  # Helper to have lexical binding by closing open bindings at creation.
-  \function: \...
 }
