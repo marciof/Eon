@@ -1,6 +1,7 @@
-- Fix insert and remove from lists since it now accepts non-number keys.
+- Syntax for parameter spec in functions?
   - `(function [x y] (+ x y))`
   - `\([x y]: + x y))`
+  - `\([x:Number y:Number]: + x y))`
   - `(map numbers \([x]: * x 2))`
 - Specify prototypical inheritance (differential inheritance, eg. intro, `get`, `insert` and `remove` handling, etc): http://steve-yegge.blogspot.com/2008/10/universal-design-pattern.html
 - Evaluate typing difficulty of each identifier and syntax quantitatively.
