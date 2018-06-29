@@ -1,7 +1,9 @@
 - Syntax for parameter spec in functions?
-  - `(function [x y] (+ x y))`
-  - `\([x y]: + x y))`
-  - `(map numbers \(x: * x 2))`
+  - Dynamic binding for deferred function calls when they need to be evaluated.
+  - Syntax sugar for single parameter function definition.
+  - Document parameter mismatch error conditions when calling function definitions.
+  - `let msg: 'hello'`
+    `  print msg`
 - Specify prototypical inheritance (differential inheritance, eg. intro, `get`, `insert` and `remove` handling, etc): http://steve-yegge.blogspot.com/2008/10/universal-design-pattern.html
 - Evaluate typing difficulty of each identifier and syntax quantitatively.
   - Can the syntax grammar be simplified without hurting readability and flexibility?

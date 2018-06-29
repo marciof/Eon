@@ -107,7 +107,9 @@ A binary logical value that can only be either true or false. It does not have a
 
 ## Function
 
-An immutable sequence composed of a function followed by zero or more values as the arguments.
+An immutable sequence composed of a function (body) followed by zero or more values as the arguments.
+
+In a function definition (as opposed to a call) the first element (function body) can optionally have a key other than the default `1` that specifies the formal parameter list. It can either be a [list](#list) of [symbols](#symbol) for zero or more parameters or a single symbol for exactly one parameter. Any free symbols are lexically bound.
 
 Calling a function creates a new [bindings](#bindings) map using the [deferred](#defer) function call, [prototypically](#prototype) inherited from the current bindings in scope, and then evaluates it using the new bindings returning the result. Calling an empty function evaluates to itself.
 
@@ -117,37 +119,31 @@ Calling a function creates a new [bindings](#bindings) map using the [deferred](
 ### Examples
 
 ```
+()
+# ()
+
 (* 4 5)
 # 20
 
 (* multiplicand: 4 multiplier: 5)
 # 20
 
-(\(* 4 5))
+([x y]: * x y)
+# ([x y]: * x y)
+
+(([x y]: * x y) 4 5)
 # 20
 
-(\([x y]: - x y) 2 3)
-# -1
-
-(\(x: * x 2) 3)
-# 6
-
-\()
-# ()
-
-()
-# ()
-
-\(- 1)
-# (- 1)
+(x: * x 2)
+# ([x]: * x 2)
 
 (prototype -)
 # ()
 
-(prototype \(+ 1 2))
+(prototype (x: * x 2))
 # ()
 
-(prototype \())
+(prototype ())
 # []
 ```
 
@@ -547,7 +543,7 @@ A [function](#function) that returns the number of key/value pairs in a `map`. I
 (count +)
 # 0
 
-(count \())
+(count ())
 # 0
 
 (count \xyz)
@@ -562,8 +558,6 @@ A [function](#function) that returns the number of key/value pairs in a `map`. I
 ```
 
 A [function](#function) that creates a snapshot of an `expression` thereby preventing it from being evaluated, optionally with an `escape` [symbol](#symbol) for re-enabling [evaluation](#evaluate) inside it.
-
-Deferring a [function](#function) implicitly binds free symbols lexically. However, the deferred function can still be [evaluated](#evaluate) using different [bindings](#bindings).
 
 ### Complexity
 
@@ -582,9 +576,6 @@ Deferring a [function](#function) implicitly binds free symbols lexically. Howev
 
   (+ 1 x)
   # 3
-
-  \(+ 1 x)
-  # (+ 1 x)
 
   (defer (+ 1 x))
   # (+ 1 x)
@@ -624,17 +615,11 @@ A [function](#function) that evaluates an `expression` and returns the result, o
   x
   # (+ 8 2)
 
-  (x)
-  # 10
-
   (evaluate x)
   # 10
 
-  (evaluate \x)
+  (evaluate \x))
   # (+ 8 2)
-
-  (evaluate \(x))) 
-  # 10
 
 (let y: 2
 
