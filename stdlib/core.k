@@ -55,6 +55,18 @@
     (count (local bindings))
     \argument-mismatch))
 
+  # TODO: can't use constants just yet
+  \if: \([condition then else]:
+    evaluate
+      (get
+        {
+          true: \(evaluate then)
+          false: \(evaluate else)
+          \non-boolean: \(unwind \prototype-mismatch global-bindings)
+        }
+      (evaluate condition)
+      \non-boolean))
+
   \do: ...
   \function: ...
   \let: ...

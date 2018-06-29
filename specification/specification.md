@@ -126,6 +126,12 @@ Calling a function creates a new [bindings](#bindings) map using the [deferred](
 (\(* 4 5))
 # 20
 
+(\([x y]: - x y) 2 3)
+# -1
+
+(\(x: * x 2) 3)
+# 6
+
 \()
 # ()
 
@@ -739,7 +745,7 @@ Set:
 - Time: `O(1)`
 - Space: `O(1)`
 
-List, Function:
+List / Function:
 
 - Time: `O(n)` for number keys, otherwise `O(1)`
 - Space: `O(1)`
@@ -954,7 +960,7 @@ Set:
 - Time: `O(1)`
 - Space: `O(1)`
 
-List, Function:
+List / Function:
 
 - Time: `O(n)` for number keys, otherwise `O(1)`
 - Space: `O(1)`
