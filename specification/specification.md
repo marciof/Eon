@@ -109,7 +109,7 @@ A binary logical value that can only be either true or false. It does not have a
 
 An immutable sequence composed of a function (body) followed by zero or more values as the arguments.
 
-In a function definition (as opposed to a call) the first element (function body) can optionally have a key other than the default `1` that specifies the formal parameter list. It can either be a [list](#list) of [symbols](#symbol) for zero or more parameters or a single symbol for exactly one parameter. Any free symbols are lexically bound.
+In a function definition (as opposed to a call) the first element (function body) can optionally have a key other than the default `1` that specifies the formal parameter list. It can either be a [list](#list) of [symbols](#symbol) for zero or more parameters or a single symbol for exactly one parameter.
 
 Calling a function creates a new [bindings](#bindings) map using the [deferred](#defer) function call, [prototypically](#prototype) inherited from the current bindings in scope, and then evaluates it using the new bindings returning the result. Calling an empty function evaluates to itself.
 
@@ -1140,8 +1140,10 @@ Set ::= Map-Begin White-Space* (Expression (White-Space+ Expression)* White-Spac
 Function:
 
 ```
-Function ::= (Function-Begin White-Space* ((Function | Expression Pair-Separator White-Space* Function) (White-Space+ List-Value)* White-Space*)? Function-End) | Get-Chain
+Function ::= (Function-Begin White-Space* ((Function-Body | Function-Parameters Pair-Separator White-Space* Function-Body) (White-Space+ List-Value)* White-Space*)? Function-End) | Get-Chain
 Get-Chain ::= Symbol (Pair-Separator{2} (Symbol | Number))+
+Function-Parameters ::= Symbol | List
+Function-Body ::= Function | Symbol
 Function-Begin ::= "(" <U+28>
 Function-End ::= ")" <U+28>
 ```

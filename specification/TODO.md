@@ -1,7 +1,7 @@
 - Syntax for parameter spec in functions?
-  - Dynamic binding for deferred function calls when they need to be evaluated.
   - Syntax sugar for single parameter function definition.
-  - Specify that a symbol is also allowed as the first value in function lists? Remove grammar limitation and add runtime error checking since it's needed anyway?
+  - Specify that a symbol is also allowed as the first value in function lists. (Grammar "generics" for list of symbols?) Function calls too (eg. number units, tagged text literals). Remove grammar limitation and add runtime error checking since it's needed anyway?
+  - Enforce that number units and tagged texts must return prototypes of number and text?
   - Document parameter mismatch error conditions when calling function definitions.
   - `let msg: 'hello'`
     `  print msg`

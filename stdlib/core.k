@@ -56,12 +56,13 @@
     \argument-mismatch))
 
   # TODO: can't use constants just yet
+  # TODO: evaluate in parent bindings
   \if: \([condition then else]:
     evaluate
       (get
         {
-          true: \(evaluate then)
-          false: \(evaluate else)
+          true: then
+          false: else
           \non-boolean: \(unwind \prototype-mismatch global-bindings)
         }
       (evaluate condition)
