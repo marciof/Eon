@@ -25,10 +25,17 @@ let msg: 'hello'
 ({x y}: + x y)
 ({x y:Number}: + x y)
 ([x y]: + x y)
+
+(x: + x 1)
+([x]: + x 1)
+
+([]: + 1 2)
+(: + 1 2)
+(defer ((escape + 1 2)) \escape)
 ```
 
 Questions:
-- Syntax sugar for single parameter function definition?
+- Syntax sugar for a single parameter?
 
 Requirements:
 - No need to quote function parameters.
