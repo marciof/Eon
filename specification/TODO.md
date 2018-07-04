@@ -1,10 +1,13 @@
 - Syntax for parameter spec in functions?
   - Syntax sugar for single parameter function definition.
   - Specify that a symbol is also allowed as the first value in function lists. (Grammar "generics" for list of symbols?) Function calls too (eg. number units, tagged text literals). Remove grammar limitation and add runtime error checking since it's needed anyway?
-  - Enforce that number units and tagged texts must return prototypes of number and text?
   - Document parameter mismatch error conditions when calling function definitions.
   - `let msg: 'hello'`
     `  print msg`
+  - `(function f {x y} (+ x y))`
+  - `(function f {x y:Number} (+ x y))`
+  - `(function f [x y] (+ x y))`
+  - Makes more sense to be a set/map since parameter names must be unique? Allows lists to have only numeric keys. However it equires more keystrokes to type the set syntax than the list syntax.
 - Specify prototypical inheritance (differential inheritance, eg. intro, `get`, `insert` and `remove` handling, etc): http://steve-yegge.blogspot.com/2008/10/universal-design-pattern.html
 - Evaluate typing difficulty of each identifier and syntax quantitatively.
   - Can the syntax grammar be simplified without hurting readability and flexibility?
