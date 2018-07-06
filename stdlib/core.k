@@ -57,7 +57,7 @@
 
   # TODO: can't use constants just yet
   # TODO: evaluate in parent bindings
-  \if: \([condition then else]:
+  \if: ({condition \then \else}:
     evaluate
       (get
         {
@@ -65,8 +65,12 @@
           false: else
           \non-boolean: \(unwind \prototype-mismatch global-bindings)
         }
-      (evaluate condition)
+      condition
       \non-boolean))
+
+  \code: (defer
+    ((escape ...))
+    \escape)
 
   \do: ...
   \function: ...
