@@ -41,10 +41,12 @@ let msg: 'hello'
 (local set ?)
 ```
 
-UNIFY, SIMPLIFY
+Rules: 
+- Function literals use dynamic binding.
+- Parameters are specified as sets.
+- Defer's escape accepts varargs to splice.
 
 Questions:
-- Remove specific syntax for parameters? No more super easy literal syntax.
 - Allow quoted parameter names to turn on/off deferred arguments? More performant and practical, but more complex syntax?
 - Inspecting for names vs values in function definitions.
 - Do validation on the number of parameters?
