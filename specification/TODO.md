@@ -46,9 +46,12 @@ Rules:
 - Parameters are specified as sets.
 - Defer's escape accepts varargs to splice.
 
-No point in having specific syntax for parameters since there needs to be a helper for creating functions that throw exceptions on parameter validation (eg. number, type, etc.)
+No point in having specific syntax for parameters since there needs to be a helper for creating functions that throw exceptions on parameter validation anyway? (eg. number, type, etc.) Problem is being able to inspect a function body without specific syntax. 
 
 Get prototype of a built in function to get the function definition data type? Or ()? How does that compare to quoting a function? What data type is it?
+
+- Function call list
+- Function definition list
 
 Questions:
 - Allow quoted parameter names to turn on/off deferred arguments? More performant and practical, but more complex syntax?
