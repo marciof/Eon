@@ -16,6 +16,14 @@
   - All data types are callable as functions, and except for functions each value returns itself as the result.
 - Guarantee efficient self-recursive function calls, tail function calls, and self-tail function calls?
 
+# Functions
+
+No need to have an easy built-in syntax for function literals with or without parameters, because there needs to be a helper for creating functions that throw exceptions on parameter validation anyway, such as number of parameters, type of parameters, preconditions, etc.
+
+Deferred functions can be invoked, even though they might have symbols in it, because they're evaluated at call time. It also allows for optional dynamic binding, with the ability to inspect the function body.
+
+Defer's escape function accepts a variable number of arguments to splice.
+
 # Function parameters
 
 ```
@@ -40,13 +48,6 @@ let msg: 'hello'
 (local list Number)
 (local set ?)
 ```
-
-Rules: 
-- Function literals use dynamic binding.
-- Parameters are specified as sets.
-- Defer's escape accepts varargs to splice.
-
-No point in having specific syntax for parameters since there needs to be a helper for creating functions that throw exceptions on parameter validation anyway? (eg. number, type, etc.) Problem is being able to inspect a function body without specific syntax. 
 
 Get prototype of a built in function to get the function definition data type? Or ()? How does that compare to quoting a function? What data type is it?
 
