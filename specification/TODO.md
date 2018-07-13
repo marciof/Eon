@@ -24,23 +24,15 @@ Deferred functions can be invoked, even though they might have symbols in it, be
 
 Defer's escape function accepts a variable number of arguments to splice.
 
-# Function parameters
+Lists have only numeric keys. Easy to iterate lists (randomly, backwards, binary search, etc).
+
+Can build functions manually.
+
+Specify that a symbol is also allowed as the first value in function lists.
 
 ```
 let msg: 'hello'
   print msg
-
-({x y}: + x y)
-({x y:Number}: + x y)
-([x y]: + x y)
-([x y:Number]: + x y)
-
-(x: + x 1)
-({x}: + x 1)
-([x]: + x 1)
-
-({}: + 1 2)
-([]: + 1 2)
 
 (defer ((escape + 1 2)) \escape)
 
@@ -49,38 +41,8 @@ let msg: 'hello'
 (local set ?)
 ```
 
-Get prototype of a built in function to get the function definition data type? Or ()? How does that compare to quoting a function? What data type is it?
+## Questions
 
-- Function call list
-- Function definition list
+Grammar "generics" for list of symbols? Function calls too (eg. number units, tagged text literals). Remove grammar limitation and add runtime error checking since it's needed anyway?
 
-Questions:
-- Allow quoted parameter names to turn on/off deferred arguments? More performant and practical, but more complex syntax?
-- Inspecting for names vs values in function definitions.
-- Do validation on the number of parameters?
-- How to accept varargs? Build function manually? Use a single symbol for the parameter list?
-  - `([x y [rest]]: + 1 2)`
-  - `([x y [] rest]: + 1 2)`
-  - `([x y rest []]: + 1 2)`
-- Allow attaching metadata to parameter definitions? Eg. could be used for type hints, default values.
-
-Don't like the extra complexity. Much simpler to just always accept only plain function lists. Does `(evaluate +)` call it? If it doesn't then that means there should be a separate data type for function definitions vs function calls.
-
-Confusion between building a function call vs a function definition?
-
-Having dynamic binding still doesn't explain unquoted symbols in deferred function calls. Can store value, but then it can't be easily inspected. Always use evaluate? Or store function body as metadata? Unnecessarily complicated? Calling a function already evaluates, so a function list can have unquoted symbols? Can fix bindings to have lexical binding while using symbols in function lists for easy inspection.
-
-Requirements:
-- Force parameters to be specified only with a set, no lists.
-- No need to quote parameters in function definitions, but if they're quoted it means they're deferred and not evaluated at call time.
-- Lists have only numeric keys. Easy to iterate lists (randomly, backwards, binary search, etc).
-- Set values are always unique.
-- Can build functions manually.
-- Syntax sugar for a single parameter.
-- Varargs require manually building the function.
-- Function definitions have dynamic binding by default. No implicit/hidden state in the form of attached lexical bindings. Can build functions manually.
-
-  - Specify that a symbol is also allowed as the first value in function lists. (Grammar "generics" for list of symbols?) Function calls too (eg. number units, tagged text literals). Remove grammar limitation and add runtime error checking since it's needed anyway?
-  - Document parameter mismatch error conditions when calling function definitions.
-  - Makes more sense to be a set/map since parameter names must be unique? Allows lists to have only numeric keys. However it equires more keystrokes to type the set syntax than the list syntax. But also don't want more than one way to do something. Would be nicer if the list syntax allowed for both at will, just like the function list syntax. Or the map merged with set even more.
-  - Are parameters auto deferred or can they have actual values, like optional type information?
+Makes more sense to be a set/map since parameter names must be unique? Allows lists to have only numeric keys. However it equires more keystrokes to type the set syntax than the list syntax. But also don't want more than one way to do something. Would be nicer if the list syntax allowed for both at will, just like the function list syntax. Or the map merged with set even more.
