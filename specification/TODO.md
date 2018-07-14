@@ -28,7 +28,7 @@ Lists have only numeric keys. Easy to iterate lists (randomly, backwards, binary
 
 Can build functions manually.
 
-Specify that a symbol is also allowed as the first value in function lists.
+Specify that a symbol is also allowed as the first value in function lists. Any data type in fact, and calling may or may not be an error.
 
 ```
 let msg: 'hello'
@@ -40,9 +40,3 @@ let msg: 'hello'
 (local list Number)
 (local set ?)
 ```
-
-## Questions
-
-Grammar "generics" for list of symbols? Function calls too (eg. number units, tagged text literals). Remove grammar limitation and add runtime error checking since it's needed anyway?
-
-Makes more sense to be a set/map since parameter names must be unique? Allows lists to have only numeric keys. However it equires more keystrokes to type the set syntax than the list syntax. But also don't want more than one way to do something. Would be nicer if the list syntax allowed for both at will, just like the function list syntax. Or the map merged with set even more.
