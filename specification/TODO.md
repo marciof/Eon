@@ -1,3 +1,4 @@
+- Document function evaluation errors, such as invalid function body (eg. number).
 - Rename `Map`? eg. `Table`, `Dictionary`
 - Specify prototypical inheritance (differential inheritance, eg. intro, `get`, `insert` and `remove` handling, etc): http://steve-yegge.blogspot.com/2008/10/universal-design-pattern.html
 - Evaluate typing difficulty of each identifier and syntax quantitatively.
@@ -16,9 +17,3 @@
   - Otherwise each new line is a function call, with same-line arguments passed as-is, and indented new lines passed as function calls, unless it's a keyword argument.
   - All data types are callable as functions, and except for functions each value returns itself as the result.
 - Guarantee efficient self-recursive function calls, tail function calls, and self-tail function calls?
-
-# Functions
-
-Defer's escape function accepts a variable number of arguments to splice.
-
-Lists have only numeric keys. Easy to iterate lists (randomly, backwards, binary search, etc).

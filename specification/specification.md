@@ -107,12 +107,12 @@ A binary logical value that can only be either true or false. It does not have a
 
 ## Function
 
-An immutable sequence composed of a function (body) followed by zero or more values as the arguments.
+An immutable sequence composed of a function (body) followed by zero or more values as the arguments. This sequence associates consecutive positive integer keys in ascending order with positional arguments, including any keyword arguments as well.
 
 Calling a function creates a new [bindings](#bindings) map using the [deferred](#defer) function call, [prototypically](#prototype) inherited from the current bindings in scope, and then evaluates it using the new bindings returning the result. Calling an empty function evaluates to itself.
 
 - **Prototype:** empty [function](#function), `()`
-- **Base Prototype:** empty [list](#list), `[]`
+- **Base Prototype:** empty [map](#map), `{:}`
 
 ### Examples
 
@@ -142,12 +142,12 @@ Calling a function creates a new [bindings](#bindings) map using the [deferred](
 # ()
 
 (prototype ())
-# []
+# {:}
 ```
 
 ## List
 
-An immutable sequence of elements, that associates consecutive positive integer keys in ascending order with positional values, including any keyword values as well.
+An immutable sequence of elements, that associates consecutive positive integer keys in ascending order with values.
 
 - **Prototype:** empty [list](#list), `[]`
 - **Base Prototype:** empty [map](#map), `{:}`
@@ -163,9 +163,6 @@ An immutable sequence of elements, that associates consecutive positive integer 
 
 [8 2 2 \abc]
 # [8 2 2 abc]
-
-['x' 'y' \key: \value]
-# ['x' 'y' key: value]
 
 (prototype ['x'])
 # []
@@ -1132,8 +1129,7 @@ Map-End ::= "}" <U+7D>
 List:
 
 ```
-List ::= List-Begin White-Space* (List-Value (White-Space+ List-Value)* White-Space*)? List-End
-List-Value ::= Expression | Pair
+List ::= List-Begin White-Space* (Expression (White-Space+ Expression)* White-Space*)? List-End
 List-Begin ::= "[" <U+5B>
 List-End ::= "]" <U+5D>
 ```
@@ -1147,8 +1143,9 @@ Set ::= Map-Begin White-Space* (Expression (White-Space+ Expression)* White-Spac
 Function:
 
 ```
-Function ::= (Function-Begin White-Space* (List-Value (White-Space+ List-Value)* White-Space*)? Function-End) | Get-Chain
+Function ::= (Function-Begin White-Space* (Function-Value (White-Space+ Function-Value)* White-Space*)? Function-End) | Get-Chain
 Get-Chain ::= Symbol (Pair-Separator{2} (Symbol | Number))+
+Function-Value ::= Expression | Pair
 Function-Begin ::= "(" <U+28>
 Function-End ::= ")" <U+28>
 ```
@@ -1161,7 +1158,7 @@ These are the syntactic transformations that occur for each associated non-termi
 |-------------------|------|--------------|--------------|--------------|
 |*Get-Chain*        |`x::y`|`(get x \y)`  |`user::name`  |Left to right.|
 |*Tagged-Text*      |`xyz` |`(x y z)`     |`base'1F'16`  |              |
-|*List-Value*       |`x`   |`N:x`         |`['Bob']`     |Position `N`. |
+|*Function-Value*   |`x`   |`N:x`         |`(f)`         |Position `N`. |
 |*Number*           |`xy`  |`(y x)`       |`2Km`         |              |
 |*Defer*            |`\x`  |`(defer x)`   |`\length`     |              |
 
