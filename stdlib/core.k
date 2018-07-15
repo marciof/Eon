@@ -14,32 +14,6 @@
   \global-bindings: bindings
   \...: \...
 
-  # TODO: evaluate arguments
-  # TODO: validate arguments
-  \concat:
-  (get
-    {
-      true: bindings::2
-      false: (concat
-        (insert
-          bindings::2
-          (next bindings::3)
-          (get
-            bindings::3
-            (next bindings::3)))
-        (remove
-          bindings::3
-          (next bindings::3)))
-    }
-    (= (count bindings::3) 0)
-
-  # TODO: can't remove key 1 from bindings
-  \code:
-  (concat
-    ()
-    (evaluate
-      (remove (local bindings) 1)))
-
   \if: \((get
     {
       \argument-mismatch: \(unwind \parameter-mismatch global-bindings)
@@ -54,23 +28,6 @@
     }
     (count (local bindings))
     \argument-mismatch))
-
-  # TODO: can't use constants just yet
-  # TODO: evaluate in parent bindings
-  \if: ({condition \then \else}:
-    evaluate
-      (get
-        {
-          true: then
-          false: else
-          \non-boolean: \(unwind \prototype-mismatch global-bindings)
-        }
-      condition
-      \non-boolean))
-
-  \code: (defer
-    ((escape ...))
-    \escape)
 
   \do: ...
   \function: ...

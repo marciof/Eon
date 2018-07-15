@@ -1,3 +1,4 @@
+- Rename `Map`? eg. `Table`, `Dictionary`
 - Specify prototypical inheritance (differential inheritance, eg. intro, `get`, `insert` and `remove` handling, etc): http://steve-yegge.blogspot.com/2008/10/universal-design-pattern.html
 - Evaluate typing difficulty of each identifier and syntax quantitatively.
   - Can the syntax grammar be simplified without hurting readability and flexibility?
@@ -18,25 +19,6 @@
 
 # Functions
 
-No need to have an easy built-in syntax for function literals with or without parameters, because there needs to be a helper for creating functions that throw exceptions on parameter validation anyway, such as number of parameters, type of parameters, preconditions, etc.
-
-Deferred functions can be invoked, even though they might have symbols in it, because they're evaluated at call time. It also allows for optional dynamic binding, with the ability to inspect the function body.
-
 Defer's escape function accepts a variable number of arguments to splice.
 
 Lists have only numeric keys. Easy to iterate lists (randomly, backwards, binary search, etc).
-
-Can build functions manually.
-
-Specify that a symbol is also allowed as the first value in function lists. Any data type in fact, and calling may or may not be an error.
-
-```
-let msg: 'hello'
-  print msg
-
-(defer ((escape + 1 2)) \escape)
-
-# Optional prototype param to filter keys
-(local list Number)
-(local set ?)
-```
