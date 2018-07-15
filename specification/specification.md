@@ -120,14 +120,17 @@ Calling a function creates a new [bindings](#bindings) map using the [deferred](
 ()
 # ()
 
-\()
-# ()
-
 (* 4 5)
 # 20
 
 (* multiplicand: 4 multiplier: 5)
 # 20
+
+\()
+# ()
+
+\(* 4 5)
+# (* 4 5)
 
 (\(* 4 5))
 # 20
@@ -254,7 +257,7 @@ An immutable collection of unique elements, that associates keys to be the same 
 # {'x' 'y'}
 
 {8 2 2 \abc}
-# {8 2 \abc}
+# {8 2 abc}
 
 (prototype {'x'})
 # {}
