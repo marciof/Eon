@@ -1,5 +1,3 @@
-- Document function evaluation errors, such as invalid function body (eg. number).
-- Fix documentation to remove insert/get/remove on non-integers as keys from lists.
 - Rename `Map`? eg. `Table`, `Dictionary`, `Index`, `Catalog`, `Directory`
 - Specify prototypical inheritance (differential inheritance, eg. intro, `get`, `insert` and `remove` handling, etc): http://steve-yegge.blogspot.com/2008/10/universal-design-pattern.html
 - Evaluate typing difficulty of each identifier and syntax quantitatively.

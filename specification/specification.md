@@ -604,6 +604,7 @@ A [function](#function) that evaluates an `expression` and returns the result, o
 - *Zero or more than two arguments:* [unwinds](#unwind) global scope with `\parameter-mismatch`
 - *`bindings` argument isn't a prototype of nor a map:* [unwinds](#unwind) global scope with `\prototype-mismatch`
 - *`expression` argument contains an unbound identifier:* [unwinds](#unwind) global scope with `\unbound-identifier`
+- *`expression` argument contains a function call to a non-function value:* [unwinds](#unwind) global scope with `\prototype-mismatch`
 
 ### Examples
 
