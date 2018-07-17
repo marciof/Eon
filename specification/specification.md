@@ -748,8 +748,8 @@ List / Function:
 - *`map` argument isn't a prototype of nor a map:* [unwinds](#unwind) global scope with `\prototype-mismatch`
 - *`map` argument is a prototype of or a set and `key` isn't equal to `value`:* [unwinds](#unwind) global scope with `\parameter-mismatch`
 - *`set` argument isn't a prototype of nor a set:* [unwinds](#unwind) global scope with `\prototype-mismatch`
-- *`list`/`function` argument is a prototype of or a list/function and when `key` is a number it isn't a positive integer less than or equal to its highest positive integer key plus one:* [unwinds](#unwind) global scope with `\parameter-mismatch`
-- *`function` argument is a prototype of or a function and `value` isn't a prototype of or a function when inserting it into the first position:* [unwinds](#unwind) global scope with `\parameter-mismatch`
+- *`list` argument is a prototype of or a list and `key` isn't a positive integer less than or equal to its length plus one:* [unwinds](#unwind) global scope with `\parameter-mismatch`
+- *`function` argument is a prototype of or a function and when `key` is a number it isn't a positive integer less than or equal to its highest positive integer key plus one:* [unwinds](#unwind) global scope with `\parameter-mismatch`
 - *`function` argument is a prototype of or a built-in or foreign function:* [unwinds](#unwind) global scope with `\prototype-mismatch`
 
 ### Examples
@@ -961,8 +961,8 @@ List / Function:
 
 - *Less or more than two arguments:* [unwinds](#unwind) global scope with `\parameter-mismatch`
 - *`map` argument isn't a prototype of nor a map:* [unwinds](#unwind) global scope with `\prototype-mismatch`
-- *`list`/`function` argument is a prototype of or a list/function and when `key` is a number it isn't a positive integer:* [unwinds](#unwind) global scope with `\parameter-mismatch`
-- *`function` argument is a prototype of or a non-empty function and `key` is `1`:* [unwinds](#unwind) global scope with `\parameter-mismatch`
+- *`list` argument is a prototype of or a list and `key` isn't a positive integer:* [unwinds](#unwind) global scope with `\parameter-mismatch`
+- *`function` argument is a prototype of or a function and when `key` is a number it isn't a positive integer:* [unwinds](#unwind) global scope with `\parameter-mismatch`
 
 ### Examples
 
