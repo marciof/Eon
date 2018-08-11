@@ -1,4 +1,5 @@
 - Define the module loading process, how it's similar to a function call, and how the module name and arguments are available in the bindings map.
+- Like OCaml, make it statically typed, but made type annotations entirely optional, since they're inferred. Can still use a `Any` data type to selectively disable static typing?
 - Indicate languages used as inspiration? Common Lisp, JavaScript, Perl, Python.
 - Specify prototypical inheritance (differential inheritance, eg. intro, `get`, `insert` and `remove` handling, etc): http://steve-yegge.blogspot.com/2008/10/universal-design-pattern.html
 - Evaluate typing difficulty of each identifier and syntax quantitatively.
@@ -11,7 +12,7 @@
   - https://github.com/anvaka/common-words/blob/master/README.md
 - http://www.infoq.com/presentations/Value-Identity-State-Rich-Hickey
 - "Empirical Analysis of Programming Language Adoption", Leo A. Meyerovich, Ariel Rabkin: http://sns.cs.princeton.edu/docs/asr-oopsla13.pdf
-- Look for best/worst features of other languages: Perl, Python, Scheme, Java, Clojure, Kotlin, JavaScript, Wren, F#, Matlab, Rust, Ruby, Go, Julia, Haskell, Erlang, Typed Racket, PureScript, Elm, Io, Smalltalk, ML, Lua, Haxe, Tcl, Shen, REBOL, Mathematica, HyperCard, Awk, Parabola.io, GNU Octave, Maxima Algebra System
+- Look for best/worst features of other languages: OCaml, Perl, Python, Scheme, Java, Clojure, Kotlin, JavaScript, Wren, F#, Matlab, Rust, Ruby, Go, Julia, Haskell, Erlang, Typed Racket, PureScript, Elm, Io, Smalltalk, ML, Lua, Haxe, Tcl, Shen, REBOL, Mathematica, HyperCard, Awk, Parabola.io, GNU Octave, Maxima Algebra System
 - Indentation based syntax? The REPL becomes the shell, it just adds global functions as commands and other niceties.
   - If a line starts with a parenthesis it disables significant indentation inside the entire expression.
   - Otherwise each new line is a function call, with same-line arguments passed as-is, and indented new lines passed as function calls, unless it's a keyword argument.
