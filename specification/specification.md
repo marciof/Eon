@@ -70,6 +70,14 @@ Practical:
 - Low cognitive load and typing effort (US keyboard layout, favor home row keys).
 - Standard tooling: single-style source code formatter, testing framework, profiler, debugger local/remote, package manager, command-line documentation viewer.
 
+## Inspiration
+
+- Common Lisp
+- JavaScript
+- Perl
+- Python
+- Unix shell
+
 # Structure
 
 ## Module
