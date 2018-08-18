@@ -1,4 +1,4 @@
-- Define the module loading process, how it's similar to a function call, and how the module name and arguments are available in the bindings map.
+- Define the module loading process, how it's similar to a function call, and how the module name and arguments are available in the bindings map (traceback call too).
 - Like OCaml, make it statically typed, but made type annotations entirely optional, since they're inferred. Can still use a `Any` data type to selectively disable static typing?
 - Specify prototypical inheritance (differential inheritance, eg. intro, `get`, `insert` and `remove` handling, etc): http://steve-yegge.blogspot.com/2008/10/universal-design-pattern.html
 - Evaluate typing difficulty of each identifier and syntax quantitatively.
