@@ -84,6 +84,8 @@ Practical:
 
 A Unicode textual representation of expressions encoded in UTF-8 without a Byte Order Mark, with a valid [symbol](#symbol) for its name.
 
+[Loading](#load) a module is similar to calling a [function](#function) with regards to arguments and [bindings](#bindings) handling.
+
 # Prototypes
 
 A [prototype](#prototype) is the original value used to create another one from. The prototype of a prototype is its base prototype, or itself if it doesn't have one.
