@@ -1,9 +1,9 @@
-- Like OCaml, make it statically typed, but made type annotations entirely optional, since they're inferred. Can still use a `Any` data type to selectively disable static typing?
+- Like OCaml, make it statically typed, but make type annotations entirely optional, since they're inferred. Can still use a `Any` data type to selectively disable static typing?
 - How to do prototypical inheritance for lists/functions? Eg. remove index from local prototype, causing elements to shift, that base prototype also has
 - Evaluate typing difficulty of each identifier and syntax quantitatively.
   - Can the syntax grammar be simplified without hurting readability and flexibility?
-  - Use easier synonyms for hard to type words.
-  - Bulk analyze source code out there for analysis?
+  - Use easier synonyms for hard to type words?
+  - Bulk analyze source code out there.
   - Frequency of syntax tokens, familiarity, ease of typing, speaking, identifiers.
   - https://en.wikipedia.org/wiki/Comparison_of_programming_languages_(syntax)
   - http://hyperpolyglot.org/scripting
