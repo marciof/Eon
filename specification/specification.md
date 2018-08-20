@@ -660,6 +660,8 @@ A [function](#function) that evaluates an `expression` and returns the result, o
 
 A [function](#function) that retrieves the value associated with a `key` in a `map`, optionally using a lazily evaluated `default` value if no such association exists.
 
+Key lookup takes place in the given map, and in each of its base prototypes until it's found, if it exists.
+
 ### Complexity
 
 - Time: `O(1)`
@@ -943,6 +945,8 @@ A [function](#function) that extends the prototype hierarchy using `base` thereb
 ```
 
 A [function](#function) that disassociates a `key` from a value in a `map`, and returns the new [map](#map). If `key` isn't present, then `map` is returned unchanged.
+
+Key lookup takes place in the given map, and in each of its base prototypes until it's found, if it exists.
 
 ```
 (remove list:List key:Number): List
