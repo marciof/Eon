@@ -955,6 +955,8 @@ Key lookup takes place in the given map, and in each of its base prototypes unti
 
 A [function](#function) that disassociates a `key` from a value in a `list` or `function`, and returns the new [list](#list) or [function](#function) respectively. If `key` isn't present, then `list` or `function` is returned unchanged. If `key` is present and is a positive integer, then it displaces instead all following integer keys, if any, decrementing each by one.
 
+Key lookup takes place in the given list or function, and in each of its base prototypes until it's found, if it exists.
+
 ### Complexity
 
 Map:

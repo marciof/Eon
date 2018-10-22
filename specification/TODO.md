@@ -1,5 +1,4 @@
-- Like OCaml, make it statically typed, but make type annotations entirely optional, since they're inferred. Can still use a `Any` data type to selectively disable static typing?
-- How to do prototypical inheritance for lists/functions? Eg. remove index from local prototype, causing elements to shift, that base prototype also has
+- Like OCaml, make it statically typed, but make type annotations entirely optional, since they're inferred. Can still use a `Any` data type to selectively disable static typing? How would it work for map prototyping of bindings?
 - Evaluate typing difficulty of each identifier and syntax quantitatively.
   - Can the syntax grammar be simplified without hurting readability and flexibility?
   - Use easier synonyms for hard to type words?
