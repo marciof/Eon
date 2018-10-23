@@ -1,4 +1,8 @@
-- Like OCaml, make it statically typed, but make type annotations entirely optional, since they're inferred. Can still use a `Any` data type to selectively disable static typing? How would it work for map prototyping of bindings?
+- Like OCaml, make it statically typed, but make type annotations entirely optional, since they're inferred.
+  - Can still use a `Any` data type to selectively disable static typing?
+  - How would it work for map prototyping of bindings?
+  - There's some overlap with full blown contracts? Which could/would be library provided.
+  - Typed Racket: http://docs.racket-lang.org/ts-guide/
 - Evaluate typing difficulty of each identifier and syntax quantitatively.
   - Can the syntax grammar be simplified without hurting readability and flexibility?
   - Use easier synonyms for hard to type words?
