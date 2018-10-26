@@ -1,5 +1,5 @@
 - Add documentation.
-- Add more extensive validation abd more specific hierarchical errors.
+- Add more extensive validation and more specific hierarchical errors.
 - Close bindings in library functions.
 - Support multiple arguments for boolean logic functions.
 - Add a fuzzy matching operator: `=~`
