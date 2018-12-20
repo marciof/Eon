@@ -14,52 +14,47 @@
   \global-bindings: bindings
   \...: \...
 
-  \if: \((get
+  \_if: \((get
     {
-      \argument-mismatch: \(unwind \parameter-mismatch global-bindings)
-      4: \(get
-        {
-          true: \(evaluate bindings::3)
-          false: \(evaluate bindings::4)
-          \non-boolean: \(unwind \prototype-mismatch global-bindings)
-        }
-        (evaluate bindings::2)
-        \non-boolean)
+      true: \(evaluate bindings::3)
+      false: \(evaluate bindings::4)
     }
-    (count (local bindings))
-    \argument-mismatch))
+    (evaluate bindings::2))
 
-  \do: ...
-  \function: ...
-  \let: ...
-
-  \and: \(evaluate (get
+  \_and: \(evaluate (get
     {
       true: bindings::3
       false: false
     }
     (evaluate bindings::2)))
 
-  \not: \(get
-    {true: false false: true}
-    (evaluate bindings::2))
-
-  \or: \(evaluate (get
+  \_or: \(evaluate (get
     {
       true: true
       false: bindings::3
     }
     (evaluate bindings::2)))
 
-  \<>: \(not (=
+  \_not: \(get
+    {
+      true: false
+      false: true
+    }
+    (evaluate bindings::2))
+
+  \_<>: \(_not (=
     (evaluate bindings::2)
     (evaluate bindings::3)))
 
-  \<=: \(not (>
+  \_<=: \(_not (>
     (evaluate bindings::2)
     (evaluate bindings::3)))
 
-  \>=: \(not (<
+  \_>=: \(_not (<
     (evaluate bindings::2)
     (evaluate bindings::3)))
+
+  \do: ...
+  \function: ...
+  \let: ...
 }
