@@ -54,7 +54,10 @@
     (evaluate bindings::2)
     (evaluate bindings::3)))
 
+  # If only one evaluate it.
+  # Else remove first and call resursively.
   \do: ...
+
   \function: ...
   \let: ...
 }

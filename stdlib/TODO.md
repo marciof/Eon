@@ -1,7 +1,7 @@
-- Add documentation.
-- Add more extensive validation and more specific hierarchical errors.
-- Close bindings in library functions.
-- Support multiple arguments for boolean logic functions.
+- Document constants and functions.
+- Validate arguments.
+- Close bindings in standard library functions.
+- Support multiple arguments (eg. boolean logic functions, etc).
 - Add a fuzzy matching operator: `=~`
 - Build exceptions/conditions on top of `unwind`.
   - `(rescue function handler)`
