@@ -14,48 +14,48 @@
   \global-bindings: bindings
   \...: \...
 
-  \_if: \((get
+  \if: \((get
     {
       true: \(evaluate bindings::3)
       false: \(evaluate bindings::4)
     }
     (evaluate bindings::2))
 
-  \_and: \(evaluate (get
+  \and: \(evaluate (get
     {
       true: bindings::3
       false: false
     }
     (evaluate bindings::2)))
 
-  \_or: \(evaluate (get
+  \or: \(evaluate (get
     {
       true: true
       false: bindings::3
     }
     (evaluate bindings::2)))
 
-  \_not: \(get
+  \not: \(get
     {
       true: false
       false: true
     }
     (evaluate bindings::2))
 
-  \_<>: \(_not (=
+  \<>: \(not (=
     (evaluate bindings::2)
     (evaluate bindings::3)))
 
-  \_<=: \(_not (>
+  \<=: \(not (>
     (evaluate bindings::2)
     (evaluate bindings::3)))
 
-  \_>=: \(_not (<
+  \>=: \(not (<
     (evaluate bindings::2)
     (evaluate bindings::3)))
 
   # If only one evaluate it.
-  # Else remove first and call resursively.
+  # Else remove first and call recursively.
   \do: ...
 
   \function: ...
