@@ -88,7 +88,7 @@ A Unicode textual representation of expressions encoded in UTF-8 without a Byte 
 
 # Prototypes
 
-A [prototype](#prototype) is the original value used to create another one from. The prototype of a prototype is its base prototype, or itself if it doesn't have one.
+A [prototype](#prototype) is the original value used to create another one from.
 
 Not all values can be literally represented in source code, since not all have an associated [grammar](#grammar) production. They can however be assigned names using [symbols](#symbol) and stored in the [bindings](#bindings) map.
 
@@ -97,7 +97,7 @@ Not all values can be literally represented in source code, since not all have a
 A binary logical value that can only be either true or false. It does not have a literal source code representation.
 
 - **Prototype:** true
-- **Base Prototype:** -
+- **Base Prototype:** (itself)
 
 ### Examples
 
@@ -191,7 +191,7 @@ An immutable insertion ordered collection, that associates unique keys with valu
 If the same key appears multiple times, the last associated value takes precedence over all previous ones.
 
 - **Prototype:** empty [map](#map), `{:}`
-- **Base Prototype:** -
+- **Base Prototype:** (itself)
 
 ### Examples
 
@@ -217,7 +217,7 @@ If the same key appears multiple times, the last associated value takes preceden
 A rational number.
 
 - **Prototype:** integer zero, `0`
-- **Base Prototype:** -
+- **Base Prototype:** (itself)
 
 ### Examples
 
