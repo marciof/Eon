@@ -80,6 +80,20 @@ Practical:
 
 # Structure
 
+## Syntax
+
+Source code is represented as s-expressions, with an optional indentation based syntax.
+
+Indentation based syntax follows a simple set of rules:
+
+1. If a line starts with an open parenthesis, then it disables significant indentation inside the entire expression.
+2. Otherwise, each line is a function call.
+  - Same-line arguments are passed as-is.
+  - Indented lines are passed as function calls as described above, recursively, unless they're keyword arguments which are passed as-is.
+3. All data types are callable as zero-parameter functions that evaluate to the value itself, except for functions that are evaluated as a regular function call.
+
+Refer to the [grammar](#grammar) for the precise definition.
+
 ## Module
 
 A Unicode textual representation of expressions encoded in UTF-8 without a Byte Order Mark, with a valid [symbol](#symbol) for its name.
