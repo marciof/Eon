@@ -1,3 +1,10 @@
+- Guarantee efficient self-recursive function calls, tail function calls, and self-tail function calls?
+- Since every non-function is callable as a zero-parameter function, what's the error if one or more arguments are passed?
+- Define grammar for indentation based syntax.
+- Are keyword arguments handled differently in indented new lines in indentation based syntax?
+- Should indentation based syntax be required instead of optional to avoid inconsistent coding styles?
+- http://www.infoq.com/presentations/Value-Identity-State-Rich-Hickey
+- "Empirical Analysis of Programming Language Adoption", Leo A. Meyerovich, Ariel Rabkin: http://sns.cs.princeton.edu/docs/asr-oopsla13.pdf
 - Evaluate typing difficulty of each identifier and syntax quantitatively.
   - Can the syntax grammar be simplified without hurting readability and flexibility?
   - Use easier synonyms for hard to type words?
@@ -6,11 +13,4 @@
   - https://en.wikipedia.org/wiki/Comparison_of_programming_languages_(syntax)
   - http://hyperpolyglot.org/scripting
   - https://github.com/anvaka/common-words/blob/master/README.md
-- http://www.infoq.com/presentations/Value-Identity-State-Rich-Hickey
-- "Empirical Analysis of Programming Language Adoption", Leo A. Meyerovich, Ariel Rabkin: http://sns.cs.princeton.edu/docs/asr-oopsla13.pdf
 - Look for best/worst features of other languages: OCaml, C, Common Lisp, JavaScript, Perl, Python, Scheme, Smalltalk, Java, Clojure, Self, Kotlin, Wren, F#, Matlab, Rust, Ruby, Go, Julia, Haskell, Erlang, Elixir, Typed Racket, PureScript, Elm, Io, ML, Lua, Haxe, Tcl, Shen, REBOL, Mathematica, HyperCard, Awk, Parabola.io, GNU Octave, Maxima Algebra System, Pascal, R
-- Guarantee efficient self-recursive function calls, tail function calls, and self-tail function calls?
-- Since every non-function is callable as a zero-parameter function, what's the error if one or more arguments are passed?
-- Define grammar for indentation based syntax.
-- Are keyword arguments handled differently in indented new lines in indentation based syntax?
-- Should indentation based syntax be required instead of optional to avoid inconsistent coding styles?
