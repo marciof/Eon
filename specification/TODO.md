@@ -13,3 +13,4 @@
 - Since every non-function is callable as a zero-parameter function, what's the error if one or more arguments are passed?
 - Define grammar for indentation based syntax.
 - Are keyword arguments handled differently in indented new lines in indentation based syntax?
+- Should indentation based syntax be required instead of optional to avoid inconsistent coding styles?
