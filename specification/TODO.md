@@ -1,7 +1,6 @@
 - Guarantee efficient self-recursive function calls, tail function calls, and self-tail function calls?
 - Since every non-function is callable as a zero-parameter function, what's the error if one or more arguments are passed?
 - Define grammar for indentation based syntax.
-- Should indentation based syntax be required instead of optional to avoid inconsistent coding styles?
 - http://www.infoq.com/presentations/Value-Identity-State-Rich-Hickey
 - "Empirical Analysis of Programming Language Adoption", Leo A. Meyerovich, Ariel Rabkin: http://sns.cs.princeton.edu/docs/asr-oopsla13.pdf
 - Evaluate typing difficulty of each identifier and syntax quantitatively.
