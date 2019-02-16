@@ -1,6 +1,11 @@
 # Table of Contents
 
 - [Introduction](#introduction)
+  - [Goals](#goals)
+  - [Inspiration](#inspiration)
+- [Coding Style](#coding-style)
+  - [Documentation](#documentation)
+  - [Naming](#naming)
 - [Structure](#structure)
   - [Syntax](#syntax)
   - [Module](#module)
@@ -36,7 +41,6 @@
   - [`unwind`](#unwind)
 - [Grammar](#grammar)
   - [Transformations](#transformations)
-- [Coding Style](#coding-style)
 
 # Introduction
 
@@ -79,6 +83,30 @@ Practical:
 - Perl
 - Python
 - Unix shell
+
+# Coding Style
+
+English is the official language used throughout code and documentation.
+
+## Documentation
+
+Documentation is written in the [CommonMark](http://commonmark.org) format. In general, verbs that are also nouns are avoided to prevent ambiguity.
+
+## Naming
+
+All names use hyphens as the word delimiter.
+
+### Function
+
+The name of a [function](#function) generally uses a verb as the first word. Predicate functions end in `?`. Mutator functions end in `!`. Accessor functions start with a noun instead of a verb and end in `-of`.
+
+### Module
+
+The name of a [module](#module) is a noun, in lower-case.
+
+### Prototype
+
+The name of a [prototype](#prototype) is a noun, capitalized.
 
 # Structure
 
@@ -1197,27 +1225,3 @@ These are the syntactic transformations that occur for each associated non-termi
 |*Function-Value*   |`x`   |`N:x`         |`(f)`         |Position `N`. |
 |*Number*           |`xy`  |`(y x)`       |`2Km`         |              |
 |*Defer*            |`\x`  |`(defer x)`   |`\length`     |              |
-
-# Coding Style
-
-The human language used should be English.
-
-## Documentation
-
-Documentation should be written in [CommonMark](http://commonmark.org) format. Avoid verbs that are also nouns to prevent ambiguity.
-
-## Naming
-
-All names should use hyphens as the word delimiter.
-
-### Function
-
-The name of a [function](#function) should generally use a verb as the first word. Predicate functions should end in `?`. Mutator functions should end in `!`. Accessor functions should start with a noun instead of a verb and end in `-of`.
-
-### Module
-
-The name of a [module](#module) should be a noun, in lower-case.
-
-### Prototype
-
-The name of a [prototype](#prototype) should be a noun, capitalized.
