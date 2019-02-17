@@ -1,3 +1,4 @@
+- Add documentation dynamic option to switch between indentation based syntax and not? Or just remove unnecessary parenthesis to keep things simple and promote indentation based syntax?
 - Guarantee efficient self-recursive function calls, tail function calls, and self-tail function calls?
 - Since every non-function is callable as a zero-parameter function, what's the error if one or more arguments are passed?
 - Define grammar for indentation based syntax.
