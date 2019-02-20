@@ -112,17 +112,16 @@ The name of a [prototype](#prototype) is a noun, capitalized.
 
 ## Syntax
 
-Source code is represented as s-expressions, with an optional indentation based syntax.
-
-Indentation based syntax follows a simple set of rules:
+Source code is represented as s-expressions with significant indentation. This follows a simple set of rules:
 
 1. If a line starts with an open parenthesis, then it disables significant indentation inside the entire expression.
 2. Otherwise, each line is a [function](#function) call.
   - Same-line arguments are passed as-is.
-  - Indented lines are passed as function calls as described above, recursively.
-3. All [data types](#prototypes) are callable as zero-parameter functions that evaluate to the value itself, except for functions that are evaluated as a regular function call.
+  - Indented lines that follow it are passed as function calls as described above, recursively.
 
-Refer to the [grammar](#grammar) for the precise definition.
+(Note that all [non-function data types are callable](#prototypes) as functions, and evaluate to themselves.)
+
+Refer to the [grammar](#grammar) for its precise definition.
 
 ## Module
 
@@ -135,6 +134,8 @@ A Unicode textual representation of expressions encoded in UTF-8 without a Byte 
 A [prototype](#prototype) is the original value used to create another one from.
 
 Not all values can be literally represented in source code, since not all have an associated [grammar](#grammar) production. They can however be assigned names using [symbols](#symbol) and stored in the [bindings](#bindings) map.
+
+All data types are callable as zero-parameter functions that evaluate to the value itself, except for functions that are evaluated as a regular function call.
 
 ## Boolean
 

@@ -1,6 +1,7 @@
-- Add documentation dynamic option to switch between indentation based syntax and not? Or just remove unnecessary parenthesis to keep things simple and promote indentation based syntax? Change optional indentation based syntax to that parenthesis can be used for grouping?
+- Remove unnecessary parenthesis from examples to keep things simple and promote indentation based syntax.
+- Mention that maps, lists and sets aren't affected by significant indentation. Mention that the starting open parenthesis is for a function.
 - Guarantee efficient self-recursive function calls, tail function calls, and self-tail function calls?
-- Since every non-function is callable as a zero-parameter function, what's the error if one or more arguments are passed? Document that in the specification for each data type. Move Syntax point num 3 elsewhere? It's not really a rule.
+- Since every non-function is callable as a zero-parameter function, what's the error if one or more arguments are passed? Document that in the specification for each data type.
 - Define grammar for indentation based syntax.
 - http://www.infoq.com/presentations/Value-Identity-State-Rich-Hickey
 - "Empirical Analysis of Programming Language Adoption", Leo A. Meyerovich, Ariel Rabkin: http://sns.cs.princeton.edu/docs/asr-oopsla13.pdf
