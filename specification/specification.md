@@ -127,7 +127,7 @@ A [prototype](#prototype) is the original value used to create another one from.
 
 Not all values can be literally represented in source code, since not all have an associated [grammar](#grammar) production. They can however be assigned names using [symbols](#symbol) and stored in the [bindings](#bindings) map.
 
-All data types are callable as zero-parameter functions that evaluate to the value itself, except for functions that are evaluated as a regular function call.
+All data types are callable as zero-parameter functions that evaluate to the value itself, except for [functions](#function) that are evaluated as a regular function call.
 
 ## Boolean
 
