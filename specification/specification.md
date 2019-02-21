@@ -96,17 +96,9 @@ Documentation is written in the [CommonMark](http://commonmark.org) format. In g
 
 All names use hyphens as the word delimiter.
 
-### Functions
-
-The name of a [function](#function) generally uses a verb as the first word. Predicate functions end in `?`. Mutator functions end in `!`. Accessor functions start with a noun instead of a verb and end in `-of`.
-
-### Modules
-
-The name of a [module](#module) is a noun, in lower-case.
-
-### Prototypes
-
-The name of a [prototype](#prototype) is a noun, capitalized.
+- **Function:** verb as the first word. Predicate functions end in `?`. Mutator functions end in `!`. Accessor functions start with a noun instead of a verb and end in `-of`.
+- **Module**: noun, in lower-case.
+- **Prototype:** noun, capitalized.
 
 # Structure
 
