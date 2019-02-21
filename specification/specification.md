@@ -96,7 +96,7 @@ Documentation is written in the [CommonMark](http://commonmark.org) format. In g
 
 All names use hyphens as the word delimiter.
 
-- **Function:** verb as the first word. Predicate functions end in `?`. Mutator functions end in `!`. Accessor functions start with a noun instead of a verb and end in `-of`.
+- **Function:** verb as the first word; predicate functions end in `?`, while accessor functions start with a noun instead and end in `-of`.
 - **Module**: noun, in lower-case.
 - **Prototype:** noun, capitalized.
 
