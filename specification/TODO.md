@@ -1,4 +1,3 @@
-- Remove unnecessary parenthesis from examples to keep things simple and promote indentation based syntax.
 - Guarantee efficient self-recursive function calls, tail function calls, and self-tail function calls?
 - Since every non-function is callable as a zero-parameter function, what's the error if one or more arguments are passed? Document that in the specification for each data type.
 - Define grammar for indentation based syntax.
