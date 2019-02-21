@@ -114,10 +114,10 @@ The name of a [prototype](#prototype) is a noun, capitalized.
 
 Source code is represented as s-expressions with significant indentation. This follows a simple set of rules:
 
-1. If a line starts with an open parenthesis, then it disables significant indentation inside the entire expression.
-2. Otherwise, each line is a [function](#function) call.
+1. A [Function](#function) call enclosed in parenthesis, as well as a literal [map](#map), [list](#list), and [set](#set), disable significant indentation inside the entire expression.
+2. Otherwise, each line is an implicit [function](#function) call.
   - Same-line arguments are passed as-is.
-  - Indented lines that follow it are passed as function calls as described above, recursively.
+  - Indented lines that follow it are passed as function calls, as described above recursively.
 
 (Note that all [non-function data types are callable](#prototypes) as functions, and evaluate to themselves.)
 
