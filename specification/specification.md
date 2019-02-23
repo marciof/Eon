@@ -111,9 +111,9 @@ Source code is represented as s-expressions with significant indentation. This f
   - Same-line arguments are passed as-is.
   - Indented lines that follow it are passed as function calls, as described above recursively.
 
-(Note that all [non-function data types are callable](#prototypes) as functions, and evaluate to themselves.)
+All [non-function data types are callable](#prototypes) as functions, and evaluate to themselves.
 
-Refer to the [grammar](#grammar) for its precise definition.
+Refer to the [grammar](#grammar) for the precise definition.
 
 ## Module
 
@@ -135,6 +135,10 @@ A binary logical value that can only be either true or false. It does not have a
 
 - **Prototype:** true
 - **Base Prototype:** (itself)
+
+### Conditions
+
+- *One or more arguments:* [unwinds](#unwind) global scope with `\parameter-mismatch`
 
 ### Examples
 
@@ -160,6 +164,10 @@ Calling a function creates a new [bindings](#bindings) map from the [deferred](#
 
 - **Prototype:** empty [function](#function), `()`
 - **Base Prototype:** empty [map](#map), `{:}`
+
+### Conditions
+
+- *One or more arguments:* [unwinds](#unwind) global scope with `\parameter-mismatch`
 
 ### Examples
 
@@ -202,6 +210,10 @@ An immutable sequence of elements, that associates consecutive positive integer 
 - **Prototype:** empty [list](#list), `[]`
 - **Base Prototype:** empty [map](#map), `{:}`
 
+### Conditions
+
+- *One or more arguments:* [unwinds](#unwind) global scope with `\parameter-mismatch`
+
 ### Examples
 
 ```
@@ -230,6 +242,10 @@ If the same key appears multiple times, the last associated value takes preceden
 - **Prototype:** empty [map](#map), `{:}`
 - **Base Prototype:** (itself)
 
+### Conditions
+
+- *One or more arguments:* [unwinds](#unwind) global scope with `\parameter-mismatch`
+
 ### Examples
 
 ```
@@ -255,6 +271,10 @@ A rational number.
 
 - **Prototype:** integer zero, `0`
 - **Base Prototype:** (itself)
+
+### Conditions
+
+- *One or more arguments:* [unwinds](#unwind) global scope with `\parameter-mismatch`
 
 ### Examples
 
@@ -294,6 +314,10 @@ An immutable collection of unique elements, that associates keys to be the same 
 - **Prototype:** empty [set](#set), `{}`
 - **Base Prototype:** empty [map](#map), `{:}`
 
+### Conditions
+
+- *One or more arguments:* [unwinds](#unwind) global scope with `\parameter-mismatch`
+
 ### Examples
 
 ```
@@ -320,6 +344,10 @@ An immutable case-sensitive name, that restricts the character set used accordin
 - **Prototype:** empty symbol
 - **Base Prototype:** empty [text](#text), `''`
 
+### Conditions
+
+- *One or more arguments:* [unwinds](#unwind) global scope with `\parameter-mismatch`
+
 ### Examples
 
 ```
@@ -345,6 +373,10 @@ An immutable sequence of Unicode characters, each one identified by a numeric co
 
 - **Prototype:** empty [text](#text), `''`
 - **Base Prototype:** empty [list](#list), `[]`
+
+### Conditions
+
+- *One or more arguments:* [unwinds](#unwind) global scope with `\parameter-mismatch`
 
 ### Examples
 
