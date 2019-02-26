@@ -162,6 +162,8 @@ An immutable sequence composed of a function (body) followed by zero or more val
 
 Calling a function creates a new [bindings](#bindings) map from the [deferred](#defer) function call itself, [prototypically](#prototype) inherited from the current bindings in scope, and then evaluates it using the new bindings returning the result. Calling an empty function evaluates to itself.
 
+Tail calls are guaranteed to be efficient and use a similar amount of memory as an iterative loop.
+
 - **Prototype:** empty [function](#function), `()`
 - **Base Prototype:** empty [map](#map), `{:}`
 
