@@ -1,4 +1,3 @@
-- Guarantee efficient self-recursive function calls, tail function calls, and self-tail function calls?
 - Define indentation based syntax grammar.
 - http://www.infoq.com/presentations/Value-Identity-State-Rich-Hickey
 - "Empirical Analysis of Programming Language Adoption", Leo A. Meyerovich, Ariel Rabkin: http://sns.cs.princeton.edu/docs/asr-oopsla13.pdf

@@ -162,7 +162,7 @@ An immutable sequence composed of a function (body) followed by zero or more val
 
 Calling a function creates a new [bindings](#bindings) map from the [deferred](#defer) function call itself, [prototypically](#prototype) inherited from the current bindings in scope, and then evaluates it using the new bindings returning the result. Calling an empty function evaluates to itself.
 
-Tail calls are guaranteed to be efficient and use a similar amount of memory as an iterative loop.
+Tail calls are guaranteed to be efficient and use a similar amount of memory as an iterative loop. A tail call is a self-recursive function call when it calls itself, a tail function call when it's the last expression in the calling function, or a self-tail function call when it calls itself as the last expression.
 
 - **Prototype:** empty [function](#function), `()`
 - **Base Prototype:** empty [map](#map), `{:}`
