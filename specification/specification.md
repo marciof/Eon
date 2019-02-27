@@ -138,7 +138,7 @@ A binary logical value that can only be either true or false. It does not have a
 
 ### Conditions
 
-- *One or more arguments:* [unwinds](#unwind) global scope with `\parameter-mismatch`
+- *Called with one or more arguments:* [unwinds](#unwind) global scope with `\parameter-mismatch`
 
 ### Examples
 
@@ -169,7 +169,7 @@ Tail calls are guaranteed to be efficient and use a similar amount of memory as 
 
 ### Conditions
 
-- *One or more arguments:* [unwinds](#unwind) global scope with `\parameter-mismatch`
+- *Called with one or more arguments:* [unwinds](#unwind) global scope with `\parameter-mismatch`
 
 ### Examples
 
@@ -214,7 +214,7 @@ An immutable sequence of elements, that associates consecutive positive integer 
 
 ### Conditions
 
-- *One or more arguments:* [unwinds](#unwind) global scope with `\parameter-mismatch`
+- *Called with one or more arguments:* [unwinds](#unwind) global scope with `\parameter-mismatch`
 
 ### Examples
 
@@ -246,7 +246,7 @@ If the same key appears multiple times, the last associated value takes preceden
 
 ### Conditions
 
-- *One or more arguments:* [unwinds](#unwind) global scope with `\parameter-mismatch`
+- *Called with one or more arguments:* [unwinds](#unwind) global scope with `\parameter-mismatch`
 
 ### Examples
 
@@ -276,7 +276,7 @@ A rational number.
 
 ### Conditions
 
-- *One or more arguments:* [unwinds](#unwind) global scope with `\parameter-mismatch`
+- *Called with one or more arguments:* [unwinds](#unwind) global scope with `\parameter-mismatch`
 
 ### Examples
 
@@ -318,7 +318,7 @@ An immutable collection of unique elements, that associates keys to be the same 
 
 ### Conditions
 
-- *One or more arguments:* [unwinds](#unwind) global scope with `\parameter-mismatch`
+- *Called with one or more arguments:* [unwinds](#unwind) global scope with `\parameter-mismatch`
 
 ### Examples
 
@@ -348,7 +348,7 @@ An immutable case-sensitive name, that restricts the character set used accordin
 
 ### Conditions
 
-- *One or more arguments:* [unwinds](#unwind) global scope with `\parameter-mismatch`
+- *Called with one or more arguments:* [unwinds](#unwind) global scope with `\parameter-mismatch`
 
 ### Examples
 
@@ -378,7 +378,7 @@ An immutable sequence of Unicode characters, each one identified by a numeric co
 
 ### Conditions
 
-- *One or more arguments:* [unwinds](#unwind) global scope with `\parameter-mismatch`
+- *Called with one or more arguments:* [unwinds](#unwind) global scope with `\parameter-mismatch`
 
 ### Examples
 
@@ -424,7 +424,7 @@ A [function](#function) that compares two or more values (with short-circuit) an
 
 ### Conditions
 
-- *Less than two arguments:* [unwinds](#unwind) global scope with `\parameter-mismatch`
+- *Called with less than two arguments:* [unwinds](#unwind) global scope with `\parameter-mismatch`
 
 ### Examples
 
@@ -463,7 +463,7 @@ A [function](#function) that compares two or more [numbers](#number) (with short
 
 ### Conditions
 
-- *Less than two arguments:* [unwinds](#unwind) global scope with `\parameter-mismatch`
+- *Called with less than two arguments:* [unwinds](#unwind) global scope with `\parameter-mismatch`
 - *Argument isn't a prototype of nor a number:* [unwinds](#unwind) global scope with `\prototype-mismatch`
 
 ## `>` <a id="greater-than"/>
@@ -481,7 +481,7 @@ A [function](#function) that compares two or more [numbers](#number) (with short
 
 ### Conditions
 
-- *Less than two arguments:* [unwinds](#unwind) global scope with `\parameter-mismatch`
+- *Called with less than two arguments:* [unwinds](#unwind) global scope with `\parameter-mismatch`
 - *Argument isn't a prototype of nor a number:* [unwinds](#unwind) global scope with `\prototype-mismatch`
 
 ## `+` <a id="add"/>
@@ -499,7 +499,7 @@ A [function](#function) that adds one or more [numbers](#number).
 
 ### Conditions
 
-- *No arguments:* [unwinds](#unwind) global scope with `\parameter-mismatch`
+- *Called with no arguments:* [unwinds](#unwind) global scope with `\parameter-mismatch`
 - *Argument isn't a prototype of nor a number:* [unwinds](#unwind) global scope with `\prototype-mismatch`
 - *Adding negative and positive infinity:* [unwinds](#unwind) global scope with `\undefined-result`
 
@@ -518,7 +518,7 @@ A [function](#function) that subtracts one or more [numbers](#number).
 
 ### Conditions
 
-- *No arguments:* [unwinds](#unwind) global scope with `\parameter-mismatch`
+- *Called with no arguments:* [unwinds](#unwind) global scope with `\parameter-mismatch`
 - *Argument isn't a prototype of nor a number:* [unwinds](#unwind) global scope with `\prototype-mismatch`
 - *Subtracting infinity from infinity:* [unwinds](#unwind) global scope with `\undefined-result`
 
@@ -537,7 +537,7 @@ A [function](#function) that multiplies two or more [numbers](#number).
 
 ### Conditions
 
-- *Less than two arguments:* [unwinds](#unwind) global scope with `\parameter-mismatch`
+- *Called with less than two arguments:* [unwinds](#unwind) global scope with `\parameter-mismatch`
 - *Argument isn't a prototype of nor a number:* [unwinds](#unwind) global scope with `\prototype-mismatch`
 - *Multiplying zero and infinity:* [unwinds](#unwind) global scope with `\undefined-result`
 
@@ -556,7 +556,7 @@ A [function](#function) that divides two or more [numbers](#number).
 
 ### Conditions
 
-- *Less than two arguments:* [unwinds](#unwind) global scope with `\parameter-mismatch`
+- *Called with less than two arguments:* [unwinds](#unwind) global scope with `\parameter-mismatch`
 - *Argument isn't a prototype of nor a number:* [unwinds](#unwind) global scope with `\prototype-mismatch`
 - *Dividing by zero or infinity by infinity:* [unwinds](#unwind) global scope with `\undefined-result`
 
@@ -595,7 +595,7 @@ A [function](#function) that returns the number of key/value pairs in a `map`. I
 
 ### Conditions
 
-- *Less or more than one argument:* [unwinds](#unwind) global scope with `\parameter-mismatch`
+- *Called with less or more than one argument:* [unwinds](#unwind) global scope with `\parameter-mismatch`
 - *`map` argument isn't a prototype of nor a map:* [unwinds](#unwind) global scope with `\prototype-mismatch`
 
 ### Examples
@@ -645,7 +645,7 @@ A [function](#function) that creates a snapshot of an `expression` thereby preve
 
 ### Conditions
 
-- *Zero or more than two arguments:* [unwinds](#unwind) global scope with `\parameter-mismatch`
+- *Called with zero or more than two arguments:* [unwinds](#unwind) global scope with `\parameter-mismatch`
 - *`escape` argument isn't a prototype of nor a symbol:* [unwinds](#unwind) global scope with `\prototype-mismatch`
 
 ### Examples
@@ -682,7 +682,7 @@ A [function](#function) that evaluates an `expression` and returns the result, o
 
 ### Conditions
 
-- *Zero or more than two arguments:* [unwinds](#unwind) global scope with `\parameter-mismatch`
+- *Called with zero or more than two arguments:* [unwinds](#unwind) global scope with `\parameter-mismatch`
 - *`bindings` argument isn't a prototype of nor a map:* [unwinds](#unwind) global scope with `\prototype-mismatch`
 - *`expression` argument contains an unbound identifier:* [unwinds](#unwind) global scope with `\unbound-identifier`
 - *`expression` argument contains a function call to a non-function value:* [unwinds](#unwind) global scope with `\prototype-mismatch`
@@ -740,7 +740,7 @@ Key lookup takes place in the given map, and in each of its base prototypes unti
 
 ### Conditions
 
-- *Less than two or more than three arguments:* [unwinds](#unwind) global scope with `\parameter-mismatch`
+- *Called with less than two or more than three arguments:* [unwinds](#unwind) global scope with `\parameter-mismatch`
 - *`map` argument isn't a prototype of nor a map:* [unwinds](#unwind) global scope with `\prototype-mismatch`
 - *Association doesn't exist and a `default` value isn't provided:* [unwinds](#unwind) global scope with `\unknown-key`
 
@@ -828,7 +828,7 @@ List / Function:
 
 ### Conditions
 
-- *Less than two or more than three arguments:* [unwinds](#unwind) global scope with `\parameter-mismatch`
+- *Called with less than two or more than three arguments:* [unwinds](#unwind) global scope with `\parameter-mismatch`
 - *`map` argument isn't a prototype of nor a map:* [unwinds](#unwind) global scope with `\prototype-mismatch`
 - *`map` argument is a prototype of or a set and `key` isn't equal to `value`:* [unwinds](#unwind) global scope with `\parameter-mismatch`
 - *`set` argument isn't a prototype of nor a set:* [unwinds](#unwind) global scope with `\prototype-mismatch`
@@ -882,7 +882,7 @@ A [function](#function) that loads a [module](#module) by `path`, with zero or m
 
 ### Conditions
 
-- *Less than one argument:* [unwinds](#unwind) global scope with `\parameter-mismatch`
+- *Called with less than one argument:* [unwinds](#unwind) global scope with `\parameter-mismatch`
 - *`path` argument isn't a prototype of nor a non-empty list of symbols:* [unwinds](#unwind) global scope with `\prototype-mismatch`
 - *Module can't be found:* [unwinds](#unwind) global scope with `\unknown-module`
 - *Module doesn't evaluate to at least one value or is invalid:* [unwinds](#unwind) global scope with `\undefined-result`
@@ -908,7 +908,7 @@ A [function](#function) that returns a [map](#map) with the non-inherited key/va
 
 ### Conditions
 
-- *Less or more than one argument:* [unwinds](#unwind) global scope with `\parameter-mismatch`
+- *Called with less or more than one argument:* [unwinds](#unwind) global scope with `\parameter-mismatch`
 - *`map` argument isn't a prototype of nor a map:* [unwinds](#unwind) global scope with `\prototype-mismatch`
 
 ### Examples
@@ -940,7 +940,7 @@ A [function](#function) that returns the first key or the key following `key` in
 
 ### Conditions
 
-- *Zero or more than two arguments:* [unwinds](#unwind) global scope with `\parameter-mismatch`
+- *Called with zero or more than two arguments:* [unwinds](#unwind) global scope with `\parameter-mismatch`
 - *`map` argument isn't a prototype of nor a map:* [unwinds](#unwind) global scope with `\prototype-mismatch`
 - *`map` is empty or `key` is the last key:* [unwinds](#unwind) global scope with `\unknown-key`
 
@@ -978,7 +978,7 @@ A [function](#function) that extends the prototype hierarchy using `base` thereb
 
 ### Conditions
 
-- *Zero or more than two arguments:* [unwinds](#unwind) global scope with `\parameter-mismatch`
+- *Called with zero or more than two arguments:* [unwinds](#unwind) global scope with `\parameter-mismatch`
 - *`value` and `base-prototype` don't share a common ancestor prototype:* [unwinds](#unwind) global scope with `\prototype-mismatch`
 
 ### Examples
@@ -1047,7 +1047,7 @@ List / Function:
 
 ### Conditions
 
-- *Less or more than two arguments:* [unwinds](#unwind) global scope with `\parameter-mismatch`
+- *Called with less or more than two arguments:* [unwinds](#unwind) global scope with `\parameter-mismatch`
 - *`map` argument isn't a prototype of nor a map:* [unwinds](#unwind) global scope with `\prototype-mismatch`
 - *`list` argument is a prototype of or a list and `key` isn't a positive integer:* [unwinds](#unwind) global scope with `\parameter-mismatch`
 - *`function` argument is a prototype of or a function and when `key` is a number it isn't a positive integer:* [unwinds](#unwind) global scope with `\parameter-mismatch`
@@ -1096,7 +1096,7 @@ The information map that's returned has the following keys:
 
 ### Conditions
 
-- *More than one argument:* [unwinds](#unwind) global scope with `\parameter-mismatch`
+- *Called with more than one argument:* [unwinds](#unwind) global scope with `\parameter-mismatch`
 - *`bindings` argument isn't a prototype of nor a bindings map:* [unwinds](#unwind) global scope with `\prototype-mismatch`
 
 ### Examples
@@ -1128,7 +1128,7 @@ Unwinding is a non-local early exit of a given scope. Unwinding the [module](#mo
 
 ### Conditions
 
-- *Zero or more than two arguments:* [unwinds](#unwind) global scope with `\parameter-mismatch`
+- *Called with zero or more than two arguments:* [unwinds](#unwind) global scope with `\parameter-mismatch`
 - *`bindings` argument isn't a prototype of nor a bindings map:* [unwinds](#unwind) global scope with `\prototype-mismatch`
 
 ### Examples
