@@ -14,50 +14,63 @@
   \global-bindings: bindings
   \...: \...
 
-  \if: \((get
-    {
-      true: \(evaluate bindings::3)
-      false: \(evaluate bindings::4)
-    }
-    (evaluate bindings::2))
+  \if:
+    \((get
+      {
+        true: \(evaluate bindings::3)
+        false: \(evaluate bindings::4)
+      }
+      (evaluate bindings::2))
 
-  \and: \(evaluate (get
-    {
-      true: bindings::3
-      false: false
-    }
-    (evaluate bindings::2)))
+  \and:
+    \(evaluate (get
+      {
+        true: bindings::3
+        false: false
+      }
+      (evaluate bindings::2)))
 
-  \or: \(evaluate (get
-    {
-      true: true
-      false: bindings::3
-    }
-    (evaluate bindings::2)))
+  \or:
+    \(evaluate (get
+      {
+        true: true
+        false: bindings::3
+      }
+      (evaluate bindings::2)))
 
-  \not: \(get
-    {
-      true: false
-      false: true
-    }
-    (evaluate bindings::2))
+  \not:
+    \(get
+      {
+        true: false
+        false: true
+      }
+      (evaluate bindings::2))
 
-  \<>: \(not (=
-    (evaluate bindings::2)
-    (evaluate bindings::3)))
+  \<>:
+    \(not (=
+      (evaluate bindings::2)
+      (evaluate bindings::3)))
 
-  \<=: \(not (>
-    (evaluate bindings::2)
-    (evaluate bindings::3)))
+  \<=:
+    \(not (>
+      (evaluate bindings::2)
+      (evaluate bindings::3)))
 
-  \>=: \(not (<
-    (evaluate bindings::2)
-    (evaluate bindings::3)))
+  \>=:
+    \(not (<
+      (evaluate bindings::2)
+      (evaluate bindings::3)))
 
-  # If only one evaluate it.
-  # Else remove first and call recursively.
-  \do: ...
+  \do:
+    \(if (= (count (local bindings)) 2)
+      (evaluate bindings::2)
+      ((get
+        [
+          (evaluate bindings::2)
+          \(evaluate (remove bindings 2))
+        ]
+        2)))
 
-  \function: ...
-  \let: ...
+  \function: \...
+  \let: \...
 }

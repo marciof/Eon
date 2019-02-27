@@ -1,5 +1,5 @@
 - Document constants and functions.
-- Validate arguments.
+- Validate arguments, error checking.
 - Close bindings in standard library functions.
 - Support multiple arguments (eg. boolean logic functions, etc).
 - Add a fuzzy matching operator: `=~`
