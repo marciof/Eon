@@ -1,4 +1,5 @@
 - Define indentation based syntax grammar.
+  - Is a keyword parameter in a separate indented line part of the enclosing function call or the function call in the same line? To be consistent with the non-indented style it should be part of the enclosing function call.
 - http://www.infoq.com/presentations/Value-Identity-State-Rich-Hickey
 - "Empirical Analysis of Programming Language Adoption", Leo A. Meyerovich, Ariel Rabkin: http://sns.cs.princeton.edu/docs/asr-oopsla13.pdf
 - Evaluate typing difficulty of each identifier and syntax quantitatively.
@@ -9,4 +10,4 @@
   - https://en.wikipedia.org/wiki/Comparison_of_programming_languages_(syntax)
   - http://hyperpolyglot.org/scripting
   - https://github.com/anvaka/common-words/blob/master/README.md
-- Look for best/worst features of other languages: OCaml, C, Common Lisp, JavaScript, Perl, Python, Scheme, Smalltalk, Java, Clojure, Self, Kotlin, Wren, F#, Matlab, Rust, Ruby, Go, Julia, Haskell, Erlang, Elixir, Typed Racket, PureScript, Elm, Io, ML, Lua, Haxe, Tcl, Shen, REBOL, Mathematica, HyperCard, Awk, Parabola.io, GNU Octave, Maxima Algebra System, Pascal, R
+- Look for best/worst features of other languages/systems: OCaml, C, Common Lisp, JavaScript, Perl, Python, Scheme, Smalltalk, Java, Clojure, Self, Kotlin, Wren, F#, Matlab, Rust, Ruby, Go, Julia, Haskell, Erlang, Elixir, Typed Racket, PureScript, Elm, Io, ML, Lua, Haxe, Tcl, Shen, REBOL, Mathematica, HyperCard, Awk, Parabola.io, GNU Octave, Maxima Algebra System, Pascal, R, HyperTalk/HyperCard
