@@ -1,3 +1,4 @@
+- Specify the empty function more accurately. Does it accept parameters or not? What value does it return?
 - Define indentation based syntax grammar.
   - Is a keyword parameter in a separate indented line part of the enclosing function call or the function call in the same line? To be consistent with the non-indented style it should be part of the enclosing function call.
 - http://www.infoq.com/presentations/Value-Identity-State-Rich-Hickey
