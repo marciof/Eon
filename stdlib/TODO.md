@@ -1,4 +1,4 @@
-- Should `do` allow no arguments to also work as a no-op function, in addition to identity when passed a single argument?
+- Implement `do` without using `if`?
 - Document constants and functions.
 - Validate arguments, error checking.
 - Close bindings in standard library functions.
