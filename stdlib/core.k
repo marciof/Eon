@@ -67,7 +67,7 @@
       ((get
         [
           (evaluate bindings::2)
-          \(evaluate (remove bindings 2))
+          (remove bindings 2)
         ]
         2)))
 
