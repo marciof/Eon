@@ -109,3 +109,28 @@ http://www.lispworks.com/documentation/HyperSpec/Body/e_cnd.htm#condition
 4, loops over rescue-handlers and calls the lambda handler
 5, calls fn rescue w/ condition \blah
 6, has no rescue-handlers now so unwind (trigger debugger?)
+
+-----
+
+if (logged-in? user)
+  then: do
+    this-first
+    this-second
+  else: do
+    another-thing
+
+if (logged-in? user)
+  then:
+    this-first
+    this-second
+  else:
+    another-thing
+
+if (logged-in? user)
+  do
+    this-first
+    this-second
+
+if (logged-in? user) then:
+  this-first
+  this-second
