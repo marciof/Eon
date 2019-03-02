@@ -1,4 +1,11 @@
-- Specify the empty function more accurately. Does it accept parameters or not? What value does it return?
+- Allow the concept of a "code block" when a keyword argument is on a line just by itself followed by indented lines?
+- Specify the empty function more accurately. 
+  - Does it accept parameters or not?
+  - Accepting parameters allows it to easily be used as catch-all no-op.
+  - What value does it return?
+  - Does it evaluate all arguments and return the last one or itself when empty? Too confusing?
+  - What's the overlap with `do`?
+  - Allow `do` to not receive anything? Eg. do nothing?
 - Define indentation based syntax grammar.
   - Is a keyword parameter in a separate indented line part of the enclosing function call or the function call in the same line? To be consistent with the non-indented style it should be part of the enclosing function call.
 - http://www.infoq.com/presentations/Value-Identity-State-Rich-Hickey
