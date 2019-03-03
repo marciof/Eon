@@ -1,6 +1,7 @@
 - Allow the concept of a "code block" when a keyword argument is on a line just by itself followed by indented lines?
   - It's the type of a module since it can have one or more expressions?
   - Default arguments? As prototype binding? More orthogonal and reusable?
+  - Have a built-in `do` which is what's used at the top level that allows modules to have a sequence of expressions?
 - Specify the empty function more accurately. 
   - Does it accept parameters or not?
   - Accepting parameters allows it to easily be used as catch-all no-op.
