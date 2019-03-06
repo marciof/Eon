@@ -1,3 +1,7 @@
+# Add built-in `do`, that accepts one or more arguments, evaluates all of them, and returns the last one.
+# Specify how modules are able to have more than one expression, by using `do`.
+# Specify how the empty function accepts zero arguments, error conditions, and evaluates to itself.
+
 - Allow the concept of a "code block" when a keyword argument is on a line just by itself followed by indented lines?
   - It's the type of a module since it can have one or more expressions?
   - Default arguments? As prototype binding? More orthogonal and reusable?
