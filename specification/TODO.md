@@ -1,18 +1,8 @@
-# Add built-in `do`, that accepts one or more arguments, evaluates all of them, and returns the last one.
-# Specify how modules are able to have more than one expression, by using `do`.
-# Specify how the empty function accepts zero arguments, error conditions, and evaluates to itself.
-
-- Allow the concept of a "code block" when a keyword argument is on a line just by itself followed by indented lines?
-  - It's the type of a module since it can have one or more expressions?
-  - Default arguments? As prototype binding? More orthogonal and reusable?
-  - Have a built-in `do` which is what's used at the top level that allows modules to have a sequence of expressions?
-- Specify the empty function more accurately. 
-  - Does it accept parameters or not?
-  - Accepting parameters allows it to easily be used as catch-all no-op.
-  - What value does it return?
-  - Does it evaluate all arguments and return the last one or itself when empty? Too confusing?
-  - What's the overlap with `do`?
-  - Allow `do` to not receive anything? Eg. do nothing?
+- Add built-in `do`, that accepts one or more arguments, evaluates all of them, and returns the last one.
+- Specify how modules are able to have more than one expression, by using `do`.
+- When a keyword argument is on a line just by itself followed by indented lines:
+  - Default arguments? As prototype binding? Using `do`? More orthogonal and reusable?
+  - Default to a "code block" using `do` like modules? Less clear?
 - Define indentation based syntax grammar.
   - Is a keyword parameter in a separate indented line part of the enclosing function call or the function call in the same line? To be consistent with the non-indented style it should be part of the enclosing function call.
 - http://www.infoq.com/presentations/Value-Identity-State-Rich-Hickey

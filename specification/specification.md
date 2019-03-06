@@ -169,7 +169,7 @@ Tail calls are guaranteed to be efficient and use a similar amount of memory as 
 
 ### Conditions
 
-- *Called with one or more arguments:* [unwinds](#unwind) global scope with `\parameter-mismatch`
+- *Empty function called with one or more arguments:* [unwinds](#unwind) global scope with `\parameter-mismatch`
 
 ### Examples
 
