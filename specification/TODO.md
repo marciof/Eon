@@ -1,4 +1,9 @@
-- Specify module loading, initial or otherwise, that means bindings always have a starting `load` call. Also think about how it will integrate into an existing OS as both a shell and REPL.
+- Specify module loading, initial or otherwise, that means bindings always have a starting `load` call.
+  - Also think about how it will integrate into an existing OS as both a shell and REPL.
+  - Force script names to be valid module names?
+  - Foreign shell: `karyon my-script.k`
+  - Shell: ``
+  - REPL: ``
 - Add built-in `do`, that accepts one or more arguments, evaluates all of them, and returns the last one.
 - Specify how modules are able to have more than one expression, by using `do`.
 - When a keyword argument is on a line just by itself followed by indented lines:
