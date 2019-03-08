@@ -1,3 +1,4 @@
+- Specify module loading, initial or otherwise, that means bindings always have a starting `load` call.
 - Add built-in `do`, that accepts one or more arguments, evaluates all of them, and returns the last one.
 - Specify how modules are able to have more than one expression, by using `do`.
 - When a keyword argument is on a line just by itself followed by indented lines:
@@ -5,6 +6,10 @@
   - Default to a "code block" using `do` like modules? Less clear?
 - Define indentation based syntax grammar.
   - Is a keyword parameter in a separate indented line part of the enclosing function call or the function call in the same line? To be consistent with the non-indented style it should be part of the enclosing function call.
+- Can `traceback` be removed?
+  - Can a module be detected from bindings alone?
+  - How to get a line number for debugging?
+  - Should that be part of a possibly native debugger module?
 - http://www.infoq.com/presentations/Value-Identity-State-Rich-Hickey
 - "Empirical Analysis of Programming Language Adoption", Leo A. Meyerovich, Ariel Rabkin: http://sns.cs.princeton.edu/docs/asr-oopsla13.pdf
 - Evaluate typing difficulty of each identifier and syntax quantitatively.
