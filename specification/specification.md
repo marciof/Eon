@@ -666,6 +666,36 @@ A [function](#function) that creates a snapshot of an `expression` thereby preve
   # (+ 1 2)
 ```
 
+## `do`
+
+```
+(do expression:Any ...:Any): Any
+```
+
+A [function](#function) that evaluates a sequence of expressions and returns the value of the last one.
+
+### Complexity
+
+- Time: `O(n)`
+- Space: `O(1)`
+
+### Conditions
+
+- *Called with zero arguments:* [unwinds](#unwind) global scope with `\parameter-mismatch`
+
+### Examples
+
+```
+(do 'abc')
+# 'abc'
+
+(do (* 4 5))
+# 20
+
+(do (* 4 5) (+ 8 2))
+# 10
+```
+
 ## `evaluate`
 
 ```
