@@ -29,6 +29,7 @@
   - [`bindings`](#bindings)
   - [`count`](#count)
   - [`defer`](#defer)
+  - [`do`](#do)
   - [`evaluate`](#evaluate)
   - [`get`](#get)
   - [`insert`](#insert)
