@@ -38,7 +38,6 @@
   - [`next`](#next)
   - [`prototype`](#prototype)
   - [`remove`](#remove)
-  - [`traceback`](#traceback)
   - [`unwind`](#unwind)
 - [Grammar](#grammar)
   - [Transformations](#transformations)
@@ -1103,42 +1102,6 @@ List / Function:
 
 (remove {\name: 'Bob'} \age)
 # {name: 'Bob'}
-```
-
-## `traceback`
-
-```
-(traceback): Map
-(traceback bindings:Map): Map
-```
-
-A [function](#function) that retrieves information about the origin point where the given `bindings` was created, or this call itself otherwise.
-
-The information map that's returned has the following keys:
-
-- `\module:List`: module path
-- `\line:Number`: line number
-- `\bindings:Map`: bindings map
-
-### Complexity
-
-- Time: `O(1)`
-- Space: `O(1)`
-
-### Conditions
-
-- *Called with more than one argument:* [unwinds](#unwind) global scope with `\parameter-mismatch`
-- *`bindings` argument isn't a prototype of nor a bindings map:* [unwinds](#unwind) global scope with `\prototype-mismatch`
-
-### Examples
-
-```
-(traceback)
-# {
-#   \module: [\io]
-#   \line: 3
-#   \bindings: traceback-call
-# }
 ```
 
 ## `unwind`
