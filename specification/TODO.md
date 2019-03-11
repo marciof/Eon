@@ -1,4 +1,6 @@
 - Specify module loading, initial or otherwise, that means `bindings` always have a starting `load` call.
+  - Say that a module is just a named function stored as Unicode text?
+  - Make `load` return the function body without calling? Code as data? Modules can be loaded simply as data? It's the caller's responsibility to decide whether it's code that can be run or just data.
   - Also think about how it will integrate into an existing OS as both a shell and REPL.
   - Force script names to be valid module names? What about filename extensions?
   - Foreign shell: `karyon ./my-script arg1`
