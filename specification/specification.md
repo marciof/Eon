@@ -117,9 +117,9 @@ Refer to the [grammar](#grammar) for the precise definition.
 
 ## Module
 
-A Unicode textual representation of expressions encoded in UTF-8 without a Byte Order Mark, with a valid [symbol](#symbol) for its name.
+A module is a [named](#symbol) sequence of one or more expressions, represented as Unicode text encoded in UTF-8 without a Byte Order Mark.
 
-[Loading](#load) a module is similar to calling a [function](#function) with regards to arguments and [bindings](#bindings) handling.
+[Loading](#load) a module is equivalent to calling a [function](#function), including arguments and [bindings](#bindings) handling.
 
 # Prototypes
 
