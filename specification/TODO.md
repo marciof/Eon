@@ -1,12 +1,9 @@
-- Specify module loading, initial or otherwise, that means `bindings` always have a starting `load` call.
-  - Say that a module is just a named function stored as Unicode text?
-  - Make `load` return the function body without calling? Code as data? Modules can be loaded simply as data? It's the caller's responsibility to decide whether it's code that can be run or just data.
-  - Also think about how it will integrate into an existing OS as both a shell and REPL.
+- Think about how module loading will integrate into an existing OS as both a shell and REPL (make that happen first and foremost ASAP for early use and testing).
   - Force script names to be valid module names? What about filename extensions?
   - Foreign shell: `karyon ./my-script arg1`
   - Shell: `./my-script arg1`
   - REPL: `load [\my-script] arg1`
-  - Specify how modules are able to have more than one expression, by using `do`.
+- Is `do` still required to be a built-in?
 - Define indentation based syntax grammar.
   - Is a keyword parameter in a separate indented line part of the enclosing function call or the function call in the same line? To be consistent with the non-indented style it should be part of the enclosing function call.
   - When a keyword argument is on a line just by itself followed by indented lines:

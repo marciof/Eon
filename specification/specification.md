@@ -117,9 +117,7 @@ Refer to the [grammar](#grammar) for the precise definition.
 
 ## Module
 
-A module is a [named](#symbol) sequence of one or more expressions, represented as Unicode text encoded in UTF-8 without a Byte Order Mark.
-
-[Loading](#load) a module is equivalent to calling a [function](#function), including arguments and [bindings](#bindings) handling.
+A module is a [named](#symbol) expression, represented as Unicode text encoded in UTF-8 without a Byte Order Mark.
 
 # Prototypes
 
@@ -900,14 +898,14 @@ List / Function:
 ## `load`
 
 ```
-(load path:List ...:Any): Any
+(load path:List): Any
 ```
 
-A [function](#function) that loads a [module](#module) by `path`, with zero or more arguments, and returns the value from the last evaluated expression. A `path` is a list of zero or more names, ending with the [module](#module) name.
+A [function](#function) that loads a [module](#module) by `path`, and returns the value of the expression contained within. No other evaluation is done. A `path` is a list of zero or more names, ending with the [module](#module) name.
 
 ### Complexity
 
-- Time: `O(1)`
+- Time: `O(n)`
 - Space: `O(n)`
 
 ### Conditions
@@ -915,7 +913,7 @@ A [function](#function) that loads a [module](#module) by `path`, with zero or m
 - *Called with less than one argument:* [unwinds](#unwind) global scope with `\parameter-mismatch`
 - *`path` argument isn't a prototype of nor a non-empty list of symbols:* [unwinds](#unwind) global scope with `\prototype-mismatch`
 - *Module can't be found:* [unwinds](#unwind) global scope with `\unknown-module`
-- *Module doesn't evaluate to at least one value or is invalid:* [unwinds](#unwind) global scope with `\undefined-result`
+- *Module doesn't evaluate to exactly one value or is invalid:* [unwinds](#unwind) global scope with `\undefined-result`
 
 ### Examples
 
@@ -1158,11 +1156,10 @@ The grammar is expressed in Extended Backus-Naur Form syntax with the following 
 * `not(i)`: Anything except the enclosed item `i`.
 * `"i" <U+x>`: Unicode character `i` with hexadecimal value of `x`.
 
-Expression:
+Expression: <a id="expression"/>
 
 ```
-Expressions ::= White-Space* (Expression (White-Space+ Expression)* White-Space*)?
-Expression ::= Defer* (Number | Symbol | Text | Map | Set | List | Function)
+Expression ::= White-Space* Defer* (Number | Symbol | Text | Map | Set | List | Function) White-Space*
 Defer ::= "\" <U+27>
 ```
 
