@@ -117,7 +117,7 @@ Refer to the [grammar](#grammar) for the precise definition.
 
 ## Module
 
-A module is a [named](#symbol) expression, represented as Unicode text encoded in UTF-8 without a Byte Order Mark.
+A module is a [named](#symbol) [expression](#expression), represented as Unicode text encoded in UTF-8 without a Byte Order Mark.
 
 # Prototypes
 
