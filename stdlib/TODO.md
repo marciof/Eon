@@ -1,7 +1,7 @@
 - Implement `do` without using `if`?
 - `if` then-else syntax is error-prone? Require using keywords arguments when using more than one argument in indented syntax?
 - Document constants and functions.
-- Validate arguments, error checking.
+- Validate arguments, take keyword arguments into account (eg. use `next`), error checking.
 - Close bindings in standard library functions.
 - Support multiple arguments (eg. boolean logic functions, etc).
 - Add a fuzzy matching operator: `=~`

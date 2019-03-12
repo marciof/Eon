@@ -110,7 +110,7 @@ http://www.lispworks.com/documentation/HyperSpec/Body/e_cnd.htm#condition
 5, calls fn rescue w/ condition \blah
 6, has no rescue-handlers now so unwind (trigger debugger?)
 
------
+---
 
 if (logged-in? user)
   then: do
@@ -134,3 +134,15 @@ if (logged-in? user)
 if (logged-in? user) then:
   this-first
   this-second
+
+---
+
+  \do:
+    \(if (= (count (local bindings) 2))
+      (evaluate bindings::2)
+      (evaluate (get
+        [
+          (evaluate bindings::2)
+          (remove (local bindings) 2)
+        ]
+        2)))
