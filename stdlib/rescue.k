@@ -134,15 +134,3 @@ if (logged-in? user)
 if (logged-in? user) then:
   this-first
   this-second
-
----
-
-  \do:
-    \(if (= (count (local bindings) 2))
-      (evaluate bindings::2)
-      (evaluate (get
-        [
-          (evaluate bindings::2)
-          (remove (local bindings) 2)
-        ]
-        2)))
