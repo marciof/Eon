@@ -1,15 +1,15 @@
+- Is there confusion between deferring functions and symbols, and evaluate, and calling functions and symbols?
 - Add a build target to validate Markdown documents (and code documentation) as valid CommonMark.
 - Think about how module loading will integrate into an existing OS as both a shell and REPL (make that happen first and foremost ASAP for early use and testing).
   - Force script names to be valid module names? What about filename extensions?
   - Foreign shell: `karyon ./my-script arg1`
   - Shell: `./my-script arg1`
   - REPL: `load [\my-script] arg1`
-- Is `do` still required to be a built-in?
 - Define indentation based syntax grammar.
   - Is a keyword parameter in a separate indented line part of the enclosing function call or the function call in the same line? To be consistent with the non-indented style it should be part of the enclosing function call.
-  - When a keyword argument is on a line just by itself followed by indented lines:
-    - Default arguments? As prototype binding? Using `do`? More orthogonal and reusable?
-    - Default to a "code block" using `do` like modules? Less clear?
+  - When a keyword argument is on a line just by itself followed by indented lines.
+  - Default arguments? As prototype binding? Using `do`? More orthogonal and reusable?
+  - Default to a "code block" using `do` like modules? Less clear?
 - http://www.infoq.com/presentations/Value-Identity-State-Rich-Hickey
 - "Empirical Analysis of Programming Language Adoption", Leo A. Meyerovich, Ariel Rabkin: http://sns.cs.princeton.edu/docs/asr-oopsla13.pdf
 - Evaluate typing difficulty of each identifier and syntax quantitatively.
