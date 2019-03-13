@@ -1,4 +1,5 @@
 - Add links to the expression grammar rule.
+- Fix links using a[id].
 - Think about how module loading will integrate into an existing OS as both a shell and REPL (make that happen first and foremost ASAP for early use and testing).
   - Force script names to be valid module names? What about filename extensions?
   - Foreign shell: `karyon ./my-script arg1`
