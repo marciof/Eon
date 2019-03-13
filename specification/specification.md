@@ -1156,7 +1156,8 @@ The grammar is expressed in Extended Backus-Naur Form syntax with the following 
 * `not(i)`: Anything except the enclosed item `i`.
 * `"i" <U+x>`: Unicode character `i` with hexadecimal value of `x`.
 
-Expression: <a id="expression"/>
+<a id="expression"/>
+Expression:
 
 ```
 Expression ::= White-Space* Defer* (Number | Symbol | Text | Map | Set | List | Function) White-Space*
