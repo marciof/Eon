@@ -19,13 +19,13 @@
   - [Symbol](#symbol)
   - [Text](#text)
 - [Built-ins](#built-ins)
-  - [`=`](#equal)
-  - [`<`](#less-than)
-  - [`>`](#greater-than)
-  - [`+`](#add)
-  - [`-`](#subtract)
-  - [`*`](#multiply)
-  - [`/`](#divide)
+  - [`=` (equal)](#equal)
+  - [`<` (less than)](#less-than)
+  - [`>` (greater than)](#greater-than)
+  - [`+` (add)](#add)
+  - [`-` (subtract)](#subtract)
+  - [`*` (multiply)](#multiply)
+  - [`/` (divide)](#divide)
   - [`bindings`](#bindings)
   - [`count`](#count)
   - [`defer`](#defer)
@@ -407,7 +407,7 @@ re'\d+'g
 
 In the following examples, `Any` is a placeholder that denotes any possible data type, and `...` is a placeholder that denotes zero or more arguments.
 
-## `=` <a id="equal"/>
+## `=` (equal) <a id="equal"/>
 
 ```
 (= x:Any y:Any ...:Any): Boolean
@@ -446,7 +446,7 @@ A [function](#function) that compares two or more values (with short-circuit) an
 # true
 ```
 
-## `<` <a id="less-than"/>
+## `<` (less than) <a id="less-than"/>
 
 ```
 (< x:Number y:Number ...:Number): Boolean
@@ -464,7 +464,7 @@ A [function](#function) that compares two or more [numbers](#number) (with short
 - *Called with less than two arguments:* [unwinds](#unwind) global scope with `\parameter-mismatch`
 - *Argument isn't a prototype of nor a number:* [unwinds](#unwind) global scope with `\prototype-mismatch`
 
-## `>` <a id="greater-than"/>
+## `>` (greater than) <a id="greater-than"/>
 
 ```
 (> x:Number y:Number ...:Number): Boolean
@@ -482,7 +482,7 @@ A [function](#function) that compares two or more [numbers](#number) (with short
 - *Called with less than two arguments:* [unwinds](#unwind) global scope with `\parameter-mismatch`
 - *Argument isn't a prototype of nor a number:* [unwinds](#unwind) global scope with `\prototype-mismatch`
 
-## `+` <a id="add"/>
+## `+` (add) <a id="add"/>
 
 ```
 (+ x:Number ...:Number): Number
@@ -501,7 +501,7 @@ A [function](#function) that adds one or more [numbers](#number).
 - *Argument isn't a prototype of nor a number:* [unwinds](#unwind) global scope with `\prototype-mismatch`
 - *Adding negative and positive infinity:* [unwinds](#unwind) global scope with `\undefined-result`
 
-## `-` <a id="subtract"/>
+## `-` (subtract) <a id="subtract"/>
 
 ```
 (- x:Number ...:Number): Number
@@ -520,7 +520,7 @@ A [function](#function) that subtracts one or more [numbers](#number).
 - *Argument isn't a prototype of nor a number:* [unwinds](#unwind) global scope with `\prototype-mismatch`
 - *Subtracting infinity from infinity:* [unwinds](#unwind) global scope with `\undefined-result`
 
-## `*` <a id="multiply"/>
+## `*` (multiply) <a id="multiply"/>
 
 ```
 (* multiplicand:Number multiplier:Number ...:Number): Number
@@ -539,7 +539,7 @@ A [function](#function) that multiplies two or more [numbers](#number).
 - *Argument isn't a prototype of nor a number:* [unwinds](#unwind) global scope with `\prototype-mismatch`
 - *Multiplying zero and infinity:* [unwinds](#unwind) global scope with `\undefined-result`
 
-## `/` <a id="divide"/>
+## `/` (divide) <a id="divide"/>
 
 ```
 (/ dividend:Number divisor:Number ...:Number): Number
