@@ -19,13 +19,13 @@
   - [Symbol](#symbol)
   - [Text](#text)
 - [Built-ins](#built-ins)
-  - [`=` (equal)](#equal)
-  - [`<` (less than)](#less-than)
-  - [`>` (greater than)](#greater-than)
-  - [`+` (add)](#add)
-  - [`-` (subtract)](#subtract)
-  - [`*` (multiply)](#multiply)
-  - [`/` (divide)](#divide)
+  - [`=` (equal)](#-equal-)
+  - [`<` (less than)](#-less-than-)
+  - [`>` (greater than)](#-greater-than-)
+  - [`+` (add)](#-add-)
+  - [`-` (subtract)](#-subtract-)
+  - [`*` (multiply)](#-multiply-)
+  - [`/` (divide)](#-divide-)
   - [`bindings`](#bindings)
   - [`count`](#count)
   - [`defer`](#defer)
@@ -106,7 +106,7 @@ All names use hyphens as the word delimiter.
 
 Source code is represented as s-expressions with significant indentation. This follows a simple set of rules:
 
-1. A [Function](#function) call enclosed in parenthesis, as well as a literal [map](#map), [list](#list), and [set](#set), disable significant indentation inside the entire expression.
+1. A [Function](#function) call enclosed in parenthesis, as well as a literal [map](#map), [list](#list), and [set](#set), disable significant indentation inside the entire [expression](#grammar).
 2. Otherwise, each line is an implicit [function](#function) call.
   - Same-line arguments are passed as-is.
   - Indented lines that follow it are passed as function calls, as described above recursively.
@@ -117,7 +117,7 @@ Refer to the [grammar](#grammar) for the precise definition.
 
 ## Module
 
-A module is a [named](#symbol) [expression](#expression), represented as Unicode text encoded in UTF-8 without a Byte Order Mark.
+A module is a [named](#symbol) single [expression](#grammar), represented as Unicode text encoded in UTF-8 without a Byte Order Mark.
 
 # Prototypes
 
@@ -407,7 +407,7 @@ re'\d+'g
 
 In the following examples, `Any` is a placeholder that denotes any possible data type, and `...` is a placeholder that denotes zero or more arguments.
 
-## `=` (equal) <a id="equal"/>
+## `=` (equal)
 
 ```
 (= x:Any y:Any ...:Any): Boolean
@@ -446,7 +446,7 @@ A [function](#function) that compares two or more values (with short-circuit) an
 # true
 ```
 
-## `<` (less than) <a id="less-than"/>
+## `<` (less than)
 
 ```
 (< x:Number y:Number ...:Number): Boolean
@@ -464,7 +464,7 @@ A [function](#function) that compares two or more [numbers](#number) (with short
 - *Called with less than two arguments:* [unwinds](#unwind) global scope with `\parameter-mismatch`
 - *Argument isn't a prototype of nor a number:* [unwinds](#unwind) global scope with `\prototype-mismatch`
 
-## `>` (greater than) <a id="greater-than"/>
+## `>` (greater than)
 
 ```
 (> x:Number y:Number ...:Number): Boolean
@@ -482,7 +482,7 @@ A [function](#function) that compares two or more [numbers](#number) (with short
 - *Called with less than two arguments:* [unwinds](#unwind) global scope with `\parameter-mismatch`
 - *Argument isn't a prototype of nor a number:* [unwinds](#unwind) global scope with `\prototype-mismatch`
 
-## `+` (add) <a id="add"/>
+## `+` (add)
 
 ```
 (+ x:Number ...:Number): Number
@@ -501,7 +501,7 @@ A [function](#function) that adds one or more [numbers](#number).
 - *Argument isn't a prototype of nor a number:* [unwinds](#unwind) global scope with `\prototype-mismatch`
 - *Adding negative and positive infinity:* [unwinds](#unwind) global scope with `\undefined-result`
 
-## `-` (subtract) <a id="subtract"/>
+## `-` (subtract)
 
 ```
 (- x:Number ...:Number): Number
@@ -520,7 +520,7 @@ A [function](#function) that subtracts one or more [numbers](#number).
 - *Argument isn't a prototype of nor a number:* [unwinds](#unwind) global scope with `\prototype-mismatch`
 - *Subtracting infinity from infinity:* [unwinds](#unwind) global scope with `\undefined-result`
 
-## `*` (multiply) <a id="multiply"/>
+## `*` (multiply)
 
 ```
 (* multiplicand:Number multiplier:Number ...:Number): Number
@@ -539,7 +539,7 @@ A [function](#function) that multiplies two or more [numbers](#number).
 - *Argument isn't a prototype of nor a number:* [unwinds](#unwind) global scope with `\prototype-mismatch`
 - *Multiplying zero and infinity:* [unwinds](#unwind) global scope with `\undefined-result`
 
-## `/` (divide) <a id="divide"/>
+## `/` (divide)
 
 ```
 (/ dividend:Number divisor:Number ...:Number): Number
@@ -901,7 +901,7 @@ List / Function:
 (load path:List): Any
 ```
 
-A [function](#function) that loads a [module](#module) by `path`, and returns the value of the expression contained within. No other evaluation is done. A `path` is a list of zero or more names, ending with the [module](#module) name.
+A [function](#function) that loads a [module](#module) by `path`, and returns the value of the single [expression](#grammar) contained within. No other evaluation is done. A `path` is a list of zero or more names, ending with the [module](#module) name.
 
 ### Complexity
 
@@ -1156,7 +1156,6 @@ The grammar is expressed in Extended Backus-Naur Form syntax with the following 
 * `not(i)`: Anything except the enclosed item `i`.
 * `"i" <U+x>`: Unicode character `i` with hexadecimal value of `x`.
 
-<a id="expression"/>
 Expression:
 
 ```
