@@ -134,3 +134,18 @@ if (logged-in? user)
 if (logged-in? user) then:
   this-first
   this-second
+
+---
+
+# Requirements:
+# - Easy function literals (?)
+# - Symbols evaluate to themselves
+
+# Maybe an easy way to unquote?
+
+\(,+ 1 2)
+
+# Leave as-is, but use a helper?
+# Like lambda in scheme?
+
+(code + 1 2)
