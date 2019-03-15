@@ -1,3 +1,4 @@
+- **Make a shell/REPL so that I can start using it ASAP, for early use and testing.**
 - Check places where it assumed K_LOG_ERROR was stopping the system.
 - Verify all uses of Err (where it's missing, where it's not needed, etc).
 - Split "System.c" into "main.c"; also add a "main.c" in i386?
@@ -49,7 +50,6 @@
   - Add few functional high-level black-box language tests, eg. input "(+ 1 2)", translate to JavaScript, run, output "3". (Or even with the token stream option alone as well). With Valgrind.
   - C frontend, JavaScript backend: can reuse frontend and AST for the final version, and with JavaScript it's easy to get something running.
   - Unix tools philosophy for the interpreter?
-    - Make a shell/REPL so that I can start using it ASAP.
     - Makes it easier to integrate in/with other tools?
     - Command line options for each stage for textual output. Easier to debug and integrate.
       - stream tokens from input, one per line
@@ -64,3 +64,12 @@
     - libreadline
     - GNU MP / MPFR
   - Finally integrate with the "core" hooks so that it works with any host layer available.
+
+# Inspiration
+
+## Unix shell
+
+- Emacs-style line editing keyboard shortcuts: line feed ctrl-j, backspace ctrl-h, tab
+- Special variables
+- Find where: command -v, which, whereis, whence
+- Job control, including keyboard shortcuts: fg, bg, &, ctrl-z

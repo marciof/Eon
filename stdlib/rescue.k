@@ -149,3 +149,12 @@ if (logged-in? user) then:
 # Like lambda in scheme?
 
 (code + 1 2)
+
+(evaluate \(+ 1 2))
+(lambda + 1 2)
+
+# Add lambda built-in.
+# Modules are lambdas.
+# Lambdas accept multiple expressions.
+
+# What if a lambda is inspected?
