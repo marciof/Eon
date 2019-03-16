@@ -140,6 +140,9 @@ if (logged-in? user) then:
 # Requirements:
 # - Easy function literals (?)
 # - Symbols evaluate to themselves
+# - Inspectable functions
+
+#
 
 # Maybe an easy way to unquote?
 
@@ -153,8 +156,19 @@ if (logged-in? user) then:
 (evaluate \(+ 1 2))
 (lambda + 1 2)
 
+#
+
 # Add lambda built-in.
 # Modules are lambdas.
 # Lambdas accept multiple expressions.
-
 # What if a lambda is inspected?
+
+#
+
+# Handle symbols being called differently?
+# What about a symbol that points to another symbol?
+
+#
+
+# Only literals are callable, yield themselves
+# Symbol calls are handled differently

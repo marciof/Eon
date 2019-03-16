@@ -69,7 +69,7 @@
 
 ## Unix shell
 
-- Emacs-style line editing keyboard shortcuts: line feed ctrl-j, backspace ctrl-h, tab
+- Emacs-style line/readline editing/moving keyboard shortcuts: line feed ctrl-j, backspace ctrl-h, tab
 - Special variables
 - Find where: command -v, which, whereis, whence
 - Job control, including keyboard shortcuts: fg, bg, &, ctrl-z
