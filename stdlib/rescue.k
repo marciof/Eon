@@ -172,3 +172,21 @@ if (logged-in? user) then:
 
 # Only literals are callable, yield themselves
 # Symbol calls are handled differently
+
+123
+'hi'
+\abc
+
+# A function that calls `abc`
+# Returns whatever `abc` is bound to
+\(abc)
+
+# A function that calls `(defer abc)`
+# Returns the symbol, `\abc`
+\(\abc)
+
+# Calls `abc`
+(abc)
+
+# Calls `(defer abc)`
+(\abc)
