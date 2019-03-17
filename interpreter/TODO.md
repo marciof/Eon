@@ -79,3 +79,8 @@
 - getopt compatibility
 - Tilde notation, including home directory (eg. ~bob, ~bob/some-file, ~/my-file
 - Wildcard expansion/globbing
+- Brace expansion (maybe?), including ranges
+- Unix IO: arbitrarily long byte sequences, everything is a file
+- Standard IO: input, output, error
+- Pipelines
+- IO redirection
