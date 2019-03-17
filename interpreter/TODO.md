@@ -69,9 +69,13 @@
 
 ## Unix shell
 
+- POSIX compatibility
 - Emacs-style line/readline editing/moving keyboard shortcuts: line feed ctrl-j, backspace ctrl-h, tab
-- Special variables
+- Special variables: $PATH, $HOME, $USER
 - Find where: command -v, which, whereis, whence
 - Job control, including keyboard shortcuts: fg, bg, &, ctrl-z
-- Customizable prompt, including special escape sequences
+- Prompt: customizable, special escape sequence support
 - Color support
+- getopt compatibility
+- Tilde notation, including home directory (eg. ~bob, ~bob/some-file, ~/my-file
+- Wildcard expansion/globbing
