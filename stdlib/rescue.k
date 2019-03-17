@@ -134,3 +134,13 @@ if (logged-in? user)
 if (logged-in? user) then:
   this-first
   this-second
+
+---
+
+$ date > now
+pipe date to: \now
+date to: \now
+
+$ cat records | sort | uniq
+(uniq (sort (cat records)))
+pipe records cat sort uniq
