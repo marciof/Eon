@@ -110,7 +110,7 @@ Source code is represented as s-expressions with significant indentation. This f
   - Same-line arguments are passed as-is.
   - Indented lines that follow it are passed as function calls, as described above recursively.
 
-All [non-function data types are callable](#prototypes) as functions, and evaluate to themselves.
+Note that all [non-function data types are callable](#prototypes) as functions, and evaluate to themselves.
 
 Refer to the [grammar](#grammar) for the precise definition.
 
@@ -157,7 +157,7 @@ A binary logical value that can only be either true or false. It does not have a
 
 An immutable sequence composed of a function (body) followed by zero or more values as the arguments. This sequence associates consecutive positive integer keys in ascending order with positional arguments, including any keyword arguments as well.
 
-Calling a function creates a new [bindings](#bindings) map from the [deferred](#defer) function call itself, [prototypically](#prototype) inherited from the current bindings in scope, and then evaluates it using the new bindings returning the result. Calling an empty function evaluates to itself.
+Calling a function creates a new [bindings](#bindings) map from the [deferred](#defer) function call itself, [prototypically](#prototype) inherited from the current bindings in scope, and then [evaluates](#evaluate) the function body using the new bindings returning the result. Calling an empty function evaluates to itself.
 
 Tail calls are guaranteed to be efficient and use a similar amount of memory as an iterative loop. A tail call is a self-recursive function call when it calls itself, a tail function call when it's the last expression in the calling function, or a self-tail function call when it calls itself as the last expression.
 
@@ -188,6 +188,12 @@ Tail calls are guaranteed to be efficient and use a similar amount of memory as 
 
 (\(* 4 5))
 # 20
+
+(\+)
+# +
+
+\(\+)
+# (\+)
 
 (prototype -)
 # ()

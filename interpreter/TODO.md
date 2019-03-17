@@ -73,3 +73,5 @@
 - Special variables
 - Find where: command -v, which, whereis, whence
 - Job control, including keyboard shortcuts: fg, bg, &, ctrl-z
+- Customizable prompt, including special escape sequences
+- Color support
