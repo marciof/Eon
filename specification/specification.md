@@ -157,7 +157,7 @@ A binary logical value that can only be either true or false. It does not have a
 
 An immutable sequence composed of a function (body) followed by zero or more values as the arguments. This sequence associates consecutive positive integer keys in ascending order with positional arguments, including any keyword arguments as well.
 
-Calling a function creates a new [bindings](#bindings) map from the [deferred](#defer) function call itself, [prototypically](#prototype) inherited from the current bindings in scope, and then [evaluates](#evaluate) the function body using the new bindings returning the result. Calling an empty function returns to itself.
+Calling a function creates a new [bindings](#bindings) map from the [deferred](#defer) function call itself, [prototypically](#prototype) inherited from the current bindings in scope, and then [evaluates](#evaluate) the function body using the new bindings returning the result. Calling an empty function returns itself.
 
 Tail calls are guaranteed to be efficient and use a similar amount of memory as an iterative loop. A tail call is a self-recursive function call when it calls itself, a tail function call when it's the last expression in the calling function, or a self-tail function call when it calls itself as the last expression.
 

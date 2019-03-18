@@ -1,5 +1,3 @@
-- Make it an error to call an empty function? How to have a no-op? Use `do` with nothing?
-- How to have easy pipelines in the REPL like sh?
 - Modules should be more practical/pragmatic and allow one of more expressions at the top-level? Especially if `do` or some variant could be made to behave similarly to `let*` to give the illusion of side-effects when defining top-level variables and functions.
 - Add a build target to validate Markdown documents (and code documentation) as valid CommonMark.
 - Think about how module loading will integrate into an existing OS as both a shell and REPL.
