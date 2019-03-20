@@ -1,4 +1,3 @@
-- Confusion between macros and fexpr? Function calls with unevaluated arguments by default.
 - Modules should be more practical/pragmatic and allow one or more expressions at the top-level?
   - Especially if `do` or some variant could be made to behave similarly to `let*` to give the illusion of side-effects when defining top-level variables and functions.
   - Also because it needs the ability to run scripts. Eg. $ karyon --eval --load my-script

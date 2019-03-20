@@ -59,14 +59,15 @@ Simple:
 Powerful:
 - Homoiconic, code as data.
 - No arbitrary limits: *"Zero-one-infinity rule."*
-- Unified macros, methods and functions via multiple dispatch and callee controlling argument evaluation.
+- Unified methods and functions via multiple dispatch.
+- Controlled argument evaluation via fexprs.
 - High-level: *"A programming language is low level when its programs require attention to the irrelevant."*
 - Documentation available at run-time.
 - Embeddable.
 
 Practical:
 - REPL.
-- Fast enough (zero-copy; quick feedback, low latency; or maximum resource usage when appropriate).
+- Fast enough (zero-copy; quick feedback, low latency; maximum resource usage when appropriate).
 - Easy data type literals: lists, maps, sets, functions, text (strings), numbers.
 - Multi-platform: *"Write once, run everywhere."*
 - Native code interop, FFI (Foreign Function Interface).
@@ -77,11 +78,10 @@ Practical:
 
 ## Inspiration
 
-- Common Lisp
-- JavaScript
-- Perl
+- Lisp
 - Python
 - Unix shell
+- JavaScript
 
 # Coding Style
 
