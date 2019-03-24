@@ -1,6 +1,6 @@
 - Modules should be more practical/pragmatic and allow one or more expressions at the top-level?
   - Especially if `do` or some variant could be made to behave similarly to `let*` to give the illusion of side-effects when defining top-level variables and functions.
-  - Also because it needs the ability to run scripts. Eg. $ karyon --eval --load my-script
+  - Also because it needs the ability to run scripts. Eg. $ karyon --evaluate --load my-script # or --run
 - Add a build target to validate Markdown documents (and code documentation) as valid CommonMark.
 - Think about how module loading will integrate into an existing OS as both a shell and REPL.
   - Force script names to be valid module names? What about filename extensions?

@@ -70,7 +70,7 @@
 ## Unix shell
 
 - POSIX compatibility
-- Emacs-style line/readline editing/moving keyboard shortcuts: line feed ctrl-j, backspace ctrl-h, tab
+- Editing mode: vi, Emacs; line/readline editing/moving keyboard shortcuts: line feed ctrl-j, backspace ctrl-h, tab
 - Special variables: $PATH, $HOME, $USER
 - Find where: command -v, which, whereis, whence
 - Job control, `fg`, `bg`, `jobs`, `nice`, `&`, including keyboard shortcuts: ctrl-z
