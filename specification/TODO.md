@@ -1,12 +1,5 @@
-- Modules should be more practical/pragmatic and allow one or more expressions at the top-level?
-  - Especially if `do` or some variant could be made to behave similarly to `let*` to give the illusion of side-effects when defining top-level variables and functions.
-  - Also because it needs the ability to run scripts. Eg. $ karyon --evaluate --load my-script # or --run
+- Modules are an implicit function call to the built-in `do`, and therefore allow one or more expressions at the top-level. After loading a module, but before evaluating it, the call to `do` can be replaced with a sort of `do*` that behaves similarly to `let*` to give the illusion of side-effects when defining top-level constants and functions.
 - Add a build target to validate Markdown documents (and code documentation) as valid CommonMark.
-- Think about how module loading will integrate into an existing OS as both a shell and REPL.
-  - Force script names to be valid module names? What about filename extensions?
-  - Foreign shell: `karyon ./my-script arg1`
-  - Shell: `./my-script arg1`
-  - REPL: `load [\my-script] arg1`
 - Define indentation based syntax grammar.
   - Is a keyword parameter in a separate indented line part of the enclosing function call or the function call in the same line? To be consistent with the non-indented style it should be part of the enclosing function call.
   - When a keyword argument is on a line just by itself followed by indented lines.
@@ -22,4 +15,4 @@
   - https://en.wikipedia.org/wiki/Comparison_of_programming_languages_(syntax)
   - http://hyperpolyglot.org/scripting
   - https://github.com/anvaka/common-words/blob/master/README.md
-- Look for best/worst features of other languages/systems: OCaml, C, Common Lisp, JavaScript, Perl, Python, Scheme, Smalltalk, Java, Clojure, Self, Kotlin, Wren, F#, Matlab, Rust, Ruby, Go, Julia, Haskell, Erlang, Elixir, Typed Racket, PureScript, Elm, Io, ML, Lua, Haxe, Tcl, Shen, REBOL, Mathematica, HyperCard, Awk, Parabola.io, GNU Octave, Maxima Algebra System, Pascal, R, HyperTalk/HyperCard
+- Look for best/worst features of other languages/systems (check first the ones listed as inspiration): OCaml, C, Common Lisp, JavaScript, Perl, Python, Scheme, Smalltalk, Java, Clojure, Self, Kotlin, Wren, F#, Matlab, Rust, Ruby, Go, Julia, Haskell, Erlang, Elixir, Typed Racket, PureScript, Elm, Io, ML, Lua, Haxe, Tcl, Shen, REBOL, Mathematica, HyperCard, Awk, Parabola.io, GNU Octave, Maxima Algebra System, Pascal, R, HyperTalk/HyperCard
