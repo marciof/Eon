@@ -117,7 +117,9 @@ Refer to the [grammar](#grammar) for the precise definition.
 
 ## Module
 
-A module is a [named](#symbol) single [expression](#grammar), represented as Unicode text encoded in UTF-8 without a Byte Order Mark.
+A module is a [named](#symbol) implicit [function](#function) call to [`do`](#do), represented as Unicode text encoded in UTF-8 without a Byte Order Mark.
+
+Note that since `do` accepts multiple arguments then a module can also have multiple expressions, and the result of calling it is the result returned by the last expression.
 
 # Prototypes
 
@@ -919,7 +921,7 @@ A [function](#function) that loads a [module](#module) by `path`, and returns th
 - *Called with less than one argument:* [unwinds](#unwind) global scope with `\parameter-mismatch`
 - *`path` argument isn't a prototype of nor a non-empty list of symbols:* [unwinds](#unwind) global scope with `\prototype-mismatch`
 - *Module can't be found:* [unwinds](#unwind) global scope with `\unknown-module`
-- *Module doesn't contain exactly one expression or is invalid:* [unwinds](#unwind) global scope with `\undefined-result`
+- *Module is invalid:* [unwinds](#unwind) global scope with `\undefined-result`
 
 ### Examples
 
