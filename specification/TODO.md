@@ -1,10 +1,6 @@
 - Add a build target to validate Markdown documents (and code documentation) as valid CommonMark.
 - Define indentation based syntax grammar.
-  - Is a keyword parameter in a separate indented line part of the enclosing function call or the function call in the same line? To be consistent with the non-indented style it should be part of the enclosing function call.
-  - When a keyword argument is on a line just by itself followed by indented lines.
-  - Default arguments? As prototype binding? Using `do`? More orthogonal and reusable?
-  - Default to a "code block" using `do` like modules? Less clear?
-  - Require using keywords arguments when using more than one argument in indented syntax?
+- Hot to have default arguments? As prototype binding?
 - http://www.infoq.com/presentations/Value-Identity-State-Rich-Hickey
 - "Empirical Analysis of Programming Language Adoption", Leo A. Meyerovich, Ariel Rabkin: http://sns.cs.princeton.edu/docs/asr-oopsla13.pdf
 - Evaluate typing difficulty of each identifier and syntax quantitatively.
