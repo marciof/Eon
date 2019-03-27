@@ -1,6 +1,5 @@
 - Add a build target to validate Markdown documents (and code documentation) as valid CommonMark.
 - Define indentation based syntax grammar.
-- Hot to have default arguments? As prototype binding?
 - http://www.infoq.com/presentations/Value-Identity-State-Rich-Hickey
 - "Empirical Analysis of Programming Language Adoption", Leo A. Meyerovich, Ariel Rabkin: http://sns.cs.princeton.edu/docs/asr-oopsla13.pdf
 - Evaluate typing difficulty of each identifier and syntax quantitatively.
