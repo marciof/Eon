@@ -61,16 +61,6 @@
       (evaluate bindings::2)
       (evaluate bindings::3)))
 
-  \do:
-    \(if (= (count (local bindings)) 2)
-      (evaluate bindings::2)
-      ((get
-        [
-          (evaluate bindings::2)
-          (remove (local bindings) 2)
-        ]
-        2)))
-
   \function: \...
   \let: \...
   \help: \...

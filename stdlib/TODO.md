@@ -1,4 +1,3 @@
-- Implement `do` without using `if`?
 - `if` then-else syntax is error-prone?
 - Document constants and functions.
 - Validate arguments, take keyword arguments into account (eg. use `next`), error checking.
