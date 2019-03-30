@@ -86,3 +86,4 @@
 - IO redirection
 - Online help system
 - Command history (shared? separate?)
+- Completion: commands, variables, user names, host names, file names, directories
