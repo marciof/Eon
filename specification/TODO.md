@@ -1,5 +1,7 @@
 - Add a build target to validate Markdown documents (and code documentation) as valid CommonMark.
 - Define indentation based syntax grammar.
+  - https://docs.python.org/3/reference/grammar.html
+  - https://devguide.python.org/compiler/
 - http://www.infoq.com/presentations/Value-Identity-State-Rich-Hickey
 - "Empirical Analysis of Programming Language Adoption", Leo A. Meyerovich, Ariel Rabkin: http://sns.cs.princeton.edu/docs/asr-oopsla13.pdf
 - Evaluate typing difficulty of each identifier and syntax quantitatively.

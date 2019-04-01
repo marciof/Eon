@@ -39,6 +39,8 @@
 - Option or tool to validate Coding Style guidelines.
 - Verify space/time complexity in the specification matches the implementation.
 - Prototyping:
+  - "I Built a Lisp Compiler", https://news.ycombinator.com/item?id=19508616 (timmorgan.org)
+  - "Lisp Shell", https://news.ycombinator.com/item?id=16878498, https://github.com/tonyg/racket-something
   - "Crafting Interpreters", Bob Nystrom: http://craftinginterpreters.com
   - "LispOS - Specification of a Lisp operating system.", Robert Strandh: http://metamodular.com/lispos.pdf
   - lexical analysis: Lexer, Tokenizer, Scanner / syntax analysis: Parser, Syntax Tree, Parse Tree
