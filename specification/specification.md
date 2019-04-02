@@ -44,6 +44,8 @@
 
 # Introduction
 
+A single open language for interactive use, scripting, and building small to large programs, that aims to be simple, powerful, and practical.
+
 ## Goals
 
 Simple:
@@ -67,12 +69,12 @@ Powerful:
 - Embeddable.
 
 Practical:
-- REPL.
+- Unified REPL and command-line interpreter.
+- Shell scripting (`#!`, hash-bang syntax naturally supported).
 - Fast enough (zero-copy; quick feedback, low latency; maximum resource usage when appropriate).
 - Easy data type literals: lists, maps, sets, functions, text (strings), numbers.
 - Multi-platform: *"Write once, run everywhere."*
 - Native code interop, FFI (Foreign Function Interface).
-- Shell-scripting (`#!`, hash-bang syntax naturally supported).
 - Permissive license.
 - Low cognitive load and typing effort (US keyboard layout, favor home row keys).
 - Standard tooling: single-style source code formatter, testing framework, profiler, debugger local/remote, package manager, command-line documentation viewer.
