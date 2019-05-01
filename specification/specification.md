@@ -49,6 +49,7 @@ A single open language for interactive use, scripting, and building small to lar
 ## Goals
 
 Simple:
+
 - Minimal syntax, but readable.
 - Prototype-based object model.
 - Flat over nested, helpers over wrappers.
@@ -60,6 +61,7 @@ Simple:
 - *"Keep the language specification simple enough to hold in a programmer's head."*
 
 Powerful:
+
 - Homoiconic, code as data.
 - No arbitrary limits: *"Zero-one-infinity rule."*
 - Unified methods and functions via multiple dispatch.
@@ -69,6 +71,7 @@ Powerful:
 - Embeddable.
 
 Practical:
+
 - Unified REPL and command-line interpreter.
 - Shell scripting (`#!`, hash-bang syntax naturally supported).
 - Fast enough (zero-copy; quick feedback, low latency; maximum resource usage when appropriate).
