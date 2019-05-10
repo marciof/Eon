@@ -1,7 +1,4 @@
 - Optional static typing?
-- Use org-mode instead of CommonMark?
-  - https://news.ycombinator.com/item?id=19622019
-  - https://orgmode.org
 - Add a build target to validate Markdown documents (and code documentation) as valid CommonMark.
 - Define indentation based syntax grammar.
   - https://docs.python.org/3/reference/grammar.html
