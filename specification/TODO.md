@@ -1,3 +1,4 @@
+- GLP/AGPL with Commons Clause? https://commonsclause.com/
 - Optional static typing?
 - Add a build target to validate Markdown documents (and code documentation) as valid CommonMark.
 - Define indentation based syntax grammar.
