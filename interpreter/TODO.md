@@ -1,4 +1,5 @@
 - **Make a shell/REPL so that I can start using it ASAP, for early use and testing.**
+- malloc impl: https://github.com/microsoft/mimalloc
 - Check places where it assumed K_LOG_ERROR was stopping the system.
 - Verify all uses of Err (where it's missing, where it's not needed, etc).
 - Split "System.c" into "main.c"; also add a "main.c" in i386?
