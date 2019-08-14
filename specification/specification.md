@@ -77,7 +77,7 @@ Practical:
 - Fast enough (zero-copy; quick feedback, low latency; maximum resource usage when appropriate).
 - Easy data type literals: lists, maps, sets, functions, text (strings), numbers.
 - Multi-platform: *"Write once, run everywhere."*
-- Native code interop, FFI (Foreign Function Interface).
+- Native code interoperability, FFI (Foreign Function Interface).
 - Permissive license.
 - Low cognitive load and typing effort (US keyboard layout, favor home row keys).
 - Standard tooling: single-style source code formatter, testing framework, profiler, debugger local/remote, package manager, command-line documentation viewer.
