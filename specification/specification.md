@@ -130,7 +130,7 @@ Note that since `do` accepts multiple arguments then a module can also have mult
 
 A [prototype](#prototype) is the original value used to create another one from.
 
-Not all values can be literally represented in source code, since not all have an associated [grammar](#grammar) production. They can however be assigned names using [symbols](#symbol) and stored in the [bindings](#bindings) map.
+Not all values can be literally represented in source code, since not all have an associated [grammar](#grammar) production. They can however be assigned names, by using [symbols](#symbol) stored in the [bindings](#bindings) map.
 
 All data types are callable as zero-parameter functions that return the same value itself, except for [functions](#function) that are handled as regular function calls.
 
