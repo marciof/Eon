@@ -136,7 +136,7 @@ All data types are callable as zero-parameter functions that return the same val
 
 ## Boolean
 
-A binary logical value that can only be either true or false. It does not have a literal source code representation.
+A boolean is a binary logical value that can only be either true or false. It does not have a literal source code representation.
 
 - **Prototype:** true
 - **Base Prototype:** (itself)
@@ -163,7 +163,7 @@ A binary logical value that can only be either true or false. It does not have a
 
 ## Function
 
-An immutable sequence composed of a function (body) followed by zero or more values as the arguments. This sequence associates consecutive positive integer keys in ascending order with positional arguments, including any keyword arguments as well.
+A function is an immutable sequence composed of a function (body) followed by zero or more values as the arguments. This sequence associates consecutive positive integer keys in ascending order with positional arguments, including any keyword arguments as well.
 
 Calling a function creates a new [bindings](#bindings) map from the [deferred](#defer) function call itself, [prototypically](#prototype) inherited from the current bindings in scope, and then [evaluates](#evaluate) the function body using the new bindings returning the result. Calling an empty function returns itself.
 
@@ -218,7 +218,7 @@ Tail calls are guaranteed to be efficient and use a similar amount of memory as 
 
 ## List
 
-An immutable sequence of elements, that associates consecutive positive integer keys in ascending order with values.
+A list is an immutable sequence of elements, that associates consecutive positive integer keys in ascending order with values.
 
 - **Prototype:** empty [list](#list), `[]`
 - **Base Prototype:** empty [map](#map), `{:}`
@@ -248,7 +248,7 @@ An immutable sequence of elements, that associates consecutive positive integer 
 
 ## Map
 
-An immutable insertion ordered collection, that associates unique keys with values.
+A map is an immutable insertion ordered collection, that associates unique keys with values.
 
 If the same key appears multiple times, the last associated value takes precedence over all previous ones.
 
@@ -322,7 +322,7 @@ A rational number.
 
 ## Set
 
-An immutable collection of unique elements, that associates keys to be the same as values.
+A set is an immutable collection of unique elements, that associates keys to be the same as values.
 
 - **Prototype:** empty [set](#set), `{}`
 - **Base Prototype:** empty [map](#map), `{:}`
@@ -352,7 +352,7 @@ An immutable collection of unique elements, that associates keys to be the same 
 
 ## Symbol
 
-An immutable case-sensitive name, that restricts the character set used according to the [grammar](#grammar). The empty symbol does not have a literal source code representation.
+A symbol is an immutable case-sensitive name, that restricts the character set used according to the [grammar](#grammar). The empty symbol does not have a literal source code representation.
 
 - **Prototype:** empty symbol
 - **Base Prototype:** empty [text](#text), `''`
@@ -382,7 +382,7 @@ An immutable case-sensitive name, that restricts the character set used accordin
 
 ## Text
 
-An immutable sequence of Unicode characters, each one identified by a numeric code-point. Also known as a string.
+A text is an immutable sequence of Unicode characters, each one identified by a numeric code-point. Also known as a string.
 
 - **Prototype:** empty [text](#text), `''`
 - **Base Prototype:** empty [list](#list), `[]`
