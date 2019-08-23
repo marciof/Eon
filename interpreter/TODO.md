@@ -52,6 +52,7 @@
   - Add verbose option, print func/file/line on errors only in debug mode.
   - Add few functional high-level black-box language tests, eg. input "(+ 1 2)", translate to JavaScript, run, output "3". (Or even with the token stream option alone as well). With Valgrind.
   - C frontend, JavaScript backend: can reuse frontend and AST for the final version, and with JavaScript it's easy to get something running.
+    - Embeddable JavaScript, QuickJS https://bellard.org/quickjs/
   - Unix tools philosophy for the interpreter?
     - Makes it easier to integrate in/with other tools?
     - Command line options for each stage for textual output. Easier to debug and integrate.
