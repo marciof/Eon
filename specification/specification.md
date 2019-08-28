@@ -51,6 +51,7 @@ A single open language for interactive use, scripting, and building small to lar
 Simple:
 
 - Minimal syntax, but readable.
+- Fun to use.
 - Prototype-based object model.
 - Flat over nested, helpers over wrappers.
 - No undefined behavior, consistent, uniform.
