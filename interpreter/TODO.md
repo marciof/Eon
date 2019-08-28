@@ -4,6 +4,13 @@
   - Just echo back each line from stdin in a robust way.
   - Integrate with readline.
   - Syntax highlighting.
+- C frontend, JavaScript backend: can reuse frontend and AST for the final version, and with JavaScript it's easy to get something running.
+  - Start moving core stuff from js/ to core/
+  - Move non-essentials out of core/
+- JS uses the same native System, since it's just a backend for code generation, just like a real-time interpreter is another backend. So don't merge it into native to allow an embedded systems to just pick core+native, but merge JS-independent parts into core.
+- Unix tools philosophy for the interpreter?
+  - Makes it easier to integrate in/with other tools?
+  - Command line options for each stage for textual output (easier to debug and integrate): stream tokens from input one per line, then parser, etc
 
 # Cleanups
 
@@ -12,7 +19,8 @@
 # Resources
 
 - malloc impl: https://github.com/microsoft/mimalloc
-
+- QuickJS, embeddable JavaScript: https://bellard.org/quickjs/
+  
 ---
 
 - Verify all uses of Err (where it's missing, where it's not needed, etc).
@@ -21,7 +29,6 @@
 - Don't use wrappers to access struct members directly.
 - How to add full stack trace information to `Err` instances?
 - Make System/etc not be a singleton and also to make it easier to test. Receive dependencies, such as Log, through an init function.
-- JS uses the same native System, since it's just a backend for code generation, just like a real-time interpreter is another backend. So don't merge it into native to allow an embedded systems to just pick core+native, but merge JS-independent parts into core.
 - Add Travis CI build matrix for the different builds (native, js, i386) and OSes.
 - Regularly test building on Debian 32-bit 64-bit, Windows, OSX.
 - Add simple v86 HTML demo?
@@ -65,15 +72,6 @@
   - Add flag option for `-e` expressions.
   - Add verbose option, print func/file/line on errors only in debug mode.
   - Add few functional high-level black-box language tests, eg. input "(+ 1 2)", translate to JavaScript, run, output "3". (Or even with the token stream option alone as well). With Valgrind.
-  - C frontend, JavaScript backend: can reuse frontend and AST for the final version, and with JavaScript it's easy to get something running.
-    - Embeddable JavaScript, QuickJS https://bellard.org/quickjs/
-  - Unix tools philosophy for the interpreter?
-    - Makes it easier to integrate in/with other tools?
-    - Command line options for each stage for textual output. Easier to debug and integrate.
-      - stream tokens from input, one per line
-      - then parser
-      - etc
-  - Improve interpreter step by step: REPL/shell, local/remote debugger, stdin/stdout filter.
   - Add requirements one by one, even if with limitations (eg. no fully unlimited precision arithmetic at first): immutable collections, Unicode text, prototypical inheritance, first class scope, unlimited precision arithmetic, homoiconic, unevaluated arguments.
   - When done with JavaScript backend, start translating to PicoLisp (or even ECL, Common Lisp, Clojure) since it can be embedded (verify first), and reuse the tests written previously.
   - Skip translation and interpret directly. Look to PicoLisp for inspiration. Maybe still leave translation in as an option, especially if to JavaScript since that also makes the browser another possible host and can be useful (lower barrier to entry and also ability to use a single language full-stack).
