@@ -418,7 +418,7 @@ re'\d+'g
 (= x y ...): Boolean
 ```
 
-A [function](#function) that compares two or more values (with short-circuit) and returns true if they are all equal, or false otherwise.
+A [function](#function) that compares two or more values (with short-circuit evaluation) and returns true if they are all equal, or false otherwise.
 
 ### Complexity
 
