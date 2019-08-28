@@ -1,6 +1,8 @@
-- GLP/AGPL with Commons Clause? https://commonsclause.com/
-  - GPL vs AGPL for server software as a service? https://www.gnu.org/licenses/gpl-faq.html.en
+- GLP/AGPL with Commons Clause? To prevent it from being abused for server software as a service.
+  - https://commonsclause.com/
+  - https://www.gnu.org/licenses/gpl-faq.html.en
 - Add a build target to validate Markdown documents (and code documentation) as valid CommonMark.
+  - https://github.com/commonmark/cmark
 - Define indentation based syntax grammar.
   - https://docs.python.org/3/reference/grammar.html
   - https://devguide.python.org/compiler/
