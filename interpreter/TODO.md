@@ -1,6 +1,20 @@
-- **Make a shell/REPL so that I can start using it ASAP, for early use and testing.**
-- malloc impl: https://github.com/microsoft/mimalloc
+# Steps
+
+- **Make a shell/REPL so that I can start using it ASAP, for early use and testing.** Phases:
+  - Just echo back each line from stdin in a robust way.
+  - Integrate with readline.
+  - Syntax highlighting.
+
+# Cleanups
+
 - Check places where it assumed K_LOG_ERROR was stopping the system.
+
+# Resources
+
+- malloc impl: https://github.com/microsoft/mimalloc
+
+---
+
 - Verify all uses of Err (where it's missing, where it's not needed, etc).
 - Split "System.c" into "main.c"; also add a "main.c" in i386?
 - Make Err be the 2nd param always for consistency.
