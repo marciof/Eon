@@ -412,12 +412,10 @@ re'\d+'g
 
 # Built-ins
 
-In the following examples, `Any` is a placeholder that denotes any possible data type, and `...` is a placeholder that denotes zero or more arguments.
-
 ## `=` (equal)
 
 ```
-(= x:Any y:Any ...:Any): Boolean
+(= x y ...): Boolean
 ```
 
 A [function](#function) that compares two or more values (with short-circuit) and returns true if they are all equal, or false otherwise.
@@ -637,8 +635,8 @@ A [function](#function) that returns the number of key/value pairs in a `map`. I
 ## `defer`
 
 ```
-(defer expression:Any): Any
-(defer expression:Any escape:Symbol): Any
+(defer expression)
+(defer expression escape:Symbol)
 ```
 
 A [function](#function) that creates a snapshot of an `expression` thereby preventing it from being [evaluated](#evaluate), optionally with an `escape` [symbol](#symbol) for re-enabling evaluation inside it.
@@ -674,7 +672,7 @@ A [function](#function) that creates a snapshot of an `expression` thereby preve
 ## `do`
 
 ```
-(do expression:Any ...:Any): Any
+(do expression ...)
 ```
 
 A [function](#function) that evaluates a sequence of expressions and returns the value of the last one.
@@ -704,8 +702,8 @@ A [function](#function) that evaluates a sequence of expressions and returns the
 ## `evaluate`
 
 ```
-(evaluate expression:Any)
-(evaluate expression:Any bindings:Map): Any
+(evaluate expression)
+(evaluate expression bindings:Map)
 ```
 
 A [function](#function) that evaluates an `expression` and returns the result, optionally using different `bindings`.
@@ -760,8 +758,8 @@ A [function](#function) that evaluates an `expression` and returns the result, o
 ## `get`
 
 ```
-(get map:Map key:Any): Any
-(get map:Map key:Any default:Any): Any
+(get map:Map key)
+(get map:Map key default)
 ```
 
 A [function](#function) that retrieves the value associated with a `key` in a `map`, optionally using a lazily [evaluated](#evaluate) `default` value if no such association exists.
@@ -819,27 +817,27 @@ Key lookup takes place in the given map, and in each of its base prototypes unti
 ## `insert`
 
 ```
-(insert set:Set value:Any): Set
+(insert set:Set value): Set
 ```
 
 A [function](#function) that adds a `value` to a `set`, and returns the new [set](#set). If `value` is already present, then `set` is returned unchanged.
 
 ```
-(insert list:List value:Any): List
-(insert function:Function value:Any): Function
+(insert list:List value): List
+(insert function:Function value): Function
 ```
 
 A [function](#function) that associates a `value` with the next highest positive integer key in a `list` or `function`, and returns the new [list](#list) or [function](#function) respectively.
 
 ```
-(insert map:Map key:Any value:Any): Map
+(insert map:Map key value): Map
 ```
 
 A [function](#function) that associates a `key` with a `value` in a `map`, and returns the new [map](#map). If `key` already exists, then its associated value becomes `value`.
 
 ```
-(insert list:List key:Number value:Any): List
-(insert function:Function key:Any value:Any): Function
+(insert list:List key:Number value): List
+(insert function:Function key value): Function
 ```
 
 A [function](#function) that associates a `key` with a `value` in a `list` or `function`, and returns the new [list](#list) or [function](#function) respectively. If `key` already exists and isn't a positive integer, then its associated value becomes `value`. If `key` already exists and is a positive integer, then it displaces instead the existing key and all following integer keys, if any, incrementing each by one.
@@ -905,7 +903,7 @@ List / Function:
 ## `load`
 
 ```
-(load path:List): Any
+(load path:List)
 ```
 
 A [function](#function) that loads a [module](#module) by `path`, and returns the value of the single [expression](#grammar) contained within. No other evaluation is done. A `path` is a list of zero or more names, ending with the [module](#module) name.
@@ -962,8 +960,8 @@ A [function](#function) that returns a [map](#map) with the non-inherited key/va
 ## `next`
 
 ```
-(next map:Map): Any
-(next map:Map key:Any): Any
+(next map:Map)
+(next map:Map key)
 ```
 
 A [function](#function) that returns the first key or the key following `key` in a `map`.
@@ -995,13 +993,13 @@ A [function](#function) that returns the first key or the key following `key` in
 ## `prototype`
 
 ```
-(prototype value:Any): Any
+(prototype value)
 ```
 
 A [function](#function) that retrieves the [prototype](#prototypes) of `value`.
 
 ```
-(prototype value:Any base:Any): Any
+(prototype value base)
 ```
 
 A [function](#function) that extends the prototype hierarchy using `base` thereby creating a new [prototype](#prototypes).
@@ -1047,7 +1045,7 @@ A [function](#function) that extends the prototype hierarchy using `base` thereb
 ## `remove`
 
 ```
-(remove map:Map key:Any): Map
+(remove map:Map key): Map
 ```
 
 A [function](#function) that disassociates a `key` from a value in a `map`, and returns the new [map](#map). If `key` isn't present, then `map` is returned unchanged.
@@ -1056,7 +1054,7 @@ Key lookup takes place in the given map, and in each of its base prototypes unti
 
 ```
 (remove list:List key:Number): List
-(remove function:Function key:Any): Function
+(remove function:Function key): Function
 ```
 
 A [function](#function) that disassociates a `key` from a value in a `list` or `function`, and returns the new [list](#list) or [function](#function) respectively. If `key` isn't present, then `list` or `function` is returned unchanged. If `key` is present and is a positive integer, then it displaces instead all following integer keys, if any, decrementing each by one.
@@ -1112,8 +1110,8 @@ List / Function:
 ## `unwind`
 
 ```
-(unwind value:Any): Any
-(unwind value:Any bindings:Map): Any
+(unwind value)
+(unwind value bindings:Map)
 ```
 
 A [function](#function) that aborts the current scope or the scope associated with the given `bindings`, and returns `value` as the result.
