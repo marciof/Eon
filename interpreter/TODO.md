@@ -4,7 +4,8 @@
   - Just echo back each line from stdin in a robust way.
   - Integrate with readline.
   - Syntax highlighting.
-- C frontend, JavaScript backend: can reuse frontend and AST for the final version, and with JavaScript it's easy to get something running.
+  - If using a JavaScript backend then it can use an embedded interpreter to run the code.
+- C frontend, JavaScript backend: can reuse frontend and AST for the final version, and with JavaScript it's easy to get something running, as well as in a browser (runtime environment, vs standalone, FFI for DOM?)
   - Start moving core stuff from js/ to core/
   - Move non-essentials out of core/
 - JS uses the same native System, since it's just a backend for code generation, just like a real-time interpreter is another backend. So don't merge it into native to allow an embedded systems to just pick core+native, but merge JS-independent parts into core.
