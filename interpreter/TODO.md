@@ -15,6 +15,7 @@
 
 # Cleanups
 
+- Why is the output directory of the cmake build in the root alongside sources and not in the build directory?
 - Check places where it assumed K_LOG_ERROR was stopping the system.
 
 # Resources
@@ -31,7 +32,7 @@
 - How to add full stack trace information to `Err` instances?
 - Make System/etc not be a singleton and also to make it easier to test. Receive dependencies, such as Log, through an init function.
 - Add Travis CI build matrix for the different builds (native, js, i386) and OSes.
-- Regularly test building on Debian 32-bit 64-bit, Windows, OSX.
+- Regularly test building on Debian 32-bit 64-bit, Windows, macOS.
 - Add simple v86 HTML demo?
 - Replace flexible struct member (`val[]`) with a `void*` for portability and also to allow the struct interface to grow without breaking implementations.
 - Redesign architecture, to make it easier to embed, no singletons, and easier to unit test:
