@@ -1,3 +1,24 @@
+# Goals
+
+- Quick and easy interactivity like GNU Octave (ie. Matlab).
+- Unix tools philosophy for the interpreter? Command line options for each stage for textual output (easier to debug and integrate with other external tools without code linking?): stream tokens from input one per line, then parser, etc
+
+# Resources
+
+- malloc impl: https://github.com/microsoft/mimalloc
+
+JavaScript:
+
+- QuickJS, embeddable JavaScript: https://bellard.org/quickjs/
+- Duktape, embeddable JavaScript: https://duktape.org/
+- BigInt: https://github.com/tc39/proposal-bigint
+
+# Cleanups
+
+- Why is the output directory of the cmake build in the root alongside sources and not in the build directory?
+- Check places where it assumed K_LOG_ERROR was stopping the system.
+- Verify all uses of Err (where it's missing, where it's not needed, etc).
+
 # Steps
 
 - **Make a shell/REPL so that I can start using it ASAP, for early use and testing.** Phases:
@@ -9,25 +30,6 @@
   - Start moving core stuff from js/ to core/
   - Move non-essentials out of core/
 - JS uses the same native System, since it's just a backend for code generation, just like a real-time interpreter is another backend. So don't merge it into native to allow an embedded systems to just pick core+native, but merge JS-independent parts into core.
-- Unix tools philosophy for the interpreter?
-  - Makes it easier to integrate in/with other tools?
-  - Command line options for each stage for textual output (easier to debug and integrate): stream tokens from input one per line, then parser, etc
-
-# Cleanups
-
-- Why is the output directory of the cmake build in the root alongside sources and not in the build directory?
-- Check places where it assumed K_LOG_ERROR was stopping the system.
-- Verify all uses of Err (where it's missing, where it's not needed, etc).
-
-# Resources
-
-- malloc impl: https://github.com/microsoft/mimalloc
-
-JavaScript:
-
-- QuickJS, embeddable JavaScript: https://bellard.org/quickjs/
-- Duktape, embeddable JavaScript: https://duktape.org/
-- BigInt: https://github.com/tc39/proposal-bigint
 
 
 ---
