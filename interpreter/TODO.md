@@ -26,6 +26,7 @@
 JavaScript:
 
 - QuickJS, embeddable JavaScript: https://bellard.org/quickjs/
+- Duktape, embeddable JavaScript: https://duktape.org/
 - BigInt: https://github.com/tc39/proposal-bigint
 
 
