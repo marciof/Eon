@@ -3,7 +3,7 @@
 - **Make a shell/REPL so that I can start using it ASAP, for early use and testing.** Phases:
   - Just echo back each line from stdin in a robust way.
   - Integrate with readline.
-  - Syntax highlighting.
+  - Syntax highlighting. (Language Server Protocol? https://langserver.org/)
   - If using a JavaScript backend then it can use an embedded interpreter to run the code.
 - C frontend, JavaScript backend: can reuse frontend and AST for the final version, and with JavaScript it's easy to get something running, as well as in a browser (runtime environment, vs standalone, FFI for DOM?)
   - Start moving core stuff from js/ to core/
