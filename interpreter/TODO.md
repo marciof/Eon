@@ -17,15 +17,21 @@
 
 - Why is the output directory of the cmake build in the root alongside sources and not in the build directory?
 - Check places where it assumed K_LOG_ERROR was stopping the system.
+- Verify all uses of Err (where it's missing, where it's not needed, etc).
 
 # Resources
 
 - malloc impl: https://github.com/microsoft/mimalloc
+
+JavaScript:
+
 - QuickJS, embeddable JavaScript: https://bellard.org/quickjs/
-  
+- BigInt: https://github.com/tc39/proposal-bigint
+
+
 ---
 
-- Verify all uses of Err (where it's missing, where it's not needed, etc).
+
 - Split "System.c" into "main.c"; also add a "main.c" in i386?
 - Make Err be the 2nd param always for consistency.
 - Don't use wrappers to access struct members directly.
