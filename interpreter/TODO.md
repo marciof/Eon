@@ -34,6 +34,8 @@ JavaScript:
 
 - Continuous integration:
   - https://bitbucket.org/product/features/pipelines
+- Fuzzy testing:
+  - http://lcamtuf.coredump.cx/afl/
 
 ---
 
