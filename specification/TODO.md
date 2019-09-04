@@ -1,8 +1,9 @@
 - GLP/AGPL with Commons Clause? To prevent it from being abused for server software as a service.
   - https://commonsclause.com/
   - https://www.gnu.org/licenses/gpl-faq.html.en
-- Add a build target to validate Markdown documents (and code documentation) as valid CommonMark.
+- Add a build target to lint/validate Markdown documents (and code documentation) as valid CommonMark.
   - https://github.com/commonmark/cmark
+  - https://github.com/DavidAnson/markdownlint
 - Define indentation based syntax grammar.
   - https://docs.python.org/3/reference/grammar.html
   - https://devguide.python.org/compiler/
