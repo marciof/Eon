@@ -1,4 +1,4 @@
-# Goals
+# Ideas
 
 - Quick and easy interactivity like GNU Octave (ie. Matlab).
 - Unix tools philosophy for the interpreter? Command line options for each stage for textual output (easier to debug and integrate with other external tools without code linking?): stream tokens from input one per line, then parser, etc
@@ -18,22 +18,24 @@ JavaScript:
 - Why is the output directory of the cmake build in the root alongside sources and not in the build directory?
 - Check places where it assumed K_LOG_ERROR was stopping the system.
 - Verify all uses of Err (where it's missing, where it's not needed, etc).
+- JS uses the same native System, since it's just a backend for code generation, just like a real-time interpreter is another backend. So don't merge it into native to allow an embedded systems to just pick core+native, but merge JS-independent parts into core.
+  - Start moving core stuff (eg. AST) from js/ to core/
+  - Move non-essentials out of core/
 
-# Steps
+# Implementation
 
 - **Make a shell/REPL so that I can start using it ASAP, for early use and testing.** Phases:
   - Just echo back each line from stdin in a robust way.
   - Integrate with readline.
   - Syntax highlighting. (Language Server Protocol? https://langserver.org/)
   - If using a JavaScript backend then it can use an embedded interpreter to run the code.
-- C frontend, JavaScript backend: can reuse frontend and AST for the final version, and with JavaScript it's easy to get something running, as well as in a browser (runtime environment, vs standalone, FFI for DOM?)
-  - Start moving core stuff from js/ to core/
-  - Move non-essentials out of core/
-- JS uses the same native System, since it's just a backend for code generation, just like a real-time interpreter is another backend. So don't merge it into native to allow an embedded systems to just pick core+native, but merge JS-independent parts into core.
 
+# Testing
+
+- Continuous integration:
+  - https://bitbucket.org/product/features/pipelines
 
 ---
-
 
 - Split "System.c" into "main.c"; also add a "main.c" in i386?
 - Make Err be the 2nd param always for consistency.
