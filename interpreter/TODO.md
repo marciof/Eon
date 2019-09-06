@@ -15,6 +15,9 @@ JavaScript:
 
 # Cleanups
 
+- Reproducible builds?
+  - https://reproducible-builds.org/docs/
+  - https://signal.org/blog/reproducible-android/
 - Rename flexible array members to `impl` as appropriate.
 - Avoid using variable-length arrays.
 - Why is the output directory of the cmake build in the root alongside sources and not in the build directory?
