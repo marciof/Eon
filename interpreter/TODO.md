@@ -15,6 +15,8 @@ JavaScript:
 
 # Cleanups
 
+- Rename flexible array members to `impl` as appropriate.
+- Avoid using variable-length arrays.
 - Why is the output directory of the cmake build in the root alongside sources and not in the build directory?
 - Check places where it assumed K_LOG_ERROR was stopping the system.
 - Verify all uses of Err (where it's missing, where it's not needed, etc).
