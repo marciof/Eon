@@ -18,4 +18,4 @@
   - https://en.wikipedia.org/wiki/Comparison_of_programming_languages_(syntax)
   - http://hyperpolyglot.org/scripting
   - https://github.com/anvaka/common-words/blob/master/README.md
-- Look for best/worst features of other languages/systems (check first the ones listed as inspiration): PowerShell, OCaml, C, Common Lisp, JavaScript, Perl, Python, Scheme, Smalltalk, Java, Clojure, Self, Kotlin, Wren, F#, Matlab, Rust, Ruby, Go, Julia, Haskell, Erlang, Elixir, Typed Racket, PureScript, Elm, Io, ML, Lua, Haxe, Tcl, Shen, REBOL, Mathematica, HyperCard, Awk, Parabola.io, GNU Octave, Maxima Algebra System, Pascal, R, HyperTalk/HyperCard
+- Look for best/worst features of other languages/systems (check first the ones listed as inspiration): PowerShell, OCaml, C, Common Lisp, JavaScript, Perl, Python, Scheme, Smalltalk, Java, Clojure, Self, Kotlin, Wren, F#, Matlab, Rust, Ruby, Go, Julia, Haskell, Erlang, Elixir, Typed Racket, PureScript, Elm, Io, ML, Lua, Haxe, Tcl, Shen, REBOL, Mathematica, HyperCard, Awk, Parabola.io, GNU Octave, Maxima Algebra System, Pascal, R, HyperTalk/HyperCard, AppleScript
