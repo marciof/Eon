@@ -39,6 +39,7 @@ JavaScript:
 
 # Testing
 
+- shellcheck for shell scripts (add to dependencies as well)
 - Continuous integration
   - Verify CMake version when installing? (See .travil.yml)
   - https://bitbucket.org/product/features/pipelines
