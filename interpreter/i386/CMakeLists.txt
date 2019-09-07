@@ -47,8 +47,8 @@ add_executable(${PROJECT_NAME}-i386
     Memory.asm
     Memory.c
     arg.asm
-    System.asm
-    System.c)
+    main.asm
+    main.c)
 
 set_target_properties(${PROJECT_NAME}-i386 PROPERTIES LINK_DEPENDS ${LINKER_SCRIPT})
 

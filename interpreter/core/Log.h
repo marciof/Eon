@@ -31,7 +31,6 @@ extern struct k_Log* k_Log_get(void);
  *
  * To print a literal curly brace, repeat it twice.
  */
-// FIXME: use Err? to decouple from needing a System instance?
 void k_Log_msg(
     struct k_Log* log,
     struct k_Err* err,

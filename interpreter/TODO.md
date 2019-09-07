@@ -18,12 +18,11 @@ JavaScript:
 - Reproducible builds?
   - https://reproducible-builds.org/docs/
   - https://signal.org/blog/reproducible-android/
-- Rename flexible array members to `impl` as appropriate.
 - Avoid using variable-length arrays.
 - Why is the output directory of the cmake build in the root alongside sources and not in the build directory?
 - Check places where it assumed K_LOG_ERROR was stopping the system.
 - Verify all uses of Err (where it's missing, where it's not needed, etc).
-- JS uses the same native System, since it's just a backend for code generation, just like a real-time interpreter is another backend. So don't merge it into native to allow an embedded systems to just pick core+native, but merge JS-independent parts into core.
+- JS uses the same native code, since it's just a backend for code generation, just like a real-time interpreter is another backend. So don't merge it into native to allow an embedded systems to just pick core+native, but merge JS-independent parts into core.
   - Start moving core stuff (eg. AST) from js/ to core/
   - Move non-essentials out of core/
 
@@ -45,11 +44,9 @@ JavaScript:
 
 ---
 
-- Split "System.c" into "main.c"; also add a "main.c" in i386?
 - Make Err be the 2nd param always for consistency.
 - Don't use wrappers to access struct members directly.
 - How to add full stack trace information to `Err` instances?
-- Make System/etc not be a singleton and also to make it easier to test. Receive dependencies, such as Log, through an init function.
 - Add Travis CI build matrix for the different builds (native, js, i386) and OSes.
 - Regularly test building on Debian 32-bit 64-bit, Windows, macOS.
 - Add simple v86 HTML demo?
@@ -57,9 +54,6 @@ JavaScript:
 - Redesign architecture, to make it easier to embed, no singletons, and easier to unit test:
   - Avoid all these repeated calls for `*_get()`?
   - Remove stop modes and use only reset or halt
-  - System_new(Log, Memory, argc, argv) // it's dynamic (eg. native, multiple interpreters)
-  - System_get(Log, Memory, argc, argv) // it's static, not part of the interface, it's up to each host
-  - System_stop(System)
   - main(multiboot_magic_num, multiboot_info)
 - Tests (unit, functional), coverage, lint, static analysis, continuous integration, memory check (Valgrind).
   - Automation: Vagrant, Docker?

@@ -20,8 +20,10 @@ stack:
 section .text
 align 4
 
-global k_System_halt
-k_System_halt:
+; FIXME: shutdown instead of halting
+; FIXME: allow halting for debugging?
+global k_Cpu_halt
+k_Cpu_halt:
     cli
     hlt
 
@@ -37,8 +39,9 @@ _start:
     
     call main
 
-global k_System_reset
-k_System_reset:
+; FIXME: unused
+global k_Cpu_reset
+k_Cpu_reset:
     ; FIXME: explain part about keyboard
     ; Reset by causing a triple fault (which doesn't require a keyboard).
     int 3

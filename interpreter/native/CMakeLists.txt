@@ -1,8 +1,6 @@
 add_library(${PROJECT_NAME}-native
     Log.c
-    Memory.c
-    System.c
-    System.h)
+    Memory.c)
 
 add_executable(${PROJECT_NAME}
     main.c)
