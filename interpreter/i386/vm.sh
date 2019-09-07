@@ -24,7 +24,6 @@ until vboxmanage showvminfo --machinereadable "$vm_name" | grep -Eq '^VMState="p
     sleep 1
 done
 
-sleep 1
 vboxmanage storageattach "$vm_name" --storagectl "$storage_name" --port 0 --device 0 --type dvddrive --medium none
 vboxmanage closemedium dvd "$bootable_iso"
 vboxmanage unregistervm --delete "$vm_name"
