@@ -19,7 +19,7 @@ void main(void) {
         k_Multiboot_log_info(multiboot_info, &err, log);
     }
     else {
-        k_Log_err(log, &err);
+        k_Log_error(log, &err);
     }
 
     // FIXME: implement shutdown
@@ -27,7 +27,7 @@ void main(void) {
     k_Log_msg(log, &err, K_LOG_WARN, "Shutdown not implemented");
 
     if (k_Err_has(&err)) {
-        k_Log_err(log, &err);
+        k_Log_error(log, &err);
     }
 
     k_Cpu_halt();

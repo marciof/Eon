@@ -19,7 +19,7 @@ struct k_Log {
 // FIXME: remove global reference to singleton
 extern struct k_Log* k_Log_get(void);
 
-void k_Log_err(struct k_Log* log, struct k_Err* err);
+void k_Log_error(struct k_Log* log, struct k_Err* err);
 
 /**
  * Log format is a regular string with placeholders denoted by curly braces.

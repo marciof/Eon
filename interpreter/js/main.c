@@ -29,7 +29,7 @@ int main(void) {
     int exit_status;
 
     if (k_Err_has(&err)) {
-        k_Log_err(k_Log_get(), &err);
+        k_Log_error(k_Log_get(), &err);
         exit_status = EXIT_FAILURE;
     }
     else {

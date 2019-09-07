@@ -198,7 +198,7 @@ static void k_Log_err_log(intptr_t logger, const char* format, ...) {
     va_end(args);
 }
 
-void k_Log_err(struct k_Log* log, struct k_Err* err) {
+void k_Log_error(struct k_Log* log, struct k_Err* err) {
     struct k_Err discard_log_err = K_ERR_INIT;
 
     err->describe(err, k_Log_err_log, (intptr_t) log);

@@ -15,7 +15,7 @@ int main(int argc, char* argv[]) {
             "Command line: [{i}] '{s}'", i, argv[i]);
 
         if (k_Err_has(&err)) {
-            k_Log_err(log, &err);
+            k_Log_error(log, &err);
             return EXIT_FAILURE;
         }
     }
