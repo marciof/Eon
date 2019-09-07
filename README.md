@@ -18,7 +18,7 @@ See `.travis.yml`.
 ## Building
 
 1. Create an empty build directory somewhere outside the source code tree (to prevent mixing sources with builds).
-2. Optionally configure which builds to create. By default it will build a native standalone executable only. Selecting the builds can be done in several different ways using CMake:
+2. *Optionally* configure which builds to create. By default it will build a native standalone executable only. Selecting the builds can be done in several different ways using CMake:
   - command-line:
     ```
     # List options:
@@ -42,6 +42,6 @@ See `.travis.yml`.
   - `core/`: builds an embeddable library with the host-independent core of the implementation and host-dependent hooks
   - `i386/`: builds a Multiboot-compliant executable to run on an Intel x86 32-bit host
   - `js/`: builds a standalone executable to compile to JavaScript
-  - `native/`: builds a standalone executable to run natively (eg. on Linux, Windows)
+  - `native/`: builds an embeddable library and a standalone executable to run natively (eg. on Windows)
 - `specification/`: language specification
 - `stdlib/`: standard library for the interpreter

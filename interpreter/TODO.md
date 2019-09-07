@@ -15,6 +15,9 @@ JavaScript:
 
 # Cleanups
 
+- Specify all build dependencies.
+  - How to test macOS?
+  - Haven't built on Windows yet.
 - Reproducible builds?
   - https://reproducible-builds.org/docs/
   - https://signal.org/blog/reproducible-android/
