@@ -17,6 +17,7 @@ echo "Creating VM and booting CD ISO: $bootable_iso" >&2
 vboxmanage createvm --name "$vm_name" --ostype Other_64 --register
 vboxmanage storagectl "$vm_name" --name "$storage_name" --add ide
 vboxmanage storageattach "$vm_name" --storagectl "$storage_name" --port 0 --device 0 --type dvddrive --medium "$bootable_iso"
+vboxmanage modifyvm "$vm_name" --bioslogofadein off --bioslogofadeout off --biosbootmenu disabled
 vboxmanage startvm "$vm_name" --type sdl
 
 until vboxmanage showvminfo --machinereadable "$vm_name" | grep -Eq '^VMState="poweroff"$'; do
