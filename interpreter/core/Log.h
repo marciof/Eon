@@ -3,6 +3,8 @@
 #include "Err.h"
 
 enum {K_LOG_TAB_SIZE_SPACES = 4};
+
+// FIXME: prefix with `_Level` too?
 enum k_Log_Level {K_LOG_ERROR, K_LOG_WARN, K_LOG_INFO};
 
 // FIXME: use Ref?
@@ -14,7 +16,10 @@ struct k_Log {
     uint8_t val[];
 };
 
+// FIXME: remove global reference to singleton
 extern struct k_Log* k_Log_get(void);
+
+void k_Log_err(struct k_Log* log, struct k_Err* err);
 
 /**
  * Log format is a regular string with placeholders denoted by curly braces.

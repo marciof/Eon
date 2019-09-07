@@ -4,14 +4,12 @@
 #include "../core/Log.h"
 #include "Token.h"
 
-static void describe_token_err(struct k_Err* err) {
+static void describe_token_err(struct k_Err* err, k_Err_log log) {
     struct k_Err discard_log_err = K_ERR_INIT;
     struct k_Input* input = (struct k_Input*) err->arg;
     int ch = input->peek_ch(input, &discard_log_err);
 
-    // FIXME: avoid direct use of the singleton
-    k_Log_msg(k_Log_get(), &discard_log_err, K_LOG_ERROR,
-        "Unexpected token '{c}' at {s}:{iu}:{iu}",
+    log("Unexpected token '{c}' at {s}:{iu}:{iu}",
         (char) ch, input->location, input->line, input->column);
 }
 

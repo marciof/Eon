@@ -148,6 +148,66 @@ static void print(
     }
 }
 
+// FIXME: refactor with `k_Log_msg`
+static void k_Log_msg_list(
+        struct k_Log* log,
+        struct k_Err* err,
+        enum k_Log_Level lvl,
+        const char* format,
+        va_list args) {
+
+    const char* msg_prefix;
+
+    log->prepare(log, err, lvl);
+    if (k_Err_has(err)) {
+        return;
+    }
+
+    if (lvl == K_LOG_ERROR) {
+        msg_prefix = "[ERROR] ";
+    }
+    else if (lvl == K_LOG_WARN) {
+        msg_prefix = "[WARN] ";
+    }
+    else {
+        msg_prefix = "[INFO] ";
+    }
+
+    log->print_str(log, err, msg_prefix);
+    if (k_Err_has(err)) {
+        return;
+    }
+
+    print(log, err, format, args);
+
+    if (k_Err_has(err)) {
+        return;
+    }
+
+    log->print_ch(log, err, '\n');
+}
+
+// FIXME: refactor and avoid global reference to singleton
+static void k_Log_err_log(const char* format, ...) {
+    struct k_Err discard_log_err = K_ERR_INIT;
+
+    va_list args;
+    va_start(args, format);
+    // FIXME: global reference to singleton
+    k_Log_msg_list(k_Log_get(), &discard_log_err, K_LOG_ERROR, format, args);
+    va_end(args);
+}
+
+void k_Log_err(struct k_Log* log, struct k_Err* err) {
+    struct k_Err discard_log_err = K_ERR_INIT;
+
+    // FIXME: pass Log over
+    err->describe(err, k_Log_err_log);
+
+    k_Log_msg(log, &discard_log_err, K_LOG_ERROR,
+        "  `{s}()` at {s}:{iu}", err->function, err->file, err->line);
+}
+
 void k_Log_msg(
         struct k_Log* log,
         struct k_Err* err,

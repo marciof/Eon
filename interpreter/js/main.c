@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include "../core/Log.h"
 #include "Errno.h"
 #include "Input.h"
 #include "Token.h"
@@ -28,7 +29,7 @@ int main(void) {
     int exit_status;
 
     if (k_Err_has(&err)) {
-        k_Err_describe(&err);
+        k_Log_err(k_Log_get(), &err);
         exit_status = EXIT_FAILURE;
     }
     else {
