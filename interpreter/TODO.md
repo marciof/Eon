@@ -39,9 +39,10 @@ JavaScript:
 
 # Testing
 
-- Continuous integration:
+- Continuous integration
+  - Verify CMake version when installing? (See .travil.yml)
   - https://bitbucket.org/product/features/pipelines
-- Fuzzy testing:
+- Fuzzy testing
   - http://lcamtuf.coredump.cx/afl/
 - Hashing DoS
 

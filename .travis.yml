@@ -3,7 +3,7 @@ script: cmake . && make
 addons:
  apt:
    packages:
-   - cmake
+   - cmake # v2.8 or higher
    - make
    - g++
    # i386
