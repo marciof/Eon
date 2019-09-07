@@ -4,12 +4,14 @@
 #include "../core/Log.h"
 #include "Token.h"
 
-static void describe_token_err(struct k_Err* err, k_Err_log log) {
+static void describe_token_err(
+        struct k_Err* err, k_Err_log log, intptr_t logger) {
+
     struct k_Err discard_log_err = K_ERR_INIT;
     struct k_Input* input = (struct k_Input*) err->arg;
     int ch = input->peek_ch(input, &discard_log_err);
 
-    log("Unexpected token '{c}' at {s}:{iu}:{iu}",
+    log(logger, "Unexpected token '{c}' at {s}:{iu}:{iu}",
         (char) ch, input->location, input->line, input->column);
 }
 

@@ -20,8 +20,11 @@ JavaScript:
   - https://signal.org/blog/reproducible-android/
 - Avoid using variable-length arrays.
 - Why is the output directory of the cmake build in the root alongside sources and not in the build directory?
-- Check places where it assumed K_LOG_ERROR was stopping the system.
-- Verify all uses of Err (where it's missing, where it's not needed, etc).
+- Error handling:
+  - Make Err be the 2nd param always for consistency.
+  - Check places where it assumed K_LOG_ERROR was stopping the system.
+  - Verify all uses of Err (where it's missing, where it's not needed, etc).
+  - Avoid calls to k_Log_get()?
 - JS uses the same native code, since it's just a backend for code generation, just like a real-time interpreter is another backend. So don't merge it into native to allow an embedded systems to just pick core+native, but merge JS-independent parts into core.
   - Start moving core stuff (eg. AST) from js/ to core/
   - Move non-essentials out of core/
@@ -44,7 +47,6 @@ JavaScript:
 
 ---
 
-- Make Err be the 2nd param always for consistency.
 - Don't use wrappers to access struct members directly.
 - How to add full stack trace information to `Err` instances?
 - Add Travis CI build matrix for the different builds (native, js, i386) and OSes.

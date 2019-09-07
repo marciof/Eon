@@ -187,23 +187,21 @@ static void k_Log_msg_list(
     log->print_ch(log, err, '\n');
 }
 
-// FIXME: refactor and avoid global reference to singleton
-static void k_Log_err_log(const char* format, ...) {
+// FIXME: refactor
+static void k_Log_err_log(intptr_t logger, const char* format, ...) {
+    struct k_Log* log = (struct k_Log*) logger;
     struct k_Err discard_log_err = K_ERR_INIT;
 
     va_list args;
     va_start(args, format);
-    // FIXME: global reference to singleton
-    k_Log_msg_list(k_Log_get(), &discard_log_err, K_LOG_ERROR, format, args);
+    k_Log_msg_list(log, &discard_log_err, K_LOG_ERROR, format, args);
     va_end(args);
 }
 
 void k_Log_err(struct k_Log* log, struct k_Err* err) {
     struct k_Err discard_log_err = K_ERR_INIT;
 
-    // FIXME: pass Log over
-    err->describe(err, k_Log_err_log);
-
+    err->describe(err, k_Log_err_log, (intptr_t) log);
     k_Log_msg(log, &discard_log_err, K_LOG_ERROR,
         "  `{s}()` at {s}:{iu}", err->function, err->file, err->line);
 }
