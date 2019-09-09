@@ -7,6 +7,8 @@
 #include <multiboot/multiboot.h>
 #include "../core/Log.h"
 
-struct multiboot_info* k_Multiboot_get_info(struct k_Err* err);
+struct multiboot_info* k_Multiboot_get_info(
+    struct k_Log* log, struct k_Err* err);
+
 void k_Multiboot_log_info(
-    struct multiboot_info* info, struct k_Err* err, struct k_Log* log);
+    struct multiboot_info* info, struct k_Log* log, struct k_Err* err);

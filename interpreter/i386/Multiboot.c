@@ -226,9 +226,11 @@ static void log_vbe(
     }
 }
 
-struct multiboot_info* k_Multiboot_get_info(struct k_Err* err) {
+struct multiboot_info* k_Multiboot_get_info(
+        struct k_Log* log, struct k_Err* err) {
+
     if (k_Multiboot_magic_num != MULTIBOOT_BOOTLOADER_MAGIC) {
-        k_Log_msg(k_Log_get(), err, K_LOG_ERROR,
+        k_Log_msg(log, err, K_LOG_ERROR,
             "Invalid Multiboot magic number: {iuh}", k_Multiboot_magic_num);
 
         if (k_Err_has(err)) {
@@ -239,7 +241,7 @@ struct multiboot_info* k_Multiboot_get_info(struct k_Err* err) {
     if (K_BIT_IS_SET(k_Multiboot_info->flags, MULTIBOOT_INFO_AOUT_SYMS)
         && K_BIT_IS_SET(k_Multiboot_info->flags, MULTIBOOT_INFO_ELF_SHDR))
     {
-        k_Log_msg(k_Log_get(), err, K_LOG_ERROR,
+        k_Log_msg(log, err, K_LOG_ERROR,
             "Invalid Multiboot information: "
             "Both bits 4 and 5 of the flags field are set");
 
@@ -252,7 +254,7 @@ struct multiboot_info* k_Multiboot_get_info(struct k_Err* err) {
 }
 
 void k_Multiboot_log_info(
-        struct multiboot_info* info, struct k_Err* err, struct k_Log* log) {
+        struct multiboot_info* info, struct k_Log* log, struct k_Err* err) {
 
     k_Log_msg(log, err, K_LOG_INFO, "Multiboot: flags={iub}", info->flags);
     if (k_Err_has(err)) {

@@ -13,11 +13,11 @@ void main(void) {
     k_VGA_Text_init();
 
     // FIXME: move logging and other dependencies somewhere else?
-    struct multiboot_info* multiboot_info = k_Multiboot_get_info(&err);
     struct k_Log* log = k_Log_get();
+    struct multiboot_info* multiboot_info = k_Multiboot_get_info(log, &err);
 
     if (!k_Err_has(&err)) {
-        k_Multiboot_log_info(multiboot_info, &err, log);
+        k_Multiboot_log_info(multiboot_info, log, &err);
     }
     else {
         k_Log_error(log, &err);
