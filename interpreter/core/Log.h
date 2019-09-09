@@ -1,3 +1,19 @@
+/**
+ * Log format is a regular string with placeholders denoted by curly braces.
+ *
+ * Inside each curly brace is a conversion specifier:
+ * - "c": character
+ * - "s": string or `NULL`
+ * - "i": integer
+ *   - with "u": unsigned
+ *   - with one of:
+ *     - "b": base 2
+ *     - "h": base 16
+ *     - none: base 10
+ *
+ * To print a literal curly brace, repeat it twice.
+ */
+
 #pragma once
 #include <stdarg.h>
 #include <stdint.h>
@@ -21,28 +37,6 @@ struct k_Log {
  * Description ends in a newline.
  */
 void k_Log_err_details(struct k_Log* log, struct k_Err* err);
-
-/**
- * Log format is a regular string with placeholders denoted by curly braces.
- *
- * Inside each curly brace is a conversion specifier:
- * - "c": character
- * - "s": string or `NULL`
- * - "i": integer
- *   - with "u": unsigned
- *   - with one of:
- *     - "b": base 2
- *     - "h": base 16
- *     - none: base 10
- *
- * To print a literal curly brace, repeat it twice.
- */
-void k_Log_msg(
-    struct k_Log* log,
-    struct k_Err* err,
-    enum k_Log_Level lvl,
-    char* format,
-    ...);
 
 void k_Log_error(
     struct k_Log* log,

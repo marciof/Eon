@@ -199,19 +199,6 @@ void k_Log_err_details(struct k_Log* log, struct k_Err* err) {
         err->function, err->file, err->line);
 }
 
-void k_Log_msg(
-        struct k_Log* log,
-        struct k_Err* err,
-        enum k_Log_Level lvl,
-        char* format,
-        ...) {
-
-    va_list args;
-    va_start(args, format);
-    print_log(log, err, lvl, format, args);
-    va_end(args);
-}
-
 void k_Log_error(
         struct k_Log* log,
         struct k_Err* err,
