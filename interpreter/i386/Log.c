@@ -34,7 +34,6 @@ static void print_str(
     k_VGA_Text_print_str(str);
 }
 
-// FIXME: remove globals in VGA and use this instance instead?
 struct k_Log* k_Log_get(void) {
     static struct k_Log log = {prepare, print_ch, print_str};
     return &log;
