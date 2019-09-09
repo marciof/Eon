@@ -6,21 +6,28 @@
 
 # Resources
 
-- malloc impl: https://github.com/microsoft/mimalloc
+Memory management:
 
-Lisp:
+- malloc minimal implementation: https://github.com/microsoft/mimalloc
+
+Arbitrary precision numbers:
+
+- LibBF, https://bellard.org/libbf/
+- JavaScript BigInt, https://github.com/tc39/proposal-bigint
+
+Lisp interpreters:
 
 - Kilo LISP, http://t3x.org/klisp/index.html
 - femtolisp, https://github.com/JeffBezanson/femtolisp
 
-JavaScript:
+JavaScript interpreters:
 
 - QuickJS, embeddable JavaScript: https://bellard.org/quickjs/
 - Duktape, embeddable JavaScript: https://duktape.org/
-- BigInt: https://github.com/tc39/proposal-bigint
 
 # Cleanups
 
+- Rename `js` to javascript.
 - Compile on both GCC and Clang for portability?
 - Use ccache for speed? https://ccache.dev/
 - Specify all build dependencies.
