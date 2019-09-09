@@ -8,6 +8,11 @@
 
 - malloc impl: https://github.com/microsoft/mimalloc
 
+Lisp:
+
+- Kilo LISP, http://t3x.org/klisp/index.html
+- femtolisp, https://github.com/JeffBezanson/femtolisp
+
 JavaScript:
 
 - QuickJS, embeddable JavaScript: https://bellard.org/quickjs/
@@ -44,7 +49,7 @@ JavaScript:
   - Just echo back each line from stdin in a robust way.
   - Integrate with readline.
   - Syntax highlighting. (Language Server Protocol? https://langserver.org/)
-  - If using a JavaScript backend then it can use an embedded interpreter to run the code.
+  - Translate AST to a backend that writes JavaScript and/or Lisp for a quicker first release? Can use an embedded interpreter to run it on spot.
 
 # Testing
 
