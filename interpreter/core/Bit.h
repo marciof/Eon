@@ -10,9 +10,15 @@
 #define K_BIT_IS_SET(value, bit_flag) \
     (((value) & (bit_flag)) != 0 ? true : false)
 
+/**
+ * @see https://gcc.gnu.org/onlinedocs/gcc/Common-Type-Attributes.html#Common-Type-Attributes
+ */
 #define K_BIT_PACKED(type) \
     type __attribute__((__packed__))
 
+/**
+ * @see https://gcc.gnu.org/onlinedocs/gcc/Common-Function-Attributes.html#Common-Function-Attributes
+ */
 #define K_BIT_SECTION(name, declaration) \
     declaration __attribute__((section(name)))
 
