@@ -5,8 +5,7 @@
 
 enum {K_LOG_TAB_SIZE_SPACES = 4};
 
-// FIXME: prefix with `_Level` too? or use helper functions for each one?
-enum k_Log_Level {K_LOG_ERROR, K_LOG_WARN, K_LOG_INFO};
+enum k_Log_Level {K_LOG_LEVEL_ERROR, K_LOG_LEVEL_WARN, K_LOG_LEVEL_INFO};
 
 // FIXME: use Ref? remove unused `val`?
 // FIXME: add timestamps?

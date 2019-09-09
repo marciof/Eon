@@ -4,7 +4,9 @@
 
 // FIXME: add colors
 static FILE* get_stream(enum k_Log_Level lvl) {
-    return ((lvl == K_LOG_ERROR) || (lvl == K_LOG_WARN)) ? stderr : stdout;
+    return ((lvl == K_LOG_LEVEL_ERROR) || (lvl == K_LOG_LEVEL_WARN))
+        ? stderr
+        : stdout;
 }
 
 // FIXME: error handling fputc

@@ -158,10 +158,10 @@ void print_log(
 
     char* msg_prefix;
 
-    if (lvl == K_LOG_ERROR) {
+    if (lvl == K_LOG_LEVEL_ERROR) {
         msg_prefix = "[ERROR] ";
     }
-    else if (lvl == K_LOG_WARN) {
+    else if (lvl == K_LOG_LEVEL_WARN) {
         msg_prefix = "[WARN] ";
     }
     else {
@@ -187,7 +187,7 @@ static void log_error_callback(intptr_t logger, char* format, ...) {
 
     va_list args;
     va_start(args, format);
-    print_log(log, &discard_log_err, K_LOG_ERROR, format, args);
+    print_log(log, &discard_log_err, K_LOG_LEVEL_ERROR, format, args);
     va_end(args);
 }
 
@@ -220,7 +220,7 @@ void k_Log_error(
 
     va_list args;
     va_start(args, format);
-    print_log(log, err, K_LOG_ERROR, format, args);
+    print_log(log, err, K_LOG_LEVEL_ERROR, format, args);
     va_end(args);
 }
 
@@ -232,7 +232,7 @@ void k_Log_warning(
 
     va_list args;
     va_start(args, format);
-    print_log(log, err, K_LOG_WARN, format, args);
+    print_log(log, err, K_LOG_LEVEL_WARN, format, args);
     va_end(args);
 }
 
@@ -244,6 +244,6 @@ void k_Log_info(
 
     va_list args;
     va_start(args, format);
-    print_log(log, err, K_LOG_INFO, format, args);
+    print_log(log, err, K_LOG_LEVEL_INFO, format, args);
     va_end(args);
 }

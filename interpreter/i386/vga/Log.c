@@ -3,10 +3,10 @@
 #include "Text.h"
 
 static void set_color(enum k_Log_Level lvl) {
-    if (lvl == K_LOG_ERROR) {
+    if (lvl == K_LOG_LEVEL_ERROR) {
         k_VGA_Text_set_color(K_VGA_TEXT_RED, K_VGA_TEXT_BLACK);
     }
-    else if (lvl == K_LOG_WARN) {
+    else if (lvl == K_LOG_LEVEL_WARN) {
         k_VGA_Text_set_color(K_VGA_TEXT_YELLOW, K_VGA_TEXT_BLACK);
     }
     else {
