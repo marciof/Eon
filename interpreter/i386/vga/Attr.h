@@ -1,12 +1,12 @@
-#pragma once
-#include <stdbool.h>
-#include <stdint.h>
-
 /**
  * Attribute controller register interface. This register formats the
  * pixel color information such that the pixel values can be submitted
  * to the DAC (Digital to Analog Converter).
  */
+
+#pragma once
+#include <stdbool.h>
+#include <stdint.h>
 
 typedef uint8_t k_VGA_Attr_Register;
 enum {

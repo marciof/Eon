@@ -27,6 +27,7 @@ k_Cpu_halt:
     cli
     hlt
 
+; @see layout.lds
 global _start
 _start:
     ; The stack pointer initial value isn't "stack + STACK_LENGTH - 1" because

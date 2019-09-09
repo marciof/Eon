@@ -1,12 +1,14 @@
-#pragma once
-#include <stddef.h>
-
 /**
  * Color register interface. These registers provide a mapping
  * from the palette of between 2 and 256 colors to a larger 18-bit color space.
  */
 
-/** DAC color entry. */
+#pragma once
+#include <stddef.h>
+
+/**
+ * DAC color entry.
+ */
 struct k_VGA_Color {
     unsigned int red: 6;
     unsigned int green: 6;
@@ -29,4 +31,5 @@ void k_VGA_Color_read(uint8_t start, size_t length, struct k_VGA_Color* colors);
  * @param length number of DAC entries to write
  * @param colors DAC entries to write
  */
-void k_VGA_Color_write(uint8_t start, size_t length, struct k_VGA_Color* colors);
+void k_VGA_Color_write(
+    uint8_t start, size_t length, struct k_VGA_Color* colors);

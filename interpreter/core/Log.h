@@ -4,7 +4,7 @@
 
 enum {K_LOG_TAB_SIZE_SPACES = 4};
 
-// FIXME: prefix with `_Level` too?
+// FIXME: prefix with `_Level` too? or use helper functions for each one?
 enum k_Log_Level {K_LOG_ERROR, K_LOG_WARN, K_LOG_INFO};
 
 // FIXME: use Ref?
@@ -19,6 +19,9 @@ struct k_Log {
 // FIXME: remove global reference to singleton
 extern struct k_Log* k_Log_get(void);
 
+/**
+ * Description ends in a newline.
+ */
 void k_Log_error(struct k_Log* log, struct k_Err* err);
 
 /**

@@ -9,11 +9,7 @@ bool k_Err_has(struct k_Err* err) {
     return err->describe != NULL;
 }
 
-void k_Err_reset(struct k_Err* err) {
-    err->describe = NULL;
-    err->arg = 0;
-}
-
+// FIXME: discourage reuse?
 void k_Err_set(
         struct k_Err* err,
         void (*describe)(struct k_Err*, k_Err_log, intptr_t),

@@ -41,7 +41,8 @@ static const struct k_VGA_Gfx_Memory_Map MEMORY_MAPS[] = {
 
 const struct k_VGA_Gfx_Memory_Map* k_VGA_Gfx_get_memory_map(void) {
     size_t position = (size_t)
-        ((k_VGA_Gfx_read(K_VGA_GFX_MISC) & (K_BIT(3) | K_BIT(2))) >> 2);
+        ((k_VGA_Gfx_read(K_VGA_GFX_MISC) & (K_BIT(3) | K_BIT(2)))
+        >> 2);
 
     return &MEMORY_MAPS[position];
 }

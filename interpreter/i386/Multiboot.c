@@ -12,7 +12,9 @@ enum {
     DRIVE_LBA_MODE = 1,
 };
 
-/** As read by the BIOS INT 13h disk interface. */
+/**
+ * As read by the BIOS INT 13h disk interface.
+ */
 typedef uint8_t Drive_BIOS_Num;
 enum {
     DRIVE_FIRST_DISKETTE_DRIVE = 0,
@@ -44,12 +46,17 @@ K_BIT_PACKED(struct Boot_Device {
     Drive_BIOS_Num drive_num;
 });
 
-/** Partition numbers start at zero. */
+/**
+ * Partition numbers start at zero.
+ */
 enum {BOOT_DEVICE_UNUSED_PARTITION = 0xFF};
 
 extern struct multiboot_info* k_Multiboot_info;
 extern uint32_t k_Multiboot_magic_num;
 
+/**
+ * @see layout.lds
+ */
 K_BIT_SECTION(
     ".multiboot_header",
     const struct multiboot_header k_Multiboot_header) = {

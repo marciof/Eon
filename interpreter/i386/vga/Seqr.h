@@ -1,13 +1,13 @@
-#pragma once
-#include <stdbool.h>
-#include <stdint.h>
-
 /**
  * Sequencer register interface. This register reads the information
  * in the frame buffer and converts it into pixel color information.
  * It also sends signals to the CRT controller so that it can provide the
  * timing signals the monitor requires.
  */
+
+#pragma once
+#include <stdbool.h>
+#include <stdint.h>
 
 typedef uint8_t k_VGA_Seqr_Register;
 enum {

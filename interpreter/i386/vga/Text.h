@@ -1,12 +1,12 @@
-#pragma once
-#include <stddef.h>
-#include <stdint.h>
-#include "../../core/Bit.h"
-
 /**
  * @see http://www.osdever.net/FreeVGA/home.htm
  * @see http://www.acid.org/info/xbin/x_tut.htm
  */
+
+#pragma once
+#include <stddef.h>
+#include <stdint.h>
+#include "../../core/Bit.h"
 
 typedef uint8_t k_VGA_Text_Color;
 enum {

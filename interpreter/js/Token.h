@@ -18,5 +18,7 @@ struct k_Token {
     size_t column;
 };
 
-/** @return `NULL` on EOF */
+/**
+ * @return `NULL` on EOF
+ */
 struct k_Token* k_Token_parse(struct k_Input* input, struct k_Err* err);

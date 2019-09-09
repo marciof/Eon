@@ -1,6 +1,7 @@
-/** @see http://www.intel.com/products/processor/manuals/ */
+/**
+ * @see http://www.intel.com/products/processor/manuals/
+ */
 
-#include "../core/Bit.h"
 #include "../core/Log.h"
 #include "Multiboot.h"
 #include "vga/Text.h"
@@ -23,11 +24,11 @@ void main(void) {
     }
 
     // FIXME: implement shutdown
-    k_Err_reset(&err);
-    k_Log_msg(log, &err, K_LOG_WARN, "Shutdown not implemented");
+    struct k_Err log_err = K_ERR_INIT;
+    k_Log_msg(log, &log_err, K_LOG_WARN, "Shutdown not implemented");
 
-    if (k_Err_has(&err)) {
-        k_Log_error(log, &err);
+    if (k_Err_has(&log_err)) {
+        k_Log_error(log, &log_err);
     }
 
     k_Cpu_halt();

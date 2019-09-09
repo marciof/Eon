@@ -1,11 +1,11 @@
-#pragma once
-#include <stdbool.h>
-#include <stdint.h>
-
 /**
  * CRT controller register interface. This register adds timing signals
  * to allow the monitor to display analog color information.
  */
+
+#pragma once
+#include <stdbool.h>
+#include <stdint.h>
 
 typedef uint8_t k_VGA_CRT_Register;
 enum {

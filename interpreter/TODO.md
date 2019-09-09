@@ -16,6 +16,7 @@ JavaScript:
 # Cleanups
 
 - Specify all build dependencies.
+  - Sign-up to interest mailing lists.
   - How to test macOS?
   - Haven't built on Windows yet.
 - Reproducible builds?
@@ -28,6 +29,8 @@ JavaScript:
   - Check places where it assumed K_LOG_ERROR was stopping the system.
   - Verify all uses of Err (where it's missing, where it's not needed, etc).
   - Avoid calls to k_Log_get()?
+- How to have documentation comments within Assembly source code?
+- C tidy/linter?
 - JS uses the same native code, since it's just a backend for code generation, just like a real-time interpreter is another backend. So don't merge it into native to allow an embedded systems to just pick core+native, but merge JS-independent parts into core.
   - Start moving core stuff (eg. AST) from js/ to core/
   - Move non-essentials out of core/

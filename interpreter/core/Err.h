@@ -8,7 +8,6 @@
 typedef void (*k_Err_log)(intptr_t logger, const char* format, ...);
 
 struct k_Err {
-    /** Description ends in a newline. */
     void (*describe)(struct k_Err* err, k_Err_log log, intptr_t logger);
     const char* function;
     char* file;
@@ -20,8 +19,9 @@ void k_Err_describe_text(struct k_Err* err, k_Err_log log, intptr_t logger);
 
 bool k_Err_has(struct k_Err* err);
 
-void k_Err_reset(struct k_Err* err);
-
+/**
+ * @see K_ERR_SET
+ */
 void k_Err_set(
     struct k_Err* err,
     void (*describe)(struct k_Err*, k_Err_log, intptr_t),

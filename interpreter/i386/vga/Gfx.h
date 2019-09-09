@@ -1,12 +1,12 @@
-#pragma once
-#include <stdbool.h>
-#include <stddef.h>
-#include <stdint.h>
-
 /**
  * Graphics registers interface. These registers allow to query
  * display information such as color, width, and height.
  */
+
+#pragma once
+#include <stdbool.h>
+#include <stddef.h>
+#include <stdint.h>
 
 typedef uint8_t k_VGA_Gfx_Register;
 enum {
