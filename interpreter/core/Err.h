@@ -15,7 +15,10 @@ struct k_Err {
     intptr_t arg;
 };
 
-void k_Err_describe_text(struct k_Err* err, k_Err_log log, intptr_t logger);
+/**
+ * @see K_ERR_SET_TEXT
+ */
+void k_Err_describe_text(struct k_Err*, k_Err_log, intptr_t);
 
 bool k_Err_has(struct k_Err* err);
 
@@ -23,12 +26,12 @@ bool k_Err_has(struct k_Err* err);
  * @see K_ERR_SET
  */
 void k_Err_set(
-    struct k_Err* err,
-    void (*describe)(struct k_Err*, k_Err_log, intptr_t),
-    const char* function,
-    char* file,
-    size_t line,
-    intptr_t arg);
+    struct k_Err*,
+    void (*)(struct k_Err*, k_Err_log, intptr_t),
+    const char*,
+    char*,
+    size_t,
+    intptr_t);
 
 #define K_ERR_SET(err, describe, arg) \
     k_Err_set( \

@@ -9,7 +9,7 @@ bool k_Err_has(struct k_Err* err) {
     return err->describe != NULL;
 }
 
-// FIXME: discourage reuse?
+// FIXME: discourage reuse? make it an error?
 void k_Err_set(
         struct k_Err* err,
         void (*describe)(struct k_Err*, k_Err_log, intptr_t),
