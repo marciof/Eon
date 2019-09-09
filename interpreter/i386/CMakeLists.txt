@@ -43,7 +43,8 @@ add_executable(${PROJECT_NAME}-i386
     vga/Text.h
     IO.asm
     IO.h
-    Log.c
+    vga/Log.c
+    vga/Log.h
     Memory.asm
     Memory.c
     arg.asm

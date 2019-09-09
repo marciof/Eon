@@ -1,4 +1,5 @@
 add_library(${PROJECT_NAME}-native
+    Log.h
     Log.c
     Memory.c)
 

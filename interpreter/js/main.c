@@ -1,17 +1,21 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
-#include "../core/Log.h"
-#include "Errno.h"
+#include "../native/Log.h"
 #include "Input.h"
 #include "Token.h"
 
 int main(void) {
     struct k_Err err = K_ERR_INIT;
+
+    struct k_Log log;
+    k_Std_Stream_Log_init(&log);
+
     struct k_Input* stdin_input = k_Input_from_fd(
         STDIN_FILENO, "<stdin>", &err);
 
     if (k_Err_has(&err)) {
+        k_Log_error(&log, &err);
         return EXIT_FAILURE;
     }
 
@@ -29,7 +33,7 @@ int main(void) {
     int exit_status;
 
     if (k_Err_has(&err)) {
-        k_Log_error(k_Log_get(), &err);
+        k_Log_error(&log, &err);
         exit_status = EXIT_FAILURE;
     }
     else {

@@ -25,9 +25,8 @@ JavaScript:
 - Avoid using variable-length arrays.
 - Why is the output directory of the cmake build in the root alongside sources and not in the build directory?
 - Error handling:
-  - Avoid calls to k_Log_get()?
   - Check uses of K_LOG_ERROR and whether it should be made an Err for proper logging elsewhere.
-  - Make Err be the 2nd param always for consistency.
+  - Make Err be the last param always for consistency.
   - Check places where it assumed K_LOG_ERROR was stopping the system.
   - Verify all uses of Err (where it's missing, where it's not needed, etc).
 - How to have documentation comments within Assembly source code?
