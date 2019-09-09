@@ -1,4 +1,5 @@
 #pragma once
+#include <stdarg.h>
 #include <stdint.h>
 #include "Err.h"
 
@@ -41,4 +42,5 @@ void k_Log_msg(
     struct k_Log* log,
     struct k_Err* err,
     enum k_Log_Level lvl,
-    const char* format, ...);
+    char* format,
+    ...);

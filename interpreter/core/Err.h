@@ -5,7 +5,7 @@
 
 #define K_ERR_INIT {NULL}
 
-typedef void (*k_Err_log)(intptr_t logger, const char* format, ...);
+typedef void (*k_Err_log)(intptr_t logger, char* format, ...);
 
 struct k_Err {
     void (*describe)(struct k_Err* err, k_Err_log log, intptr_t logger);
