@@ -23,14 +23,13 @@ enum {K_LOG_TAB_SIZE_SPACES = 4};
 
 enum k_Log_Level {K_LOG_LEVEL_ERROR, K_LOG_LEVEL_WARN, K_LOG_LEVEL_INFO};
 
-// FIXME: use Ref? remove unused `val`?
+// FIXME: use Ref?
 // FIXME: add timestamps?
 struct k_Log {
     void (*print_ch)(
         struct k_Log* log, enum k_Log_Level lvl, char ch, struct k_Err* err);
     void (*print_str)(
         struct k_Log* log, enum k_Log_Level lvl, char* str, struct k_Err* err);
-    uint8_t val[];
 };
 
 /**
