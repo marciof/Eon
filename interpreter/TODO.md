@@ -1,7 +1,7 @@
 # Ideas
 
 - Quick and easy interactivity like GNU Octave (ie. Matlab).
-- Able to run over SSH efficiency like X11?
+- Able to run over SSH efficiently like X11?
 - Unix tools philosophy for the interpreter? Command line options for each stage for textual output (easier to debug and integrate with other external tools without code linking?): stream tokens from input one per line, then parser, etc
 
 # Resources
@@ -16,6 +16,8 @@ JavaScript:
 
 # Cleanups
 
+- Compile on both GCC and Clang for portability?
+- Use ccache for speed? https://ccache.dev/
 - Specify all build dependencies.
   - Sign-up to interest mailing lists.
   - How to test macOS?
@@ -51,6 +53,7 @@ JavaScript:
 - shellcheck for shell scripts (add to dependencies as well)
 - Continuous integration
   - Verify CMake version when installing? (See .travil.yml)
+  - https://about.gitlab.com/
   - https://bitbucket.org/product/features/pipelines
 - Fuzzy testing
   - http://lcamtuf.coredump.cx/afl/
