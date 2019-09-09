@@ -8,7 +8,7 @@
 #define FORMAT_STR_ERROR "Invalid logging format string"
 #define STATIC_ARRAY_LEN(array) (sizeof((array)) / sizeof((array)[0]))
 
-static void print_int(
+static void print_unsigned_int(
         struct k_Log* log,
         struct k_Err* err,
         enum k_Log_Level lvl,
@@ -33,7 +33,7 @@ static void print_int(
     }
 
     if (integer != 0) {
-        print_int(log, err, lvl, integer, base);
+        print_unsigned_int(log, err, lvl, integer, base);
         if (k_Err_has(err)) {
             return;
         }
@@ -42,12 +42,53 @@ static void print_int(
     log->print_str(log, lvl, byte + i + 1, err);
 }
 
-// FIXME: too long, refactor
+static char* print_int(
+        struct k_Log* log,
+        struct k_Err* err,
+        enum k_Log_Level lvl,
+        char* format,
+        int integer) {
+
+    if (*format == 'u') {
+        ++format;
+    }
+    else if (integer < 0) {
+        log->print_ch(log, lvl, '-', err);
+        if (k_Err_has(err)) {
+            return NULL;
+        }
+        integer = -integer;
+    }
+
+    switch (*format++) {
+        case 'b':
+            print_unsigned_int(log, err, lvl, (unsigned) integer, 2);
+            if (k_Err_has(err)) {
+                return NULL;
+            }
+            log->print_ch(log, lvl, 'b', err);
+            break;
+        case 'h':
+            print_unsigned_int(log, err, lvl, (unsigned) integer, 16);
+            if (k_Err_has(err)) {
+                return NULL;
+            }
+            log->print_ch(log, lvl, 'h', err);
+            break;
+        default:
+            print_unsigned_int(log, err, lvl, (unsigned) integer, 10);
+            --format;
+            break;
+    }
+
+    return format;
+}
+
 static void print(
         struct k_Log* log,
         struct k_Err* err,
         enum k_Log_Level lvl,
-        const char* format,
+        char* format,
         va_list args) {
 
     for (; *format != '\0'; ++format) {
@@ -86,7 +127,6 @@ static void print(
         }
 
         char* str;
-        int integer;
 
         switch (*format++) {
         case 'c':
@@ -96,41 +136,8 @@ static void print(
             str = va_arg(args, char*);
             log->print_str(log, lvl, str == NULL ? "(null)" : str, err);
             break;
-        case 'i':
-            integer = va_arg(args, int);
-
-            if (*format == 'u') {
-                ++format;
-            }
-            else if (integer < 0) {
-                log->print_ch(log, lvl, '-', err);
-                if (k_Err_has(err)) {
-                    return;
-                }
-                integer = -integer;
-            }
-
-            switch (*format++) {
-            case 'b':
-                print_int(log, err, lvl, (unsigned) integer, 2);
-                if (k_Err_has(err)) {
-                    return;
-                }
-                log->print_ch(log, lvl, 'b', err);
-                break;
-            case 'h':
-                print_int(log, err, lvl, (unsigned) integer, 16);
-                if (k_Err_has(err)) {
-                    return;
-                }
-                log->print_ch(log, lvl, 'h', err);
-                break;
-            default:
-                print_int(log, err, lvl, (unsigned) integer, 10);
-                --format;
-                break;
-            }
-
+        case 'i':;
+            format = print_int(log, err, lvl, format, va_arg(args, int));
             break;
         default:
             log->print_ch(log, lvl, '\n', err);

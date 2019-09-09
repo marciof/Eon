@@ -45,6 +45,7 @@ JavaScript:
 
 # Testing
 
+- Memory leaks, Valgrind
 - Static code analysis, https://www.owasp.org/index.php/Static_Code_Analysis
 - shellcheck for shell scripts (add to dependencies as well)
 - Continuous integration
