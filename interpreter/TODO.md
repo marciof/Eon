@@ -56,7 +56,7 @@ JavaScript interpreters:
   - Just echo back each line from stdin in a robust way.
   - Integrate with readline.
   - Syntax highlighting. (Language Server Protocol? https://langserver.org/)
-  - Translate AST to a backend that writes JavaScript and/or Lisp for a quicker first release? Can use an embedded interpreter to run it on spot.
+  - Translate AST to a backend that writes JavaScript (browser and node?) and/or Lisp for a quicker first release? Can use an embedded interpreter to run it on spot.
 
 # Testing
 
