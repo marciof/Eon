@@ -2,8 +2,8 @@
 #include <stdbool.h>
 #include <stddef.h>
 #include <stdint.h>
+#include "../core/Err.h"
 #include "../core/Ref.h"
-#include "Errno.h"
 #include "Str.h"
 
 #define K_COMMENT_QUOTE 0x23
@@ -12,7 +12,9 @@
 
 struct k_Input {
     K_REF_FIELD;
-    // `EOF` on EOF
+    /**
+     * `EOF` on EOF
+     */
     int (*read_ch)(struct k_Input* input, struct k_Err* err);
     int (*peek_ch)(struct k_Input* input, struct k_Err* err);
     char* location;

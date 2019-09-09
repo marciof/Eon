@@ -1,5 +1,6 @@
 #include <stdint.h>
 #include <stdlib.h>
+#include "../native/Errno.h"
 #include "Str.h"
 
 static void increase_max_len(struct k_Str* str, struct k_Err* err) {

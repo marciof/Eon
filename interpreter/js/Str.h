@@ -1,7 +1,7 @@
 #pragma once
 #include <stddef.h>
+#include "../core/Err.h"
 #include "../core/Ref.h"
-#include "Errno.h"
 
 struct k_Str {
     K_REF_FIELD;

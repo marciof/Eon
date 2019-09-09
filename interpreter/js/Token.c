@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "../core/Log.h"
+#include "../native/Errno.h"
 #include "Token.h"
 
 static void describe_token_err(

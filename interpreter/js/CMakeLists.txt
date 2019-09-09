@@ -1,8 +1,6 @@
 # FIXME: merge into core
 add_executable(${PROJECT_NAME}-js
     main.c
-    Errno.h
-    Errno.c
     Str.h
     Str.c
     Token.h

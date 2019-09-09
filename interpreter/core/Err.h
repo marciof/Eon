@@ -5,6 +5,9 @@
 
 #define K_ERR_INIT {NULL}
 
+/**
+ * @see k_Log
+ */
 typedef void (*k_Err_log)(intptr_t logger, char* format, ...);
 
 struct k_Err {
