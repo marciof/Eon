@@ -1,6 +1,7 @@
 # Ideas
 
 - Quick and easy interactivity like GNU Octave (ie. Matlab).
+- Able to run over SSH efficiency like X11?
 - Unix tools philosophy for the interpreter? Command line options for each stage for textual output (easier to debug and integrate with other external tools without code linking?): stream tokens from input one per line, then parser, etc
 
 # Resources
