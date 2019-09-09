@@ -10,11 +10,10 @@ int main(int argc, char* argv[]) {
     // FIXME: log full command line
     // FIXME: move logging elsewhere?
     for (size_t i = 0; i < (unsigned) argc; ++i) {
-        k_Log_msg(&log, &err, K_LOG_INFO,
-            "Command line: [{i}] '{s}'", i, argv[i]);
+        k_Log_info(&log, &err, "Command line: [{i}] '{s}'", i, argv[i]);
 
         if (k_Err_has(&err)) {
-            k_Log_error(&log, &err);
+            k_Log_err_details(&log, &err);
             return EXIT_FAILURE;
         }
     }

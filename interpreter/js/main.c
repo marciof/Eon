@@ -15,7 +15,7 @@ int main(void) {
         STDIN_FILENO, "<stdin>", &err);
 
     if (k_Err_has(&err)) {
-        k_Log_error(&log, &err);
+        k_Log_err_details(&log, &err);
         return EXIT_FAILURE;
     }
 
@@ -33,7 +33,7 @@ int main(void) {
     int exit_status;
 
     if (k_Err_has(&err)) {
-        k_Log_error(&log, &err);
+        k_Log_err_details(&log, &err);
         exit_status = EXIT_FAILURE;
     }
     else {

@@ -80,7 +80,7 @@ static void log_boot_device(
     if (K_BIT_IS_SET(info->flags, MULTIBOOT_INFO_BOOTDEV)) {
         struct Boot_Device* device = (struct Boot_Device*) &info->boot_device;
 
-        k_Log_msg(log, err, K_LOG_INFO,
+        k_Log_info(log, err,
             "Boot device: drive={iuh}; partitions=[{iuh}, {iuh}, {iuh}]",
             device->drive_num,
             device->top_level_partition,
@@ -102,7 +102,7 @@ static void log_boot_modules(
     for (size_t i = 0; i < info->mods_count; ++i) {
         struct multiboot_mod_list* module = &modules[i];
 
-        k_Log_msg(log, err, K_LOG_INFO,
+        k_Log_info(log, err,
             "Boot module: start={iuh}; end={iuh}; string='{s}'",
             module->mod_start, module->mod_end, (char*) module->cmdline);
 
@@ -129,7 +129,7 @@ static void log_drives(
 
         position += drive->size;
 
-        k_Log_msg(log, err, K_LOG_INFO,
+        k_Log_info(log, err,
             "Drive: num={iu}; mode={iu}; cylinders={iu}; "
             "heads={iu}; sectors={iu}; ports={iuh}",
             drive->number, drive->access_mode, drive->cylinders,
@@ -164,7 +164,7 @@ static void log_memory_map(
 
         position += sizeof(region->size) + region->size;
 
-        k_Log_msg(log, err, K_LOG_INFO,
+        k_Log_info(log, err,
             "Memory map region: addr=[{iuh}, {iuh}]; "
             "size=[{iuh}, {iuh}] B; type={iu}",
             (unsigned) (region->addr >> 32),
@@ -185,14 +185,15 @@ static void log_symbol_table(
     if (K_BIT_IS_SET(info->flags, MULTIBOOT_INFO_AOUT_SYMS)) {
         struct multiboot_aout_symbol_table* table = &info->u.aout_sym;
 
-        k_Log_msg(log, err, K_LOG_INFO, "a.out symbol table: "
+        k_Log_info(log, err, "a.out symbol table: "
             "size={iu}; string table size={iu}; addr={iuh}",
             table->tabsize, table->strsize, table->addr);
     }
     else if (K_BIT_IS_SET(info->flags, MULTIBOOT_INFO_ELF_SHDR)) {
         struct multiboot_elf_section_header_table* table = &info->u.elf_sec;
 
-        k_Log_msg(log, err, K_LOG_INFO, "ELF section header table: "
+        k_Log_info(log, err,
+            "ELF section header table: "
             "num={iu}; size={iu} B; addr={iuh}; shndx={iu}",
             table->num, table->size, table->addr, table->shndx);
     }
@@ -202,7 +203,7 @@ static void log_vbe(
         struct multiboot_info* info, struct k_Err* err, struct k_Log* log) {
 
     if (K_BIT_IS_SET(info->flags, MULTIBOOT_INFO_VBE_INFO)) {
-        k_Log_msg(log, err, K_LOG_INFO,
+        k_Log_info(log, err,
             "VBE: control info={iuh}; mode info={iuh}; "
             "current video mode={iu}",
             info->vbe_control_info,     // Obtained by VBE function 00h.
@@ -219,7 +220,7 @@ static void log_vbe(
            interface defined in VBE version 2.0 or later. If it isn't
            available, those fields are set to zero. */
 
-        k_Log_msg(log, err, K_LOG_INFO,
+        k_Log_info(log, err,
             "VBE 2.0+ interface table: segment={iuh}; "
             "offset={iuh}; length={iu} B", info->vbe_interface_seg,
             info->vbe_interface_off, info->vbe_interface_len);
@@ -230,8 +231,8 @@ struct multiboot_info* k_Multiboot_get_info(
         struct k_Log* log, struct k_Err* err) {
 
     if (k_Multiboot_magic_num != MULTIBOOT_BOOTLOADER_MAGIC) {
-        k_Log_msg(log, err, K_LOG_ERROR,
-            "Invalid Multiboot magic number: {iuh}", k_Multiboot_magic_num);
+        k_Log_error(log, err, "Invalid Multiboot magic number: {iuh}",
+            k_Multiboot_magic_num);
 
         if (k_Err_has(err)) {
             return NULL;
@@ -241,7 +242,7 @@ struct multiboot_info* k_Multiboot_get_info(
     if (K_BIT_IS_SET(k_Multiboot_info->flags, MULTIBOOT_INFO_AOUT_SYMS)
         && K_BIT_IS_SET(k_Multiboot_info->flags, MULTIBOOT_INFO_ELF_SHDR))
     {
-        k_Log_msg(log, err, K_LOG_ERROR,
+        k_Log_error(log, err,
             "Invalid Multiboot information: "
             "Both bits 4 and 5 of the flags field are set");
 
@@ -256,14 +257,13 @@ struct multiboot_info* k_Multiboot_get_info(
 void k_Multiboot_log_info(
         struct multiboot_info* info, struct k_Log* log, struct k_Err* err) {
 
-    k_Log_msg(log, err, K_LOG_INFO, "Multiboot: flags={iub}", info->flags);
+    k_Log_info(log, err, "Multiboot: flags={iub}", info->flags);
     if (k_Err_has(err)) {
         return;
     }
 
     if (K_BIT_IS_SET(info->flags, MULTIBOOT_INFO_MEMORY)) {
-        k_Log_msg(log, err, K_LOG_INFO,
-            "Memory: lower={iu} KiB; upper={iu} KiB",
+        k_Log_info(log, err, "Memory: lower={iu} KiB; upper={iu} KiB",
             info->mem_lower,        // From 0 to 640.
             info->mem_upper);       // Starting at 1024.
 
@@ -278,7 +278,7 @@ void k_Multiboot_log_info(
     }
 
     if (K_BIT_IS_SET(info->flags, MULTIBOOT_INFO_CMDLINE)) {
-        k_Log_msg(log, err, K_LOG_INFO, "Command line: '{s}'", info->cmdline);
+        k_Log_info(log, err, "Command line: '{s}'", info->cmdline);
         if (k_Err_has(err)) {
             return;
         }
@@ -305,7 +305,7 @@ void k_Multiboot_log_info(
         /* ROM configuration table as returned by the "get configuration"
            BIOS call. If it failed, the size of the table must be zero. */
 
-        k_Log_msg(log, err, K_LOG_INFO, "ROM configuration: table={iuh}",
+        k_Log_info(log, err, "ROM configuration: table={iuh}",
             info->config_table);
         if (k_Err_has(err)) {
             return;
@@ -313,8 +313,7 @@ void k_Multiboot_log_info(
     }
 
     if (K_BIT_IS_SET(info->flags, MULTIBOOT_INFO_BOOT_LOADER_NAME)) {
-        k_Log_msg(log, err, K_LOG_INFO, "Boot loader: {s}",
-            info->boot_loader_name);
+        k_Log_info(log, err, "Boot loader: {s}", info->boot_loader_name);
         if (k_Err_has(err)) {
             return;
         }
@@ -324,7 +323,7 @@ void k_Multiboot_log_info(
         struct multiboot_apm_info* table
             = (struct multiboot_apm_info*) info->apm_table;
 
-        k_Log_msg(log, err, K_LOG_INFO, "APM table: version={iu}; flags={iub}",
+        k_Log_info(log, err, "APM table: version={iu}; flags={iub}",
             table->version, table->flags);
         if (k_Err_has(err)) {
             return;

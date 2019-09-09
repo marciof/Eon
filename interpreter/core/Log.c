@@ -191,12 +191,12 @@ static void log_error_callback(intptr_t logger, char* format, ...) {
     va_end(args);
 }
 
-void k_Log_error(struct k_Log* log, struct k_Err* err) {
+void k_Log_err_details(struct k_Log* log, struct k_Err* err) {
     struct k_Err discard_log_err = K_ERR_INIT;
 
     err->describe(err, log_error_callback, (intptr_t) log);
-    k_Log_msg(log, &discard_log_err, K_LOG_ERROR,
-        "  `{s}()` at {s}:{iu}", err->function, err->file, err->line);
+    k_Log_error(log, &discard_log_err, "  `{s}()` at {s}:{iu}",
+        err->function, err->file, err->line);
 }
 
 void k_Log_msg(
@@ -209,5 +209,41 @@ void k_Log_msg(
     va_list args;
     va_start(args, format);
     print_log(log, err, lvl, format, args);
+    va_end(args);
+}
+
+void k_Log_error(
+        struct k_Log* log,
+        struct k_Err* err,
+        char* format,
+        ...) {
+
+    va_list args;
+    va_start(args, format);
+    print_log(log, err, K_LOG_ERROR, format, args);
+    va_end(args);
+}
+
+void k_Log_warning(
+        struct k_Log* log,
+        struct k_Err* err,
+        char* format,
+        ...) {
+
+    va_list args;
+    va_start(args, format);
+    print_log(log, err, K_LOG_WARN, format, args);
+    va_end(args);
+}
+
+void k_Log_info(
+        struct k_Log* log,
+        struct k_Err* err,
+        char* format,
+        ...) {
+
+    va_list args;
+    va_start(args, format);
+    print_log(log, err, K_LOG_INFO, format, args);
     va_end(args);
 }

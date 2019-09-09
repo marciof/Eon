@@ -21,7 +21,7 @@ struct k_Log {
 /**
  * Description ends in a newline.
  */
-void k_Log_error(struct k_Log* log, struct k_Err* err);
+void k_Log_err_details(struct k_Log* log, struct k_Err* err);
 
 /**
  * Log format is a regular string with placeholders denoted by curly braces.
@@ -42,5 +42,23 @@ void k_Log_msg(
     struct k_Log* log,
     struct k_Err* err,
     enum k_Log_Level lvl,
+    char* format,
+    ...);
+
+void k_Log_error(
+    struct k_Log* log,
+    struct k_Err* err,
+    char* format,
+    ...);
+
+void k_Log_warning(
+    struct k_Log* log,
+    struct k_Err* err,
+    char* format,
+    ...);
+
+void k_Log_info(
+    struct k_Log* log,
+    struct k_Err* err,
     char* format,
     ...);
