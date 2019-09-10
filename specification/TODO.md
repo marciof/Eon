@@ -1,6 +1,12 @@
 - GLP/AGPL with Commons Clause? To prevent it from being abused for server software as a service.
   - https://commonsclause.com/
   - https://www.gnu.org/licenses/gpl-faq.html.en
+  - https://news.ycombinator.com/item?id=19362326
+  - https://www.infoworld.com/article/3366297/open-source-licenses-may-not-matter-so-much-any-more.html
+  - https://www.theregister.co.uk/2018/10/16/mongodb_licensning_change/
+  - https://news.ycombinator.com/item?id=19433394
+  - https://www.freecodecamp.org/news/facebook-just-changed-the-license-on-react-heres-a-2-minute-explanation-why-5878478913b2/
+  - https://opensource.stackexchange.com/questions/4875/open-source-license-to-prevent-commercial-use
 - Add a build target to lint/validate Markdown documents (and code documentation) as valid CommonMark.
   - https://github.com/commonmark/cmark
   - https://talk.commonmark.org/t/is-there-a-commonmark-tidy-answer-kinda/2464/3
@@ -22,4 +28,4 @@
   - https://en.wikipedia.org/wiki/Comparison_of_programming_languages_(syntax)
   - http://hyperpolyglot.org/scripting
   - https://github.com/anvaka/common-words/blob/master/README.md
-- Look for best/worst features of other languages/systems (check first the ones listed as inspiration): PowerShell, OCaml, C, Common Lisp, JavaScript, Perl, Python, Scheme, Smalltalk, Java, Clojure, Self, Kotlin, Wren, F#, Matlab, Rust, Ruby, Go, Julia, Haskell, Erlang, Elixir, Typed Racket, PureScript, Elm, Io, ML, Lua, Haxe, Tcl, Shen, REBOL, Mathematica, HyperCard, Awk, Parabola.io, GNU Octave, Maxima Algebra System, Pascal, R, HyperTalk/HyperCard, AppleScript
+- Look for best/worst features of other languages/systems (check first the ones listed as inspiration): PowerShell, OCaml, C, Common Lisp, JavaScript, Perl, Python, Scheme, Smalltalk, Java, Clojure, Self, Kotlin, Wren, F#, Matlab, Rust, Ruby, Go, Julia, Haskell, Erlang, Elixir, Typed Racket, PureScript, Elm, Io, ML, Lua, Haxe, Tcl, Shen, REBOL, Mathematica, HyperCard, Awk, Parabola.io, GNU Octave, Maxima Algebra System, Pascal, R, HyperTalk/HyperCard, AppleScript, https://github.com/andrewbihl/bsed

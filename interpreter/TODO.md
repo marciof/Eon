@@ -10,10 +10,15 @@ Memory management:
 
 - malloc minimal implementation: https://github.com/microsoft/mimalloc
 
-Arbitrary precision numbers:
+Arbitrary precision arithmetic:
 
+- GMP, https://gmplib.org/
 - LibBF, https://bellard.org/libbf/
 - JavaScript BigInt, https://github.com/tc39/proposal-bigint
+
+Compilation:
+
+- LibJIT, https://www.gnu.org/software/libjit/
 
 Lisp interpreters:
 
