@@ -70,9 +70,11 @@ JavaScript interpreters:
 - Continuous integration
   - Verify CMake version when installing? (See .travil.yml)
   - https://about.gitlab.com/
+  - https://ci.appveyor.com/login
   - https://bitbucket.org/product/features/pipelines
-- Fuzzy testing
-  - http://lcamtuf.coredump.cx/afl/
+  - https://github.com/travis-ci/travis-ci/issues/5770
+  - https://docs.travis-ci.com/user/multi-os/
+- Fuzzy testing, http://lcamtuf.coredump.cx/afl/
 - Hashing DoS
 
 ---
