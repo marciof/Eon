@@ -7,7 +7,7 @@
   - https://news.ycombinator.com/item?id=19433394
   - https://www.freecodecamp.org/news/facebook-just-changed-the-license-on-react-heres-a-2-minute-explanation-why-5878478913b2/
   - https://opensource.stackexchange.com/questions/4875/open-source-license-to-prevent-commercial-use
-- Add a build target to lint/validate Markdown documents (and code documentation) as valid CommonMark.
+- Add a build target to lint/validate Markdown documents (and code documentation) as valid CommonMark. Check licensing as well as for CommonMark.
   - https://github.com/commonmark/cmark
   - https://talk.commonmark.org/t/is-there-a-commonmark-tidy-answer-kinda/2464/3
   - https://github.com/DavidAnson/markdownlint

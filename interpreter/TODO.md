@@ -32,6 +32,7 @@ JavaScript interpreters:
 
 # Cleanups
 
+- Check licensing of libraries and tools/dependencies.
 - Compile on both GCC and Clang for portability?
 - Use ccache for speed? https://ccache.dev/
 - Specify all build dependencies.
@@ -64,9 +65,14 @@ JavaScript interpreters:
 
 # Testing
 
+- Check style tool
 - Memory leaks, Valgrind
-- Static code analysis, https://www.owasp.org/index.php/Static_Code_Analysis
-- shellcheck for shell scripts (add to dependencies as well)
+- Static code analysis
+  - cyclomatic-complexity
+  - https://en.m.wikipedia.org/wiki/SonarQube
+  - https://www.owasp.org/index.php/Static_Code_Analysis
+  - shellcheck for shell scripts (add to dependencies as well)
+  - https://yetanotherchris.dev/clean-code/gestalt-principles/
 - Continuous integration
   - Verify CMake version when installing? (See .travil.yml)
   - https://about.gitlab.com/
