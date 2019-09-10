@@ -37,7 +37,7 @@ JavaScript interpreters:
 - Specify all build dependencies.
   - Sign-up to interest mailing lists.
   - How to test macOS?
-  - Haven't built on Windows yet.
+  - Haven't built on Windows yet. Cross compile too? https://blog.svgames.pl/article/cross-compiling-c-programs-for-ms-windows-using-mingw
 - Reproducible builds?
   - https://reproducible-builds.org/docs/
   - https://signal.org/blog/reproducible-android/

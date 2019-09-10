@@ -20,6 +20,7 @@
   - https://devguide.python.org/compiler/
 - http://www.infoq.com/presentations/Value-Identity-State-Rich-Hickey
 - "Empirical Analysis of Programming Language Adoption", Leo A. Meyerovich, Ariel Rabkin: http://sns.cs.princeton.edu/docs/asr-oopsla13.pdf
+- "Dealing with Properties", Martin Fowler, https://www.martinfowler.com/apsupp/properties.pdf
 - Evaluate typing difficulty of each identifier and syntax quantitatively.
   - Can the syntax grammar be simplified without hurting readability and flexibility?
   - Use easier synonyms for hard to type words?
