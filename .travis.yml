@@ -5,9 +5,9 @@ addons:
    packages:
    - cmake # v2.8 or higher
    - make
-   - g++
+   - gcc # or clang-7
    # i386
-   - g++-multilib # cross-compile 32-bit applications on 64-bit systems
+   - gcc-multilib # cross-compile 32-bit applications on 64-bit systems
    - nasm
    - multiboot
    - grub-common # contains grub-file to verify Multiboot compliance
