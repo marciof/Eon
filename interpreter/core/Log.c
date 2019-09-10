@@ -8,40 +8,6 @@
 #define FORMAT_STR_ERROR "Invalid logging format string"
 #define STATIC_ARRAY_LEN(array) (sizeof((array)) / sizeof((array)[0]))
 
-static void print_unsigned_int(
-        struct k_Log* log,
-        struct k_Err* err,
-        enum k_Log_Level lvl,
-        unsigned int integer,
-        size_t base) {
-
-    if (integer == 0) {
-        log->print_ch(log, lvl, NUMERIC_BASE_CONVERSION_SYMBOLS[integer], err);
-        return;
-    }
-
-    // Reserve 8 chars, which are enough for an 8 bits integer in binary base.
-    // If it isn't for a full range integer, call recursively until it is.
-    char byte[sizeof(char) * (8 + 1)];
-    ssize_t i = STATIC_ARRAY_LEN(byte) - 1 - 1;
-
-    byte[STATIC_ARRAY_LEN(byte) - 1] = '\0';
-
-    while ((i >= 0) && (integer != 0)) {
-        byte[i--] = NUMERIC_BASE_CONVERSION_SYMBOLS[integer % base];
-        integer /= base;
-    }
-
-    if (integer != 0) {
-        print_unsigned_int(log, err, lvl, integer, base);
-        if (k_Err_has(err)) {
-            return;
-        }
-    }
-
-    log->print_str(log, lvl, byte + i + 1, err);
-}
-
 static char* print_int(
         struct k_Log* log,
         struct k_Err* err,
@@ -62,21 +28,21 @@ static char* print_int(
 
     switch (*format++) {
         case 'b':
-            print_unsigned_int(log, err, lvl, (unsigned) integer, 2);
+            k_Log_print_unsigned_int(log, err, lvl, (unsigned) integer, 2);
             if (k_Err_has(err)) {
                 return NULL;
             }
             log->print_ch(log, lvl, 'b', err);
             break;
         case 'h':
-            print_unsigned_int(log, err, lvl, (unsigned) integer, 16);
+            k_Log_print_unsigned_int(log, err, lvl, (unsigned) integer, 16);
             if (k_Err_has(err)) {
                 return NULL;
             }
             log->print_ch(log, lvl, 'h', err);
             break;
         default:
-            print_unsigned_int(log, err, lvl, (unsigned) integer, 10);
+            k_Log_print_unsigned_int(log, err, lvl, (unsigned) integer, 10);
             --format;
             break;
     }
@@ -136,7 +102,7 @@ static void print(
             str = va_arg(args, char*);
             log->print_str(log, lvl, str == NULL ? "(null)" : str, err);
             break;
-        case 'i':;
+        case 'i':
             format = print_int(log, err, lvl, format, va_arg(args, int));
             break;
         default:
@@ -163,16 +129,13 @@ void print_log(
         char* format,
         va_list args) {
 
-    char* msg_prefix;
+    char* msg_prefix = (lvl == K_LOG_LEVEL_ERROR) ? " [ERROR] "
+        : (lvl == K_LOG_LEVEL_WARN) ? " [WARN] "
+        : " [INFO] ";
 
-    if (lvl == K_LOG_LEVEL_ERROR) {
-        msg_prefix = "[ERROR] ";
-    }
-    else if (lvl == K_LOG_LEVEL_WARN) {
-        msg_prefix = "[WARN] ";
-    }
-    else {
-        msg_prefix = "[INFO] ";
+    log->print_timestamp(log, lvl, err);
+    if (k_Err_has(err)) {
+        return;
     }
 
     log->print_str(log, lvl, msg_prefix, err);
@@ -196,6 +159,40 @@ static void log_error_callback(intptr_t logger, char* format, ...) {
     va_start(args, format);
     print_log(log, &discard_log_err, K_LOG_LEVEL_ERROR, format, args);
     va_end(args);
+}
+
+void k_Log_print_unsigned_int(
+        struct k_Log* log,
+        struct k_Err* err,
+        enum k_Log_Level lvl,
+        unsigned int integer,
+        size_t base) {
+
+    if (integer == 0) {
+        log->print_ch(log, lvl, NUMERIC_BASE_CONVERSION_SYMBOLS[integer], err);
+        return;
+    }
+
+    // Reserve 8 chars, which are enough for an 8 bits integer in binary base.
+    // If it isn't for a full range integer, call recursively until it is.
+    char byte[sizeof(char) * (8 + 1)];
+    ssize_t i = STATIC_ARRAY_LEN(byte) - 1 - 1;
+
+    byte[STATIC_ARRAY_LEN(byte) - 1] = '\0';
+
+    while ((i >= 0) && (integer != 0)) {
+        byte[i--] = NUMERIC_BASE_CONVERSION_SYMBOLS[integer % base];
+        integer /= base;
+    }
+
+    if (integer != 0) {
+        k_Log_print_unsigned_int(log, err, lvl, integer, base);
+        if (k_Err_has(err)) {
+            return;
+        }
+    }
+
+    log->print_str(log, lvl, byte + i + 1, err);
 }
 
 void k_Log_err_details(struct k_Log* log, struct k_Err* err) {

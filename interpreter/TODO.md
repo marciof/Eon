@@ -91,7 +91,7 @@ JavaScript interpreters:
   - https://github.com/andrewrk/malcheck
   - https://github.com/google/sanitizers
   - http://clang-analyzer.llvm.org
-- Make it more resilient, warn more instead of aborting.
+- Make it more resilient, warn more instead of aborting, and errors during logging too.
 - Add location to log calls? function, file, line? Or to warnings and errors only?
 - Add color to native logging.
 - Logging of long integers.

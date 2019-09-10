@@ -34,9 +34,22 @@ static void print_str(
     k_VGA_Text_print_str(str);
 }
 
+// FIXME: use a real clock for the time?
+static void print_timestamp(
+        struct k_Log* log,
+        enum k_Log_Level lvl,
+        struct k_Err* err) {
+
+    ++log->value;
+    set_color(lvl);
+    k_Log_print_unsigned_int(log, err, lvl, log->value, 10);
+}
+
 void k_VGA_Log_init(struct k_Log* log) {
     k_VGA_Text_init();
 
     log->print_ch = print_ch;
     log->print_str = print_str;
+    log->print_timestamp = print_timestamp;
+    log->value = 0;
 }
