@@ -12,7 +12,7 @@ addons:
    - multiboot
    - grub-common # contains grub-file to verify Multiboot compliance
    # native
-   # js
+   # javascript
    - valgrind
    # vm.sh
    - grub-common # contains grub-mkrescue to build a bootable ISO

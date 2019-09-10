@@ -27,7 +27,6 @@ JavaScript interpreters:
 
 # Cleanups
 
-- Rename `js` to javascript.
 - Compile on both GCC and Clang for portability?
 - Use ccache for speed? https://ccache.dev/
 - Specify all build dependencies.
@@ -47,7 +46,7 @@ JavaScript interpreters:
 - How to have documentation comments within Assembly source code?
 - C tidy/linter?
 - JS uses the same native code, since it's just a backend for code generation, just like a real-time interpreter is another backend. So don't merge it into native to allow an embedded systems to just pick core+native, but merge JS-independent parts into core.
-  - Start moving core stuff (eg. AST) from js/ to core/
+  - Start moving core stuff (eg. AST) from javascript/ to core/
   - Move non-essentials out of core/
 
 # Implementation
@@ -75,7 +74,7 @@ JavaScript interpreters:
 
 - Don't use wrappers to access struct members directly.
 - How to add full stack trace information to `Err` instances?
-- Add Travis CI build matrix for the different builds (native, js, i386) and OSes.
+- Add Travis CI build matrix for the different builds (native, javascript, i386) and OSes.
 - Regularly test building on Debian 32-bit 64-bit, Windows, macOS.
 - Add simple v86 HTML demo?
 - Replace flexible struct member (`val[]`) with a `void*` for portability and also to allow the struct interface to grow without breaking implementations.

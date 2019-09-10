@@ -1,5 +1,5 @@
 # FIXME: merge into core
-add_executable(${PROJECT_NAME}-js
+add_executable(${PROJECT_NAME}-javascript
     main.c
     Str.h
     Str.c
@@ -8,6 +8,6 @@ add_executable(${PROJECT_NAME}-js
     Input.h
     Input.c)
 
-target_link_libraries(${PROJECT_NAME}-js
+target_link_libraries(${PROJECT_NAME}-javascript
     ${PROJECT_NAME}-core
     ${PROJECT_NAME}-native)

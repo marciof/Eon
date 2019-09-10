@@ -34,5 +34,5 @@ if(BUILD_FOR_I386_HOST)
 endif()
 
 if(BUILD_FOR_JAVASCRIPT_HOST)
-    add_subdirectory(js)
+    add_subdirectory(javascript)
 endif()
