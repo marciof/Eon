@@ -12,24 +12,26 @@ static FILE* get_stream(enum k_Log_Level lvl) {
         : stdout;
 }
 
-// FIXME: error handling fputc
 static void print_ch(
         K_BIT_UNUSED(struct k_Log* log),
         enum k_Log_Level lvl,
         char ch,
-        K_BIT_UNUSED(struct k_Err* err)) {
+        struct k_Err* err) {
 
-    fputc(ch, get_stream(lvl));
+    if (fputc(ch, get_stream(lvl)) == EOF) {
+        K_ERR_SET_ERRNO(err, errno);
+    }
 }
 
-// FIXME: error handling fputs
 static void print_str(
         K_BIT_UNUSED(struct k_Log* log),
         enum k_Log_Level lvl,
         char* str,
         K_BIT_UNUSED(struct k_Err* err)) {
 
-    fputs(str, get_stream(lvl));
+    if (fputs(str, get_stream(lvl)) == EOF) {
+        K_ERR_SET_ERRNO(err, errno);
+    }
 }
 
 static void print_timestamp(
@@ -58,7 +60,6 @@ static void print_timestamp(
 
     if (len < 0) {
         K_ERR_SET_ERRNO(err, errno);
-        return;
     }
 }
 
