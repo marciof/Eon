@@ -1,4 +1,3 @@
-#include <stddef.h>
 #include <stdint.h>
 #include "../core/Memory.h"
 #include "../core/Bit.h"
@@ -80,7 +79,3 @@ K_BIT_PACKED(struct Segment_Descriptor {
 
 STATIC_ASSERT(sizeof(struct Segment_Descriptor) == 8,
     "Memory segment descriptor structure not packed.");
-
-struct k_Memory* k_Memory_get(void) {
-    return NULL;
-}

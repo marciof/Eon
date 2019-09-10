@@ -1,5 +1,4 @@
 #pragma once
 
+// FIXME: define memory structure
 struct k_Memory;
-
-extern struct k_Memory* k_Memory_get(void);
