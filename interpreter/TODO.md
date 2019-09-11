@@ -73,6 +73,7 @@ JavaScript interpreters:
   - https://www.owasp.org/index.php/Static_Code_Analysis
   - shellcheck for shell scripts (add to dependencies as well)
   - https://yetanotherchris.dev/clean-code/gestalt-principles/
+- Code coverage
 - Continuous integration
   - Verify CMake version when installing? (See .travil.yml)
   - https://about.gitlab.com/
