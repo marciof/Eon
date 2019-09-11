@@ -1,5 +1,5 @@
 # https://www.gnu.org/software/libc/manual/html_node/Feature-Test-Macros.html
-add_compile_definitions(_POSIX_C_SOURCE=200809L)
+add_definitions(-D_POSIX_C_SOURCE=200809L)
 
 add_library(${PROJECT_NAME}-native
     Log.h
