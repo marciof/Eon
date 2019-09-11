@@ -24,6 +24,9 @@ Lisp interpreters:
 
 - Kilo LISP, http://t3x.org/klisp/index.html
 - femtolisp, https://github.com/JeffBezanson/femtolisp
+- Chicken Scheme, http://call-cc.org/
+  - http://wiki.call-cc.org/man/4/Embedding
+  - https://wiki.call-cc.org/man/4/Cross%20development
 
 JavaScript interpreters:
 
