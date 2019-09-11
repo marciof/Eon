@@ -33,7 +33,7 @@ JavaScript interpreters:
 # Cleanups
 
 - Check licensing of libraries and tools/dependencies.
-- Compile on both GCC and Clang for portability?
+- Compile on both GCC and Clang for portability? Add optional "-Weverything" for Clang?
 - Use ccache for speed? https://ccache.dev/
 - Specify all build dependencies.
   - Sign-up to interest mailing lists.

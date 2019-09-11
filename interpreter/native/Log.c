@@ -1,9 +1,8 @@
-#define _POSIX_C_SOURCE 200809L
 #include <stdio.h>
 #include <time.h>
 #include "../core/Bit.h"
-#include "../core/Log.h"
 #include "Errno.h"
+#include "Log.h"
 
 // FIXME: add colors
 static FILE* get_stream(enum k_Log_Level lvl) {
@@ -27,7 +26,7 @@ static void print_str(
         K_BIT_UNUSED(struct k_Log* log),
         enum k_Log_Level lvl,
         char* str,
-        K_BIT_UNUSED(struct k_Err* err)) {
+        struct k_Err* err) {
 
     if (fputs(str, get_stream(lvl)) == EOF) {
         K_ERR_SET_ERRNO(err, errno);

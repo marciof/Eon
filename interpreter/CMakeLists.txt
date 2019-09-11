@@ -4,8 +4,10 @@ option(BUILD_FOR_NATIVE_HOST "Build the interpreter to run natively" ON)
 option(BUILD_FOR_I386_HOST "Build the interpreter for an Intel x86 32-bit host" OFF)
 option(BUILD_FOR_JAVASCRIPT_HOST "Build the interpreter for a JavaScript host" OFF)
 
-if(CMAKE_COMPILER_IS_GNUCC)
+if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU")
     set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -std=c11 -pedantic-errors -Wall -Wextra -Wredundant-decls -Wshadow -Wswitch-default -Wundef -Wunused-macros")
+elseif("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
+    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -std=c11 -pedantic-errors -Wall -Wreserved-id-macro -Wextra -Wshadow-all -Wundef -Wunused-macros -Wused-but-marked-unused")
 endif()
 
 set(CORE_SOURCES
