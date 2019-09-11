@@ -122,7 +122,7 @@ static void print(
     }
 }
 
-void print_log(
+static void print_log(
         struct k_Log* log,
         struct k_Err* err,
         enum k_Log_Level lvl,

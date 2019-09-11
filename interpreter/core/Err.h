@@ -3,7 +3,7 @@
 #include <stddef.h>
 #include <stdint.h>
 
-#define K_ERR_INIT {NULL}
+#define K_ERR_INIT {NULL, NULL, NULL, 0, 0}
 
 /**
  * @see k_Log
