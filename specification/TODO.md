@@ -18,6 +18,7 @@
 - Define indentation based syntax grammar.
   - https://docs.python.org/3/reference/grammar.html
   - https://devguide.python.org/compiler/
+- FEXPRs, "Special Forms in Lisp", https://www.nhplace.com/kent/Papers/Special-Forms.html
 - http://www.infoq.com/presentations/Value-Identity-State-Rich-Hickey
 - "Empirical Analysis of Programming Language Adoption", Leo A. Meyerovich, Ariel Rabkin: http://sns.cs.princeton.edu/docs/asr-oopsla13.pdf
 - "Dealing with Properties", Martin Fowler, https://www.martinfowler.com/apsupp/properties.pdf
