@@ -118,7 +118,7 @@ JavaScript interpreters:
 - Upgrade to Multiboot 2?
 - https://github.com/copy/v86
 - Option or tool to validate Coding Style guidelines.
-- Verify space/time complexity in the specification matches the implementation.
+- Verify space/time complexity in the spec matches the implementation.
 - Prototyping:
   - "I Built a Lisp Compiler", https://news.ycombinator.com/item?id=19508616 (timmorgan.org)
   - "Lisp Shell", https://news.ycombinator.com/item?id=16878498, https://github.com/tonyg/racket-something

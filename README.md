@@ -43,5 +43,5 @@ See `.travis.yml`.
   - `i386/`: builds a Multiboot-compliant executable to run on an Intel x86 32-bit host
   - `javascript/`: builds a standalone executable to compile to JavaScript
   - `native/`: builds an embeddable library and a standalone executable to run natively (eg. on Windows)
-- `specification/`: language specification
+- `spec/`: language specification
 - `stdlib/`: standard library for the interpreter
