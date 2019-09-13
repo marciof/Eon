@@ -89,6 +89,7 @@ Practical:
 - Python
 - Unix shell
 - JavaScript
+- Perl
 
 # Coding Style
 
