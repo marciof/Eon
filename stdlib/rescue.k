@@ -141,6 +141,17 @@ $ date > now
 pipe date to: \now
 date to: \now
 
-$ cat records | sort | uniq
+$ A <| cat | sort | uniq |> B
+
 (uniq (sort (cat records)))
-pipe records cat sort uniq
+
+pipe in: A
+     to: cat to: sort to: uniq
+     out: B
+
+# `|` as a function
+$ | cat records | sort | uniq
+$ | date > now
+
+# as a delimiter
+io::print |cat records|uniq|sort|

@@ -27,6 +27,11 @@
 - https://docs.python.org/3/reference/grammar.html
 - https://devguide.python.org/compiler/
 
+* TODO investigate shell pipeline support
+
+- "Pipelines Support Vectorized, Point-Free, and Imperative Style", https://www.oilshell.org/blog/2017/01/15.html
+- "For the Love of Pipes", https://blog.jessfraz.com/post/for-the-love-of-pipes/
+
 * TODO FEXPRs: "Special Forms in Lisp", https://www.nhplace.com/kent/Papers/Special-Forms.html
 
 * TODO http://www.infoq.com/presentations/Value-Identity-State-Rich-Hickey
