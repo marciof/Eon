@@ -16,6 +16,10 @@ Arbitrary precision arithmetic:
 - LibBF, https://bellard.org/libbf/
 - JavaScript BigInt, https://github.com/tc39/proposal-bigint
 
+Immutable data structures:
+
+- https://github.com/immerjs/immer
+
 Compilation:
 
 - LibJIT, https://www.gnu.org/software/libjit/
