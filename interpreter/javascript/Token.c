@@ -137,6 +137,10 @@ struct k_Token* k_Token_parse(struct k_Input* input, struct k_Err* err) {
         return NULL;
     }
 
+    if (k_Err_has(err)) {
+        return NULL;
+    }
+
     struct k_Token* token = new_token(type, str, input, line, column, err);
     K_REF_DEC(str);
     return token;
