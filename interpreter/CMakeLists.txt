@@ -7,7 +7,7 @@ option(BUILD_FOR_JAVASCRIPT_HOST "Build the interpreter for a JavaScript host" O
 if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU")
     set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -std=c99 -pedantic-errors -Wall -Wextra -Wredundant-decls -Wshadow -Wswitch-default -Wundef -Wunused-macros")
 elseif("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
-    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -std=c99 -pedantic-errors -Wall -Wreserved-id-macro -Wextra -Wshadow-all -Wundef -Wunused-macros -Wused-but-marked-unused -Wmissing-field-initializers -Wmissing-prototypes")
+    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -std=c99 -pedantic-errors -Wall -Wreserved-id-macro -Wextra -Wshadow-all -Wundef -Wunused-macros -Wused-but-marked-unused -Wmissing-field-initializers -Wmissing-prototypes -Wsign-conversion")
 endif()
 
 set(CORE_SOURCES

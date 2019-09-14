@@ -26,7 +26,7 @@ static int peek_ch(struct k_Input* input, struct k_Err* err) {
             return EOF;
         }
 
-        fd_buffer->len = len_bytes / sizeof(*fd_buffer->buf);
+        fd_buffer->len = ((size_t) len_bytes) / sizeof(*fd_buffer->buf);
         fd_buffer->pos = 0;
     }
 
