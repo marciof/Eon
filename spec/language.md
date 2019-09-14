@@ -80,8 +80,8 @@ Practical:
 - Multi-platform: *"Write once, run everywhere."*
 - Native code interoperability (FFI, Foreign Function Interface).
 - Permissive license.
-- Low cognitive load and typing effort (US keyboard layout, favor home row keys).
-- Standard tooling: single-style source code formatter, testing framework, profiler, debugger local/remote, package manager, command-line documentation viewer.
+- Low cognitive load and typing effort (US QWERTY keyboard layout, favor home row keys).
+- Standard tooling: single-style source code formatter/linter, testing framework, profiler, local/remote debugger, package manager, command-line documentation viewer.
 
 ## Inspiration
 
