@@ -1,31 +1,40 @@
 enable_language(ASM_NASM)
+set(EXECUTABLE_NAME_I386 ${PROJECT_NAME}-i386)
+
+# Some linkers require absolute paths to the linker script.
+set(LINKER_SCRIPT ${CMAKE_CURRENT_SOURCE_DIR}/layout.lds)
 
 # Don't force 64-bit in case it's cross-compiling on a 32-bit system.
 string(REPLACE "-f elf64" ""
     CMAKE_ASM_NASM_COMPILE_OBJECT "${CMAKE_ASM_NASM_COMPILE_OBJECT}")
-
 if(CMAKE_C_COMPILER_ID MATCHES "^(GNU|Clang)$")
-    # Disable dynamic linking for static linking with a custom script.
-    string(REPLACE "-rdynamic" ""
-        CMAKE_SHARED_LIBRARY_LINK_C_FLAGS "${CMAKE_SHARED_LIBRARY_LINK_C_FLAGS}")
+    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -m32")
+    set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -m elf_i386")
 endif()
 
-string(REPLACE "<CMAKE_C_COMPILER>" "<CMAKE_LINKER>"
-    CMAKE_C_LINK_EXECUTABLE "${CMAKE_C_LINK_EXECUTABLE}")
+# Disable dynamic linking for static linking with a custom script.
+if(CMAKE_C_COMPILER_ID MATCHES "^(GNU|Clang)$")
+    string(REPLACE "-rdynamic" ""
+        CMAKE_SHARED_LIBRARY_LINK_C_FLAGS "${CMAKE_SHARED_LIBRARY_LINK_C_FLAGS}")
 
-string(REGEX REPLACE "<(CMAKE_C_LINK_)?FLAGS>" ""
-    CMAKE_C_LINK_EXECUTABLE "${CMAKE_C_LINK_EXECUTABLE}")
+    set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} --script=${LINKER_SCRIPT}")
 
-set(LINKER_SCRIPT ${CMAKE_CURRENT_SOURCE_DIR}/layout.lds)
+    string(REPLACE "<CMAKE_C_COMPILER>" "<CMAKE_LINKER>"
+        CMAKE_C_LINK_EXECUTABLE "${CMAKE_C_LINK_EXECUTABLE}")
+
+    string(REGEX REPLACE "<(CMAKE_C_LINK_)?FLAGS>" ""
+        CMAKE_C_LINK_EXECUTABLE "${CMAKE_C_LINK_EXECUTABLE}")
+endif()
 
 # NASM requires include directories to end in a slash.
 set(CMAKE_ASM_NASM_FLAGS "${CMAKE_ASM_NASM_FLAGS} -f elf -i ${CMAKE_CURRENT_SOURCE_DIR}/")
 
-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -m32 -fno-exceptions -nostdlib -nodefaultlibs -ffreestanding")
+# Force a free-standing environment, no standard library available.
+if(CMAKE_C_COMPILER_ID MATCHES "^(GNU|Clang)$")
+    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fno-exceptions -nostdlib -nodefaultlibs -ffreestanding")
+endif()
 
-set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -m elf_i386 --script=${LINKER_SCRIPT}")
-
-add_executable(${PROJECT_NAME}-i386
+add_executable(${EXECUTABLE_NAME_I386}
     ${LINKER_SCRIPT}
     ${CORE_SOURCES}
     Multiboot.c
@@ -54,9 +63,9 @@ add_executable(${PROJECT_NAME}-i386
     main.asm
     main.c)
 
-set_target_properties(${PROJECT_NAME}-i386 PROPERTIES LINK_DEPENDS ${LINKER_SCRIPT})
+set_target_properties(${EXECUTABLE_NAME_I386} PROPERTIES LINK_DEPENDS ${LINKER_SCRIPT})
 
-add_custom_command(TARGET ${PROJECT_NAME}-i386
+add_custom_command(TARGET ${EXECUTABLE_NAME_I386}
     POST_BUILD
-    COMMAND grub-file --is-x86-multiboot $<TARGET_FILE:${PROJECT_NAME}-i386>
+    COMMAND grub-file --is-x86-multiboot $<TARGET_FILE:${EXECUTABLE_NAME_I386}>
     COMMENT "Verifying executable is Multiboot-compliant via `grub-file`")

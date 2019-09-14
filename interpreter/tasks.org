@@ -1,3 +1,7 @@
+* interpreter
+
+** TODO avoid hardcoded references to sub-project names such as ${PROJECT_NAME}-core
+
 * i386
 
 ** TODO need `-rdynamic` when linking to allow getting backtraces from within?
