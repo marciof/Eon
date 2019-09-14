@@ -1,0 +1,3 @@
+* i386
+
+** TODO need `-rdynamic` when linking to allow getting backtraces from within?

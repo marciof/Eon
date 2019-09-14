@@ -4,8 +4,11 @@ enable_language(ASM_NASM)
 string(REPLACE "-f elf64" ""
     CMAKE_ASM_NASM_COMPILE_OBJECT "${CMAKE_ASM_NASM_COMPILE_OBJECT}")
 
-string(REPLACE "-rdynamic" ""
-    CMAKE_SHARED_LIBRARY_LINK_C_FLAGS "${CMAKE_SHARED_LIBRARY_LINK_C_FLAGS}")
+if(CMAKE_C_COMPILER_ID MATCHES "^(GNU|Clang)$")
+    # Disable dynamic linking for static linking with a custom script.
+    string(REPLACE "-rdynamic" ""
+        CMAKE_SHARED_LIBRARY_LINK_C_FLAGS "${CMAKE_SHARED_LIBRARY_LINK_C_FLAGS}")
+endif()
 
 string(REPLACE "<CMAKE_C_COMPILER>" "<CMAKE_LINKER>"
     CMAKE_C_LINK_EXECUTABLE "${CMAKE_C_LINK_EXECUTABLE}")
