@@ -1,4 +1,5 @@
-# https://www.gnu.org/software/libc/manual/html_node/Feature-Test-Macros.html
+# POSIX.1-2017, Compilation Environment, _POSIX_C_SOURCE Feature Test Macro
+# https://pubs.opengroup.org/onlinepubs/9699919799/functions/V2_chap02.html#tag_15_02_01_01
 add_definitions(-D_POSIX_C_SOURCE=200809L)
 
 add_library(${PROJECT_NAME}-native

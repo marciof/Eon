@@ -39,9 +39,15 @@ JavaScript interpreters:
 
 # Cleanups
 
-- Avoid using variable-length arrays.
 - Check licensing of libraries and tools/dependencies.
+- Avoid using variable-length arrays.
+- Why is the output directory of the cmake build in the root alongside sources and not in the build directory?
 - Use ccache for speed? https://ccache.dev/
+- Error handling:
+  - Check uses of K_LOG_LEVEL_ERROR and whether it should be made an Err for proper logging elsewhere.
+  - Make Err be the last param always for consistency.
+  - Check places where it assumed K_LOG_LEVEL_ERROR was stopping the system.
+  - Verify all uses of Err (where it's missing, where it's not needed, etc).
 - Specify all build dependencies.
   - Sign-up to interest mailing lists.
   - How to test macOS?
@@ -49,12 +55,6 @@ JavaScript interpreters:
 - Reproducible builds?
   - https://reproducible-builds.org/docs/
   - https://signal.org/blog/reproducible-android/
-- Why is the output directory of the cmake build in the root alongside sources and not in the build directory?
-- Error handling:
-  - Check uses of K_LOG_LEVEL_ERROR and whether it should be made an Err for proper logging elsewhere.
-  - Make Err be the last param always for consistency.
-  - Check places where it assumed K_LOG_LEVEL_ERROR was stopping the system.
-  - Verify all uses of Err (where it's missing, where it's not needed, etc).
 - How to have documentation comments within Assembly source code?
 - C tidy/linter?
 - JS uses the same native code, since it's just a backend for code generation, just like a real-time interpreter is another backend. So don't merge it into native to allow an embedded systems to just pick core+native, but merge JS-independent parts into core.
