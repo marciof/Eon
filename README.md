@@ -22,7 +22,7 @@ See `.travis.yml`.
   - command-line:
     ```
     # List options:
-    $ cmake -L
+    $ cmake -L -H
     # Build a Multiboot-compliant executable only:
     $ cmake -D BUILD_FOR_I386_HOST=ON -D BUILD_FOR_NATIVE_HOST=OFF path/to/sources
     ```
