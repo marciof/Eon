@@ -6,7 +6,7 @@
 #include "Token.h"
 
 static void describe_token_err(
-        struct k_Err* err, k_Err_log log, intptr_t logger) {
+        struct k_Err* err, k_Err_log log, uintptr_t logger) {
 
     struct k_Err discard_log_err = K_ERR_INIT;
     struct k_Input* input = (struct k_Input*) err->arg;

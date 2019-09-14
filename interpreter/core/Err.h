@@ -8,20 +8,20 @@
 /**
  * @see k_Log
  */
-typedef void (*k_Err_log)(intptr_t logger, char* format, ...);
+typedef void (*k_Err_log)(uintptr_t logger, char* format, ...);
 
 struct k_Err {
-    void (*describe)(struct k_Err* err, k_Err_log log, intptr_t logger);
+    void (*describe)(struct k_Err* err, k_Err_log log, uintptr_t logger);
     const char* function;
     char* file;
     size_t line;
-    intptr_t arg;
+    uintptr_t arg;
 };
 
 /**
  * @see K_ERR_SET_TEXT
  */
-void k_Err_describe_text(struct k_Err*, k_Err_log, intptr_t);
+void k_Err_describe_text(struct k_Err*, k_Err_log, uintptr_t);
 
 bool k_Err_has(struct k_Err* err);
 
@@ -30,11 +30,11 @@ bool k_Err_has(struct k_Err* err);
  */
 void k_Err_set(
     struct k_Err*,
-    void (*)(struct k_Err*, k_Err_log, intptr_t),
+    void (*)(struct k_Err*, k_Err_log, uintptr_t),
     const char*,
     char*,
     size_t,
-    intptr_t);
+    uintptr_t);
 
 #define K_ERR_SET(err, describe, arg) \
     k_Err_set( \
@@ -43,7 +43,7 @@ void k_Err_set(
         __func__, \
         __FILE__, \
         __LINE__, \
-        (intptr_t) (arg))
+        (uintptr_t) (arg))
 
 #define K_ERR_SET_TEXT(err, text) \
     K_ERR_SET((err), k_Err_describe_text, (text))

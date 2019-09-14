@@ -151,7 +151,7 @@ static void print_log(
     log->print_ch(log, lvl, '\n', err);
 }
 
-static void log_error_callback(intptr_t logger, char* format, ...) {
+static void log_error_callback(uintptr_t logger, char* format, ...) {
     struct k_Log* log = (struct k_Log*) logger;
     struct k_Err discard_log_err = K_ERR_INIT;
 
@@ -198,7 +198,7 @@ void k_Log_print_unsigned_int(
 void k_Log_err_details(struct k_Log* log, struct k_Err* err) {
     struct k_Err discard_log_err = K_ERR_INIT;
 
-    err->describe(err, log_error_callback, (intptr_t) log);
+    err->describe(err, log_error_callback, (uintptr_t) log);
     k_Log_error(log, &discard_log_err, "  `{s}()` at {s}:{iu}",
         err->function, err->file, err->line);
 }

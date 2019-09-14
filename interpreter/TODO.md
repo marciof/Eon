@@ -39,7 +39,7 @@ JavaScript interpreters:
 
 # Cleanups
 
-- Replace `intptr_t` with `uintptr_t`?
+- Avoid using variable-length arrays.
 - Check licensing of libraries and tools/dependencies.
 - Use ccache for speed? https://ccache.dev/
 - Specify all build dependencies.
@@ -49,7 +49,6 @@ JavaScript interpreters:
 - Reproducible builds?
   - https://reproducible-builds.org/docs/
   - https://signal.org/blog/reproducible-android/
-- Avoid using variable-length arrays.
 - Why is the output directory of the cmake build in the root alongside sources and not in the build directory?
 - Error handling:
   - Check uses of K_LOG_LEVEL_ERROR and whether it should be made an Err for proper logging elsewhere.
