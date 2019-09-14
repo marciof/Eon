@@ -1,7 +1,14 @@
 * interpreter
 
-** TODO avoid hardcoded references to sub-project names such as ${PROJECT_NAME}-core
+** TODO why are builds placed alongside sources and not in the build directory?
+
+** TODO avoid variable-length arrays for portability?
+
+** TODO use ccache for speed? https://ccache.dev/
 
 * i386
 
-** TODO need `-rdynamic` when linking to allow getting backtraces from within?
+** TODO fix static linking
+
+- need `-rdynamic` when linking to allow getting backtraces from within?
+- why can't the final executable static link against the core library?

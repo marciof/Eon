@@ -40,9 +40,6 @@ JavaScript interpreters:
 # Cleanups
 
 - Check licensing of libraries and tools/dependencies.
-- Avoid using variable-length arrays.
-- Why is the output directory of the cmake build in the root alongside sources and not in the build directory?
-- Use ccache for speed? https://ccache.dev/
 - Error handling:
   - Check uses of K_LOG_LEVEL_ERROR and whether it should be made an Err for proper logging elsewhere.
   - Make Err be the last param always for consistency.

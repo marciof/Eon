@@ -1,1 +1,1 @@
-add_library(${PROJECT_NAME}-core ${CORE_SOURCES})
+add_library(${CORE_LIBRARY_NAME} ${CORE_SOURCES})

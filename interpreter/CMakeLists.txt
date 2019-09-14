@@ -30,9 +30,11 @@ set(CORE_SOURCES
 string(REGEX REPLACE "([^;]+)" "${CMAKE_CURRENT_SOURCE_DIR}/\\1"
     CORE_SOURCES "${CORE_SOURCES}")
 
+set(CORE_LIBRARY_NAME ${PROJECT_NAME}-core)
 add_subdirectory(core)
 
 if(BUILD_FOR_NATIVE_HOST)
+    set(NATIVE_LIBRARY_NAME ${PROJECT_NAME}-native)
     add_subdirectory(native)
 endif()
 
