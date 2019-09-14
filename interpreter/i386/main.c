@@ -8,6 +8,9 @@
 extern void k_Cpu_halt(void);
 void main(void);
 
+/**
+ * Shutdown isn't currently implemented, and so it just halts the CPU.
+ */
 void main(void) {
     struct k_Err err = K_ERR_INIT;
 
@@ -30,7 +33,6 @@ void main(void) {
     k_Log_err_details(&log, &err);
 
     EXIT:
-    k_Log_warning(&log, &err, "Shutdown not implemented");
-    // FIXME: implement shutdown
+    k_Log_warning(&log, &err, "Halting (shutdown not implemented)");
     k_Cpu_halt();
 }

@@ -4,7 +4,6 @@
 #include "Errno.h"
 #include "Log.h"
 
-// FIXME: add colors
 static FILE* get_stream(enum k_Log_Level lvl) {
     return ((lvl == K_LOG_LEVEL_ERROR) || (lvl == K_LOG_LEVEL_WARN))
         ? stderr

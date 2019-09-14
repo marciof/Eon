@@ -39,7 +39,6 @@ JavaScript interpreters:
 
 # Cleanups
 
-- Move FIXMEs from code to the tasks file.
 - Check licensing of libraries and tools/dependencies.
 - Error handling:
   - Check uses of K_LOG_LEVEL_ERROR and whether it should be made an Err for proper logging elsewhere.
@@ -53,7 +52,6 @@ JavaScript interpreters:
 - Reproducible builds?
   - https://reproducible-builds.org/docs/
   - https://signal.org/blog/reproducible-android/
-- How to have documentation comments within Assembly source code?
 - C tidy/linter?
 - JS uses the same native code, since it's just a backend for code generation, just like a real-time interpreter is another backend. So don't merge it into native to allow an embedded systems to just pick core+native, but merge JS-independent parts into core.
   - Start moving core stuff (eg. AST) from javascript/ to core/
@@ -81,6 +79,7 @@ JavaScript interpreters:
 - Code coverage
 - Continuous integration
   - Compile on both GCC and Clang
+  - Compile on 32-bit and 64-bit native hosts
   - Verify CMake version when installing? (See .travil.yml)
   - https://about.gitlab.com/
   - https://ci.appveyor.com/login
@@ -94,14 +93,6 @@ JavaScript interpreters:
 
 - Don't use wrappers to access struct members directly.
 - How to add full stack trace information to `Err` instances?
-- Add Travis CI build matrix for the different builds (native, javascript, i386) and OSes.
-- Regularly test building on Debian 32-bit 64-bit, Windows, macOS.
-- Add simple v86 HTML demo?
-- Replace flexible struct member (`val[]`) with a `void*` for portability and also to allow the struct interface to grow without breaking implementations.
-- Redesign architecture, to make it easier to embed, no singletons, and easier to unit test:
-  - Avoid all these repeated calls for `*_get()`?
-  - Remove stop modes and use only reset or halt
-  - main(multiboot_magic_num, multiboot_info)
 - Tests (unit, functional), coverage, lint, static analysis, continuous integration, memory check (Valgrind).
   - Automation: Vagrant, Docker?
   - https://autotest.github.io
@@ -111,15 +102,11 @@ JavaScript interpreters:
   - https://github.com/google/sanitizers
   - http://clang-analyzer.llvm.org
 - Make it more resilient, warn more instead of aborting, and errors during logging too.
-- Add location to log calls? function, file, line? Or to warnings and errors only?
-- Add color to native logging.
-- Logging of long integers.
 - Add support for "amd64"?
   - ASFLAGS += -f elf64
   - CCFLAGS += -m64
   - LINKFLAGS += -m elf_x86_64
 - Upgrade to Multiboot 2?
-- https://github.com/copy/v86
 - Option or tool to validate Coding Style guidelines.
 - Verify space/time complexity in the spec matches the implementation.
 - Prototyping:

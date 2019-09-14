@@ -53,7 +53,6 @@ size_t k_VGA_Text_get_lines(void) {
 }
 
 void k_VGA_Text_init(void) {
-    // FIXME: avoid referencing global
     gfx = k_VGA_Gfx_get_memory_map();
 
     k_VGA_CRT_enable_cursor(false);
