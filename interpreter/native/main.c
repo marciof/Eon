@@ -7,8 +7,6 @@ int main(int argc, char* argv[]) {
 
     k_Std_Stream_Log_init(&log);
 
-    // FIXME: log full command line
-    // FIXME: move logging elsewhere?
     for (size_t i = 0; i < (unsigned) argc; ++i) {
         k_Log_info(&log, &err, "Command line: [{i}] '{s}'", i, argv[i]);
 

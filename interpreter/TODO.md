@@ -39,6 +39,7 @@ JavaScript interpreters:
 
 # Cleanups
 
+- Move FIXMEs from code to the tasks file.
 - Check licensing of libraries and tools/dependencies.
 - Error handling:
   - Check uses of K_LOG_LEVEL_ERROR and whether it should be made an Err for proper logging elsewhere.

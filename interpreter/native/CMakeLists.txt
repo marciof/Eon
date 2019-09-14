@@ -8,8 +8,7 @@ add_library(${NATIVE_LIBRARY_NAME}
     Log.h
     Log.c
     Errno.c
-    Errno.h
-    Memory.c)
+    Errno.h)
 
 add_executable(${EXECUTABLE_NAME_NATIVE}
     main.c)

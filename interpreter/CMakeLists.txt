@@ -21,8 +21,7 @@ set(CORE_SOURCES
     core/Err.h
     core/Bit.h
     core/Log.c
-    core/Log.h
-    core/Memory.h)
+    core/Log.h)
 
 # Build absolute paths for the core sources so that hosts that can't link
 # directly against its library (eg. i386 cross-compiled from a amd64 machine)
