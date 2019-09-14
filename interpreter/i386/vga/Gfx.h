@@ -33,6 +33,6 @@ struct k_VGA_Gfx_Memory_Map {
     size_t columns;
 };
 
-const struct k_VGA_Gfx_Memory_Map* k_VGA_Gfx_get_memory_map();
+const struct k_VGA_Gfx_Memory_Map* k_VGA_Gfx_get_memory_map(void);
 uint8_t k_VGA_Gfx_read(k_VGA_Gfx_Register reg);
 void k_VGA_Gfx_write(k_VGA_Gfx_Register reg, uint8_t data);

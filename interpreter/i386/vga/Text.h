@@ -31,10 +31,10 @@ enum {
     K_VGA_TEXT_WHITE = (K_VGA_TEXT_LIGHT_GRAY | K_BIT(3)),
 };
 
-size_t k_VGA_Text_get_columns();
-size_t k_VGA_Text_get_lines();
+size_t k_VGA_Text_get_columns(void);
+size_t k_VGA_Text_get_lines(void);
 
-void k_VGA_Text_init();
+void k_VGA_Text_init(void);
 
 void k_VGA_Text_print_ch(char ch);
 void k_VGA_Text_print_str(const char* string);
