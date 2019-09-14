@@ -1,6 +1,6 @@
 * TODO is `if` then-else syntax error-prone?
 
-* TODO document constants and functions.
+* TODO document constants and functions
 
 * TODO validate arguments, use keyword arguments, error checking
 

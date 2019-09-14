@@ -59,7 +59,7 @@ Simple:
 - Right things easier than wrong things, encouraged, and the only way.
 - Immutable data structures, no defensive copying.
 - Principle of Least Surprise: *"The design should match the user's experience, expectations, and mental models."*
-- *"Keep the language specification simple enough to hold in a programmer's head."*
+- *"Keep the language spec simple enough to hold in a programmer's head."*
 
 Powerful:
 
