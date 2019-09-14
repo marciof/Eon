@@ -1,5 +1,6 @@
 #include "../../core/Bit.h"
 #include "../IO.h"
+#include "Extern.h"
 
 typedef uint16_t Port;
 enum {

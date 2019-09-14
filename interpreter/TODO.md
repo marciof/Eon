@@ -39,8 +39,8 @@ JavaScript interpreters:
 
 # Cleanups
 
+- Replace `intptr_t` with `uintptr_t`?
 - Check licensing of libraries and tools/dependencies.
-- Compile on both GCC and Clang for portability? Add optional "-Weverything" for Clang?
 - Use ccache for speed? https://ccache.dev/
 - Specify all build dependencies.
   - Sign-up to interest mailing lists.
@@ -75,6 +75,7 @@ JavaScript interpreters:
 - Check style tool
 - Memory leaks, Valgrind
 - Static code analysis
+  - clang-tidy
   - cyclomatic-complexity
   - https://en.m.wikipedia.org/wiki/SonarQube
   - https://www.owasp.org/index.php/Static_Code_Analysis
@@ -82,6 +83,7 @@ JavaScript interpreters:
   - https://yetanotherchris.dev/clean-code/gestalt-principles/
 - Code coverage
 - Continuous integration
+  - Compile on both GCC and Clang
   - Verify CMake version when installing? (See .travil.yml)
   - https://about.gitlab.com/
   - https://ci.appveyor.com/login

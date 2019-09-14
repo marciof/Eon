@@ -30,7 +30,7 @@ struct k_Log {
         struct k_Log* log, enum k_Log_Level lvl, char* str, struct k_Err* err);
     void (*print_timestamp)(
         struct k_Log* log, enum k_Log_Level lvl, struct k_Err* err);
-    intptr_t value;
+    uintptr_t value;
 };
 
 void k_Log_print_unsigned_int(

@@ -24,7 +24,7 @@ static void clear_screen(void) {
     }
 }
 
-static void scroll_screen(int lines) {
+static void scroll_screen(size_t lines) {
     const size_t END = 2 * ((gfx->lines * gfx->columns) + gfx->columns);
     size_t i = 2 * lines * gfx->columns;
     size_t previous = 2 * (lines - 1) * gfx->columns;

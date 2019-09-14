@@ -1,4 +1,6 @@
+#include <stddef.h>
 #include <stdint.h>
+#include <string.h>
 #include "../core/Memory.h"
 #include "../core/Bit.h"
 
@@ -79,3 +81,15 @@ K_BIT_PACKED(struct Segment_Descriptor {
 
 STATIC_ASSERT(sizeof(struct Segment_Descriptor) == 8,
     "Memory segment descriptor structure not packed.");
+
+/**
+ * In a free-standing environment some compilers will still generate code that
+ * use standard library functions, such as `memset`.
+ */
+void* memset(void* s, int c, size_t n) {
+    char* ptr = (char*) s;
+    while (n--) {
+        *ptr++ = (char) c;
+    }
+    return s;
+}

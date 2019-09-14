@@ -30,7 +30,7 @@ enum {
  * it suffices to read the input status register #1 (from the general
  * registers), discarding the value just read.
  */
-static inline void reset_state(void) {
+static void reset_state(void) {
     k_VGA_Extern_read_input_status_reg_1();
 }
 

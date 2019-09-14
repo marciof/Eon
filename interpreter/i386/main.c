@@ -6,6 +6,7 @@
 #include "vga/Log.h"
 
 extern void k_Cpu_halt(void);
+void main(void);
 
 void main(void) {
     struct k_Err err = K_ERR_INIT;
