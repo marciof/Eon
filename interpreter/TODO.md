@@ -84,7 +84,7 @@ JavaScript interpreters:
   - Compile on 32-bit and 64-bit native hosts
   - Verify CMake version when installing?
   - https://about.gitlab.com/
-  - https://ci.appveyor.com/login
+  - https://appveyor.com
   - https://bitbucket.org/product/features/pipelines
   - Travis
     - https://github.com/travis-ci/travis-ci/issues/5770

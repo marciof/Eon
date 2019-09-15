@@ -2,17 +2,10 @@
 
 ## Dependencies
 
-### Linux
-
-See `.travis.yml`.
-
-### macOS
-
 See `.travis.yml`.
 
 ### Windows
 
-- CMake, v2.8 or higher
 - [Visual Studio Build Tools](https://www.visualstudio.com/thank-you-downloading-visual-studio/?sku=BuildTools)
 
 ## Building

@@ -9,8 +9,6 @@
 
 ** TODO avoid variable-length arrays for portability?
 
-** TODO use ccache for speed? https://ccache.dev/
-
 ** TODO access struct members directly, instead of wrappers for transparency
 
 ** TODO make the system more resilient
@@ -58,6 +56,7 @@
 
 ** TODO upgrade to Multiboot 2?
 
+- keep supporting Multiboot 1?
 - support EFI/UEFI?
 
 ** TODO look into adding support for x86-64
