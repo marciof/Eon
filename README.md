@@ -24,7 +24,7 @@ See `.travis.yml`.
     # List options:
     $ cmake -L -H
     # Build a Multiboot-compliant executable only:
-    $ cmake -D BUILD_FOR_I386_HOST=ON -D BUILD_FOR_NATIVE_HOST=OFF path/to/sources
+    $ cmake -D BUILD_FOR_X86_32_HOST=ON -D BUILD_FOR_NATIVE_HOST=OFF path/to/sources
     ```
   - TUI:
     ```
@@ -40,8 +40,8 @@ See `.travis.yml`.
 
 - `interpreter/`: implementation of the language specification
   - `core/`: builds an embeddable library with the host-independent core of the implementation and host-dependent hooks
-  - `i386/`: builds a Multiboot-compliant executable to run on an Intel x86 32-bit host
   - `javascript/`: builds a standalone executable to compile to JavaScript
   - `native/`: builds an embeddable library and a standalone executable to run natively (eg. on Windows)
+  - `x86-32/`: builds a Multiboot-compliant executable to run on an Intel x86 32-bit host
 - `spec/`: language specification
 - `stdlib/`: standard library for the interpreter

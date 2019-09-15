@@ -1,7 +1,7 @@
 enable_language(C)
 
 option(BUILD_FOR_NATIVE_HOST "Build the interpreter to run natively" ON)
-option(BUILD_FOR_I386_HOST "Build the interpreter for an Intel x86 32-bit host" OFF)
+option(BUILD_FOR_X86_32_HOST "Build the interpreter for an Intel x86 32-bit host" OFF)
 option(BUILD_FOR_JAVASCRIPT_HOST "Build the interpreter for a JavaScript host" OFF)
 
 include(CMakeDependentOption)
@@ -24,7 +24,7 @@ set(CORE_SOURCES
     core/Log.h)
 
 # Build absolute paths for the core sources so that hosts that can't link
-# directly against its library (eg. i386 cross-compiled from a amd64 machine)
+# directly against its library (eg. 32-bit cross-compiled from a 64-bit machine)
 # can instead reference each file directly.
 string(REGEX REPLACE "([^;]+)" "${CMAKE_CURRENT_SOURCE_DIR}/\\1"
     CORE_SOURCES "${CORE_SOURCES}")
@@ -37,8 +37,8 @@ if(BUILD_FOR_NATIVE_HOST)
     add_subdirectory(native)
 endif()
 
-if(BUILD_FOR_I386_HOST)
-    add_subdirectory(i386)
+if(BUILD_FOR_X86_32_HOST)
+    add_subdirectory(x86-32)
 endif()
 
 if(BUILD_FOR_JAVASCRIPT_HOST)

@@ -1,5 +1,5 @@
 enable_language(ASM_NASM)
-set(EXECUTABLE_NAME_I386 ${PROJECT_NAME}-i386)
+set(EXECUTABLE_NAME_X86_32 ${PROJECT_NAME}-x86-32)
 
 # Some linkers require absolute paths to the linker script.
 set(LINKER_SCRIPT ${CMAKE_CURRENT_SOURCE_DIR}/layout.lds)
@@ -34,7 +34,7 @@ if(CMAKE_C_COMPILER_ID MATCHES "^(GNU|Clang)$")
     set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fno-exceptions -nostdlib -nodefaultlibs -ffreestanding")
 endif()
 
-add_executable(${EXECUTABLE_NAME_I386}
+add_executable(${EXECUTABLE_NAME_X86_32}
     ${LINKER_SCRIPT}
     ${CORE_SOURCES}
     Multiboot.c
@@ -63,9 +63,9 @@ add_executable(${EXECUTABLE_NAME_I386}
     main.asm
     main.c)
 
-set_target_properties(${EXECUTABLE_NAME_I386} PROPERTIES LINK_DEPENDS ${LINKER_SCRIPT})
+set_target_properties(${EXECUTABLE_NAME_X86_32} PROPERTIES LINK_DEPENDS ${LINKER_SCRIPT})
 
-add_custom_command(TARGET ${EXECUTABLE_NAME_I386}
+add_custom_command(TARGET ${EXECUTABLE_NAME_X86_32}
     POST_BUILD
-    COMMAND grub-file --is-x86-multiboot $<TARGET_FILE:${EXECUTABLE_NAME_I386}>
+    COMMAND grub-file --is-x86-multiboot $<TARGET_FILE:${EXECUTABLE_NAME_X86_32}>
     COMMENT "Verifying executable is Multiboot-compliant via `grub-file`")

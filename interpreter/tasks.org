@@ -17,7 +17,7 @@
 
 ** TODO how to add versioning to the core/native libraries and struct-compat?
 
-* i386
+* x86-32
 
 ** TODO how to have proper documentation comments in NASM Assembly source code?
 
