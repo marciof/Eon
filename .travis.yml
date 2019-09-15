@@ -1,22 +1,25 @@
-language: cpp
-script: cmake . && make
+language: c
+
+os:
+  - linux
+
+compiler:
+  - gcc
+  - clang
+
 addons:
- apt:
-   packages:
-   - cmake # v2.8 or higher
-   - make
-   - gcc # or clang-7
-   # x86-32
-   - gcc-multilib # cross-compile 32-bit applications on 64-bit systems
-   - nasm
-   - multiboot
-   - grub-common # contains grub-file to verify Multiboot compliance
-   # native
-   # javascript
-   - valgrind
-   # vm.sh
-   - grub-common # contains grub-mkrescue to build a bootable ISO
-   - grub-pc-bin # PC/BIOS architecture version of GRUB (eg. non-UEFI)
-   - mtools # symlinked from mformat, needed by grub-mkrescue
-   - xorriso # create ISO files, needed by grub-mkrescue
-   # VirtualBox
+  apt:
+    packages:
+      - cmake # v2.8 or higher
+      - make
+      # x86-32
+      - gcc-multilib # cross-compile 32-bit applications on 64-bit systems
+      - nasm
+      - multiboot
+      - grub-common # contains grub-file to verify Multiboot compliance
+
+before_script:
+  - mkdir build/ && cd build/
+
+script:
+  - cmake "$TRAVIS_BUILD_DIR" && cmake --build .

@@ -83,11 +83,12 @@ JavaScript interpreters:
 - Continuous integration
   - Compile on both GCC and Clang
   - Compile on 32-bit and 64-bit native hosts
+  - Test on multiple Linux and macOS versions
   - Verify CMake version when installing?
   - Travis
-    - validate `.travis.yml` file
-    - verify/cleanup `.travis.yml` file
+    - validate `.travis.yml` file, https://github.com/travis-ci/travis-yml
     - https://docs.travis-ci.com/user/multi-os/
+    - https://docs.travis-ci.com/user/languages/c/
     - https://github.com/travis-ci/travis-ci/issues/5770
   - https://appveyor.com
   - https://about.gitlab.com/product/continuous-integration/
@@ -96,6 +97,17 @@ JavaScript interpreters:
 - scale testing (DoS on hashing, etc)
 
 ---
+
+- Travis CI make each interpreter sub-project a separate build
+# native
+# javascript
+- valgrind
+# vm.sh
+- grub-common # contains grub-mkrescue to build a bootable ISO
+- grub-pc-bin # PC/BIOS architecture version of GRUB (eg. non-UEFI)
+- mtools # symlinked from mformat, needed by grub-mkrescue
+- xorriso # create ISO files, needed by grub-mkrescue
+# VirtualBox
 
 - Option or tool to validate Coding Style guidelines.
 - Verify space/time complexity in the spec matches the implementation.
