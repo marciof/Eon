@@ -6,7 +6,16 @@
 
 ** TODO use ccache for speed? https://ccache.dev/
 
+** TODO access struct members directly, instead of wrappers for transparency
+
+** TODO make the system more resilient
+
+- warn more instead of aborting
+- handle (ignore?) errors during logging
+
 ** TODO logging of long integers (eg. 64-bit Multiboot mem region addr/len)
+
+** TODO how to add versioning to the core/native libraries and struct-compat?
 
 * i386
 
@@ -18,6 +27,14 @@
 - pass Multiboot variables to `main` instead of using globals
 - avoid these repeated calls to `*_get()`
 
+** TODO upgrade to Multiboot 2?
+
+** TODO look into adding support for x86-64
+
+- ASFLAGS += -f elf64
+- CCFLAGS += -m64
+- LINKFLAGS += -m elf_x86_64
+
 ** TODO fix static linking
 
 - need `-rdynamic` when linking to allow getting backtraces from within?
@@ -26,6 +43,10 @@
 ** TODO implement shutdown (it currently halts -- use it for debugging?)
 
 ** TODO timestamp logging
+
+* javascript
+
+** TODO always append '\0' to Str instances?
 
 * native
 

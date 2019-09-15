@@ -67,46 +67,40 @@ JavaScript interpreters:
 
 # Testing
 
+- unit tests
+- integration tests (Vagrant? Docker?)
+- Code coverage
 - Check style tool
-- Memory leaks, Valgrind
+- linting
+- Memory leaks
+  - Valgrind
+  - https://github.com/andrewrk/malcheck
 - Static code analysis
   - clang-tidy
   - cyclomatic-complexity
+  - https://scan.coverity.com
   - https://en.m.wikipedia.org/wiki/SonarQube
   - https://www.owasp.org/index.php/Static_Code_Analysis
+  - https://github.com/google/sanitizers
+  - http://clang-analyzer.llvm.org
   - shellcheck for shell scripts (add to dependencies as well)
   - https://yetanotherchris.dev/clean-code/gestalt-principles/
-- Code coverage
 - Continuous integration
   - Compile on both GCC and Clang
   - Compile on 32-bit and 64-bit native hosts
-  - Verify CMake version when installing? (See .travil.yml)
+  - Verify CMake version when installing?
   - https://about.gitlab.com/
   - https://ci.appveyor.com/login
   - https://bitbucket.org/product/features/pipelines
-  - https://github.com/travis-ci/travis-ci/issues/5770
-  - https://docs.travis-ci.com/user/multi-os/
+  - Travis
+    - https://github.com/travis-ci/travis-ci/issues/5770
+    - https://docs.travis-ci.com/user/multi-os/
+    - If using travis, validate `.travis.yml` file
 - Fuzzy testing, http://lcamtuf.coredump.cx/afl/
-- Hashing DoS
+- scale testing (DoS on hashing, etc)
 
 ---
 
-- Don't use wrappers to access struct members directly.
-- How to add full stack trace information to `Err` instances?
-- Tests (unit, functional), coverage, lint, static analysis, continuous integration, memory check (Valgrind).
-  - Automation: Vagrant, Docker?
-  - https://autotest.github.io
-  - https://scan.coverity.com
-  - https://travis-ci.org # validate `.travis.yml` file, fix build
-  - https://github.com/andrewrk/malcheck
-  - https://github.com/google/sanitizers
-  - http://clang-analyzer.llvm.org
-- Make it more resilient, warn more instead of aborting, and errors during logging too.
-- Add support for "amd64"?
-  - ASFLAGS += -f elf64
-  - CCFLAGS += -m64
-  - LINKFLAGS += -m elf_x86_64
-- Upgrade to Multiboot 2?
 - Option or tool to validate Coding Style guidelines.
 - Verify space/time complexity in the spec matches the implementation.
 - Prototyping:
