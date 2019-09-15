@@ -17,6 +17,27 @@
 
 ** TODO how to add versioning to the core/native libraries and struct-compat?
 
+** TODO "Why isn’t someone using my software product or open source tool? It’s good!"
+
+- https://news.ycombinator.com/item?id=17642147
+- https://threadreaderapp.com/thread/921921604140937216.html
+
+** TODO financing
+
+- https://www.patreon.com/zloirock
+- https://opencollective.com/core-js
+- https://flattr.com
+- https://www.buymeacoffee.com/mweststrate
+- https://itsfoss.com/open-source-funding-platforms/
+
+* javascript
+
+** TODO always append '\0' to Str instances?
+
+* native
+
+** TODO colored logging
+
 * x86-32
 
 ** TODO how to have proper documentation comments in NASM Assembly source code?
@@ -43,11 +64,3 @@
 ** TODO implement shutdown (it currently halts -- use it for debugging?)
 
 ** TODO timestamp logging
-
-* javascript
-
-** TODO always append '\0' to Str instances?
-
-* native
-
-** TODO colored logging
