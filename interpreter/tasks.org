@@ -1,5 +1,10 @@
 * interpreter
 
+** TODO specify all build dependencies
+
+- sign-up to interest mailing lists
+- how to test on macOS?
+
 ** TODO why are builds placed alongside sources and not in the build directory?
 
 ** TODO avoid variable-length arrays for portability?
@@ -13,9 +18,12 @@
 - warn more instead of aborting
 - handle (ignore?) errors during logging
 
-** TODO logging of long integers (eg. 64-bit Multiboot mem region addr/len)
+** TODO reproducible builds?
 
-** TODO how to add versioning to the core/native libraries and struct-compat?
+- https://reproducible-builds.org/docs/
+- https://signal.org/blog/reproducible-android/
+
+** TODO logging of long integers (eg. 64-bit Multiboot mem region addr/len)
 
 ** TODO "Why isn’t someone using my software product or open source tool? It’s good!"
 
@@ -49,6 +57,8 @@
 - avoid these repeated calls to `*_get()`
 
 ** TODO upgrade to Multiboot 2?
+
+- support EFI/UEFI?
 
 ** TODO look into adding support for x86-64
 

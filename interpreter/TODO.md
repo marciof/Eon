@@ -18,7 +18,9 @@ Arbitrary precision arithmetic:
 
 Immutable data structures:
 
-- https://github.com/immerjs/immer
+- https://github.com/immerjs/immer (JavaScript)
+- https://github.com/rtfeldman/seamless-immutable (JavaScript)
+- https://github.com/slburson/fset (Common Lisp)
 
 Compilation:
 
@@ -40,20 +42,11 @@ JavaScript interpreters:
 
 # Cleanups
 
-- Check licensing of libraries and tools/dependencies.
 - Error handling:
   - Check uses of K_LOG_LEVEL_ERROR and whether it should be made an Err for proper logging elsewhere.
   - Make Err be the last param always for consistency.
   - Check places where it assumed K_LOG_LEVEL_ERROR was stopping the system.
   - Verify all uses of Err (where it's missing, where it's not needed, etc).
-- Specify all build dependencies.
-  - Sign-up to interest mailing lists.
-  - How to test macOS?
-  - Haven't built on Windows yet. Cross compile too? https://blog.svgames.pl/article/cross-compiling-c-programs-for-ms-windows-using-mingw
-- Reproducible builds?
-  - https://reproducible-builds.org/docs/
-  - https://signal.org/blog/reproducible-android/
-- C tidy/linter?
 - JS uses the same native code, since it's just a backend for code generation, just like a real-time interpreter is another backend. So don't merge it into native to allow an embedded systems to just pick core+native, but merge JS-independent parts into core.
   - Start moving core stuff (eg. AST) from javascript/ to core/
   - Move non-essentials out of core/
