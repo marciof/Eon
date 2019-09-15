@@ -42,6 +42,7 @@ JavaScript interpreters:
 
 # Cleanups
 
+- Doxygen?
 - Error handling:
   - Check uses of K_LOG_LEVEL_ERROR and whether it should be made an Err for proper logging elsewhere.
   - Make Err be the last param always for consistency.
@@ -83,13 +84,14 @@ JavaScript interpreters:
   - Compile on both GCC and Clang
   - Compile on 32-bit and 64-bit native hosts
   - Verify CMake version when installing?
-  - https://about.gitlab.com/
-  - https://appveyor.com
-  - https://bitbucket.org/product/features/pipelines
   - Travis
-    - https://github.com/travis-ci/travis-ci/issues/5770
+    - validate `.travis.yml` file
+    - verify/cleanup `.travis.yml` file
     - https://docs.travis-ci.com/user/multi-os/
-    - If using travis, validate `.travis.yml` file
+    - https://github.com/travis-ci/travis-ci/issues/5770
+  - https://appveyor.com
+  - https://about.gitlab.com/product/continuous-integration/
+  - https://bitbucket.org/product/features/pipelines
 - Fuzzy testing, http://lcamtuf.coredump.cx/afl/
 - scale testing (DoS on hashing, etc)
 
