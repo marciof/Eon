@@ -2,6 +2,7 @@
 
 - Quick and easy interactivity like GNU Octave (ie. Matlab).
 - Able to run over SSH efficiently like X11?
+- Print type after each value in the REPL like Elm? eg. `5 : number`
 - Unix tools philosophy for the interpreter? Command line options for each stage for textual output (easier to debug and integrate with other external tools without code linking?): stream tokens from input one per line, then parser, etc
 
 # Resources

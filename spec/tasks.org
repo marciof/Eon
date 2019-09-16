@@ -10,7 +10,9 @@
 - https://www.freecodecamp.org/news/facebook-just-changed-the-license-on-react-heres-a-2-minute-explanation-why-5878478913b2/
 - https://opensource.stackexchange.com/questions/4875/open-source-license-to-prevent-commercial-use
 
-** TODO check licensing of all libraries, tools, dependencies
+* TODO check licensing of all libraries, tools, dependencies
+
+* TODO optional static typing?
 
 * TODO build target to lint/validate CommonMark documents
 
@@ -52,6 +54,7 @@
 
 * TODO learn best/worst features of other languages/systems (check first the ones listed as inspiration)
 
+- Elm
 - PowerShell
 - OCaml
 - C
@@ -77,7 +80,6 @@
 - Elixir
 - Typed Racket
 - PureScript
-- Elm
 - Io
 - ML
 - Lua
