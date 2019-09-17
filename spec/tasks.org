@@ -12,6 +12,10 @@
 
 * TODO check licensing of all libraries, tools, dependencies
 
+* TODO specify desired maximum line length in the coding style guide
+
+* TODO multiline nesting comments (without needing an IDE)?
+
 * TODO optional static typing?
 
 * TODO build target to lint/validate CommonMark documents
