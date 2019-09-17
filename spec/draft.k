@@ -59,6 +59,7 @@ io::print |cat records|uniq|sort|
 # and code blocks look weird?
 # can't reuse for pipes?
 
+# ambiguous with piping?
 {\age | Number: 0}
 
 {\age: Number = 0}
