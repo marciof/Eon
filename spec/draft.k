@@ -62,6 +62,17 @@ io::print |cat records|uniq|sort|
 {\age | Number: 0}
 {\age: Number = 0}
 
+# empty list of numbers only
+[| Number]
+[x | Number]
+[x | (= (prototype x) Number)]
+
+# empty set for even numbers only
+{x | even? x}
+
+# map of texts to numbers
+{name: age | (and (String name) ...}
+
 # math
 {x | x > 0}
 
