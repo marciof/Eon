@@ -27,7 +27,7 @@ $ date > now
 pipe date to: \now
 date to: \now
 
-$ A <| cat | sort | uniq |> B
+$ cat A | sort | uniq | file B
 
 # don't need separate syntax for input?
 # values are zero parameter functions
@@ -60,6 +60,7 @@ io::print |cat records|uniq|sort|
 # can't reuse for pipes?
 
 {\age | Number: 0}
+
 {\age: Number = 0}
 
 # empty list of numbers only
@@ -70,7 +71,7 @@ io::print |cat records|uniq|sort|
 # empty set for even numbers only
 {x | even? x}
 
-# map of texts to numbers
+# empty map of texts to numbers
 {name: age | (and (String name) ...}
 
 # math
