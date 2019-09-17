@@ -74,6 +74,9 @@ io::print |cat records|uniq|sort|
 # empty map of texts to numbers
 {name: age | (and (String name) ...}
 
+# generics?
+# for parameters and collections
+
 # math
 {x | x > 0}
 
