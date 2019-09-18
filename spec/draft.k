@@ -134,3 +134,4 @@ cat :| sort :| uniq
 (prototype List \((is? Number (arg 1)))
 
 # Don't like `do` as a built-in
+# Don't like `local` as a built-in
