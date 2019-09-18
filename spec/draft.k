@@ -110,3 +110,27 @@ fn greet (name|Text age|Number)
 # Can start with prototypes only first
 [| Number]
 [| \(= (prototype (arg 1)) Number)]
+
+# Infinite set of even numbers
+# When to quote or not?
+# How to introspect?
+{(* 2 n) | (is? Number n)}
+
+# Empty set of only even numbers
+...
+
+# Typed function
+add := ((+ x y) | (is? Number x y))
+
+# `:` is an infix operator of the right
+cat :| sort :| uniq
+123 :+ 5
+
+# Modify `prototype` to use types?
+# Switch parameter order? base value
+# How to introspect types?
+
+# Create a new prototype 
+(prototype List \((is? Number (arg 1)))
+
+# Don't like `do` as a built-in
