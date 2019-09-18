@@ -101,3 +101,12 @@ function f (x)
 
 fn greet (name|Text age|Number)
   ...
+
+# Only supports math notation built-in
+# Stdlib adds helpers for type info
+
+# Empty collections only
+# Non-ambiguous with piping
+# Can start with prototypes only first
+[| Number]
+[| \(= (prototype (arg 1)) Number)]
