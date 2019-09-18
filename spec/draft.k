@@ -60,23 +60,33 @@ io::print |cat records|uniq|sort|
 # can't reuse for pipes?
 
 # ambiguous with piping?
-{\age | Number: 0}
+# not if pipes can't be used inside
+{\age: 0}
+{\age|Number: 0}
+{\age: 0 | Symbol: Number}
 
+{\age = 0}
+{\age := 0}
 {\age: Number = 0}
 
 # empty list of numbers only
 [| Number]
-[x | Number]
-[x | (= (prototype x) Number)]
 
-# empty set for even numbers only
-{x | even? x}
+# empty set of numbers
+{| Number}
 
 # empty map of texts to numbers
-{name: age | (and (String name) ...}
+{| Text: Number}
 
 # generics?
 # for parameters and collections
+function f (x)
+  {\key: x | Symbol: (prototype x)}
+
+# can prototypes change the type?
+# vars can break unrelated function
+# bindings behave differently?
+# ok to differ since it's special?
 
 # math
 {x | x > 0}
@@ -84,3 +94,10 @@ io::print |cat records|uniq|sort|
 # Elm
 -- update a field
 { point | x = 6 } == { x = 6, y = 4 }
+
+---
+
+{\age|Number: 20}
+
+fn greet (name|Text age|Number)
+  ...
