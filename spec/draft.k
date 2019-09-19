@@ -122,10 +122,6 @@ fn greet (name|Text age|Number)
 # Typed function
 add := ((+ x y) | (is? Number x y))
 
-# `:` is an infix operator of the right
-cat :| sort :| uniq
-123 :+ 5
-
 # Modify `prototype` to use types?
 # Switch parameter order? base value
 # How to introspect types?
@@ -133,5 +129,35 @@ cat :| sort :| uniq
 # Create a new prototype 
 (prototype List \((is? Number (arg 1)))
 
+# Don't like param count isn't enforced
 # Don't like `do` as a built-in
 # Don't like `local` as a built-in
+# Don't like separate map syntax
+
+# There will always be metadata
+# line, column, file, type
+# Remove `prototype`
+# Remove `local`
+
+(metadata value)
+(metadata value map)
+
+# calling a map as function
+# vs getting the value for a key
+{{\x:Number \y}: \(+ x y)}
+
+# typed struct
+# - creates a new type
+# - defines typing and form
+# - makes typing first-class
+# - if in a function, then generics
+# - where are the default values?
+(prototype {} {\name: Text})
+
+# typed function
+# - where's the body?
+(prototype () (\x: Number \y: Number))
+
+# int type?
+
+# make `insert` allow multiple values?
