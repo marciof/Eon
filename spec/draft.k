@@ -126,8 +126,14 @@ add := ((+ x y) | (is? Number x y))
 # Switch parameter order? base value
 # How to introspect types?
 
-# Create a new prototype 
-(prototype List \((is? Number (arg 1)))
+# Create a new constraint
+# new type? new prototype?
+(restrict List \(Number? (arg 1)))
+
+# list is a constraint on top of map
+# it just happens to have syntax
+[]
+{\x: \y | \(and (Integer? x) (>= x 1))}
 
 # Don't like param count isn't enforced
 # Don't like `do` as a built-in
@@ -161,3 +167,30 @@ add := ((+ x y) | (is? Number x y))
 # int type?
 
 # make `insert` allow multiple values?
+
+---
+
+# there's no function concept
+# there's no set concept 
+# it's all expressed through maps
+# and constraints
+
+# defining a map
+let person: {\name: 'John'}
+
+# calling it as if it was a function?
+
+
+# defining a function
+let inc: {\[x]: \(+ x 1)}
+(inc 2) # = 3
+(get inc \[x]) # = function body
+
+# overload with defaults
+# explicit types and inferred
+let inc: {
+  \[value:Number]: \(inc value 1)
+  \[value x:Number]: \(+ value x)
+}
+
+# varargs?
