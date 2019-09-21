@@ -113,10 +113,11 @@ let
 # list of symbols only
 (proto [] Symbol)
 
-# currying
+# currying? too implicit?
 let
   phonebook: {'Bob': 12345}
   lookup: (get phonebook key:)
+  lookup2: (bind get phonebook)
   (lookup 'Bob')
 
 # shell pipe operator?
