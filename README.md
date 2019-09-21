@@ -10,8 +10,8 @@ See `.travis.yml`.
 
 ## Building
 
-1. Create an empty build directory somewhere outside the source code tree (to prevent mixing sources with builds).
-2. *Optionally* configure which builds to create. By default it will build a native standalone executable only. Selecting the builds can be done in several different ways using CMake:
+1. Create a new directory to store the build artifacts.
+2. *Optionally* configure which builds to create. By default it will build a native standalone executable only. Selecting the builds can be done in several different ways using CMake.
   - command-line:
     ```
     # List options:
@@ -27,7 +27,10 @@ See `.travis.yml`.
     ```
     cmake-gui path/to/sources
     ```
-3. Start the build, using the appropriate tool for the chosen generator (eg. for Unix Makefiles do `make`).
+3. Invoke the build tool.
+  ```
+  $ cmake --build .
+  ```
 
 # Architecture
 
