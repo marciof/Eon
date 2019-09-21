@@ -201,43 +201,42 @@ io.print 'Hello'
 
 123.45
 
-{\name = 'Bob' \age = 20}
+{\name: 'Bob' \age: 20}
 
 if (logged-in? user)
   io.print 'Hi'
 
 if (logged-in? user)
-  then = io.print 'Hi'
-
-if (logged-in? user) then =
-  io.print 'Hi'
+  then: io.print 'Hi'
 
 # readable configs
 configure
-  size = 123
-  name = 'blah'
+  size: 123
+  name: 'blah'
 
 # REPL var top level
-name = 'Bob'
+name: 'Bob'
 
 # non top level requires `let`
 # otherwise it means keyword arg
-let name = 'Bob'
+let name: 'Bob'
   io.print name
 
 let
-  name = 'Bob'
-  age = 20
+  name: 'Bob'
+  age: 20
   io.print name
   io.print age
 
 # function?
 
-# equality operator?
-# significant spaces around = operator
-# otherwise it'd be ambiguous
-(= name 'Bob')
-(<= size 10)
-let equal = =
+# types?
+
+# currying
+let
+  phonebook: {'Bob': 1234567890}
+  lookup: (get phonebook key:)
+  (lookup 'Bob')
 
 # shell pipe operator?
+cat | sort | uniq | wc
