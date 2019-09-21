@@ -194,3 +194,50 @@ let inc: {
 }
 
 # varargs?
+
+---
+
+io.print 'Hello'
+
+123.45
+
+{\name = 'Bob' \age = 20}
+
+if (logged-in? user)
+  io.print 'Hi'
+
+if (logged-in? user)
+  then = io.print 'Hi'
+
+if (logged-in? user) then =
+  io.print 'Hi'
+
+# readable configs
+configure
+  size = 123
+  name = 'blah'
+
+# REPL var top level
+name = 'Bob'
+
+# non top level requires `let`
+# otherwise it means keyword arg
+let name = 'Bob'
+  io.print name
+
+let
+  name = 'Bob'
+  age = 20
+  io.print name
+  io.print age
+
+# function?
+
+# equality operator?
+# significant spaces around = operator
+# otherwise it'd be ambiguous
+(= name 'Bob')
+(<= size 10)
+let equal = =
+
+# shell pipe operator?
