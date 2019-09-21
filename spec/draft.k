@@ -108,7 +108,9 @@ let
 (proto {'Bob': 12345})
 
 # create a new proto-type
-(proto {'Bob': 12345} Text: Number)
+(proto {'Bob': 12345}
+  key: Text
+  value: Number)
 
 # list of symbols only
 (proto [] Symbol)
