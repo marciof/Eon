@@ -225,6 +225,7 @@ let name: 'Bob'
 let
   name: 'Bob'
   age: 20
+  
   io.print name
   io.print age
 
