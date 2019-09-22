@@ -77,6 +77,9 @@ if (logged-in? user)
 if (logged-in? user)
   then: io.print 'Hi'
 
+if (logged-in? user) then:
+  io.print 'Hi'
+
 # readable configs
 configure
   size: 123
@@ -97,8 +100,11 @@ let
   io.print name
   io.print age
 
-# functions?
+# function, dynamic binding
 \(+ x 1)
+
+# function, currying fixes bindings
+(\(+ x 1) x:)
 
 # types? casts? generics?
 # how to inspect types?
@@ -119,7 +125,7 @@ let
 let
   phonebook: {'Bob': 12345}
   lookup: (get phonebook key:)
-  lookup2: (bind get phonebook)
+  
   (lookup 'Bob')
 
 # shell pipe operator?
