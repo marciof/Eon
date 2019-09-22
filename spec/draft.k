@@ -106,20 +106,29 @@ let
 # function, currying fixes bindings
 (\(+ x 1) x:)
 
-# types? casts? generics?
+# types? casts?
 # how to inspect types?
 # combine `prototype` and `local`?
 
 # create a new proto
-(proto {'Bob': 12345})
+(proto {})
 
 # create a new proto-type
-(proto {'Bob': 12345}
-  key: Text
-  value: Number)
+(proto {}
+  key: {Text}
+  value: {Number})
 
-# list of symbols only
+# heterogeneous
+(proto {\name: '' \age: 0}
+  key: {Symbol}
+  value: {\name: Text \age: Number})
+
+# list of symbols
 (proto [] Symbol)
+
+# generics
+(function list-of (type)
+  (proto [] type))
 
 # currying? too implicit?
 let
