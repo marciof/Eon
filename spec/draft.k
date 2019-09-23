@@ -104,6 +104,7 @@ let
 \(+ x 1)
 
 # function, currying fixes bindings
+# what does inspecting see?
 (\(+ x 1) x:)
 
 # types? casts?
