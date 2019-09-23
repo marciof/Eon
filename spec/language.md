@@ -461,7 +461,7 @@ A [function](#function) that compares two or more values (with short-circuit eva
 (< x:Number y:Number ...:Number): Boolean
 ```
 
-A [function](#function) that compares two or more [numbers](#number) (with short-circuit) and returns true if each one is less than the next, or false otherwise.
+A [function](#function) that compares two or more [numbers](#number) (with short-circuit evaluation) and returns true if each one is less than the next, or false otherwise.
 
 ### Complexity
 
@@ -479,7 +479,7 @@ A [function](#function) that compares two or more [numbers](#number) (with short
 (> x:Number y:Number ...:Number): Boolean
 ```
 
-A [function](#function) that compares two or more [numbers](#number) (with short-circuit) and returns true if each one is greater than the next, or false otherwise.
+A [function](#function) that compares two or more [numbers](#number) (with short-circuit evaluation) and returns true if each one is greater than the next, or false otherwise.
 
 ### Complexity
 

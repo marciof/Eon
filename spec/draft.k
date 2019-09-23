@@ -67,7 +67,7 @@ $ cat A | sort | uniq | file B
 
 io.print 'Hello'
 
-123.45
+1,234.56
 
 {\name: 'Bob' \age: 20}
 
@@ -107,29 +107,21 @@ let
 (\(+ x 1) x:)
 
 # types? casts?
-# how to inspect types?
+# how to inspect types? protos?
 # combine `prototype` and `local`?
 # use `next` to go up the proto chain?
+# use `get` to inspect?
+# orthogonal, do only one thing well
 
-# create a new proto
-(prototype {})
+# new prototype
+(prototype {\name: 'Bob'}
 
-# create a new proto-type
-(prototype {}
-  key: {Text}
-  value: {Number})
+# heterogeneous?
+{\name: '' \age: 0}
 
-# heterogeneous
-(prototype {\name: '' \age: 0}
-  key: {Symbol}
-  value: {\name: Text \age: Number})
+# list of symbols?
 
-# list of symbols
-(prototype [] Symbol)
-
-# generics
-(function list-of (type)
-  (prototype [] type))
+# generics?
 
 # currying? too implicit?
 let
