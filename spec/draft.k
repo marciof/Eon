@@ -109,26 +109,27 @@ let
 # types? casts?
 # how to inspect types?
 # combine `prototype` and `local`?
+# use `next` to go up the proto chain?
 
 # create a new proto
-(proto {})
+(prototype {})
 
 # create a new proto-type
-(proto {}
+(prototype {}
   key: {Text}
   value: {Number})
 
 # heterogeneous
-(proto {\name: '' \age: 0}
+(prototype {\name: '' \age: 0}
   key: {Symbol}
   value: {\name: Text \age: Number})
 
 # list of symbols
-(proto [] Symbol)
+(prototype [] Symbol)
 
 # generics
 (function list-of (type)
-  (proto [] type))
+  (prototype [] type))
 
 # currying? too implicit?
 let
