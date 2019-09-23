@@ -16,6 +16,10 @@
 
 * TODO optional static typing?
 
+* TODO syntax for complex numbers?
+
+* TODO syntax for fractions?
+
 * TODO build target to lint/validate CommonMark documents
 
 - https://github.com/commonmark/cmark
