@@ -122,7 +122,9 @@ let
 
 # get prototype of a value?
 
+# number tower
 (type 0) # non-negative integer
+(type 1) # positive integer
 (type -1) # integer
 (type 1.0) # decimal
 
