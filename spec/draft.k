@@ -118,7 +118,13 @@ let
 # every binding has line, column?
 
 # new prototype
-(prototype {\name: 'Bob'}
+(prototype {\name: 'Bob'})
+
+# get prototype of a value?
+
+(type 0) # non-negative integer
+(type -1) # integer
+(type 1.0) # decimal
 
 # heterogeneous?
 {\name: '' \age: 0}
