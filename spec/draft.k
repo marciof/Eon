@@ -128,10 +128,11 @@ let
 (type -1) # integer
 (type 1.0) # decimal
 
+# list of numbers
+(constraint [] Number)
+
 # heterogeneous?
 {\name: '' \age: 0}
-
-# list of symbols?
 
 # generics?
 
