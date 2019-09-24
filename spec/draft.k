@@ -114,6 +114,9 @@ let
 # use `get` to inspect?
 # orthogonal, do only one thing well
 
+# every map has a prototype key?
+# every binding has line, column?
+
 # new prototype
 (prototype {\name: 'Bob'}
 
