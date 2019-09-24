@@ -58,6 +58,8 @@ $ cat A | sort | uniq | file B
 # Don't like `local` as a built-in
 # Don't like separate map syntax
 
+# get, set/put, unset/remove, has?
+
 # There will always be metadata
 # line, column, file, type
 # Remove `prototype`
@@ -115,7 +117,9 @@ let
 # orthogonal, do only one thing well
 
 # every map has a prototype key?
+# every map has a type key?
 # every binding has line, column?
+# can reuse get/set (conposable)
 
 # new prototype
 (prototype {\name: 'Bob'})
