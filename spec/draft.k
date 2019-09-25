@@ -128,6 +128,12 @@ let
   (set Person \type
     key: {Symbol}
     value: {\name: Text \age: Number})
+  
+  Person.prototype
+  Person.type
+  
+  type.person
+  type.Person
 
 # new prototype
 (prototype {\name: 'Bob'})
