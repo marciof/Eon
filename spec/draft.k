@@ -124,37 +124,36 @@ let
 # can cause key conflicts
 # no proto for numbers and booleans?
 
-let
-  person: {\name: '' \age: 0}
-  Person: (set person \proto person)
-  (set Person \type
-    key: {Symbol}
-    value: {\name: Text \age: Number})
-  
-  Person.prototype
-  Person.type
-  
-  type.person
-  type.Person
-
-# new prototype
-(prototype {\name: 'Bob'})
+# new prototype with no constraint
+(prototype {\name: 'Bob'} {})
 
 # get prototype of a value?
+(prototype value)
 
-# number tower
-(type 0) # non-negative integer
-(type 1) # positive integer
-(type -1) # integer
-(type 1.0) # decimal
+# numerical tower
+(prototype 0) # non-negative integer
+(prototype 1) # positive integer
+(prototype -1) # integer
+(prototype 1.0) # decimal
 
 # list of numbers
-(constraint [] Number)
+(prototype [] Number)
 
 # heterogeneous?
 {\name: '' \age: 0}
 
+(prototype {\name: '' \age: 0}
+  key: {Symbol}
+  value: {\name: Text \age: Number}
+
 # generics?
+(function list-of (type)
+  (prototype [] type))
+
+# get constraint of a value
+(constaint value)
+
+# query inferred constraint?
 
 # currying? too implicit?
 let
@@ -165,6 +164,9 @@ let
 # currying?
 (get map: key: \name)
 .name
+
+person.name
+.name person
 
 # shell pipe operator?
 cat | sort | uniq | wc
