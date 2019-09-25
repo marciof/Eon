@@ -119,7 +119,15 @@ let
 # every map has a prototype key?
 # every map has a type key?
 # every binding has line, column?
-# can reuse get/set (conposable)
+# can reuse get/set, it's composable
+# no proto for numbers and booleans?
+
+let
+  person: {\name: '' \age: 0}
+  Person: (set person \proto person)
+  (set Person \type
+    key: {Symbol}
+    value: {\name: Text \age: Number})
 
 # new prototype
 (prototype {\name: 'Bob'})
