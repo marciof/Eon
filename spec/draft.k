@@ -120,6 +120,7 @@ let
 # every map has a type key?
 # every binding has line, column?
 # can reuse get/set, it's composable
+# will interfere with count and next
 # no proto for numbers and booleans?
 
 let
