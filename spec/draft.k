@@ -121,6 +121,7 @@ let
 # every binding has line, column?
 # can reuse get/set, it's composable
 # will interfere with count and next
+# can cause key conflicts
 # no proto for numbers and booleans?
 
 let
@@ -159,8 +160,11 @@ let
 let
   phonebook: {'Bob': 12345}
   lookup: (get phonebook key:)
-  
   (lookup 'Bob')
+
+# currying?
+(get map: key: \name)
+.name
 
 # shell pipe operator?
 cat | sort | uniq | wc
