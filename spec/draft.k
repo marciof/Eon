@@ -134,7 +134,9 @@ let
 (prototype 0) # non-negative integer
 (prototype 1) # positive integer
 (prototype -1) # integer
-(prototype 1.0) # decimal
+(prototype 0.0) # non-negative decimal
+(prototype 1.0) # positive decimal
+(prototype -1.0) # decimal
 
 # list of numbers
 (prototype [] Number)
@@ -150,8 +152,8 @@ let
 (function list-of (type)
   (prototype [] type))
 
-# get constraint of a value
-(constaint value)
+# get constraint of a value or proto
+(constraint value)
 
 # query inferred constraint?
 
