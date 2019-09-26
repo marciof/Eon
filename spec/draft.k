@@ -125,6 +125,8 @@ let
 # no proto for numbers and booleans?
 
 # new prototype with no constraint
+# optimize writing for no constraints?
+# remove 2nd parameter?
 (prototype {\name: 'Bob'} {})
 
 # auto infer constraints?
