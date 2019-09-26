@@ -127,6 +127,9 @@ let
 # new prototype with no constraint
 (prototype {\name: 'Bob'} {})
 
+# auto infer constraints?
+(prototype {\name: 'Bob'} constraint)
+
 # get prototype of a value?
 (prototype value)
 
