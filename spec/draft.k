@@ -62,6 +62,7 @@ $ cat A | sort | uniq | file B
 
 # There will always be metadata
 # line, column, file, type
+# debugger, test frameworks, etc
 # Remove `prototype`
 # Remove `local`
 
@@ -145,8 +146,9 @@ let
   (prototype [] type))
 
 # get prototype of a value?
-(function prototype-of (map)
-  (insert map \key \value)
+# can list all prototypes
+(get prototype value)
+(insert prototype ...)
 
 # numerical tower
 # can't create prototypes of primitives
