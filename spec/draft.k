@@ -59,6 +59,7 @@ $ cat A | sort | uniq | file B
 # Don't like separate map syntax
 
 # get, set/put, unset/remove, has?
+# insert/merge
 
 # There will always be metadata
 # line, column, file, type
@@ -131,7 +132,7 @@ let
 # new prototype with no constraint
 (prototype {\name: 'Bob'})
 
-# auto infer constraint
+# auto infer constraint or get it?
 (prototype {\name: 'Bob'} constraint)
 
 # heterogeneous?
@@ -149,6 +150,32 @@ let
 # can list all prototypes
 (get prototype value)
 (insert prototype ...)
+(get value meta: prototype)
+(get value key: \base meta: prototype)
+
+(inspect value \prototype)
+(metadata value \prototype)
+
+# bindings has `line` and `column`?
+(metadata value \line)
+
+# only function lists/calls
+# have prototypes and constraints?
+# and line and column?
+# the bindings key is already special
+
+# no metadata function, special keys?
+# if as keys, themselves prototypical
+(get map .prototype)
+(get map .constraint)
+
+# special metadata-like keys?
+(get map :prototype)
+(get map :constraint)
+(get map :line)
+(get map :column)
+
+# new prototype requires proto key?
 
 # numerical tower
 # can't create prototypes of primitives
@@ -169,15 +196,6 @@ let
   \value:
   \prototype:
 }
-
-# no metadata function, special keys?
-# if as keys, themselves prototypical
-(get map .prototype)
-(get map .constraint)
-
-# special metadata-like keys?
-(get map :prototype)
-(get map :constraint)
 
 # currying? too implicit?
 let
