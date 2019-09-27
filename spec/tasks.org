@@ -16,6 +16,8 @@
 
 * TODO optional static typing?
 
+- Algebraic data types? Check ML languages.
+
 * TODO syntax for complex numbers?
 
 * TODO syntax for fractions?

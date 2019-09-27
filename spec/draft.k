@@ -135,8 +135,7 @@ let
 
 # heterogeneous?
 (prototype {\name: '' \age: 0}
-  key: {Symbol}
-  value: {\name: Text \age: Number}
+  {Symbol}: {\name: Text \age: Number})
 
 # list of numbers
 (prototype [] Number)
@@ -146,6 +145,8 @@ let
   (prototype [] type))
 
 # get prototype of a value?
+(function prototype-of (map)
+  (insert map \key \value)
 
 # numerical tower
 # can't create prototypes of primitives
@@ -159,7 +160,7 @@ let
 (prototype 1.(3)) # real
 
 # get constraint of a value or proto
-# (this is just like metadata)
+# this is just like metadata
 (constraint value)
 {
   \key:
@@ -182,6 +183,7 @@ let
   lookup: (get phonebook key:)
   (lookup 'Bob')
 
+# renaming curried params
 (\(get phonebook key: name) name:)
 (lookup name: 'Bob')
 
