@@ -124,43 +124,57 @@ let
 # can cause key conflicts
 # no proto for numbers and booleans?
 
-# new prototype with no constraint
-# optimize writing for no constraints?
-# remove 2nd parameter?
-(prototype {\name: 'Bob'} {})
+# make constraint more generic?
+# can specify prototypes too?
 
-# auto infer constraints?
+# new prototype with no constraint
+(prototype {\name: 'Bob'})
+
+# auto infer constraint
 (prototype {\name: 'Bob'} constraint)
 
+# heterogeneous?
+(prototype {\name: '' \age: 0}
+  key: {Symbol}
+  value: {\name: Text \age: Number}
+
+# list of numbers
+(prototype [] Number)
+
+# generics
+(function list-of (type)
+  (prototype [] type))
+
 # get prototype of a value?
-(prototype value)
 
 # numerical tower
+# can't create prototypes of primitives
+# so it just returns itself
 (prototype 0) # non-negative integer
 (prototype 1) # positive integer
 (prototype -1) # integer
 (prototype 0.0) # non-negative decimal
 (prototype 1.0) # positive decimal
 (prototype -1.0) # decimal
-
-# list of numbers
-(prototype [] Number)
-
-# heterogeneous?
-{\name: '' \age: 0}
-
-(prototype {\name: '' \age: 0}
-  key: {Symbol}
-  value: {\name: Text \age: Number}
-
-# generics?
-(function list-of (type)
-  (prototype [] type))
+(prototype 1.(3)) # real
 
 # get constraint of a value or proto
+# (this is just like metadata)
 (constraint value)
+{
+  \key:
+  \value:
+  \prototype:
+}
 
-# query inferred constraint?
+# no metadata function, special keys?
+# if as keys, themselves prototypical
+(get map .prototype)
+(get map .constraint)
+
+# special metadata-like keys?
+(get map :prototype)
+(get map :constraint)
 
 # currying? too implicit?
 let
@@ -168,7 +182,10 @@ let
   lookup: (get phonebook key:)
   (lookup 'Bob')
 
-# currying?
+(\(get phonebook key: name) name:)
+(lookup name: 'Bob')
+
+# currying keys? too weird/implicit?
 (get map: key: \name)
 .name
 
