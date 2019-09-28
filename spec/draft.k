@@ -112,9 +112,13 @@ let
 
 # what does inspecting see?
 \(\(+ x 1)
-  x: (evaluate (get
-    (local bindings)
-    (next (local bindings)))))
+  x: (evaluate
+    (get
+      (local bindings)
+      \x
+      (get
+        (local bindings)
+        2))))
 
 # types? casts?
 # how to inspect types? protos?
