@@ -197,6 +197,10 @@ let
   \prototype:
 }
 
+# metadata is read-only
+# works well for line, column, length
+(metadata value)
+
 # currying? too implicit?
 let
   phonebook: {'Bob': 12345}
