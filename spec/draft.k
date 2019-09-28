@@ -151,8 +151,10 @@ let
 (get map :constraint)
 (get map :count)
 
-(get bindings :line)
-(get bindings :column)
+map.:prototype
+map.|prototype|
+map.^prototype
+map.`prototype
 
 # metadata is read-only
 # works well for line, column, length
@@ -164,6 +166,8 @@ let
 # bindings has `line` and `column`?
 (metadata value \line)
 
+(metadata text \count)
+
 # numerical tower
 # can't create prototypes of primitives
 # so it just returns itself
@@ -174,6 +178,12 @@ let
 (prototype 1.0) # positive decimal
 (prototype -1.0) # decimal
 (prototype 1.(3)) # real
+
+# metadata on numbers?
+{
+  \numerator: 1
+  \denominator: 2
+}
 
 # currying? too implicit?
 let
