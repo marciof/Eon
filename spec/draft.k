@@ -65,7 +65,7 @@ $ cat A | sort | uniq | file B
 # line, column, file, type
 # debugger, test frameworks, etc
 # Remove `prototype`
-# Remove `local`
+# Remove `local` (arg = local binding)
 
 ---
 
@@ -108,8 +108,13 @@ let
 \(+ x 1)
 
 # function, currying fixes bindings
-# what does inspecting see?
 (\(+ x 1) x:)
+
+# what does inspecting see?
+\(\(+ x 1)
+  x: (evaluate (get
+    (local bindings)
+    (next (local bindings)))))
 
 # types? casts?
 # how to inspect types? protos?
@@ -118,22 +123,10 @@ let
 # use `get` to inspect?
 # orthogonal, do only one thing well
 
-# every map has a prototype key?
-# every map has a type key?
-# every binding has line, column?
-# can reuse get/set, it's composable
-# will interfere with count and next
-# can cause key conflicts
-# no proto for numbers and booleans?
-
-# make constraint more generic?
-# can specify prototypes too?
-
 # new prototype with no constraint
 (prototype {\name: 'Bob'})
 
-# auto infer constraint or get it?
-(prototype {\name: 'Bob'} constraint)
+# auto infer constraint?
 
 # heterogeneous?
 (prototype {\name: '' \age: 0}
@@ -146,19 +139,6 @@ let
 (function list-of (type)
   (prototype [] type))
 
-# get prototype of a value?
-# can list all prototypes
-(get prototype value)
-(insert prototype ...)
-(get value meta: prototype)
-(get value key: \base meta: prototype)
-
-(inspect value \prototype)
-(metadata value \prototype)
-
-# bindings has `line` and `column`?
-(metadata value \line)
-
 # only function lists/calls
 # have prototypes and constraints?
 # and line and column?
@@ -166,16 +146,23 @@ let
 
 # no metadata function, special keys?
 # if as keys, themselves prototypical
-(get map .prototype)
-(get map .constraint)
-
-# special metadata-like keys?
+# avoids key conflicts
 (get map :prototype)
 (get map :constraint)
-(get map :line)
-(get map :column)
+(get map :count)
 
-# new prototype requires proto key?
+(get bindings :line)
+(get bindings :column)
+
+# metadata is read-only
+# works well for line, column, length
+(metadata value)
+
+# get prototype of a value
+(metadata value \prototype)
+
+# bindings has `line` and `column`?
+(metadata value \line)
 
 # numerical tower
 # can't create prototypes of primitives
@@ -187,19 +174,6 @@ let
 (prototype 1.0) # positive decimal
 (prototype -1.0) # decimal
 (prototype 1.(3)) # real
-
-# get constraint of a value or proto
-# this is just like metadata
-(constraint value)
-{
-  \key:
-  \value:
-  \prototype:
-}
-
-# metadata is read-only
-# works well for line, column, length
-(metadata value)
 
 # currying? too implicit?
 let
