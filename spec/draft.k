@@ -167,6 +167,10 @@ map.|prototype|
 map.^prototype
 map.`prototype
 
+# not necessarily that many conflicts
+# it uses symbols, not strings
+# they're just interpreted differently
+
 (get map \value meta?: true)
 
 # metadata is read-only
