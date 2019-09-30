@@ -167,6 +167,8 @@ map.|prototype|
 map.^prototype
 map.`prototype
 
+(get map \value meta?: true)
+
 # metadata is read-only
 # works well for line, column, length
 (metadata value)
