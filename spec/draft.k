@@ -172,6 +172,9 @@ map.`prototype
 
 (metadata text \count)
 
+# metadata about the language
+(metadata)
+
 # numerical tower
 # can't create prototypes of primitives
 # so it just returns itself
