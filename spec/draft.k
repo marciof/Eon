@@ -147,6 +147,8 @@ let
 # have prototypes and constraints?
 # and line and column?
 # the bindings key is already special
+# othogonal, can set count to trim
+
 # feels a shortcut, prefer functions
 
 # every value has two parts?
