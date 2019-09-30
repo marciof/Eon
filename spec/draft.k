@@ -149,6 +149,10 @@ let
 # the bindings key is already special
 # feels a shortcut, prefer functions
 
+# every value has two parts?
+# - data
+# - meta-data
+
 # no metadata function, special keys?
 # if as keys, themselves prototypical
 # avoids key conflicts
