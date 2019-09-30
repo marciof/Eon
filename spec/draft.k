@@ -143,6 +143,9 @@ let
 (function list-of (type)
   (prototype [] type))
 
+# get local prototype?
+(get value)
+
 # only function lists/calls
 # have prototypes and constraints?
 # and line and column?
