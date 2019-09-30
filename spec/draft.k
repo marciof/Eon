@@ -147,6 +147,7 @@ let
 # have prototypes and constraints?
 # and line and column?
 # the bindings key is already special
+# feels a shortcut, prefer functions
 
 # no metadata function, special keys?
 # if as keys, themselves prototypical
