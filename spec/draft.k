@@ -107,17 +107,18 @@ let
 # function, dynamic binding
 \(+ x 1)
 
-# function, currying fixes bindings
+# function, currying can fix bindings
 (\(+ x 1) x:)
 
 # what does inspecting see?
+# note it shouldn't be relied on
 \(\(+ x 1)
   x: (evaluate
     (get
-      (local bindings)
+      (get bindings)
       \x
       (get
-        (local bindings)
+        (get bindings)
         2))))
 
 # types? casts?
