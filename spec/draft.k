@@ -210,6 +210,11 @@ map.`prototype
 (prototype 1.0) # positive decimal
 (prototype -1.0) # decimal
 (prototype 1.(3)) # real
+(prototype 1+2i) # imaginary?
+
+# built-in imaginary function
+(i 2)
+2i
 
 # metadata on numbers?
 {
