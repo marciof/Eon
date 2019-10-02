@@ -187,6 +187,9 @@ map.^prototype
 map.`prototype
 map.^size
 
+(get map 'Bob')
+map.['Bob']
+
 (get (metadata map) \prototype)
 (get map \^prototype)
 (get map \prototype meta?: true)
