@@ -61,6 +61,10 @@ $ cat A | sort | uniq | file B
 # get, set/put, unset/remove, has?
 # insert/merge
 
+(remove list 1 3:5 7:10)
+
+(merge [1 2 3] [4 5])
+
 # There will always be metadata
 # line, column, file, type
 # debugger, test frameworks, etc
@@ -112,6 +116,7 @@ let
 
 # what does inspecting see?
 # note it shouldn't be relied on
+# should it be auto evaluated?
 \(\(+ x 1)
   x: (evaluate
     (get
@@ -127,6 +132,8 @@ let
 # use `next` to go up the proto chain?
 # use `get` to inspect?
 # orthogonal, do only one thing well
+
+# Don't mix set/get on same function
 
 # new prototype with no constraint
 (prototype {\name: 'Bob'})
@@ -178,12 +185,21 @@ map.:prototype
 map.|prototype|
 map.^prototype
 map.`prototype
+map.^size
+
+(get (metadata map) \prototype)
+(get map \^prototype)
+(get map \prototype meta?: true)
+
+let count: (get
+  map: key: \prototype meta?: true)
+
+# bad to need to skip when iterating
+{\name: 'Bob' \prototype: Map}
 
 # not necessarily that many conflicts
 # it uses symbols, not strings
 # they're just interpreted differently
-
-(get map \value meta?: true)
 
 # metadata is read-only
 # works well for line, column, length
