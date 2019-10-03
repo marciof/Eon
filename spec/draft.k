@@ -73,9 +73,21 @@ $ cat A | sort | uniq | file B
 
 ---
 
-io.print 'Hello'
+# how to varargs?
 
-1,234.56
+function range (spec *rest)
+function range (spec * rest)
+function range (spec rest*)
+function range (spec rest *)
+
+function range (spec [] rest)
+function range (spec [rest])
+function range (spec {rest})
+
+function range (spec ...rest)
+function range (spec ... rest)
+function range (spec rest...)
+function range (spec rest ...)
 
 {\name: 'Bob' \age: 20}
 
