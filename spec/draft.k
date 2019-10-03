@@ -74,6 +74,7 @@ $ cat A | sort | uniq | file B
 ---
 
 # how to varargs?
+# add ellipsis syntax back?
 
 function range (spec *rest)
 function range (spec * rest)
