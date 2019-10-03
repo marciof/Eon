@@ -293,19 +293,19 @@ A rational number.
 2
 # 2
 
--17.3
-# -17.3
+-17,3
+# -17,3
 
 +9
 # 9
 
-1.(3)
-# 1.(3)
+1,(3)
+# 1,(3)
 
-4,294,967,296
-# 4294967296
+4.294.967.296
+# 4.294.967.296
 
-(/ 1 0.(0)1)
+(/ 1 0,(0)1)
 # infinity
 
 3Km
@@ -806,12 +806,16 @@ Key lookup takes place in the given map, and in each of its base prototypes unti
 # 30
 
 (let user: {\name: 'Bob'}
+     users: [user]
 
   (get user \name)
   # 'Bob'
 
-  user.name)
+  user::name
   # 'Bob'
+
+  users::1::name
+  # 'Bob')
 ```
 
 ## `insert`
@@ -1180,11 +1184,9 @@ End-of-Line ::= "" <U+A>
 Number:
 
 ```
-Number ::= Sign? Digit+ (Digit-Decimal-Separator (Digits | Digits? Function-Begin Digits Function-End))? Symbol?
+Number ::= Sign? Digit+ ("," <U+2C> (Digits | Digits? Function-Begin Digits Function-End))? Symbol?
 Sign ::= "+" <U+2B> | "-" <U+2D>
-Digits ::= Digit+ (Digit-Group-Separator? Digit+)*
-Digit-Group-Separator ::= "," <U+2C>
-Digit-Decimal-Separator ::= "." <U+2E>
+Digits ::= Digit+ ("." <U+2E>? Digit+)*
 Digit ::= "0" <U+30> | "1" <U+31> | "2" <U+32> | "3" <U+33> | "4" <U+34> | "5" <U+35> | "6" <U+36> | "7" <U+37> | "8" <U+38> | "9" <U+39>
 ```
 
@@ -1192,7 +1194,7 @@ Symbol:
 
 ```
 Symbol ::= not(Reserved-Character, White-Space, Sign, Digit) not(Reserved-Character, White-Space)*
-Reserved-Character ::= List-Begin | List-End | Function-Begin | Function-End | Map-Begin | Map-End | Comment-Quote | Text-Quote | Defer | Pair-Separator | Digit-Group-Separator | Digit-Decimal-Separator
+Reserved-Character ::= List-Begin | List-End | Function-Begin | Function-End | Map-Begin | Map-End | Comment-Quote | Text-Quote | Defer | Pair-Separator
 ```
 
 Text:
@@ -1233,7 +1235,7 @@ Function:
 
 ```
 Function ::= (Function-Begin White-Space* (Function-Value (White-Space+ Function-Value)* White-Space*)? Function-End) | Get-Chain
-Get-Chain ::= Symbol (Digit-Decimal-Separator Symbol)+
+Get-Chain ::= Symbol (Pair-Separator{2} (Symbol | Number))+
 Function-Value ::= Expression | Pair
 Function-Begin ::= "(" <U+28>
 Function-End ::= ")" <U+28>
@@ -1245,7 +1247,7 @@ These are the syntactic transformations that occur for each associated non-termi
 
 |Non-Terminal       |Syntax|Transformation|Example       |Notes         |
 |-------------------|------|--------------|--------------|--------------|
-|*Get-Chain*        |`x.y` |`(get x \y)`  |`user.name`   |Left to right.|
+|*Get-Chain*        |`x::y`|`(get x \y)`  |`user::name`  |Left to right.|
 |*Tagged-Text*      |`xyz` |`(x y z)`     |`base'1F'16`  |              |
 |*Function-Value*   |`x`   |`N:x`         |`(f)`         |Position `N`. |
 |*Number*           |`xy`  |`(y x)`       |`2Km`         |              |

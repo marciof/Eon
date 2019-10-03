@@ -14,6 +14,8 @@
 
 * TODO multiline nesting comments (without needing an IDE)?
 
+* TODO disallow number units in ::?
+
 * TODO optional static typing?
 
 - Algebraic data types? Check ML languages.
@@ -31,6 +33,11 @@
 - https://github.com/igorshubovych/markdownlint-cli
 - https://github.com/remarkjs/remark-lint
 - https://github.com/notslang/tidy-markdown
+
+* TODO visual grammar diagram?
+
+- Railroad Diagram Generator
+- http://lua4z.com/doc/manual/syntax.md.html
 
 * TODO indentation based syntax grammar
 

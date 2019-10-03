@@ -73,33 +73,16 @@ $ cat A | sort | uniq | file B
 
 ---
 
-# how to varargs?
-# add ellipsis syntax back?
-
-function range (spec *rest)
-function range (spec * rest)
-function range (spec rest*)
-function range (spec rest *)
-
-function range (spec [] rest)
-function range (spec [rest])
-function range (spec {rest})
-
-function range (spec ...rest)
-function range (spec ... rest)
-function range (spec rest...)
-function range (spec rest ...)
-
 {\name: 'Bob' \age: 20}
 
 if (logged-in? user)
-  io.print 'Hi'
+  io::print 'Hi'
 
 if (logged-in? user)
-  then: io.print 'Hi'
+  then: io::print 'Hi'
 
 if (logged-in? user) then:
-  io.print 'Hi'
+  io::print 'Hi'
 
 # readable configs
 configure
@@ -112,14 +95,14 @@ name: 'Bob'
 # non top level requires `let`
 # otherwise it means keyword arg
 let name: 'Bob'
-  io.print name
+  io::print name
 
 let
   name: 'Bob'
   age: 20
   
-  io.print name
-  io.print age
+  io::print name
+  io::print age
 
 # function, dynamic binding
 \(+ x 1)
@@ -208,7 +191,9 @@ map.['Bob']
 (get map \prototype meta?: true)
 
 let count: (get
-  map: key: \prototype meta?: true)
+  map:
+  key: \prototype
+  meta?: true)
 
 # bad to need to skip when iterating
 {\name: 'Bob' \prototype: Map}
@@ -244,7 +229,7 @@ let count: (get
 (prototype 1.(3)) # real
 (prototype 1+2i) # imaginary?
 
-# built-in imaginary function
+# built-in (?) imaginary function
 (i 2)
 2i
 
@@ -266,10 +251,10 @@ let
 
 # currying keys? too weird/implicit?
 (get map: key: \name)
-.name
+::name
 
-person.name
-.name person
+person::name
+::name person
 
 # shell pipe operator?
 cat | sort | uniq | wc
