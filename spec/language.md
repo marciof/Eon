@@ -293,19 +293,19 @@ A rational number.
 2
 # 2
 
--17,3
-# -17,3
+-17.3
+# -17.3
 
 +9
 # 9
 
-1,(3)
-# 1,(3)
+1.(3)
+# 1.(3)
 
-4.294.967.296
-# 4.294.967.296
+4,294,967,296
+# 4,294,967,296
 
-(/ 1 0,(0)1)
+(/ 1 0.(0)1)
 # infinity
 
 3Km
@@ -1184,9 +1184,9 @@ End-of-Line ::= "" <U+A>
 Number:
 
 ```
-Number ::= Sign? Digit+ ("," <U+2C> (Digits | Digits? Function-Begin Digits Function-End))? Symbol?
+Number ::= Sign? Digit+ ("." <U+2E> (Digits | Digits? Function-Begin Digits Function-End))? Symbol?
 Sign ::= "+" <U+2B> | "-" <U+2D>
-Digits ::= Digit+ ("." <U+2E>? Digit+)*
+Digits ::= Digit+ ("," <U+2C>? Digit+)*
 Digit ::= "0" <U+30> | "1" <U+31> | "2" <U+32> | "3" <U+33> | "4" <U+34> | "5" <U+35> | "6" <U+36> | "7" <U+37> | "8" <U+38> | "9" <U+39>
 ```
 
