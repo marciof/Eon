@@ -1,5 +1,9 @@
 * interpreter
 
+** TODO more useful warnings?
+
+- https://kristerw.blogspot.com/2017/09/useful-gcc-warning-options-not-enabled.html
+
 ** TODO specify all build dependencies
 
 - sign-up to interest mailing lists
