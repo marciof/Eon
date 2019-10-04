@@ -416,6 +416,13 @@ re'\d+'g
 
 # Built-ins
 
+The following conventions are used for documentation:
+
+* `(f x)`: function named `f`, with a parameter named `x`.
+* `x: y`: `x` is a prototype of or a `y`.
+* `...`: zero or more function parameters.
+* `...: y`: zero or more function parameters, where each one is a prototype of or a `y`.
+
 ## `=` (equal)
 
 ```
