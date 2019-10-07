@@ -14,8 +14,9 @@
 
 * TODO improve documentation
 
+- Make `count` throw an error for built-ins or foreign values?
 - Function sub headings
-- Examples and condiions per secion
+- Examples and conditions per secion
 
 * TODO multiline nesting comments (without needing an IDE)?
 

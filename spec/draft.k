@@ -1,3 +1,4 @@
+# Force named arguments?
 if (logged-in? user)
   then: do
     this-first
@@ -17,6 +18,7 @@ if (logged-in? user)
     this-first
     this-second
 
+# Implicit `do`?
 if (logged-in? user) then:
   this-first
   this-second

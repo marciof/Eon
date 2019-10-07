@@ -420,6 +420,7 @@ The following conventions are used for documentation:
 
 * `(f x)`: function named `f`, with a parameter named `x`.
 * `x: y`: `x` is a prototype of or a `y`.
+* `[x]`: optional function parameter named `x`.
 * `...`: zero or more function parameters.
 * `...: y`: zero or more function parameters, where each one is a prototype of or a `y`.
 
@@ -646,11 +647,10 @@ A [function](#function) that returns the number of key/value pairs in a `map`. I
 ## `defer`
 
 ```
-(defer expression)
-(defer expression escape:Symbol)
+(defer expression [escape]:Symbol)
 ```
 
-A [function](#function) that creates a snapshot of an `expression` thereby preventing it from being [evaluated](#evaluate), optionally with an `escape` [symbol](#symbol) for re-enabling evaluation inside it.
+A [function](#function) that creates a snapshot of an `expression` thereby preventing it from being [evaluated](#evaluate), optionally using an `escape` [symbol](#symbol) for re-enabling evaluation inside the expression.
 
 ### Complexity
 
@@ -686,7 +686,7 @@ A [function](#function) that creates a snapshot of an `expression` thereby preve
 (do expression ...)
 ```
 
-A [function](#function) that evaluates a sequence of expressions and returns the value of the last expression.
+A [function](#function) that evaluates a sequence of one or more expressions and returns the value of the last expression.
 
 ### Complexity
 
@@ -713,11 +713,10 @@ A [function](#function) that evaluates a sequence of expressions and returns the
 ## `evaluate`
 
 ```
-(evaluate expression)
-(evaluate expression bindings:Map)
+(evaluate expression [bindings]:Map)
 ```
 
-A [function](#function) that evaluates an `expression` and returns the result, optionally using different `bindings`.
+A [function](#function) that evaluates an `expression` and returns the result, optionally using different `bindings` for the evaluation.
 
 ### Complexity
 
@@ -769,8 +768,7 @@ A [function](#function) that evaluates an `expression` and returns the result, o
 ## `get`
 
 ```
-(get map:Map key)
-(get map:Map key default)
+(get map:Map key [default)]
 ```
 
 A [function](#function) that retrieves the value associated with a `key` in a `map`, optionally using a lazily [evaluated](#evaluate) `default` value if no such association exists.
@@ -779,7 +777,7 @@ Key lookup takes place in the given map, and recursively in each prototype until
 
 ### Complexity
 
-- Time: `O(1+k)` where `k` is the number of prototypes of `map`
+- Time: `O(1+k)` where `k` is the total number of prototypes in `map`
 - Space: `O(1)`
 
 ### Conditions
@@ -971,11 +969,10 @@ A [function](#function) that returns a [map](#map) with the non-inherited key/va
 ## `next`
 
 ```
-(next map:Map)
-(next map:Map key)
+(next map:Map [key])
 ```
 
-A [function](#function) that returns the first key or the key following `key` in a `map`.
+A [function](#function) that returns the first key, or the key following `key` in a `map`.
 
 ### Complexity
 
@@ -1010,7 +1007,7 @@ A [function](#function) that returns the first key or the key following `key` in
 A [function](#function) that retrieves the [prototype](#prototypes) of `value`.
 
 ```
-(prototype value base)
+(prototype value [base])
 ```
 
 A [function](#function) that extends the prototype hierarchy using `base` thereby creating a new [prototype](#prototypes).
@@ -1121,8 +1118,7 @@ List / Function:
 ## `unwind`
 
 ```
-(unwind value)
-(unwind value bindings:Map)
+(unwind value [bindings]:Map)
 ```
 
 A [function](#function) that aborts the current scope or the scope associated with the given `bindings`, and returns `value` as the result.
