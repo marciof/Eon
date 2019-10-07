@@ -775,11 +775,11 @@ A [function](#function) that evaluates an `expression` and returns the result, o
 
 A [function](#function) that retrieves the value associated with a `key` in a `map`, optionally using a lazily [evaluated](#evaluate) `default` value if no such association exists.
 
-Key lookup takes place in the given map, and in each of its base prototypes until it's found, if it exists.
+Key lookup takes place in the given map, and recursively in each prototype until it's found, if it exists.
 
 ### Complexity
 
-- Time: `O(1)`
+- Time: `O(1+k)` where `k` is the number of prototypes of `map`
 - Space: `O(1)`
 
 ### Conditions

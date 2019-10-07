@@ -12,6 +12,11 @@
 
 * TODO check licensing of all libraries, tools, dependencies
 
+* TODO improve documentation
+
+- Function sub headings
+- Examples and condiions per secion
+
 * TODO multiline nesting comments (without needing an IDE)?
 
 * TODO optional static typing?
