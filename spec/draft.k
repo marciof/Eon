@@ -134,7 +134,7 @@ let
 # Don't mix set/get on same function?
 
 # new prototype with no constraint
-(prototype {\name: 'Bob'} [])
+(prototype {\name: 'Bob'})
 
 # auto infer constraint?
 (prototype {\name: 'Bob'} constraint)
@@ -154,12 +154,33 @@ let
 (get value)
 
 # get type constraint?
-(type value)
 (constraint value)
 
 # get prototype?
-(type value prototype)
+(constraint value kind: prototype)
+
+---
+
+(prototype value)
 (constraint value prototype)
+
+---
+
+# new built-in prototype
+# Metadata extends Symbol
+
+map::^count
+value::^prototype
+
+^line
+^count
+
+(get map \^count)
+(set [1 2 3] \^count 2)
+
+(insert Map \^prototype {\name: ''})
+
+---
 
 # only function lists/calls
 # have prototypes and constraints?
