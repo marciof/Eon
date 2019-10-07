@@ -768,7 +768,7 @@ A [function](#function) that evaluates an `expression` and returns the result, o
 ## `get`
 
 ```
-(get map:Map key [default)]
+(get map:Map key [default])
 ```
 
 A [function](#function) that retrieves the value associated with a `key` in a `map`, optionally using a lazily [evaluated](#evaluate) `default` value if no such association exists.

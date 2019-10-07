@@ -120,7 +120,7 @@ let
     (get
       (get bindings)
       \x
-      (get
+      default: (get
         (get bindings)
         2))))
 
