@@ -1007,7 +1007,7 @@ A [function](#function) that returns the first key, or the key following `key` i
 A [function](#function) that retrieves the [prototype](#prototypes) of `value`.
 
 ```
-(prototype value [base])
+(prototype value base)
 ```
 
 A [function](#function) that extends the prototype hierarchy using `base` thereby creating a new [prototype](#prototypes).

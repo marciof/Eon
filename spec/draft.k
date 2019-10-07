@@ -131,12 +131,13 @@ let
 # use `get` to inspect?
 # orthogonal, do only one thing well
 
-# Don't mix set/get on same function
+# Don't mix set/get on same function?
 
 # new prototype with no constraint
-(prototype {\name: 'Bob'})
+(prototype {\name: 'Bob'} [])
 
 # auto infer constraint?
+(prototype {\name: 'Bob'} constraint)
 
 # heterogeneous?
 (prototype {\name: '' \age: 0}
