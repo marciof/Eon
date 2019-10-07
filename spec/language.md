@@ -1175,7 +1175,7 @@ The grammar is expressed in Extended Backus-Naur Form syntax with the following 
 Expression:
 
 ```
-Expression ::= White-Space* Defer* (Number | Symbol | Text | Map | Set | List | Function) White-Space*
+Expression ::= White-Space* Defer* (Quantity | Symbol | Text | Map | Set | List | Function) White-Space*
 Defer ::= "\" <U+27>
 ```
 
@@ -1191,7 +1191,8 @@ End-of-Line ::= "" <U+A>
 Number:
 
 ```
-Number ::= Sign? Digit+ ("." <U+2E> (Digits | Digits? Function-Begin Digits Function-End))? Symbol?
+Quantity ::= Number Symbol?
+Number ::= Sign? Digit+ ("." <U+2E> (Digits | Digits? Function-Begin Digits Function-End))?
 Sign ::= "+" <U+2B> | "-" <U+2D>
 Digits ::= Digit+ ("," <U+2C>? Digit+)*
 Digit ::= "0" <U+30> | "1" <U+31> | "2" <U+32> | "3" <U+33> | "4" <U+34> | "5" <U+35> | "6" <U+36> | "7" <U+37> | "8" <U+38> | "9" <U+39>

@@ -14,8 +14,6 @@
 
 * TODO multiline nesting comments (without needing an IDE)?
 
-* TODO disallow number units in ::?
-
 * TODO optional static typing?
 
 - Algebraic data types? Check ML languages.
