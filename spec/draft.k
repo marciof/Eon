@@ -25,16 +25,16 @@ if (logged-in? user) then:
 
 ---
 
+# Pipeline support?
 $ date > now
-pipe date to: \now
-date to: \now
 
-$ cat A | sort | uniq | file B
+(file \now (date))
+date | file \now
 
-# don't need separate syntax for input?
-# values are zero parameter functions
+$ < A | cat | sort | uniq > B
 
-(uniq (sort (cat records)))
+(file \B (uniq (sort (cat (file \A)))))
+file \A | cat | sort | uniq | file \B
 
 ---
 
@@ -75,29 +75,13 @@ $ cat A | sort | uniq | file B
 
 ---
 
-{\name: 'Bob' \age: 20}
-
-if (logged-in? user)
-  io::print 'Hi'
-
-if (logged-in? user)
-  then: io::print 'Hi'
-
-if (logged-in? user) then:
-  io::print 'Hi'
-
-# readable configs
-configure
-  size: 123
-  name: 'blah'
-
 # REPL var top level
 name: 'Bob'
 
 # non top level requires `let`
 # otherwise it means keyword arg
-let name: 'Bob'
-  io::print name
+
+# grammar state keyword args newlines?
 
 let
   name: 'Bob'
@@ -105,6 +89,8 @@ let
   
   io::print name
   io::print age
+
+---
 
 # function, dynamic binding
 \(+ x 1)
@@ -181,12 +167,19 @@ let
 # remove all barriers, simplify
 # no such thing as a prototype
 # just duck-typing?
+# structural typing?
+# every value is a potential proto?
 
-# get the value that created value
+# how to handle key removals?
+# how to have static typing?
+
+# gets the value that created value
+# does't work for numbers nor booleans?
 (proto value)
 
-# needs a merge built-in function?
-# not necessarily
+# checks if i's a parent proto
+(proto? Map 'Bob')
+(proto? Map 123)
 
 let
   Person: {\name: ''}
@@ -198,44 +191,15 @@ let
   (proto bob)
   # Person
   
-  (proto Person bob)
-  # true
-  
   (proto? Person bob)
   # true
-
-  (type? bob Person)
-  (type? bob)
-
-let
-  Person: (proto {\name: ''})
-  ed: (insert Person \name 'Ed')
-  
-  (proto Person)
-  # ?
-  
-  (proto? Person)
-  # Map (not true?)
-  
-  (proto? ed)
-  # Person
-  
-  (proto? (insert ed \age 20))
-  # Person
-  
-  (proto? Person ed)
-  # true
-  
-  (proto? Map ed)
-  # true
-  
-  (proto? Number ed)
-  # false
 
 ---
 
 # new built-in prototype
 # Metadata extends Symbol
+# syntax is too weird?
+# feels like a shortcut
 
 map::^count
 value::^prototype
@@ -281,6 +245,7 @@ map.['Bob']
 (get (metadata map) \prototype)
 (get map \^prototype)
 (get map \prototype meta?: true)
+(get map \proto metadata)
 
 let count: (get
   map:
@@ -330,6 +295,8 @@ let count: (get
   \numerator: 1
   \denominator: 2
 }
+
+---
 
 # currying? too implicit?
 let
