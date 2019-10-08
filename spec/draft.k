@@ -178,6 +178,27 @@ let
 
 ---
 
+# remove all barriers, simplify
+# no such thing as a prototype
+# just duck-typing?
+
+# get the value that created value
+(proto value)
+
+# needs a mergebuilt-in function?
+
+let
+  Person: {\name: ''}
+  bob: (insert Person \name 'Bob')
+  
+  (proto Person)
+  # Map
+
+  (proto bob)
+  # Person
+
+---
+
 # new built-in prototype
 # Metadata extends Symbol
 
