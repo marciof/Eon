@@ -147,14 +147,14 @@ let
 
 ---
 
-# create a new proto-type
-(proto-type value)
+# create a new prototype
+(prototype value [constraint])
 
 # get the proto
 (proto value)
 
-# get the type
-(type value)
+# get the constraint
+(constraint value)
 
 ---
 
@@ -171,13 +171,21 @@ let
 # every value is a potential proto?
 
 # how to handle key removals?
+# proto becomes the closest ancestor
+# that doesn't have that key
+
 # how to have static typing?
+# only on functions?
+# just like bindings is special?
+(constraint ...)
+
+# line/column metadata?
 
 # gets the value that created value
-# does't work for numbers nor booleans?
+# numbers/booleans don't create protos
 (proto value)
 
-# checks if i's a parent proto
+# checks if it's a parent proto
 (proto? Map 'Bob')
 (proto? Map 123)
 
@@ -191,7 +199,16 @@ let
   (proto bob)
   # Person
   
-  (proto? Person bob)
+  (proto? bob Person)
+  # true
+  
+  (proto? (remove bob \name) Person)
+  # false
+
+  (proto (remove bob \name) Person)
+  # Map
+
+  (proto? (insert bob \age 20) Person)
   # true
 
 ---
