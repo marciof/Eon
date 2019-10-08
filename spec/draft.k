@@ -185,7 +185,8 @@ let
 # get the value that created value
 (proto value)
 
-# needs a mergebuilt-in function?
+# needs a merge built-in function?
+# not necessarily
 
 let
   Person: {\name: ''}
@@ -193,9 +194,18 @@ let
   
   (proto Person)
   # Map
-
+  
   (proto bob)
   # Person
+  
+  (proto Person bob)
+  # true
+  
+  (proto? Person bob)
+  # true
+
+  (type? bob Person)
+  (type? bob)
 
 ---
 
