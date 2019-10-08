@@ -161,7 +161,13 @@ let
 
 ---
 
+# create a new proto-type
 (prototype value)
+
+# get the proto value
+(proto value)
+
+# get the constraint
 (constraint value prototype)
 
 ---
