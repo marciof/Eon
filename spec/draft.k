@@ -171,6 +171,7 @@ let
 
 # same value can have differnt protos
 # is that an issue for performance?
+# and for garbage collection?
 
 # every value is a potential proto?
 # numbers/booleans don't create protos
