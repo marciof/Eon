@@ -162,13 +162,17 @@ let
 ---
 
 # create a new proto-type
-(prototype value)
+(proto-type value)
 
-# get the proto value
+# get the proto
 (proto value)
 
-# get the constraint
-(constraint value prototype)
+# get the type
+(type value)
+
+---
+
+(get (meta value) \prototype)
 
 ---
 
