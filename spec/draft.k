@@ -169,6 +169,9 @@ let
 # just duck-typing?
 # structural typing?
 
+# same value can have differnt protos
+# is that an issue for performance?
+
 # every value is a potential proto?
 # numbers/booleans don't create protos
 # but can change, eg. int to float
@@ -217,6 +220,8 @@ let
 
   (proto? (insert bob \age 20) Person)
   # true
+
+# need to be able to know a type/proto?
 
 # how to have static typing?
 # only on functions?
