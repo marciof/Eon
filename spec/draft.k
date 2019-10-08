@@ -174,6 +174,8 @@ let
 
 (get (metadata value) \prototype)
 
+# equality comparison?
+
 ---
 
 # new built-in prototype
