@@ -168,22 +168,24 @@ let
 # no such thing as a prototype
 # just duck-typing?
 # structural typing?
+
 # every value is a potential proto?
+# numbers/booleans don't create protos
 
 # how to handle key removals?
 # proto becomes the closest ancestor
 # that doesn't have that key
 
-# how to have static typing?
-# only on functions?
-# just like bindings is special?
-(constraint ...)
-
-# line/column metadata?
-
 # gets the value that created value
-# numbers/booleans don't create protos
+# always thru `insert` or `remove`
+# itself if the base
+# could use a `merge`?
 (proto value)
+
+# no default dynamic binding?
+# but can go up scopes
+# it's the default for unquoted symbols
+(proto bindings)
 
 # checks if it's a parent proto
 (proto? Map 'Bob')
@@ -210,6 +212,13 @@ let
 
   (proto? (insert bob \age 20) Person)
   # true
+
+# how to have static typing?
+# only on functions?
+# just like bindings is special?
+(constraint ...)
+
+# line/column metadata?
 
 ---
 
