@@ -207,6 +207,28 @@ let
   (type? bob Person)
   (type? bob)
 
+let
+  Person: (proto {\name: ''})
+  ed: (insert Person \name 'Ed')
+  
+  (proto? Person)
+  # Map (not true?)
+  
+  (proto? ed)
+  # Person
+  
+  (proto? (insert ed \age 20))
+  # Person
+  
+  (proto? Person ed)
+  # true
+  
+  (proto? Map ed)
+  # true
+  
+  (proto? Number ed)
+  # false
+
 ---
 
 # new built-in prototype
