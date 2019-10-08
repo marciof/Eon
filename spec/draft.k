@@ -172,7 +172,7 @@ let
 
 ---
 
-(get (meta value) \prototype)
+(get (metadata value) \prototype)
 
 ---
 
