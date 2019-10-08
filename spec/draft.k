@@ -211,6 +211,9 @@ let
   Person: (proto {\name: ''})
   ed: (insert Person \name 'Ed')
   
+  (proto Person)
+  # ?
+  
   (proto? Person)
   # Map (not true?)
   
