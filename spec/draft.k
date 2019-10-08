@@ -183,6 +183,7 @@ let
 (proto value)
 
 # no default dynamic binding?
+# no prototyping = no need for `local`
 # but can go up scopes
 # it's the default for unquoted symbols
 (proto bindings)
