@@ -171,6 +171,7 @@ let
 
 # every value is a potential proto?
 # numbers/booleans don't create protos
+# but can change, eg. int to float
 
 # how to handle key removals?
 # proto becomes the closest ancestor
@@ -181,6 +182,9 @@ let
 # itself if the base
 # could use a `merge`?
 (proto value)
+
+(remove map key ...)
+(remove map from-key:to-key ...)
 
 # no default dynamic binding?
 # no prototyping = no need for `local`
