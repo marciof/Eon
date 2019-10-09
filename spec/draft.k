@@ -233,6 +233,17 @@ let
 
 ---
 
+# is value structurally compatible?
+(proto? proto value)
+
+# no prototyping = less built-ins
+# easier to understand?
+
+# need prototype for bindings?
+# no, use a caller symbol
+
+---
+
 # new built-in prototype
 # Metadata extends Symbol
 # syntax is too weird?
