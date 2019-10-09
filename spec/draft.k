@@ -166,16 +166,16 @@ let
 
 # questions:
 # - same value with different protos?
-# - performance issues?
-# - can't GC too many protos forever?
-# - not necessarily, like classes
+# - how to optional static typing?
+# - how to identify a value's type?
+# - can't create fake eval bindings?
 
 # gets the value that created value
 # - only structural changes
 # - changing values/types isn't
 # - new key creates new sub proto
 # - delete key uses closest ancestor
-# - itself if the base
+# - returns itself if the root
 
 (proto value)
 
