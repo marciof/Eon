@@ -165,14 +165,13 @@ let
 ---
 
 # remove all barriers, simplify
-# no such thing as a prototype
-# just duck-typing?
-# structural typing?
+# - no such thing as a prototype
+# - just structural typing?
 
-# same value can have different protos
-# is that an issue for performance?
-# and for garbage collection?
-# only available protos are saved?
+# questions:
+# - same value with different protos?
+# - performance issues?
+# - can't GC too many protos forever?
 
 # every value is a potential proto?
 # numbers/booleans don't create protos
@@ -183,10 +182,14 @@ let
 # that doesn't have that key
 
 # gets the value that created value
-# always thru `insert` or `remove`
-# itself if the base
-# could use a `merge`?
+# - only structural changes
+# - changing values/types isn't
+# - new key creates new sub proto
+# - delete key uses closest ancestor
+# - itself if the base
 (proto value)
+
+# could use a `merge`?
 
 (remove map key ...)
 (remove map from-key:to-key ...)
