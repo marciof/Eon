@@ -161,7 +161,7 @@ let
 
 # remove all barriers, simplify
 # - no such thing as a prototype
-# - no inheritance
+# - no inheritance (but can simulate)
 # - just structural typing?
 # - numbers/boolean don't make protos
 
@@ -171,12 +171,14 @@ let
 # - how to identify a value's type?
 # - can create fake eval bindings?
 # - delete key uses closest ancestor?
+# - line/column metadata?
+# - could use a `merge`?
 
 # gets the value that created value
 # - only structural changes
 # - changing values/types isn't
-# - new key creates new sub proto
-# - delete key uses closest ancestor
+# - new key creates new sub proto?
+# - delete key uses closest ancestor?
 # - returns itself if at the root
 
 (proto value)
@@ -188,17 +190,19 @@ let
 (remove map key ...)
 (remove map from-key:to-key ...)
 
+(insert map ...)
+
 # no default dynamic binding?
 # no prototyping = can remove `local`
 # but can still go up scopes
-# default for unquoted symbols
+# default lookup for unquoted symbols
 
 (proto bindings)
 
 # checks if it's a parent proto
 
-(proto? Map 'Bob')
-(proto? Map 123)
+(proto? 'Bob' Map)
+(proto? 123 Map)
 
 let
   Person: {\name: ''}
@@ -221,15 +225,6 @@ let
 
   (proto? (insert bob \age 20) Person)
   # true
-
-# need to be able to know a type/proto?
-
-# how to have static typing?
-# only on functions?
-# just like bindings is special?
-(constraint ...)
-
-# line/column metadata?
 
 ---
 
