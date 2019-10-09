@@ -161,6 +161,7 @@ let
 
 # remove all barriers, simplify
 # - no such thing as a prototype
+# - no inheritance
 # - just structural typing?
 # - numbers/boolean don't make protos
 
