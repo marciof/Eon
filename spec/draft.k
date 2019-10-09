@@ -43,7 +43,6 @@ file \A | cat | sort | uniq | file \B
 # can add typing to vars via bindings
 
 # ambiguous with piping?
-# not if pipes can't be used inside
 
 # math
 {x | x > 0}
@@ -52,7 +51,7 @@ file \A | cat | sort | uniq | file \B
 -- update a field
 { point | x = 6 } == { x = 6, y = 4 }
 
-# Only supports math notation built-in
+# Only math notation built-in
 # Stdlib adds helpers for type info
 
 # Don't like param count isn't enforced
@@ -62,10 +61,6 @@ file \A | cat | sort | uniq | file \B
 
 # get, set/put, unset/remove, has?
 # insert/merge
-
-(remove list 1 3:5 7:10)
-
-(merge [1 2 3] [4 5])
 
 # There will always be metadata
 # line, column, file, type
@@ -81,7 +76,7 @@ name: 'Bob'
 # non top level requires `let`
 # otherwise it means keyword arg
 
-# grammar state keyword args newlines?
+# grammar indicate that keyword args can also be each one in a indented line?
 
 let
   name: 'Bob'
@@ -158,7 +153,7 @@ let
 
 ---
 
-(get (metadata value) \prototype)
+(get (metadata value) \proto)
 
 # equality comparison?
 
@@ -167,19 +162,13 @@ let
 # remove all barriers, simplify
 # - no such thing as a prototype
 # - just structural typing?
+# - numbers/boolean don't make protos
 
 # questions:
 # - same value with different protos?
 # - performance issues?
 # - can't GC too many protos forever?
-
-# every value is a potential proto?
-# numbers/booleans don't create protos
-# but can change, eg. int to float
-
-# how to handle key removals?
-# proto becomes the closest ancestor
-# that doesn't have that key
+# - not necessarily, like classes
 
 # gets the value that created value
 # - only structural changes
@@ -187,20 +176,25 @@ let
 # - new key creates new sub proto
 # - delete key uses closest ancestor
 # - itself if the base
+
 (proto value)
 
 # could use a `merge`?
+# - which prototype to use?
+# - allow `insert` of many values?
 
 (remove map key ...)
 (remove map from-key:to-key ...)
 
 # no default dynamic binding?
-# no prototyping = no need for `local`
-# but can go up scopes
-# it's the default for unquoted symbols
+# no prototyping = can remove `local`
+# but can still go up scopes
+# default for unquoted symbols
+
 (proto bindings)
 
 # checks if it's a parent proto
+
 (proto? Map 'Bob')
 (proto? Map 123)
 
