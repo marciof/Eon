@@ -168,19 +168,20 @@ let
 # - same value with different protos?
 # - how to optional static typing?
 # - how to identify a value's type?
-# - can't create fake eval bindings?
+# - can create fake eval bindings?
+# - delete key uses closest ancestor?
 
 # gets the value that created value
 # - only structural changes
 # - changing values/types isn't
 # - new key creates new sub proto
 # - delete key uses closest ancestor
-# - returns itself if the root
+# - returns itself if at the root
 
 (proto value)
 
 # could use a `merge`?
-# - which prototype to use?
+# - which proto to use?
 # - allow `insert` of many values?
 
 (remove map key ...)

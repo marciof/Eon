@@ -3,7 +3,8 @@
 - GLP/AGPL with Commons Clause?
 - https://commonsclause.com/
 - https://www.gnu.org/licenses/gpl-faq.html.en
-- https://news.ycombinator.com/item?id=19362326
+- AGPL non commercial use, https://news.ycombinator.com/item?id=21195626
+- licensing SaaS, https://news.ycombinator.com/item?id=19362326
 - https://www.infoworld.com/article/3366297/open-source-licenses-may-not-matter-so-much-any-more.html
 - https://www.theregister.co.uk/2018/10/16/mongodb_licensning_change/
 - https://news.ycombinator.com/item?id=19433394
