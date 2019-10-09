@@ -169,9 +169,10 @@ let
 # just duck-typing?
 # structural typing?
 
-# same value can have differnt protos
+# same value can have different protos
 # is that an issue for performance?
 # and for garbage collection?
+# only available protos are saved?
 
 # every value is a potential proto?
 # numbers/booleans don't create protos
