@@ -231,20 +231,6 @@ let
 
 ---
 
-# is value structurally compatible
-# - no prototyping = less built-ins
-# - easier to understand?
-
-(proto? proto value)
-
-# caller symbol for bindings
-
-caller: Map # bindings
-
-# how to identify a value's "type"?
-
----
-
 # new built-in prototype
 # Metadata extends Symbol
 # syntax is too weird?
