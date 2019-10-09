@@ -164,6 +164,7 @@ let
 # - no inheritance (but can simulate)
 # - just structural typing?
 # - numbers/boolean don't make protos
+# - no prototype, can remove `local`
 
 # questions:
 # - same value with different protos?
@@ -173,15 +174,31 @@ let
 # - delete key uses closest ancestor?
 # - line/column metadata?
 # - could use a `merge`?
+# - delete key uses closest ancestor?
+# - no default dynamic binding?
 
 # gets the value that created value
 # - only structural changes
 # - changing values/types isn't
-# - new key creates new sub proto?
-# - delete key uses closest ancestor?
+# - new key creates new sub proto
 # - returns itself if at the root
+# - can still go up bindings
+# - default for unquoted symbols
 
 (proto value)
+(proto bindings)
+
+Person: {\name: ''}
+bob: (insert Person \name 'Bob')
+
+(proto Person) # Map
+(proto bob) # Person
+
+# checks if it's a parent proto
+
+(proto? bob Person) # true
+(proto? 'Bob' Map) # true
+(proto? 123 Map) # false
 
 # could use a `merge`?
 # - which proto to use?
@@ -192,46 +209,13 @@ let
 
 (insert map ...)
 
-# no default dynamic binding?
-# no prototyping = can remove `local`
-# but can still go up scopes
-# default lookup for unquoted symbols
-
-(proto bindings)
-
-# checks if it's a parent proto
-
-(proto? 'Bob' Map)
-(proto? 123 Map)
-
-let
-  Person: {\name: ''}
-  bob: (insert Person \name 'Bob')
-  
-  (proto Person)
-  # Map
-  
-  (proto bob)
-  # Person
-  
-  (proto? bob Person)
-  # true
-  
-  (proto? (remove bob \name) Person)
-  # false
-
-  (proto (remove bob \name) Person)
-  # Map
-
-  (proto? (insert bob \age 20) Person)
-  # true
-
 ---
 
 # new built-in prototype
 # Metadata extends Symbol
 # syntax is too weird?
 # feels like a shortcut
+# it's very orthogonal though
 
 map::^count
 value::^prototype
