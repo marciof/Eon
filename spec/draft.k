@@ -194,7 +194,10 @@ bob: (insert Person \name 'Bob')
 (proto Person) # Map
 (proto bob) # Person
 
-# checks if it's a parent proto
+(proto 'Bob') # List
+(proto List) # Map
+
+# checks if it's an ancestor proto
 
 (proto? bob Person) # true
 (proto? 'Bob' Map) # true
@@ -204,10 +207,11 @@ bob: (insert Person \name 'Bob')
 # - which proto to use?
 # - allow `insert` of many values?
 
-(remove map key ...)
-(remove map from-key:to-key ...)
+(remove map key)
+(remove map from:to) # ambiguous?
 
 (insert map ...)
+unshift: (insert list 0:)
 
 ---
 
