@@ -242,6 +242,8 @@ let
 # need prototype for bindings?
 # no, use a caller symbol
 
+# how to identify a value's "type"?
+
 ---
 
 # new built-in prototype
