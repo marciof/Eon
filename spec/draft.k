@@ -231,14 +231,15 @@ let
 
 ---
 
-# is value structurally compatible?
+# is value structurally compatible
+# - no prototyping = less built-ins
+# - easier to understand?
+
 (proto? proto value)
 
-# no prototyping = less built-ins
-# easier to understand?
+# caller symbol for bindings
 
-# need prototype for bindings?
-# no, use a caller symbol
+caller: Map # bindings
 
 # how to identify a value's "type"?
 
