@@ -172,7 +172,6 @@ let
 # - how to identify a value's type?
 # - can create fake eval bindings?
 # - can create fake call stacks?
-# - delete key uses closest ancestor?
 # - line/column metadata?
 # - could use a `merge`?
 # - no default dynamic binding?
@@ -180,6 +179,18 @@ let
 # - delete key uses closest ancestor?
 # = np, keys are add/del 1 at time
 # = uses grandparent as proto
+
+Person: {\name: ''}
+
+value: (insert
+  (insert Person \age 20)
+  \weight
+  20)
+
+# id uses closest not discarded
+# proto can cause GC issues?
+# old prototype is more powerful?
+(proto value)
 
 # gets the value that created value
 # - only structural changes
