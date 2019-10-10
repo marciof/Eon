@@ -178,7 +178,8 @@ let
 # - no default dynamic binding?
 
 # - delete key uses closest ancestor?
-# - np, keys are add/del 1 at time
+# = np, keys are add/del 1 at time
+# = uses grandparent as proto
 
 # gets the value that created value
 # - only structural changes
@@ -205,17 +206,6 @@ bob: (insert Person \name 'Bob')
 (proto? bob Person) # true
 (proto? 'Bob' Map) # true
 (proto? 123 Map) # false
-
-# could use a `merge`?
-# - which proto to use?
-# - allow `insert` of many values?
-
-(remove map key)
-(remove map from: to) # ambiguous?
-
-(insert map ...)
-unshift: (insert map: 0:)
-push: ?
 
 ---
 
@@ -328,6 +318,9 @@ let
   lookup: (get phonebook key:)
   (lookup 'Bob')
 
+# multiple currying?
+(insert list: key:)
+
 # renaming curried params
 (\(get phonebook key: name) name:)
 (lookup name: 'Bob')
@@ -341,3 +334,19 @@ person::name
 
 # shell pipe operator?
 cat | sort | uniq | wc
+
+unshift: \(insert key: 1 list:)
+
+push: \(
+  count
+  | (+ 1 x:)
+  | (insert key: bindings::1 list:)
+)
+
+\(
+  (insert
+    list
+    key: (+ 1 (count list))
+    value: value)
+  list:
+  value:)
