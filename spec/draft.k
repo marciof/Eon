@@ -171,6 +171,7 @@ let
 # - how to optional static typing?
 # - how to identify a value's type?
 # - can create fake eval bindings?
+# - can create fake call stacks?
 # - delete key uses closest ancestor?
 # - line/column metadata?
 # - could use a `merge`?
@@ -208,10 +209,11 @@ bob: (insert Person \name 'Bob')
 # - allow `insert` of many values?
 
 (remove map key)
-(remove map from:to) # ambiguous?
+(remove map from: to) # ambiguous?
 
 (insert map ...)
-unshift: (insert list 0:)
+unshift: (insert map: 0:)
+push: ?
 
 ---
 
