@@ -175,8 +175,10 @@ let
 # - delete key uses closest ancestor?
 # - line/column metadata?
 # - could use a `merge`?
-# - delete key uses closest ancestor?
 # - no default dynamic binding?
+
+# - delete key uses closest ancestor?
+# - np, keys are add/del 1 at time
 
 # gets the value that created value
 # - only structural changes
