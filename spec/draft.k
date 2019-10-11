@@ -146,10 +146,11 @@ let
 # no prototypical inheritance
 
 # create a new proto
-(proto value [base] [constraint])
+(proto value
+  [constructor] [constraint])
 
-# get the proto
-?
+# get the proto (?)
+(constructor value)
 
 # is a proto of?
 (proto? value base)
@@ -186,17 +187,15 @@ let
 # = np, keys are add/del 1 at time
 # = uses grandparent as proto
 
+# doesn't work well for perf nor GC?
+# struct changes not just for classes
+
 Person: {\name: ''}
 
 value: (insert
   (insert Person \age 20)
   \weight
   20)
-
-# id uses closest not discarded
-# proto can cause GC issues?
-# old prototype is more powerful?
-(proto value)
 
 # gets the value that created value
 # - only structural changes
