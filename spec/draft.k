@@ -142,11 +142,17 @@ let
 
 ---
 
-# create a new prototype
-(prototype value [constraint])
+# structural sharing
+# no prototypical inheritance
+
+# create a new proto
+(proto value [base] [constraint])
 
 # get the proto
-(proto value)
+?
+
+# is a proto of?
+(proto? value base)
 
 # get the constraint
 (constraint value)
