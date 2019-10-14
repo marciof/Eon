@@ -168,10 +168,16 @@ Person: (proto {\name: ''})
 
 (\(+ x 1) x: constraint: {\x: Int})
 
+# naming a function
+(\increment: \(+ x 1) ...)
+
 (insert map ...)
 (remove map ...)
 
+# get constraint of built-ins
 (get count \constraint)
+
+# currying for multi methods?
 
 ---
 
