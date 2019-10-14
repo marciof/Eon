@@ -142,12 +142,14 @@ let
 
 ---
 
-# structural sharing
-# no prototypical inheritance
+# structural typing?
+# no prototypical inheritance?
 
 # create a new proto
 (proto value
   [constructor] [constraint])
+
+Person: (proto {\name: ''})
 
 # get the proto (?)
 (constructor value)
@@ -157,6 +159,19 @@ let
 
 # get the constraint
 (constraint value)
+
+---
+
+# structural typing?
+# no prototypical inheritance?
+# special constraint key?
+
+(\(+ x 1) x: constraint: {\x: Int})
+
+(insert map ...)
+(remove map ...)
+
+(get count \constraint)
 
 ---
 
