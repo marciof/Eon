@@ -170,23 +170,21 @@ Person: (proto {\name: ''})
 # first key handled differently?
 f: \(inc:+ x 1)
 
-# quasi quote?
-f: `(inc: ,+ x 1)
-
 # lexical env bindings
 f1: (insert f \bindings bindings)
 
 # lexical parameter bindings?
 f2: (f x:)
 
-# set constraint on types
-f3: (insert f \constraint {\x: Int})
-
-# set constraint on presence?
+# set constraint on presence
 # lexical parameter bindings?
 f4: (insert f \constraint {\x})
 
+# set constraint on types
+f3: (insert f \constraint {\x: Int})
+
 # currying for multi methods?
+# lexical parameter bindings?
 
 ---
 
