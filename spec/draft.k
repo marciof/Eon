@@ -172,6 +172,19 @@ Person: (proto {\name: ''})
 f: \(inc:+ x 1)
 (f 3)
 
+f: \(inc: \(+ x 1))
+
+Number: 0.(0)
+
+f: (defer escape: \_
+  (inc: (+ x 1)
+   bindings: (_ bindings)
+   constraints: {x: (_ Number)}))
+
+{
+  \(x y): \(+ x 1)
+}
+
 # lexical env bindings
 f1: (insert f \bindings bindings)
 
