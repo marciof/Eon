@@ -167,8 +167,10 @@ Person: (proto {\name: ''})
 # special constraint key?
 
 # named function
+# inspect built-ins?
 # first key handled differently?
 f: \(inc:+ x 1)
+(f 3)
 
 # lexical env bindings
 f1: (insert f \bindings bindings)
@@ -178,10 +180,10 @@ f2: (f x:)
 
 # set constraint on presence
 # lexical parameter bindings?
-f4: (insert f \constraint {\x})
+f3: (insert f \constraint {\x})
 
 # set constraint on types
-f3: (insert f \constraint {\x: Int})
+f4: (insert f \constraint {\x: Int})
 
 # currying for multi methods?
 # lexical parameter bindings?
