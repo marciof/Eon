@@ -186,6 +186,7 @@ f: (defer escape: \_
 }
 
 # lexical env bindings
+# can still be overridden (new env?)
 f1: (insert f \bindings bindings)
 
 # lexical parameter bindings?
