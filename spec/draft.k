@@ -166,18 +166,35 @@ Person: (proto {\name: ''})
 # no prototypical inheritance?
 # special constraint key?
 
-(\(+ x 1) x: constraint: {\x: Int})
+# named function
+# first key handled differently?
+f: \(inc:+ x 1)
 
-# naming a function
-(\increment: \(+ x 1) ...)
+# quasi quote?
+f: `(inc: ,+ x 1)
+
+# lexical env bindings
+f1: (insert f \bindings bindings)
+
+# lexical parameter bindings?
+f2: (f x:)
+
+# set constraint on types
+f3: (insert f \constraint {\x: Int})
+
+# set constraint on presence?
+# lexical parameter bindings?
+f4: (insert f \constraint {\x})
+
+# currying for multi methods?
+
+---
+
+# allow multiple values?
+# merge?
 
 (insert map ...)
 (remove map ...)
-
-# get constraint of built-ins
-(get count \constraint)
-
-# currying for multi methods?
 
 ---
 
