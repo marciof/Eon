@@ -166,20 +166,6 @@ Person: (proto {\name: ''})
 # no prototypical inheritance?
 # special constraint key?
 
-# named function
-# inspect built-ins?
-# first key handled differently?
-f: \(inc: \(+ x 1))
-
-Number: 0.(0)
-
-# can escape accept multiple args?
-
-f: (defer escape: \_
-  (inc: (+ x 1)
-   bindings: (_ bindings)
-   constraints: {x: (_ Number)}))
-
 # varargs?
 # macro args?
 # no args?
@@ -188,7 +174,7 @@ f: (defer escape: \_
 # argument names?
 # body lexical binding?
 # fixed param order an issue?
-# inspect?
+# inspect? builtins?
 # naming functions?
 # how to detect types?
 # how do bindings access the parent?
@@ -199,30 +185,17 @@ f: (defer escape: \_
 # parameter names: currying
 # param presence constraint: currying
 # lexical binding params: currying
+
 (add: + x: y:)
 
-# what is a function?
-# - body as a list of symbols
-# - optional bindings (env)
-# - optional name
-# - optional constraints
+(defer \. expression: (
+  add: (. +) x y
+  bindings: (. bindings)
+  constraints: {x y})
 
-# lexical env bindings
-# can still be overridden (new env?)
-f1: (insert f \bindings bindings)
+---
 
-# lexical parameter bindings?
-f2: (f x:)
-
-# set constraint on presence
-# lexical parameter bindings?
-f3: (insert f \constraint {\x})
-
-# set constraint on types
-f4: (insert f \constraint {\x: Int})
-
-# currying for multi methods?
-# lexical parameter bindings?
+# can escape accept multiple args?
 
 ---
 
