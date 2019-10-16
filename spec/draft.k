@@ -209,11 +209,7 @@ Person: (proto {\name: ''})
 # keywords in lists?
 
 inc: {
-  Number: [+ x 1]
-}
-
-inc: {
-  Number: (code + x 1)
+  Number: [+ 1 x:]
 }
 
 # simple list
@@ -221,6 +217,9 @@ inc: {
 
 # keyword list (can be used for code)
 [:]
+
+# syntactic sugar for calling/evil
+()
 
 ---
 
