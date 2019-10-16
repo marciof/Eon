@@ -186,7 +186,7 @@ Person: (proto {\name: ''})
 # param presence constraint: currying
 # lexical binding params: currying
 
-# ambiguous?
+# ambiguous? used like placeholders?
 (add: + x: y:)
 
 (defer \. expression: (
@@ -194,7 +194,7 @@ Person: (proto {\name: ''})
   bindings: (. bindings)
   constraints: (x y))
 
-# allow decouple def from usage
+# allow decouple def from usage?
 (add: + x y x: y:)
 
 (add 1 2)
@@ -204,6 +204,12 @@ Person: (proto {\name: ''})
 
 # no parameters (ambiguous?)
 (count map: bindings :)
+
+# maps as functions are 1 arg only?
+# simplified version of functions
+{
+  Number: ...
+}
 
 ---
 
