@@ -167,9 +167,9 @@ Person: (proto {\name: ''})
 # special constraint key?
 
 # varargs?
-# macro args?
-# no args?
-# generic args?
+# macro params?
+# no params?
+# generic params?
 # generics?
 # argument names?
 # body lexical binding?
@@ -180,18 +180,30 @@ Person: (proto {\name: ''})
 # how do bindings access the parent?
 # constraints?
 
-# named: 0th keyword parameter
+# named: 1st keyword parameter
 # lexical binding vars: currying
 # parameter names: currying
 # param presence constraint: currying
 # lexical binding params: currying
 
+# ambiguous?
 (add: + x: y:)
 
 (defer \. expression: (
   add: (. +) x y
   bindings: (. bindings)
-  constraints: {x y})
+  constraints: (x y))
+
+# allow decouple def from usage
+(add: + x y x: y:)
+
+(add 1 2)
+
+# macro args: quoted keyword param
+(if: ... condition: \then: \else:)
+
+# no parameters (ambiguous?)
+(count map: bindings :)
 
 ---
 
