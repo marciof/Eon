@@ -205,8 +205,9 @@ Person: (proto {\name: ''})
 # no parameters (ambiguous?)
 (count map: bindings :)
 
-# maps as functions are 1 arg only?
-# keywords in lists?
+# maps as functions
+# - have constraints
+# - enable multi methods
 
 inc: {
   Number: [+ 1 x:]
@@ -215,10 +216,21 @@ inc: {
 # simple list
 []
 
-# keyword list (can be used for code)
+# closure list (code)
+# ambiguous with `defer`?
 [:]
 
-# syntactic sugar for calling/evil
+# closure, unnamed
+# it has an implicit bindings keyword
+[count map: bindings]
+
+# closure, named, one arg (curried?)
+[- x 1 x:]
+
+# is transformed to:
+[- bindings::x 1]
+
+# syntactic sugar for calling/eval
 ()
 
 ---
