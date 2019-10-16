@@ -206,10 +206,21 @@ Person: (proto {\name: ''})
 (count map: bindings :)
 
 # maps as functions are 1 arg only?
-# simplified version of functions
-{
-  Number: ...
+# keywords in lists?
+
+inc: {
+  Number: [+ x 1]
 }
+
+inc: {
+  Number: (code + x 1)
+}
+
+# simple list
+[]
+
+# keyword list (can be used for code)
+[:]
 
 ---
 
