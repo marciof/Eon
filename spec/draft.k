@@ -169,21 +169,43 @@ Person: (proto {\name: ''})
 # named function
 # inspect built-ins?
 # first key handled differently?
-f: \(inc:+ x 1)
-(f 3)
-
 f: \(inc: \(+ x 1))
 
 Number: 0.(0)
+
+# can escape accept multiple args?
 
 f: (defer escape: \_
   (inc: (+ x 1)
    bindings: (_ bindings)
    constraints: {x: (_ Number)}))
 
-{
-  \(x y): \(+ x 1)
-}
+# varargs?
+# macro args?
+# no args?
+# generic args?
+# generics?
+# argument names?
+# body lexical binding?
+# fixed param order an issue?
+# inspect?
+# naming functions?
+# how to detect types?
+# how do bindings access the parent?
+# constraints?
+
+# named: 0th keyword parameter
+# lexical binding vars: currying
+# parameter names: currying
+# param presence constraint: currying
+# lexical binding params: currying
+(add: + x: y:)
+
+# what is a function?
+# - body as a list of symbols
+# - optional bindings (env)
+# - optional name
+# - optional constraints
 
 # lexical env bindings
 # can still be overridden (new env?)
