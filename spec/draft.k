@@ -208,10 +208,15 @@ Person: (proto {\name: ''})
 # maps as functions
 # - have constraints
 # - enable multi methods
-# - pattern matching?
+# - pattern matching by specificity
 
 inc: {
-  Number: [+ 1 x:]
+  [Number]: [+ 1 x:]
+}
+
+# varargs?
+{
+  [first rest []]: ...
 }
 
 # simple list
