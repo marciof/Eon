@@ -189,54 +189,37 @@ Person: (proto {\name: ''})
 # ambiguous? used like placeholders?
 (add: + x: y:)
 
-(defer \. expression: (
-  add: (. +) x y
-  bindings: (. bindings)
-  constraints: (x y))
+# auto constraint in presence?
+# where’s the auto arg eval?
+(insert
+  (add: + bindings::x bindings::y)
+  \bindings: bindings
+  \constraints: \[x y])
 
 # allow decouple def from usage?
-(add: + x y x: y:)
+f: (add: + x y x: y:)
 
-(add 1 2)
+(f 1 2)
 
 # macro args: quoted keyword param
-(if: ... condition: \then: \else:)
+(if:
+  ((get
+    {
+      true: \(evaluate ...)
+      false: \(evaluate ...)
+    )
+    condition))
+  condition: \then: \else:)
 
-# no parameters (ambiguous?)
-(count map: bindings :)
+# no parameters?
+(io::print 'Hi' bindings:)
 
-# maps as functions
-# - have constraints
-# - enable multi methods
-# - pattern matching by specificity
+---
 
-inc: {
-  [Number]: [+ 1 x:]
-}
-
-# varargs?
-{
-  [first rest []]: ...
-}
-
-# simple list
-[]
-
-# closure list (code)
-# ambiguous with `defer`?
+# code list? need to quote
 [:]
 
-# closure, unnamed, no args
-# it has an implicit bindings keyword
-[count map: bindings]
-
-# closure, one arg (curried?)
-[- x 1 x:]
-
-# is transformed to:
-[- bindings::x 1]
-
-# syntactic sugar for calling/eval
+# code list, need to unquote
 ()
 
 ---
