@@ -208,6 +208,7 @@ Person: (proto {\name: ''})
 # maps as functions
 # - have constraints
 # - enable multi methods
+# - pattern matching?
 
 inc: {
   Number: [+ 1 x:]
@@ -220,11 +221,11 @@ inc: {
 # ambiguous with `defer`?
 [:]
 
-# closure, unnamed
+# closure, unnamed, no args
 # it has an implicit bindings keyword
 [count map: bindings]
 
-# closure, named, one arg (curried?)
+# closure, one arg (curried?)
 [- x 1 x:]
 
 # is transformed to:
