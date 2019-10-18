@@ -166,7 +166,7 @@ Person: (proto {\name: ''})
 # no prototypical inheritance?
 # special constraint key?
 
-Animal: {age: 0}
+Animal: {\age: 0}
 Person: (insert Animal \name '')
 
 (proto? Person Animal) # true
