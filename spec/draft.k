@@ -162,9 +162,19 @@ Person: (proto {\name: ''})
 
 ---
 
-# structural typing?
-# no prototypical inheritance?
-# special constraint key?
+# union, intersection
+# allow multiple values?
+# merge?
+
+(insert map ...)
+(remove map ...)
+
+---
+
+# structural typing
+# no prototypical inheritance
+# special constraint key
+# special caller key
 
 Animal: {\age: 0}
 Person: (insert Animal \name '')
@@ -176,6 +186,13 @@ Person: (insert Animal \name '')
 (proto? Person Person) # true
 
 (proto? Person 0) # false
+
+# for system-wide "type" id?
+(register \Person Person)
+
+# not ambiguous? no extra syntax?
+# constraint on value, not function?
+{\name:Text ''}
 
 # varargs?
 # macro params?
@@ -236,14 +253,6 @@ f: (add: + x y x: y:)
 ---
 
 # can escape accept multiple args?
-
----
-
-# allow multiple values?
-# merge?
-
-(insert map ...)
-(remove map ...)
 
 ---
 
