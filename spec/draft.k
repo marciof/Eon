@@ -215,12 +215,22 @@ Person: (insert Animal \name '')
 # lexical binding params: currying
 
 # ambiguous? used like placeholders?
-(add: + x: y:)
+# need to quote or not? and pipes?
+\(add: + x: y:)
+
+# always add constraints by default?
+\(+ 1 2)
+
+# constraint syntactic sugar?
+(add:+ x: y: | x: Number y: Number)
+
+# if body has multiple bodies
+# then it’s a multi method?
 
 # auto constraint for presence?
 # where’s the auto arg eval?
 (insert
-  (add: + bindings::x bindings::y)
+  \(add: + bindings::x bindings::y)
   \bindings: bindings
   \constraints: \[x y])
 
