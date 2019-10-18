@@ -189,7 +189,7 @@ Person: (proto {\name: ''})
 # ambiguous? used like placeholders?
 (add: + x: y:)
 
-# auto constraint in presence?
+# auto constraint for presence?
 # where’s the auto arg eval?
 (insert
   (add: + bindings::x bindings::y)
