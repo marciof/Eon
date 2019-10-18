@@ -170,7 +170,11 @@ Animal: {age: 0}
 Person: (insert Animal \name '')
 
 (proto? Person Animal) # true
+(proto? Animal Person) # false
+
 (proto? Person {}) # true
+(proto? Person Person) # true
+
 (proto? Person 0) # false
 
 # varargs?
