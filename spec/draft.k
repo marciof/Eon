@@ -166,6 +166,13 @@ Person: (proto {\name: ''})
 # no prototypical inheritance?
 # special constraint key?
 
+Animal: {age: 0}
+Person: (insert Animal \name '')
+
+(proto? Person Animal) # true
+(proto? Person {}) # true
+(proto? Person 0) # false
+
 # varargs?
 # macro params?
 # no params?
