@@ -225,6 +225,9 @@ Person: (insert Animal \name '')
 # constraint syntactic sugar?
 (add:+ x: y: | x: Number y: Number)
 
+# varargs?
+(add:+ numbers: | [numbers]: Number)
+
 # if body has multiple bodies
 # then it’s a multi method?
 
