@@ -166,6 +166,17 @@ Person: (proto {\name: ''})
 # allow multiple values?
 # merge?
 
+(merge map ... reducer)
+
+# concat
+(merge [1 2] [3]) # [1 2 3]
+
+# insert
+(merge [1 3] [2] reducer: 2) #[1 2 3]
+
+# remove
+(merge [1 2 3] reducer: 2) # [1 3]
+
 (insert map ...)
 (remove map ...)
 
