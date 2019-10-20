@@ -142,26 +142,6 @@ let
 
 ---
 
-# structural typing?
-# no prototypical inheritance?
-
-# create a new proto
-(proto value
-  [constructor] [constraint])
-
-Person: (proto {\name: ''})
-
-# get the proto (?)
-(constructor value)
-
-# is a proto of?
-(proto? value base)
-
-# get the constraint
-(constraint value)
-
----
-
 # union, intersection
 # allow multiple values?
 # merge?
@@ -198,12 +178,8 @@ Person: (insert Animal \name '')
 
 (proto? Person 0) # false
 
-# for system-wide "type" id?
+# for system-wide "type" ID?
 (register \Person Person)
-
-# not ambiguous? no extra syntax?
-# constraint on value, not function?
-{\name:Text ''}
 
 # varargs?
 # macro params?
@@ -266,6 +242,12 @@ f: (add: + x y x: y:)
 
 # no parameters?
 (io::print 'Hi' bindings:)
+
+---
+
+# non ambiguous? no extra syntax?
+# constraint on value, not function?
+{\name:Text ''}
 
 ---
 
