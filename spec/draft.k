@@ -164,11 +164,14 @@ let
 
 # structural typing
 # no prototypical inheritance
-# special constraint key
-# special caller key
+# special constraint key in functions
+# special caller key in bindings
+# "classes", "types" are just values
 
 Animal: {\age: 0}
 Person: (insert Animal \name '')
+
+(proto? value proto)
 
 (proto? Person Animal) # true
 (proto? Animal Person) # false
@@ -178,8 +181,16 @@ Person: (insert Animal \name '')
 
 (proto? Person 0) # false
 
-# for system-wide "type" ID?
+# free to define type ID
+# can register system-wide for ID
+# what about performance?
+
 (register \Person Person)
+
+# returns value if not
+# returns base if found
+
+(proto value base ...)
 
 # varargs?
 # macro params?
