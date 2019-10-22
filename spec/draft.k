@@ -301,18 +301,10 @@ f: (add: + x y x: y:)
 # - for perf GC'ed objs not included
 # - struct changes not just classes
 
-Person: {\name: ''}
-
-value: (insert
-  (insert Person \age 20)
-  \weight
-  20)
-
-(proto value) # Person
-
 # gets the value that created value
 # - only structural changes
-#   - changing values/types isn't
+#   - define more precisely
+#   - changing values isn't
 #   - new key creates new sub proto
 # - returns itself if at the root
 # - can still go up bindings
@@ -324,6 +316,13 @@ value: (insert
 Person: {\name: ''}
 bob: (insert Person \name 'Bob')
 
+value: (insert
+  (insert Person \age 20)
+  \weight
+  20)
+
+(proto value) # Person
+
 (proto Person) # Map
 (proto bob) # Person
 
@@ -331,6 +330,7 @@ bob: (insert Person \name 'Bob')
 (proto List) # Map
 
 # checks if it's an ancestor proto
+# function not needed as built in?
 
 (proto? bob Person) # true
 (proto? 'Bob' Map) # true
