@@ -309,6 +309,7 @@ f: (add: + x y x: y:)
 # - returns itself if at the root
 # - can still go up bindings
 #   - default for unquoted symbols
+#   - each bindings has a `bindings`
 
 (proto value)
 (proto bindings)
