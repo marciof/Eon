@@ -297,12 +297,9 @@ f: (add: + x y x: y:)
 # - could use a `merge`?
 # - no default dynamic binding?
 
-# - delete key uses closest ancestor?
-# = np, keys are add/del 1 at time
-# = uses grandparent as proto
-
-# doesn't work well for perf nor GC?
-# struct changes not just for classes
+# - delete key uses closest ancestor
+# - for perf GC'ed objs not included
+# - struct changes not just classes
 
 Person: {\name: ''}
 
@@ -311,13 +308,15 @@ value: (insert
   \weight
   20)
 
+(proto value) # Person
+
 # gets the value that created value
 # - only structural changes
-# - changing values/types isn't
-# - new key creates new sub proto
+#   - changing values/types isn't
+#   - new key creates new sub proto
 # - returns itself if at the root
 # - can still go up bindings
-# - default for unquoted symbols
+#   - default for unquoted symbols
 
 (proto value)
 (proto bindings)
