@@ -224,7 +224,7 @@ Person: (insert Animal \name '')
 (add:+ x: y: | x: Number y: Number)
 
 # varargs?
-(add:+ numbers: | [numbers]: Number)
+(add:+ nums: | nums: (Number ...))
 
 # if body has multiple bodies
 # then it’s a multi method?
@@ -304,7 +304,7 @@ f: (add: + x y x: y:)
 # gets the value that created value
 # - only structural changes
 #   - define more precisely
-#   - changing values isn't
+#   - changing compat values isn’t
 #   - new key creates new sub proto
 # - returns itself if at the root
 # - can still go up bindings
@@ -351,10 +351,10 @@ value::^prototype
 ^line
 ^count
 
-(get map \^count)
-(set [1 2 3] \^count 2)
+(get map ^count)
+(set [1 2 3] ^count 2)
 
-(insert Map \^prototype {\name: ''})
+(insert Map ^prototype {\name: ''})
 
 ---
 
