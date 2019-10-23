@@ -162,9 +162,14 @@ let
 
 ---
 
+(proto value [base])
+(proto? value [base ...])
+
+---
+
 # remove all barriers, simplify
 # - no such thing as a prototype
-# - "classes", "types" are just values
+# - classes, types are just values
 # - no inheritance (but can simulate)
 # - just "structural typing"
 # - numbers/bools/etc not make protos
@@ -235,6 +240,7 @@ value: (insert
 # - line/column metadata?
 # - could use a `merge`?
 # - no default dynamic binding?
+# - confusing GC'ed objs discarded?
 
 # varargs?
 # macro params?
@@ -300,17 +306,83 @@ f: (add: + x y x: y:)
 
 ---
 
+Root-1: {}
+Root-2: {\name: '' \age: 0}
+
+Child-1: (insert Root-1 \name '')
+Child-2: (remove Root-2 \age)
+
+(= Child-1 Child-2) # true
+
+(proto Child-1) # Root-1
+(proto Child-2) # Root-2
+
+# new proto enforces struct compat?
+
+Root: (proto {\name: ''})
+
+# no proto value?
+# - how to ID?
+
+(proto? val base ...) # match or val
+
+R1: {}
+R2: {\name: '' \age: 0}
+
+C1: (insert R1 \name '')
+C2: (remove R2 \age)
+
+(= C1 C2) # true
+
+(proto? C1 R1 R2) # R2
+(proto? C2 R1 R2) # R2
+
+# function body can also be a map
+# () is for calling and simple fns
+# {} is for multi methods
+# no need for a `constraint` key
+
+\(what?: {
+  [Text]: (io::print 'text=' x)
+  [Number]: (io::print 'number=' x)
+} x:)
+
+---
+
+# Make code as simple as a list?
+
+# keyword list?
+[:]
+
+[\add: + x y x: y:]
+
+[\add: + x y
+  bindings: [
+    \x
+    \y
+    \bindings: bindings
+  ]
+]
+
+# merge to change "types"?
+
+# "upcast"
+(merge [1] {\x: \y}) # {1: 1 \x: \y}
+
+# "downcast"
+(merge {\x: \y} [1]) # ditto?
+
+---
+
 # non ambiguous? no extra syntax?
 # constraint on value, not function?
 {\name:Text ''}
 
 ---
 
-# code list? need to quote
-[:]
+# iterator protocol for lazy values?
 
-# code list, need to unquote
-()
+# protocol for static "typing"?
 
 ---
 
