@@ -283,33 +283,32 @@ f: (add: + x y x: y:)
 # remove all barriers, simplify
 # - no such thing as a prototype
 # - no inheritance (but can simulate)
-# - just structural typing?
-# - numbers/boolean don't make protos
-# - no prototype, can remove `local`
+# - just "structural typing"
+# - numbers/bools/etc not make protos
+# - can remove `local`
 
-# questions:
-# - same value with different protos?
-# - how to optional static typing?
-# - how to identify a value's type?
-# - can create fake eval bindings?
-# - can create fake call stacks?
-# - line/column metadata?
-# - could use a `merge`?
-# - no default dynamic binding?
+# each bindings has a `bindings` sym
+# - used to go up the call stack
+# - alternative to `prototype`
+# - default for unquoted symbols
 
-# - delete key uses closest ancestor
-# - for perf GC'ed objs not included
-# - struct changes not just classes
+function who-called-me ()
+  io::print bindings::bindings
 
-# gets the value that created value
-# - only structural changes
-#   - define more precisely
-#   - changing compat values isn’t
-#   - new key creates new sub proto
+# get proto of a value:
+# - existing value that created it
 # - returns itself if at the root
-# - can still go up bindings
-#   - default for unquoted symbols
-#   - each bindings has a `bindings`
+# - for perf, GC'ed objs not included
+# - delete key uses closest ancestor
+# - new key creates new sun proto
+# - set compat value preserves proto
+# - compatibility is based on proto
+# - a sub proto is compat with parent
+
+Map: List: Text: Symbol
+Map: Set
+Boolean
+Number: Decimal: Integer: ...
 
 (proto value)
 (proto bindings)
@@ -336,6 +335,16 @@ value: (insert
 (proto? bob Person) # true
 (proto? 'Bob' Map) # true
 (proto? 123 Map) # false
+
+# questions:
+# - same value with different protos?
+# - how to optional static typing?
+# - how to identify a value's type?
+# - can create fake eval bindings?
+# - can create fake call stacks?
+# - line/column metadata?
+# - could use a `merge`?
+# - no default dynamic binding?
 
 ---
 
