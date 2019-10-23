@@ -162,24 +162,56 @@ let
 
 ---
 
-# structural typing
-# no prototypical inheritance
-# special constraint key in functions
-# special caller key in bindings
-# "classes", "types" are just values
+# remove all barriers, simplify
+# - no such thing as a prototype
+# - "classes", "types" are just values
+# - no inheritance (but can simulate)
+# - just "structural typing"
+# - numbers/bools/etc not make protos
+# - can remove `local`
+# - special `constraint` in functions
 
-Animal: {\age: 0}
-Person: (insert Animal \name '')
+# each bindings has a `bindings` sym
+# - used to go up the call stack
+# - alternative to `prototype`
+# - default for unquoted symbols
 
-(proto? value proto)
+function who-called-me ()
+  io::print bindings::bindings
 
-(proto? Person Animal) # true
-(proto? Animal Person) # false
+# get proto of a value:
+# - existing value that created it
+# - returns itself if at the root
+# - for perf, GC'ed objs not included
+# - delete key uses closest ancestor
+# - new key creates new sun proto
+# - set compat value preserves proto
+# - compatibility is based on proto
+# - a sub proto is compat with parent
 
-(proto? Person {}) # true
-(proto? Person Person) # true
+Map: List: Text: Symbol
+Map: Set
+Boolean
+Number: Decimal: Integer: ...
 
-(proto? Person 0) # false
+(proto value)
+(proto bindings)
+
+Person: {\name: ''}
+bob: (insert Person \name 'Bob')
+
+value: (insert
+  (insert Person \age 20)
+  \weight
+  20)
+
+(proto value) # Person
+
+(proto Person) # Map
+(proto bob) # Person
+
+(proto 'Bob') # List
+(proto List) # Map
 
 # free to define type ID
 # can register system-wide for ID
@@ -187,10 +219,22 @@ Person: (insert Animal \name '')
 
 (register \Person Person)
 
-# returns value if not
-# returns base if found
+# checks if it's an ancestor proto
+# function not needed as built in?
 
-(proto value base ...)
+(proto? bob Person) # true
+(proto? 'Bob' Map) # true
+(proto? 123 Map) # false
+
+# questions:
+# - same value with different protos?
+# - how to optional static typing?
+# - how to identify a value's type?
+# - can create fake eval bindings?
+# - can create fake call stacks?
+# - line/column metadata?
+# - could use a `merge`?
+# - no default dynamic binding?
 
 # varargs?
 # macro params?
@@ -277,74 +321,6 @@ f: (add: + x y x: y:)
 (get (metadata value) \proto)
 
 # equality comparison?
-
----
-
-# remove all barriers, simplify
-# - no such thing as a prototype
-# - no inheritance (but can simulate)
-# - just "structural typing"
-# - numbers/bools/etc not make protos
-# - can remove `local`
-
-# each bindings has a `bindings` sym
-# - used to go up the call stack
-# - alternative to `prototype`
-# - default for unquoted symbols
-
-function who-called-me ()
-  io::print bindings::bindings
-
-# get proto of a value:
-# - existing value that created it
-# - returns itself if at the root
-# - for perf, GC'ed objs not included
-# - delete key uses closest ancestor
-# - new key creates new sun proto
-# - set compat value preserves proto
-# - compatibility is based on proto
-# - a sub proto is compat with parent
-
-Map: List: Text: Symbol
-Map: Set
-Boolean
-Number: Decimal: Integer: ...
-
-(proto value)
-(proto bindings)
-
-Person: {\name: ''}
-bob: (insert Person \name 'Bob')
-
-value: (insert
-  (insert Person \age 20)
-  \weight
-  20)
-
-(proto value) # Person
-
-(proto Person) # Map
-(proto bob) # Person
-
-(proto 'Bob') # List
-(proto List) # Map
-
-# checks if it's an ancestor proto
-# function not needed as built in?
-
-(proto? bob Person) # true
-(proto? 'Bob' Map) # true
-(proto? 123 Map) # false
-
-# questions:
-# - same value with different protos?
-# - how to optional static typing?
-# - how to identify a value's type?
-# - can create fake eval bindings?
-# - can create fake call stacks?
-# - line/column metadata?
-# - could use a `merge`?
-# - no default dynamic binding?
 
 ---
 
