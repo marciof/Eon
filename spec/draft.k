@@ -200,6 +200,8 @@ Number: Decimal: Integer: ...
 
 (proto? val base ...)
 
+# not structurally compatible?
+
 (proto? List Map) # true
 (proto? Map List) # false
 (proto? Symbol Map Text) # Map
@@ -328,6 +330,13 @@ f: (add: + x y x: y:)
   [Text]: \(io::print 'text=' x)
   [Number]: \(io::print 'number=' x)
 } x:)
+
+{
+  Text: {
+    'text=': io::print
+  }
+  Number: ...
+}
 
 ---
 
