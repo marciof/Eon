@@ -337,15 +337,38 @@ C2: (remove R2 \age)
 (proto? C1 R1 R2) # R2
 (proto? C2 R1 R2) # R2
 
-# function body can also be a map
-# () is for calling and simple fns
-# {} is for multi methods
-# no need for a `constraint` key
+---
 
-\(what?: {
-  [Text]: (io::print 'text=' x)
-  [Number]: (io::print 'number=' x)
-} x:)
+# function body can also be a map
+# () calling
+# [:] [] simple fns
+# {:} multi methods
+# adds strong structural typing
+# simplifies a lot of things
+# makes more things first class
+# no custom multi method resolution
+# no need for a `constraint` key
+# no need for a `proto` built in
+# no need for a `local` built in
+
+# maps are now callable???
+# how does that impact ident syntax?
+
+# ok to fix bindings at creation
+# values are immutable
+# can redefine `bindings` as param
+
+[what?: {
+  [Text]: [io::print 'text=' val]
+  [Number]: [io::print 'number=' val]
+} val:]
+
+# closure
+
+[\inc: + x 1 x:]
+
+[\inc: \+ \bindings::x 1
+  \bindings: bindings]
 
 ---
 
