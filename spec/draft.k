@@ -344,43 +344,56 @@ f: (add: + x y x: y:)
 
 ---
 
-# expose struct/pattern matching fn?
-# typing and struct compat 1st class
-# allows maps to not be functions
-# still removes a lot of builtins
-# can be used for type ID
-# can be used for multi methods
+# expose struct/pattern matching fn
+# - typing struct compat 1st class
+# - allows maps to not be functions
+# - still removes a lot of builtins
+# - can be used for type ID
+# - can be used for multi methods
 
 # how is param count enforced?
 # how is param presence enforced?
+# how to have a default? not needed?
+# how are args passed down to match?
+# make `match` easy to curry?
+# () matches struct and/or values?
+# [] matches values?
+# struct compat has value matching?
 
-(match constraints value)
+(match constraints value ...)
+(match constraints value default)
 
 what?: (match
   {
-    Text: (print 'text' value:)
+    [Text]: (print 'text' value:)
     [Number]: (print 'number' value:)
   }
   value:)
 
 (what? 123)
 
+if: (match
+  {
+    [Bool:true Fn Fn]: (eval then:)
+    [Bool:false Fn Fn]: (eval else:)
+  }
+  condition:
+  \then:
+  \else:)
+
+# can bindings to access matched val?
+# bindings::bindings::condition
+
+(match
+  {
+    true: (eval expression:)
+    false: ...
+  }
+  condition:)
+
 ---
 
-# Make code as simple as a list?
-
-# keyword list?
-[:]
-
-[\add: + x y x: y:]
-
-[\add: + x y
-  bindings: [
-    \x
-    \y
-    \bindings: bindings
-  ]
-]
+# currying for creating functions?
 
 ---
 
@@ -521,6 +534,7 @@ let count: (get
 ---
 
 # currying? too implicit?
+# how to curry varargs?
 let
   phonebook: {'Bob': 12345}
   lookup: (get phonebook key:)
