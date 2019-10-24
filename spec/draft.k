@@ -308,8 +308,7 @@ f: (add: + x y x: y:)
 ---
 
 # function body can also be a map
-# () calling
-# [:] [] simple fns
+# () calling and simple fns
 # {:} multi methods
 # adds strong structural typing
 # simplifies a lot of things
@@ -318,25 +317,53 @@ f: (add: + x y x: y:)
 # no need for a `constraint` key
 # no need for a `proto` built in
 # no need for a `local` built in
-
-# maps are now callable???
-# how does that impact ident syntax?
-
 # ok to fix bindings at creation
 # values are immutable
 # can redefine `bindings` as param
 
-\(what?: {
-  [Text]: \(io::print 'text=' x)
-  [Number]: \(io::print 'number=' x)
-} x:)
+# maps are now callable???
+# how does that impact ident syntax?
+# how are params enforced?
+# where are params declared?
 
 {
-  Text: {
-    'text=': io::print
-  }
-  Number: ...
+  [Text]: (io::print 'text=' x:)
+  [Number]: (io::print 'number=' x:)
 }
+
+# simple fn has no constraints
+
+(+ 1 x:)
+
+# syntax sugar for
+
+(insert
+  \((+ 1 bindings::x))
+  \bindings
+  bindings)
+
+---
+
+# expose struct/pattern matching fn?
+# typing and struct compat 1st class
+# allows maps to not be functions
+# still removes a lot of builtins
+# can be used for type ID
+# can be used for multi methods
+
+# how is param count enforced?
+# how is param presence enforced?
+
+(match constraints value)
+
+what?: (match
+  {
+    Text: (print 'text' value:)
+    [Number]: (print 'number' value:)
+  }
+  value:)
+
+(what? 123)
 
 ---
 
@@ -369,6 +396,7 @@ f: (add: + x y x: y:)
 
 # non ambiguous? no extra syntax?
 # constraint on value, not function?
+
 {\name:Text ''}
 
 ---
