@@ -172,35 +172,37 @@ let
 # - classes, types are just values
 # - no inheritance (but can simulate)
 # - just "structural typing"
-# - numbers/bools/etc not make protos
-# - can remove `local`
+# - no need for `local`
 # - special `constraint` in functions
 
 # each bindings has a `bindings` sym
 # - used to go up the call stack
-# - alternative to `prototype`
-# - default for unquoted symbols
+# - no need for `prototype`
+# - default lookup unquoted symbols
+# - can create fake eval bindings
+# - can create fake call stacks
 
 function who-called-me ()
   io::print bindings::bindings
 
-# get proto of a value:
-# - existing value that created it
-# - returns itself if at the root
-# - for perf, GC'ed objs not included
-# - delete key uses closest ancestor
-# - new key creates new sun proto
-# - set compat value preserves proto
-# - compatibility is based on proto
-# - a sub proto is compat with parent
+# match a value against protos
+# - returns value if no match
+# - returns first match, not closest
+# - delete key breaks struct compat
+# - new key preserves struct compat
+# - set compat value preserves compat
+# - compatibility is based on struct
 
 Map: List: Text: Symbol
 Map: Set
 Boolean
 Number: Decimal: Integer: ...
 
-(proto value)
-(proto bindings)
+(proto? val base ...)
+
+(proto? List Map) # true
+(proto? Map List) # false
+(proto? Symbol Map Text) # Map
 
 Person: {\name: ''}
 bob: (insert Person \name 'Bob')
@@ -210,37 +212,34 @@ value: (insert
   \weight
   20)
 
-(proto value) # Person
-
-(proto Person) # Map
-(proto bob) # Person
-
-(proto 'Bob') # List
-(proto List) # Map
-
-# free to define type ID
-# can register system-wide for ID
-# what about performance?
-
-(register \Person Person)
-
-# checks if it's an ancestor proto
-# function not needed as built in?
-
 (proto? bob Person) # true
+(proto? value Person) # true
 (proto? 'Bob' Map) # true
 (proto? 123 Map) # false
 
+R1: {}
+R2: {\name: '' \age: 0}
+
+C1: (insert R1 \name '')
+C2: (remove R2 \age)
+
+(= C1 C2) # true
+
+(proto? C1 R1 R2) # R2
+(proto? C2 R1 R2) # R2
+
+# free to define type ID in stdlib
+# can register system-wide for ID
+
+(register \Person Person)
+
 # questions:
-# - same value with different protos?
+# - returns first match is confusing?
+# - perf issues with struct matching?
 # - how to optional static typing?
-# - how to identify a value's type?
-# - can create fake eval bindings?
-# - can create fake call stacks?
 # - line/column metadata?
 # - could use a `merge`?
 # - no default dynamic binding?
-# - confusing GC'ed objs discarded?
 
 # varargs?
 # macro params?
@@ -306,39 +305,6 @@ f: (add: + x y x: y:)
 
 ---
 
-Root-1: {}
-Root-2: {\name: '' \age: 0}
-
-Child-1: (insert Root-1 \name '')
-Child-2: (remove Root-2 \age)
-
-(= Child-1 Child-2) # true
-
-(proto Child-1) # Root-1
-(proto Child-2) # Root-2
-
-# new proto enforces struct compat?
-
-Root: (proto {\name: ''})
-
-# no proto value?
-# - how to ID?
-
-(proto? val base ...) # match or val
-
-R1: {}
-R2: {\name: '' \age: 0}
-
-C1: (insert R1 \name '')
-C2: (remove R2 \age)
-
-(= C1 C2) # true
-
-(proto? C1 R1 R2) # R2
-(proto? C2 R1 R2) # R2
-
----
-
 # function body can also be a map
 # () calling
 # [:] [] simple fns
@@ -358,17 +324,10 @@ C2: (remove R2 \age)
 # values are immutable
 # can redefine `bindings` as param
 
-[what?: {
-  [Text]: [io::print 'text=' val]
-  [Number]: [io::print 'number=' val]
-} val:]
-
-# closure
-
-[\inc: + x 1 x:]
-
-[\inc: \+ \bindings::x 1
-  \bindings: bindings]
+\(what?: {
+  [Text]: \(io::print 'text=' x)
+  [Number]: \(io::print 'number=' x)
+} x:)
 
 ---
 
@@ -386,6 +345,8 @@ C2: (remove R2 \age)
     \bindings: bindings
   ]
 ]
+
+---
 
 # merge to change "types"?
 
