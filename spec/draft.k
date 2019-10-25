@@ -200,7 +200,9 @@ Number: Decimal: Integer: ...
 
 (proto? val base ...)
 
-# not structurally compatible?
+# which of base is a proto of value?
+# which one is an instance of?
+# which one is struct‘lly compatible?
 
 (proto? List Map) # true
 (proto? Map List) # false
@@ -264,7 +266,7 @@ C2: (remove R2 \age)
 # lexical binding params: currying
 
 #
-# constraints less flexibility
+# constraints have less flexibility
 # Eg changing multi method resolution
 #
 
