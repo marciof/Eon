@@ -242,17 +242,12 @@ C2: (remove R2 \age)
 (insert
   \(inc: + x 1)
   \proto
-  {\x: Number})
+  (insert () \x Number))
 
 (insert
   \(inc: + x 1)
   \proto
-  {\x: Number|Map})
-
-(insert
-  \(inc: + x 1)
-  \proto
-  {\x: (proto? [Number Map])})
+  {\x: Number|Text})
 
 # free to define type ID in stdlib
 # can register system-wide for ID
