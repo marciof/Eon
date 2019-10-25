@@ -233,6 +233,18 @@ C2: (remove R2 \age)
 (proto? C1 R1 R2) # R2
 (proto? C2 R1 R2) # R2
 
+# replace bindings with proto?
+
+(inc: + x 1 proto: {
+  \+: +
+  \x: Number
+})
+
+(inc: + x 1 proto: {
+  \proto: proto
+  \x: Number
+})
+
 # free to define type ID in stdlib
 # can register system-wide for ID
 
