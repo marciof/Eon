@@ -241,6 +241,11 @@ C2: (remove R2 \age)
   \x: Number
 })
 
+(insert
+  \(inc: + x 1)
+  \proto
+  {\x: Number})
+
 (inc: + x 1 proto: {
   \proto: proto
   \x: Number
