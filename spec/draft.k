@@ -263,6 +263,11 @@ C2: (remove R2 \age)
 # param presence constraint: currying
 # lexical binding params: currying
 
+#
+# constraints less flexibility
+# Eg changing multi method resolution
+#
+
 # ambiguous? used like placeholders?
 # need to quote or not? and pipes?
 # unquoted powerful runtime create
@@ -270,6 +275,9 @@ C2: (remove R2 \age)
 
 # always add constraints by default?
 \(+ 1 2)
+
+# opt out of constraints
+\(+ 1 2 |)
 
 # constraint syntactic sugar?
 (add:+ x: y: | x: Number y: Number)
@@ -331,14 +339,17 @@ f: (add: + x y x: y:)
   [Number]: (io::print 'number=' x:)
 }
 
-# simple fn has no constraints
+# maps map exactly 1 value to 1 value
+# for no args use \()
 
-(+ 1 x:)
+# simple fn has no constraints?
+
+(inc: + 1 x:)
 
 # syntax sugar for
 
 (insert
-  \((+ 1 bindings::x))
+  \((inc: + 1 bindings::x))
   \bindings
   bindings)
 
@@ -381,7 +392,7 @@ if: (match
   \then:
   \else:)
 
-# can bindings to access matched val?
+# use bindings to access matched val?
 # bindings::bindings::condition
 
 (match
@@ -390,6 +401,20 @@ if: (match
     false: ...
   }
   condition:)
+
+# explicit bindings enforce params?
+# replace `match` with `constraints?
+# no multi method otherwise
+
+(match bindings constraints default)
+
+inc: (inc: + 1 x:)
+
+typed-inc: (match
+  bindings:
+  constraints: {
+    [Number]
+  })
 
 ---
 
