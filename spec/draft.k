@@ -234,6 +234,7 @@ C2: (remove R2 \age)
 (proto? C2 R1 R2) # R2
 
 # replace bindings with proto?
+# can’t type ID?
 
 (inc: + x 1 proto: {
   \+: +
