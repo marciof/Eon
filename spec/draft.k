@@ -199,6 +199,7 @@ Boolean
 Number: Decimal: Integer: ...
 
 (proto? val base ...)
+(instance? val base ...)
 
 # which of base is a proto of value?
 # which one is an instance of?
