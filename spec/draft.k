@@ -237,11 +237,22 @@ C2: (remove R2 \age)
 # - specify call proto min reqs
 # - can’t type ID?
 # - have a `proto?` builtin?
+# - allow non-map proto custom logic?
 
 (insert
   \(inc: + x 1)
   \proto
   {\x: Number})
+
+(insert
+  \(inc: + x 1)
+  \proto
+  {\x: Number|Map})
+
+(insert
+  \(inc: + x 1)
+  \proto
+  {\x: (proto? [Number Map])})
 
 # free to define type ID in stdlib
 # can register system-wide for ID
