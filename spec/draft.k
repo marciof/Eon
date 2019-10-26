@@ -244,10 +244,25 @@ C2: (remove R2 \age)
   \proto
   (insert () \x Number))
 
-(insert
-  \(inc: + x 1)
-  \proto
-  {\x: Number|Text})
+(defer escape: \_
+  (inc: + x 1
+    proto: (x: (_ Number))))
+
+(inc: + x 1 proto: {\x: Number})
+
+# before call is added to `proto`
+# - does `inc` have a `proto`?
+# - is it a proto of the call?
+
+# - macro args?
+#   double quote `proto`?
+# - keyword quoting?
+# - dynamic or fixed binding?
+
+(inc 5)
+(inc 'Hi')
+
+---
 
 # free to define type ID in stdlib
 # can register system-wide for ID
