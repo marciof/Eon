@@ -234,10 +234,12 @@ C2: (remove R2 \age)
 (proto? C2 R1 R2) # R2
 
 # replace bindings with `proto` key?
-# - specify call proto min reqs
+# - specifies call proto min reqs
 # - can’t type ID?
 # - have a `proto?` builtin?
+#   more orthogonal?
 # - allow non-map proto custom logic?
+# - actual call proto has the type?
 
 (insert
   \(inc: + x 1)
@@ -256,7 +258,7 @@ C2: (remove R2 \age)
 
 # - macro args?
 #   double quote `proto`?
-# - keyword quoting?
+# - keyword quoting? when needed?
 # - dynamic or fixed binding?
 
 (inc 5)
