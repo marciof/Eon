@@ -233,13 +233,11 @@ C2: (remove R2 \age)
 (proto? C1 R1 R2) # R2
 (proto? C2 R1 R2) # R2
 
-# replace bindings with `proto` key?
+---
+
+# replace bindings with `proto` key
 # - specifies call proto min reqs
-# - can’t type ID?
-# - have a `proto?` builtin?
-#   more orthogonal?
 # - allow non-map proto custom logic?
-# - actual call proto has the type?
 
 (insert
   \(inc: + x 1)
@@ -256,8 +254,28 @@ C2: (remove R2 \age)
 # - does `inc` have a `proto`?
 # - is it a proto of the call?
 
-# - macro args?
-#   double quote `proto`?
+# call site must match env
+# - \x level are parameters
+# - \environment level is caller env
+
+(inc: + x 1
+  environment: (
+    \environment: environment
+    \x: Number
+  ))
+
+(cat: + x y
+  environment: {
+    \environment: environment
+    \x: {Number Text}
+    \y: {Number Text}
+  })
+
+# - actual call proto has the "type"?
+#   needs list of structs
+# - can’t type ID?
+# - `proto?` builtin? orthogonal?
+# - macro args? double quote `proto`?
 # - keyword quoting? when needed?
 # - dynamic or fixed binding?
 
@@ -476,7 +494,7 @@ typed-inc: (match
 ---
 
 # iterator protocol for lazy values?
-
+# `next` is an iterator?
 # protocol for static "typing"?
 
 ---
