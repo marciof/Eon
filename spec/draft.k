@@ -271,6 +271,17 @@ C2: (remove R2 \age)
     \y: {Number Text}
   })
 
+# bidirectional map? [:] ?
+# decompose map into list and set?
+
+type-registry: {
+  \Person: {\name: ''}
+}
+
+(typeof: x environment: {
+  \x: type-registry
+})
+
 # - actual call proto has the "type"?
 #   needs list of structs
 # - can’t type ID?
