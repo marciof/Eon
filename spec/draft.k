@@ -261,6 +261,9 @@ C2: (remove R2 \age)
 # - is it a proto of the call?
 
 # confusing with default arg values?
+# types checked with `proto?`
+# no env key == no checking, dynamic
+# default == env == lexical
 
 (inc: + x y environment: (
   y: 1
