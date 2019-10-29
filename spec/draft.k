@@ -260,6 +260,12 @@ C2: (remove R2 \age)
 # - does `inc` have a `proto`?
 # - is it a proto of the call?
 
+# confusing with default arg values?
+
+(inc: + x y environment: (
+  y: 1
+))
+
 # call site must match env
 # - \x level are parameters
 # - \environment level is caller env
