@@ -235,6 +235,33 @@ C2: (remove R2 \age)
 
 ---
 
+# lexical binding only
+
+\(inc: + x 1 x:)
+
+(insert
+  \(inc: (+ bindings::x 1)
+    x: (evaluate bindings::x))
+  \bindings
+  bindings)
+
+# still lexical binding, not dynamic
+
+\(inc: + x 1)
+
+(insert
+  \(inc: ...)
+  \bindings
+  bindings)
+
+# varargs
+
+# macro args
+
+\(inc: + x 1 \x:)
+
+---
+
 # replace bindings with `proto` key
 # - specifies call proto min reqs
 # - allow non-map proto custom logic?
