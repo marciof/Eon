@@ -238,6 +238,12 @@ C2: (remove R2 \age)
 # replace bindings with `proto` key
 # - specifies call proto min reqs
 # - allow non-map proto custom logic?
+# - always default to have reqs
+# - no env == 
+# - empty env == no
+# - env == param reqs
+# - no parent env == dynamic bindings
+# - parent env == lexical bindings
 
 (insert
   \(inc: + x 1)
@@ -279,8 +285,22 @@ type-registry: {
 }
 
 (typeof: x environment: {
+  \environment: environment
   \x: type-registry
 })
+
+# explicit disable type checking
+
+environment: {
+  \environment: environment
+  \x: []
+)
+
+# explicit disable param checking
+
+environment: {
+  \environment: environment
+}
 
 # - actual call proto has the "type"?
 #   needs list of structs
