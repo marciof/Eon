@@ -260,6 +260,8 @@ C2: (remove R2 \age)
 # - does `inc` have a `proto`?
 # - is it a proto of the call?
 
+# env::env points to self?
+
 # confusing with default arg values?
 # types checked with `proto?`
 # no env key == no checking, dynamic
