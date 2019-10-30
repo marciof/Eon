@@ -262,6 +262,15 @@ C2: (remove R2 \age)
 
 ---
 
+(bindings)
+(bindings function)
+
+# weird if functions accept bindings
+# evaluate also/already does
+# and function lists would hidden key
+
+---
+
 # replace bindings with `proto` key
 # - specifies call proto min reqs
 # - allow non-map proto custom logic?
