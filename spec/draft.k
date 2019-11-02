@@ -235,7 +235,13 @@ C2: (remove R2 \age)
 
 ---
 
-# lexical binding only
+# lexical binding by default
+# fn list first key is its name
+
+# fn lists always have `bindings`?
+# error on non-existing free symbols?
+
+\(count-locals: count bindings)
 
 \(inc: + x 1 x:)
 
@@ -267,7 +273,7 @@ C2: (remove R2 \age)
 
 # weird if functions accept bindings
 # evaluate also/already does
-# and function lists would hidden key
+# and fn lists would have hidden key
 
 ---
 
