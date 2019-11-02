@@ -235,11 +235,23 @@ C2: (remove R2 \age)
 
 ---
 
-# lexical binding by default
-# fn list first key is its name
+# ok to have rules, Symbols have too
+# fn list 1st key is its name
+# fn list 1st value is its body
+# quoting creates a closure
+# closure = symbols list + bindings
+# currying creates new fn body
 
+# lexical binding by default?
 # fn lists always have `bindings`?
 # error on non-existing free symbols?
+# it’s the same req when calling
+# for arbitrary symbols put in env
+# `bindings` must have them?
+# unquoted params (default) = eval?
+# quoted params = un-eval?
+
+\(inc: + x 1)
 
 \(count-locals: count bindings)
 
@@ -305,6 +317,7 @@ C2: (remove R2 \age)
 # env::env points to self?
 
 # confusing with default arg values?
+# no b/c it’s an env spec?
 # types checked with `proto?`
 # no env key == no checking, dynamic
 # default == env == lexical
