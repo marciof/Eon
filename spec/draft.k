@@ -235,13 +235,26 @@ C2: (remove R2 \age)
 
 ---
 
+# simple fn lists as before
+# no prototypes, have `proto?`
+# spec when it has `bindings`
+# spec for questions below
+
+# non concurrency friendly?
+bindings
+
+---
+
 # ok to have rules, Symbols have too
 # fn list 1st key is its name
-# fn list 1st value is its body
+# fn list 1st value is its body/a fn
 # quoting creates a closure
 # closure = symbols list + bindings
 # currying creates new fn body
 
+# why quoting lists no closure?
+# do fn non-num keys alias num keys?
+# assume fn list keys are symbols?
 # lexical binding by default?
 # fn lists always have `bindings`?
 # error on non-existing free symbols?
@@ -277,15 +290,6 @@ C2: (remove R2 \age)
 # macro args
 
 \(inc: + x 1 \x:)
-
----
-
-(bindings)
-(bindings function)
-
-# weird if functions accept bindings
-# evaluate also/already does
-# and fn lists would have hidden key
 
 ---
 
