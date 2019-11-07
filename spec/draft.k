@@ -239,9 +239,16 @@ C2: (remove R2 \age)
 # no prototypes, have `proto?`
 # spec when it has `bindings`
 # spec for questions below
+# specify built-ins are just args
 
 # non concurrency friendly?
 bindings
+
+---
+
+# pairs as the basis for all?
+name: 'Bob'
+name: Text = 'Bob'
 
 ---
 
