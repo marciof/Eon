@@ -194,6 +194,7 @@ function who-called-me ()
   io::print bindings::bindings
 
 # match a value against protos
+# - returns key where match is found
 # - returns value if no match
 # - returns first match, not closest
 # - delete key breaks struct compat
