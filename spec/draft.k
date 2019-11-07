@@ -26,6 +26,8 @@ if (logged-in? user) then:
 ---
 
 # Pipeline support?
+# need currying for ease of use?
+
 $ date > now
 
 (file \now (date))
