@@ -145,6 +145,7 @@ let
 ---
 
 # union, intersection
+# changing types (down/up cast)
 # allow multiple values?
 # merge?
 
@@ -166,6 +167,11 @@ let
 
 (proto value [base])
 (proto? value [base ...])
+
+---
+
+# eval doesn’t need bindings?
+# it’s part of a fn list
 
 ---
 
