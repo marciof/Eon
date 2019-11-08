@@ -119,11 +119,15 @@ let
 
 # naming functions
 
+\(inc: ...)
 ???
 
-# fn call becomes bindings deferred
-# if it has `bindings` ???
-# otherwise ???
+# fn call becomes deferred bindings
+# has `bindings`?
+# - it becomes the parent bindings
+# - otherwise use current bindings
+
+???
 
 ---
 
