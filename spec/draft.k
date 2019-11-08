@@ -93,11 +93,11 @@ let
 # dynamic binding by default
 # unevaluated by default
 
-\(+ x 1)
+inc: \(+ x 1)
 
 # lexical binding
 
-(insert
+inc: (insert
   \(+ x 1)
   \bindings
   bindings)
@@ -106,10 +106,17 @@ let
 # fn lists can have one already
 # when they don’t it’s dynamic
 
-(insert
+inc: (insert
   \(+ (evaluate bindings::x) 1)
   \bindings
   bindings)
+
+# fn call becomes deferred bindings
+# has `bindings`?
+# - it becomes the parent bindings
+# - otherwise use current bindings
+
+(inc (count names))
 
 # module is an implicit fn call
 # has `bindings` param w/ built ins
@@ -120,13 +127,6 @@ let
 # naming functions
 
 \(inc: ...)
-???
-
-# fn call becomes deferred bindings
-# has `bindings`?
-# - it becomes the parent bindings
-# - otherwise use current bindings
-
 ???
 
 ---
