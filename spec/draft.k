@@ -89,15 +89,52 @@ let
 
 ---
 
-# function, dynamic binding
+# function list/code
+# dynamic binding by default
+# unevaluated by default
+
 \(+ x 1)
 
-# function, currying can fix bindings
-(\(+ x 1) x:)
+# lexical binding
 
-# what does inspecting see?
+(insert
+  \(+ x 1)
+  \bindings
+  bindings)
+
+# eval doesn’t need bindings param
+# fn lists can have one already
+# when they don’t it’s dynamic
+
+(insert
+  \(+ (evaluate bindings::x) 1)
+  \bindings
+  bindings)
+
+# module is an implicit fn call
+# has `bindings` param w/ built ins
+# unquoted symbols lookup bindings
+
+(= get bindings::get)
+
+# naming functions
+
+???
+
+# fn call becomes bindings deferred
+# if it has `bindings` ???
+# otherwise ???
+
+---
+
+# currying
+
+\(+ x 1 x:)
+
+# what inspecting sees
 # note it shouldn't be relied on
 # should it be auto evaluated?
+
 \(\(+ x 1)
   x: (evaluate
     (get
@@ -106,6 +143,8 @@ let
       default: (get
         (get bindings)
         2))))
+
+---
 
 # types? casts?
 # how to inspect types? protos?
