@@ -127,20 +127,21 @@ bindings: (insert
   \bindings
   bindings)
 
+# aka:
+
+bindings: { # fn list, new bindings
+  1: \inc
+  2: \(count names)
+  \bindings: bindings # curr bindings
+}
+
 # 2. Evaluate function body (`inc`)
 # lookup uses the new bindings
 # both fn itself as well as its body
 
-bindings: { # fn list
-  1: \inc
-  2: \(count names)
-  \bindings: bindings
-}
-
+# new bindings
 (+ (evaluate bindings::x) 1
-  # new bindings above
-  # original bindings below
-  \bindings: bindings)
+  \bindings: bindings) # orig bindngs
 
 ???
 
