@@ -116,22 +116,22 @@ inc: (insert
 # - it becomes the parent bindings
 # - otherwise use current bindings
 
-(inc (count names))
+(inc x: (count names))
 
 # 1. Use it deferred as new bindings
 # set current bindings as parent
 # unless it already has bindings key
 
 bindings: (insert
-  \(inc (count names))
+  \(inc x: (count names))
   \bindings
   bindings)
 
-# aka:
+# aka (new bindings)
 
-bindings: { # fn list, new bindings
+bindings: { # fn list
   1: \inc
-  2: \(count names)
+  \x: \(count names)
   \bindings: bindings # curr bindings
 }
 
