@@ -118,6 +118,32 @@ inc: (insert
 
 (inc (count names))
 
+# 1. Use it deferred as new bindings
+# set current bindings as parent
+# unless it already has bindings key
+
+bindings: (insert
+  \(inc (count names))
+  \bindings
+  bindings)
+
+# 2. Evaluate function body (`inc`)
+# lookup uses the new bindings
+# both fn itself as well as its body
+
+bindings: { # fn list
+  1: \inc
+  2: \(count names)
+  \bindings: bindings
+}
+
+(+ (evaluate bindings::x) 1
+  # new bindings above
+  # original bindings below
+  \bindings: bindings)
+
+???
+
 # module is an implicit fn call
 # has `bindings` param w/ built ins
 # unquoted symbols lookup bindings
@@ -127,7 +153,12 @@ inc: (insert
 # naming functions
 
 \(inc: ...)
+
 ???
+
+---
+
+# how fn list non-num keys w/num keys
 
 ---
 
