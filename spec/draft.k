@@ -130,7 +130,7 @@ bindings: (insert
 # aka (new bindings)
 
 bindings: { # fn list
-  1: \inc
+  \1: \inc
   \x: \(count names)
   \bindings: bindings # curr bindings
 }
