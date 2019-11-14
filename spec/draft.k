@@ -160,6 +160,7 @@ bindings: { # fn list
 ---
 
 # how fn list non-num keys w/num keys
+# make insert accept where before at?
 
 ---
 
