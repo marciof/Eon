@@ -132,12 +132,12 @@ bindings: (insert
 bindings: { # fn list
   \1: \inc
   \x: \(count names)
-  \bindings: bindings # curr bindings
+  \bindings: bindings # orig binds
 }
 
 # 2. Evaluate function body (`inc`)
-# lookup uses the new bindings
-# both fn itself as well as its body
+# fn body lookup uses the new binds
+# fn itself uses current bindings
 
 # new bindings
 (+ (evaluate bindings::x) 1
@@ -316,6 +316,8 @@ C2: (remove R2 \age)
 
 (proto? C1 R1 R2) # R2
 (proto? C2 R1 R2) # R2
+
+# very similar "types" could break
 
 ---
 
