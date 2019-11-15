@@ -93,6 +93,9 @@ let
 # dynamic binding by default
 # unevaluated by default
 
+(x bindings: {\x: 123})
+#> 123
+
 inc: \(+ x 1)
 
 # lexical binding:
