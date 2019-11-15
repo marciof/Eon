@@ -95,21 +95,13 @@ let
 
 inc: \(+ x 1)
 
-# lexical binding
+# lexical binding:
 
-inc: (insert
-  \(+ x 1)
-  \bindings
-  bindings)
+inc: (defer escape: \_
+  (+ x 1 bindings: (_ bindings)))
 
 # eval doesn’t need bindings param
 # fn lists can have one already
-# when they don’t it’s dynamic
-
-inc: (insert
-  \(+ (evaluate bindings::x) 1)
-  \bindings
-  bindings)
 
 # fn call becomes deferred bindings
 # has `bindings`?
