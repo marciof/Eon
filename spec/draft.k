@@ -92,6 +92,7 @@ let
 # function list/code
 # dynamic binding by default
 # unevaluated by default
+# bare key b/c whole expr is deferred
 
 (x bindings: {\x: 123})
 #> 123
@@ -138,24 +139,33 @@ bindings: { # fn list
 (+ (evaluate bindings::x) 1
   \bindings: bindings) # orig bindngs
 
-???
-
 # module is an implicit fn call
 # has `bindings` param w/ built ins
 # unquoted symbols lookup bindings
 
 (= get bindings::get)
+#> true
 
 # naming functions
 
-\(inc: ...)
+\(inc: + x 1)
 
-???
+# built ins/foreign have names too
+# inspecting a built in
+# doesn’t compare as equal
+# inspecting just shows something
+
++
+#> \(+: ())
+
+# how fn list non-num keys w/num keys
+# enumerated exactly as shown/added
 
 ---
 
-# how fn list non-num keys w/num keys
 # make insert accept where before at?
+
+(insert map key value before)
 
 ---
 
