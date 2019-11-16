@@ -165,7 +165,7 @@ bindings: { # fn list
 
 # make insert accept where before at?
 
-(insert map key value before)
+(insert map key value [before])
 
 ---
 
