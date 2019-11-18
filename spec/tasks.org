@@ -12,6 +12,7 @@
 - https://www.freecodecamp.org/news/facebook-just-changed-the-license-on-react-heres-a-2-minute-explanation-why-5878478913b2/
 - https://opensource.stackexchange.com/questions/4875/open-source-license-to-prevent-commercial-use
 - https://opencollective.com/
+- Completing Racket’s relicensing effort, https://news.ycombinator.com/item?id=21565391
 - https://news.ycombinator.com/item?id=21564638, "The GPL has always been criticized for its definition of distribution, which allows companies to host SaaS offerings of GPL software without having to make their modifications available. Hosting a GPL-licensed server and receiving network activity does not constitute distribution, which is why the AGPL exists."
 
 * TODO check licensing of all libraries, tools, dependencies
