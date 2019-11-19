@@ -163,6 +163,80 @@ bindings: { # fn list
 
 ---
 
+# remove all barriers, simplify
+# - no such thing as a prototype
+# - classes, types are just values
+# - no inheritance (but can simulate)
+# - just "structural typing"
+# - no need for `local`
+# - special `constraint` in functions
+
+# each bindings has a `bindings` sym
+# - used to go up the call stack
+# - no need for `prototype`
+# - default lookup unquoted symbols
+# - can create fake eval bindings
+# - can create fake call stacks
+
+function who-called-me ()
+  io::print bindings::bindings
+
+# match a value against protos
+# - returns key where match is found
+# - returns value if no match
+# - returns first match, not closest
+# - delete key breaks struct compat
+# - new key preserves struct compat
+# - set compat value preserves compat
+# - compatibility is based on struct
+
+Map: List: Text: Symbol
+Map: Set
+Boolean
+Number: Decimal: Integer: ...
+
+(proto? val base ...)
+(instance? val base ...)
+
+# which of base is a proto of value?
+# which one is an instance of?
+# which one is struct‘lly compatible?
+
+(proto? List Map) # true
+(proto? Map List) # false
+(proto? Symbol Map Text) # Map
+
+Person: {\name: ''}
+bob: (insert Person \name 'Bob')
+
+value: (insert
+  (insert Person \age 20)
+  \weight
+  20)
+
+(proto? bob Person) # true
+(proto? value Person) # true
+(proto? 'Bob' Map) # true
+(proto? 123 Map) # false
+
+R1: {}
+R2: {\name: '' \age: 0}
+
+C1: (insert R1 \name '')
+C2: (remove R2 \age)
+
+(= C1 C2) # true
+
+(proto? C1 R1 R2) # R2
+(proto? C2 R1 R2) # R2
+
+# very similar "types" could break?
+# multi methods only
+# can still have functions
+# `register` warns by verifying 1st
+
+---
+
 # make insert accept where before at?
 
 (insert set value)
@@ -259,77 +333,6 @@ bindings: { # fn list
 
 # eval doesn’t need bindings?
 # it’s part of a fn list
-
----
-
-# remove all barriers, simplify
-# - no such thing as a prototype
-# - classes, types are just values
-# - no inheritance (but can simulate)
-# - just "structural typing"
-# - no need for `local`
-# - special `constraint` in functions
-
-# each bindings has a `bindings` sym
-# - used to go up the call stack
-# - no need for `prototype`
-# - default lookup unquoted symbols
-# - can create fake eval bindings
-# - can create fake call stacks
-
-function who-called-me ()
-  io::print bindings::bindings
-
-# match a value against protos
-# - returns key where match is found
-# - returns value if no match
-# - returns first match, not closest
-# - delete key breaks struct compat
-# - new key preserves struct compat
-# - set compat value preserves compat
-# - compatibility is based on struct
-
-Map: List: Text: Symbol
-Map: Set
-Boolean
-Number: Decimal: Integer: ...
-
-(proto? val base ...)
-(instance? val base ...)
-
-# which of base is a proto of value?
-# which one is an instance of?
-# which one is struct‘lly compatible?
-
-(proto? List Map) # true
-(proto? Map List) # false
-(proto? Symbol Map Text) # Map
-
-Person: {\name: ''}
-bob: (insert Person \name 'Bob')
-
-value: (insert
-  (insert Person \age 20)
-  \weight
-  20)
-
-(proto? bob Person) # true
-(proto? value Person) # true
-(proto? 'Bob' Map) # true
-(proto? 123 Map) # false
-
-R1: {}
-R2: {\name: '' \age: 0}
-
-C1: (insert R1 \name '')
-C2: (remove R2 \age)
-
-(= C1 C2) # true
-
-(proto? C1 R1 R2) # R2
-(proto? C2 R1 R2) # R2
-
-# very similar "types" could break
 
 ---
 
