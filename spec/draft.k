@@ -146,6 +146,9 @@ C2: (remove R2 \age)
 # can still have functions
 # `register` warns by verifying 1st
 
+# varargs or collection?
+# if collection return key?
+
 ---
 
 # Force named arguments?
