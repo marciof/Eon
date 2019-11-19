@@ -1,3 +1,153 @@
+# function list/code
+# dynamic binding by default
+# unevaluated by default
+# bare key b/c whole expr is deferred
+
+(x bindings: {\x: 123})
+#> 123
+
+inc: \(+ x 1)
+
+# lexical binding:
+
+inc: (defer escape: \_
+  (+ x 1 bindings: (_ bindings)))
+
+# eval doesn’t need bindings param
+# fn lists can have one already
+
+# fn call becomes deferred bindings
+# has `bindings`?
+# - it becomes the parent bindings
+# - otherwise use current bindings
+
+(inc x: (count names))
+
+# 1. Use it deferred as new bindings
+# set current bindings as parent
+# unless it already has bindings key
+
+bindings: (insert
+  \(inc x: (count names))
+  \bindings
+  bindings)
+
+# aka (new bindings)
+
+bindings: { # fn list
+  \1: \inc
+  \x: \(count names)
+  \bindings: bindings # orig binds
+}
+
+# 2. Evaluate function body (`inc`)
+# fn body lookup uses the new binds
+# fn itself uses current bindings
+
+# new bindings
+(+ (evaluate bindings::x) 1
+  \bindings: bindings) # orig bindngs
+
+# module is an implicit fn call
+# has `bindings` param w/ built ins
+# unquoted symbols lookup bindings
+
+(= get bindings::get)
+#> true
+
+# naming functions
+
+\(inc: + x 1)
+
+# built ins/foreign have names too
+# inspecting a built in
+# doesn’t compare as equal
+# inspecting just shows something
+
++
+#> \(+: ())
+
+# how fn list non-num keys w/num keys
+# enumerated exactly as shown/added
+
+# builtins are in the very 1st binds
+
+---
+
+# remove all barriers, simplify
+# - no such thing as a prototype
+# - classes, types are just values
+# - no inheritance (but can simulate)
+# - just "structural typing"
+# - no need for `local`
+# - special `constraint` in functions
+
+# each bindings has a `bindings` sym
+# - used to go up the call stack
+# - no need for `prototype`
+# - default lookup unquoted symbols
+# - can create fake eval bindings
+# - can create fake call stacks
+
+function who-called-me ()
+  io::print bindings::bindings
+
+# match a value against protos
+# - returns key where match is found
+# - returns value if no match
+# - returns first match, not closest
+# - delete key breaks struct compat
+# - new key preserves struct compat
+# - set compat value preserves compat
+# - compatibility is based on struct
+
+Map: List: Text: Symbol
+Map: Set
+Boolean
+Number: Decimal: Integer: ...
+
+(proto? val base ...)
+(instance? val base ...)
+
+# which of base is a proto of value?
+# which one is an instance of?
+# which one is struct‘lly compatible?
+
+(instance? List Map) # true
+(instance? Map List) # false
+(instance? Symbol Map Text) # Map
+
+Person: {\name: ''}
+bob: (insert Person \name 'Bob')
+
+value: (insert
+  (insert Person \age 20)
+  \weight
+  20)
+
+(instance? bob Person) # true
+(instance? value Person) # true
+(instance? 'Bob' Map) # true
+(instance? 123 Map) # false
+
+R1: {}
+R2: {\name: '' \age: 0}
+
+C1: (insert R1 \name '')
+C2: (remove R2 \age)
+
+(= C1 C2) # true
+
+(instance? C1 R1 R2) # R2
+(instance? C2 R1 R2) # R2
+
+# very similar "types" could break?
+# multi methods only
+# can still have functions
+# `register` warns by verifying 1st
+
+---
+
 # Force named arguments?
 if (logged-in? user)
   then: do
@@ -86,154 +236,6 @@ let
   
   io::print name
   io::print age
-
----
-
-# function list/code
-# dynamic binding by default
-# unevaluated by default
-# bare key b/c whole expr is deferred
-
-(x bindings: {\x: 123})
-#> 123
-
-inc: \(+ x 1)
-
-# lexical binding:
-
-inc: (defer escape: \_
-  (+ x 1 bindings: (_ bindings)))
-
-# eval doesn’t need bindings param
-# fn lists can have one already
-
-# fn call becomes deferred bindings
-# has `bindings`?
-# - it becomes the parent bindings
-# - otherwise use current bindings
-
-(inc x: (count names))
-
-# 1. Use it deferred as new bindings
-# set current bindings as parent
-# unless it already has bindings key
-
-bindings: (insert
-  \(inc x: (count names))
-  \bindings
-  bindings)
-
-# aka (new bindings)
-
-bindings: { # fn list
-  \1: \inc
-  \x: \(count names)
-  \bindings: bindings # orig binds
-}
-
-# 2. Evaluate function body (`inc`)
-# fn body lookup uses the new binds
-# fn itself uses current bindings
-
-# new bindings
-(+ (evaluate bindings::x) 1
-  \bindings: bindings) # orig bindngs
-
-# module is an implicit fn call
-# has `bindings` param w/ built ins
-# unquoted symbols lookup bindings
-
-(= get bindings::get)
-#> true
-
-# naming functions
-
-\(inc: + x 1)
-
-# built ins/foreign have names too
-# inspecting a built in
-# doesn’t compare as equal
-# inspecting just shows something
-
-+
-#> \(+: ())
-
-# how fn list non-num keys w/num keys
-# enumerated exactly as shown/added
-
----
-
-# remove all barriers, simplify
-# - no such thing as a prototype
-# - classes, types are just values
-# - no inheritance (but can simulate)
-# - just "structural typing"
-# - no need for `local`
-# - special `constraint` in functions
-
-# each bindings has a `bindings` sym
-# - used to go up the call stack
-# - no need for `prototype`
-# - default lookup unquoted symbols
-# - can create fake eval bindings
-# - can create fake call stacks
-
-function who-called-me ()
-  io::print bindings::bindings
-
-# match a value against protos
-# - returns key where match is found
-# - returns value if no match
-# - returns first match, not closest
-# - delete key breaks struct compat
-# - new key preserves struct compat
-# - set compat value preserves compat
-# - compatibility is based on struct
-
-Map: List: Text: Symbol
-Map: Set
-Boolean
-Number: Decimal: Integer: ...
-
-(proto? val base ...)
-(instance? val base ...)
-
-# which of base is a proto of value?
-# which one is an instance of?
-# which one is struct‘lly compatible?
-
-(proto? List Map) # true
-(proto? Map List) # false
-(proto? Symbol Map Text) # Map
-
-Person: {\name: ''}
-bob: (insert Person \name 'Bob')
-
-value: (insert
-  (insert Person \age 20)
-  \weight
-  20)
-
-(proto? bob Person) # true
-(proto? value Person) # true
-(proto? 'Bob' Map) # true
-(proto? 123 Map) # false
-
-R1: {}
-R2: {\name: '' \age: 0}
-
-C1: (insert R1 \name '')
-C2: (remove R2 \age)
-
-(= C1 C2) # true
-
-(proto? C1 R1 R2) # R2
-(proto? C2 R1 R2) # R2
-
-# very similar "types" could break?
-# multi methods only
-# can still have functions
-# `register` warns by verifying 1st
 
 ---
 
@@ -331,19 +333,7 @@ C2: (remove R2 \age)
 
 ---
 
-# eval doesn’t need bindings?
-# it’s part of a fn list
-
----
-
-# simple fn lists as before
-# no prototypes, have `proto?`
-# spec when it has `bindings`
 # spec for questions below
-# specify built-ins are just args
-
-# non concurrency friendly?
-bindings
 
 ---
 
