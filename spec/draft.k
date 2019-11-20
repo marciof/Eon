@@ -146,8 +146,26 @@ C2: (remove R2 \age)
 # can still have functions
 # `register` warns by verifying 1st
 
+# conflict, ambiguous
+
+Input-Buffer: {\data: []}
+Output-Buffer: {\data: []}
+
 # varargs or collection?
 # if collection return key?
+# optional default?
+
+(instance? val t1 t2 ...)
+(instance? val all-t)
+
+---
+
+# how easy convert map to fn list?
+
+(merge value-1 ... value-n)
+(merge map \())
+
+# can merge replace insert/remv/get?
 
 ---
 
