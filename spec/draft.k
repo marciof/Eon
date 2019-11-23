@@ -154,6 +154,7 @@ Output-Buffer: {\data: []}
 # varargs or collection?
 # if collection return key?
 # optional default?
+# implementation?
 
 (instance? val t1 t2 ...)
 (instance? val all-t)
