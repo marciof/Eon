@@ -153,8 +153,13 @@ Output-Buffer: {\data: []}
 
 # varargs or collection?
 # if collection return key?
-# optional default?
+# optional default? orthogonal
 # implementation?
+# - each val has struct hash
+# - how to match C1/C2 with R2?
+# options?
+# - sortable hash codes 
+# - builtin `type?` top types only
 
 (instance? val t1 t2 ...)
 (instance? val all-t)
