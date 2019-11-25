@@ -158,7 +158,7 @@ Output-Buffer: {\data: []}
 # - each val has struct hash
 # - how to match C1/C2 with R2?
 # options?
-# - sortable hash codes 
+# - sortable hash codes (Shazam)
 # - builtin `type?` top types only
 
 (instance? val t1 t2 ...)
