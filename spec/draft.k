@@ -168,9 +168,14 @@ Output-Buffer: {\data: []}
 (instance? [] {}) # true
 (instance? 123 ‘Bob’) # false
 
+(proto? [] {}) # true
+(proto? 123 ‘Bob’) # false
+
 let
   Animal: {\proto: Map \age: 0}
-  Person: 
+  Person: (merge
+    Animal
+    {\proto: Animal \name: ''})
 
 ---
 
