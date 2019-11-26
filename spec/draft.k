@@ -160,9 +160,17 @@ Output-Buffer: {\data: []}
 # options?
 # - sortable hash codes (Shazam)
 # - builtin `type?` top types only
+# - builtin `instance?` ditto
+# simpler, more open
+# how non builtin instance-of? work?
+# - sortable hash code on struct?
 
-(instance? val t1 t2 ...)
-(instance? val all-t)
+(instance? [] {}) # true
+(instance? 123 ‘Bob’) # false
+
+let
+  Animal: {\proto: Map \age: 0}
+  Person: 
 
 ---
 
