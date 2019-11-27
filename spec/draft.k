@@ -182,9 +182,40 @@ let
 # how easy convert map to fn list?
 
 (merge value-1 ... value-n)
-(merge map \())
+(merge \() map)
 
 # can merge replace insert/remv/get?
+
+# union, intersection
+# changing types (down/up cast)
+# allow multiple values?
+# merge?
+
+(merge map ... reducer)
+
+# concat
+(merge [1 2] [3]) # [1 2 3]
+
+# insert
+(merge [1 3] [2] reducer: 2) #[1 2 3]
+
+# remove
+(merge [1 2 3] reducer: 2) # [1 3]
+
+(insert map ...)
+(remove map ...)
+
+---
+
+# make insert accept where before at?
+
+(insert set value)
+(insert list value)
+(insert function value)
+
+(insert map key value [before])
+(insert list key value)
+(insert function key value)
 
 ---
 
@@ -279,18 +310,6 @@ let
 
 ---
 
-# make insert accept where before at?
-
-(insert set value)
-(insert list value)
-(insert function value)
-
-(insert map key value [before])
-(insert list key value)
-(insert function key value)
-
----
-
 # currying
 
 \(+ x 1 x:)
@@ -347,33 +366,8 @@ let
 
 ---
 
-# union, intersection
-# changing types (down/up cast)
-# allow multiple values?
-# merge?
-
-(merge map ... reducer)
-
-# concat
-(merge [1 2] [3]) # [1 2 3]
-
-# insert
-(merge [1 3] [2] reducer: 2) #[1 2 3]
-
-# remove
-(merge [1 2 3] reducer: 2) # [1 3]
-
-(insert map ...)
-(remove map ...)
-
----
-
 (proto value [base])
 (proto? value [base ...])
-
----
-
-# spec for questions below
 
 ---
 
@@ -382,6 +376,8 @@ name: 'Bob'
 name: Text = 'Bob'
 
 ---
+
+# spec for questions below
 
 # ok to have rules, Symbols have too
 # fn list 1st key is its name
