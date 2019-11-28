@@ -177,6 +177,8 @@ let
     Animal
     {\proto: Animal \name: ''})
 
+# side effect global? register types?
+
 ---
 
 # how easy convert map to fn list?
