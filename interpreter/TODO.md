@@ -65,6 +65,7 @@ JavaScript interpreters:
 
 - profiling
   - Evaluation of CPU profiling tools: gperftools, Valgrind and gprof, https://news.ycombinator.com/item?id=21480984
+  - flamegraphs, http://www.brendangregg.com/flamegraphs.html
 - unit tests
 - integration tests (Vagrant? Docker?)
 - Code coverage
