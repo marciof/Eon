@@ -13,7 +13,7 @@ inc: \(+ x 1)
 inc: (defer escape: \_
   (+ x 1 bindings: (_ bindings)))
 
-# eval doesn’t need bindings param
+# eval doesn’t need bindings param?
 # fn lists can have one already
 
 # fn call becomes deferred bindings
@@ -179,6 +179,87 @@ let
 
 ---
 
+# Pipeline support?
+# need currying for ease of use?
+
+$ date > now
+
+(file \now (date))
+date | file \now
+
+$ < A | cat | sort | uniq > B
+
+(file \B (uniq (sort (cat (file \A)))))
+file \A | cat | sort | uniq | file \B
+
+---
+
+# currying
+
+\(+ x 1 x:)
+
+# or?
+
+(+ x 1 x:)
+
+# what inspecting sees
+# note it shouldn't be relied on
+# should it be auto evaluated?
+
+\(\(+ x 1)
+  x: (evaluate
+    (get
+      (get bindings)
+      \x
+      default: (get
+        (get bindings)
+        2))))
+
+\(\(+ x 1)
+  x:
+
+# currying? too implicit?
+# how to curry varargs?
+let
+  phonebook: {'Bob': 12345}
+  lookup: (get phonebook key:)
+  (lookup 'Bob')
+
+# multiple currying?
+(insert list: key:)
+
+# renaming curried params
+(\(get phonebook key: name) name:)
+(lookup name: 'Bob')
+
+# currying keys? too weird/implicit?
+(get map: key: \name)
+::name
+
+person::name
+::name person
+
+# shell pipe operator?
+cat | sort | uniq | wc
+
+unshift: \(insert key: 1 list:)
+
+push: \(
+  count
+  | (+ 1 x:)
+  | (insert key: bindings::1 list:)
+)
+
+\(
+  (insert
+    list
+    key: (+ 1 (count list))
+    value: value)
+  list:
+  value:)
+
+---
+
 # how easy convert map to fn list?
 
 (merge value-1 ... value-n)
@@ -246,21 +327,6 @@ if (logged-in? user) then:
 
 ---
 
-# Pipeline support?
-# need currying for ease of use?
-
-$ date > now
-
-(file \now (date))
-date | file \now
-
-$ < A | cat | sort | uniq > B
-
-(file \B (uniq (sort (cat (file \A)))))
-file \A | cat | sort | uniq | file \B
-
----
-
 # generify a set's "such that"? |
 # can reuse pipes/currying
 # can add typing to vars via bindings
@@ -307,25 +373,6 @@ let
   
   io::print name
   io::print age
-
----
-
-# currying
-
-\(+ x 1 x:)
-
-# what inspecting sees
-# note it shouldn't be relied on
-# should it be auto evaluated?
-
-\(\(+ x 1)
-  x: (evaluate
-    (get
-      (get bindings)
-      \x
-      default: (get
-        (get bindings)
-        2))))
 
 ---
 
@@ -844,45 +891,3 @@ let count: (get
   \numerator: 1
   \denominator: 2
 }
-
----
-
-# currying? too implicit?
-# how to curry varargs?
-let
-  phonebook: {'Bob': 12345}
-  lookup: (get phonebook key:)
-  (lookup 'Bob')
-
-# multiple currying?
-(insert list: key:)
-
-# renaming curried params
-(\(get phonebook key: name) name:)
-(lookup name: 'Bob')
-
-# currying keys? too weird/implicit?
-(get map: key: \name)
-::name
-
-person::name
-::name person
-
-# shell pipe operator?
-cat | sort | uniq | wc
-
-unshift: \(insert key: 1 list:)
-
-push: \(
-  count
-  | (+ 1 x:)
-  | (insert key: bindings::1 list:)
-)
-
-\(
-  (insert
-    list
-    key: (+ 1 (count list))
-    value: value)
-  list:
-  value:)

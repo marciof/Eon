@@ -1,10 +1,10 @@
-* TODO is `if` then-else syntax error-prone?
+* TODO is the `if` then-else syntax error-prone?
 
 * TODO document constants and functions
 
 * TODO validate arguments, use keyword arguments, error checking
 
-* TODO close bindings in standard library functions
+* TODO close bindings in standard library functions?
 
 * TODO support varargs (eg. boolean logic functions, etc)
 

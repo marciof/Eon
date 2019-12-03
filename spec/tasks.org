@@ -1,4 +1,4 @@
-* TODO license to prevent abuse from cloud services SaaS
+* TODO use a license that prevents abuse from cloud services, eg. SaaS
 
 - clear terminology: FLOSS (free, libre, and open source software)
 - GLP/AGPL with Commons Clause?
@@ -17,14 +17,17 @@
 
 * TODO check licensing of all libraries, tools, dependencies
 
+- compile list in a text file
+
 * TODO improve documentation
 
 - Make `count` throw an error for built-ins or foreign values?
 - Function sub headings
 - Examples and conditions per section
-- See where the language can be simplified
 
-* TODO multiline nesting comments (without needing an IDE)?
+* TODO multiline nesting comments?
+
+- Language ergonomics shouldn't need an IDE?
 
 * TODO optional static typing?
 
@@ -70,6 +73,7 @@
 * TODO evaluate typing difficulty of each identifier and syntax quantitatively.
 
 - Can the syntax grammar be simplified without hurting readability and flexibility?
+- Can the language itself/concepts be simplified without sacrificing readability and flexibility?
 - Use easier synonyms for hard to type words?
 - Bulk analyze source code out there.
 - Frequency of syntax tokens, familiarity, ease of typing, speaking, identifiers.
@@ -77,7 +81,7 @@
 - http://hyperpolyglot.org/scripting
 - https://github.com/anvaka/common-words/blob/master/README.md
 
-* TODO evaluate performance, as well as comparatively
+* TODO evaluate performance
 
 - https://github.com/trizen/language-benchmarks
 
