@@ -1,6 +1,5 @@
 * TODO use a license that prevents abuse from cloud services, eg. SaaS
 
-- clear terminology: FLOSS (free, libre, and open source software)
 - GLP/AGPL with Commons Clause?
 - https://commonsclause.com/
 - https://www.gnu.org/licenses/gpl-faq.html.en

@@ -44,7 +44,7 @@
 
 # Introduction
 
-A single open language for interactive use, scripting, and building small to large programs, that aims to be simple, powerful, and practical.
+A free/libre open source (FLOSS) programming language for interactive use, scripting, and building small to large programs, that aims to be simple, powerful, and practical.
 
 ## Goals
 
