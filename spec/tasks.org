@@ -1,10 +1,8 @@
 * TODO use a license that prevents abuse from cloud services, eg. SaaS
 
-- GLP/AGPL with Commons Clause?
-- https://commonsclause.com/
-- https://www.gnu.org/licenses/gpl-faq.html.en
-- AGPL non commercial use, https://news.ycombinator.com/item?id=21195626
-- licensing SaaS, https://news.ycombinator.com/item?id=19362326
+- GNU Affero GPL 3, https://www.gnu.org/licenses/agpl-3.0.html
+- Add Commons Clause? https://commonsclause.com
+- Server Side Public License, https://www.mongodb.com/licensing/server-side-public-license/faq
 - https://www.infoworld.com/article/3366297/open-source-licenses-may-not-matter-so-much-any-more.html
 - https://www.theregister.co.uk/2018/10/16/mongodb_licensning_change/
 - https://news.ycombinator.com/item?id=19433394
@@ -12,7 +10,6 @@
 - https://opensource.stackexchange.com/questions/4875/open-source-license-to-prevent-commercial-use
 - https://opencollective.com/
 - Completing Racket’s relicensing effort, https://news.ycombinator.com/item?id=21565391
-- https://news.ycombinator.com/item?id=21564638, "The GPL has always been criticized for its definition of distribution, which allows companies to host SaaS offerings of GPL software without having to make their modifications available. Hosting a GPL-licensed server and receiving network activity does not constitute distribution, which is why the AGPL exists."
 
 * TODO check licensing of all libraries, tools, dependencies
 
