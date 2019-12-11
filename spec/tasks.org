@@ -1,12 +1,6 @@
-* TODO use a license that prevents abuse from cloud services, eg. SaaS
+* TODO switch to GNU Affero GPL 3? https://www.gnu.org/licenses/agpl-3.0.html
 
-- GNU Affero GPL 3, https://www.gnu.org/licenses/agpl-3.0.html
-- Add Commons Clause? https://commonsclause.com
-- Server Side Public License, https://www.mongodb.com/licensing/server-side-public-license/faq
-- https://www.infoworld.com/article/3366297/open-source-licenses-may-not-matter-so-much-any-more.html
-- https://www.theregister.co.uk/2018/10/16/mongodb_licensning_change/
 - https://news.ycombinator.com/item?id=19433394
-- https://www.freecodecamp.org/news/facebook-just-changed-the-license-on-react-heres-a-2-minute-explanation-why-5878478913b2/
 - https://opensource.stackexchange.com/questions/4875/open-source-license-to-prevent-commercial-use
 - https://opencollective.com/
 - Completing Racket’s relicensing effort, https://news.ycombinator.com/item?id=21565391
