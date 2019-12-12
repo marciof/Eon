@@ -1,8 +1,6 @@
 * TODO switch to GNU Affero GPL 3? https://www.gnu.org/licenses/agpl-3.0.html
 
 - https://news.ycombinator.com/item?id=19433394
-- https://opensource.stackexchange.com/questions/4875/open-source-license-to-prevent-commercial-use
-- https://opencollective.com/
 - Completing Racket’s relicensing effort, https://news.ycombinator.com/item?id=21565391
 
 * TODO check licensing of all libraries, tools, dependencies
