@@ -286,6 +286,22 @@ push: \(
 (insert map ...)
 (remove map ...)
 
+# fold: count, merge, reduce
+
+(fold resolver value-1 ... value-n1)
+
+# count
+
+???
+
+# merge
+
+???
+
+# reduce
+
+???
+
 ---
 
 # make insert accept where before at?
