@@ -286,21 +286,19 @@ push: \(
 (insert map ...)
 (remove map ...)
 
-# fold: count, merge, reduce
+# fold
 
 (fold resolver value-1 ... value-n1)
 
 # count
 
-???
-
 # merge
-
-???
 
 # reduce
 
-???
+# get = intersection by key
+
+# remove = symmetric difference
 
 ---
 
