@@ -5,6 +5,7 @@
 
 * TODO improve documentation
 
+- https://github.com/keepassxreboot/keepassxc/wiki/Building-KeePassXC
 - Make `count` throw an error for built-ins or foreign values?
 - Function sub headings
 - Examples and conditions per section

@@ -1,11 +1,8 @@
 # Introduction
 
-A free/libre open source (FLOSS) programming language for interactive use,
-scripting, and building small to large programs, that aims to be simple,
-powerful, and practical.
+A free/libre open source (FLOSS) programming language for interactive use, scripting, and building small to large programs, that aims to be simple, powerful, and practical.
 
-It includes a well-defined specification, a platform-agnostic implementation
-core, and an interpreter for various operating systems and environments.
+It includes a well-defined specification, a platform-agnostic implementation core, and an interpreter for various operating systems and environments.
 
 # Installation
 
@@ -20,9 +17,7 @@ See `.travis.yml`.
 ## Building
 
 1. Create a new directory to store the build artifacts.
-2. *Optionally* configure which builds to create. By default it will build a
-   native standalone executable only. Selecting the builds can be done in
-   several different ways using CMake.
+2. *Optionally* configure which builds to create. By default it will build a native standalone executable only. Selecting the builds can be done in several different ways using CMake.
   - command-line:
     ```
     # List options:
@@ -46,12 +41,9 @@ See `.travis.yml`.
 # Architecture
 
 - `interpreter/`: implementation of the language specification
-  - `core/`: builds an embeddable library with the host-independent core of the
-    implementation and host-dependent hooks
+  - `core/`: builds an embeddable library with the host-independent core of the implementation and host-dependent hooks
   - `javascript/`: builds a standalone executable to compile to JavaScript
-  - `native/`: builds an embeddable library and a standalone executable to run
-    natively (eg. on Windows)
-  - `x86-32/`: builds a Multiboot-compliant executable to run on an Intel x86
-    32-bit host
+  - `native/`: builds an embeddable library and a standalone executable to run natively (eg. on Windows)
+  - `x86-32/`: builds a Multiboot-compliant executable to run on an Intel x86 32-bit host
 - `spec/`: language specification
 - `stdlib/`: standard library for the interpreter
