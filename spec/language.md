@@ -75,7 +75,7 @@ Practical:
 
 - Unified REPL and command-line interpreter.
 - Shell scripting (`#!`, hash-bang syntax naturally supported).
-- Fast enough (zero-copy; quick feedback, low latency; maximum resource usage when appropriate).
+- Fast enough (instant-on; zero-copy; quick feedback, low latency; maximum resource usage when appropriate).
 - Easy data type literals: lists, maps, sets, functions, text (strings), numbers.
 - Multi-platform: *"Write once, run everywhere."*
 - Native code interoperability (FFI, Foreign Function Interface).

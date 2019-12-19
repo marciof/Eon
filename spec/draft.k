@@ -15,6 +15,7 @@ inc: (defer escape: \_
 
 # eval doesn’t need bindings param?
 # fn lists can have one already
+# - no, symbols need bindings
 
 # fn call becomes deferred bindings
 # has `bindings`?
@@ -51,6 +52,7 @@ bindings: { # fn list
 # module is an implicit fn call
 # has `bindings` param w/ built ins
 # unquoted symbols lookup bindings
+# - not param b/c dynamic binding
 
 (= get bindings::get)
 #> true
@@ -287,6 +289,8 @@ push: \(
 (remove map ...)
 
 # fold
+# - how keyword param resolver?
+# - resolver called for matches?
 
 (fold resolver value-1 ... value-n1)
 
