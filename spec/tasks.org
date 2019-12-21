@@ -1,6 +1,7 @@
 * TODO check licensing of all libraries, tools, dependencies
 
 - compile list in a text file
+- https://news.ycombinator.com/item?id=21845804
 
 * TODO improve documentation
 

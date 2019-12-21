@@ -27,8 +27,8 @@ See `.travis.yml`.
     ```
     # List options:
     $ cmake -L -H
-    # Build a Multiboot-compliant executable only:
-    $ cmake -D BUILD_FOR_X86_32_HOST=ON -D BUILD_FOR_NATIVE_HOST=OFF path/to/sources
+    # Build a native standalone executable only (the default):
+    $ cmake -D BUILD_FOR_NATIVE_HOST=ON path/to/sources
     ```
   - TUI:
     ```
