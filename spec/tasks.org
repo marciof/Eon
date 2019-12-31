@@ -2,6 +2,7 @@
 
 - compile list in a text file
 - https://news.ycombinator.com/item?id=21845804
+- Add support for Bochs and Qemu?
 
 * TODO improve documentation
 

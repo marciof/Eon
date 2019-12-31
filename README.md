@@ -8,11 +8,20 @@ It includes a well-defined specification, a platform-agnostic implementation cor
 
 ## Dependencies
 
-See `.travis.yml`.
+### Linux
+
+See `.travis.yml` for:
+
+- `compiler`: List of supported compilers.
+- `addons.apt.packages`: List of required packages.
+
+(Tested on Debian 10, both 32-bit and 64-bit.)
 
 ### Windows
 
 - [Visual Studio Build Tools](https://www.visualstudio.com/thank-you-downloading-visual-studio/?sku=BuildTools)
+
+(Tested on Windows 10, both 32-bit and 64-bit.)
 
 ## Building
 
@@ -40,10 +49,10 @@ See `.travis.yml`.
 
 # Architecture
 
-- `interpreter/`: implementation of the language specification
-  - `core/`: builds an embeddable library with the host-independent core of the implementation and host-dependent hooks
-  - `javascript/`: builds a standalone executable to compile to JavaScript
-  - `native/`: builds an embeddable library and a standalone executable to run natively (eg. on Windows)
-  - `x86-32/`: builds a Multiboot-compliant executable to run on an Intel x86 32-bit host
-- `spec/`: language specification
-- `stdlib/`: standard library for the interpreter
+- `interpreter/`: Implementation of the language specification.
+  - `core/`: Builds an embeddable library with the host-independent core of the implementation and host-dependent hooks.
+  - `javascript/`: Builds a standalone executable to compile to JavaScript.
+  - `native/`: Builds an embeddable library and a standalone executable to run natively (eg. on Windows).
+  - `x86-32/`: Builds a Multiboot-compliant executable to run on an Intel x86 32-bit host.
+- `spec/`: Language specification.
+- `stdlib/`: Standard library for the interpreter.
