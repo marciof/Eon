@@ -102,6 +102,23 @@ JavaScript interpreters:
 
 ---
 
+Shortcat app
+
+Click with the keyboard
+
+Shortcat is a unique application that enables you to click without using the mouse! Shortcat is particularly suited to fast typists.
+
+You simply activate Shortcat with a keyboard shortcut, type a few letters that match the UI element you want to click on, and Shortcat will search the current active window (and menu bar) for matching elements.
+
+Simply hit 'Return' to click on the desired element!
+Works with most apps
+
+Shortcat leverages the Accessibility API, which is supported by all applications that come with Mac OS X and most applications!
+
+Finder, Safari, Xcode, Textual, Skype, Calendar and more are supported. Shortcat is constantly being updated to work better with more applications!
+
+---
+
 - malloc once for Str and other types
 - https://danluu.com/input-lag/
 - https://www.bearssl.org
