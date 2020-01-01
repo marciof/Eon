@@ -1,5 +1,7 @@
 * interpreter
 
+** split Travis/CI dependencies per build target (eg. native, x86-32, etc)
+
 ** TODO disable executable stacks
 
 - Infectious Executable Stacks, https://nullprogram.com/blog/2019/11/15/

@@ -10,6 +10,7 @@ compiler:
 addons:
   apt:
     packages:
+      # all
       - cmake # v2.8 or higher
       - make
       # x86-32
