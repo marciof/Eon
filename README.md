@@ -37,7 +37,7 @@ See file `.travis.yml`, section:
     ```
 3. Invoke the build tool:
   ```
-  $ cmake --build path/to/sources
+  $ cmake --build .
   ```
 
 # Architecture
