@@ -25,8 +25,8 @@ See file `.travis.yml`, section:
 
 ## Building
 
-1. Create a new empty directory to store the build artifacts.
-2. Generate a build system [using CMake](https://cmake.org/runningcmake/) (the following steps assume running it from the command line).
+1. Create a new empty directory to store the build artifacts, and change to it.
+2. Generate a build system [using CMake](https://cmake.org/runningcmake/) (see file `CMakeLists.txt` for the minimum supported version). The following steps assume running it from the command line:
   - By default it will build a native standalone executable only, but it can also be configured to select other builds. To view options:
     ```
     $ cmake -LH path/to/sources
