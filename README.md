@@ -10,10 +10,10 @@ It includes a well-defined specification, a platform-agnostic implementation cor
 
 ### Linux
 
-See `.travis.yml` for:
+See file `.travis.yml`, section:
 
 - `compiler`: List of supported compilers.
-- `addons.apt.packages`: List of required packages.
+- `addons`/`apt`/`packages`: List of required packages.
 
 (Tested on Debian 10, both 32-bit and 64-bit.)
 
@@ -25,28 +25,19 @@ See `.travis.yml` for:
 
 ## Building
 
-1. Create a new directory to store the build artifacts.
-2. *Optionally* configure which builds to create. By default it will build a native standalone executable only. Selecting the builds can be done in several different ways using CMake.
-  - Command-line:
-    1. List options:
-      ```
-      $ cmake -LH path/to/sources
-      ```
-    2. Build a native standalone executable only (it's the default):
-      ```
-      $ cmake -D BUILD_FOR_NATIVE_HOST=ON path/to/sources
-      ```
-  - TUI:
+1. Create a new empty directory to store the build artifacts.
+2. Generate a build system [using CMake](https://cmake.org/runningcmake/).
+  - By default it will build a native standalone executable only, but it can also be configured to select other builds. To view options:
     ```
-    ccmake path/to/sources
+    $ cmake -LH path/to/sources
     ```
-  - GUI:
+  - Otherwise, to use the default options:
     ```
-    cmake-gui path/to/sources
+    $ cmake path/to/sources
     ```
 3. Invoke the build tool.
   ```
-  $ cmake --build .
+  $ cmake --build path/to/sources
   ```
 
 # Architecture
