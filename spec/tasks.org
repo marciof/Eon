@@ -1,8 +1,4 @@
-* TODO check licensing of all libraries, tools, dependencies
-
-- compile list in a text file
-- https://news.ycombinator.com/item?id=21845804
-- Add support for Bochs and Qemu? Better for installation as well and using vm.sh
+* TODO check licensing of everything (compile list in a text file?)
 
 * TODO improve documentation
 

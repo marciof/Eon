@@ -59,7 +59,7 @@ JavaScript interpreters:
   - Just echo back each line from stdin in a robust way.
   - Integrate with readline.
   - Syntax highlighting. (Language Server Protocol? https://langserver.org/)
-  - Translate AST to a backend that writes JavaScript (browser and node?) and/or Lisp for a quicker first release? Can use an embedded interpreter to run it on spot.
+  - Translate AST to a backend that writes JavaScript (browser and node?) and/or Lisp for a quicker first release? Can use an embedded interpreter to run it on spot (pico Lisp).
 
 # Testing
 
@@ -84,19 +84,6 @@ JavaScript interpreters:
   - http://clang-analyzer.llvm.org
   - shellcheck for shell scripts (add to dependencies as well)
   - https://yetanotherchris.dev/clean-code/gestalt-principles/
-- Continuous integration
-  - Compile on both GCC and Clang
-  - Compile on 32-bit and 64-bit native hosts
-  - Test on multiple Linux and macOS versions
-  - Verify CMake version when installing?
-  - Travis
-    - validate `.travis.yml` file, https://github.com/travis-ci/travis-yml
-    - https://docs.travis-ci.com/user/multi-os/
-    - https://docs.travis-ci.com/user/languages/c/
-    - https://github.com/travis-ci/travis-ci/issues/5770
-  - https://appveyor.com
-  - https://about.gitlab.com/product/continuous-integration/
-  - https://bitbucket.org/product/features/pipelines
 - Fuzzy testing, http://lcamtuf.coredump.cx/afl/
 - scale testing (DoS on hashing, etc)
 

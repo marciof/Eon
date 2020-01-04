@@ -2,6 +2,19 @@
 
 ** split Travis/CI dependencies per build target (eg. native, x86-32, etc)
 
+- setup CI builds for Linux, Windows, Mac
+  - https://www.appveyor.com/
+  - https://docs.travis-ci.com/user/multi-os/
+  - https://about.gitlab.com/product/continuous-integration/
+  - https://bitbucket.org/product/features/pipelines
+- setup CI builds for both GCC and CLang (where appropriate)
+  - https://docs.travis-ci.com/user/languages/c/
+- setup CI builds for both 32-bit and 64-bit hosts
+  - https://github.com/travis-ci/travis-ci/issues/5770
+- add support for Bochs and Qemu? easier for installation, for vm.sh, and screenshots?
+- validate `.travis.yml` file, https://github.com/travis-ci/travis-yml
+- sign-up to interest mailing lists for dependencies?
+
 ** TODO disable executable stacks
 
 - Infectious Executable Stacks, https://nullprogram.com/blog/2019/11/15/
@@ -9,11 +22,6 @@
 ** TODO more useful warnings?
 
 - https://kristerw.blogspot.com/2017/09/useful-gcc-warning-options-not-enabled.html
-
-** TODO specify all build dependencies
-
-- sign-up to interest mailing lists
-- how to test on macOS?
 
 ** TODO why are builds placed alongside sources and not in the build directory?
 
