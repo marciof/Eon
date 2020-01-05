@@ -47,5 +47,5 @@ See file `.travis.yml`, section:
   - `javascript/`: Builds a standalone executable to compile to JavaScript.
   - `native/`: Builds an embeddable library and a standalone executable to run natively (eg. on Windows).
   - `x86-32/`: Builds a Multiboot-compliant executable to run on an Intel x86 32-bit host.
-- `spec/`: Language specification.
+- `specification/`: Language specification.
 - `stdlib/`: Standard library for the interpreter.
