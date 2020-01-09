@@ -1,6 +1,6 @@
 # function list/code
 # dynamic binding by default
-# unevaluated by default
+# unevaluated args by default
 # bare key b/c whole expr is deferred
 
 (x bindings: {\x: 123})

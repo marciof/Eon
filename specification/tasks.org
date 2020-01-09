@@ -10,11 +10,9 @@
 
 * TODO multiline nesting comments?
 
-- Language ergonomics shouldn't need an IDE?
+- Language ergonomics shouldn't need an IDE? Progressive enhancement
 
 * TODO optional static typing?
-
-- Algebraic data types? Check ML languages.
 
 * TODO syntax for complex numbers?
 

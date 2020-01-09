@@ -34,7 +34,6 @@
   - [`get`](#get)
   - [`insert`](#insert)
   - [`load`](#load)
-  - [`local`](#local)
   - [`next`](#next)
   - [`prototype`](#prototype)
   - [`remove`](#remove)
@@ -936,37 +935,6 @@ A [function](#function) that loads a [module](#module) by `path`, and returns th
 
 ```
 (load [\io])
-```
-
-## `local`
-
-```
-(local map:Map): Map
-```
-
-A [function](#function) that returns a [map](#map) with the non-inherited key/value pairs from a [prototyped](#prototype) `map`.
-
-### Complexity
-
-- Time: `O(1)`
-- Space: `O(1)`
-
-### Conditions
-
-- *Called with less or more than one argument:* [unwinds](#unwind) global scope with `\parameter-mismatch`
-- *`map` argument isn't a prototype of nor a map:* [unwinds](#unwind) global scope with `\prototype-mismatch`
-
-### Examples
-
-```
-(let x: 1
-  (let y: 2
-
-    (local bindings)
-    # {y: 2}
-
-    (local (prototype bindings))))
-    # {x: 1}
 ```
 
 ## `next`
