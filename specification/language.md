@@ -168,7 +168,7 @@ A boolean is a binary logical value that can only be either true or false. It do
 
 A function is an immutable sequence composed of a function (body) followed by zero or more values as the arguments. This sequence associates consecutive positive integer keys in ascending order with positional arguments, including any keyword arguments as well.
 
-Calling a function creates a new [bindings](#bindings) map from the [deferred](#defer) function call itself, [prototypically](#prototype) inherited from the current bindings in scope, and then [evaluates](#evaluate) the function body using the new bindings returning the result. Calling an empty function returns itself.
+Calling a function creates a new [bindings](#bindings) map from the [deferred](#defer) function call itself, with a key named `bindings` with a value set to the current bindings in scope, and then [evaluates](#evaluate) the function body using the new bindings returning the result. Calling an empty function returns itself.
 
 Tail calls are guaranteed to be efficient and use a similar amount of memory as an iterative loop. A tail call is a self-recursive function call when it calls itself, a tail function call when it's the last expression in the calling function, or a self-tail function call when it calls itself as the last expression.
 
@@ -595,7 +595,9 @@ bindings: Map
 
 Bindings currently in scope, which is a [map](#map) that associates [symbols](#symbol) to values.
 
-The bindings map always [prototypically](#prototype) inherits from the previous bindings map in scope, or none if it's at the [module](#module) (or global) scope. Each [function](#function) call creates a new bindings map that prototypically inherits from the previous one, and this always points to the one currently in scope.
+The bindings map always contains a symbol key named `bindings` with a value set to the previous bindings map in scope. Otherwise, if it's at the [module](#module) (or global) scope then there’s no such symbol key present in the bindings map.
+
+In other words, each [function](#function) call creates a new bindings map, with a `bindings` symbol key that has the value of the previous call bindings.
 
 ## `count`
 
@@ -977,12 +979,6 @@ A [function](#function) that returns the first key, or the key following `key` i
 
 A [function](#function) that retrieves the [prototype](#prototypes) of `value`.
 
-```
-(prototype value base)
-```
-
-A [function](#function) that extends the prototype hierarchy using `base` thereby creating a new [prototype](#prototypes).
-
 ### Complexity
 
 - Time: `O(1)`
@@ -990,8 +986,7 @@ A [function](#function) that extends the prototype hierarchy using `base` thereb
 
 ### Conditions
 
-- *Called with zero or more than two arguments:* [unwinds](#unwind) global scope with `\parameter-mismatch`
-- *`value` and `base-prototype` don't share a common ancestor prototype:* [unwinds](#unwind) global scope with `\prototype-mismatch`
+- *Called with zero or more than one argument:* [unwinds](#unwind) global scope with `\parameter-mismatch`
 
 ### Examples
 
@@ -1001,24 +996,6 @@ A [function](#function) that extends the prototype hierarchy using `base` thereb
 
 (prototype '')
 # []
-
-(let Person: (prototype {\name: ''} {:})
-     bob: (insert Person \name 'Bob')
-
-  Person
-  # {name: ''}
-
-  (prototype Person)
-  # {:}
-
-  bob
-  # {name: 'Bob'}
-  
-  (prototype bob)
-  # Person
-
-  (prototype (prototype bob)))
-  # {:}
 ```
 
 ## `remove`
