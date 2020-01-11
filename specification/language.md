@@ -595,9 +595,7 @@ bindings: Map
 
 Bindings currently in scope, which is a [map](#map) that associates [symbols](#symbol) to values.
 
-The bindings map always contains a symbol key named `bindings` with a value set to the previous bindings map in scope. Otherwise, if it's at the [module](#module) (or global) scope then there’s no such symbol key present in the bindings map.
-
-In other words, each [function](#function) call creates a new bindings map, with a `bindings` symbol key that has the value of the previous call bindings.
+The bindings map always contains a symbol key named `bindings` with value set to the previous bindings map in scope. Otherwise, if it's at the [module](#module) (or global) scope then there’s no such symbol key present in the bindings map. In other words, each [function](#function) call creates a new bindings map, with a `bindings` symbol key that has the value of the previous call bindings.
 
 ## `count`
 
