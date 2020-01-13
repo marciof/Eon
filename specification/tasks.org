@@ -6,6 +6,7 @@
 - Make `count` throw an error for built-ins or foreign values?
 - Function sub headings
 - Examples and conditions per section
+- Language code snippet example right on the front page, https://www.disneylandparis.com/en-us/
 - Ensure floating point math is exact by default, https://0.30000000000000004.com
 
 * TODO multiline nesting comments?
