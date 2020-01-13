@@ -21,6 +21,11 @@
 
 - Infectious Executable Stacks, https://nullprogram.com/blog/2019/11/15/
 
+** TODO address sanitizer?
+
+- https://github.com/google/sanitizers
+- GCC/Clang, `-fsanitize=address`
+
 ** TODO more useful warnings?
 
 - https://kristerw.blogspot.com/2017/09/useful-gcc-warning-options-not-enabled.html
