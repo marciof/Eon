@@ -106,6 +106,7 @@ Finder, Safari, Xcode, Textual, Skype, Calendar and more are supported. Shortcat
 
 ---
 
+- https://github.com/GrapheneOS/hardened_malloc/blob/master/README.md
 - malloc once for Str and other types
 - https://danluu.com/input-lag/
 - https://www.bearssl.org
