@@ -121,6 +121,7 @@ Finder, Safari, Xcode, Textual, Skype, Calendar and more are supported. Shortcat
 - xorriso # create ISO files, needed by grub-mkrescue
 # VirtualBox
 
+- tooling, https://nullprogram.com/blog/2020/01/21/
 - Option or tool to validate Coding Style guidelines.
 - Verify space/time complexity in the spec matches the implementation.
 - Prototyping:
