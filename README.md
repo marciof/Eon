@@ -15,13 +15,13 @@ See file `.travis.yml`, section:
 - `compiler`: List of supported compilers.
 - `addons`/`apt`/`packages`: List of required packages.
 
-(Tested on Debian 10, both 32-bit and 64-bit.)
+*(Tested on Debian 10, both 32-bit and 64-bit.)*
 
 ### Windows
 
 - [Visual Studio Build Tools](https://www.visualstudio.com/thank-you-downloading-visual-studio/?sku=BuildTools)
 
-(Tested on Windows 10, both 32-bit and 64-bit.)
+*(Tested on Windows 10, both 32-bit and 64-bit.)*
 
 ## Building
 
