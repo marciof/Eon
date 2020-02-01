@@ -603,7 +603,7 @@ The bindings map always contains a symbol key named `bindings` with a value set 
 (count map:Map): Number
 ```
 
-A [function](#function) that returns the number of key/value pairs in a `map`. If `map` is a prototype of, or a [built-in](#built-in) or [foreign-loaded](#load) [function](#function) then it returns `0`.
+A [function](#function) that returns the number of key/value pairs in a `map`. If `map` is a prototype of or, a [built-in](#built-in) or [foreign-loaded](#load) [function](#function) then it returns `0`.
 
 ### Complexity
 
@@ -775,11 +775,9 @@ A [function](#function) that evaluates an `expression` and returns the result, o
 
 A [function](#function) that retrieves the value associated with a `key` in a `map`, optionally using a lazily [evaluated](#evaluate) `default` value if no such association exists.
 
-Key lookup takes place in the given map, and recursively in each prototype until it's found, if it exists.
-
 ### Complexity
 
-- Time: `O(1+k)` where `k` is the total number of prototypes in `map`
+- Time: `O(1)`
 - Space: `O(1)`
 
 ### Conditions
@@ -1004,16 +1002,12 @@ A [function](#function) that retrieves the [prototype](#prototypes) of `value`.
 
 A [function](#function) that disassociates a `key` from a value in a `map`, and returns the new [map](#map). If `key` isn't present, then `map` is returned unchanged.
 
-Key lookup takes place in the given map, and in each of its base prototypes until it's found, if it exists.
-
 ```
 (remove list:List key:Number): List
 (remove function:Function key): Function
 ```
 
 A [function](#function) that disassociates a `key` from a value in a `list` or `function`, and returns the new [list](#list) or [function](#function) respectively. If `key` isn't present, then `list` or `function` is returned unchanged. If `key` is present and is a positive integer, then it displaces instead all following integer keys, if any, decrementing each by one.
-
-Key lookup takes place in the given list or function, and in each of its base prototypes until it's found, if it exists.
 
 ### Complexity
 
