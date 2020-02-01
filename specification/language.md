@@ -112,7 +112,7 @@ All names use hyphens as the word delimiter.
 
 ## Syntax
 
-Source code is represented as s-expressions with significant indentation. This follows a simple set of rules:
+Source code is represented as s-expressions with significant indentation, with the following rules:
 
 1. A [Function](#function) call enclosed in parenthesis, as well as a literal [map](#map), [list](#list), and [set](#set), disables significant indentation inside the entire [expression](#grammar).
 2. Otherwise, each line is an implicit [function](#function) call.
