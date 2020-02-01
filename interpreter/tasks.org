@@ -24,7 +24,7 @@
 ** TODO address sanitizer?
 
 - https://github.com/google/sanitizers
-- GCC/Clang, `-fsanitize=address`
+- GCC/Clang, `-fsanitize=address` (Asan - Address Sanitizer)
 - https://news.ycombinator.com/item?id=22063849
 
 ** TODO more useful warnings?

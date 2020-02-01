@@ -84,7 +84,9 @@ JavaScript interpreters:
   - http://clang-analyzer.llvm.org
   - shellcheck for shell scripts (add to dependencies as well)
   - https://yetanotherchris.dev/clean-code/gestalt-principles/
-- Fuzzy testing, http://lcamtuf.coredump.cx/afl/
+- Fuzzy testing
+  - http://lcamtuf.coredump.cx/afl/
+  - https://gitlab.com/akihe/radamsa
 - scale testing (DoS on hashing, etc)
 
 ---
