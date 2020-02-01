@@ -1,58 +1,3 @@
-# function list/code
-# dynamic binding by default
-# unevaluated args by default
-# bare key b/c whole expr is deferred
-
-(x bindings: {\x: 123})
-#> 123
-
-inc: \(+ x 1)
-
-# lexical binding:
-
-inc: (defer escape: \_
-  (+ x 1 bindings: (_ bindings)))
-
-# fn call becomes deferred bindings
-# has `bindings`?
-# - it becomes the parent bindings
-# - otherwise use current bindings
-
-(inc x: (count names))
-
-# 1. Use it deferred as new bindings
-# set current bindings as parent
-# unless it already has bindings key
-
-bindings: (insert
-  \(inc x: (count names))
-  \bindings
-  bindings)
-
-# aka (new bindings)
-
-bindings: { # fn list
-  \1: \inc
-  \x: \(count names)
-  \bindings: bindings # orig binds
-}
-
-# 2. Evaluate function body (`inc`)
-# fn body lookup uses the new binds
-# fn itself uses current bindings
-
-# new bindings
-(+ (evaluate bindings::x) 1
-  \bindings: bindings) # orig bindngs
-
-# module is an implicit fn call
-# has `bindings` param w/ built ins
-# unquoted symbols lookup bindings
-# - not param b/c dynamic binding
-
-(= get bindings::get)
-#> true
-
 # naming functions
 
 \(inc: + x 1)
@@ -67,8 +12,6 @@ bindings: { # fn list
 
 # how fn list non-num keys w/num keys
 # enumerated exactly as shown/added
-
-# builtins are in the very 1st binds
 
 ---
 

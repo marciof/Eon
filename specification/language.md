@@ -168,7 +168,7 @@ A boolean is a binary logical value that can only be either true or false. It do
 
 A function is an immutable sequence composed of a function (body) followed by zero or more values as the arguments. This sequence associates consecutive positive integer keys in ascending order with positional arguments, including any keyword arguments as well.
 
-Calling a function creates a new [bindings](#bindings) map from the [deferred](#defer) function call itself, containing a key named `bindings` with a value set to the current bindings in scope, and then [evaluates](#evaluate) the function body using the new bindings returning the result. Calling an empty function returns itself.
+Calling an empty function returns itself. Calling a non-empty function involves creating a new [bindings](#bindings) map from the [deferred](#defer) function call itself; inserting a key named `bindings` with a value set to the current bindings in scope, unless the key is already present; and then [evaluating](#evaluate) the function body using the new bindings, returning the result. This means that bindings are dynamic by default, unless the function (body) contains a `bindings` key in which case it has lexical binding.
 
 Tail calls are guaranteed to be efficient and use a similar amount of memory as an iterative loop. A tail call is a self-recursive function call when it calls itself, a tail function call when it's the last expression in the calling function, or a self-tail function call when it calls itself as the last expression.
 
@@ -420,6 +420,8 @@ re'\d+'g
 
 # Built-ins
 
+A built-in is a [symbol](#symbol) that's already present in the [bindings](#bindings) map at global scope.
+
 The following conventions are used for documentation:
 
 * `(f x)`: function named `f`, with a parameter named `x`.
@@ -597,7 +599,7 @@ bindings: Map
 
 Bindings currently in scope, which is a [map](#map) that associates [symbols](#symbol) to values.
 
-The bindings map always contains a symbol key named `bindings` with a value set to the previous bindings map in scope. Otherwise, if it's at the [module](#module) (or global) scope then there’s no such symbol key present in the bindings map.
+The bindings map always contains a symbol key named `bindings` with a value set to the previous bindings map in scope, unless it's at the global scope where no such symbol key is present.
 
 ## `count`
 
@@ -923,7 +925,7 @@ List / Function:
 (load path:List)
 ```
 
-A [function](#function) that loads a [module](#module) by `path`, and returns the value of the single [expression](#grammar) contained within. No other evaluation is done. A `path` is a list of zero or more names, ending with the [module](#module) name.
+A [function](#function) that loads a [module](#module) by `path`, and returns the [unevaluated](#evaluate) single [expression](#grammar) contained within. A `path` is a list of zero or more names, ending with the [module](#module) name.
 
 ### Complexity
 
@@ -1071,7 +1073,7 @@ List / Function:
 
 A [function](#function) that aborts the current scope or the scope associated with the given `bindings`, and returns `value` as the result.
 
-Unwinding is a non-local early exit of a given scope. Unwinding the [module](#module) (or global) scope exits the currently executing module.
+Unwinding is a non-local early exit of a given scope. Unwinding global scope exits the currently executing program.
 
 ### Complexity
 
