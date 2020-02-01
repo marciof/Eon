@@ -354,6 +354,8 @@ A set is an immutable collection of unique elements, that associates keys to be 
 
 A symbol is an immutable case-sensitive name, that restricts the character set used according to the [grammar](#grammar). The empty symbol does not have a literal source code representation.
 
+A symbol that isn't [deferred](#defer) is [evaluated](#evaluate) in the context of the [bindings](#bindings) map, and recursively within each key named `bindings` until a value is found.
+
 - **Prototype:** empty symbol
 - **Base Prototype:** empty [text](#text), `''`
 
@@ -669,6 +671,12 @@ A [function](#function) that creates a snapshot of an `expression` thereby preve
 ```
 (let x: 2
 
+  \x
+  # x
+
+  x
+  # 2
+
   (+ 1 x)
   # 3
 
@@ -729,7 +737,7 @@ A [function](#function) that evaluates an `expression` and returns the result, o
 
 - *Called with zero or more than two arguments:* [unwinds](#unwind) global scope with `\parameter-mismatch`
 - *`bindings` argument isn't a prototype of nor a map:* [unwinds](#unwind) global scope with `\prototype-mismatch`
-- *`expression` argument contains an unbound identifier:* [unwinds](#unwind) global scope with `\unbound-identifier`
+- *`expression` argument contains a non-deferred symbol without a bindings value:* [unwinds](#unwind) global scope with `\unbound-symbol`
 - *`expression` argument contains a function call to a non-function value:* [unwinds](#unwind) global scope with `\prototype-mismatch`
 
 ### Examples

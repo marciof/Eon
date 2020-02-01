@@ -13,10 +13,6 @@ inc: \(+ x 1)
 inc: (defer escape: \_
   (+ x 1 bindings: (_ bindings)))
 
-# eval doesn’t need bindings param?
-# fn lists can have one already
-# - no, symbols need bindings
-
 # fn call becomes deferred bindings
 # has `bindings`?
 # - it becomes the parent bindings
