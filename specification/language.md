@@ -166,7 +166,9 @@ A boolean is a binary logical value that can only be either true or false. It do
 
 ## Function
 
-A function is an immutable sequence composed of a function (body) followed by zero or more values as the arguments. This sequence associates consecutive positive integer keys in ascending order with positional arguments, including any keyword arguments present as well.
+A function is an immutable sequence composed of a function (body) followed by zero or more values as the arguments. This sequence associates consecutive positive integer keys in ascending order with positional arguments, including any keyword arguments present as well. A keyword argument associated with the function body, if present, becomes the function name.
+
+A [built-in](#built-ins) or foreign [loaded](#load) function doesn't have a function body that can be inspected, and so it's always composed of an empty function as the body, with the function name as its keyword argument.
 
 Calling an empty function returns itself. Calling a non-empty function involves creating a new [bindings](#bindings) map from the [deferred](#defer) function call itself; inserting a key named `bindings` with a value set to the current bindings in scope, unless the key is already present; and then [evaluating](#evaluate) the function body using the new bindings, returning the result. This means that bindings are dynamic by default, unless the function (body) contains a `bindings` key in which case it has lexical binding.
 
@@ -211,6 +213,9 @@ Tail calls are guaranteed to be efficient and use a similar amount of memory as 
 
 (prototype ())
 # {:}
+
++
+# (+: ())
 ```
 
 ## List
@@ -607,7 +612,7 @@ The bindings map always contains a symbol key named `bindings` with a value set 
 (count map:Map): Number
 ```
 
-A [function](#function) that returns the number of key/value pairs in a `map`. If `map` is a prototype of or, a [built-in](#built-in) or [foreign-loaded](#load) [function](#function) then it returns `0`.
+A [function](#function) that returns the number of key/value pairs in a `map`.
 
 ### Complexity
 
@@ -886,7 +891,6 @@ List / Function:
 - *`set` argument isn't a prototype of nor a set:* [unwinds](#unwind) global scope with `\prototype-mismatch`
 - *`list` argument is a prototype of or a list and `key` isn't a positive integer less than or equal to its length plus one:* [unwinds](#unwind) global scope with `\parameter-mismatch`
 - *`function` argument is a prototype of or a function and when `key` is a number it isn't a positive integer less than or equal to its highest positive integer key plus one:* [unwinds](#unwind) global scope with `\parameter-mismatch`
-- *`function` argument is a prototype of or a built-in or foreign function:* [unwinds](#unwind) global scope with `\prototype-mismatch`
 
 ### Examples
 

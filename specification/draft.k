@@ -1,45 +1,3 @@
-# naming functions
-
-\(inc: + x 1)
-
-# built ins/foreign have names too
-# inspecting a built in
-# doesn’t compare as equal
-# inspecting just shows something
-
-+
-#> \(+: ())
-
----
-
-# varargs or collection?
-# if collection return key?
-# optional default? orthogonal
-# implementation?
-# - each val has struct hash
-# - how to match C1/C2 with R2?
-# options?
-# - sortable hash codes (Shazam)
-# - builtin `type?` top types only
-# - builtin `instance?` ditto
-# simpler, more open
-# how non builtin instance-of? work?
-# - sortable hash code on struct?
-
-(instance? [] {}) # true
-(instance? 123 ‘Bob’) # false
-
-(proto? [] {}) # true
-(proto? 123 ‘Bob’) # false
-
-let
-  Animal: {\proto: Map \age: 0}
-  Person: (merge
-    Animal
-    {\proto: Animal \name: ''})
-
----
-
 # Pipeline support?
 # need currying for ease of use?
 
@@ -222,7 +180,6 @@ if (logged-in? user) then:
 
 # Don't like param count isn't enforced
 # Don't like `do` as a built-in
-# Don't like `local` as a built-in
 # Don't like separate map syntax
 
 # get, set/put, unset/remove, has?
@@ -231,8 +188,6 @@ if (logged-in? user) then:
 # There will always be metadata
 # line, column, file, type
 # debugger, test frameworks, etc
-# Remove `prototype`
-# Remove `local` (arg = local binding)
 
 ---
 
@@ -253,13 +208,19 @@ let
 
 ---
 
+# bidirectional map? [:] ?
+# decompose map into list and set?
+
+---
+
+# pairs as the basis for all?
+name: 'Bob'
+name: Text = 'Bob'
+
+---
+
 # types? casts?
 # how to inspect types? protos?
-# combine `prototype` and `local`?
-# use `next` to go up the proto chain?
-# use `get` to inspect?
-# orthogonal, do only one thing well
-
 # Don't mix set/get on same function?
 
 # new prototype with no constraint
@@ -287,17 +248,6 @@ let
 
 # get prototype?
 (constraint value kind: prototype)
-
----
-
-(proto value [base])
-(proto? value [base ...])
-
----
-
-# pairs as the basis for all?
-name: 'Bob'
-name: Text = 'Bob'
 
 ---
 
@@ -351,291 +301,11 @@ name: Text = 'Bob'
 
 ---
 
-# replace bindings with `proto` key
-# - specifies call proto min reqs
-# - allow non-map proto custom logic?
-# - always default to have reqs
-# - no env == 
-# - empty env == no
-# - env == param reqs
-# - no parent env == dynamic bindings
-# - parent env == lexical bindings
-
-(insert
-  \(inc: + x 1)
-  \proto
-  (insert () \x Number))
-
-(defer escape: \_
-  (inc: + x 1
-    proto: (x: (_ Number))))
-
-(inc: + x 1 proto: {\x: Number})
-
-# before call is added to `proto`
-# - does `inc` have a `proto`?
-# - is it a proto of the call?
-
-# env::env points to self?
-
-# confusing with default arg values?
-# no b/c it’s an env spec?
-# types checked with `proto?`
-# no env key == no checking, dynamic
-# default == env == lexical
-
-(inc: + x y environment: (
-  y: 1
-))
-
-# call site must match env
-# - \x level are parameters
-# - \environment level is caller env
-
-(inc: + x 1
-  environment: (
-    \environment: environment
-    \x: Number
-  ))
-
-(cat: + x y
-  environment: {
-    \environment: environment
-    \x: {Number Text}
-    \y: {Number Text}
-  })
-
-# bidirectional map? [:] ?
-# decompose map into list and set?
-
-type-registry: {
-  \Person: {\name: ''}
-}
-
-(typeof: x environment: {
-  \environment: environment
-  \x: type-registry
-})
-
-# explicit disable type checking
-
-environment: {
-  \environment: environment
-  \x: []
-)
-
-# explicit disable param checking
-
-environment: {
-  \environment: environment
-}
-
-# - actual call proto has the "type"?
-#   needs list of structs
-# - can’t type ID?
-# - `proto?` builtin? orthogonal?
-# - macro args? double quote `proto`?
-# - keyword quoting? when needed?
-# - dynamic or fixed binding?
-
-(inc 5)
-(inc 'Hi')
-
----
-
-# free to define type ID in stdlib
-# can register system-wide for ID
-
-(register \Person Person)
-
-# questions:
-# - returns first match is confusing?
-# - perf issues with struct matching?
-# - how to optional static typing?
-# - line/column metadata?
-# - could use a `merge`?
-# - no default dynamic binding?
-
-# varargs?
-# macro params?
-# no params?
-# generic params?
-# generics?
-# argument names?
-# body lexical binding?
-# fixed param order an issue?
-# inspect? builtins?
-# naming functions?
-# how to detect types?
-# how do bindings access the parent?
-# constraints?
-
-# named: 1st keyword parameter
-# lexical binding vars: currying
-# parameter names: currying
-# param presence constraint: currying
-# lexical binding params: currying
-
-#
-# constraints have less flexibility
-# Eg changing multi method resolution
-#
-
-# ambiguous? used like placeholders?
-# need to quote or not? and pipes?
-# unquoted powerful runtime create
-\(add: + x: y:)
-
-# always add constraints by default?
-\(+ 1 2)
-
-# opt out of constraints
-\(+ 1 2 |)
-
-# constraint syntactic sugar?
-(add:+ x: y: | x: Number y: Number)
-
-# varargs?
-(add:+ nums: | nums: (Number ...))
-
-# if body has multiple bodies
-# then it’s a multi method?
-
-# auto constraint for presence?
-# where’s the auto arg eval?
-(insert
-  \(add: + bindings::x bindings::y)
-  \bindings: bindings
-  \constraints: \[x y])
-
-# allow decouple def from usage?
-f: (add: + x y x: y:)
-
-(f 1 2)
-
-# macro args: quoted keyword param
-(if:
-  ((get
-    {
-      true: \(evaluate ...)
-      false: \(evaluate ...)
-    )
-    condition))
-  condition: \then: \else:)
-
-# no parameters?
-(io::print 'Hi' bindings:)
-
----
-
-# function body can also be a map
-# () calling and simple fns
-# {:} multi methods
-# adds strong structural typing
-# simplifies a lot of things
-# makes more things first class
-# no custom multi method resolution
-# no need for a `constraint` key
-# no need for a `proto` built in
-# no need for a `local` built in
-# ok to fix bindings at creation
-# values are immutable
-# can redefine `bindings` as param
-
-# maps are now callable???
-# how does that impact ident syntax?
-# how are params enforced?
-# where are params declared?
-
-{
-  [Text]: (io::print 'text=' x:)
-  [Number]: (io::print 'number=' x:)
-}
-
-# maps map exactly 1 value to 1 value
-# for no args use \()
-
-# simple fn has no constraints?
-
-(inc: + 1 x:)
-
-# syntax sugar for
-
-(insert
-  \((inc: + 1 bindings::x))
-  \bindings
-  bindings)
-
----
-
-# expose struct/pattern matching fn
-# - typing struct compat 1st class
-# - allows maps to not be functions
-# - still removes a lot of builtins
-# - can be used for type ID
-# - can be used for multi methods
-
-# how is param count enforced?
-# how is param presence enforced?
-# how to have a default? not needed?
-# how are args passed down to match?
-# make `match` easy to curry?
-# () matches struct and/or values?
-# [] matches values?
-# struct compat has value matching?
-
-(match constraints value ...)
-(match constraints value default)
-
-what?: (match
-  {
-    [Text]: (print 'text' value:)
-    [Number]: (print 'number' value:)
-  }
-  value:)
-
-(what? 123)
-
-if: (match
-  {
-    [Bool:true Fn Fn]: (eval then:)
-    [Bool:false Fn Fn]: (eval else:)
-  }
-  condition:
-  \then:
-  \else:)
-
-# use bindings to access matched val?
-# bindings::bindings::condition
-
-(match
-  {
-    true: (eval expression:)
-    false: ...
-  }
-  condition:)
-
-# explicit bindings enforce params?
-# replace `match` with `constraints?
-# no multi method otherwise
-
-(match bindings constraints default)
-
-inc: (inc: + 1 x:)
-
-typed-inc: (match
-  bindings:
-  constraints: {
-    [Number]
-  })
-
----
-
 # currying for creating functions?
 
 ---
 
-# merge to change "types"?
+# `merge` to change "types"?
 
 # "upcast"
 (merge [1] {\x: \y}) # {1: 1 \x: \y}
@@ -646,7 +316,7 @@ typed-inc: (match
 ---
 
 # non ambiguous? no extra syntax?
-# constraint on value, not function?
+# constraint values, not functions?
 
 {\name:Text ''}
 
@@ -659,12 +329,6 @@ typed-inc: (match
 ---
 
 # can escape accept multiple args?
-
----
-
-(get (metadata value) \proto)
-
-# equality comparison?
 
 ---
 
