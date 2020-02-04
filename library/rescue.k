@@ -3,10 +3,10 @@
 # replaces "debug" built-in.
 
 # Aborts the current (or global?) or given scope and replaces with a value (non-local exit).
-# "return" built on top exits the function, eg. not a "let". 
+# "return" built on top exits the function, eg. not a "let".
 
 (unwind value)
-(unwind value scope) 
+(unwind value scope)
 
 (function greet [name]
   (io::print 'hello '
@@ -66,10 +66,10 @@
     (rescue \blah)))
 
 # Make `rescue` calls very specific
-# eg. `(rescue \illegal-arg function:get param:\map arg:123)` 
-http://www.gigamonkeys.com/book/beyond-exception-handling-conditions-and-restarts.html 
-http://matt.might.net/articles/implementing-exceptions/ 
-http://www.lispworks.com/documentation/HyperSpec/Body/e_cnd.htm#condition 
+# eg. `(rescue \illegal-arg function:get param:\map arg:123)`
+http://www.gigamonkeys.com/book/beyond-exception-handling-conditions-and-restarts.html
+http://matt.might.net/articles/implementing-exceptions/
+http://www.lispworks.com/documentation/HyperSpec/Body/e_cnd.htm#condition
 
 (var rescue-handlers {})
 
