@@ -1,4 +1,4 @@
-# Pipeline support?
+# Pipeline support? shell pipe?
 # need currying for ease of use?
 
 $ date > now
@@ -57,9 +57,6 @@ let
 
 person::name
 ::name person
-
-# shell pipe operator?
-cat | sort | uniq | wc
 
 unshift: \(insert key: 1 list:)
 
@@ -209,7 +206,7 @@ let
 ---
 
 # bidirectional map? [:] ?
-# decompose map into list and set?
+# compose map from list and set?
 
 ---
 
@@ -301,10 +298,6 @@ name: Text = 'Bob'
 
 ---
 
-# currying for creating functions?
-
----
-
 # `merge` to change "types"?
 
 # "upcast"
@@ -329,6 +322,7 @@ name: Text = 'Bob'
 ---
 
 # can escape accept multiple args?
+# splice?
 
 ---
 
@@ -337,6 +331,7 @@ name: Text = 'Bob'
 # syntax is too weird?
 # feels like a shortcut
 # it's very orthogonal though
+# read-only?
 
 map::^count
 value::^prototype
@@ -346,8 +341,6 @@ value::^prototype
 
 (get map ^count)
 (set [1 2 3] ^count 2)
-
-(insert Map ^prototype {\name: ''})
 
 ---
 
@@ -394,7 +387,7 @@ let count: (get
 
 # not necessarily that many conflicts
 # it uses symbols, not strings
-# they're just interpreted differently
+# just interpreted differently
 
 # metadata is read-only
 # works well for line, column, length
