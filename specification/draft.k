@@ -1,10 +1,18 @@
 # Pipeline support? shell pipe?
 # need currying for ease of use?
+# follow what shell does
+
+# - each pipeline part is a function
+# - pipeline will invoke all fns
+# - may be sequential or parallel
+# - fn return value is output
+# - fn last param is input
 
 $ date > now
-
 (file \now (date))
 date | file \now
+date | > \now
+date | \now
 
 $ < A | cat | sort | uniq > B
 
