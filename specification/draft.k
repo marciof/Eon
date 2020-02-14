@@ -1,8 +1,10 @@
 # Pipeline support? shell pipe?
-# need currying for ease of use?
-# follow what shell does
 
-# - each pipeline part is a function
+# - follows shell syntax closely
+# - can use currying for conciseness
+# - each pipeline part is a fn call
+# - parents are replaced by pipes
+# - can still have args
 # - pipeline will invoke all fns
 # - may be sequential or parallel
 # - fn return value is output
@@ -11,17 +13,18 @@
 $ date > now
 (file \now (date))
 date | file \now
-date | > \now
-date | \now
 
-$ < A | cat | sort | uniq > B
+date | > \now # ambiguous, familiar
+date | \now # all types are fn
 
-(file \B (uniq (sort (cat (file \A)))))
-file \A | cat | sort | uniq | file \B
+# can have part of the arg list
+split | sort | map \(* 2 _)
 
 ---
 
 # currying
+
+# can also rearrange params?
 
 \(+ x 1 x:)
 
