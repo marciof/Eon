@@ -10,16 +10,18 @@
 # - fn return value is output
 # - input param?
 
-$ date > now
-(file \now (date))
-date | write \now
-
-# partial fn application / currying
-read \name | get phonebook key:
+# original form
+(print (count re'\d' (split val)))
 
 # just pass input as last arg?
-split text | count re'\d'
-split text | count re'\d' text:
+# too implicit?
+split val | count re'\d' | print
+
+# or currying indicates input param?
+# too verbose?
+split val | count re'\d' txt: | print
+
+# file I/O?
 
 ---
 
