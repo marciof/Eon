@@ -15,6 +15,7 @@
 - "Pipelines Support Vectorized, Point-Free, and Imperative Style", https://www.oilshell.org/blog/2017/01/15.html
 - https://blog.jessfraz.com/post/for-the-love-of-pipes/
 - https://github.com/tc39/proposal-pipeline-operator/blob/master/README.md
+- https://stackoverflow.com/questions/6145002/operator-in-clojure
 
 * TODO multiline nesting comments?
 
