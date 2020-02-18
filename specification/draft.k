@@ -19,6 +19,7 @@ split val | count re'\d' | print
 
 # or currying indicates input param?
 # too verbose?
+# used only to rearrange params?
 split val | count re'\d' txt: | print
 
 # file I/O?
