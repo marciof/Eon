@@ -8,22 +8,28 @@
 # - pipeline will invoke all fns
 # - may be sequential or parallel
 # - fn return value is output
-# - fn last param is input
+# - input param?
 
 $ date > now
 (file \now (date))
-date | file \now
+date | write \now
 
-date | > \now # ambiguous, familiar
-date | \now # all types are fn
+# partial fn application / currying
+read \name | get phonebook key:
 
-# can have part of the arg list
-split | sort | map \(* 2 _)
+# just pass input as last arg?
+split text | count re'\d'
+split text | count re'\d' text:
+
+---
+
+# streaming support
+# iterator protocol
 
 ---
 
 # currying
-
+# it’s syntax for creating functions
 # can also rearrange params?
 
 \(+ x 1 x:)
