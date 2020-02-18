@@ -1,5 +1,9 @@
 # Pipeline support? shell pipe?
 
+# goals:
+# - keep syntax to a minimum
+# - concise, easy to type, familiar
+
 # - follows shell syntax closely
 # - can use currying for conciseness
 # - each pipeline part is a fn call
@@ -15,6 +19,9 @@
 
 # helper w/o special syntax
 pipe split val | count re'\d' | print
+|> split val | count re'\d' | print
+split val |: re'\d' |: print
+split val >: re'\d' >: print
 
 # just pass input as last arg?
 # too implicit?
