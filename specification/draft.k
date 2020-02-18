@@ -13,6 +13,9 @@
 # original form
 (print (count re'\d' (split val)))
 
+# helper w/o special syntax
+pipe split val | count re'\d' | print
+
 # just pass input as last arg?
 # too implicit?
 split val | count re'\d' | print
