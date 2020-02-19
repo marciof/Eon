@@ -1,7 +1,7 @@
 # Pipeline support? shell pipe?
 
 # goals:
-# - keep syntax to a minimum
+# - minimum syntax, where possible
 # - concise, easy to type, familiar
 
 # - follows shell syntax closely
@@ -20,8 +20,9 @@
 # helper w/o special syntax
 pipe split val | count re'\d' | print
 |> split val | count re'\d' | print
-split val |: re'\d' |: print
-split val >: re'\d' >: print
+split val |: count re'\d' |: print
+split val >: count re'\d' >: print
+split val | count re'\d' | print
 
 # just pass input as last arg?
 # too implicit?
