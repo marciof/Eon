@@ -18,10 +18,15 @@
 (print (count re'\d' (split val)))
 
 # helper w/o special syntax
+# too verbose, clunky
 pipe split val | count re'\d' | print
 |> split val | count re'\d' | print
+
+# broken: repeated keys
 split val |: count re'\d' |: print
 split val >: count re'\d' >: print
+
+# overhead on every call
 split val | count re'\d' | print
 
 # just pass input as last arg?
@@ -242,6 +247,8 @@ let
 ---
 
 # pairs as the basis for all?
+# could add static typing?
+
 name: 'Bob'
 name: Text = 'Bob'
 
