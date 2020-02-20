@@ -4,15 +4,16 @@
 # - minimum syntax, where possible
 # - concise, easy to type, familiar
 
+# rules:
 # - follows shell syntax closely
-# - can use currying for conciseness
 # - each pipeline part is a fn call
 # - parents are replaced by pipes
 # - can still have args
 # - pipeline will invoke all fns
 # - may be sequential or parallel
 # - fn return value is output
-# - input param?
+# - last input param is input
+# - currying to easily arrange params
 
 # original form
 (print (count re'\d' (split val)))
@@ -31,6 +32,7 @@ split val | count re'\d' | print
 
 # just pass input as last arg?
 # too implicit?
+# problem is it can break easily
 split val | count re'\d' | print
 
 # or currying indicates input param?
@@ -42,8 +44,8 @@ split val | count re'\d' txt: | print
 
 ---
 
-# streaming support
-# iterator protocol
+# streaming support? Define that
+# iterator protocol?
 
 ---
 
