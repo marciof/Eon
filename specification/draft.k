@@ -1,5 +1,7 @@
 # Pipeline support? shell pipe?
 
+# point free?
+
 # goals:
 # - minimum syntax, where possible
 # - concise, easy to type, familiar
