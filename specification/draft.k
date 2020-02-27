@@ -1,7 +1,5 @@
 # Pipeline support? shell pipe?
 
-# point free?
-
 # goals:
 # - minimum syntax, where possible
 # - concise, easy to type, familiar
@@ -43,6 +41,8 @@ split val | count re'\d' | print
 split val | count re'\d' txt: | print
 
 # file I/O?
+
+# point free?
 
 ---
 
