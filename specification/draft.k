@@ -44,10 +44,22 @@ split val | count re'\d' txt: | print
 
 # point free?
 
+function hist input
+  sort input | uniq -c | sort -n -r
+
+function hist
+  | sort | uniq -c | sort -n -r
+
+cut -f9 'access.log' | hist
+
+# vectorized?
+
 ---
 
 # streaming support? Define that
 # iterator protocol?
+# for lazy values?
+# `next` is an iterator?
 
 ---
 
@@ -354,12 +366,6 @@ name: Text = 'Bob'
 # constraint values, not functions?
 
 {\name:Text ''}
-
----
-
-# iterator protocol for lazy values?
-# `next` is an iterator?
-# protocol for static "typing"?
 
 ---
 
