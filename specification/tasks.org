@@ -77,6 +77,8 @@
 - PowerShell
 - OCaml
 - C
+- Rust
+- Tcl/Tk
 - Common Lisp
 - JavaScript
 - Perl
@@ -91,9 +93,7 @@
 - Wren
 - F#
 - Matlab
-- Rust
 - Ruby
-- Go
 - Julia
 - Haskell
 - Erlang
@@ -104,7 +104,6 @@
 - ML
 - Lua
 - Haxe
-- Tcl
 - Shen
 - REBOL
 - Mathematica
