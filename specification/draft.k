@@ -43,16 +43,20 @@ split val | count re'\d' txt: | print
 # file I/O?
 
 # point free?
+# too implicit?
 
-function hist input
+function hist (input)
   sort input | uniq -c | sort -n -r
 
 function hist
   | sort | uniq -c | sort -n -r
 
+\(sort input | uniq -c | sort -n -r)
+
 cut -f9 'access.log' | hist
 
 # vectorized?
+# via iterator protocol
 
 ---
 
