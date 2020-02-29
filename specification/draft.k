@@ -51,7 +51,7 @@ function hist (input)
 function hist
   | sort | uniq -c | sort -n -r
 
-\(sort input | uniq -c | sort -n -r)
+\(sort | uniq -c | sort -n -r)
 
 cut -f9 'access.log' | hist
 
