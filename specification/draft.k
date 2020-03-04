@@ -18,49 +18,25 @@
 # original form
 (print (count re'\d' (split val)))
 
-# helper w/o special syntax
-# too verbose, clunky
-pipe split val | count re'\d' | print
-|> split val | count re'\d' | print
-
-# broken: repeated keys
-split val |: count re'\d' |: print
-split val >: count re'\d' >: print
-
-# overhead on every call
-split val | count re'\d' | print
-
 # just pass input as last arg?
 # too implicit?
-# problem is it can break easily
+# problem is it can break easily?
+# use a pre-determined keyword arg?
 split val | count re'\d' | print
 
 # or currying indicates input param?
 # too verbose?
 # used only to rearrange params?
+# or to fix params?
 split val | count re'\d' txt: | print
 
-# file I/O?
-
-# point free?
-# too implicit?
-
-function hist (input)
-  sort input | uniq -c | sort -n -r
-
-function hist
-  | sort | uniq -c | sort -n -r
-
-\(sort | uniq -c | sort -n -r)
-
-cut -f9 'access.log' | hist
-
-# vectorized?
-# via iterator protocol
+# file I/O (more verbose, but clear)
+date | file 'blah'
 
 ---
 
 # streaming support? Define that
+# useful for pipelines
 # iterator protocol?
 # for lazy values?
 # `next` is an iterator?
