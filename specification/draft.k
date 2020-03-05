@@ -22,6 +22,7 @@
 # too implicit?
 # problem is it can break easily?
 # use a pre-determined keyword arg?
+# it'd be the same as orig form?
 split val | count re'\d' | print
 
 # or currying indicates input param?
