@@ -33,8 +33,6 @@
 
 ** TODO why are builds placed alongside sources and not in the build directory?
 
-** TODO avoid variable-length arrays for portability?
-
 ** TODO access struct members directly, instead of wrappers for transparency
 
 ** TODO make the system more resilient

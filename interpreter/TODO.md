@@ -51,6 +51,8 @@ JavaScript interpreters:
   - Verify all uses of Err (where it's missing, where it's not needed, etc).
 - JS uses the same native code, since it's just a backend for code generation, just like a real-time interpreter is another backend. So don't merge it into native to allow an embedded systems to just pick core+native, but merge JS-independent parts into core.
   - Start moving core stuff (eg. AST) from javascript/ to core/
+  - Show line context in error messages?
+  - use less abbreviations? ch -> char
   - Move non-essentials out of core/
 
 # Implementation
