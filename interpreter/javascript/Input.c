@@ -55,7 +55,8 @@ static int read_ch(struct k_Input* input, struct k_Err* err) {
 }
 
 struct k_Input* k_Input_from_fd(int fd, char* location, struct k_Err* err) {
-    struct k_Input* input = malloc(sizeof(*input) + sizeof(struct Fd_Buffer));
+    struct k_Input* input = (struct k_Input*)
+        malloc(sizeof(*input) + sizeof(struct Fd_Buffer));
 
     if (input == NULL) {
         K_ERR_SET_ERRNO(err, errno);

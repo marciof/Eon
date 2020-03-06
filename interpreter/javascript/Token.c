@@ -17,7 +17,7 @@ static void describe_token_err(
 }
 
 static void free_token(void* ptr) {
-    struct k_Token* token = ptr;
+    struct k_Token* token = (struct k_Token*) ptr;
     K_REF_DEC(token->str);
     K_REF_DEC(token->input);
     free(ptr);
@@ -31,7 +31,7 @@ static struct k_Token* new_token(
         size_t column,
         struct k_Err* err) {
 
-    struct k_Token* token = malloc(sizeof(*token));
+    struct k_Token* token = (struct k_Token*) malloc(sizeof(*token));
 
     if (token == NULL) {
         K_ERR_SET_ERRNO(err, errno);

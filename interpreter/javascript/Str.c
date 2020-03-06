@@ -15,7 +15,7 @@ static void increase_max_len(struct k_Str* str, struct k_Err* err) {
         new_max_len = SIZE_MAX;
     }
 
-    char* new_val = realloc(str->val, new_max_len * sizeof(*str->val));
+    char* new_val = (char*) realloc(str->val, new_max_len * sizeof(*str->val));
 
     if (new_val == NULL) {
         K_ERR_SET_ERRNO(err, errno);
@@ -45,14 +45,14 @@ void k_Str_add_char(struct k_Str* str, char ch, struct k_Err* err) {
 
 struct k_Str* k_Str_new(struct k_Err* err) {
     size_t max_len = 32;
-    char* val = malloc(max_len * sizeof(*val));
+    char* val = (char*) malloc(max_len * sizeof(*val));
 
     if (val == NULL) {
         K_ERR_SET_ERRNO(err, errno);
         return NULL;
     }
 
-    struct k_Str* str = malloc(sizeof(*str));
+    struct k_Str* str = (struct k_Str*) malloc(sizeof(*str));
 
     if (str == NULL) {
         K_ERR_SET_ERRNO(err, errno);

@@ -17,17 +17,14 @@
 - sign-up to interest mailing lists for dependencies?
 - add minimal functional tests?
 
-** TODO address sanitizer?
+** TODO use address sanitizer when in debug mode
 
 - https://github.com/google/sanitizers
 - GCC/Clang, `-fsanitize=address` (Asan - Address Sanitizer)
 - https://news.ycombinator.com/item?id=22063849
+- how does it compare to Valgrind?
 
-** TODO more useful warnings?
-
-- https://kristerw.blogspot.com/2017/09/useful-gcc-warning-options-not-enabled.html
-
-** TODO access struct members directly, instead of wrappers for transparency
+** TODO access struct members directly, instead of wrappers for transparency?
 
 ** TODO make the system more resilient
 
