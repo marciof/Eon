@@ -118,3 +118,4 @@
 - AppleScript
 - bsed, https://github.com/andrewbihl/bsed
 - xl, https://github.com/c3d/xl
+- Oberon

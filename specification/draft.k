@@ -37,10 +37,8 @@ split val | count re'\d' txt: | print
 date | file 'blah'
 
 # pipeline quoted as fn call?
-# can also be used as point free?
+# no new syntax
 \(date | file 'blah')
-| date | file 'blah'
-\| date | file 'blah'
 
 ---
 
