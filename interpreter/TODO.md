@@ -43,6 +43,8 @@ JavaScript interpreters:
 
 # Cleanups
 
+- regularly test with new Cmake versions (subscribe to mailing list for announcements, just like for the other dependencies)
+
 - Doxygen?
 - Error handling:
   - Check uses of K_LOG_LEVEL_ERROR and whether it should be made an Err for proper logging elsewhere.

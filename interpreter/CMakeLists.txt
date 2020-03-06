@@ -15,6 +15,10 @@ elseif(CMAKE_C_COMPILER_ID STREQUAL "Clang")
     set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -std=c99 -pedantic-errors -Wall -Wreserved-id-macro -Wextra -Wshadow-all -Wundef -Wunused-macros -Wused-but-marked-unused -Wmissing-field-initializers -Wmissing-prototypes -Wsign-conversion -Wvla")
 endif()
 
+if(CMAKE_C_COMPILER_ID MATCHES "^(GNU|Clang)$")
+    set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -z noexecstack")
+endif()
+
 set(CORE_SOURCES
     core/Ref.h
     core/Err.c
