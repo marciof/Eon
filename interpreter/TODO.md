@@ -43,6 +43,8 @@ JavaScript interpreters:
 
 # Cleanups
 
+- x86 VGA log: warn when clock not available for timestamps
+
 - regularly test with new Cmake versions (subscribe to mailing list for announcements, just like for the other dependencies)
 
 - Doxygen?
@@ -173,3 +175,14 @@ Finder, Safari, Xcode, Textual, Skype, Calendar and more are supported. Shortcat
 - Online help system
 - Command history (shared? separate?)
 - Completion: commands, variables, user names, host names, file names, directories
+
+---
+
+500 Byte Images: The Haiku Vector Icon Format
+http://blog.leahhanson.us/post/recursecenter2016/haiku_icons.html
+
+gambit scheme?
+http://gambitscheme.org/wiki/index.php/Main_Page
+
+Tildes site implementation
+https://docs.tildes.net/philosophy/site-implementation

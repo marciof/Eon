@@ -27,8 +27,6 @@
 
 - https://kristerw.blogspot.com/2017/09/useful-gcc-warning-options-not-enabled.html
 
-** TODO why are builds placed alongside sources and not in the build directory?
-
 ** TODO access struct members directly, instead of wrappers for transparency
 
 ** TODO make the system more resilient
