@@ -6,14 +6,14 @@
 
 # rules:
 # - follows shell syntax closely
-# - each pipeline part is a fn call
-# - parents are replaced by pipes
+# - each pipe part is partial fn call
+# - parens are replaced by pipes
 # - can still have args
 # - pipeline will invoke all fns
 # - may be sequential or parallel
 # - fn return value is output
-# - last input param is input
-# - currying to easily arrange params
+# - last param is input
+# - currying to fix/rearrange params
 
 # original form
 (print (count re'\d' (split val)))
@@ -29,10 +29,18 @@ split val | count re'\d' | print
 # too verbose?
 # used only to rearrange params?
 # or to fix params?
+# force fn exprs for safety?
+# force keyword params same as orig
 split val | count re'\d' txt: | print
 
 # file I/O (more verbose, but clear)
 date | file 'blah'
+
+# pipeline quoted as fn call?
+# can also be used as point free?
+\(date | file 'blah')
+| date | file 'blah'
+\| date | file 'blah'
 
 ---
 
@@ -41,6 +49,9 @@ date | file 'blah'
 # iterator protocol?
 # for lazy values?
 # `next` is an iterator?
+# how to detect a value as iterator?
+
+# generator expressions? JS yield?
 
 ---
 
