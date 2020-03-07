@@ -37,7 +37,7 @@ split val | count re'\d' txt: | print
 date | file 'blah'
 
 # pipeline quoted as fn call?
-# no new syntax
+# no new syntax, optional parens
 \(date | file 'blah')
 
 ---
