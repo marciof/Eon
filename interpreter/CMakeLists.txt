@@ -14,9 +14,9 @@ cmake_dependent_option(
 set(COMMON_GNU_CLANG_C_FLAGS "-std=c99 -pedantic-errors -Wall -Wextra -Wundef -Wunused-macros -Wvla -Wempty-body -Wdouble-promotion -Wformat=2 -Wc++-compat")
 
 if(CMAKE_C_COMPILER_ID STREQUAL "GNU")
-    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${COMMON_GNU_CLANG_C_FLAGS} -Wredundant-decls -Wshadow -Wswitch-default -Wduplicated-cond -Wlogical-op -Wnull-dereference -Wjump-misses-init")
+    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${COMMON_GNU_CLANG_C_FLAGS} -Wredundant-decls -Wshadow -Wswitch-default -Wlogical-op -Wjump-misses-init")
 
-    foreach(FLAG "-Wduplicated-branches" "-Wrestrict")
+    foreach(FLAG "-Wduplicated-branches" "-Wrestrict" "-Wduplicated-cond" "-Wnull-dereference")
         check_cxx_compiler_flag("${FLAG}" IS_FLAG_SUPPORTED)
 
         if(IS_FLAG_SUPPORTED)

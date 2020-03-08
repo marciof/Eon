@@ -1,5 +1,9 @@
 * interpreter
 
+** build documentation
+
+- check places for missing documentation (eg. `k_Token_parse` should say it's iterative)
+
 ** split Travis/CI dependencies per build target (eg. native, x86-32, etc)
 
 - setup CI builds for Linux, Windows, Mac
@@ -62,6 +66,8 @@
 * x86-32
 
 ** TODO how to have proper documentation comments in NASM Assembly source code?
+
+- also build documentation
 
 ** TODO remove direct references to globals/singletons
 
