@@ -5,8 +5,6 @@ option(BUILD_FOR_X86_32_HOST "Build the interpreter for an Intel x86 32-bit host
 option(BUILD_FOR_JAVASCRIPT_HOST "Build the interpreter for a JavaScript host" OFF)
 
 include(CMakeDependentOption)
-include(CheckCXXCompilerFlag)
-
 cmake_dependent_option(
     BUILD_FOR_JAVASCRIPT_HOST "JavaScript host requires native host" ON
     "BUILD_FOR_NATIVE_HOST" OFF)
@@ -14,11 +12,11 @@ cmake_dependent_option(
 set(COMMON_GNU_CLANG_C_FLAGS "-std=c99 -pedantic-errors -Wall -Wextra -Wundef -Wunused-macros -Wvla -Wempty-body -Wdouble-promotion -Wformat=2 -Wc++-compat")
 
 if(CMAKE_C_COMPILER_ID STREQUAL "GNU")
+    include(CheckCXXCompilerFlag)
     set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${COMMON_GNU_CLANG_C_FLAGS} -Wredundant-decls -Wshadow -Wswitch-default -Wlogical-op -Wjump-misses-init")
 
     foreach(FLAG "-Wduplicated-branches" "-Wrestrict" "-Wduplicated-cond" "-Wnull-dereference")
         check_cxx_compiler_flag("${FLAG}" IS_FLAG_SUPPORTED)
-
         if(IS_FLAG_SUPPORTED)
             set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${FLAG}")
         endif()
