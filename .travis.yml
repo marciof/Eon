@@ -1,3 +1,5 @@
+# Travis CI build config reference: https://config.travis-ci.com
+
 language: c
 
 os:
@@ -6,6 +8,10 @@ os:
 compiler:
   - gcc
   - clang
+
+env:
+  - CMAKE_BUILD_TYPE=Release
+  - CMAKE_BUILD_TYPE=Debug
 
 addons:
   apt:
