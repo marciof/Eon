@@ -39,3 +39,7 @@ before_script:
 
 script:
   - cmake "$TRAVIS_BUILD_DIR" && cmake --build .
+
+notifications:
+  email:
+    on_success: always
