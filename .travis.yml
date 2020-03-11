@@ -1,4 +1,5 @@
-# Travis CI build config reference: https://config.travis-ci.com
+# Travis CI build config reference
+# https://config.travis-ci.com
 
 language: c
 
@@ -11,7 +12,7 @@ compiler:
 
 env:
   - CMAKE_BUILD_TYPE=Release
-  - CMAKE_BUILD_TYPE=Debug
+  - CMAKE_BUILD_TYPE=Debug ASAN_OPTIONS="detect_stack_use_after_return=1,print_stats=1"
 
 addons:
   apt:
