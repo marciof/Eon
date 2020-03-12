@@ -1,13 +1,13 @@
 enable_language(C)
 
-option(BUILD_FOR_NATIVE_HOST "Build the interpreter to run natively" ON)
-option(BUILD_FOR_X86_32_HOST "Build the interpreter for an Intel x86 32-bit host" OFF)
-option(BUILD_FOR_JAVASCRIPT_HOST "Build the interpreter for a JavaScript host" OFF)
+option(BUILD_NATIVE "Build the interpreter to run natively" ON)
+option(BUILD_X86_32 "Build the interpreter for an Intel x86 32-bit host" OFF)
+option(BUILD_JAVASCRIPT "Build the interpreter for a JavaScript host" OFF)
 
 include(CMakeDependentOption)
 cmake_dependent_option(
-    BUILD_FOR_JAVASCRIPT_HOST "JavaScript host requires native host" ON
-    "BUILD_FOR_NATIVE_HOST" OFF)
+    BUILD_JAVASCRIPT "JavaScript host requires native host" ON
+    "BUILD_NATIVE_HOST" OFF)
 
 set(COMMON_GNU_CLANG_C_FLAGS "-std=c99 -pedantic-errors -Wall -Wextra -Wundef -Wunused-macros -Wvla -Wempty-body -Wdouble-promotion -Wformat=2 -Wc++-compat")
 
@@ -46,15 +46,15 @@ string(REGEX REPLACE "([^;]+)" "${CMAKE_CURRENT_SOURCE_DIR}/\\1"
 set(CORE_LIBRARY_NAME ${PROJECT_NAME}-core)
 add_subdirectory(core)
 
-if(BUILD_FOR_NATIVE_HOST)
+if(BUILD_NATIVE)
     set(NATIVE_LIBRARY_NAME ${PROJECT_NAME}-native)
     add_subdirectory(native)
 endif()
 
-if(BUILD_FOR_X86_32_HOST)
+if(BUILD_X86_32)
     add_subdirectory(x86-32)
 endif()
 
-if(BUILD_FOR_JAVASCRIPT_HOST)
+if(BUILD_JAVASCRIPT_HOST)
     add_subdirectory(javascript)
 endif()

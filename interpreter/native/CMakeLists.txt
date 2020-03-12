@@ -17,10 +17,12 @@ target_link_libraries(${EXECUTABLE_NAME_NATIVE}
     ${CORE_LIBRARY_NAME}
     ${NATIVE_LIBRARY_NAME})
 
+option(BUILD_NATIVE_WITH_ASAN "Enable Address Sanitizer" OFF)
+
 # Address Sanitizer
 # https://github.com/google/sanitizers/wiki/AddressSanitizer
 # https://github.com/google/sanitizers/wiki/AddressSanitizerFlags
-if((CMAKE_BUILD_TYPE STREQUAL "Debug") AND (CMAKE_C_COMPILER_ID MATCHES "^(GNU|Clang)$"))
+if(BUILD_NATIVE_WITH_ASAN AND (CMAKE_C_COMPILER_ID MATCHES "^(GNU|Clang)$"))
     set(ADDRESS_SANITIZER_FLAGS "-fsanitize=address" "-fno-omit-frame-pointer")
 
     target_compile_options(${EXECUTABLE_NAME_NATIVE} PUBLIC ${ADDRESS_SANITIZER_FLAGS})
