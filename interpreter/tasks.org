@@ -2,7 +2,6 @@
 
 ** TODO run build on Travis CI for simple initial testing?
 
-- split dependencies properly as needed per build type
 - where to build with ASAN? `ASAN_OPTIONS="detect_stack_use_after_return=1,print_stats=1"`
 - specify default native build in readme?
 
