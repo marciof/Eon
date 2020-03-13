@@ -2,9 +2,11 @@
 
 ** TODO run build on Travis CI for simple initial testing?
 
-- ASAN_OPTIONS="detect_stack_use_after_return=1,print_stats=1"
+- split dependencies properly as needed per build type
+- where to build with ASAN? `ASAN_OPTIONS="detect_stack_use_after_return=1,print_stats=1"`
+- specify default native build in readme?
 
-** TODO use other sanitizers in debug mode (eg. LeakSanitizer, UndefinedBehaviorSanitizer)
+** TODO use other sanitizers too? eg. LeakSanitizer, UndefinedBehaviorSanitizer
 
 ** TODO build documentation
 

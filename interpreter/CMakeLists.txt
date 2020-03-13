@@ -1,6 +1,6 @@
 enable_language(C)
 
-option(BUILD_NATIVE "Build the interpreter to run natively" ON)
+option(BUILD_NATIVE "Build the interpreter to run natively" OFF)
 option(BUILD_X86_32 "Build the interpreter for an Intel x86 32-bit host" OFF)
 option(BUILD_JAVASCRIPT "Build the interpreter for a JavaScript host" OFF)
 
