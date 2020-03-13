@@ -9,6 +9,10 @@ cmake_dependent_option(
     BUILD_JAVASCRIPT "JavaScript host requires native host" ON
     "BUILD_NATIVE_HOST" OFF)
 
+if(DEFINED ENV{CMAKE_BUILD_TYPE})
+    set(CMAKE_BUILD_TYPE "$ENV{CMAKE_BUILD_TYPE}")
+endif()
+
 set(COMMON_GNU_CLANG_C_FLAGS "-std=c99 -pedantic-errors -Wall -Wextra -Wundef -Wunused-macros -Wvla -Wempty-body -Wdouble-promotion -Wformat=2 -Wc++-compat")
 
 if(CMAKE_C_COMPILER_ID STREQUAL "GNU")

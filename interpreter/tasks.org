@@ -2,6 +2,8 @@
 
 ** TODO run build on Travis CI for simple initial testing?
 
+- ASAN_OPTIONS="detect_stack_use_after_return=1,print_stats=1"
+
 ** TODO use other sanitizers in debug mode (eg. LeakSanitizer, UndefinedBehaviorSanitizer)
 
 ** TODO build documentation
