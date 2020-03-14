@@ -11,6 +11,8 @@
 ** TODO split Travis/CI dependencies per build target (eg. native, x86-32, etc)
 
 - setup CI builds for Linux, Windows, Mac
+  - https://config.travis-ci.com/ref/dist
+  - https://docs.travis-ci.com/user/reference/overview/#virtualization-environments
   - https://docs.travis-ci.com/user/languages/c/
   - https://docs.travis-ci.com/user/multi-os/
   - https://www.appveyor.com/
