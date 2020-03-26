@@ -1,16 +1,17 @@
 .POSIX:
 
-OUTPUT=.
+SRC=.
+BUILD=.
 CCDEFAULTS=$(CC)
 LIBPREFIX=lib
 LIBSUFFIX=.a
 
--include ../Makefile.$(CCDEFAULTS)
+-include $(SRC)/../Makefile.$(CCDEFAULTS)
 
-$(OUTPUT)/$(LIBPREFIX)karyon$(LIBSUFFIX): $(OUTPUT)/Err.o $(OUTPUT)/Log.o
-	$(AR) $(ARFLAGS) $@ $(OUTPUT)/Err.o $(OUTPUT)/Log.o
+$(BUILD)/$(LIBPREFIX)karyon$(LIBSUFFIX): $(BUILD)/Err.o $(BUILD)/Log.o
+	$(AR) $(ARFLAGS) $@ $(BUILD)/Err.o $(BUILD)/Log.o
 
-$(OUTPUT)/%.o: %.c %.h
+$(BUILD)/%.o: $(SRC)/%.c $(SRC)/%.h
 	$(CC) $(CFLAGS) -c $< -o $@
 
-Log.o: Err.h
+$(BUILD)/Log.o: $(SRC)/Err.h
