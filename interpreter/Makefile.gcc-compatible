@@ -1,0 +1,3 @@
+.POSIX:
+
+GCCCFLAGS=-std=c99 -pedantic-errors -Wall -Wextra -Wundef -Wunused-macros -Wvla -Wempty-body -Wdouble-promotion -Wformat=2 -Wc++-compat

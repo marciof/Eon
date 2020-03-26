@@ -1,0 +1,5 @@
+.POSIX:
+
+-include ../Makefile.gcc-compatible
+
+CFLAGS=$(GCCCFLAGS) -Wredundant-decls -Wshadow -Wswitch-default -Wlogical-op -Wjump-misses-init
