@@ -3,10 +3,11 @@
 SRC=.
 BUILD=.
 CCDEFAULTS=$(CC)
+CCDEFAULTSFILE=$(SRC)/../Makefile.$(CCDEFAULTS)
 LIBPREFIX=lib
 LIBSUFFIX=.a
 
--include $(SRC)/../Makefile.$(CCDEFAULTS)
+-include $(CCDEFAULTSFILE)
 
 $(BUILD)/$(LIBPREFIX)karyon$(LIBSUFFIX): $(BUILD)/Err.o $(BUILD)/Log.o
 	$(AR) $(ARFLAGS) $@ $(BUILD)/Err.o $(BUILD)/Log.o
