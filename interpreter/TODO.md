@@ -32,6 +32,8 @@ Lisp interpreters:
 - Make-A-Lisp, https://github.com/kanaka/mal/blob/master/process/guide.md
 - Kilo LISP, http://t3x.org/klisp/index.html
 - femtolisp, https://github.com/JeffBezanson/femtolisp
+- MicroScheme, https://ryansuchocki.github.io/microscheme/
+- Gambit Scheme, http://gambitscheme.org/wiki/index.php/Main_Page
 - Chicken Scheme, http://call-cc.org/
   - http://wiki.call-cc.org/man/4/Embedding
   - https://wiki.call-cc.org/man/4/Cross%20development
@@ -180,9 +182,6 @@ Finder, Safari, Xcode, Textual, Skype, Calendar and more are supported. Shortcat
 
 500 Byte Images: The Haiku Vector Icon Format
 http://blog.leahhanson.us/post/recursecenter2016/haiku_icons.html
-
-gambit scheme?
-http://gambitscheme.org/wiki/index.php/Main_Page
 
 Tildes site implementation
 https://docs.tildes.net/philosophy/site-implementation

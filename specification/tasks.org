@@ -9,6 +9,7 @@
 - Examples and conditions per section
 - Language code snippet example right on the front page, https://www.disneylandparis.com/en-us/
 - Ensure floating point math is exact by default, https://0.30000000000000004.com
+- Runnable examples (eg. https://doc.rust-lang.org/book/)
 
 * TODO investigate shell pipeline support
 
@@ -72,6 +73,12 @@
 
 * TODO learn best/worst features of other languages/systems (check first the ones listed as inspiration)
 
+- CAS Computer Algebra System
+  - GNU Octave
+  - Maxima Algebra System
+  - Mathematica
+  - SageMath
+  - Matlab
 - Oil shell, https://www.oilshell.org/blog/
 - Elm
 - PowerShell
@@ -92,7 +99,6 @@
 - Kotlin
 - Wren
 - F#
-- Matlab
 - Ruby
 - Julia
 - Haskell
@@ -106,12 +112,9 @@
 - Haxe
 - Shen
 - REBOL
-- Mathematica
 - HyperCard
 - Awk
 - Parabola.io
-- GNU Octave
-- Maxima Algebra System
 - Pascal
 - R
 - HyperTalk/HyperCard
