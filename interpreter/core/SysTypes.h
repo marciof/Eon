@@ -1,6 +1,6 @@
 /**
- * Wrapper over `sys/types.h` to include types that may be missing in some
- * environments.
+ * Wrapper over `sys/types.h` to include definitions that may be missing in
+ * some environments.
  */
 
 #pragma once
