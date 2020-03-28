@@ -5,28 +5,21 @@ option(BUILD_X86_32 "Build the interpreter for an Intel x86 32-bit host" OFF)
 option(BUILD_JAVASCRIPT "Build the interpreter for a JavaScript host" OFF)
 
 include(CMakeDependentOption)
-cmake_dependent_option(
-    BUILD_JAVASCRIPT "JavaScript host requires native host" ON
+cmake_dependent_option(BUILD_JAVASCRIPT "JavaScript host requires native host" ON
     "BUILD_NATIVE_HOST" OFF)
-
-if(DEFINED ENV{CMAKE_BUILD_TYPE})
-    set(CMAKE_BUILD_TYPE "$ENV{CMAKE_BUILD_TYPE}")
-endif()
-
-set(COMMON_GNU_CLANG_C_FLAGS "-std=c99 -pedantic-errors -Wall -Wextra -Wundef -Wunused-macros -Wvla -Wempty-body -Wdouble-promotion -Wformat=2 -Wc++-compat")
 
 if(CMAKE_C_COMPILER_ID STREQUAL "GNU")
     include(CheckCXXCompilerFlag)
-    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${COMMON_GNU_CLANG_C_FLAGS} -Wredundant-decls -Wshadow -Wswitch-default -Wlogical-op -Wjump-misses-init")
+    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -std=c99 -pedantic-errors -Wall -Wextra -Wundef -Wunused-macros -Wvla -Wempty-body -Wdouble-promotion -Wformat=2 -Wc++-compat -Wredundant-decls -Wshadow -Wswitch-default -Wlogical-op -Wjump-misses-init")
 
-    foreach(FLAG "-Wduplicated-branches" "-Wrestrict" "-Wduplicated-cond" "-Wnull-dereference")
-        check_cxx_compiler_flag("${FLAG}" IS_FLAG_SUPPORTED)
-        if(IS_FLAG_SUPPORTED)
-            set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${FLAG}")
+    foreach(C_FLAG "-Wduplicated-branches" "-Wrestrict" "-Wduplicated-cond" "-Wnull-dereference")
+        check_cxx_compiler_flag("${C_FLAG}" IS_C_FLAG_SUPPORTED)
+        if(IS_C_FLAG_SUPPORTED)
+            set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${C_FLAG}")
         endif()
-    endforeach(FLAG)
+    endforeach(C_FLAG)
 elseif(CMAKE_C_COMPILER_ID STREQUAL "Clang")
-    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${COMMON_GNU_CLANG_C_FLAGS} -Wreserved-id-macro -Wshadow-all -Wused-but-marked-unused -Wmissing-field-initializers -Wmissing-prototypes -Wsign-conversion")
+    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -std=c99 -pedantic-errors -Wall -Wextra -Wundef -Wunused-macros -Wvla -Wempty-body -Wdouble-promotion -Wformat=2 -Wc++-compat -Wreserved-id-macro -Wshadow-all -Wused-but-marked-unused -Wmissing-field-initializers -Wmissing-prototypes -Wsign-conversion")
 endif()
 
 if(CMAKE_C_COMPILER_ID MATCHES "^(GNU|Clang)$")
