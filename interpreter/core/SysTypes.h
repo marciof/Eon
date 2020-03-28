@@ -6,6 +6,9 @@
 #pragma once
 #include <sys/types.h>
 
+/**
+ * @see https://docs.microsoft.com/cpp/preprocessor/predefined-macros
+ */
 #ifdef _MSC_VER
 #include <BaseTsd.h>
 /**

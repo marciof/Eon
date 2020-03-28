@@ -22,5 +22,9 @@
 #define K_BIT_SECTION(name, declaration) \
     declaration __attribute__((section(name)))
 
+#if defined(__GNUC__) || defined(__clang__)
 #define K_BIT_UNUSED(param) \
     param __attribute__((unused))
+#else
+#define K_BIT_UNUSED(param) param
+#endif

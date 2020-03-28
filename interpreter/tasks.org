@@ -1,7 +1,5 @@
 * interpreter
 
-** move `K_BIT_UNUSED` elsewhere? it doesn't fit Bit.h
-
 ** TODO split dependencies per build target (eg. native, x86-32, etc)
 
 - setup CI builds for other compilers on OSX/Windows?
