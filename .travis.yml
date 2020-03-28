@@ -21,10 +21,6 @@ jobs:
       before_script: cmake -Wdev --warn-uninitialized -DBUILD_NATIVE=ON -DBUILD_JAVASCRIPT=ON "$TRAVIS_BUILD_DIR"
 
     - os: windows
-      compiler: gcc
-      before_script: cmake -Wdev --warn-uninitialized -DBUILD_NATIVE=ON -DBUILD_JAVASCRIPT=ON -DCMAKE_GENERATOR="Unix Makefiles" "$TRAVIS_BUILD_DIR"
-
-    - os: windows
       before_script: cmake -Wdev --warn-uninitialized -DBUILD_NATIVE=ON -DBUILD_JAVASCRIPT=ON "$TRAVIS_BUILD_DIR"
 
 addons:
