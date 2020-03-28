@@ -50,6 +50,7 @@ endif()
 
 set(CORE_SOURCES
     core/Ref.h
+    core/SysTypes.h
     core/Err.c
     core/Err.h
     core/Bit.h

@@ -8,6 +8,7 @@
 - where to build with ASAN? `ASAN_OPTIONS="detect_stack_use_after_return=1,print_stats=1"`
 - specify default native build in readme?
 - add stages for alpha (Debug with instrumentation), beta (Debug), gamma (Release with instrumentation), release (Release)?
+- move `K_BIT_UNUSED` elsewhere?
 
 ** TODO split Travis/CI dependencies per build target (eg. native, x86-32, etc)
 

@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include "../core/SysTypes.h"
 #include "../native/Errno.h"
 #include "Input.h"
 

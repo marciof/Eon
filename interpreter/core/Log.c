@@ -1,6 +1,6 @@
 #include <stddef.h>
-#include <sys/types.h>
 #include "Log.h"
+#include "SysTypes.h"
 
 #define NUMERIC_BASE_CONVERSION_SYMBOLS "0123456789ABCDEF"
 #define PLACEHOLDER_BEGIN '{'
