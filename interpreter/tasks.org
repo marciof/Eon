@@ -1,35 +1,34 @@
 * interpreter
 
-** TODO use other sanitizers too? eg. LeakSanitizer, UndefinedBehaviorSanitizer
+** move `K_BIT_UNUSED` elsewhere? it doesn't fit Bit.h
 
-** TODO run build on Travis CI for simple initial testing?
+** TODO split dependencies per build target (eg. native, x86-32, etc)
 
-- enable optimization in release build: https://gcc.gnu.org/onlinedocs/gcc/Optimize-Options.html
-- where to build with ASAN? `ASAN_OPTIONS="detect_stack_use_after_return=1,print_stats=1"`
-- specify default native build in readme?
-- add stages for alpha (Debug with instrumentation), beta (Debug), gamma (Release with instrumentation), release (Release)?
-- move `K_BIT_UNUSED` elsewhere?
-
-** TODO split Travis/CI dependencies per build target (eg. native, x86-32, etc)
-
-- setup CI builds for Linux, Windows, Mac
-  - https://config.travis-ci.com/ref/dist
-  - https://docs.travis-ci.com/user/reference/overview/#virtualization-environments
-  - https://docs.travis-ci.com/user/languages/c/
-  - https://docs.travis-ci.com/user/multi-os/
-  - https://www.appveyor.com/
-  - https://about.gitlab.com/product/continuous-integration/
-  - https://bitbucket.org/product/features/pipelines
+- setup CI builds for other compilers on OSX/Windows?
+- setup CI builds for other CPU architectures?
+- setup CI builds for other OS versions?
 - setup CI builds for both 32-bit and 64-bit hosts
   - https://github.com/travis-ci/travis-ci/issues/5770
-- add support for Bochs and Qemu? easier for installation, for vm.sh, and screenshots?
 - validate `.travis.yml` file
   - https://github.com/travis-ci/travis-yml
   - https://docs.travis-ci.com/user/build-config-validation
+- setup another CI for more thorough testing?
+  - https://www.appveyor.com
+  - https://about.gitlab.com/product/continuous-integration/
 - sign-up to interest mailing lists for dependencies?
-- README dependencies
-- add minimal functional tests?
+- update README dependencies
 - split native build into library and executable? (library would be used by the javascript build)
+
+** TODO run build on Travis CI for simple initial testing?
+
+- enable optimization in release build? https://gcc.gnu.org/onlinedocs/gcc/Optimize-Options.html
+- where to build with ASAN? `ASAN_OPTIONS="detect_stack_use_after_return=1,print_stats=1"`
+- specify default native build in readme?
+- add stages for alpha (Debug with instrumentation), beta (Debug), gamma (Release with instrumentation), release (Release)?
+- add support for Bochs and Qemu? easier for installation, for vm.sh, and screenshots?
+- add minimal functional tests?
+
+** TODO use other sanitizers too? eg. LeakSanitizer, UndefinedBehaviorSanitizer
 
 ** TODO build documentation
 
@@ -74,6 +73,13 @@
 
 * x86-32
 
+** TODO fix static linking
+
+- need `-rdynamic` when linking to allow getting backtraces from within?
+- why can't the final executable static link against the core library?
+- https://stackoverflow.com/questions/6578484/telling-gcc-directly-to-link-a-library-statically
+- https://stackoverflow.com/questions/47614835/how-to-compile-static-lib-library-for-windows-in-linux-or-macos
+
 ** TODO how to have proper documentation comments in NASM Assembly source code?
 
 - also build documentation
@@ -94,11 +100,6 @@
 - ASFLAGS += -f elf64
 - CCFLAGS += -m64
 - LINKFLAGS += -m elf_x86_64
-
-** TODO fix static linking
-
-- need `-rdynamic` when linking to allow getting backtraces from within?
-- why can't the final executable static link against the core library?
 
 ** TODO implement shutdown (it currently halts -- use it for debugging?)
 
