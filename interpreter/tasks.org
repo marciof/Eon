@@ -28,6 +28,7 @@
 - sign-up to interest mailing lists for dependencies?
 - README dependencies
 - add minimal functional tests?
+- split native build into library and executable? (library would be used by the javascript build)
 
 ** TODO build documentation
 

@@ -7,8 +7,8 @@ option(BUILD_NATIVE "Build the interpreter to run natively" OFF)
 option(BUILD_X86_32 "Build the interpreter for an Intel x86 32-bit host" OFF)
 option(BUILD_JAVASCRIPT "Build the interpreter for a JavaScript host" OFF)
 
-cmake_dependent_option(BUILD_JAVASCRIPT "JavaScript host requires native host" ON
-    "BUILD_NATIVE_HOST" OFF)
+cmake_dependent_option(BUILD_JAVASCRIPT "JavaScript host requires native build" ON
+    "BUILD_NATIVE" OFF)
 
 if(CMAKE_C_COMPILER_ID STREQUAL "GNU")
     set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -std=c99 -pedantic-errors -Wall -Wextra -Wundef -Wunused-macros -Wvla -Wempty-body -Wdouble-promotion -Wformat=2 -Wc++-compat -Wredundant-decls -Wshadow -Wswitch-default -Wlogical-op -Wjump-misses-init")
@@ -74,6 +74,6 @@ if(BUILD_X86_32)
     add_subdirectory(x86-32)
 endif()
 
-if(BUILD_JAVASCRIPT_HOST)
+if(BUILD_JAVASCRIPT)
     add_subdirectory(javascript)
 endif()
