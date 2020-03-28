@@ -12,16 +12,18 @@ It includes a well-defined specification, a platform-agnostic implementation cor
 
 See file `.travis.yml`, section:
 
-- `compiler`: List of supported compilers.
-- `addons`/`apt`/`packages`: List of required packages.
+- `jobs` / `include` / `compiler`: Supported compilers.
+- `addons`/`apt`/`packages`: Required packages.
 
-*(Tested on Debian 10, both 32-bit and 64-bit.)*
+### OS X
+
+See file `.travis.yml`.
 
 ### Windows
 
 - [Visual Studio Build Tools](https://www.visualstudio.com/thank-you-downloading-visual-studio/?sku=BuildTools)
 
-*(Tested on Windows 10, both 32-bit and 64-bit.)*
+*(Tested on Windows 10, 32-bit and 64-bit.)*
 
 ## Building
 

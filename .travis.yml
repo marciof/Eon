@@ -6,6 +6,11 @@ language: c
 env:
   global: VERBOSE=ON
 
+arch:
+  - amd64
+  - arm64
+  - ppc64le
+
 jobs:
   include:
 
