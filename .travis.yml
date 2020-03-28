@@ -3,25 +3,24 @@
 
 language: c
 
+env:
+  global: VERBOSE=ON
+
 jobs:
   include:
 
     - os: linux
       compiler: gcc
-      env: VERBOSE=ON
       before_script: cmake -Wdev --warn-uninitialized -DBUILD_NATIVE=ON -DBUILD_JAVASCRIPT=ON -DBUILD_X86_32=ON "$TRAVIS_BUILD_DIR"
 
     - os: linux
       compiler: clang
-      env: VERBOSE=ON
       before_script: cmake -Wdev --warn-uninitialized -DBUILD_NATIVE=ON -DBUILD_JAVASCRIPT=ON -DBUILD_X86_32=ON "$TRAVIS_BUILD_DIR"
 
     - os: osx
-      env: VERBOSE=ON
       before_script: cmake -Wdev --warn-uninitialized -DBUILD_NATIVE=ON -DBUILD_JAVASCRIPT=ON "$TRAVIS_BUILD_DIR"
 
     - os: windows
-      env: VERBOSE=ON
       before_script: cmake -Wdev --warn-uninitialized -DBUILD_NATIVE=ON -DBUILD_JAVASCRIPT=ON "$TRAVIS_BUILD_DIR"
 
 addons:
