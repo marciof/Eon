@@ -2,6 +2,7 @@
 
 ** TODO split dependencies per build target (eg. native, x86-32, etc)
 
+- enable more MSVC CL warnings
 - setup CI builds for other compilers on OSX/Windows?
 - setup CI builds for other CPU architectures?
 - setup CI builds for other OS versions?
@@ -26,7 +27,25 @@
 - add support for Bochs and Qemu? easier for installation, for vm.sh, and screenshots?
 - add minimal functional tests?
 
+** TODO add check for non-executable stacks
+
+- https://unix.stackexchange.com/questions/66802/disable-stack-protection-on-ubuntu-for-buffer-overflow-without-c-compiler-flags
+- also verify library if needed
+- use `gold` linker? `--warn-execstack`
+- https://wiki.ubuntu.com/SecurityTeam/Roadmap/ExecutableStacks
+- https://mudongliang.github.io/2016/05/24/stack-protector.html
+- assembler as well
+  - eg. `-Wa,--noexecstack`
+  - https://www.airs.com/blog/archives/518
+  - https://www.win.tue.nl/~aeb/linux/hh/protection.html
+
 ** TODO use other sanitizers too? eg. LeakSanitizer, UndefinedBehaviorSanitizer
+
+** TODO enable static code analyzers
+
+- https://developers.redhat.com/blog/2020/03/26/static-analysis-in-gcc-10/
+- MSVC SAL https://docs.microsoft.com/cpp/code-quality/understanding-sal
+- MSVC CL https://docs.microsoft.com/cpp/build/reference/analyze-code-analysis
 
 ** TODO build documentation
 
