@@ -4,9 +4,6 @@
 
 ** TODO run build on Travis CI for simple initial testing?
 
-- attempt to use plain Makefile?
-  - https://nullprogram.com/blog/2017/08/20/
-  - https://pubs.opengroup.org/onlinepubs/9699919799/utilities/make.html
 - enable optimization in release build: https://gcc.gnu.org/onlinedocs/gcc/Optimize-Options.html
 - where to build with ASAN? `ASAN_OPTIONS="detect_stack_use_after_return=1,print_stats=1"`
 - specify default native build in readme?
