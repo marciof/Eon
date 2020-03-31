@@ -1,6 +1,6 @@
 #include <stdio.h>
-#include <time.h>
 #include "../core/Bit.h"
+#include "../core/std/Time.h"
 #include "Errno.h"
 #include "Log.h"
 

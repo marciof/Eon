@@ -1,5 +1,5 @@
 /**
- * Wrapper over `sys/types.h` to include definitions that may be missing in
+ * Wrapper over `<sys/types.h>` to include definitions that may be missing in
  * some environments.
  */
 

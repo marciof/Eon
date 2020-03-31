@@ -1,5 +1,5 @@
 /**
- * Wrapper over `unistd.h` to include definitions that may be missing in some
+ * Wrapper over `<unistd.h>` to include definitions that may be missing in some
  * environments.
  */
 

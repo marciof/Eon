@@ -49,8 +49,10 @@ if(CMAKE_C_COMPILER_ID MATCHES "^(GNU|Clang)$")
 endif()
 
 set(CORE_SOURCES
+    core/std/Time.h
+    core/std/SysTypes.h
+    core/std/Unistd.h
     core/Ref.h
-    core/SysTypes.h
     core/Err.c
     core/Err.h
     core/Bit.h
