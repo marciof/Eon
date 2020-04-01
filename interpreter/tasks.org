@@ -26,6 +26,7 @@
 - add stages for alpha (Debug with instrumentation), beta (Debug), gamma (Release with instrumentation), release (Release)?
 - add support for Bochs and Qemu? easier for installation, for vm.sh, and screenshots?
 - add minimal functional tests?
+- https://embeddedbits.org/how-is-the-linux-kernel-tested/
 
 ** TODO add check for non-executable stacks
 
