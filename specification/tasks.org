@@ -73,6 +73,8 @@
 
 * TODO learn best/worst features of other languages/systems (check first the ones listed as inspiration)
 
+- Elm
+- Rust
 - CAS Computer Algebra System
   - GNU Octave
   - Maxima Algebra System
@@ -80,11 +82,9 @@
   - SageMath
   - Matlab
 - Oil shell, https://www.oilshell.org/blog/
-- Elm
 - PowerShell
 - OCaml
 - C
-- Rust
 - Tcl/Tk
 - Common Lisp
 - JavaScript
