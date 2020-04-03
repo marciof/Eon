@@ -1,3 +1,12 @@
+# Maybe/Option instead of exceptions?
+
+# macros instead of fexprs?
+# - allows early returns
+# - could replace exceptions
+# - potentially more performant
+
+---
+
 # Pipeline support? shell pipe?
 
 # goals:
