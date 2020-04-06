@@ -239,6 +239,38 @@ if (logged-in? user) then:
 
 ---
 
+# constraint parameter types only?
+
+(slice start: 0 end |
+  start: number
+  end: number)
+
+(start end | start: 0 ...
+
+# create empty data type w/constraint
+(index: value |
+  (and
+    (in? index {\start \end})
+    (is? start Number)
+    (is? end Number)))
+
+---
+
+# pairs as the basis for all?
+# could add static typing?
+
+name: 'Bob'
+name: Text = 'Bob'
+
+name := 'Bob'
+name Text := 'Bob'
+
+name:|Text 'Bob'
+
+Text name: 'Bob'
+
+---
+
 # REPL var top level
 name: 'Bob'
 
@@ -258,14 +290,6 @@ let
 
 # bidirectional map? [:] ?
 # compose map from list and set?
-
----
-
-# pairs as the basis for all?
-# could add static typing?
-
-name: 'Bob'
-name: Text = 'Bob'
 
 ---
 
