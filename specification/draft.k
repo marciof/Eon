@@ -215,9 +215,15 @@ if (logged-in? user) then:
 # can add typing to vars via bindings
 
 # ambiguous with piping?
+# no because it requires parens?
+# when outside significant indent?
+# only when creating math?
 
 # math
 {x | x > 0}
+
+{\x | (> x 0)}
+{\name: \value | (Text value)}
 
 # Elm
 -- update a field
@@ -226,7 +232,7 @@ if (logged-in? user) then:
 # Only math notation built-in
 # Stdlib adds helpers for type info
 
-# Don't like param count isn't enforced
+# Don't like param count not enforced
 # Don't like `do` as a built-in
 # Don't like separate map syntax
 
@@ -237,8 +243,6 @@ if (logged-in? user) then:
 # line, column, file, type
 # debugger, test frameworks, etc
 
----
-
 # constraint parameter types only?
 
 (slice start: 0 end |
@@ -248,26 +252,27 @@ if (logged-in? user) then:
 (start end | start: 0 ...
 
 # create empty data type w/constraint
+# add to bindings to restrict
 (index: value |
   (and
     (in? index {\start \end})
     (is? start Number)
     (is? end Number)))
 
+\(* x 2 | (is? x Number))
+
 ---
 
 # pairs as the basis for all?
 # could add static typing?
+# makes `=` reserved?
+# - not if a pair has rigid syntax
+# how to define new types?
+# non-ambiguous in fns, kwargs last
+# - not good arbitrary rules
 
-name: 'Bob'
-name: Text = 'Bob'
-
-name := 'Bob'
-name Text := 'Bob'
-
-name:|Text 'Bob'
-
-Text name: 'Bob'
+\name: 'Bob'
+\name: Text: 'Bob'
 
 ---
 
