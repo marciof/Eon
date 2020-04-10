@@ -222,8 +222,8 @@ if (logged-in? user) then:
 # math
 {x | x > 0}
 
-{\x | (> x 0)}
-{\name: \value | (Text value)}
+{\value | (> value 0)}
+{\key: \value | (Text value)}
 
 # Elm
 -- update a field
@@ -263,8 +263,26 @@ if (logged-in? user) then:
 
 ---
 
+# maybe goals:
+# - easy non-indent bindings
+# - easy code generation for binds 
+# - easy optional static typing
+# - easy type introspection
+
+# typed bindings in a map
+{\name: 'Bob'}
+{\name:Text: 'Bob'}
+
+# how typed bindings for any key?
+# - override setters?
+# - restrict mutator fns?
+
+# how to introspect types?
+# - make : a chain/tuple?
+
 # pairs as the basis for all?
 # could add static typing?
+# easier global vars?
 # makes `=` reserved?
 # - not if a pair has rigid syntax
 # how to define new types?
@@ -272,28 +290,113 @@ if (logged-in? user) then:
 # - not good arbitrary rules
 
 \name: 'Bob'
-\name: Text: 'Bob'
+\name: Text = 'Bob'
+
+# too much to type? Just for a var?
+\name := 'Bob'
+
+# generalized pair syntax?
+# linked list syntax?
+# similar syntax to get-chaining
+# - quotes left side
+# - associates on right side
+# ambiguous with currying?
+# - no, kwarg is always a 1-tuple
+# map uses 2-element lists as pairs?
+a:b:c:d
+[a [b [c d]]]
+[\a [\b [\c d]]]
+
+# MAC address
+01:23:45:67:89:AB
+
+# time
+12:45:00
+
+# Windows path
+C:\file.txt
+[\C \file.txt]
+
+(range from: 1 to: 9)
+(range [from 1] [to 9])
+
+# by convention, type is 2nd element?
+# ambiguous with list value
+name:Text: 'Bob'
+[name [Text 'Bob']]
 
 ---
 
-# REPL var top level
+# builtin instead of operator?
+# - less syntax
+# - still introspective
+# returns strongly bound map
+# can use fns 4 arbitrary constraints
+# how to query constraints?
+# how to constraint arbitrary keys?
+# try to make it less "magic"?
+# - functions accept `bindings`
+# - accept `constraints` as well?
+(constraint {\name: Text})
+
+---
+
+# rename prototype to proto-value?
+
+---
+
+# need unquote operator?
+
+---
+
+# REPL var top level?
+# why only REPL?
+# wouldn’t they be kwargs for `do`?
+# - `do` call will be deferred
+# - and will become the new bindings
+# - kwargs will be bindings already?
+# - if not a fexpr then evaluated
+# - and dynamic scope by default
+# - `do` could work as a let?
+# - don’t like that it isn’t stdlib
 name: 'Bob'
+
+# a file is a giant expression?
+# significant indentation by default
+# first line is the fn body
+# rest are arguments?
+
+# a file is a list?
+
+# file is the same as a REPL
 
 # non top level requires `let`
 # otherwise it means keyword arg
+# too many special cases?
 
-# grammar indicate that keyword args can also be each one in a indented line?
+# grammar indicate that keyword args can also be each one in an indented line?
 
 let
   name: 'Bob'
   age: 20
-  
   io::print name
   io::print age
 
+# comma = unquote/undefer
+# outside defer allows indent flat?
+# reuse parens?
+# re-allow significant indent inside?
+# how to indicate end of expr?
+let,
+name: 'Bob'
+age: 20
+io::print name
+io::print age
+
 ---
 
-# bidirectional map? [:] ?
+# bidirectional map? [:]
+# ordered map? (:)
 # compose map from list and set?
 
 ---
