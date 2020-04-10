@@ -296,8 +296,8 @@ if (logged-in? user) then:
 \name := 'Bob'
 
 # generalized pair syntax?
-# linked list syntax?
-# similar syntax to get-chaining
+# linked list-like syntax?
+# opposite syntax to get-chaining
 # - quotes left side
 # - associates on right side
 # ambiguous with currying?
@@ -317,15 +317,17 @@ a:b:c:d
 C:\file.txt
 [\C \file.txt]
 
-(range from: 1 to: 9)
-(range [from 1] [to 9])
+# not ambiguous if uniform?
+# automatic quote? easy unquoted list
+
+(range list from: 1 to: 9)
+(1: range 2: list from: 1 to: 9)
+([1 range] [2 list] [from 1] [to 9])
 
 # by convention, type is 2nd element?
-# ambiguous with list value
+# ambiguous with list value?
 name:Text: 'Bob'
 [name [Text 'Bob']]
-
----
 
 # builtin instead of operator?
 # - less syntax
@@ -339,16 +341,6 @@ name:Text: 'Bob'
 # - accept `constraints` as well?
 (constraint {\name: Text})
 
----
-
-# rename prototype to proto-value?
-
----
-
-# need unquote operator?
-
----
-
 # REPL var top level?
 # why only REPL?
 # wouldn’t they be kwargs for `do`?
@@ -361,26 +353,7 @@ name:Text: 'Bob'
 # - don’t like that it isn’t stdlib
 name: 'Bob'
 
-# a file is a giant expression?
-# significant indentation by default
-# first line is the fn body
-# rest are arguments?
-
-# a file is a list?
-
-# file is the same as a REPL
-
-# non top level requires `let`
-# otherwise it means keyword arg
-# too many special cases?
-
-# grammar indicate that keyword args can also be each one in an indented line?
-
-let
-  name: 'Bob'
-  age: 20
-  io::print name
-  io::print age
+# file should be the same as a REPL
 
 # comma = unquote/undefer
 # outside defer allows indent flat?
@@ -392,6 +365,22 @@ name: 'Bob'
 age: 20
 io::print name
 io::print age
+
+# grammar indicate that keyword args can also be each one in an indented line?
+
+let
+  name: 'Bob'
+  age: 20
+  io::print name
+  io::print age
+
+---
+
+# rename prototype to proto-value?
+
+---
+
+# need unquote operator?
 
 ---
 
@@ -405,11 +394,14 @@ io::print age
 # how to inspect types? protos?
 # Don't mix set/get on same function?
 
-# new prototype with no constraint
-(prototype {\name: 'Bob'})
+# get proto-value/type
+(proto person)
+
+# create prototype w/o constraints
+(proto {\name: 'Bob'} {})
 
 # auto infer constraint?
-(prototype {\name: 'Bob'} constraint)
+(proto {\name: 'Bob'} constraint)
 
 # heterogeneous?
 (prototype {\name: '' \age: 0}
