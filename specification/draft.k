@@ -329,6 +329,9 @@ C:\file.txt
 name:Text: 'Bob'
 [name [Text 'Bob']]
 
+name: 'Bob':Text
+name: Text:'Bob'
+
 # builtin instead of operator?
 # - less syntax
 # - still introspective
@@ -343,6 +346,7 @@ name:Text: 'Bob'
 
 # REPL var top level?
 # why only REPL?
+# file should be the same as a REPL
 # wouldn’t they be kwargs for `do`?
 # - `do` call will be deferred
 # - and will become the new bindings
@@ -350,28 +354,42 @@ name:Text: 'Bob'
 # - if not a fexpr then evaluated
 # - and dynamic scope by default
 # - `do` could work as a let?
+#   - doesn’t need to
+#   - can use parent bindings
+#   - too magic?
+#   - won’t be like let* ?
+#     - it will? it’s in bindings
+#     - but it’s all evaluated first?
+#     - `do` must be lazy, not eager
+#     - has to modify bindings?
+#     - for each evaluated kwarg
+#     - not if each var new fn call
+#   - introduce macros for code gen?
 # - don’t like that it isn’t stdlib
 name: 'Bob'
 
-# file should be the same as a REPL
-
-# comma = unquote/undefer
-# outside defer allows indent flat?
-# reuse parens?
-# re-allow significant indent inside?
-# how to indicate end of expr?
-let,
-name: 'Bob'
-age: 20
-io::print name
-io::print age
-
-# grammar indicate that keyword args can also be each one in an indented line?
+# grammar kwargs also on indent line?
+# use parens to force a function call
+# not very uniform
+# - grammar doesn’t change
+# - it’s up to each fn to decide?
+# - can be thought of as a "tag"
+# - it’s in scope via bindings
+# - `let*` by default?
+# - each var creates a new fn call?
 
 let
   name: 'Bob'
   age: 20
   io::print name
+  io::print age
+
+# lazy instead of deferring fn calls?
+
+do
+  name: 'Bob'
+  io::print name
+  age: 20
   io::print age
 
 ---
@@ -381,6 +399,17 @@ let
 ---
 
 # need unquote operator?
+
+---
+
+# scope "bleeding"?
+# eg. let implemented as a fn
+# depends if it fixed bindings or not
+
+let
+  x: 1
+  let
+    y: x
 
 ---
 
