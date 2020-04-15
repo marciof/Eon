@@ -204,6 +204,8 @@ if (logged-in? user)
     this-second
 
 # Implicit `do`?
+# no, it should pass a list of exprs
+# more flexibility for each fn 
 if (logged-in? user) then:
   this-first
   this-second
@@ -221,6 +223,8 @@ if (logged-in? user) then:
 
 # math
 {x | x > 0}
+
+# like the idea of maps as fns
 
 {\value | (> value 0)}
 {\key: \value | (Text value)}
@@ -297,6 +301,7 @@ if (logged-in? user) then:
 
 # generalized pair syntax?
 # linked list-like syntax?
+# - too much syntax?
 # opposite syntax to get-chaining
 # - quotes left side
 # - associates on right side
@@ -346,7 +351,45 @@ name: Text:'Bob'
 
 # REPL var top level?
 # why only REPL?
-# file should be the same as a REPL
+
+# add to bindings, essentially a var
+# grammar evaluate value, assign name
+name: 'Bob'
+
+# same as a fn call, but has no name
+# can still get value from bindings?
+# too inefficient to name everything?
+# not in practice, useful for REPL?
++ 1 2
+1: (+ 1 2)
+
+# no need to force disambiguation?
+# it’s more uniform, and still works
+
+# value “fn call”
+name: 'Bob'
+
+# implicit call (bad?)
+# instead of storing a ref, calls it
+fn: exit
+fn: exit 1
+fn: exit code: 1
+fn: (exit)
+fn: (exit 1)
+
+# fn arg evaluation order?
+# spec that it may be in parallel?
+# just like for all collection types?
+# pure functions only?
+
+# a file is a list of expressions
+# an empty file is an empty list
+# stdin is also a list of expressions
+# REPL is just stdin as a “file”
+# REPL can also use a file as input
+
+# file should be the same as a REPL?
+
 # wouldn’t they be kwargs for `do`?
 # - `do` call will be deferred
 # - and will become the new bindings
@@ -377,6 +420,7 @@ name: 'Bob'
 # - it’s in scope via bindings
 # - `let*` by default?
 # - each var creates a new fn call?
+# - ambiguous? force disambiguation?
 
 let
   name: 'Bob'
@@ -385,6 +429,8 @@ let
   io::print age
 
 # lazy instead of deferring fn calls?
+# to force evaluation:
+(get value)
 
 do
   name: 'Bob'
@@ -404,7 +450,7 @@ do
 
 # scope "bleeding"?
 # eg. let implemented as a fn
-# depends if it fixed bindings or not
+# depends if it fixes bindings or not
 
 let
   x: 1
