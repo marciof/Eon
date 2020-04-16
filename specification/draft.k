@@ -349,6 +349,8 @@ name: Text:'Bob'
 # - accept `constraints` as well?
 (constraint {\name: Text})
 
+(\name: | (Text name))
+
 # REPL var top level?
 # why only REPL?
 
@@ -376,6 +378,9 @@ fn: exit 1
 fn: exit code: 1
 fn: (exit)
 fn: (exit 1)
+fn: (exit code: 1)
+
+# enforce kwargs to come last?
 
 # fn arg evaluation order?
 # spec that it may be in parallel?
@@ -389,6 +394,13 @@ fn: (exit 1)
 # REPL can also use a file as input
 
 # file should be the same as a REPL?
+# REPL uses a custom evaluator
+# like `let*` per expression
+# with custom commands? Eg. help
+# make it public/embeddable
+
+# `import` can evaluate list items
+# just like a file-wide `let*`
 
 # wouldn’t they be kwargs for `do`?
 # - `do` call will be deferred
@@ -409,7 +421,12 @@ fn: (exit 1)
 #     - not if each var new fn call
 #   - introduce macros for code gen?
 # - don’t like that it isn’t stdlib
+
 name: 'Bob'
+age: 20
+
+io::print name
+io::print age
 
 # grammar kwargs also on indent line?
 # use parens to force a function call
