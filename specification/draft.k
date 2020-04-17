@@ -204,8 +204,10 @@ if (logged-in? user)
     this-second
 
 # Implicit `do`?
-# no, it should pass a list of exprs
-# more flexibility for each fn 
+# no, it should pass a list of exprs?
+# more flexibility for each fn?
+# ambiguous?
+
 if (logged-in? user) then:
   this-first
   this-second
@@ -291,7 +293,7 @@ if (logged-in? user) then:
 # - not if a pair has rigid syntax
 # how to define new types?
 # non-ambiguous in fns, kwargs last
-# - not good arbitrary rules
+# - not good arbitrary rules?
 
 \name: 'Bob'
 \name: Text = 'Bob'
@@ -347,9 +349,58 @@ name: Text:'Bob'
 # try to make it less "magic"?
 # - functions accept `bindings`
 # - accept `constraints` as well?
-(constraint {\name: Text})
 
+(constraint {\name: Text})
 (\name: | (Text name))
+
+\(+ x y \constraints: {
+  x: Number
+  y: Number
+})
+
+add-name: (get key: constraints: {
+  key: Text
+})
+
+# set of numbers?
+# Can be used as a constraint?
+{x | x > 0}
+
+# constrain values instead of fns?
+# automatically allows generic fns
+
+# non ambiguous? no extra syntax?
+# constraint values, not functions?
+{\name: '' Text \age: 0 Number}
+
+# better allow constraints vals/fns?
+
+# get prototype and constraint
+# return type? Original call?
+(proto value)
+\(proto base constraint)
+
+# just exposes the builtin types
+# and constraints
+(proto [])
+{
+  \base: {}
+  \key: (and (is? Number) (>= 1))
+}
+
+# new prototype w/optional constraint
+# empty constraint for no constraints
+(proto value constraint)
+
+# constraint format?
+# try to be consistent across types
+{
+  \value: prototype|function
+  \key: ditto
+  \rest: {
+    \some-specific-key: xyz
+  }
+}
 
 # REPL var top level?
 # why only REPL?
@@ -574,13 +625,6 @@ let
 
 # "downcast"
 (merge {\x: \y} [1]) # ditto?
-
----
-
-# non ambiguous? no extra syntax?
-# constraint values, not functions?
-
-{\name:Text ''}
 
 ---
 
