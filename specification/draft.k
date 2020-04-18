@@ -1,3 +1,7 @@
+# spec example of lexical binding
+
+---
+
 # Maybe/Option instead of exceptions?
 
 # macros instead of fexprs?
@@ -380,13 +384,15 @@ add-name: (get key: constraints: {
 (proto value)
 \(proto base constraint)
 
-# just exposes the builtin types
-# and constraints
+# exposes builtin types
+# and their constraints, if any
 (proto [])
 {
   \base: {}
   \key: (and (is? Number) (>= 1))
 }
+
+# syntax sugar for constraint?
 
 # new prototype w/optional constraint
 # empty constraint for no constraints
