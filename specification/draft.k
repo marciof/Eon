@@ -273,11 +273,25 @@ if (logged-in? user) then:
 
 ---
 
+# currying for easy lambdas?
+# dynamic binding still default?
+(+ x 1 x:)
+(x: | + x 1)
+
+# default is to evaluate arguments?
+# quote to force deferring?
+(io::print arg \arg:)
+
+---
+
 # maybe goals:
 # - easy non-indent bindings
 # - easy code generation for binds 
 # - easy optional static typing
 # - easy type introspection
+
+# syntax sugar for constraint?
+# or just in library?
 
 # typed bindings in a map
 {\name: 'Bob'}
@@ -304,6 +318,7 @@ if (logged-in? user) then:
 
 # too much to type? Just for a var?
 \name := 'Bob'
+\name:Text = 'Bob'
 
 # generalized pair syntax?
 # linked list-like syntax?
@@ -336,12 +351,11 @@ C:\file.txt
 ([1 range] [2 list] [from 1] [to 9])
 
 # by convention, type is 2nd element?
-# ambiguous with list value?
-name:Text: 'Bob'
-[name [Text 'Bob']]
+# typing as hints only?
 
-name: 'Bob':Text
+name:Text: 'Bob'
 name: Text:'Bob'
+[name [Text 'Bob']]
 
 # builtin instead of operator?
 # - less syntax
@@ -370,15 +384,6 @@ add-name: (get key: constraints: {
 # Can be used as a constraint?
 {x | x > 0}
 
-# constrain values instead of fns?
-# automatically allows generic fns
-
-# non ambiguous? no extra syntax?
-# constraint values, not functions?
-{\name: '' Text \age: 0 Number}
-
-# better allow constraints vals/fns?
-
 # get prototype and constraint
 # return type? Original call?
 (proto value)
@@ -391,8 +396,6 @@ add-name: (get key: constraints: {
   \base: {}
   \key: (and (is? Number) (>= 1))
 }
-
-# syntax sugar for constraint?
 
 # new prototype w/optional constraint
 # empty constraint for no constraints
@@ -407,6 +410,25 @@ add-name: (get key: constraints: {
     \some-specific-key: xyz
   }
 }
+
+# bad to couple prototype with types?
+# every let could create a new proto
+# - remove proto & add constraint
+# - builtin types are constraints
+
+# query constraint of a value
+(constraint [])
+{
+  \base: {}
+  \key: (and (is? Number) (>= 1))
+  \next: {
+    \key: +
+  }
+}
+
+# create a new constrained value
+# create a list of Text values only
+(constraint [] {\value: Text})
 
 # REPL var top level?
 # why only REPL?
