@@ -430,6 +430,8 @@ add-name: (get key: constraints: {
 # create a list of Text values only
 (constraint [] {\value: Text})
 
+# syntactic sugar for constraints?
+
 # REPL var top level?
 # why only REPL?
 
