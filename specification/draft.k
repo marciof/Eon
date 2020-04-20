@@ -430,7 +430,37 @@ add-name: (get key: constraints: {
 # create a list of Text values only
 (constraint [] {\value: Text})
 
+(constraint {name: ''} ...)
+
 # syntactic sugar for constraints?
+
+[key: value | (Text? value)]
+[|Number: Text]
+
+let names: (List Text)
+let names: [|Text]
+
+# values as fns to make constraints?
+# - no need for more syntax
+# - no need for more built ins
+# how to query the types?
+# how to query param types for fns?
+# ambiguous to call Function?
+# - not if using the empty function?
+
+List: []
+Text: ''
+Texts: (List Text)
+Map: {:}
+PhoneBook: (Map Text to: Number)
+
+# naming a type for readability
+# inspecting returns the orig call?
+# - doesn’t work for fns?
+List == (List: Map Integer)
+
+Function: ()
+incr: (Function x: Number)
 
 # REPL var top level?
 # why only REPL?
