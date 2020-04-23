@@ -2,6 +2,7 @@
 
 * TODO improve documentation
 
+- fully switch to Org-mode? https://orgmode.org/org.html
 - In examples, the resulting output of each expression should be `repr`-like?
 - https://github.com/keepassxreboot/keepassxc/wiki/Building-KeePassXC
 - Make `count` throw an error for built-ins or foreign values?
@@ -10,6 +11,7 @@
 - Language code snippet example right on the front page, https://www.disneylandparis.com/en-us/
 - Ensure floating point math is exact by default, https://0.30000000000000004.com
 - Runnable examples (eg. https://doc.rust-lang.org/book/)
+- Unicode/string/text/char/bytes support (Rust String/Grapheme, <https://tildes.net/~comp/9t9/utf_8_everywhere#comment-2hai>)
 
 * TODO investigate shell pipeline support
 
@@ -26,10 +28,15 @@
 
 * TODO syntax for complex numbers?
 
+- Surreal numbers? https://en.wikipedia.org/wiki/Surreal_number
+
 * TODO syntax for fractions?
 
 * TODO build target to lint/validate CommonMark documents
 
+- validate link rot?
+  - https://github.com/macedotavares/Glass-Dome
+  - https://github.com/smallhadroncollider/brok
 - https://github.com/commonmark/cmark
 - https://talk.commonmark.org/t/is-there-a-commonmark-tidy-answer-kinda/2464/3
 - https://github.com/DavidAnson/markdownlint
