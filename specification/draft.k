@@ -1,4 +1,9 @@
 # spec example of lexical binding
+# and currying, and naming fns 
+
+(increment: + x 1
+  x:
+  bindings: bindings)
 
 ---
 
@@ -352,10 +357,25 @@ C:\file.txt
 
 # by convention, type is 2nd element?
 # typing as hints only?
+# more flexibility if impl in stdlib?
 
-name:Text: 'Bob'
-name: Text:'Bob'
+name: Text: 'Bob'
 [name [Text 'Bob']]
+
+person: {\name: '' \age:Number: 0}
+
+[\name ['']]
+[\age [Number [0]]]
+
+(get person \name)
+>>> ''
+
+(get person \age)
+>>> Number:0
+
+let
+  name: 'Bob'
+  age:Number: 20
 
 # builtin instead of operator?
 # - less syntax
@@ -382,7 +402,10 @@ add-name: (get key: constraints: {
 
 # set of numbers?
 # Can be used as a constraint?
-{x | x > 0}
+Positive: {x: Number | > x 0}
+
+(+ x 1 | x: Number)
+(x: Number | + x 1)
 
 # get prototype and constraint
 # return type? Original call?
@@ -434,33 +457,138 @@ add-name: (get key: constraints: {
 
 # syntactic sugar for constraints?
 
-[key: value | (Text? value)]
-[|Number: Text]
+# inferred type
+Person: {\name: ''}
 
-let names: (List Text)
-let names: [|Text]
+# cast to force type change?
+# good to not need extra syntax
+Person: {\name: (List '')}
+
+# no enforced types
+{}
+
+# remove enforced types?
+# - (up-)casting types?
+# - how remove only one field type?
+(Map Person)
+
+# homogeneous types for keys
+{Symbol:}
+
+# homogeneous types for values
+{:Text}
+[:Number]
+
+# homogeneous types for keys & values
+{Symbol: :Text}
+
+# mixing homogenous with heterogenous
+{\name: '' Symbol: :Text}
+
+# for functions?
 
 # values as fns to make constraints?
 # - no need for more syntax
 # - no need for more built ins
+# - consistent as fn returning itself
+# - no params = no constraints
+# - can be named readability/inspect
+# - ambiguous w/type conversion?
+#   - not if thought as a ctor?
+#   - unified type/value/ctor?
 # how to query the types?
 # how to query param types for fns?
 # ambiguous to call Function?
 # - not if using the empty function?
+# - non-empty fns restrict empty fn
+# heterogenous types?
+# type inference is the default?
+# type conversion/cast?
+# type root?
+# goals/rules:
+# - all types are values
+# - all values are types
+# - some types have enumerable values
+# - type/value comes after `:`
+
+# nicer have set/math-like notation?
+Positive: {x: Number | >= x 0}
+Positive: Number (>= x 0 x:)
 
 List: []
 Text: ''
-Texts: (List Text)
-Map: {:}
-PhoneBook: (Map Text to: Number)
 
-# naming a type for readability
+Texts: (List Text)
+Texts: List of: Text
+Texts: ([] Text)
+Texts: [] Text
+
+Names: (Names: List Text)
+let names: [] Text
+Texts <> Names
+
+(proto Texts)
+>>> (List Text)
+
+(proto List)
+>>> (List: Map of: Integer)
+
+Map: {:}
+
+# homogenous map
+PhoneBook: (Map of: Text to: Number)
+PhoneBook: Map Text to: Number
+PhoneBook: {:} Text to: Number
+PhoneBook: {:} Text Number
+
+# heterogenous map
+Person: {\name: ''} {\name: Text}
+
+# type cast?
+let name: ['Bob'] List
+
+# can always add and remove keys
+# but removing downgrades proto?
+# to disable typing use the proto?
+
+# return type for fns?
 # inspecting returns the orig call?
+# - how to inspect other than `get`?
 # - doesn’t work for fns?
-List == (List: Map Integer)
 
 Function: ()
-incr: (Function x: Number)
+
+incr-proto: (incr: Fn x: Num)
+incr: (set incr-proto \incr \(+ x 1))
+
+(proto incr)
+>>> 
+
+# homogenous function
+???
+
+# would have to repurpose `.`?
+# it’s already reserved for numbers?
+# what about `...`? `..`?
+
+# `.` and `:` creates an association?
+# - what kind of association?
+
+1.5
+
+127.0.0.1
+
+io.print
+[io \print]
+
+C:hello.txt
+[C \hello \txt]
+
+01:23:45:67:89:ab
+
+12:45
+
+(io.print 'hi')
 
 # REPL var top level?
 # why only REPL?
@@ -568,7 +696,85 @@ do
 
 ---
 
+# function notation
+(f x) = (+ x 1)
+f x = + x 1
+f x:Number = + x 1
+
+# rules:
+# - all types are values
+# - all values are types
+# - some types have enumerable values
+# - type/value comes after `:`
+# - infix assignment operator?
+
+# list of all possible texts
+# which just means: list of text
+Names: [x: Text | x]
+
+# set/type builder notation
+# if type enumerable, then has values
+Positive: {x: Number | >= x 0}
+
+(domain Positive)
+>>> {\x: Number}
+
+(formula Positive)
+>>>
+
+(domain (formula Positive))
+>>> 
+
+(formula (formula Positive))
+>>> 
+
+UInt: {x: Positive | = (floor x) 0}
+
+(next UInt)
+>>> 0
+
+(next UInt 0)
+>>> 1
+
+# interval/type notation? (equiv.)
+# ditto wrt to being enumerable
+Positive: (0: Int, infinity)
+Positive: (0: Int .. infinity)
+
+# fn notation (named, lexical scope)
+# ambiguous with piping?
+(x: Positive | f: + x 1)
+
+# type inference (unnamed)
+(x | + x 1)
+
+# dynamic scope
+(+ x 1 x: bindings:)
+
+# map/fn notation w/o explicit types
+{\name: 'Bob'} # 'Bob' is type/value
+
+# homogenous types?
+
+???
+
+---
+
+# ambiguity: quote vs defer vs lazy
+
+---
+
+# no dynamic binding? Only lexical?
+
+---
+
 # rename prototype to proto-value?
+
+---
+
+# insert shouldn’t couple:
+# - setting
+# - displacing
 
 ---
 
