@@ -314,16 +314,20 @@ if (logged-in? user) then:
 # easier global vars?
 # makes `=` reserved?
 # - not if a pair has rigid syntax
+# - `=` easier to type than `:`
 # how to define new types?
 # non-ambiguous in fns, kwargs last
 # - not good arbitrary rules?
 
-\name: 'Bob'
-\name: Text = 'Bob'
+# type inference
+name = 'Bob'
 
-# too much to type? Just for a var?
-\name := 'Bob'
-\name:Text = 'Bob'
+# explicit type
+# can be used for casting?
+name: Text = 'Bob'
+
+# dynamic typing
+name := 'Bob'
 
 # generalized pair syntax?
 # linked list-like syntax?
@@ -364,6 +368,8 @@ name: Text: 'Bob'
 
 person: {\name: '' \age:Number: 0}
 
+# homogenous types?
+
 [\name ['']]
 [\age [Number [0]]]
 
@@ -374,8 +380,22 @@ person: {\name: '' \age:Number: 0}
 >>> Number:0
 
 let
+  Number: (proto? 0 value:)
   name: 'Bob'
   age:Number: 20
+
+# disable type
+name:: 'Bob'
+
+# type inference 
+name: 'Bob'
+
+# explicit type
+name:Text: 'Bob'
+
+# type cast
+# - list of what?
+name:List: 'Bob'
 
 # builtin instead of operator?
 # - less syntax
@@ -399,13 +419,6 @@ let
 add-name: (get key: constraints: {
   key: Text
 })
-
-# set of numbers?
-# Can be used as a constraint?
-Positive: {x: Number | > x 0}
-
-(+ x 1 | x: Number)
-(x: Number | + x 1)
 
 # get prototype and constraint
 # return type? Original call?
@@ -462,7 +475,17 @@ Person: {\name: ''}
 
 # cast to force type change?
 # good to not need extra syntax
+# - heterogeneous types?
+# - homogeneous types?
 Person: {\name: (List '')}
+
+# merging/casting/converting
+[] [1 2 3]
+>>> [1 2 3]
+'' \xyz
+>>> 'xyz'
+'Bob' \xyz
+>>> 'Bobxyz'
 
 # no enforced types
 {}
@@ -488,6 +511,7 @@ Person: {\name: (List '')}
 # for functions?
 
 # values as fns to make constraints?
+# - should leave them as type casts?
 # - no need for more syntax
 # - no need for more built ins
 # - consistent as fn returning itself
@@ -504,16 +528,23 @@ Person: {\name: (List '')}
 # heterogenous types?
 # type inference is the default?
 # type conversion/cast?
+# - via `merge` builtin?
+# - makes more sense than ([] value)?
 # type root?
 # goals/rules:
-# - all types are values
-# - all values are types
+# - types = values
 # - some types have enumerable values
 # - type/value comes after `:`
 
-# nicer have set/math-like notation?
-Positive: {x: Number | >= x 0}
+# restricts number as a whole
+# why different than lists?
+# - lists have more than one param
+# - each restricts different parts?
+# - composite vals have multiple part
 Positive: Number (>= x 0 x:)
+Positive: 0 (>= x 0 x:)
+
+Tuple: [\x \y \z] (= (count l) 2 l:)
 
 List: []
 Text: ''
@@ -545,7 +576,9 @@ PhoneBook: {:} Text Number
 Person: {\name: ''} {\name: Text}
 
 # type cast?
-let name: ['Bob'] List
+name: List 'Bob'
+name: [] 'Bob'
+name: ['Bob'] List
 
 # can always add and remove keys
 # but removing downgrades proto?
@@ -563,6 +596,15 @@ incr: (set incr-proto \incr \(+ x 1))
 
 (proto incr)
 >>> 
+
+# heterogeneous types
+# - is `x` a placeholder or a symbol?
+(x: Positive | incr: + x 1)
+
+# homogenous types
+[] Text
+[x: Text|]
+[:Text|]
 
 # homogenous function
 ???
@@ -699,7 +741,10 @@ do
 # function notation
 (f x) = (+ x 1)
 f x = + x 1
-f x:Number = + x 1
+f x: Number = + x 1
+
+# syntax sugar for
+= \f \x: Number \(+ x 1)
 
 # rules:
 # - all types are values
@@ -708,13 +753,27 @@ f x:Number = + x 1
 # - type/value comes after `:`
 # - infix assignment operator?
 
+# general way define types via sets?
+
+# type of single value is an enum
+
 # list of all possible texts
 # which just means: list of text
-Names: [x: Text | x]
+Names: [t: Text | true]
+Names: [:Text]
+
+(domain Names)
+>>> PositiveInt -> Text
+
+(formula Names)
+>>> (key: value: | true)
 
 # set/type builder notation
+# set of all positive numbers
+# is result a set? Or number type?
+# both? A number type can be iterated
 # if type enumerable, then has values
-Positive: {x: Number | >= x 0}
+Positive: {x: Number | >= x 1}
 
 (domain Positive)
 >>> {\x: Number}
@@ -728,7 +787,7 @@ Positive: {x: Number | >= x 0}
 (formula (formula Positive))
 >>> 
 
-UInt: {x: Positive | = (floor x) 0}
+Int: {x: Positive | = (floor x) 0}
 
 (next UInt)
 >>> 0
@@ -741,22 +800,94 @@ UInt: {x: Positive | = (floor x) 0}
 Positive: (0: Int, infinity)
 Positive: (0: Int .. infinity)
 
-# fn notation (named, lexical scope)
+[-2, 2]
+
+# fn notation (w/name, lexical scope)
 # ambiguous with piping?
-(x: Positive | f: + x 1)
+# x or its proto must be Number
+# "a fn w/params such that"
+(x: Number | f: + x 1)
 
-# type inference (unnamed)
+# type inference
 (x | + x 1)
+(+ x 1 x:)
+(x: f: + x 1)
+(+ 1 x:)
 
-# dynamic scope
+# dynamic typing
+(x: | + x 1)
+
+# unnamed param
+(:Positive | ...)
+
+# dynamic scope?
 (+ x 1 x: bindings:)
 
-# map/fn notation w/o explicit types
-{\name: 'Bob'} # 'Bob' is type/value
+# a set w/homogenous types such that
+# is the formula the actual content?
+# or a predicate like math?
+# no easy way for composite types?
+# eg. List of Text
+Texts: [x: Text | true]
+Texts: [:Text]
 
-# homogenous types?
+(proto [1 2 3])
+>>> list-builder notation value
+>>> not the empty list
 
+(formula [])
+>>> {key: value}
+
+# if a predicate then is it not a fn?
+Texts 123
+>>> false
+
+# also a list of all possible Texts?
+(next Texts)
+>>> ''
+
+# predicates allowed as constraints?
+# it’s more like, no types, only pred
+(names: Texts | ...)
+
+# heterogeneous types?
 ???
+
+---
+
+# builtin fns have constraints
+# reuse maps as fns w/type info?
+
+# maps map one value to another
+# no params = value
+# can be a lazily evaluated value
+
+phonebook: {'Bob': 123}
+phonebook 'Bob'
+>>> 123
+
+f: {{Num Num}: \(+ arg.1 arg.2)}
+f 2 3
+>>> 5
+
+---
+
+# math function notation
+
+# no types
+# default fallback or type inference?
+(f x y) = (+ x y)
+f x y = + x y
+
+# supports overloads
+f x:Number y:Number = + x y
+f x:Text y:Text = concat x y
+
+# bindings
+name = 'Bob'
+name: Text = 'Bob'
+
+phonebook: (Map Text Number): {}
 
 ---
 
