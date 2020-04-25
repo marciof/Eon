@@ -1,5 +1,11 @@
 * interpreter
 
+** TODO CMake is too complex/big, alternatives?
+
+- GNU Makefile and MS NMake?
+- compiler example: https://c9x.me/compile/
+- shell example: https://github.com/oilshell/oil/blob/master/Makefile
+
 ** TODO split dependencies per build target (eg. native, x86-32, etc)
 
 - enable more MSVC CL warnings
