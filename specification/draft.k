@@ -7,6 +7,12 @@
 
 ---
 
+# use only: must, should, may?
+
+# is white space significant in spec?
+
+---
+
 # Maybe/Option instead of exceptions?
 
 # macros instead of fexprs?
@@ -57,6 +63,246 @@ date | file 'blah'
 # pipeline quoted as fn call?
 # no new syntax, optional parens
 \(date | file 'blah')
+
+---
+
+# type inference, by default
+\name: 'Bob'
+
+# types can be explicit
+# uses proto for type checking
+\name:Text: 'Bob'
+
+# explicit type can be used for cast
+\chars:List: 'Bob'
+
+# homogeneous types
+\names:(List Text): ['Bob']
+\PhoneBook:(Map Text Number): {:}
+
+# heteregenous types
+# initial keys can’t be removed
+# otherwise their type would change
+\person: {\name: 'Bob' \age: 20}
+
+# disable type checking
+\name:: 'Bob'
+
+# type introspection
+proto \name # Text
+proto \names # (List Text)
+
+# name/new type/proto
+(PhoneBook: Map Text Number)
+(Name: Text)
+
+# more examples
+
+if (logged-in? user) then:
+  do-this-first
+  do-this-second
+
+let
+  name: 'Bob'
+  age:Integer: 20
+  io.print name age
+
+range from: 1 to: 9
+
+(incr: + x 1 x:)
+
+{\age:Integer: 20 \name: 'Bob'}
+
+# what to do with reserving `.`?
+# generalize what’s used for numbers?
+
+# numbers are symbols eval themselves
+
+x.y.x # (get (get x \y) \z)
+1.2 # (get 1 \2)
+1.2.3 # (get (get 1 \2) \3)
+
+io.print person.name
+bindings.1
+
+---
+
+# type inference, by default
+\name = 'Bob'
+
+# types can be explicit
+# uses proto for type checking
+\name: Text = 'Bob'
+
+# explicit type can be used for cast
+\chars: List = 'Bob'
+
+# homogeneous types
+\names: List Text = ['Bob']
+\names: List (List Text) = [['Bob']]
+\PhoneBook: Map Text Number = {:}
+
+# heteregenous types
+# initial keys can’t be removed
+# otherwise their type would change
+\person = {\name = 'Bob' \age = 20}
+
+# disable type checking
+\name := 'Bob'
+
+# type introspection
+proto \name # Text
+proto \names # (List Text)
+
+# name/new type/proto
+(PhoneBook: Map Text Number)
+(Name: Text)
+
+# more examples
+
+if (logged-in? user) then =
+  do-this-first
+  do-this-second
+
+let
+  name = 'Bob'
+  age: Integer = 20
+  io.print name age
+
+range from = 1 to = 9
+
+(incr = + x 1 x: Number =)
+
+{\age: Integer = 20 \name = 'Bob'}
+
+(== x y)
+
+# easy bindings and functions?
+# `=` reserved? what about equality?
+# vararg types?
+
+name = 'Bob'
+incr x: Number = + x 1
+
+# what to do with reserving `.`?
+# what about ellipsis?
+# generalize what’s used for numbers?
+
+# number is symbol that evals itself
+
+x.y.x # (get (get x \y) \z)
+1.2 # (get 1 \2)
+1.2.3 # (get (get 1 \2) \3)
+
+io.print person.name
+bindings.1
+
+---
+
+# values as fns to make constraints?
+
+Number: 0
+Text: ''
+Map: {:}
+List: []
+
+PhoneBook: {:} Text Number
+PhoneBook: Map Text Number
+
+Names: [] Text
+Names: List Text
+
+users: Names ['Bob' 'Alice']
+
+proto Names
+>>> [] Text
+
+# - should leave them as type casts?
+#   - use merge? values aren’t types?
+# - no need for more syntax
+# - no need for more built ins
+# - consistent as fn returning itself
+# - no params = no constraints
+# - can be named readability/inspect
+# - ambiguous w/type conversion?
+#   - not if thought as a ctor?
+#   - unified type/value/ctor?
+# how to query the constraints?
+# how to query param types for fns?
+# ambiguous to call Function?
+# - not if using the empty function?
+# - non-empty fns restrict empty fn
+# heterogenous types?
+# type inference is the default?
+# type conversion/cast?
+# - via `merge` builtin?
+# - makes more sense than ([] value)?
+# type root?
+# goals/rules:
+# - types = values
+# - some types have enumerable values
+# - type/value comes after `:`
+
+# restricts number as a whole
+# why different than lists?
+# - lists have more than one param
+# - each restricts different parts?
+# - composite vals have multiple part
+Positive: Number (>= x 0 x:)
+Positive: 0 (>= x 0 x:)
+
+Tuple: [\x \y \z] (= (count l) 2 l:)
+
+List: []
+Text: ''
+
+Texts: (List Text)
+Texts: List of: Text
+Texts: ([] Text)
+Texts: [] Text
+
+Names: (Names: List Text)
+let names: [] Text
+Texts <> Names
+
+(proto Texts)
+>>> (List Text)
+
+(proto List)
+>>> (List: Map of: Integer)
+
+Map: {:}
+
+# homogenous map
+PhoneBook: (Map of: Text to: Number)
+PhoneBook: Map Text to: Number
+PhoneBook: {:} Text to: Number
+PhoneBook: {:} Text Number
+
+# heterogenous map
+Person: {\name: ''} {\name: Text}
+
+# type cast?
+name: List 'Bob'
+name: [] 'Bob'
+name: ['Bob'] List
+
+# can always add and remove keys
+# but removing downgrades proto?
+# to disable typing use the proto?
+
+# return type for fns?
+# inspecting returns the orig call?
+# - how to inspect other than `get`?
+# - doesn’t work for fns?
+
+Function: ()
+
+incr-proto: (incr: Fn x: Num)
+incr: (set incr-proto \incr \(+ x 1))
+
+(proto incr)
+>>> 
 
 ---
 
@@ -509,93 +755,6 @@ Person: {\name: (List '')}
 {\name: '' Symbol: :Text}
 
 # for functions?
-
-# values as fns to make constraints?
-# - should leave them as type casts?
-# - no need for more syntax
-# - no need for more built ins
-# - consistent as fn returning itself
-# - no params = no constraints
-# - can be named readability/inspect
-# - ambiguous w/type conversion?
-#   - not if thought as a ctor?
-#   - unified type/value/ctor?
-# how to query the types?
-# how to query param types for fns?
-# ambiguous to call Function?
-# - not if using the empty function?
-# - non-empty fns restrict empty fn
-# heterogenous types?
-# type inference is the default?
-# type conversion/cast?
-# - via `merge` builtin?
-# - makes more sense than ([] value)?
-# type root?
-# goals/rules:
-# - types = values
-# - some types have enumerable values
-# - type/value comes after `:`
-
-# restricts number as a whole
-# why different than lists?
-# - lists have more than one param
-# - each restricts different parts?
-# - composite vals have multiple part
-Positive: Number (>= x 0 x:)
-Positive: 0 (>= x 0 x:)
-
-Tuple: [\x \y \z] (= (count l) 2 l:)
-
-List: []
-Text: ''
-
-Texts: (List Text)
-Texts: List of: Text
-Texts: ([] Text)
-Texts: [] Text
-
-Names: (Names: List Text)
-let names: [] Text
-Texts <> Names
-
-(proto Texts)
->>> (List Text)
-
-(proto List)
->>> (List: Map of: Integer)
-
-Map: {:}
-
-# homogenous map
-PhoneBook: (Map of: Text to: Number)
-PhoneBook: Map Text to: Number
-PhoneBook: {:} Text to: Number
-PhoneBook: {:} Text Number
-
-# heterogenous map
-Person: {\name: ''} {\name: Text}
-
-# type cast?
-name: List 'Bob'
-name: [] 'Bob'
-name: ['Bob'] List
-
-# can always add and remove keys
-# but removing downgrades proto?
-# to disable typing use the proto?
-
-# return type for fns?
-# inspecting returns the orig call?
-# - how to inspect other than `get`?
-# - doesn’t work for fns?
-
-Function: ()
-
-incr-proto: (incr: Fn x: Num)
-incr: (set incr-proto \incr \(+ x 1))
-
-(proto incr)
->>> 
 
 # heterogeneous types
 # - is `x` a placeholder or a symbol?
