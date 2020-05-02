@@ -1,5 +1,6 @@
 # spec example of lexical binding
-# and currying, and naming fns 
+# and currying
+# and naming fns 
 
 (increment: + x 1
   x:
@@ -7,7 +8,7 @@
 
 ---
 
-# use only: must, should, may?
+# spec use only: must, should, may?
 
 # is white space significant in spec?
 
@@ -66,61 +67,8 @@ date | file 'blah'
 
 ---
 
-# type inference, by default
-\name: 'Bob'
-
-# types can be explicit
-# uses proto for type checking
-\name: Text: 'Bob'
-
-# explicit type can be used for cast
-# fn return type?
-\chars: List: 'Bob'
-
-# homogeneous types
-\names: List Text: ['Bob']
-\names: List (List Text): [['Bob']]
-\PhoneBook: Map Text Number: {:}
-
-# heteregenous types
-# initial keys can’t be removed
-# otherwise their type would change
-\person: {\name: 'Bob' \age: 20}
-
-# disable type checking
-\Any: (proto)
-\value: Any: 'Bob'
-\list: List Any: []
-
-# type introspection
-proto \name # Text
-proto \names # (List Text)
-
-# name/new type/proto
-(PhoneBook: Map Text Number)
-(Name: Text)
-
-# more examples
-
-if (logged-in? user) then:
-  do-this-first
-  do-this-second
-
-let
-  name: 'Bob'
-  age: Integer: 20
-  io::print name age
-
-range from: 1 to: 9
-
-(incr: + x 1 x:)
-
-{\age: Integer: 20 \name: 'Bob'}
-
----
-
 # `=` is clearer and easier to type?
-# `=` reserved: what about equality?
+# `=` reserved, what about equality?
 
 # type inference, by default
 name = 'Bob'
@@ -131,10 +79,18 @@ name = 'Bob'
 # avoid the word "type" in the spec
 name: Text = 'Bob'
 
-# explicit type can be used for cast
+# explicit type can be used for cast?
 chars: List = 'Bob'
-(print 'Bob': List)
+
+# allow `:` by itself?
+# it is casting the symbol key?
+# or the text value?
+# use it as a prefix/tag?
+chars = 'Bob': List
+chars = List: 'Bob'
+age = Number: 20
 'Bob': List
+List: 'Bob'
 
 # homogeneous types
 names: List Text = ['Bob']
@@ -189,13 +145,11 @@ range from = 1 to = 9
 \(incr = + x: Number 1)
 (proto incr.x) # Number
 
-# currying/piping parameters
+# currying/piping parameters?
 # what does inspecting see?
 
-(x: | + x 1)
-x: | + x 1
-x: Number | + x 1
-x = | + x 1
+x = y = | + x y
+x: Number = y: Number = | + x y
 
 # ensure not ambiguous with pipes
 # needed? Math-like, use for sets?
