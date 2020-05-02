@@ -93,29 +93,38 @@ age = Number: 20
 List: 'Bob'
 
 # homogeneous types
+# no separate syntax for empty map?
+Map = (proto [])
 names: List Text = ['Bob']
 names: List (List Text) = [['Bob']]
-PhoneBook: Map Text Number = {:}
+PhoneBook: Map Text Number = {}
 
 # heteregenous types
 # initial keys can’t be removed
 # otherwise their type would change
 person = {\name = 'Bob' \age = 20}
+Person = ???
+alice: person = {\name = 'Alice'}
 
 # disable type checking
 value := 'Bob'
 Any = (proto)
+Any = (proto Map) # (proto Number)
 list: Any = []
 
 # type introspection
+(List) # List
 proto name # Text
 proto names # (List Text)
+proto (List Text) # List
+proto List # (Map PositiveInt Any)
 
 # name/new type/proto
-(PhoneBook: Map Text Number)
-(Name: Text)
+(PhoneBook = Map Text Number)
+(Name = Text)
 
 # more examples
+# if `=` in symbols: w/spac mandatory
 
 if (logged-in? user) then =
   do-this-first
@@ -138,6 +147,7 @@ range from = 1 to = 9
 # functions
 # how to specify arg order?
 # vararg types?
+# broken: symbols aren’t callable
 
 \(incr = + x 1)
 \(+ bindings.x 1)
