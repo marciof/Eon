@@ -71,14 +71,16 @@ date | file 'blah'
 
 # types can be explicit
 # uses proto for type checking
-\name:Text: 'Bob'
+\name: Text: 'Bob'
 
 # explicit type can be used for cast
-\chars:List: 'Bob'
+# fn return type?
+\chars: List: 'Bob'
 
 # homogeneous types
-\names:(List Text): ['Bob']
-\PhoneBook:(Map Text Number): {:}
+\names: List Text: ['Bob']
+\names: List (List Text): [['Bob']]
+\PhoneBook: Map Text Number: {:}
 
 # heteregenous types
 # initial keys can’t be removed
@@ -86,7 +88,9 @@ date | file 'blah'
 \person: {\name: 'Bob' \age: 20}
 
 # disable type checking
-\name:: 'Bob'
+\Any: (proto)
+\value: Any: 'Bob'
+\list: List Any: []
 
 # type introspection
 proto \name # Text
@@ -104,55 +108,52 @@ if (logged-in? user) then:
 
 let
   name: 'Bob'
-  age:Integer: 20
-  io.print name age
+  age: Integer: 20
+  io::print name age
 
 range from: 1 to: 9
 
 (incr: + x 1 x:)
 
-{\age:Integer: 20 \name: 'Bob'}
-
-# what to do with reserving `.`?
-# generalize what’s used for numbers?
-
-# numbers are symbols eval themselves
-
-x.y.x # (get (get x \y) \z)
-1.2 # (get 1 \2)
-1.2.3 # (get (get 1 \2) \3)
-
-io.print person.name
-bindings.1
+{\age: Integer: 20 \name: 'Bob'}
 
 ---
 
+# `=` is clearer and easier to type?
+# `=` reserved: what about equality?
+
 # type inference, by default
-\name = 'Bob'
+name = 'Bob'
 
 # types can be explicit
+# "type assertion"
 # uses proto for type checking
-\name: Text = 'Bob'
+# avoid the word "type" in the spec
+name: Text = 'Bob'
 
 # explicit type can be used for cast
-\chars: List = 'Bob'
+chars: List = 'Bob'
+(print 'Bob': List)
+'Bob': List
 
 # homogeneous types
-\names: List Text = ['Bob']
-\names: List (List Text) = [['Bob']]
-\PhoneBook: Map Text Number = {:}
+names: List Text = ['Bob']
+names: List (List Text) = [['Bob']]
+PhoneBook: Map Text Number = {:}
 
 # heteregenous types
 # initial keys can’t be removed
 # otherwise their type would change
-\person = {\name = 'Bob' \age = 20}
+person = {\name = 'Bob' \age = 20}
 
 # disable type checking
-\name := 'Bob'
+value := 'Bob'
+Any = (proto)
+list: Any = []
 
 # type introspection
-proto \name # Text
-proto \names # (List Text)
+proto name # Text
+proto names # (List Text)
 
 # name/new type/proto
 (PhoneBook: Map Text Number)
@@ -167,32 +168,59 @@ if (logged-in? user) then =
 let
   name = 'Bob'
   age: Integer = 20
+  equal = ==
+  
   io.print name age
+  ip::print name age
 
 range from = 1 to = 9
-
-(incr = + x 1 x: Number =)
 
 {\age: Integer = 20 \name = 'Bob'}
 
 (== x y)
 
-# easy bindings and functions?
-# `=` reserved? what about equality?
+# functions
+# how to specify arg order?
 # vararg types?
 
-name = 'Bob'
-incr x: Number = + x 1
+\(incr = + x 1)
+\(+ bindings.x 1)
+
+\(incr = + x: Number 1)
+(proto incr.x) # Number
+
+# currying/piping parameters
+# what does inspecting see?
+
+(x: | + x 1)
+x: | + x 1
+x: Number | + x 1
+x = | + x 1
+
+# ensure not ambiguous with pipes
+# needed? Math-like, use for sets?
+# can also be syntactic sugar
+# domain + formula = ?
+
+(x: | + x 1)
+(x = 0 | + x 1)
+(x: Any | + x 1)
+(x: Number | + x 1)
+(x: Number | incr = + x 1)
+
+(domain incr)
+(formula incr)
 
 # what to do with reserving `.`?
 # what about ellipsis?
 # generalize what’s used for numbers?
-
-# number is symbol that evals itself
+# numbers are symbols eval themselves
 
 x.y.x # (get (get x \y) \z)
 1.2 # (get 1 \2)
 1.2.3 # (get (get 1 \2) \3)
+... # (Symbol Symbol Symbol)
+1..2 # (1 Symbol 2)
 
 io.print person.name
 bindings.1
