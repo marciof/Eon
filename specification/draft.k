@@ -77,23 +77,21 @@ name = 'Bob'
 # "type assertion"
 # uses proto for type checking
 # avoid the word "type" in the spec
-name: Text = 'Bob'
+name = Text: 'Bob'
 
 # explicit type can be used for cast?
-chars: List = 'Bob'
+chars = List: 'Bob'
 
 # allow `:` by itself?
 # it is casting the symbol key?
 # or the text value?
 # use it as a prefix/tag?
-chars = 'Bob': List
-chars = List: 'Bob'
-age = Number: 20
-'Bob': List
 List: 'Bob'
 
 # homogeneous types
 # no separate syntax for empty map?
+# Symbol is already a precedent
+{=}
 Map = (proto [])
 names: List Text = ['Bob']
 names: List (List Text) = [['Bob']]
@@ -109,7 +107,7 @@ alice: person = {\name = 'Alice'}
 # disable type checking
 value := 'Bob'
 Any = (proto)
-Any = (proto Map) # (proto Number)
+Any = (proto Map) # == (proto Number)
 list: Any = []
 
 # type introspection
@@ -122,9 +120,11 @@ proto List # (Map PositiveInt Any)
 # name/new type/proto
 (PhoneBook = Map Text Number)
 (Name = Text)
+Names = (Names = List Text)
+names = Names: ['Bob']
 
 # more examples
-# if `=` in symbols: w/spac mandatory
+# if `=` in symbols: w-spc mandatory
 
 if (logged-in? user) then =
   do-this-first
@@ -132,7 +132,7 @@ if (logged-in? user) then =
 
 let
   name = 'Bob'
-  age: Integer = 20
+  age = Number: 20
   equal = ==
   
   io.print name age
@@ -152,28 +152,48 @@ range from = 1 to = 9
 \(incr = + x 1)
 \(+ bindings.x 1)
 
-\(incr = + x: Number 1)
+\(incr = + Number: x 1)
 (proto incr.x) # Number
 
 # currying/piping parameters?
 # what does inspecting see?
 
-x = y = | + x y
-x: Number = y: Number = | + x y
+(x = y = | + x y)
+Number: x Number: y | + x y
+Number: x = Number: y = | + x y
+
+# something like this?
+# too needlessly complex and slow?
+# just use domain+formula?
+
+(evaluate
+  \(+ x y)
+  (merge bindings
+    {\x = Number: arg.1
+     \y = Number: arg.2}))
 
 # ensure not ambiguous with pipes
 # needed? Math-like, use for sets?
 # can also be syntactic sugar
-# domain + formula = ?
+# too much syntax?
 
-(x: | + x 1)
-(x = 0 | + x 1)
-(x: Any | + x 1)
-(x: Number | + x 1)
-(x: Number | incr = + x 1)
+(x = | + x 1)
+(Number: x = | + x 1)
+(Number: x = | incr = + x 1)
 
 (domain incr)
 (formula incr)
+
+# domain + formula = ?
+# free up type "ctors"?
+# harder to read?
+
+[Text:] # list of texts
+{Number:} # set of numbers
+{Text: = Number:} # map text to num
+
+{Number: x = | > x 0}
+(Set domain formula)
 
 # what to do with reserving `.`?
 # what about ellipsis?
@@ -188,6 +208,10 @@ x.y.x # (get (get x \y) \z)
 
 io.print person.name
 bindings.1
+
+---
+
+# a map is a set of pairs?
 
 ---
 
