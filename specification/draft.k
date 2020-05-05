@@ -67,8 +67,33 @@ date | file 'blah'
 
 ---
 
+# `:` less syntax, "prettier", no w/s
+# a type is simply a fn/ctor
+# - less syntax, frees up `.` and `=`
+# - still easy to read
+# - can provide a "merge" fn for free
+
+# type inference, by default
+name: 'Bob'
+
+# types can be explicit
+# "type assertion/conversion"
+# uses proto for type checking?
+# avoid the word "type" in the spec?
+name: (Text 'Bob')
+
+# explicit type can be used for cast?
+chars: (List 'Bob')
+
+# what else?
+...
+
+---
+
 # `=` is clearer and easier to type?
 # `=` reserved, what about equality?
+# conflate type concept with value?
+# - eg. List isn’t a type, it’s `[]` 
 
 # type inference, by default
 name = 'Bob'
@@ -148,6 +173,8 @@ range from = 1 to = 9
 # how to specify arg order?
 # vararg types?
 # broken: symbols aren’t callable
+# - symbols aren’t but fn lists are
+# - allow [=] as fn list w/o calling?
 
 \(incr = + x 1)
 \(+ bindings.x 1)
