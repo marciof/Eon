@@ -69,24 +69,56 @@ date | file 'blah'
 
 # `:` less syntax, "prettier", no w/s
 # a type is simply a fn/ctor
+# avoid the word "type" in the spec?
 # - less syntax, frees up `.` and `=`
 # - still easy to read
 # - can provide a "merge" fn for free
 
-# type inference, by default
+# type inference, default
 name: 'Bob'
 
-# types can be explicit
-# "type assertion/conversion"
-# uses proto for type checking?
-# avoid the word "type" in the spec?
-name: (Text 'Bob')
+# type assertion, explicit
+name: Text 'Bob'
 
-# explicit type can be used for cast?
-chars: (List 'Bob')
+# type up-cast
+chars: List 'Bob'
+
+# type down-cast
+names: Names ['Bob']
+
+# define new type
+Names: ???
+
+(\x: \y: | + x y)
+
+(domain [])
+(formula [])
+
+# retrieving the type
+List: (proto []) # Int to Any?
+???: (proto List) # List
+
+# defining a new type
+
+# uses proto for type checking?
 
 # what else?
 ...
+
+# fn param types (explicit)
+# - still can’t fn call Symbols?
+# - it'd be good to have ctor fns
+#   - can type cast
+#   - can merge
+#   - can user defined types
+#   ~ can build fns
+# - how to simplify fns?
+# - generics?
+
+Names: List Text
+Names: (proto List Text)
+Names: [\index: \value | Text? value]
+Names: [|Text]
 
 ---
 
