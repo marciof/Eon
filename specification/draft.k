@@ -68,6 +68,13 @@ date | file 'blah'
 ---
 
 # `:` less syntax, "prettier", no w/s
+# would be nice to converge () [] {}
+# - fn is a list that gets eval
+# - does that mean symbols get eval?
+# - call = eval
+
+>>> some-symbol
+123
 
 # type inference, default
 name: 'Bob'
@@ -92,15 +99,8 @@ names: Names 'Bob'
 Names: ???
 Names: [\name | Text name]
 
-(\x: \y: | + x y)
-(x: y: | + x y)
-
-(domain [])
-(formula [])
-
 # generics 
 
-# a type is simply a fn/ctor
 # avoid the word "type" in the spec?
 # - less syntax, frees up `.` and `=`
 # - still easy to read
