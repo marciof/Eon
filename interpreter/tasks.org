@@ -11,6 +11,7 @@
 - https://nullprogram.com/blog/2017/08/20/
 - compiler example: https://c9x.me/compile/
 - shell example: https://github.com/oilshell/oil/blob/master/Makefile
+- dev cycle watch, https://github.com/watchexec/watchexec
 
 ** TODO split dependencies per build target (eg. native, x86-32, etc)
 
