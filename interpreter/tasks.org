@@ -1,10 +1,17 @@
 * interpreter
 
+** TODO simplify error handling and force Maybe/Optional types?
+
+- https://doc.rust-lang.org/book/ch09-02-recoverable-errors-with-result.html
+
 ** TODO CMake is too complex/big, alternatives?
 
-- GNU Makefile and MS NMake?
+- POSIX Makefile and MS NMake? or only Makefile and require POSIX Make on Windows?
+- https://noahloomans.com/tutorials/makefile/
+- https://nullprogram.com/blog/2017/08/20/
 - compiler example: https://c9x.me/compile/
 - shell example: https://github.com/oilshell/oil/blob/master/Makefile
+- dev cycle watch, https://github.com/watchexec/watchexec
 
 ** TODO split dependencies per build target (eg. native, x86-32, etc)
 
@@ -22,6 +29,7 @@
   - https://about.gitlab.com/product/continuous-integration/
 - sign-up to interest mailing lists for dependencies?
 - update README dependencies
+  - https://deno.land/std/manual.md#download-and-install
 - split native build into library and executable? (library would be used by the javascript build)
 
 ** TODO run build on Travis CI for simple initial testing?
@@ -51,6 +59,7 @@
 ** TODO enable static code analyzers
 
 - https://developers.redhat.com/blog/2020/03/26/static-analysis-in-gcc-10/
+  - "-fanalyzer option in gcc-10", https://news.ycombinator.com/item?id=23103642
 - MSVC SAL https://docs.microsoft.com/cpp/code-quality/understanding-sal
 - MSVC CL https://docs.microsoft.com/cpp/build/reference/analyze-code-analysis
 
@@ -77,13 +86,9 @@
 - https://news.ycombinator.com/item?id=17642147
 - https://threadreaderapp.com/thread/921921604140937216.html
 
-** TODO financing
+** JIT?
 
-- https://www.patreon.com/zloirock
-- https://opencollective.com/core-js
-- https://flattr.com
-- https://www.buymeacoffee.com/mweststrate
-- https://itsfoss.com/open-source-funding-platforms/
+- libgccjit, https://gcc.gnu.org/onlinedocs/jit/
 
 * javascript
 
