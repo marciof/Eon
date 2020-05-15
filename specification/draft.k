@@ -12,6 +12,13 @@
 
 # is white space significant in spec?
 
+# triple quotes?
+# alternative quotes?
+
+# quote quasi-quote unquote?
+`symbol
+`(,fn)
+
 ---
 
 # Maybe/Option instead of exceptions?
@@ -61,6 +68,8 @@ split val | count re'\d' txt: | print
 # file I/O (more verbose, but clear)
 date | file 'blah'
 
+date :: file 'blah'
+
 # pipeline quoted as fn call?
 # no new syntax, optional parens
 \(date | file 'blah')
@@ -68,50 +77,223 @@ date | file 'blah'
 ---
 
 # `:` less syntax, "prettier", no w/s
-# would be nice to converge () [] {}
-# - fn is a list that gets eval
-# - does that mean symbols get eval?
-# - call = eval
 
->>> some-symbol
-123
+# fn as value constraint
+# prob more flexible and less syntax
+# splice = insert + merge + delete
+# no need for Any as Map is the root?
+# Number is Map/List of digit Symbols
+Map: (splice {:} map:)
+Text: (splice '' map:) 
+List: (splice [] map:)
 
-# type inference, default
+# value inference, default
+# can be used on both keys and values
 name: 'Bob'
 
-# type assertion, explicit
+# value assertion, explicit
 name: Text 'Bob'
 
-# type up-cast
+# value up-cast, safe
 chars: List 'Bob'
+
+...
+
+# type is a value/fn ctor?
+# Python class name is type and ctor
+
+Person: {\name: ''}
+bob: (set Person \name 'Bob')
+bob: Person \name: 'Bob'
+
+Person: (proto {\name: ''} ctor-fn)
+
+Names: []
+friends: Names 'Bob'
+
+# [] is both value and ctor
+# when used as ctor creates new proto
+
+# spec has type syntax in fn headers
+# should follow the same or change
+# implemented in the stdlib?
+
+# - as shell "call" values = values
+# - nicer to converge () [] {} ?
+#   - fn is a list that gets eval?
+#   - make list and fn share a proto?
+# - no extra syntax for static types
+# - type generics
+# - type inference
+# - up/down type cast
+# - dynamic typing
+# - new types (flexibility of impl)
+
+# type down-cast (unsafe)
+# - type system would complain?
+# - must use separate fn to convert?
+text: Text [65]
+
+# dynamic typing (Map is the root)
+# no need to if have generics?
+???
+value: Map 'Bob'
+
+# generics
+...
+
+# disable static typing from value
+???
+person: {\name: ''}
+value: merge {:} person
+
+# homogenous type
+...
+
+# heterogenous type
+...
+
+# get ??? of a value
+proto value
+
+# new constraint/ctor/type
+Names: ...
+
+Person: (proto {:} {\name: ''})
+bob: Person \name: 'Bob'
+
+value: (proto bob)
+value \name: 123
+
+Names ['Bob']
 
 # what’s List? And Text?
 # - weird to be values? ([] 'Bob')
+# - too implicit?
+# - not always very readable
+# - merge becomes "built-in"
+# - prior art for concatenation?
+# - hard to denote generics?
+# - not all values can be concat?
+'x' 'y' # = 'xy'
+[1] [2] # = [1 2]
+1 2 # = 3
+chars: [] 'Bob'
+function: () +
+countdown [1]
 
-# type down-cast
-names: Names ['Bob']
-names: Names 'Bob'
+# fns have implicit bindings?
+# lexical scope by default?
+\(+ x 1)
+(: + x 1)
+(x: . + x 1)
+(x :: + x 1)
+(x: : + x 1)
+\(+ x 1 scope:)
 
-# retrieve type
-
-# define new type
-
-Names: ???
-Names: [\name | Text name]
-
-# generics 
+[x | + x 1]
 
 # avoid the word "type" in the spec?
 # - less syntax, frees up `.` and `=`
 # - still easy to read
-# - can provide a "merge" fn for free
+
+---
+
+# checks if values are struct compat
+# ML pattern matching?
+# no need to inspect types
+(proto base value ...)
+
+if (proto [] input) then:
+  io.print 'list'
+
+(constraint base-value rules)
+
+# List of Numbers
+# constraint fn? Or struct compat?
+# consistent with how `proto` works?
+Numbers: (constraint [] Number)
+
+[|Number]
+[|Number|]
+
+# retrieve constraints
+(constraint Numbers)
+
+# there are already constraints
+# symbol has constraints
+# text has constraints
+# having a built-in only exposes them
+
+# not proto value or type hierarchy:
+# value hierarchy from constraints
+
+(constraint {})
+
+(domain {})
+# any type, unrestricted, same as map
+(formula {})
+# `=` so that key equals value
+
+(constraint {:} domain formula)
+
+---
+
+# more like math?
+# too much syntax?
+# need strike right balance between:
+# simple and expressive
+
+# set of numbers
+# insertion ordered
+Countdown: {3 2 1}
+(Countdown 3)
+
+Text: (proto '')
+
+Names: {l: List t: Text
+  | or (empty? l)
+
+Text: (proto ...)
+Text: (formula ...)
+Text: (domain ...)
+Text: {t | = (proto t) ''} # bool?
+
+# can be used as a type/constraint
+# denotes set of possible values
+# if enumerable, can be iterated
+# formula? pred or value gen?
+...
+
+# introspection: domain, formula
+...
+
+# function definition
+# a fn is a set of values
+# if it has param(s), can be called
+# params are symbols by default
+# lexical scope by default
+incr: {x | + x 1}
+
+# fn w/o params
+talk: {| print 'Hello'}
+
+# fn w/ default arg
+greet: {name: 'human' | print name}
+
+# how to denote code? AST?
+# syntax sugar for deferred fn list
+# otherwise inconsistent with \() ?
+# too magic? too confusing?
+...
 
 ---
 
 # `=` is clearer and easier to type?
 # `=` reserved, what about equality?
 # conflate type concept with value?
-# - eg. List isn’t a type, it’s `[]` 
+# - eg. List isn’t a type, it’s `[]`
+# - not types, rather constraint fns
 
 # type inference, by default
 name = 'Bob'
@@ -136,9 +318,13 @@ List: 'Bob'
 # Symbol is already a precedent
 {=}
 Map = (proto [])
-names: List Text = ['Bob']
-names: List (List Text) = [['Bob']]
-PhoneBook: Map Text Number = {}
+names = List Text: ['Bob']
+names = List (List Text): [['Bob']]
+PhoneBook = Map Text Number: {}
+
+# constraint builders
+((Map) 123) # = false
+((List Text) ['abc'] # = true
 
 # heteregenous types
 # initial keys can’t be removed
@@ -168,6 +354,7 @@ names = Names: ['Bob']
 
 # more examples
 # if `=` in symbols: w-spc mandatory
+# not very flexible, but readable?
 
 if (logged-in? user) then =
   do-this-first
@@ -183,7 +370,7 @@ let
 
 range from = 1 to = 9
 
-{\age: Integer = 20 \name = 'Bob'}
+{\age = Integer: 20 \name = 'Bob'}
 
 (== x y)
 
@@ -232,6 +419,12 @@ Number: x = Number: y = | + x y
 # domain + formula = ?
 # free up type "ctors"?
 # harder to read?
+
+# syntax sugar with params?
+# ambiguous with keyword params?
+
+f x = + x 1
+f Text: x = append x 1
 
 [Text:] # list of texts
 {Number:} # set of numbers
