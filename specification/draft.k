@@ -30,6 +30,17 @@
 
 ---
 
+person: {\name: 'Bob'}
+
+(set person \name 'Alice')
+(set person.name 'Alice')
+person \name: 'Alice'
+
+names: ['Bob' 'Alice']
+names 1: 'Bob'
+
+---
+
 # Pipeline support? shell pipe?
 
 # goals:
@@ -199,26 +210,35 @@ countdown [1]
 
 ---
 
-# checks if values are struct compat
-# ML pattern matching?
-# no need to inspect types
-(proto base value ...)
+# define new constraint
+# formula can access: map key value
+# what about booleans and numbers?
+# allow arbitrary fns?
+# could cause too much logic within
+# as opposed to normal fns
 
-if (proto [] input) then:
-  io.print 'list'
+(constraint
+  base-value
+  value
+  key
+  formula)
 
-(constraint base-value rules)
+# retrieve constraint
+
+(constraint value)
 
 # List of Numbers
 # constraint fn? Or struct compat?
 # consistent with how `proto` works?
+
+Numbers: (constraint [] Number?)
 Numbers: (constraint [] Number)
+Countdown: (constraint 3 \(- 1))
 
-[|Number]
-[|Number|]
+# syntax sugar?
+# Math like for familiarity?
 
-# retrieve constraints
-(constraint Numbers)
+Numbers: [n | Number?]
 
 # there are already constraints
 # symbol has constraints
@@ -229,13 +249,16 @@ Numbers: (constraint [] Number)
 # value hierarchy from constraints
 
 (constraint {})
-
-(domain {})
 # any type, unrestricted, same as map
-(formula {})
 # `=` so that key equals value
 
-(constraint {:} domain formula)
+# checks if values are struct compat
+# ML pattern matching?
+# no need to inspect types
+(proto base value ...)
+
+if (proto [] input) then:
+  io.print 'list'
 
 ---
 
