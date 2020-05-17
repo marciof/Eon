@@ -19,6 +19,9 @@
 `symbol
 `(,fn)
 
+# make list extend fn?
+# to easily merge arg lists into fns?
+
 ---
 
 # Maybe/Option instead of exceptions?
@@ -30,11 +33,14 @@
 
 ---
 
-person: {\name: 'Bob'}
+person: {\name: 'Bob' \age: 0}
 
 (set person \name 'Alice')
 (set person.name 'Alice')
 person \name: 'Alice'
+
+# slices
+person \name \age
 
 names: ['Bob' 'Alice']
 names 1: 'Bob'
@@ -110,6 +116,15 @@ chars: List 'Bob'
 
 ...
 
+# homogenous type
+Numbers: \(splice [0] map: | unshift)
+[0]
+
+# heterogeneous type
+Set: (splice {} map:)
+[]
+[0 'a']
+
 # type is a value/fn ctor?
 # Python class name is type and ctor
 
@@ -158,12 +173,6 @@ value: Map 'Bob'
 person: {\name: ''}
 value: merge {:} person
 
-# homogenous type
-...
-
-# heterogenous type
-...
-
 # get ??? of a value
 proto value
 
@@ -210,26 +219,39 @@ countdown [1]
 
 ---
 
-# define new constraint
-# formula can access: map key value
-# what about booleans and numbers?
-# allow arbitrary fns?
-# could cause too much logic within
-# as opposed to normal fns
+# constraint fn? Or struct compat?
+# consistent with how `proto` works?
+# why stop at types for validation?
+# because can be made compile time?
 
-(constraint
-  base-value
-  value
-  key
-  formula)
+# there are already constraints
+# symbol has constraints
+# text has constraints
+# having a built-in only exposes them
+
+# not necessarily 
+# could be impl within builtin fns
+
+# define new constraint
+# - what about booleans and numbers?
+# - allow arbitrary fns?
+#   - could allow too much logic?
+#   - number tower doesn’t need fns?
+
+(constraint base key value)
+(constraint base key value formula)
 
 # retrieve constraint
 
 (constraint value)
 
+# built in types
+
+(constraint []) # (() Natural Any)
+(constraint ()) # ({:} Any Any)
+(constraint {}) #
+
 # List of Numbers
-# constraint fn? Or struct compat?
-# consistent with how `proto` works?
 
 Numbers: (constraint [] Number?)
 Numbers: (constraint [] Number)
@@ -239,11 +261,6 @@ Countdown: (constraint 3 \(- 1))
 # Math like for familiarity?
 
 Numbers: [n | Number?]
-
-# there are already constraints
-# symbol has constraints
-# text has constraints
-# having a built-in only exposes them
 
 # not proto value or type hierarchy:
 # value hierarchy from constraints
@@ -258,7 +275,45 @@ Numbers: [n | Number?]
 (proto base value ...)
 
 if (proto [] input) then:
-  io.print 'list'
+  io.print 'list or list-like'
+
+---
+
+# proper interface design (?) in fns
+# fns have the logic and constraints
+
+Person: {\name: '' \age: 0}
+Text: (splice '' map:) 
+set-name: (set key: \name
+  map: (Text value:))
+
+# typeof:
+# - remove all key value pairs
+# - index into "type" map
+
+(function proto (value)
+  (get
+    {
+      []: []
+      {}: {}
+      (): ()
+      '': ''
+      {:}: {:}
+      # numbers?
+      # booleans?
+      # empty symbol?
+    }
+    (splice value
+      to: (count value))))
+
+---
+
+# cast with default
+name: (cast '' 'Bob')
+chars: (cast [] 'Bob')
+panic: (cast 0 'Bob')
+safe: (cast 0 'Bob' -1)
+homogenous: (cast [] [] value: Num)
 
 ---
 
