@@ -97,9 +97,9 @@ date :: file 'blah'
 
 # (constraint value key value)
 # (proto value)
-# dynamic binding by default
+# dynamic binding by default?
 # - code is just code
-# dynamic typing by default
+# dynamic typing by default?
 # - can force static, eg. (List val)
 
 # fn as value constraint
@@ -167,20 +167,23 @@ friends: Names 'Bob'
 # - must use separate fn to convert?
 text: Text [65]
 
-# dynamic typing (Map is the root)
-# no need to if have generics?
-???
-value: Map 'Bob'
+# dynamic typing, via args
+\(
+  (if (= (proto scope.arg) [])
+    then: (io.print
+      'list' (count scope.arg))
+    else: (io.print 'non list')))
+
+# static typing, via args
+\(+ 1 scope.arg)
 
 # generics
 ...
 
 # disable static typing from value
-???
-person: {\name: ''}
-value: merge {:} person
+...
 
-# get ??? of a value
+# get type/ctor/? of a value
 proto value
 
 # new constraint/ctor/type
