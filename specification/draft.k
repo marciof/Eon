@@ -95,6 +95,13 @@ date :: file 'blah'
 
 # `:` less syntax, "prettier", no w/s
 
+# (constraint value key value)
+# (proto value)
+# dynamic binding by default
+# - code is just code
+# dynamic typing by default
+# - can force static, eg. (List val)
+
 # fn as value constraint
 # prob more flexible and less syntax
 # splice = insert + merge + delete
@@ -283,9 +290,10 @@ if (proto [] input) then:
 # fns have the logic and constraints
 
 Person: {\name: '' \age: 0}
-Text: (splice '' map:) 
+Text!: (splice '' map:) 
 set-name: (set key: \name
-  map: (Text value:))
+  map: (Text! value:))
+set-name Person 'Bob'
 
 # typeof:
 # - remove all key value pairs
