@@ -71,9 +71,18 @@ date :: file 'blah'
 # (constraint value key value)
 # creates new constraint
 
-# (proto value)
 # (constraint value)
 # gets constraint
+
+# how constraint heterogeneous value?
+(constraint {:} shape: {\name: ''})
+
+[] # NaturalNumber: Any
+{} # Any: Any
+'' #
+Symbol #
+
+# avoid word proto/prototype in spec?
 
 # dynamic binding by default?
 # - code is just code

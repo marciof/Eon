@@ -56,6 +56,7 @@
 * TODO syntax for complex numbers?
 
 - Surreal numbers? https://en.wikipedia.org/wiki/Surreal_number
+- number tower like Scheme? https://en.m.wikipedia.org/wiki/List_of_types_of_numbers
 
 * TODO syntax for fractions?
 
