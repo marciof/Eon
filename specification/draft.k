@@ -96,7 +96,12 @@ date :: file 'blah'
 # `:` less syntax, "prettier", no w/s
 
 # (constraint value key value)
+# creates new constraint
+
 # (proto value)
+# (constraint value)
+# gets constraint
+
 # dynamic binding by default?
 # - code is just code
 # dynamic typing by default?
