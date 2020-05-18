@@ -1,8 +1,6 @@
 # spec example of lexical binding
 # and naming fns, \(incr: + x 1)
 
----
-
 # are triple quotes needed?
 # are alternative quotes needed?
 
@@ -13,28 +11,12 @@
 # make list extend fn?
 # to easily merge arg lists into fns?
 
----
-
 # Maybe/Option instead of exceptions?
 
 # macros instead of fexprs?
 # - allows early returns
 # - could replace exceptions
 # - potentially more performant
-
----
-
-person: {\name: 'Bob' \age: 0}
-
-(set person \name 'Alice')
-(set person.name 'Alice')
-person \name: 'Alice'
-
-# slices
-person \name \age
-
-names: ['Bob' 'Alice']
-names 1: 'Bob'
 
 ---
 
