@@ -9,20 +9,26 @@
 
 * TODO check licensing of everything (compile list in a text file?)
 
+* TODO is white space significant in the grammar?
+
+* TODO make `count` throw an error for built-ins or foreign values?
+
+* TODO verify soundness of `Text`
+
+- Unicode/string/text/char/bytes support
+- Rust String/Grapheme, <https://tildes.net/~comp/9t9/utf_8_everywhere#comment-2hai>
+
 * TODO improve documentation
 
+- use only: must, should, may?
 - fully switch to Org-mode? https://orgmode.org/org.html
 - add references to each section, where needed, for prior art? https://github.com/denoland/deno/pull/671
-- In examples, the resulting output of each expression should be `repr`-like?
+- in examples, should the resulting output of each expression be `repr`-like?
 - https://github.com/keepassxreboot/keepassxc/wiki/Building-KeePassXC
-- Make `count` throw an error for built-ins or foreign values?
-- Function sub headings
+- Function sub headings?
 - Examples and conditions per section
-- Language code snippet example right on the front page, https://www.disneylandparis.com/en-us/
-- Ensure floating point math is exact by default, https://0.30000000000000004.com
+- Language code snippet example right on the front page
 - Runnable examples (eg. https://doc.rust-lang.org/book/)
-- Unicode/string/text/char/bytes support (Rust String/Grapheme, <https://tildes.net/~comp/9t9/utf_8_everywhere#comment-2hai>)
-- math numerals vs number and representations, eg. 0.999 = 1, https://news.ycombinator.com/item?id=23004086
 
 * TODO investigate shell pipeline support
 
@@ -41,6 +47,11 @@
 - Language ergonomics shouldn't need an IDE? Progressive enhancement
 
 * TODO investigate optional static typing?
+
+* TODO are decimals under-specified?
+
+- exactness of floating point math, https://0.30000000000000004.com
+- math numerals vs number and representations, eg. 0.999 = 1, https://news.ycombinator.com/item?id=23004086
 
 * TODO syntax for complex numbers?
 

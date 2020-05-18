@@ -1,19 +1,10 @@
 # spec example of lexical binding
-# and currying
-# and naming fns 
-
-(increment: + x 1
-  x:
-  bindings: bindings)
+# and naming fns, \(incr: + x 1)
 
 ---
 
-# spec use only: must, should, may?
-
-# is white space significant in spec?
-
-# triple quotes?
-# alternative quotes?
+# are triple quotes needed?
+# are alternative quotes needed?
 
 # quote quasi-quote unquote?
 `symbol
