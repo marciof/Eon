@@ -1,6 +1,10 @@
 # spec example of lexical binding
 # and naming fns, \(incr: + x 1)
 
+# spec explain proto/prototype
+# not prototypical inheritance
+# but more like cloning and modifying
+
 # are triple quotes needed?
 # are alternative quotes needed?
 
@@ -17,6 +21,27 @@
 # - allows early returns
 # - could replace exceptions
 # - potentially more performant
+
+# splice = insert + merge + delete
+
+---
+
+# syntax sugar for setter?
+# there’s already for getter
+# careful with too much syntax
+
+let user: {\name: 'Bob' \age: 20}
+  user.name
+  
+  user \name
+  user \name 'Alice'
+  user \name: 'Alice'
+  
+  (set user \name 'Alice')
+  (set user.name 'Alice')
+  
+  (io \print) (user \name)
+  io.print user.name
 
 ---
 
@@ -58,8 +83,6 @@ split val | count re'\d' txt: | print
 # file I/O (more verbose, but clear)
 date | file 'blah'
 
-date :: file 'blah'
-
 # pipeline quoted as fn call?
 # no new syntax, optional parens
 \(date | file 'blah')
@@ -68,32 +91,53 @@ date :: file 'blah'
 
 # `:` less syntax, "prettier", no w/s
 
-# (constraint value key value)
-# creates new constraint
+# dynamic typing by default
+list: [1 'Bob' true]
+(set list 2 'Alice')
 
-# (constraint value)
-# gets constraint
+# static typing is explicit
+Names: (restrict [] Text)
+Names: [:Text]
+names: Names 'Bob' 'Alice'
+names: Names ['Bob' 'Alice']
+names: (append Names 'Bob' 'Alice)
+(set names 1 true) # error
 
-# how constraint heterogeneous value?
-(constraint {:} shape: {\name: ''})
+# heterogeneous static typing
+Person: (restrict {\name: ''})
+bob: Person \name: 'Bob'
+bob: Person {\bame: 'Bob'}
 
-[] # NaturalNumber: Any
-{} # Any: Any
-'' #
-Symbol #
+# new constraint
+(proto base values)
+(proto base keys values)
 
-# avoid word proto/prototype in spec?
+# homogenous types
+Names: (proto [] Text)
+Phonebook: (proto {:} Text Number}
+
+# query constraint
+(proto value)
+
+# query built in constraints
+(proto [])
+# (proto base: {:} keys: NaturalNum)
+
+# define errors, updates, adds, dels
 
 # dynamic binding by default?
 # - code is just code
 # dynamic typing by default?
 # - can force static, eg. (List val)
+# make right things easy and default
+
+---
 
 # fn as value constraint
 # prob more flexible and less syntax
-# splice = insert + merge + delete
-# no need for Any as Map is the root?
-# Number is Map/List of digit Symbols
+# builtins have constraints:
+# but doesn’t have to be typed
+# can be implemented as fn logic
 Map: (splice {:} map:)
 Text: (splice '' map:) 
 List: (splice [] map:)
@@ -108,16 +152,22 @@ name: Text 'Bob'
 # value up-cast, safe
 chars: List 'Bob'
 
-...
-
 # homogenous type
-Numbers: \(splice [0] map: | unshift)
-[0]
+Number: \(+ 0 number:)
+Numbers: \(map Number (List map:))
+numbers: Numbers [1 2 3]
+
+...
 
 # heterogeneous type
 Set: (splice {} map:)
 []
 [0 'a']
+
+# get type "ctor" from value?
+
+# no need for Any as Map is the root?
+# Number is Map/List of digit Symbols
 
 # type is a value/fn ctor?
 # Python class name is type and ctor
