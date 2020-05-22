@@ -108,17 +108,17 @@ date | file 'blah'
 # consistent with how `proto` works?
 # why stop at types for validation?
 # because can be made compile time?
+# then use hints?
 
 # there are already constraints
 # symbol has constraints
 # text has constraints
 # having a built-in only exposes them
-
-# not necessarily 
-# could be impl within builtin fns
+# but not necessarily
+# could be impl in some builtin fns
 
 # not proto value or type hierarchy:
-# value hierarchy from constraints
+# value "hierarchy" from constraints
 
 # new constraint
 (proto base values)
@@ -126,6 +126,7 @@ date | file 'blah'
 
 # homogenous types
 Names: (proto [] Text)
+Names: [x: | Text x]
 Phonebook: (proto {:} Text Number}
 
 # query constraint
@@ -136,6 +137,45 @@ Phonebook: (proto {:} Text Number}
 # ({:} NaturalNumber)
 
 # define errors, updates, adds, dels
+
+# dynamic scope?
+\(+ x 1)
+
+# lexical scope? what'll inspect see?
+(+ 1 x:)
+(+ 1 x x:)
+(x: | + x 1) # ambiguous w/piping?
+
+names: [::Text]
+phonebook: {Text::Number}
+
+---
+
+# proto as fn ctor?
+Number: proto 0
+age: Number 20
+
+---
+
+# dead ends?
+# - values as fns for constraints
+#   - can't constrain fns
+#   - less explicit/readable
+#   - can't constrain heterogeneous?
+#   - can’t constrain homogenous?
+
+Text: ''
+Number: 0
+
+# homogenous
+names: ['Bob'] # inferred
+names: [] Text # explicit
+phonebook: {:} Text Number # explicit
+
+# heterogeneous
+list: []
+incr: ???
+person: {\name: ''} # not homogenous?
 
 ---
 
@@ -158,8 +198,10 @@ name: Text 'Bob'
 chars: List 'Bob'
 
 # homogenous type
+# not homogenous for every value?
 Numbers: \(map Number (List map:))
 numbers: Numbers [1 2 3]
+numbers: List of: Number [1 2 3]
 
 ...
 
@@ -208,6 +250,16 @@ text: Text [65]
 
 # get type/ctor/? of a value
 ...
+
+---
+
+# only associations can have type?
+# it’s how it’s enforced?
+# what about homogenous types?
+
+name: Text: 'Bob'
+names: [Text]: 'Bob'
+phonebook: {Text: Number}: {:}
 
 ---
 
@@ -395,6 +447,9 @@ name: Text = 'Bob'
 
 # dynamic typing
 name := 'Bob'
+
+# function
+incr := + x 1
 
 # generalized pair syntax?
 # linked list-like syntax?
