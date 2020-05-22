@@ -9,6 +9,7 @@
 # are alternative quotes needed?
 
 # quote quasi-quote unquote?
+# ambiguity: quote vs defer vs lazy
 `symbol
 `(,fn)
 
@@ -121,13 +122,12 @@ date | file 'blah'
 # value "hierarchy" from constraints
 
 # new constraint
-(proto base values)
-(proto base keys values)
+(restrict base values)
+(restrict base keys values)
 
 # homogenous types
-Names: (proto [] Text)
-Names: [x: | Text x]
-Phonebook: (proto {:} Text Number}
+Names: (restrict [] Text)
+Phonebook: (restrict {:} Text Number}
 
 # query constraint
 (proto value)
@@ -152,17 +152,27 @@ phonebook: {Text::Number}
 ---
 
 # proto as fn ctor?
+# - no new syntax
+# - explicit and readable
+# - extensible since it uses fns
+# - still doesn’t introduce types
+# - can be used for type cast (?)
+
 Number: proto 0
 age: Number 20
 
+Person: proto {:} (lambda (map name)
+  (insert map \name name))
+
+bob: Person 'Bob'
+
 ---
 
-# dead ends?
-# - values as fns for constraints
-#   - can't constrain fns
-#   - less explicit/readable
-#   - can't constrain heterogeneous?
-#   - can’t constrain homogenous?
+# values as fns for constraints
+# - can't constrain fns?
+# - less explicit/readable?
+# - can't constrain heterogeneous?
+# - can’t constrain homogenous?
 
 Text: ''
 Number: 0
@@ -187,6 +197,10 @@ Map: (splice {:} map:)
 Text: (splice '' map:) 
 List: (splice [] map:)
 Number: (+ 0 number:)
+
+# doesn’t even need to "convert"
+# can just proto check and `panic`
+# `panic` can still be overwritten
 
 # value inference, default
 name: 'Bob'
@@ -428,6 +442,21 @@ push: \(
 
 ---
 
+# math function notation?
+
+f x y := + x y
+
+f x:Number y:Number := + x y
+f x:Text y:Text := merge x y
+
+# bindings
+name = 'Bob'
+name: Text = 'Bob'
+
+phonebook: (Map Text Number) = {}
+
+---
+
 # pairs as the basis for all?
 # could add static typing?
 # easier global vars?
@@ -602,29 +631,6 @@ do
   io::print name
   age: 20
   io::print age
-
----
-
-# math function notation?
-
-# no types
-# default fallback or type inference?
-(f x y) = (+ x y)
-f x y = + x y
-
-# supports overloads
-f x:Number y:Number = + x y
-f x:Text y:Text = concat x y
-
-# bindings
-name = 'Bob'
-name: Text = 'Bob'
-
-phonebook: (Map Text Number) = {}
-
----
-
-# ambiguity: quote vs defer vs lazy
 
 ---
 
