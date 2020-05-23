@@ -201,6 +201,7 @@ Number: (+ 0 number:)
 # doesn’t even need to "convert"
 # can just proto check and `panic`
 # `panic` can still be overwritten
+# may work, but isn’t static typing
 
 # value inference, default
 name: 'Bob'
@@ -532,6 +533,12 @@ C:hello.txt
 12:45
 
 (io.print 'hi')
+
+if (equal? user 'bob') then=
+  range from=1 to=3
+
+if (= user 'bob') then=
+  range from=1 to=3
 
 ---
 
