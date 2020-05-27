@@ -20,6 +20,8 @@
 
 * TODO improve documentation
 
+- lexical scope example
+- function naming example, eg. `\(incr: + x 1)`
 - use only: must, should, may?
 - fully switch to Org-mode? https://orgmode.org/org.html
 - add references to each section, where needed, for prior art? https://github.com/denoland/deno/pull/671

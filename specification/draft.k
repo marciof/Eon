@@ -1,9 +1,7 @@
-# spec example of lexical binding
-# and naming fns, \(incr: + x 1)
-
 # spec explain proto/prototype
 # not prototypical inheritance
 # but more like cloning and modifying
+# (dictionary definition)
 
 # are triple quotes needed?
 # are alternative quotes needed?
@@ -100,10 +98,9 @@ date | file 'blah'
 # `:` less syntax, "prettier", no w/s
 
 # avoid too much syntax
-# be explicit
-# be safe by default
+# be explicit and safe by default:
 # - static typing
-# - lexical scope (defer is WYSIWYG?)
+# - lexical scope (is defer WYSIWYG?)
 
 # constraint fn? Or struct compat?
 # consistent with how `proto` works?
@@ -146,8 +143,47 @@ Phonebook: (restrict {:} Text Number}
 (+ 1 x x:)
 (x: | + x 1) # ambiguous w/piping?
 
+let user: {\name: 'bob' \age: 20}
+  if (= user.name 'bob') then:
+    math.range from: 1 to: 3
+
 names: [::Text]
 phonebook: {Text::Number}
+
+---
+
+# values as fns for constraints
+# - explicit type is documentation
+# - can’t do generics with type inf?
+# - creates a new prototype
+# - can't constrain fns?
+# - less explicit/readable?
+# - can't constrain heterogeneous?
+
+Text: ''
+Number: 0
+
+# homogenous, explicit
+names: ['Bob'] Text
+names: [] Text
+phonebook: {:} Text Number
+
+# heterogeneous, default
+values: []
+names: ['Bob']
+person: {\name: ''}
+
+# dynamic typing
+
+# fn params
+sqr: [pow base exp: 2] \exp: Int
+incr: () x: Number ???
+incr: \(+ x 1) x: Number
+incr: () {\x: Number} ???
+incr: (x: Number | + x 1)
+incr: (x: Number :: + x 1)
+incr: (x: Number; + x 1)
+incr: (x; + x 1)
 
 ---
 
@@ -156,7 +192,7 @@ phonebook: {Text::Number}
 # - explicit and readable
 # - extensible since it uses fns
 # - still doesn’t introduce types
-# - can be used for type cast (?)
+# - can be used for type cast
 
 Number: proto 0
 age: Number 20
@@ -165,27 +201,6 @@ Person: proto {:} (lambda (map name)
   (insert map \name name))
 
 bob: Person 'Bob'
-
----
-
-# values as fns for constraints
-# - can't constrain fns?
-# - less explicit/readable?
-# - can't constrain heterogeneous?
-# - can’t constrain homogenous?
-
-Text: ''
-Number: 0
-
-# homogenous
-names: ['Bob'] # inferred
-names: [] Text # explicit
-phonebook: {:} Text Number # explicit
-
-# heterogeneous
-list: []
-incr: ???
-person: {\name: ''} # not homogenous?
 
 ---
 
@@ -270,11 +285,12 @@ text: Text [65]
 
 # only associations can have type?
 # it’s how it’s enforced?
-# what about homogenous types?
 
 name: Text: 'Bob'
 names: [Text]: 'Bob'
 phonebook: {Text: Number}: {:}
+
+person: ???: {\name: '' \age: 0}
 
 ---
 
@@ -444,17 +460,39 @@ push: \(
 ---
 
 # math function notation?
+# bindings allows symbols and lists?
+# easier to type `=`, `[` and `]`?
 
 f x y := + x y
+[f x y] = [+ x y]
+
+# "piping" arguments into a list
+# aka. fn params
+# where’s the return type?
+# what does inspecting see?
+
+names = ['Bob' 'Alice']
+phonebook = {'Bob' = 123}
+sqr = (base: Int | pow base exp = 2)
+sqr: (base: Int | pow base exp: 2)
+sqr: (base::Int | pow base exp: 2)
+
+names 1
+sqr 5
+
+# up to the fn to how to interpret?
+a list: call or array
+
+let names: ['Bob' 'Alice']
+  if (= names.1 'Bob') then:
+    math.range from: 1 to: 3
+
+let names = ('Bob' 'Alice')
+  if [is? names.1 'Bob'] then =
+    math.range from = 1 to = 3
 
 f x:Number y:Number := + x y
 f x:Text y:Text := merge x y
-
-# bindings
-name = 'Bob'
-name: Text = 'Bob'
-
-phonebook: (Map Text Number) = {}
 
 ---
 
@@ -462,7 +500,7 @@ phonebook: (Map Text Number) = {}
 # could add static typing?
 # easier global vars?
 # makes `=` reserved?
-# - not if a pair has rigid syntax
+# - not if a pair has rigid syntax?
 # - `=` easier to type than `:`
 # how to define new types?
 # non-ambiguous in fns, kwargs last
@@ -474,6 +512,8 @@ name = 'Bob'
 # explicit type
 # can be used for casting?
 name: Text = 'Bob'
+
+Person: {name: Text age: Number}
 
 # dynamic typing
 name := 'Bob'
@@ -534,11 +574,14 @@ C:hello.txt
 
 (io.print 'hi')
 
-if (equal? user 'bob') then=
+if (is? user 'bob') then=
   range from=1 to=3
 
 if (= user 'bob') then=
   range from=1 to=3
+
+young = (lt age 20)
+young = (<= age 20)
 
 ---
 
