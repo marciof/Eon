@@ -7,6 +7,7 @@
 ** TODO CMake is too complex/big, alternatives?
 
 - POSIX Makefile and MS NMake? or only Makefile and require POSIX Make on Windows?
+- http://agdr.org/2020/05/14/Polyglot-Makefiles.html
 - https://noahloomans.com/tutorials/makefile/
 - https://nullprogram.com/blog/2017/08/20/
 - compiler example: https://c9x.me/compile/
@@ -75,6 +76,10 @@
 - warn more instead of aborting
 - handle (ignore?) errors during logging
 
+** TODO allow custom memory allocators?
+
+- https://ziglang.org/documentation/master/#Choosing-an-Allocator
+
 ** TODO reproducible builds?
 
 - https://reproducible-builds.org/docs/
@@ -87,9 +92,10 @@
 - https://news.ycombinator.com/item?id=17642147
 - https://threadreaderapp.com/thread/921921604140937216.html
 
-** JIT?
+** JIT? compilation?
 
 - libgccjit, https://gcc.gnu.org/onlinedocs/jit/
+- Compiling Scheme to C with closure conversion, <http://matt.might.net/articles/compiling-scheme-to-c/>
 
 * javascript
 

@@ -64,6 +64,7 @@
 
 * TODO build target to lint/validate CommonMark documents (or use Org-mode?)
 
+- https://orgmode.org/guide/
 - validate link rot?
   - https://github.com/macedotavares/Glass-Dome
   - https://github.com/smallhadroncollider/brok
@@ -170,3 +171,4 @@
 - bsed, https://github.com/andrewbihl/bsed
 - xl, https://github.com/c3d/xl
 - Oberon
+- Janet
