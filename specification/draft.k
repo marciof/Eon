@@ -95,6 +95,10 @@ date | file 'blah'
 
 ---
 
+# can type annotations be added
+# and handled in stdlib?
+# with a sort of code loading hook?
+
 # `:` less syntax, "prettier", no w/s
 
 # avoid too much syntax
@@ -162,6 +166,7 @@ phonebook: {Text::Number}
 
 Text: ''
 Number: 0
+Any: (prototype)
 
 # homogenous, explicit
 names: ['Bob'] Text
@@ -169,11 +174,12 @@ names: [] Text
 phonebook: {:} Text Number
 
 # heterogeneous, default
-values: []
+list: []
 names: ['Bob']
 person: {\name: ''}
 
 # dynamic typing
+list: [] Any
 
 # fn params
 sqr: [pow base exp: 2] \exp: Int
@@ -487,12 +493,40 @@ let names: ['Bob' 'Alice']
   if (= names.1 'Bob') then:
     math.range from: 1 to: 3
 
+let names: ('Bob' 'Alice')
+  if [= names.1 'Bob'] then:
+    math.range from: 1 to: 3
+
 let names = ('Bob' 'Alice')
-  if [is? names.1 'Bob'] then =
+  if [is names.1 'Bob'] then =
     math.range from = 1 to = 3
+
+< size 4
+~< size 4
+</ size 4
+<< size 4
+> size 4
+~> size 4
+/> size 4
+>> size 4
+~is? size 4
+? size 4
+! size 4
+is? size 4
 
 f x:Number y:Number := + x y
 f x:Text y:Text := merge x y
+
+range from 1, to 3
+{\name 'bob', \age 20}
+
+let names ('Bob' 'Alice'),
+  if [is names.1 'Bob'] then,
+    math.range from 1, to 3
+
+[x, y, + x y]
+
+range 1, to 3
 
 ---
 
