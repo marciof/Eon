@@ -166,7 +166,6 @@ phonebook: {Text::Number}
 
 Text: ''
 Number: 0
-Any: (prototype)
 
 # homogenous, explicit
 names: ['Bob'] Text
@@ -179,12 +178,14 @@ names: ['Bob']
 person: {\name: ''}
 
 # dynamic typing
+Any: (prototype)
 list: [] Any
 
 # fn params
-sqr: [pow base exp: 2] \exp: Int
-incr: () x: Number ???
 incr: \(+ x 1) x: Number
+incr: \(+ x 1 scope: {x: Number})
+incr: (x: | + x 1) x: Number
+incr: () x: Number ???
 incr: () {\x: Number} ???
 incr: (x: Number | + x 1)
 incr: (x: Number :: + x 1)
@@ -489,30 +490,13 @@ sqr 5
 # up to the fn to how to interpret?
 a list: call or array
 
-let names: ['Bob' 'Alice']
-  if (= names.1 'Bob') then:
-    math.range from: 1 to: 3
-
-let names: ('Bob' 'Alice')
+let names: ('Bob' 'Alice') Text
   if [= names.1 'Bob'] then:
     math.range from: 1 to: 3
 
-let names = ('Bob' 'Alice')
+let names = () Text: ('Bob' 'Alice')
   if [is names.1 'Bob'] then =
     math.range from = 1 to = 3
-
-< size 4
-~< size 4
-</ size 4
-<< size 4
-> size 4
-~> size 4
-/> size 4
->> size 4
-~is? size 4
-? size 4
-! size 4
-is? size 4
 
 f x:Number y:Number := + x y
 f x:Text y:Text := merge x y
@@ -520,13 +504,7 @@ f x:Text y:Text := merge x y
 range from 1, to 3
 {\name 'bob', \age 20}
 
-let names ('Bob' 'Alice'),
-  if [is names.1 'Bob'] then,
-    math.range from 1, to 3
-
 [x, y, + x y]
-
-range 1, to 3
 
 ---
 
