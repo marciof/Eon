@@ -10,6 +10,7 @@
 - http://agdr.org/2020/05/14/Polyglot-Makefiles.html
 - https://noahloomans.com/tutorials/makefile/
 - https://nullprogram.com/blog/2017/08/20/
+- https://pubs.opengroup.org/onlinepubs/9699919799/utilities/make.html
 - compiler example: https://c9x.me/compile/
 - shell example: https://github.com/oilshell/oil/blob/master/Makefile
 - dev cycle watch, https://github.com/watchexec/watchexec

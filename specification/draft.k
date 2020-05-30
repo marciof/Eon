@@ -1,20 +1,7 @@
-# spec explain proto/prototype
-# not prototypical inheritance
-# but more like cloning and modifying
-# (dictionary definition)
-
-# are triple quotes needed?
-# are alternative quotes needed?
-
 # quote quasi-quote unquote?
 # ambiguity: quote vs defer vs lazy
 `symbol
 `(,fn)
-
-# make list extend fn?
-# to easily merge arg lists into fns?
-
-# Maybe/Option instead of exceptions?
 
 # macros instead of fexprs?
 # - allows early returns
@@ -22,6 +9,8 @@
 # - potentially more performant
 
 # splice = insert + merge + delete
+
+# param name instead of bindings.1?
 
 ---
 
@@ -182,7 +171,10 @@ Any: (prototype)
 list: [] Any
 
 # fn params
+incr: [: + x 1] x: Number
+incr: (| + x 1) x: Number
 incr: \(+ x 1) x: Number
+incr: \(+ x 1) x: Number scope:
 incr: \(+ x 1 scope: {x: Number})
 incr: (x: | + x 1) x: Number
 incr: () x: Number ???
@@ -474,6 +466,7 @@ f x y := + x y
 [f x y] = [+ x y]
 
 # "piping" arguments into a list
+# ambiguous w/piping?
 # aka. fn params
 # where’s the return type?
 # what does inspecting see?
@@ -488,7 +481,33 @@ names 1
 sqr 5
 
 # up to the fn to how to interpret?
-a list: call or array
+# list: call or array
+
+# make it dead easy to have a list
+# array and/or function?
+# every map created captures scope
+# [] is a list
+# [:] is an associative list
+# () is syntax to call a list as fn
+# no ambiguity w/ "calling" symbols
+# ambiguous w/piping?
+# values can't be "called"
+# then "calling" list is a fn call
+
+greet: [io.print 'Hi'] # lexical
+greet: [| io.print 'Hi']
+incr: [x + x 1]
+incr: [x: Int | + x 1]
+numbers: [Int | 1 2 3]
+
+(domain greet) # scope
+(formula greet) # quoted value
+(domain incr) # {x: Int scope: ...}
+
+incr: [x . + x 1]
+incr: [x: Int . + x 1]
+incr: [x, + x 1]
+incr: [x; + x 1]
 
 let names: ('Bob' 'Alice') Text
   if [= names.1 'Bob'] then:
@@ -503,8 +522,6 @@ f x:Text y:Text := merge x y
 
 range from 1, to 3
 {\name 'bob', \age 20}
-
-[x, y, + x y]
 
 ---
 
@@ -696,10 +713,6 @@ do
 
 ---
 
-# no dynamic binding? Only lexical?
-
----
-
 # rename prototype to proto-value?
 
 ---
@@ -707,21 +720,6 @@ do
 # insert shouldn’t couple?
 # - setting
 # - displacing
-
----
-
-# need unquote operator?
-
----
-
-# scope "bleeding"?
-# eg. let implemented as a fn
-# depends if it fixes bindings or not
-
-let
-  x: 1
-  let
-    y: x
 
 ---
 

@@ -1,15 +1,4 @@
-* TODO financing
-
-- https://www.patreon.com/zloirock
-- https://opencollective.com/core-js
-- https://flattr.com
-- https://www.buymeacoffee.com/mweststrate
-- https://www.buymeacoffee.com/claudiodangelis
-- https://itsfoss.com/open-source-funding-platforms/
-
-* TODO check licensing of everything (compile list in a text file?)
-
-* TODO is white space significant in the grammar?
+* TODO make List extend Function? easily merge arg lists into fns?
 
 * TODO make `count` throw an error for built-ins or foreign values?
 
@@ -20,17 +9,16 @@
 
 * TODO improve documentation
 
+- explain prototype isn't prototypical inheritance, it's like cloning and modifying (dictionary definition)
 - lexical scope example
 - function naming example, eg. `\(incr: + x 1)`
 - use only: must, should, may?
-- fully switch to Org-mode? https://orgmode.org/org.html
 - add references to each section, where needed, for prior art? https://github.com/denoland/deno/pull/671
 - in examples, should the resulting output of each expression be `repr`-like?
 - https://github.com/keepassxreboot/keepassxc/wiki/Building-KeePassXC
-- Function sub headings?
-- Examples and conditions per section
+- Function sub headings? Examples and conditions per section
 - Language code snippet example right on the front page
-- Runnable examples (eg. https://doc.rust-lang.org/book/)
+- Runnable examples, eg. https://doc.rust-lang.org/book/
 
 * TODO investigate shell pipeline support
 
@@ -44,7 +32,7 @@
 - https://doc.rust-lang.org/book/ch09-02-recoverable-errors-with-result.html
 - no continuations either?
 
-* TODO multiline nesting comments?
+* TODO multiline nesting comments? triple quotes?
 
 - Language ergonomics shouldn't need an IDE? Progressive enhancement
 
@@ -62,9 +50,8 @@
 
 * TODO syntax for fractions?
 
-* TODO build target to lint/validate CommonMark documents (or use Org-mode?)
+* TODO build target to lint/validate CommonMark documents
 
-- https://orgmode.org/guide/
 - validate link rot?
   - https://github.com/macedotavares/Glass-Dome
   - https://github.com/smallhadroncollider/brok
