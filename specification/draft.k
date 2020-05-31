@@ -496,7 +496,7 @@ sqr 5
 
 greet: [io.print 'Hi'] # lexical
 greet: [| io.print 'Hi']
-incr: [x + x 1]
+incr: [x | + x 1]
 incr: [x: Int | + x 1]
 numbers: [Int | 1 2 3]
 
