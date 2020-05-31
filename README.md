@@ -15,7 +15,7 @@ See file `.travis.yml`, section:
 - `jobs` / `include` / `compiler`: Supported compilers.
 - `addons`/`apt`/`packages`: Required packages.
 
-### OS X
+### macOS
 
 See file `.travis.yml`.
 
