@@ -8,6 +8,7 @@
 
 - Update README
 - Make `nmake.bat` support the architecture argument?
+- OSX has warnings on GCC? or is it Clang?
 - POSIX Makefile and MS NMake? or only Makefile and require POSIX Make on Windows?
 - http://agdr.org/2020/05/14/Polyglot-Makefiles.html
 - https://noahloomans.com/tutorials/makefile/
@@ -19,6 +20,7 @@
 
 ** TODO split dependencies per build target (eg. native, x86-32, etc)
 
+- Upgrade Travis GCC to the latest version?
 - sign-up to interest mailing lists for dependencies?
   - https://lists.debian.org/debian-announce/
 - enable more MSVC CL warnings

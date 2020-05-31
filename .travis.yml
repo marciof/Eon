@@ -31,14 +31,14 @@ jobs:
         - cmake -Wdev --warn-uninitialized -DBUILD_NATIVE=ON -DBUILD_JAVASCRIPT=ON -DBUILD_X86_32=ON "$TRAVIS_BUILD_DIR"
         - cmake --build .
 
-    - name: Core - Linux GCC
+    - name: Core - Linux, GCC
       os: linux
       compiler: gcc
       script:
         - cd interpreter/core
         - make CFLAGS_GCC_6=
 
-    - name: Core - Linux Clang
+    - name: Core - Linux, Clang
       os: linux
       compiler: clang
       script:
