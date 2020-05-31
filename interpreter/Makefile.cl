@@ -1,0 +1,5 @@
+OBJ=.obj
+LIB=.lib
+LIBPREFIX=
+AR=lib
+AROUT=/OUT:

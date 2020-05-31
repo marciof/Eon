@@ -9,3 +9,7 @@ CFLAGS_GCC_6=$(CFLAGS_GCC_7) -Wduplicated-cond -Wnull-dereference
 CFLAGS_GCC=$(CFLAGS_GCC_6) -std=c99 -pedantic-errors -Wall -Wextra -Wundef -Wunused-macros -Wvla -Wempty-body -Wdouble-promotion -Wformat=2 -Wc++-compat -Wredundant-decls -Wshadow -Wswitch-default -Wlogical-op -Wjump-misses-init
 
 CFLAGS=$(CFLAGS_GCC)
+OBJ=.o
+LIB=.a
+LIBPREFIX=lib
+AROUT=
