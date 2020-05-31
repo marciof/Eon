@@ -59,6 +59,8 @@ jobs:
       compiler: cl
       script:
         - cd interpreter/core
+        # Requires a batch file to invoke cmd.exe avoiding quoting issues,
+        # while sourcing the environment for NMAKE to work within.
         - ../nmake.bat
 
 addons:

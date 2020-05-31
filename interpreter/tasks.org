@@ -4,7 +4,8 @@
 
 ** TODO CMake is too complex/big, alternatives?
 
-- Make `nmake.bat` support the architecture argument? or all verbatim?
+- make `nmake.bat` support the architecture argument? or all verbatim?
+- make `nmake.bat` not hardcode ProgramFiles nor MSVC version?
 - https://noahloomans.com/tutorials/makefile/
 - https://nullprogram.com/blog/2017/08/20/
 - https://pubs.opengroup.org/onlinepubs/9699919799/utilities/make.html
