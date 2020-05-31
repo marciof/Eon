@@ -1,15 +1,6 @@
-* TODO make List extend Function? easily merge arg lists into fns?
-
-* TODO make `count` throw an error for built-ins or foreign values?
-
-* TODO verify soundness of `Text`
-
-- Unicode/string/text/char/bytes support
-- Rust String/Grapheme, <https://tildes.net/~comp/9t9/utf_8_everywhere#comment-2hai>
-
 * TODO improve documentation
 
-- explain prototype isn't prototypical inheritance, it's like cloning and modifying (dictionary definition)
+- explain `prototype` isn't prototypical inheritance, it's like cloning and modifying (dictionary definition)
 - lexical scope example
 - function naming example, eg. `\(incr: + x 1)`
 - use only: must, should, may?
@@ -20,38 +11,10 @@
 - Language code snippet example right on the front page
 - Runnable examples, eg. https://doc.rust-lang.org/book/
 
-* TODO investigate shell pipeline support
+* TODO visual grammar diagram?
 
-- "Pipelines Support Vectorized, Point-Free, and Imperative Style", https://www.oilshell.org/blog/2017/01/15.html
-- https://blog.jessfraz.com/post/for-the-love-of-pipes/
-- https://github.com/tc39/proposal-pipeline-operator/blob/master/README.md
-- https://stackoverflow.com/questions/6145002/operator-in-clojure
-
-* TODO investigate having no exceptions
-
-- https://doc.rust-lang.org/book/ch09-02-recoverable-errors-with-result.html
-- no continuations either?
-- http://www.gigamonkeys.com/book/beyond-exception-handling-conditions-and-restarts.html
-- http://matt.might.net/articles/implementing-exceptions/
-- http://matt.might.net/articles/programming-with-continuations--exceptions-backtracking-search-threads-generators-coroutines/
-
-* TODO multiline nesting comments? triple quotes?
-
-- Language ergonomics shouldn't need an IDE? Progressive enhancement
-
-* TODO investigate optional static typing?
-
-* TODO are decimals under-specified?
-
-- exactness of floating point math, https://0.30000000000000004.com
-- math numerals vs number and representations, eg. 0.999 = 1, https://news.ycombinator.com/item?id=23004086
-
-* TODO syntax for complex numbers?
-
-- Surreal numbers? https://en.wikipedia.org/wiki/Surreal_number
-- number tower like Scheme? https://en.m.wikipedia.org/wiki/List_of_types_of_numbers
-
-* TODO syntax for fractions?
+- Railroad Diagram Generator
+- http://lua4z.com/doc/manual/syntax.md.html
 
 * TODO build target to lint/validate CommonMark documents
 
@@ -66,19 +29,55 @@
 - https://github.com/remarkjs/remark-lint
 - https://github.com/notslang/tidy-markdown
 
-* TODO visual grammar diagram?
-
-- Railroad Diagram Generator
-- http://lua4z.com/doc/manual/syntax.md.html
-
 * TODO indentation based syntax grammar
 
 - https://docs.python.org/3/reference/grammar.html
 - https://devguide.python.org/compiler/
 
+* TODO optional static typing?
+
+* TODO make List extend Function? easily merge arg lists into fns?
+
+* TODO shell pipeline syntax?
+
+- "Pipelines Support Vectorized, Point-Free, and Imperative Style", https://www.oilshell.org/blog/2017/01/15.html
+
+* TODO replace exceptions/conditions/continuations with optionals?
+
+- https://doc.rust-lang.org/book/ch09-02-recoverable-errors-with-result.html
+- https://doc.rust-lang.org/std/panic/fn.catch_unwind.html
+- http://joeduffyblog.com/2016/02/07/the-error-model/
+
+* TODO multiline nesting comments? triple quotes?
+
+- Language ergonomics shouldn't need an IDE?
+
+* TODO make `count` throw an error for built-ins or foreign values?
+
+* TODO verify soundness of Text
+
+- Unicode/string/text/char/bytes support
+- Rust String/Grapheme, <https://tildes.net/~comp/9t9/utf_8_everywhere#comment-2hai>
+
+* TODO are decimals under-specified?
+
+- exactness of floating point math, https://0.30000000000000004.com
+- math numerals vs number and representations, eg. 0.999 = 1, https://news.ycombinator.com/item?id=23004086
+
+* TODO syntax for complex numbers?
+
+- Surreal numbers? https://en.wikipedia.org/wiki/Surreal_number
+- number tower like Scheme? https://en.m.wikipedia.org/wiki/List_of_types_of_numbers
+
+* TODO syntax for fractions?
+
+* TODO version vs feature detection
+
+- https://github.com/oilshell/oil/wiki/Feature-Detection-Is-Better-than-Version-Detection
+
 * TODO FEXPRs: "Special Forms in Lisp", https://www.nhplace.com/kent/Papers/Special-Forms.html
 
-* TODO http://www.infoq.com/presentations/Value-Identity-State-Rich-Hickey
+* TODO Clojure change and state, http://www.infoq.com/presentations/Value-Identity-State-Rich-Hickey
 
 * TODO "Empirical Analysis of Programming Language Adoption", Leo A. Meyerovich, Ariel Rabkin: http://sns.cs.princeton.edu/docs/asr-oopsla13.pdf
 
@@ -97,15 +96,6 @@
 - "Psychological effects of coding style"
   - https://www.devever.net/~hl/codingstylepsych
   - https://news.ycombinator.com/item?id=22992914
-
-* TODO evaluate performance
-
-- https://github.com/trizen/language-benchmarks
-
-* TODO version vs feature detection
-
-- specify how it's done
-- https://github.com/oilshell/oil/wiki/Feature-Detection-Is-Better-than-Version-Detection
 
 * TODO learn best/worst features of other languages/systems (check first the ones listed as inspiration)
 
