@@ -1,12 +1,13 @@
 .POSIX:
 
 SRC=.
-CCDEFAULTS=$(SRC)/../Makefile.$(CC)
+CCNAME=$(CC)
+CCOPTS=$(SRC)/../Makefile.$(CCNAME)
 
 #\
-!INCLUDE $(CCDEFAULTS) #\
+!INCLUDE $(CCOPTS) #\
 !IF 0
-include $(CCDEFAULTS) #\
+include $(CCOPTS) #\
 !ENDIF
 
 all: $(LIBPREFIX)karyon$(LIB)

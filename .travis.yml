@@ -31,7 +31,7 @@ jobs:
         - cmake -Wdev --warn-uninitialized -DBUILD_NATIVE=ON -DBUILD_JAVASCRIPT=ON -DBUILD_X86_32=ON "$TRAVIS_BUILD_DIR"
         - cmake --build .
 
-    - name: Core - Linux, GCC
+    - name: Core - Linux (GCC)
       os: linux
       dist: bionic
       compiler: gcc
@@ -39,7 +39,7 @@ jobs:
         - cd interpreter/core
         - make all
 
-    - name: Core - Linux, Clang
+    - name: Core - Linux (Clang)
       os: linux
       dist: bionic
       compiler: clang
@@ -47,14 +47,14 @@ jobs:
         - cd interpreter/core
         - make all
 
-    - name: Core - OSX
+    - name: Core - macOS (Clang)
       os: osx
       compiler: clang
       script:
         - cd interpreter/core
         - make all
 
-    - name: Core - Windows
+    - name: Core - Windows (CL)
       os: windows
       compiler: cl
       script:

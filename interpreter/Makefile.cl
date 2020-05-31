@@ -1,3 +1,5 @@
+.POSIX:
+
 OBJ=.obj
 LIB=.lib
 LIBPREFIX=
