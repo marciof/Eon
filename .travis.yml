@@ -11,17 +11,21 @@ jobs:
 
     - os: linux
       compiler: gcc
+      env: MAKE=make
       before_script: cmake -Wdev --warn-uninitialized -DBUILD_NATIVE=ON -DBUILD_JAVASCRIPT=ON -DBUILD_X86_32=ON "$TRAVIS_BUILD_DIR"
 
     - os: linux
       compiler: clang
+      env: MAKE=make
       before_script: cmake -Wdev --warn-uninitialized -DBUILD_NATIVE=ON -DBUILD_JAVASCRIPT=ON -DBUILD_X86_32=ON "$TRAVIS_BUILD_DIR"
 
     - os: osx
       before_script: cmake -Wdev --warn-uninitialized -DBUILD_NATIVE=ON -DBUILD_JAVASCRIPT=ON "$TRAVIS_BUILD_DIR"
+      env: MAKE=make
 
     - os: windows
       before_script: cmake -Wdev --warn-uninitialized -DBUILD_NATIVE=ON -DBUILD_JAVASCRIPT=ON "$TRAVIS_BUILD_DIR"
+      env: MAKE=nmake
 
 addons:
   apt:
@@ -45,6 +49,10 @@ addons:
       - gcc-multilib # cross-compile 32-bit applications on 64-bit systems
 
 script: cmake --build .
+
+after_script:
+  - cd interpreter/core
+  - $MAKE
 
 notifications:
   email:
