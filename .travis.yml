@@ -14,6 +14,7 @@ jobs:
       before_script: cmake -Wdev --warn-uninitialized -DBUILD_NATIVE=ON -DBUILD_JAVASCRIPT=ON -DBUILD_X86_32=ON "$TRAVIS_BUILD_DIR"
       after_script:
         - cd "$TRAVIS_BUILD_DIR/interpreter/core"
+        - git clean -f -d
         - make
 
     - os: linux
@@ -21,19 +22,22 @@ jobs:
       before_script: cmake -Wdev --warn-uninitialized -DBUILD_NATIVE=ON -DBUILD_JAVASCRIPT=ON -DBUILD_X86_32=ON "$TRAVIS_BUILD_DIR"
       after_script:
         - cd "$TRAVIS_BUILD_DIR/interpreter/core"
+        - git clean -f -d
         - make
 
     - os: osx
       before_script: cmake -Wdev --warn-uninitialized -DBUILD_NATIVE=ON -DBUILD_JAVASCRIPT=ON "$TRAVIS_BUILD_DIR"
       after_script:
         - cd "$TRAVIS_BUILD_DIR/interpreter/core"
+        - git clean -f -d
         - make
 
     - os: windows
       before_script: cmake -Wdev --warn-uninitialized -DBUILD_NATIVE=ON -DBUILD_JAVASCRIPT=ON "$TRAVIS_BUILD_DIR"
       after_script:
         - cd "$TRAVIS_BUILD_DIR/interpreter/core"
-        - cmd /C 'call "C:\Program Files (x86)\Microsoft Visual Studio\2017\BuildTools\VC\Auxiliary\Build\vcvars64.bat" && nmake'
+        - git clean -f -d
+        - msvc-nmake.bat
 
 addons:
   apt:
