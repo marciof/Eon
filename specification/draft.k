@@ -59,6 +59,7 @@ let user: {\name: 'Bob' \age: 20}
 # use a pre-determined keyword arg?
 # it'd be the same as orig form?
 split val | count re'\d' | print
+split val, count re'\d', print
 
 # or currying indicates input param?
 # too verbose?
@@ -494,7 +495,18 @@ sqr 5
 # values can't be "called"
 # then "calling" list is a fn call
 
-greet: [io.print 'Hi'] # lexical
+# no difference? sym vs \sym
+# anything unquoted is still deferred
+# top-level is a deferred fn call
+# just handled by the interpreter
+
+# calling a symbol returns itself
+# symbol can’t be constrained further
+
+(sym) # \(sym)
+(\sym) # \(\sym))
+
+greet: [io.print 'Hi'] # lexical?
 greet: [| io.print 'Hi']
 incr: [x | + x 1]
 incr: [x: Int | + x 1]
@@ -508,6 +520,37 @@ incr: [x . + x 1]
 incr: [x: Int . + x 1]
 incr: [x, + x 1]
 incr: [x; + x 1]
+
+# fn extends map: ordered, so typed?
+# bad to overload meaning of `|`?
+
+incr: \[+ x 1] # dynamic or list?
+pipe: [ls | count]
+incr: (x | + x 1) # array untyped
+incr: {x | + x 1) # set untyped
+incr: {x: Number | + x 1} # map typed
+
+# bad param last, fine for small fns
+# use stdlib for more flexibility?
+incr: [+ x 1 x:]
+
+# no additional syntax
+# easier to remember 
+# more uniform
+# easier to read (via using stdlib)
+# common data types have syntax
+# why not functions too?
+
+incr: [function [x] + x 1]
+
+# "piping" params? Still untyped
+# and weird to overload piping?
+# clashes with piping and currying?
+# could be a generalization?
+# a pipe with arguments
+# using a pipe to create a closure
+
+incr: [x: | + x 1]
 
 let names: ('Bob' 'Alice') Text
   if [= names.1 'Bob'] then:
