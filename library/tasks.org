@@ -1,19 +1,14 @@
 * TODO is the `if` then-else syntax error-prone?
 
+- could the `else` branch be confused with `else`?
+- have a `when`? or `cond`?
+
 * TODO document constants and functions
 
 * TODO validate arguments, use keyword arguments, error checking
 
-* TODO close bindings in standard library functions?
+* TODO close bindings in standard library functions, if dynamic by default
 
 * TODO support varargs (eg. boolean logic functions, etc)
 
 * TODO add a fuzzy matching operator, `=~`
-
-* TODO build exceptions/conditions on top of `unwind`
-
-- `(rescue function handler)`
-- `(rescue \parameter-mismatch)`
-- http://www.gigamonkeys.com/book/beyond-exception-handling-conditions-and-restarts.html
-- http://matt.might.net/articles/implementing-exceptions/
-- http://matt.might.net/articles/programming-with-continuations--exceptions-backtracking-search-threads-generators-coroutines/
