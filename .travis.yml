@@ -11,21 +11,29 @@ jobs:
 
     - os: linux
       compiler: gcc
-      env: MAKE=make
       before_script: cmake -Wdev --warn-uninitialized -DBUILD_NATIVE=ON -DBUILD_JAVASCRIPT=ON -DBUILD_X86_32=ON "$TRAVIS_BUILD_DIR"
+      after_script:
+        - cd "$TRAVIS_BUILD_DIR/interpreter/core"
+        - make
 
     - os: linux
       compiler: clang
-      env: MAKE=make
       before_script: cmake -Wdev --warn-uninitialized -DBUILD_NATIVE=ON -DBUILD_JAVASCRIPT=ON -DBUILD_X86_32=ON "$TRAVIS_BUILD_DIR"
+      after_script:
+        - cd "$TRAVIS_BUILD_DIR/interpreter/core"
+        - make
 
     - os: osx
       before_script: cmake -Wdev --warn-uninitialized -DBUILD_NATIVE=ON -DBUILD_JAVASCRIPT=ON "$TRAVIS_BUILD_DIR"
-      env: MAKE=make
+      after_script:
+        - cd "$TRAVIS_BUILD_DIR/interpreter/core"
+        - make
 
     - os: windows
       before_script: cmake -Wdev --warn-uninitialized -DBUILD_NATIVE=ON -DBUILD_JAVASCRIPT=ON "$TRAVIS_BUILD_DIR"
-      env: MAKE=nmake
+      after_script:
+        - cd "$TRAVIS_BUILD_DIR/interpreter/core"
+        - cmd /C 'call "C:\Program Files (x86)\Microsoft Visual Studio\2017\BuildTools\VC\Auxiliary\Build\vcvars64.bat" && nmake'
 
 addons:
   apt:
@@ -48,11 +56,8 @@ addons:
       # Target: x86-32, Host: Linux 64-bit
       - gcc-multilib # cross-compile 32-bit applications on 64-bit systems
 
-script: cmake --build .
-
-after_script:
-  - cd interpreter/core
-  - $MAKE
+script:
+  - cmake --build .
 
 notifications:
   email:
