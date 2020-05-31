@@ -33,13 +33,15 @@ jobs:
 
     - name: Core - Linux, GCC
       os: linux
+      dist: bionic
       compiler: gcc
       script:
         - cd interpreter/core
-        - make CFLAGS_GCC_6= all
+        - make all
 
     - name: Core - Linux, Clang
       os: linux
+      dist: bionic
       compiler: clang
       script:
         - cd interpreter/core
@@ -47,12 +49,14 @@ jobs:
 
     - name: Core - OSX
       os: osx
+      compiler: clang
       script:
         - cd interpreter/core
         - make all
 
     - name: Core - Windows
       os: windows
+      compiler: cl
       script:
         - cd interpreter/core
         - ../nmake.bat

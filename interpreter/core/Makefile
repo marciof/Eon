@@ -6,7 +6,7 @@ CCDEFAULTS=$(SRC)/../Makefile.$(CC)
 #\
 !INCLUDE $(CCDEFAULTS) #\
 !IF 0
--include $(CCDEFAULTS) #\
+include $(CCDEFAULTS) #\
 !ENDIF
 
 all: $(LIBPREFIX)karyon$(LIB)
