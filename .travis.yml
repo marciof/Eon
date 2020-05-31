@@ -13,31 +13,35 @@ jobs:
       compiler: gcc
       before_script: cmake -Wdev --warn-uninitialized -DBUILD_NATIVE=ON -DBUILD_JAVASCRIPT=ON -DBUILD_X86_32=ON "$TRAVIS_BUILD_DIR"
       after_script:
-        - cd "$TRAVIS_BUILD_DIR/interpreter/core"
+        - cd "$TRAVIS_BUILD_DIR"
         - git clean -f -d
+        - cd interpreter/core
         - make
 
     - os: linux
       compiler: clang
       before_script: cmake -Wdev --warn-uninitialized -DBUILD_NATIVE=ON -DBUILD_JAVASCRIPT=ON -DBUILD_X86_32=ON "$TRAVIS_BUILD_DIR"
       after_script:
-        - cd "$TRAVIS_BUILD_DIR/interpreter/core"
+        - cd "$TRAVIS_BUILD_DIR"
         - git clean -f -d
+        - cd interpreter/core
         - make
 
     - os: osx
       before_script: cmake -Wdev --warn-uninitialized -DBUILD_NATIVE=ON -DBUILD_JAVASCRIPT=ON "$TRAVIS_BUILD_DIR"
       after_script:
-        - cd "$TRAVIS_BUILD_DIR/interpreter/core"
+        - cd "$TRAVIS_BUILD_DIR"
         - git clean -f -d
+        - cd interpreter/core
         - make
 
     - os: windows
       before_script: cmake -Wdev --warn-uninitialized -DBUILD_NATIVE=ON -DBUILD_JAVASCRIPT=ON "$TRAVIS_BUILD_DIR"
       after_script:
-        - cd "$TRAVIS_BUILD_DIR/interpreter/core"
+        - cd "$TRAVIS_BUILD_DIR"
         - git clean -f -d
-        - msvc-nmake.bat
+        - cd interpreter/core
+        - cmd /C msvc-nmake.bat
 
 addons:
   apt:
