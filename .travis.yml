@@ -36,20 +36,20 @@ jobs:
       compiler: gcc
       script:
         - cd interpreter/core
-        - make CFLAGS_GCC_6=
+        - make CFLAGS_GCC_6= all
 
     - name: Core - Linux, Clang
       os: linux
       compiler: clang
       script:
         - cd interpreter/core
-        - make
+        - make all
 
     - name: Core - OSX
       os: osx
       script:
         - cd interpreter/core
-        - make
+        - make all
 
     - name: Core - Windows
       os: windows

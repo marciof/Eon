@@ -7,7 +7,7 @@
 ** TODO CMake is too complex/big, alternatives?
 
 - Update README
-- Make `nmake.bat` support the architecture argument?
+- Make `nmake.bat` support the architecture argument? or all verbatim?
 - OSX has warnings on GCC? or is it Clang?
 - POSIX Makefile and MS NMake? or only Makefile and require POSIX Make on Windows?
 - http://agdr.org/2020/05/14/Polyglot-Makefiles.html

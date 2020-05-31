@@ -6,6 +6,8 @@ CCDEFAULTS=$(SRC)/../Makefile.$(CC)
 LIBPREFIX=lib
 LIBSUFFIX=.a
 
+all: $(OUT)/$(LIBPREFIX)karyon$(LIBSUFFIX)
+
 $(OUT)/$(LIBPREFIX)karyon$(LIBSUFFIX): $(OUT)/Err.o $(OUT)/Log.o
 	$(AR) $(ARFLAGS) $@ $(OUT)/Err.o $(OUT)/Log.o
 
@@ -14,4 +16,8 @@ $(OUT)/%.o: $(SRC)/%.c $(SRC)/%.h
 
 $(OUT)/Log.o: $(SRC)/Err.h
 
--include $(CCDEFAULTS)
+#\
+!INCLUDE $(CCDEFAULTS) #\
+!IF 0
+-include $(CCDEFAULTS) #\
+!ENDIF
