@@ -1,13 +1,15 @@
 .POSIX:
 
-SRC=.
+OBJ=.o
+LIB=.a
+LIBPREFIX=lib
 CCNAME=$(CC)
-CCOPTS=$(SRC)/../Makefile.$(CCNAME)
+CCOPTS=../Makefile.$(CCNAME)
 
 #\
 !INCLUDE $(CCOPTS) #\
 !IF 0
-include $(CCOPTS) #\
+-include $(CCOPTS) #\
 !ENDIF
 
 all: $(LIBPREFIX)karyon$(LIB)
@@ -15,4 +17,5 @@ all: $(LIBPREFIX)karyon$(LIB)
 $(LIBPREFIX)karyon$(LIB): Err$(OBJ) Log$(OBJ)
 	$(AR) $(ARFLAGS) $(AROUT)$@ Err$(OBJ) Log$(OBJ)
 
-Log$(OBJ): $(SRC)/Err.h
+Err$(OBJ): Err.c Err.h
+Log$(OBJ): Log.c Log.h Err.h std/SysTypes.h
