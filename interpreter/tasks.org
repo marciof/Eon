@@ -1,7 +1,5 @@
 * interpreter
 
-** TODO simplify error handling and force Maybe/Optional types?
-
 ** TODO CMake is too complex/big, alternatives?
 
 - make `nmake.bat` support the architecture argument? or all verbatim?
@@ -11,10 +9,10 @@
 - https://pubs.opengroup.org/onlinepubs/9699919799/utilities/make.html
 - https://skramm.blogspot.com/2013/04/writing-portable-makefiles.html
 - https://david.rothlis.net/large-gnu-make/
-- compiler example: https://c9x.me/compile/
-- shell example: https://github.com/oilshell/oil/blob/master/Makefile
-- dev cycle watch, https://github.com/watchexec/watchexec
+- dev cycle watch (use inotify?), https://github.com/watchexec/watchexec
 - don't forget to update the README if/when switching to Makefiles
+
+** TODO simplify error handling and use Maybe/Optional types?
 
 ** TODO split dependencies per build target (eg. native, x86-32, etc)
 
@@ -90,13 +88,9 @@
 
 ** TODO logging of long integers (eg. 64-bit Multiboot mem region addr/len)
 
-** TODO "Why isn’t someone using my software product or open source tool? It’s good!"
-
-- https://news.ycombinator.com/item?id=17642147
-- https://threadreaderapp.com/thread/921921604140937216.html
-
 ** JIT? compilation?
 
+- QBE, https://c9x.me/compile/
 - libgccjit, https://gcc.gnu.org/onlinedocs/jit/
 - Compiling Scheme to C with closure conversion, <http://matt.might.net/articles/compiling-scheme-to-c/>
 
