@@ -548,7 +548,7 @@ incr: [function [x] + x 1]
 # clashes with piping and currying?
 # could be a generalization?
 # a pipe with arguments
-# using a pipe to create a closure
+# use pipe+curry to create a closure
 
 incr: [x: | + x 1]
 
