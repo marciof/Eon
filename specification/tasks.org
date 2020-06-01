@@ -54,6 +54,8 @@
 
 * TODO make `count` throw an error for built-ins or foreign values?
 
+* TODO have a generic `splice`? = insert + merge + delete
+
 * TODO verify soundness of Text
 
 - Unicode/string/text/char/bytes support
@@ -76,6 +78,12 @@
 - https://github.com/oilshell/oil/wiki/Feature-Detection-Is-Better-than-Version-Detection
 
 * TODO FEXPRs: "Special Forms in Lisp", https://www.nhplace.com/kent/Papers/Special-Forms.html
+
+- macros instead of fexprs?
+- could allows early returns?
+- could replace exceptions?
+- potentially more performant?
+- have quasi-quote and unquote?
 
 * TODO Clojure change and state, http://www.infoq.com/presentations/Value-Identity-State-Rich-Hickey
 

@@ -1,38 +1,3 @@
-# quote quasi-quote unquote?
-# ambiguity: quote vs defer vs lazy
-`symbol
-`(,fn)
-
-# macros instead of fexprs?
-# - allows early returns
-# - could replace exceptions
-# - potentially more performant
-
-# splice = insert + merge + delete
-
-# param name instead of bindings.1?
-
----
-
-# syntax sugar for setter?
-# there’s already for getter
-# careful with too much syntax
-
-let user: {\name: 'Bob' \age: 20}
-  user.name
-  
-  user \name
-  user \name 'Alice'
-  user \name: 'Alice'
-  
-  (set user \name 'Alice')
-  (set user.name 'Alice')
-  
-  (io \print) (user \name)
-  io.print user.name
-
----
-
 # Pipeline support? shell pipe?
 
 # goals:
@@ -59,7 +24,6 @@ let user: {\name: 'Bob' \age: 20}
 # use a pre-determined keyword arg?
 # it'd be the same as orig form?
 split val | count re'\d' | print
-split val, count re'\d', print
 
 # or currying indicates input param?
 # too verbose?
@@ -75,6 +39,8 @@ date | file 'blah'
 # pipeline quoted as fn call?
 # no new syntax, optional parens
 \(date | file 'blah')
+
+# what inspecting sees when quoted?
 
 ---
 
@@ -549,6 +515,9 @@ incr: [function [x] + x 1]
 # could be a generalization?
 # a pipe with arguments
 # use pipe+curry to create a closure
+# param name instead of bindings.1?
+# - not an issue anymore
+# - but what does inspecting see?
 
 incr: [x: | + x 1]
 
@@ -925,3 +894,22 @@ let count: (get
   \numerator: 1
   \denominator: 2
 }
+
+---
+
+# syntax sugar for setter?
+# there’s already for getter
+# careful with too much syntax
+
+let user: {\name: 'Bob' \age: 20}
+  user.name
+  
+  user \name
+  user \name 'Alice'
+  user \name: 'Alice'
+  
+  (set user \name 'Alice')
+  (set user.name 'Alice')
+  
+  (io \print) (user \name)
+  io.print user.name
