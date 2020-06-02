@@ -36,7 +36,9 @@ jobs:
       dist: bionic
       compiler: gcc
       script:
-        - cd interpreter/core
+        - cd "$TRAVIS_BUILD_DIR/specification"
+        - make all
+        - cd "$TRAVIS_BUILD_DIR/interpreter/core"
         - make all
 
     - name: Core - Linux (Clang)
@@ -44,21 +46,27 @@ jobs:
       dist: bionic
       compiler: clang
       script:
-        - cd interpreter/core
+        - cd "$TRAVIS_BUILD_DIR/specification"
+        - make all
+        - cd "$TRAVIS_BUILD_DIR/interpreter/core"
         - make all
 
     - name: Core - macOS (Clang)
       os: osx
       compiler: clang
       script:
-        - cd interpreter/core
+        - cd "$TRAVIS_BUILD_DIR/specification"
+        - make all
+        - cd "$TRAVIS_BUILD_DIR/interpreter/core"
         - make all
 
     - name: Core - Windows (CL)
       os: windows
       compiler: cl
       script:
-        - cd interpreter/core
+        - cd "$TRAVIS_BUILD_DIR/specification"
+        - make all
+        - cd "$TRAVIS_BUILD_DIR/interpreter/core"
         # Requires a batch file to invoke cmd.exe avoiding quoting issues,
         # while sourcing the environment for NMAKE to work within.
         - ../nmake.bat

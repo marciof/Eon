@@ -10,6 +10,7 @@
 - Function sub headings? Examples and conditions per section
 - Language code snippet example right on the front page
 - Runnable examples, eg. https://doc.rust-lang.org/book/
+- start a changelog? (and do releases?) https://keepachangelog.com/en/1.0.0/
 
 * TODO visual grammar diagram?
 
@@ -18,9 +19,7 @@
 
 * TODO build target to lint/validate CommonMark documents
 
-- validate link rot?
-  - https://github.com/macedotavares/Glass-Dome
-  - https://github.com/smallhadroncollider/brok
+- link rot dependencies (add to Travis): python3, apt install python3-dev, pip install paka.cmark
 - https://github.com/commonmark/cmark
 - https://talk.commonmark.org/t/is-there-a-commonmark-tidy-answer-kinda/2464/3
 - https://github.com/DavidAnson/markdownlint
@@ -160,3 +159,4 @@
 - xl, https://github.com/c3d/xl
 - Oberon
 - Janet
+- V
