@@ -43,6 +43,7 @@ def list_html_links(html: str, callback: Callable[[str], None]) -> None:
 
 
 # TODO report redirects?
+# TODO parallelize link checking for speed
 def is_link_valid(link: str) -> bool:
     if not link.startswith('http'):
         return True
