@@ -65,7 +65,7 @@ jobs:
       compiler: cl
       script:
         - cd "$TRAVIS_BUILD_DIR/specification"
-        - make all
+        - ../nmake.bat
         - cd "$TRAVIS_BUILD_DIR/interpreter/core"
         # Requires a batch file to invoke cmd.exe avoiding quoting issues,
         # while sourcing the environment for NMAKE to work within.

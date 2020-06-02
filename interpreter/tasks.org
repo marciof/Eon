@@ -2,8 +2,9 @@
 
 ** TODO CMake is too complex/big, alternatives?
 
-- make `nmake.bat` support the architecture argument? or all verbatim?
-- make `nmake.bat` not hardcode ProgramFiles nor MSVC version?
+- improve `nmake.bat`:
+  - don't hardcode the architecture, ProgramFiles, MSVC version
+  - pass arguments verbatim to `nmake` or have a `vcvars.bat` that runs commands
 - https://noahloomans.com/tutorials/makefile/
 - https://nullprogram.com/blog/2017/08/20/
 - https://pubs.opengroup.org/onlinepubs/9699919799/utilities/make.html
@@ -69,6 +70,7 @@
 ** TODO build documentation
 
 - check places for missing documentation (eg. `k_Token_parse` should say it's iterative)
+- validate link rot (in documentation as well as comments?)
 
 ** TODO access struct members directly, instead of wrappers for transparency?
 
