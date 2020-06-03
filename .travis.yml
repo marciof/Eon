@@ -67,6 +67,7 @@ jobs:
         - VCVARSALL_ARCH=amd64
         - PYTHON=python
       before_install:
+        - choco uninstall mingw
         - choco install python3
         - powershell -Command '& RefreshEnv; python -m pip install paka.cmark'
       script:
