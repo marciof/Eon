@@ -68,9 +68,8 @@ jobs:
         - PYTHON=python
       before_install:
         - choco uninstall mingw
-        - choco install python3
-        - powershell -Command '& RefreshEnv'
-        - powershell -Command '& python -m pip install paka.cmark'
+        - choco install python3 --params '/InstallDir:/Python'
+        - powershell -Command '& /Python/python -m pip install paka.cmark'
       script:
         - cd "$TRAVIS_BUILD_DIR/specification"
         - ../windows-vcvarsall.bat nmake /E all
