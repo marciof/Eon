@@ -80,7 +80,7 @@ jobs:
         - cmd /C 'RefreshEnv & python -m pip install commonmark'
       script:
         - cd "$TRAVIS_BUILD_DIR/specification"
-        - cmd /C '..\windows-vcvarsall.bat nmake PYTHON=python all'
+        - cmd /C 'RefreshEnv & ..\windows-vcvarsall.bat nmake PYTHON=python all'
         - cd "$TRAVIS_BUILD_DIR/interpreter/core"
         - cmd /C '..\..\windows-vcvarsall.bat nmake all'
 
