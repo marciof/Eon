@@ -68,7 +68,7 @@ jobs:
         - PYTHON=python
       before_install:
         - choco install python3
-        - powershell -command '& pip3 install paka.cmark'
+        - cmd /C 'pip3 install paka.cmark'
       script:
         - cd "$TRAVIS_BUILD_DIR/specification"
         - ../windows-vcvarsall.bat nmake /E all
