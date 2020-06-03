@@ -64,18 +64,18 @@ jobs:
       os: windows
       compiler: cl
       env:
+        # Workaround path mangling with Windows-style flags (eg. `/E`).
+        # https://www.msys2.org/wiki/Porting/#filesystem-namespaces
+        # https://github.com/git-for-windows/git/wiki/FAQ
+        - MSYS2_ARG_CONV_EXCL='*'
         - VCVARSALL_ARCH=amd64
         - PYTHON=python
       before_install:
         # Remove all existing Python installations.
         - choco uninstall mingw
-        # Single quotes and Windows-style path are required. Hardcode the
-        # installation path since Chocolatey's `RefreshEnv` doesn't seem to
-        # work with PowerShell, and `cmd` seems to hang Travis CI builds.
-        # https://chocolatey.org/docs/how-to-parse-package-parameters-argument#installing-with-package-parameters
-        # https://chocolatey.org/docs/helpers-get-package-parameters#description
-        - choco install python3 --params "'/InstallDir:C:\Python'"
-        - /c/Python/python -m pip install commonmark
+        - choco install python3
+        # Run under `cmd.exe` so that `PATH` changes are picked up.
+        - cmd /C 'python -m pip install commonmark'
       script:
         - cd "$TRAVIS_BUILD_DIR/specification"
         - ../windows-vcvarsall.bat nmake /E all
