@@ -15,6 +15,7 @@
 
 ** TODO split dependencies per build target (eg. native, x86-32, etc)
 
+- put Python dependencies in "requirements.txt" file for reuse?
 - sign-up to interest mailing lists for dependencies?
   - https://lists.debian.org/debian-announce/
 - enable more MSVC CL warnings

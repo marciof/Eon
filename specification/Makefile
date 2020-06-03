@@ -1,6 +1,8 @@
 .POSIX:
 
+PYTHON=python3
+
 all: lint
 
 lint: language.md
-	python3 validate-commonmark-links.py $?
+	$(PYTHON) validate-commonmark-links.py $?

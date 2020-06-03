@@ -63,16 +63,17 @@ jobs:
     - name: Core - Windows (CL)
       os: windows
       compiler: cl
-      env: VCVARSALL_ARCH=amd64
+      env:
+        - VCVARSALL_ARCH=amd64
+        - PYTHON=python
       before_install:
         - choco install python3
-        - python -m pip install --upgrade pip
-        - pip3 install paka.cmark
+        - powershell -command '& pip3 install paka.cmark'
       script:
         - cd "$TRAVIS_BUILD_DIR/specification"
-        - ../windows-vcvarsall.bat nmake all
+        - ../windows-vcvarsall.bat nmake /E all
         - cd "$TRAVIS_BUILD_DIR/interpreter/core"
-        - ../../windows-vcvarsall.bat nmake all
+        - ../../windows-vcvarsall.bat nmake /E all
 
 addons:
   apt:
