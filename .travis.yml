@@ -64,7 +64,7 @@ jobs:
       os: windows
       compiler: cl
       env:
-        # Workaround path mangling with Windows-style flags (eg. `/C`).
+        # Avoid path mangling on Windows-style flags.
         # https://www.msys2.org/wiki/Porting/#filesystem-namespaces
         # https://github.com/git-for-windows/git/wiki/FAQ
         - MSYS2_ARG_CONV_EXCL=/C
@@ -73,8 +73,7 @@ jobs:
         # Remove all existing Python installations.
         - choco uninstall mingw
         - choco install python3
-        - RefreshEnv.cmd
-        - python -m pip install commonmark
+        - cmd /C 'RefreshEnv & python -m pip install commonmark'
       script:
         - cd "$TRAVIS_BUILD_DIR/specification"
         - cmd /C 'RefreshEnv & ..\windows-vcvarsall.bat nmake PYTHON=python all'
