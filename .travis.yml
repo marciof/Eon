@@ -67,9 +67,13 @@ jobs:
         - VCVARSALL_ARCH=amd64
         - PYTHON=python
       before_install:
+        # Remove all existing Python installations.
         - choco uninstall mingw
-        - choco install python3 --params "'/InstallDir:C:\Python'" --verbose
-        - powershell -Command '& /Python/python -m pip install paka.cmark'
+        # Single quotes and Windows-style path are required.
+        # https://chocolatey.org/docs/how-to-parse-package-parameters-argument#installing-with-package-parameters
+        # https://chocolatey.org/docs/helpers-get-package-parameters#description
+        - choco install python3 --params "'/InstallDir:C:\Python'"
+        - /c/Python/python -m pip install commonmark
       script:
         - cd "$TRAVIS_BUILD_DIR/specification"
         - ../windows-vcvarsall.bat nmake /E all

@@ -10,8 +10,8 @@ from typing import Callable
 from urllib.request import Request, urlopen
 
 # External:
-# TODO pure Python CommonMark parser
-from paka import cmark # v2.2.0
+# TODO use the official lib https://github.com/commonmark/cmark
+from commonmark import commonmark # v0.9.1
 
 
 # TODO logging?
@@ -33,8 +33,8 @@ def slurp_input() -> str:
 
 
 # TODO walk CommonMark AST instead of parsing to HTML just to get links
-def convert_commonmark_to_html(commonmark: str) -> str:
-    return cmark.to_html(commonmark, safe = False)
+def convert_commonmark_to_html(text: str) -> str:
+    return commonmark(text)
 
 
 def list_html_links(html: str, callback: Callable[[str], None]) -> None:
