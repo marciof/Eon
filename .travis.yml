@@ -64,8 +64,11 @@ jobs:
       os: windows
       compiler: cl
       env:
+        # Workaround path mangling with Windows-style flags (eg. `/E`).
+        # https://www.msys2.org/wiki/Porting/#filesystem-namespaces
+        # https://github.com/git-for-windows/git/wiki/FAQ
+        - MSYS2_ARG_CONV_EXCL=/C
         - VCVARSALL_ARCH=amd64
-        - PYTHON=python
       before_install:
         # Remove all existing Python installations.
         - choco uninstall mingw
@@ -77,9 +80,9 @@ jobs:
         - cmd /C 'RefreshEnv & python -m pip install commonmark'
       script:
         - cd "$TRAVIS_BUILD_DIR/specification"
-        - cmd /C '..\windows-vcvarsall.bat nmake /E all'
+        - cmd /C '..\windows-vcvarsall.bat nmake PYTHON=python all'
         - cd "$TRAVIS_BUILD_DIR/interpreter/core"
-        - cmd /C '..\..\windows-vcvarsall.bat nmake /E all'
+        - cmd /C '..\..\windows-vcvarsall.bat nmake all'
 
 addons:
   apt:
