@@ -5,4 +5,5 @@
 @rem doesn't modify `%*`.
 call "C:\Program Files (x86)\Microsoft Visual Studio\2017\BuildTools\VC\Auxiliary\Build\vcvarsall.bat" %VCVARSALL_ARCH%
 
+echo Running command: %*
 %*

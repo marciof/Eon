@@ -69,7 +69,9 @@ jobs:
       before_install:
         # Remove all existing Python installations.
         - choco uninstall mingw
-        # Single quotes and Windows-style path are required.
+        # Single quotes and Windows-style path are required. Hardcode the
+        # installation path since Chocolatey's `RefreshEnv` doesn't seem to
+        # work with PowerShell, and `cmd` seems to hang Travis CI builds.
         # https://chocolatey.org/docs/how-to-parse-package-parameters-argument#installing-with-package-parameters
         # https://chocolatey.org/docs/helpers-get-package-parameters#description
         - choco install python3 --params "'/InstallDir:C:\Python'"
