@@ -11,6 +11,7 @@ from urllib.request import Request, urlopen
 
 # External:
 # TODO use the official lib https://github.com/commonmark/cmark
+# TODO paka.cmark fails to build on Windows https://github.com/PavloKapyshin/paka.cmark/pull/6
 from commonmark import commonmark # v0.9.1
 
 
