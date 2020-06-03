@@ -78,7 +78,8 @@ jobs:
         # https://chocolatey.org/docs/how-to-parse-package-parameters-argument#installing-with-package-parameters
         # https://chocolatey.org/docs/helpers-get-package-parameters#description
         - choco install python3 --params "'/InstallDir:C:\Python'"
-        - cmd /C 'RefreshEnv & python -m pip install commonmark'
+        # Workaround console output mangling.
+        - winpty "$PYTHON" -m pip install commonmark
       script:
         - cd "$TRAVIS_BUILD_DIR/specification"
         - ../windows-vcvarsall.bat nmake /E all
