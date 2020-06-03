@@ -66,6 +66,7 @@ jobs:
       env: VCVARSALL_ARCH=amd64
       before_install:
         - choco install python3
+        - python -m pip install --upgrade pip
         - pip3 install paka.cmark
       script:
         - cd "$TRAVIS_BUILD_DIR/specification"
