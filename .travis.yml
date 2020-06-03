@@ -63,13 +63,12 @@ jobs:
     - name: Core - Windows (CL)
       os: windows
       compiler: cl
+      env: VCVARSALL_ARCH=amd64
       script:
         - cd "$TRAVIS_BUILD_DIR/specification"
-        - ../nmake.bat
+        - ../windows-vcvarsall.bat nmake all
         - cd "$TRAVIS_BUILD_DIR/interpreter/core"
-        # Requires a batch file to invoke cmd.exe avoiding quoting issues,
-        # while sourcing the environment for NMAKE to work within.
-        - ../nmake.bat
+        - ../../windows-vcvarsall.bat nmake all
 
 addons:
   apt:

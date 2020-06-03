@@ -2,9 +2,7 @@
 
 ** TODO CMake is too complex/big, alternatives?
 
-- improve `nmake.bat`:
-  - don't hardcode the architecture, ProgramFiles, MSVC version
-  - pass arguments verbatim to `nmake` or have a `vcvars.bat` that runs commands
+- don't hardcode ProgramFiles and MSVC version in `windows-vcvarsall.bat`?
 - https://noahloomans.com/tutorials/makefile/
 - https://nullprogram.com/blog/2017/08/20/
 - https://pubs.opengroup.org/onlinepubs/9699919799/utilities/make.html
