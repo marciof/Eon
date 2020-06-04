@@ -63,23 +63,34 @@ jobs:
     - name: Core - Windows (CL)
       os: windows
       compiler: cl
-      env:
-        # Avoid path mangling on Windows-style flags.
-        # https://www.msys2.org/wiki/Porting/#filesystem-namespaces
-        # https://github.com/git-for-windows/git/wiki/FAQ
-        - MSYS2_ARG_CONV_EXCL=/C
-        - VCVARSALL_ARCH=amd64
+      # TODO use WinGet?
       before_install:
-        # Remove all existing Python installations.
-        # TODO use WinGet?
-        - choco uninstall mingw
-        - choco install python3
-        - cmd /C 'RefreshEnv & python -m pip install commonmark'
+        - |-
+            powershell -Command '& {
+              choco install vswhere
+
+              # Remove all existing Python installations.
+              choco uninstall mingw
+              choco install python3
+
+              RefreshEnv
+              python -m pip install commonmark
+
+              # For `Invoke-Batch-File`, <https://github.com/Pscx/Pscx>.
+              Install-Module -AllowClobber -Force Pscx
+            }'
       script:
-        - cd "$TRAVIS_BUILD_DIR/specification"
-        - cmd /C 'RefreshEnv & ..\windows-vcvarsall.bat nmake PYTHON=python all'
-        - cd "$TRAVIS_BUILD_DIR/interpreter/core"
-        - ../../windows-vcvarsall.bat nmake all
+        - |-
+          powershell -Command '& {
+            RefreshEnv
+            Invoke-BatchFile (vswhere -latest -products '*' -find '**\vcvarsall.bat') amd64
+
+            cd "$env:TRAVIS_BUILD_DIR\specification"
+            nmake PYTHON=python all
+
+            cd "$env:TRAVIS_BUILD_DIR\interpreter\core"
+            nmake all
+          }'
 
 addons:
   apt:
