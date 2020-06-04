@@ -36,7 +36,7 @@ jobs:
       dist: bionic
       compiler: gcc
       script:
-        - cd "$TRAVIS_BUILD_DIR/specification"
+        - cd "$TRAVIS_BUILD_DIR"
         - make all
         - cd "$TRAVIS_BUILD_DIR/interpreter/core"
         - make all
@@ -45,7 +45,7 @@ jobs:
       os: osx
       compiler: clang
       script:
-        - cd "$TRAVIS_BUILD_DIR/specification"
+        - cd "$TRAVIS_BUILD_DIR"
         - make all
         - cd "$TRAVIS_BUILD_DIR/interpreter/core"
         - make all
@@ -53,21 +53,22 @@ jobs:
     - name: Windows (CL)
       os: windows
       compiler: cl
-      # TODO use WinGet?
       install:
+        # TODO use WinGet to install dependencies?
         - |-
           powershell -ExecutionPolicy Bypass -Command '
             Set-StrictMode -Version Latest
             $ErrorActionPreference = "Stop"
 
+            # For detecting Visual Studio build tools.
             choco install vswhere
 
-            # Remove all existing Python installations.
+            # Replace MinGW's Python.
             choco uninstall mingw
             choco install python3
 
+            # For `Invoke-Batch-File` to source batch files into PowerShell.
             Import-Module PowerShellGet
-            # Get `Invoke-Batch-File`.
             Install-Module -AllowClobber -Force Pscx
 
             Invoke-BatchFile (Get-Command RefreshEnv).Source
@@ -81,7 +82,7 @@ jobs:
             Invoke-BatchFile (Get-Command RefreshEnv).Source
             Invoke-BatchFile (vswhere -latest -products "*" -find "**\vcvarsall.*") amd64
 
-            cd "$env:TRAVIS_BUILD_DIR\specification"
+            cd "$env:TRAVIS_BUILD_DIR"
             nmake PYTHON=python all
             $hadError = -not $?
 

@@ -20,8 +20,8 @@ It includes a well-defined specification, a platform-agnostic implementation cor
 
 Dependencies per build target:
 
-- `specification/`:
-  - `lint`:
+- Project root:
+  - `lint-documentation`:
     - [Python 3](https://www.python.org/downloads/)
     - [commonmark](https://pypi.org/project/commonmark/)
 
@@ -36,7 +36,7 @@ Dependencies per build target:
 - `interpreter/`:
   - `core/`:
     - `all`:
-      - Compiler: [GCC](https://gcc.gnu.org/) or [Clang](https://clang.llvm.org/)
+      - Compiler: [GCC](https://gcc.gnu.org) or [Clang](https://clang.llvm.org)
 
 ### macOS
 
@@ -48,7 +48,7 @@ Dependencies used by all build targets:
 
 Dependencies used by all build targets:
 
-- [Visual Studio Build Tools](https://www.visualstudio.com/thank-you-downloading-visual-studio/?sku=BuildTools) (includes NMAKE, CL, and LIB)
+- [Visual Studio Build Tools](https://www.visualstudio.com/thank-you-downloading-visual-studio/?sku=BuildTools) (includes NMAKE, CL, LIB, etc.)
 
 ## Building
 
