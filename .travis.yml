@@ -99,7 +99,7 @@ jobs:
 
             cd "$env:TRAVIS_BUILD_DIR\interpreter\core"
             nmake all
-            $hadError = $hadError || -not $?
+            $hadError = $hadError -or -not $?
 
             Exit $hadError
           ' 2>&1
