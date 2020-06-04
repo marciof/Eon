@@ -4,26 +4,51 @@ A free/libre open source (FLOSS) programming language for interactive use, scrip
 
 It includes a well-defined specification, a platform-agnostic implementation core, and an interpreter for various operating systems and environments.
 
+# Structure
+
+- `interpreter/`: Implementation of the language specification.
+  - `core/`: Builds an embeddable library with the host-independent core of the implementation and host-dependent hooks.
+  - `javascript/`: Builds a standalone executable to compile to JavaScript.
+  - `native/`: Builds an embeddable library and a standalone executable to run natively (eg. on Windows).
+  - `x86-32/`: Builds a Multiboot-compliant executable to run on an Intel x86 32-bit host.
+- `library/`: Standard library for the interpreter.
+- `specification/`: Language specification.
+
 # Installation
 
 ## Dependencies
 
+Dependencies per build target:
+
+- `specification/`:
+  - `lint`:
+    - [Python 3](https://www.python.org/downloads/)
+    - [`commonmark`](https://pypi.org/project/commonmark/)
+
 ### Linux
 
-See file `.travis.yml`, section:
+Dependencies used by all build targets:
 
-- `jobs` / `include` / `compiler`: Supported compilers.
-- `addons`/`apt`/`packages`: Required packages.
+- Make (POSIX compliant)
+
+Dependencies per build target:
+
+- `interpreter/`:
+  - `core/`:
+    - `all`:
+      - Compiler: [GCC](https://gcc.gnu.org/) or [CLang](https://clang.llvm.org/)
 
 ### macOS
 
-See file `.travis.yml`.
+Dependencies used by all build targets:
+
+- Make (POSIX compliant)
 
 ### Windows
 
-- [Visual Studio Build Tools](https://www.visualstudio.com/thank-you-downloading-visual-studio/?sku=BuildTools)
+Dependencies used by all build targets:
 
-*(Tested on Windows 10, 32-bit and 64-bit.)*
+- [Visual Studio Build Tools](https://www.visualstudio.com/thank-you-downloading-visual-studio/?sku=BuildTools) (includes NMAKE, CL, and LIB)
 
 ## Building
 
@@ -41,13 +66,3 @@ See file `.travis.yml`.
    ```
    $ cmake --build .
    ```
-
-# Architecture
-
-- `interpreter/`: Implementation of the language specification.
-  - `core/`: Builds an embeddable library with the host-independent core of the implementation and host-dependent hooks.
-  - `javascript/`: Builds a standalone executable to compile to JavaScript.
-  - `native/`: Builds an embeddable library and a standalone executable to run natively (eg. on Windows).
-  - `x86-32/`: Builds a Multiboot-compliant executable to run on an Intel x86 32-bit host.
-- `library/`: Standard library for the interpreter.
-- `specification/`: Language specification.

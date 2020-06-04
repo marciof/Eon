@@ -19,7 +19,7 @@
 
 * TODO build target to lint/validate CommonMark documents
 
-- link rot dependencies (add to Travis): python3, apt install python3-dev, pip install commonmark
+- link rot dependencies README.md
 - https://talk.commonmark.org/t/is-there-a-commonmark-tidy-answer-kinda/2464/3
 - https://github.com/DavidAnson/markdownlint
 - https://github.com/markdownlint/markdownlint

@@ -15,12 +15,9 @@
 
 ** TODO split dependencies per build target (eg. native, x86-32, etc)
 
+- finish README dependencies, including macOS and build instructions
 - put Python dependencies in "requirements.txt" file for reuse?
-- sign-up to interest mailing lists for dependencies?
-  - https://lists.debian.org/debian-announce/
-  - Travis
-  - Chocolatey
-  - other deps (Python, MSVC build tools, GCC, etc)
+- sign-up to interest mailing lists for dependencies? including OS, CI, etc
 - enable more MSVC CL warnings
 - setup CI builds for other compilers on OSX/Windows?
 - setup CI builds for other CPU architectures?
