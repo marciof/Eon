@@ -73,17 +73,18 @@ jobs:
               choco uninstall mingw
               choco install python3
 
-              RefreshEnv
-              python -m pip install commonmark
-
-              # For `Invoke-Batch-File`, <https://github.com/Pscx/Pscx>.
+              Import-Module PowerShellGet
+              # Get `Invoke-Batch-File`.
               Install-Module -AllowClobber -Force Pscx
+
+              Invoke-BatchFile (Get-Command RefreshEnv).Source
+              python -m pip install commonmark
             }'
       script:
         - |-
           powershell -Command '& {
-            RefreshEnv
-            Invoke-BatchFile (vswhere -latest -products '*' -find '**\vcvarsall.bat') amd64
+            Invoke-BatchFile (Get-Command RefreshEnv).Source
+            Invoke-BatchFile (vswhere -latest -products '*' -find '**\vcvarsall.*') amd64
 
             cd "$env:TRAVIS_BUILD_DIR\specification"
             nmake PYTHON=python all
