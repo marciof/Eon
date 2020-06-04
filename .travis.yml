@@ -31,7 +31,7 @@ jobs:
         - cmake -Wdev --warn-uninitialized -DBUILD_NATIVE=ON -DBUILD_JAVASCRIPT=ON -DBUILD_X86_32=ON "$TRAVIS_BUILD_DIR"
         - cmake --build .
 
-    - name: Core - Linux (GCC)
+    - name: Linux (GCC)
       os: linux
       dist: bionic
       compiler: gcc
@@ -41,17 +41,7 @@ jobs:
         - cd "$TRAVIS_BUILD_DIR/interpreter/core"
         - make all
 
-    - name: Core - Linux (Clang)
-      os: linux
-      dist: bionic
-      compiler: clang
-      script:
-        - cd "$TRAVIS_BUILD_DIR/specification"
-        - make all
-        - cd "$TRAVIS_BUILD_DIR/interpreter/core"
-        - make all
-
-    - name: Core - macOS (Clang)
+    - name: macOS (Clang)
       os: osx
       compiler: clang
       script:
@@ -60,7 +50,7 @@ jobs:
         - cd "$TRAVIS_BUILD_DIR/interpreter/core"
         - make all
 
-    - name: Core - Windows (CL)
+    - name: Windows (CL)
       os: windows
       compiler: cl
       # TODO use WinGet?
