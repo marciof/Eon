@@ -86,7 +86,7 @@ jobs:
           }'
       script:
         - |-
-          powershell -Command '& {
+          powershell -ExecutionPolicy Bypass -Command '& {
             Invoke-BatchFile (Get-Command RefreshEnv).Source
             Invoke-BatchFile (vswhere -latest -products "*" -find "**\vcvarsall.*") amd64
 
