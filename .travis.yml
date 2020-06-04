@@ -84,7 +84,7 @@ jobs:
         - |-
           powershell -Command '& {
             Invoke-BatchFile (Get-Command RefreshEnv).Source
-            Invoke-BatchFile (vswhere -latest -products '*' -find '**\vcvarsall.*') amd64
+            Invoke-BatchFile (vswhere -latest -products "*" -find "**\vcvarsall.*") amd64
 
             cd "$env:TRAVIS_BUILD_DIR\specification"
             nmake PYTHON=python all
