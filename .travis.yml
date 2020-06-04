@@ -66,7 +66,10 @@ jobs:
       # TODO use WinGet?
       before_install:
         - |-
-          powershell -ExecutionPolicy Bypass -Command '& {
+          powershell -ExecutionPolicy Bypass -Command '
+            Set-StrictMode -Version Latest
+            $ErrorActionPreference = 'Stop'
+
             choco install vswhere
 
             # Remove all existing Python installations.
@@ -79,10 +82,12 @@ jobs:
 
             Invoke-BatchFile (Get-Command RefreshEnv).Source
             python -m pip install commonmark
-          }' 2>&1
+          ' 2>&1
       script:
         - |-
-          powershell -ExecutionPolicy Bypass -Command '& {
+          powershell -ExecutionPolicy Bypass -Command '
+            Set-StrictMode -Version Latest
+
             Invoke-BatchFile (Get-Command RefreshEnv).Source
             Invoke-BatchFile (vswhere -latest -products "*" -find "**\vcvarsall.*") amd64
 
@@ -90,10 +95,14 @@ jobs:
 
             cd "$env:TRAVIS_BUILD_DIR\specification"
             nmake PYTHON=python all
+            $hadError = -not $?
 
             cd "$env:TRAVIS_BUILD_DIR\interpreter\core"
             nmake all
-          }' 2>&1
+            $hadError = $hadError || -not $?
+
+            Exit $hadError
+          ' 2>&1
 
 addons:
   apt:
