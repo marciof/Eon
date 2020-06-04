@@ -67,8 +67,6 @@ jobs:
       before_install:
         - |-
           powershell -ExecutionPolicy Bypass -Command '& {
-            Set-PSDebug -Trace 1
-
             choco install vswhere
 
             # Remove all existing Python installations.
@@ -85,10 +83,10 @@ jobs:
       script:
         - |-
           powershell -ExecutionPolicy Bypass -Command '& {
-            Set-PSDebug -Trace 1
-
             Invoke-BatchFile (Get-Command RefreshEnv).Source
             Invoke-BatchFile (vswhere -latest -products "*" -find "**\vcvarsall.*") amd64
+
+            Set-PSDebug -Trace 1
 
             cd "$env:TRAVIS_BUILD_DIR\specification"
             nmake PYTHON=python all
