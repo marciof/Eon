@@ -35,8 +35,8 @@ jobs:
       os: linux
       dist: bionic
       compiler: gcc
+      install: pip3 install -r requirements.txt
       script:
-        - cd "$TRAVIS_BUILD_DIR"
         - make all
         - cd "$TRAVIS_BUILD_DIR/interpreter/core"
         - make all
@@ -45,7 +45,6 @@ jobs:
       os: osx
       compiler: clang
       script:
-        - cd "$TRAVIS_BUILD_DIR"
         - make all
         - cd "$TRAVIS_BUILD_DIR/interpreter/core"
         - make all
@@ -72,7 +71,7 @@ jobs:
             Install-Module -AllowClobber -Force Pscx
 
             Invoke-BatchFile (Get-Command RefreshEnv).Source
-            python -m pip install commonmark
+            python -m pip install -r requirements.txt
           ' 2>&1
       script:
         - |-
@@ -82,7 +81,6 @@ jobs:
             Invoke-BatchFile (Get-Command RefreshEnv).Source
             Invoke-BatchFile (vswhere -latest -products "*" -find "**\vcvarsall.*") amd64
 
-            cd "$env:TRAVIS_BUILD_DIR"
             nmake PYTHON=python all
             $hadError = -not $?
 
@@ -96,6 +94,8 @@ jobs:
 addons:
   apt:
     packages:
+      - python3
+
       # Target: all
       - cmake
       - make
