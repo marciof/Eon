@@ -63,7 +63,7 @@ jobs:
             # For detecting Visual Studio build tools.
             choco install vswhere
 
-            # Replace MinGW's Python.
+            # Replace Python from MinGW.
             choco uninstall mingw
             choco install python3
 
