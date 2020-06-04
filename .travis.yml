@@ -66,20 +66,20 @@ jobs:
       # TODO use WinGet?
       before_install:
         - |-
-            powershell -Command '& {
-              choco install vswhere
+          powershell -ExecutionPolicy Bypass -Command '& {
+            choco install vswhere
 
-              # Remove all existing Python installations.
-              choco uninstall mingw
-              choco install python3
+            # Remove all existing Python installations.
+            choco uninstall mingw
+            choco install python3
 
-              Import-Module PowerShellGet
-              # Get `Invoke-Batch-File`.
-              Install-Module -AllowClobber -Force Pscx
+            Import-Module PowerShellGet
+            # Get `Invoke-Batch-File`.
+            Install-Module -AllowClobber -Force Pscx
 
-              Invoke-BatchFile (Get-Command RefreshEnv).Source
-              python -m pip install commonmark
-            }'
+            Invoke-BatchFile (Get-Command RefreshEnv).Source
+            python -m pip install commonmark
+          }'
       script:
         - |-
           powershell -Command '& {
