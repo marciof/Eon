@@ -91,8 +91,6 @@ jobs:
             Invoke-BatchFile (Get-Command RefreshEnv).Source
             Invoke-BatchFile (vswhere -latest -products "*" -find "**\vcvarsall.*") amd64
 
-            Set-PSDebug -Trace 1
-
             cd "$env:TRAVIS_BUILD_DIR\specification"
             nmake PYTHON=python all
             $hadError = -not $?
