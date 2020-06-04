@@ -54,7 +54,7 @@ jobs:
       os: windows
       compiler: cl
       # TODO use WinGet?
-      before_install:
+      install:
         - |-
           powershell -ExecutionPolicy Bypass -Command '
             Set-StrictMode -Version Latest
