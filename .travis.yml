@@ -67,6 +67,8 @@ jobs:
       before_install:
         - |-
           powershell -ExecutionPolicy Bypass -Command '& {
+            Set-PSDebug -Trace 1
+
             choco install vswhere
 
             # Remove all existing Python installations.
@@ -79,10 +81,12 @@ jobs:
 
             Invoke-BatchFile (Get-Command RefreshEnv).Source
             python -m pip install commonmark
-          }'
+          }' 2>&1
       script:
         - |-
           powershell -ExecutionPolicy Bypass -Command '& {
+            Set-PSDebug -Trace 1
+
             Invoke-BatchFile (Get-Command RefreshEnv).Source
             Invoke-BatchFile (vswhere -latest -products "*" -find "**\vcvarsall.*") amd64
 
@@ -91,7 +95,7 @@ jobs:
 
             cd "$env:TRAVIS_BUILD_DIR\interpreter\core"
             nmake all
-          }'
+          }' 2>&1
 
 addons:
   apt:
