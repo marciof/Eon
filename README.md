@@ -23,7 +23,7 @@ Dependencies per build target:
 - `specification/`:
   - `lint`:
     - [Python 3](https://www.python.org/downloads/)
-    - [`commonmark`](https://pypi.org/project/commonmark/)
+    - [commonmark](https://pypi.org/project/commonmark/)
 
 ### Linux
 
@@ -36,7 +36,7 @@ Dependencies per build target:
 - `interpreter/`:
   - `core/`:
     - `all`:
-      - Compiler: [GCC](https://gcc.gnu.org/) or [CLang](https://clang.llvm.org/)
+      - Compiler: [GCC](https://gcc.gnu.org/) or [Clang](https://clang.llvm.org/)
 
 ### macOS
 
