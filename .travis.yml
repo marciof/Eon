@@ -63,6 +63,10 @@ jobs:
     - name: Core - Windows (CL)
       os: windows
       compiler: cl
+      # Avoid Windows path mangling.
+      # https://www.msys2.org/wiki/Porting/#filesystem-namespaces
+      # https://github.com/git-for-windows/git/wiki/FAQ
+      env: MSYS2_ARG_CONV_EXCL='*'
       # TODO use WinGet?
       before_install:
         - |-
