@@ -3,8 +3,43 @@
 
 language: c
 
+notifications:
+  email:
+    on_success: always
+
 env:
   global: VERBOSE=ON
+
+addons:
+
+  # Linux
+  apt:
+    packages:
+      - python3
+      - python3-pip
+
+      # Target: all
+      - cmake
+      - make
+
+      # Target: x86-32
+      - nasm # Assembler
+      - multiboot # Multiboot header files and `grub-file` to verify compliance
+
+      # Target: x86-32, Script: iso.sh
+      - grub-common
+      - xorriso
+
+      # Target: x86-32, Script: vm.sh
+      # https://www.virtualbox.org/wiki/Linux_Downloads
+
+      # Target: x86-32, Host: Linux 64-bit
+      - gcc-multilib # cross-compile 32-bit applications on 64-bit systems
+
+  # macOS
+  homebrew:
+    packages:
+      - python@3
 
 jobs:
   include:
@@ -44,6 +79,7 @@ jobs:
     - name: macOS (Clang)
       os: osx
       compiler: clang
+      before_script: python3 -m pip install -r requirements.txt
       script:
         - make all
         - cd "$TRAVIS_BUILD_DIR/interpreter/core"
@@ -90,31 +126,3 @@ jobs:
 
             Exit $hadError
           ' 2>&1
-
-addons:
-  apt:
-    packages:
-      - python3
-      - python3-pip
-
-      # Target: all
-      - cmake
-      - make
-
-      # Target: x86-32
-      - nasm # Assembler
-      - multiboot # Multiboot header files and `grub-file` to verify compliance
-
-      # Target: x86-32, Script: iso.sh
-      - grub-common
-      - xorriso
-
-      # Target: x86-32, Script: vm.sh
-      # https://www.virtualbox.org/wiki/Linux_Downloads
-
-      # Target: x86-32, Host: Linux 64-bit
-      - gcc-multilib # cross-compile 32-bit applications on 64-bit systems
-
-notifications:
-  email:
-    on_success: always
