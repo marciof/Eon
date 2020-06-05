@@ -92,6 +92,7 @@ jobs:
     - name: Windows (CL)
       os: windows
       compiler: cl
+      env: PATH=$TRAVIS_BUILD_DIR:$PATH
       install:
         # TODO use WinGet to install dependencies?
         - choco install vswhere
@@ -103,12 +104,12 @@ jobs:
       before_script:
         - |
           echo "
-              $(vswhere -latest -products '*' -find '**\vcvarsall.*') amd64
-              nmake %*
+              call \"$(vswhere -latest -products '*' -find '**\vcvarsall.*')\" amd64
+              nmake.exe %*
           " | tee nmake.bat
       script:
-        - ./nmake.bat PYTHON=python all
+        - nmake.bat PYTHON=python all
         - cd "$TRAVIS_BUILD_DIR/specification"
-        - ../nmake.bat PYTHON=python all
+        - nmake.bat PYTHON=python all
         - cd "$TRAVIS_BUILD_DIR/interpreter/core"
-        - ../../nmake.bat all
+        - nmake.bat all
