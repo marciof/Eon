@@ -1,4 +1,4 @@
-#include "../../core/Bit.h"
+#include "../../core/bit.h"
 #include "../IO.h"
 #include "CRT.h"
 #include "Text.h"

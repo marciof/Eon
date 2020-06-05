@@ -6,7 +6,7 @@
 #pragma once
 #include <stddef.h>
 #include <stdint.h>
-#include "../../core/Bit.h"
+#include "../../core/bit.h"
 
 typedef uint8_t k_VGA_Text_Color;
 enum {

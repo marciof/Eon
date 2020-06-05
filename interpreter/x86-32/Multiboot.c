@@ -1,6 +1,6 @@
 #include <stddef.h>
 #include <stdint.h>
-#include "../core/Bit.h"
+#include "../core/bit.h"
 #include "Multiboot.h"
 
 typedef uint8_t Drive_Access_Mode;

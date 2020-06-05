@@ -20,4 +20,4 @@ $(LIBPREFIX)karyon$(LIB): Err$(OBJ) Log$(OBJ)
 	$(AR) $(ARFLAGS) $(AROUT)$@ Err$(OBJ) Log$(OBJ)
 
 Err$(OBJ): Err.c Err.h
-Log$(OBJ): Log.c Log.h Err.h std/SysTypes.h
+Log$(OBJ): Log.c Log.h Err.h std/sys/types.h
