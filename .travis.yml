@@ -96,7 +96,10 @@ jobs:
         # TODO use WinGet to install dependencies?
         - choco install vswhere
         - choco install python3
-        - powershell -Command 'Update-SessionEnvironment; python -m pip install -r requirements.txt'
+        # Avoid Windows path mangling when calling `cmd.exe`.
+        # https://www.msys2.org/wiki/Porting/#filesystem-namespaces
+        # https://github.com/git-for-windows/git/wiki/FAQ
+        - MSYS2_ARG_CONV_EXCL=/C cmd /C 'python -m pip install -r requirements.txt'
       before_script:
         - |
           echo "
