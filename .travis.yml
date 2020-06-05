@@ -96,7 +96,7 @@ jobs:
         # TODO use WinGet to install dependencies?
         - choco install vswhere
         - choco install python3
-        - powershell -Command 'refreshenv; python -m pip install -r requirements.txt'
+        - powershell -Command 'Update-SessionEnvironment; python -m pip install -r requirements.txt'
       before_script:
         - |
           echo "
