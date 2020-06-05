@@ -18,7 +18,9 @@ It includes a well-defined specification, a platform-agnostic implementation cor
 
 ## Dependencies
 
-Per build target:
+Build tool: `make` (POSIX compliant)
+
+Build target:
 
 - `lint-documentation`
   - [Python 3](https://www.python.org/downloads/)
@@ -26,11 +28,7 @@ Per build target:
 
 ### Linux
 
-All build targets:
-
-- `make` (POSIX compliant)
-
-Per build target:
+Build target:
 
 - `library`
   - Compiler: [GCC](https://gcc.gnu.org)
@@ -38,11 +36,7 @@ Per build target:
 
 ### macOS
 
-All build targets:
-
-- `make` (POSIX compliant)
-
-Per build target:
+Build target:
 
 - `library`
   - Compiler: [Clang](https://clang.llvm.org)
@@ -50,11 +44,9 @@ Per build target:
 
 ### Windows
 
-All build targets:
+Build tool: `nmake` (via [Visual Studio Build Tools](https://www.visualstudio.com/thank-you-downloading-visual-studio/?sku=BuildTools)).
 
-- `nmake` (via [Visual Studio Build Tools](https://www.visualstudio.com/thank-you-downloading-visual-studio/?sku=BuildTools))
-
-Per build target:
+Build target:
 
 - `library`
   - Compiler: `cl` (via [Visual Studio Build Tools](https://www.visualstudio.com/thank-you-downloading-visual-studio/?sku=BuildTools))
