@@ -41,28 +41,23 @@ addons:
 jobs:
   include:
 
+    - name: Linux (Clang)
+      os: linux
+      dist: bionic
+      compiler: clang
+
     - name: Linux (GCC)
       os: linux
       dist: bionic
       compiler: gcc
-      before_script: python3 -m pip install -r requirements.txt
-      script:
-        - make all
-        - cd "$TRAVIS_BUILD_DIR/specification"
-        - make all
-        - cd "$TRAVIS_BUILD_DIR/interpreter/core"
-        - make all
 
     - name: macOS (Clang)
       os: osx
       compiler: clang
-      before_script: python3 -m pip install -r requirements.txt
-      script:
-        - make all
-        - cd "$TRAVIS_BUILD_DIR/specification"
-        - make all
-        - cd "$TRAVIS_BUILD_DIR/interpreter/core"
-        - make all
+
+    - name: macOS (GCC)
+      os: osx
+      compiler: gcc
 
     - name: Windows (CL)
       os: windows
@@ -91,3 +86,11 @@ jobs:
         - nmake.bat PYTHON=python all 2>&1
         - cd "$TRAVIS_BUILD_DIR/interpreter/core"
         - nmake.bat all 2>&1
+
+before_script: python3 -m pip install -r requirements.txt
+script:
+  - make all
+  - cd "$TRAVIS_BUILD_DIR/specification"
+  - make all
+  - cd "$TRAVIS_BUILD_DIR/interpreter/core"
+  - make all

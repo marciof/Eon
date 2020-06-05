@@ -14,6 +14,7 @@
 
 ** TODO split dependencies per build target (eg. native, x86-32, etc)
 
+- test GCC and Clang on other OSes?
 - finish README dependencies and build instructions
 - sign-up to interest mailing lists for dependencies? including OS, CI, etc
 - enable more MSVC CL warnings
