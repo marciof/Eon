@@ -58,6 +58,10 @@ jobs:
     - name: macOS (GCC)
       os: osx
       compiler: gcc
+      # Force GCC.
+      # https://docs.travis-ci.com/user/languages/c/#gcc-on-macos
+      env: CC=gcc-7
+      before_install: brew install gcc
 
     - name: Windows (CL)
       os: windows
