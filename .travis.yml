@@ -58,6 +58,7 @@ jobs:
     - name: macOS (GCC)
       os: osx
       compiler: gcc-9
+      env: CCNAME=gcc
 
     - name: Windows (CL)
       os: windows
