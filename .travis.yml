@@ -79,12 +79,14 @@ jobs:
       before_script:
         - |
           echo "
+              refreshenv
               call \"$(vswhere -latest -products '*' -find '**\vcvarsall.*')\" amd64
+              echo nmake.exe %*
               nmake.exe %*
           " | tee nmake.bat
       script:
-        - nmake.bat PYTHON=python all
+        - nmake.bat PYTHON=python all 2>&1
         - cd "$TRAVIS_BUILD_DIR/specification"
-        - nmake.bat PYTHON=python all
+        - nmake.bat PYTHON=python all 2>&1
         - cd "$TRAVIS_BUILD_DIR/interpreter/core"
-        - nmake.bat all
+        - nmake.bat all 2>&1
