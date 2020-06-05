@@ -28,34 +28,37 @@ Per build target:
 
 All build targets:
 
-- Make (POSIX compliant)
+- `make` (POSIX compliant)
 
 Per build target:
 
 - `library`
   - Compiler: [GCC](https://gcc.gnu.org)
+  - Librarian: `ar` (POSIX compliant)
 
 ### macOS
 
 All build targets:
 
-- Make (POSIX compliant)
+- `make` (POSIX compliant)
 
 Per build target:
 
 - `library`
   - Compiler: [Clang](https://clang.llvm.org)
+  - Librarian: `ar` (POSIX compliant)
 
 ### Windows
 
 All build targets:
 
-- NMAKE (via [Visual Studio Build Tools](https://www.visualstudio.com/thank-you-downloading-visual-studio/?sku=BuildTools))
+- `nmake` (via [Visual Studio Build Tools](https://www.visualstudio.com/thank-you-downloading-visual-studio/?sku=BuildTools))
 
 Per build target:
 
 - `library`
-  - Compiler: CL (via [Visual Studio Build Tools](https://www.visualstudio.com/thank-you-downloading-visual-studio/?sku=BuildTools))
+  - Compiler: `cl` (via [Visual Studio Build Tools](https://www.visualstudio.com/thank-you-downloading-visual-studio/?sku=BuildTools))
+  - Librarian: `lib` (via [Visual Studio Build Tools](https://www.visualstudio.com/thank-you-downloading-visual-studio/?sku=BuildTools))
 
 ## Building
 
