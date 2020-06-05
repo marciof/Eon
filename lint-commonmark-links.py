@@ -77,12 +77,27 @@ def is_link_valid(link: str) -> bool:
         return False
 
 
-# TODO normalize/cache/de-duplicate links
+class DeDupQueue (queue.Queue):
+    def __init__(self):
+        super().__init__()
+        self.seen_hashes = set()
+
+
+    def put(self, item, **kwargs):
+        item_hash = hash(item)
+
+        if item_hash not in self.seen_hashes:
+            self.seen_hashes.add(item_hash)
+            super().put(item, **kwargs)
+
+
+# TODO normalize links?
+# TODO cache results?
 def validate_links(
         commonmark_doc_iterator: Iterable[str],
         max_num_parallel_workers: int = 10) -> bool:
 
-    link_queue = queue.Queue()
+    link_queue = DeDupQueue()
     are_links_valid = True
 
     def validate_link_queue() -> None:
@@ -98,8 +113,7 @@ def validate_links(
         threading.Thread(target = validate_link_queue, daemon = True).start()
 
     for commonmark_doc in commonmark_doc_iterator:
-        list_html_links(
-            html = convert_commonmark_to_html(commonmark_doc),
+        list_html_links(convert_commonmark_to_html(commonmark_doc),
             callback = link_queue.put)
 
     link_queue.join()
