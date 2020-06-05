@@ -18,37 +18,44 @@ It includes a well-defined specification, a platform-agnostic implementation cor
 
 ## Dependencies
 
-Dependencies per build target:
+Per build target:
 
-- Project root:
-  - `lint-documentation`:
-    - [Python 3](https://www.python.org/downloads/)
-    - [commonmark](https://pypi.org/project/commonmark/)
+- `lint-documentation`
+  - [Python 3](https://www.python.org/downloads/)
+  - [commonmark](https://pypi.org/project/commonmark/)
 
 ### Linux
 
-Dependencies used by all build targets:
+All build targets:
 
 - Make (POSIX compliant)
 
-Dependencies per build target:
+Per build target:
 
-- `interpreter/`:
-  - `core/`:
-    - `all`:
-      - Compiler: [GCC](https://gcc.gnu.org) or [Clang](https://clang.llvm.org)
+- `library`
+  - Compiler: [GCC](https://gcc.gnu.org)
 
 ### macOS
 
-Dependencies used by all build targets:
+All build targets:
 
 - Make (POSIX compliant)
 
+Per build target:
+
+- `library`
+  - Compiler: [Clang](https://clang.llvm.org)
+
 ### Windows
 
-Dependencies used by all build targets:
+All build targets:
 
-- [Visual Studio Build Tools](https://www.visualstudio.com/thank-you-downloading-visual-studio/?sku=BuildTools) (includes NMAKE, CL, LIB, etc.)
+- NMAKE (via [Visual Studio Build Tools](https://www.visualstudio.com/thank-you-downloading-visual-studio/?sku=BuildTools))
+
+Per build target:
+
+- `library`
+  - Compiler: CL (via [Visual Studio Build Tools](https://www.visualstudio.com/thank-you-downloading-visual-studio/?sku=BuildTools))
 
 ## Building
 

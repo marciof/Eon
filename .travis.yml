@@ -73,6 +73,8 @@ jobs:
       before_script: python3 -m pip install -r requirements.txt
       script:
         - make all
+        - cd "$TRAVIS_BUILD_DIR/specification"
+        - make all
         - cd "$TRAVIS_BUILD_DIR/interpreter/core"
         - make all
 
@@ -81,6 +83,8 @@ jobs:
       compiler: clang
       before_script: python3 -m pip install -r requirements.txt
       script:
+        - make all
+        - cd "$TRAVIS_BUILD_DIR/specification"
         - make all
         - cd "$TRAVIS_BUILD_DIR/interpreter/core"
         - make all
@@ -115,6 +119,10 @@ jobs:
 
             nmake PYTHON=python all
             $hadError = -not $?
+
+            cd "$env:TRAVIS_BUILD_DIR\specification"
+            nmake PYTHON=python all
+            $hadError = $hadError -or -not $?
 
             cd "$env:TRAVIS_BUILD_DIR\interpreter\core"
             nmake all

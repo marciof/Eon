@@ -12,7 +12,9 @@ CCOPTS=../Makefile.$(CCNAME)
 -include $(CCOPTS) #\
 !ENDIF
 
-all: $(LIBPREFIX)karyon$(LIB)
+all: library
+
+library: $(LIBPREFIX)karyon$(LIB)
 
 $(LIBPREFIX)karyon$(LIB): Err$(OBJ) Log$(OBJ)
 	$(AR) $(ARFLAGS) $(AROUT)$@ Err$(OBJ) Log$(OBJ)

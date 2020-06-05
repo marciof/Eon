@@ -1,21 +1,20 @@
 * interpreter
 
-** TODO CMake is too complex/big, alternatives?
+** TODO CMake is too complex/big, alternatives? Make?
 
-- don't hardcode ProgramFiles and MSVC version in `windows-vcvarsall.bat`? use a default arch? use default Python?
+- finish README dependencies and build instructions
 - https://noahloomans.com/tutorials/makefile/
 - https://nullprogram.com/blog/2017/08/20/
 - https://pubs.opengroup.org/onlinepubs/9699919799/utilities/make.html
 - https://skramm.blogspot.com/2013/04/writing-portable-makefiles.html
 - https://david.rothlis.net/large-gnu-make/
 - dev cycle watch (use inotify?), https://github.com/watchexec/watchexec
-- don't forget to update the README if/when switching to Makefiles
 
 ** TODO simplify error handling and use Maybe/Optional types?
 
 ** TODO split dependencies per build target (eg. native, x86-32, etc)
 
-- finish README dependencies, including macOS and build instructions
+- finish README dependencies and build instructions
 - sign-up to interest mailing lists for dependencies? including OS, CI, etc
 - enable more MSVC CL warnings
 - setup CI builds for other compilers on OSX/Windows?
