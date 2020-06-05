@@ -77,12 +77,12 @@ jobs:
         # https://chocolatey.org/docs/how-to-parse-package-parameters-argument#installing-with-package-parameters
         # https://chocolatey.org/docs/helpers-get-package-parameters#description
         - choco install python3 --params "'/InstallDir:$PYTHON'"
-        - python -m pip install -r requirements.txt
+        - python -m pip install -r requirements.txt 2>&1
       before_script:
         - |
           echo "
               call \"$(vswhere -latest -products '*' -find '**\vcvarsall.*')\" amd64
-              echo nmake.exe %*
+              @echo on
               nmake.exe %*
           " | tee nmake.bat
       script:
