@@ -99,7 +99,7 @@ jobs:
         # Avoid Windows path mangling when calling `cmd.exe`.
         # https://www.msys2.org/wiki/Porting/#filesystem-namespaces
         # https://github.com/git-for-windows/git/wiki/FAQ
-        - MSYS2_ARG_CONV_EXCL=/C cmd /C 'python -m pip install -r requirements.txt'
+        - MSYS2_ARG_CONV_EXCL=/C cmd /C 'refreshenv & python -m pip install -r requirements.txt'
       before_script:
         - |
           echo "
