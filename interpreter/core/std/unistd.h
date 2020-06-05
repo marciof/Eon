@@ -14,9 +14,9 @@
 #include <stdio.h>
 
 /**
- * @see https://docs.microsoft.com/cpp/c-runtime-library/reference/fileno
+ * @see https://docs.microsoft.com/cpp/c-runtime-library/low-level-i-o
  */
-#define STDIN_FILENO (_fileno(stdin))
+#define STDIN_FILENO 0
 
 /**
  * @see https://docs.microsoft.com/cpp/c-runtime-library/reference/read
