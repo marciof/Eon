@@ -80,14 +80,12 @@ def is_link_valid(link: str) -> bool:
 class DeDupQueue (queue.Queue):
     def __init__(self):
         super().__init__()
-        self.seen_hashes = set()
+        self.seen_items = set()
 
 
     def put(self, item, **kwargs):
-        item_hash = hash(item)
-
-        if item_hash not in self.seen_hashes:
-            self.seen_hashes.add(item_hash)
+        if item not in self.seen_items:
+            self.seen_items.add(item)
             super().put(item, **kwargs)
 
 
