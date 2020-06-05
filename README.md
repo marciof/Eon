@@ -16,41 +16,41 @@ It includes a well-defined specification, a platform-agnostic implementation cor
 
 # Installation
 
+## Compatibility
+
+Host system:
+
+- Linux
+- macOS
+- Windows
+
+Build tool:
+
+- `make` (POSIX)
+- `nmake` (via [Visual Studio Build Tools](https://www.visualstudio.com/thank-you-downloading-visual-studio/?sku=BuildTools))
+
+Compiler:
+
+- `c99` (POSIX)
+- [GCC](https://gcc.gnu.org)
+- [Clang](https://clang.llvm.org)
+- `cl` (via [Visual Studio Build Tools](https://www.visualstudio.com/thank-you-downloading-visual-studio/?sku=BuildTools))
+
+Librarian:
+
+- `ar` (POSIX)
+- `lib` (via [Visual Studio Build Tools](https://www.visualstudio.com/thank-you-downloading-visual-studio/?sku=BuildTools))
+
 ## Dependencies
 
-Build tool: `make` (POSIX compliant)
+Per build target:
 
-Build target:
-
+- `library`
+  - compiler
+  - librarian
 - `lint-documentation`
   - [Python 3](https://www.python.org/downloads/)
   - [commonmark](https://pypi.org/project/commonmark/)
-
-### Linux
-
-Build target:
-
-- `library`
-  - Compiler: [GCC](https://gcc.gnu.org)
-  - Librarian: `ar` (POSIX compliant)
-
-### macOS
-
-Build target:
-
-- `library`
-  - Compiler: [Clang](https://clang.llvm.org)
-  - Librarian: `ar` (POSIX compliant)
-
-### Windows
-
-Build tool: `nmake` (via [Visual Studio Build Tools](https://www.visualstudio.com/thank-you-downloading-visual-studio/?sku=BuildTools)).
-
-Build target:
-
-- `library`
-  - Compiler: `cl` (via [Visual Studio Build Tools](https://www.visualstudio.com/thank-you-downloading-visual-studio/?sku=BuildTools))
-  - Librarian: `lib` (via [Visual Studio Build Tools](https://www.visualstudio.com/thank-you-downloading-visual-studio/?sku=BuildTools))
 
 ## Building
 
