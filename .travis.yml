@@ -95,11 +95,7 @@ jobs:
             Set-StrictMode -Version Latest
             $ErrorActionPreference = "Stop"
 
-            # For detecting Visual Studio build tools.
             choco install vswhere
-
-            # Replace Python from MinGW.
-            choco uninstall mingw
             choco install python3
 
             # For `Invoke-Batch-File` to source batch files into PowerShell.
