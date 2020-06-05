@@ -68,22 +68,22 @@ jobs:
       os: windows
       compiler: cl
       env:
-        - PYTHON='C:\Python'
-        - PATH=$TRAVIS_BUILD_DIR:$PYTHON:$PATH
+        - PYTHON_PATH='C:\Python'
+        - PATH=$TRAVIS_BUILD_DIR:$PYTHON_PATH:$PATH
       install:
         # TODO use WinGet to install dependencies?
         - choco install vswhere
         # Hardcode the installation path to avoid `refreshenv`.
         # https://chocolatey.org/docs/how-to-parse-package-parameters-argument#installing-with-package-parameters
         # https://chocolatey.org/docs/helpers-get-package-parameters#description
-        - choco install python3 --params "'/InstallDir:$PYTHON'"
+        - choco install python3 --params "'/InstallDir:$PYTHON_PATH'"
         - python -m pip install -r requirements.txt 2>&1
       before_script:
         - |
           echo "
               call \"$(vswhere -latest -products '*' -find '**\vcvarsall.*')\" amd64
               @echo on
-              nmake.exe %*
+              nmake.exe /P /D %*
           " | tee nmake.bat
       script:
         - nmake.bat PYTHON=python all 2>&1
