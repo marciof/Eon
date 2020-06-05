@@ -5,8 +5,12 @@
 import fileinput
 from http import HTTPStatus
 from html.parser import HTMLParser
+import logging
+import queue
 import sys
-from typing import Callable
+import threading
+from typing import Callable, Iterable
+from urllib.error import URLError, HTTPError
 from urllib.request import Request, urlopen
 
 # External:
@@ -15,7 +19,17 @@ from urllib.request import Request, urlopen
 from commonmark import commonmark
 
 
-# TODO logging?
+formatter = logging.Formatter('%(asctime)s [%(levelname)s] %(message)s')
+stream_handler = logging.StreamHandler(sys.stderr)
+stream_handler.setFormatter(formatter)
+
+# TODO log to stdout or stderr depending on level?
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
+logger.addHandler(stream_handler)
+
+
+# TODO logging
 class LinkExtractorHtmlParser (HTMLParser):
     def __init__(self, callback: Callable[[str], None]):
         super().__init__()
@@ -44,29 +58,56 @@ def list_html_links(html: str, callback: Callable[[str], None]) -> None:
 
 
 # TODO report redirects?
-# TODO parallelize link checking for speed
-# TODO normalize/cache/de-duplicate links
 def is_link_valid(link: str) -> bool:
     if not link.startswith('http'):
         return True
 
-    with urlopen(Request(link, method = 'HEAD')) as request:
-        status_code = request.getcode()
-        is_ok = status_code == HTTPStatus.OK
-        stream = sys.stdout if is_ok else sys.stderr
+    try:
+        with urlopen(Request(link, method = 'HEAD')) as request:
+            status_code = request.getcode()
+            print(status_code, link)
+            return status_code == HTTPStatus.OK
+    except HTTPError as error:
+        print(error.code, link)
+        logger.exception('%s: %s', link, error)
+        return False
+    except URLError as error:
+        print('?', link)
+        logger.exception('%s: %s', link, error)
+        return False
 
-        print(status_code, link, file = stream)
-        return is_ok
+
+# TODO normalize/cache/de-duplicate links
+def validate_links(
+        commonmark_doc_iterator: Iterable[str],
+        max_num_parallel_workers: int = 10) -> bool:
+
+    link_queue = queue.Queue()
+    are_links_valid = True
+
+    def validate_link_queue() -> None:
+        nonlocal are_links_valid
+
+        while True:
+            if not is_link_valid(link_queue.get()):
+                are_links_valid = False
+
+            link_queue.task_done()
+
+    for i in range(max_num_parallel_workers):
+        threading.Thread(target = validate_link_queue, daemon = True).start()
+
+    for commonmark_doc in commonmark_doc_iterator:
+        list_html_links(
+            html = convert_commonmark_to_html(commonmark_doc),
+            callback = link_queue.put)
+
+    link_queue.join()
+    return are_links_valid
 
 
 # TODO documentation
 # TODO tests
 if __name__ == '__main__':
-    has_invalid_links = {True}
-
-    list_html_links(convert_commonmark_to_html(slurp_input()),
-        callback = lambda link:
-            has_invalid_links.discard(is_link_valid(link)))
-
-    if has_invalid_links:
+    if not validate_links(commonmark_doc for commonmark_doc in [slurp_input()]):
         sys.exit(1)
