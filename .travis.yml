@@ -7,9 +7,6 @@ notifications:
   email:
     on_success: always
 
-env:
-  global: VERBOSE=ON
-
 addons:
 
   # Linux
@@ -43,28 +40,6 @@ addons:
 
 jobs:
   include:
-
-    - os: linux
-      compiler: gcc
-      script:
-        - cmake -Wdev --warn-uninitialized -DBUILD_NATIVE=ON -DBUILD_JAVASCRIPT=ON -DBUILD_X86_32=ON "$TRAVIS_BUILD_DIR"
-        - cmake --build .
-
-    - os: linux
-      compiler: clang
-      script:
-        - cmake -Wdev --warn-uninitialized -DBUILD_NATIVE=ON -DBUILD_JAVASCRIPT=ON -DBUILD_X86_32=ON "$TRAVIS_BUILD_DIR"
-        - cmake --build .
-
-    - os: osx
-      script:
-        - cmake -Wdev --warn-uninitialized -DBUILD_NATIVE=ON -DBUILD_JAVASCRIPT=ON -DBUILD_X86_32=ON "$TRAVIS_BUILD_DIR"
-        - cmake --build .
-
-    - os: windows
-      script:
-        - cmake -Wdev --warn-uninitialized -DBUILD_NATIVE=ON -DBUILD_JAVASCRIPT=ON -DBUILD_X86_32=ON "$TRAVIS_BUILD_DIR"
-        - cmake --build .
 
     - name: Linux (GCC)
       os: linux
