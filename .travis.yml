@@ -83,7 +83,7 @@ jobs:
           echo "
               call \"$(vswhere -latest -products '*' -find '**\vcvarsall.*')\" amd64
               @echo on
-              nmake.exe /P /D %*
+              nmake.exe %*
           " | tee nmake.bat
       script:
         - nmake.bat PYTHON=python all 2>&1
