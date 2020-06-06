@@ -795,91 +795,22 @@ do
 
 ---
 
-# new built-in prototype
-# Metadata extends Symbol
-# syntax is too weird?
-# feels like a shortcut
-# it's very orthogonal though
-# read-only?
-
-map::^count
-value::^prototype
-
-^line
-^count
-
-(get map ^count)
-(set [1 2 3] ^count 2)
+# how to expose metadata?
+# - line number
+# - column number
+# - size of maps
+# - type of values
+# - prototypes
+# - number numerator, denominator
 
 ---
 
-# only function lists/calls
-# have prototypes and constraints?
-# and line and column?
-# the bindings key is already special
-# orthogonal, can set count to trim
+# numerical tower?
 
-# feels a shortcut, prefer functions
-
-# every value has two parts?
-# - data
-# - meta-data
-
-# no metadata function, special keys?
-# if as keys, themselves prototypical
-# avoids key conflicts
-(get map :prototype)
-(get map :constraint)
-(get map :count)
-
-map.:prototype
-map.|prototype|
-map.^prototype
-map.`prototype
-map.^size
-
-(get map 'Bob')
-map.['Bob']
-
-(get (metadata map) \prototype)
-(get map \^prototype)
-(get map \prototype meta?: true)
-(get map \proto metadata)
-
-let count: (get
-  map:
-  key: \prototype
-  meta?: true)
-
-# bad to need to skip when iterating
-{\name: 'Bob' \prototype: Map}
-
-# not necessarily that many conflicts
-# it uses symbols, not strings
-# just interpreted differently
-
-# metadata is read-only
-# works well for line, column, length
-(metadata value)
-
-# get prototype of a value
-(metadata value \prototype)
-
-# bindings has `line` and `column`?
-(metadata value \line)
-
-(metadata text \count)
-
-# metadata about the language
-(metadata)
-
-# numerical tower
-# can't create prototypes of primitives
-# so it just returns itself
-(prototype 0) # non-negative integer
-(prototype 1) # positive integer
-(prototype -1) # integer
-(prototype 0.0) # non-negative decimal
+(prototype 0) # non-neg int
+(prototype 1) # positive int
+(prototype -1) # int
+(prototype 0.0) # non-neg decimal
 (prototype 1.0) # positive decimal
 (prototype -1.0) # decimal
 (prototype 1.(3)) # real
@@ -888,28 +819,3 @@ let count: (get
 # built-in (?) imaginary function
 (i 2)
 2i
-
-# metadata on numbers?
-{
-  \numerator: 1
-  \denominator: 2
-}
-
----
-
-# syntax sugar for setter?
-# there’s already for getter
-# careful with too much syntax
-
-let user: {\name: 'Bob' \age: 20}
-  user.name
-  
-  user \name
-  user \name 'Alice'
-  user \name: 'Alice'
-  
-  (set user \name 'Alice')
-  (set user.name 'Alice')
-  
-  (io \print) (user \name)
-  io.print user.name
