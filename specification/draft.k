@@ -788,30 +788,3 @@ do
 # macro args
 
 \(inc: + x 1 \x:)
-
----
-
-# how to expose metadata?
-# - line number
-# - column number
-# - size of maps
-# - type of values
-# - prototypes
-# - number numerator, denominator
-
----
-
-# numerical tower?
-
-(prototype 0) # non-neg int
-(prototype 1) # positive int
-(prototype -1) # int
-(prototype 0.0) # non-neg decimal
-(prototype 1.0) # positive decimal
-(prototype -1.0) # decimal
-(prototype 1.(3)) # real
-(prototype 1+2i) # imaginary?
-
-# built-in (?) imaginary function
-(i 2)
-2i
