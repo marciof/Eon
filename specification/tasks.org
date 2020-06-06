@@ -82,6 +82,7 @@
 - could replace exceptions?
 - potentially more performant?
 - have quasi-quote and unquote?
+- should `defer`'s `escape` accept multiple arguments?
 
 * TODO Clojure change and state, http://www.infoq.com/presentations/Value-Identity-State-Rich-Hickey
 

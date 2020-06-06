@@ -791,10 +791,6 @@ do
 
 ---
 
-# can escape accept multiple args?
-
----
-
 # how to expose metadata?
 # - line number
 # - column number
