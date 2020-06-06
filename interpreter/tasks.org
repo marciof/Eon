@@ -1,5 +1,10 @@
 * interpreter
 
+** TODO ensure simplicity
+
+- https://suckless.org
+- https://christine.website/blog/why-i-use-suckless-tools-2020-06-05
+
 ** TODO CMake is too complex/big, alternatives? Make?
 
 - build instructions README
