@@ -85,7 +85,7 @@ jobs:
         - nmake.bat PYTHON=python all 2>&1
         - cd "$TRAVIS_BUILD_DIR/specification"
         - nmake.bat PYTHON=python all 2>&1
-        - cd "$TRAVIS_BUILD_DIR/interpreter/core"
+        - cd "$TRAVIS_BUILD_DIR/interpreter"
         - nmake.bat all 2>&1
 
 before_script: python3 -m pip install -r requirements.txt
@@ -93,5 +93,5 @@ script:
   - make all
   - cd "$TRAVIS_BUILD_DIR/specification"
   - make all
-  - cd "$TRAVIS_BUILD_DIR/interpreter/core"
+  - cd "$TRAVIS_BUILD_DIR/interpreter"
   - make all

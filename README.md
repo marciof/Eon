@@ -45,9 +45,11 @@ Librarian:
 
 Per build target:
 
-- `library`
+- `core`
   - compiler
   - librarian
+- `native`
+  - compiler
 - `lint-documentation`
   - [Python 3](https://www.python.org/downloads/)
   - [commonmark](https://pypi.org/project/commonmark/)

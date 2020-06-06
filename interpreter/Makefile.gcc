@@ -6,4 +6,4 @@ CFLAGS_GCC_7=-Wduplicated-branches -Wrestrict
 # https://gcc.gnu.org/gcc-6/changes.html
 CFLAGS_GCC_6=$(CFLAGS_GCC_7) -Wduplicated-cond -Wnull-dereference
 
-CFLAGS=$(CFLAGS_GCC_6) -std=c99 -pedantic-errors -Wall -Wextra -Wundef -Wunused-macros -Wvla -Wempty-body -Wdouble-promotion -Wformat=2 -Wc++-compat -Wredundant-decls -Wshadow -Wswitch-default -Wlogical-op -Wjump-misses-init
+CFLAGS=$(CFLAGS_GCC_6) -std=c99 -pedantic-errors -Wall -Wextra -Wundef -Wunused-macros -Wvla -Wempty-body -Wdouble-promotion -Wformat=2 -Wc++-compat -Wredundant-decls -Wshadow -Wswitch-default -Wlogical-op -Wjump-misses-init -D_POSIX_C_SOURCE=200809L
