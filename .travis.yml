@@ -41,6 +41,11 @@ addons:
 jobs:
   include:
 
+    - name: Linux (c99)
+      os: linux
+      dist: bionic
+      compiler: c99
+
     - name: Linux (Clang)
       os: linux
       dist: bionic
@@ -50,6 +55,10 @@ jobs:
       os: linux
       dist: bionic
       compiler: gcc
+
+    - name: macOS (c99)
+      os: osx
+      compiler: c99
 
     - name: macOS (Clang)
       os: osx
