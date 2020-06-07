@@ -6,6 +6,8 @@ It includes a well-defined specification, a platform-agnostic implementation cor
 
 # Structure
 
+Project layout:
+
 - `interpreter/`: Implementation of the language specification.
   - `core/`: Builds an embeddable library with the host-independent core of the implementation and host-dependent hooks.
   - `javascript/`: Builds a standalone executable to compile to JavaScript.
@@ -16,7 +18,25 @@ It includes a well-defined specification, a platform-agnostic implementation cor
 
 # Installation
 
-## Compatibility
+## Dependencies
+
+Common build targets:
+
+- `lint-documentation`
+  - [Python 3](https://www.python.org/downloads/)
+  - [commonmark](https://pypi.org/project/commonmark/)
+
+Project layout-specific builds:
+
+- `interpreter/`:
+  - `core/`:
+    - compiler
+    - librarian
+  - `native/`:
+    - compiler
+    - linker
+
+### Compatibility
 
 Host system:
 
@@ -27,32 +47,19 @@ Host system:
 Build tool:
 
 - `make` (POSIX)
-- `nmake` (via [Visual Studio Build Tools](https://www.visualstudio.com/thank-you-downloading-visual-studio/?sku=BuildTools))
+- `nmake` ([Visual Studio Build Tools](https://www.visualstudio.com/thank-you-downloading-visual-studio/?sku=BuildTools))
 
 Compiler:
 
 - `c99` (POSIX)
 - [GCC](https://gcc.gnu.org)
 - [Clang](https://clang.llvm.org)
-- `cl` (via [Visual Studio Build Tools](https://www.visualstudio.com/thank-you-downloading-visual-studio/?sku=BuildTools))
+- `cl` ([Visual Studio Build Tools](https://www.visualstudio.com/thank-you-downloading-visual-studio/?sku=BuildTools))
 
 Librarian:
 
 - `ar` (POSIX)
-- `lib` (via [Visual Studio Build Tools](https://www.visualstudio.com/thank-you-downloading-visual-studio/?sku=BuildTools))
-
-## Dependencies
-
-Per build target:
-
-- `core`
-  - compiler
-  - librarian
-- `native`
-  - compiler
-- `lint-documentation`
-  - [Python 3](https://www.python.org/downloads/)
-  - [commonmark](https://pypi.org/project/commonmark/)
+- `lib` ([Visual Studio Build Tools](https://www.visualstudio.com/thank-you-downloading-visual-studio/?sku=BuildTools))
 
 ## Building
 

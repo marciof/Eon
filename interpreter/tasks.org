@@ -5,8 +5,16 @@
 - https://suckless.org
 - https://christine.website/blog/why-i-use-suckless-tools-2020-06-05
 
+** TODO create core/std/sys/types.c for MSCV?
+
+** TODO decouple interpreter sub-modules from each other?
+
+- C includes, `#include <karyon/core/Log.h>`
+- C library, `-lkaryon`
+
 ** TODO CMake is too complex/big, alternatives? Make?
 
+- linker dependencies README
 - build instructions README
 - https://noahloomans.com/tutorials/makefile/
 - https://nullprogram.com/blog/2017/08/20/

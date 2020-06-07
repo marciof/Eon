@@ -3,5 +3,7 @@
 OBJ=.obj
 LIB=.lib
 LIBPREFIX=
+EXE=.exe
+LDOUT=/Fe:
 AR=lib
 AROUT=/OUT:

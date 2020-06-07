@@ -60,16 +60,20 @@ jobs:
       compiler: gcc-9
       env: CCNAME=gcc
 
+    # Redirect each script's stderr to stdout, since output is currently
+    # mangled in Windows builds for some reason.
+    # https://travis-ci.community/t/stderr-output-is-shown-after-the-build-log-rather-than-inline/5124/1
     - name: Windows (CL)
       os: windows
       compiler: cl
       env:
         - PYTHON_PATH='C:\Python'
         - PATH=$TRAVIS_BUILD_DIR:$PYTHON_PATH:$PATH
+      # TODO use WinGet to install dependencies?
       install:
-        # TODO use WinGet to install dependencies?
         - choco install vswhere
-        # Hardcode the installation path to avoid `refreshenv`.
+        # Hardcode the installation path to avoid `refreshenv` for build script
+        # simplicity and faster build times.
         # https://chocolatey.org/docs/how-to-parse-package-parameters-argument#installing-with-package-parameters
         # https://chocolatey.org/docs/helpers-get-package-parameters#description
         - choco install python3 --params "'/InstallDir:$PYTHON_PATH'"
@@ -85,7 +89,9 @@ jobs:
         - nmake.bat PYTHON=python all 2>&1
         - cd "$TRAVIS_BUILD_DIR/specification"
         - nmake.bat PYTHON=python all 2>&1
-        - cd "$TRAVIS_BUILD_DIR/interpreter"
+        - cd "$TRAVIS_BUILD_DIR/interpreter/core"
+        - nmake.bat all 2>&1
+        - cd "$TRAVIS_BUILD_DIR/interpreter/native"
         - nmake.bat all 2>&1
 
 before_script: python3 -m pip install -r requirements.txt
@@ -93,5 +99,7 @@ script:
   - make all
   - cd "$TRAVIS_BUILD_DIR/specification"
   - make all
-  - cd "$TRAVIS_BUILD_DIR/interpreter"
+  - cd "$TRAVIS_BUILD_DIR/interpreter/core"
+  - make all
+  - cd "$TRAVIS_BUILD_DIR/interpreter/native"
   - make all
