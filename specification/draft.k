@@ -725,10 +725,6 @@ do
 
 ---
 
-# rename prototype to proto-value?
-
----
-
 # insert shouldn’t couple?
 # - setting
 # - displacing
