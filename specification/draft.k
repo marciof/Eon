@@ -44,13 +44,6 @@ date | file 'blah'
 
 ---
 
-# Number is Symbol evals to itself
-# Boolean is Number restricted 0 or 1
-# Map is the root
-# want to merge [] and ()
-
----
-
 # can type annotations be added
 # and handled in stdlib?
 # with a sort of code loading hook?
