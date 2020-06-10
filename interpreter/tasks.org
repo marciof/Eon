@@ -49,6 +49,9 @@
 
 ** TODO run build on Travis CI for simple initial testing?
 
+- TAP, https://testanything.org/
+- Cram, https://bitheap.org/cram/
+- mdx, https://github.com/realworldocaml/mdx
 - benchmark/performance tests
   - https://github.com/trizen/language-benchmarks
   - https://github.com/sharkdp/hyperfine
