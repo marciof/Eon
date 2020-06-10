@@ -44,7 +44,10 @@
 
 ** TODO run build on Travis CI for simple initial testing?
 
-- benchmark/performance tests, https://github.com/trizen/language-benchmarks
+- benchmark/performance tests
+  - https://github.com/trizen/language-benchmarks
+  - https://github.com/sharkdp/hyperfine
+  - https://github.com/Gabriel439/bench
 - enable optimization in release build? https://gcc.gnu.org/onlinedocs/gcc/Optimize-Options.html
 - where to build with ASAN? `ASAN_OPTIONS="detect_stack_use_after_return=1,print_stats=1"`
 - specify default native build in readme?
