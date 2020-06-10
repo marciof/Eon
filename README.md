@@ -25,6 +25,7 @@ Common build targets:
 - `lint-documentation`
   - [Python 3](https://www.python.org/downloads/)
   - [commonmark](https://pypi.org/project/commonmark/)
+  - internet
 
 Project layout-specific builds:
 

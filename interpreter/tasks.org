@@ -25,6 +25,11 @@
 
 ** TODO simplify error handling and use Maybe/Optional types?
 
+** TODO support Haiku?
+
+- very different OS than others, so there's value in proper abstraction?
+- https://www.haiku-os.org/get-haiku/installation-guide/
+
 ** TODO split dependencies per build target (eg. native, x86-32, etc)
 
 - test c99 POSIX compiler?
