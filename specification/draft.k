@@ -619,26 +619,6 @@ young = (<= age 20)
 
 ---
 
-# Force named arguments?
-if (logged-in? user)
-  then: do
-    this-first
-    this-second
-  else: do
-    another-thing
-
-if (logged-in? user)
-  then:
-    this-first
-    this-second
-  else:
-    another-thing
-
-if (logged-in? user)
-  do
-    this-first
-    this-second
-
 # Implicit `do`?
 # no, it should pass a list of exprs?
 # more flexibility for each fn?
@@ -718,62 +698,18 @@ do
 
 ---
 
-# insert shouldn’t couple?
-# - setting
-# - displacing
+# insert decouple: set, displace
 
----
+# bidirectional map?
+# sorted map?
 
-# bidirectional map? [:]
-# ordered map? (:)
-# compose map from list and set?
-
----
-
-# spec for questions below
-
-# ok to have rules, Symbols have too
 # fn list 1st key is its name
 # fn list 1st value is its body/a fn
-# quoting creates a closure
-# closure = symbols list + bindings
-# currying creates new fn body
 
-# why quoting lists no closure?
 # do fn non-num keys alias num keys?
 # assume fn list keys are symbols?
 # lexical binding by default?
 # fn lists always have `bindings`?
 # error on non-existing free symbols?
-# it’s the same req when calling
-# for arbitrary symbols put in env
-# `bindings` must have them?
 # unquoted params (default) = eval?
 # quoted params = un-eval?
-
-\(inc: + x 1)
-
-\(count-locals: count bindings)
-
-\(inc: + x 1 x:)
-
-(insert
-  \(inc: (+ bindings::x 1)
-    x: (evaluate bindings::x))
-  \bindings
-  bindings)
-
-# still lexical binding, not dynamic
-
-\(inc: + x 1)
-
-(insert
-  \(inc: ...)
-  \bindings
-  bindings)
-
-# varargs
-
-# macro args
-
-\(inc: + x 1 \x:)

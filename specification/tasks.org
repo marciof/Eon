@@ -1,7 +1,7 @@
 * TODO improve documentation
 
 - explain `prototype` isn't prototypical inheritance, it's like cloning and modifying (dictionary definition)
-- lexical scope example
+- lexical and dynamic scope example
 - function naming example, eg. `\(incr: + x 1)`
 - use only: must, should, may?
 - add references to each section, where needed, for prior art? https://github.com/denoland/deno/pull/671
