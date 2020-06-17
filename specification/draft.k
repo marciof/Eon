@@ -695,21 +695,3 @@ do
   io::print name
   age: 20
   io::print age
-
----
-
-# insert decouple: set, displace
-
-# bidirectional map?
-# sorted map?
-
-# fn list 1st key is its name
-# fn list 1st value is its body/a fn
-
-# do fn non-num keys alias num keys?
-# assume fn list keys are symbols?
-# lexical binding by default?
-# fn lists always have `bindings`?
-# error on non-existing free symbols?
-# unquoted params (default) = eval?
-# quoted params = un-eval?
