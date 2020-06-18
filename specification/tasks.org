@@ -33,6 +33,7 @@
 
 - https://docs.python.org/3/reference/grammar.html
 - https://devguide.python.org/compiler/
+- accept keyword arguments on indented lines as well? (use parenthesis to force a function call, as it‘s a more uniform syntax?)
 
 * TODO optional static typing?
 
