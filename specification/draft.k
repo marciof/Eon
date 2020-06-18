@@ -669,26 +669,16 @@ age: 20
 io::print name
 io::print age
 
+---
+
 # grammar kwargs also on indent line?
 # use parens to force a function call
-# not very uniform
-# - grammar doesn’t change
-# - it’s up to each fn to decide?
-# - can be thought of as a "tag"
-# - it’s in scope via bindings
-# - `let*` by default?
-# - each var creates a new fn call?
-# - ambiguous? force disambiguation?
 
 let
   name: 'Bob'
   age: 20
   io::print name
   io::print age
-
-# lazy instead of deferring fn calls?
-# to force evaluation:
-(get value)
 
 do
   name: 'Bob'
