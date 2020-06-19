@@ -50,6 +50,11 @@
 - https://doc.rust-lang.org/std/panic/fn.catch_unwind.html
 - http://joeduffyblog.com/2016/02/07/the-error-model/
 
+* TODO generalize `:` and `.` to multiple elements?
+
+- would enable more uses, eg. `127.0.0.1`, `12:45:00`
+- too much added syntax?
+
 * TODO multiline nesting comments? triple quotes?
 
 - Language ergonomics shouldn't need an IDE?

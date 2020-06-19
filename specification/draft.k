@@ -512,21 +512,7 @@ incr: [function [x] + x 1]
 # - not an issue anymore
 # - but what does inspecting see?
 
-incr: [x: | + x 1]
-
-let names: ('Bob' 'Alice') Text
-  if [= names.1 'Bob'] then:
-    math.range from: 1 to: 3
-
-let names = () Text: ('Bob' 'Alice')
-  if [is names.1 'Bob'] then =
-    math.range from = 1 to = 3
-
-f x:Number y:Number := + x y
-f x:Text y:Text := merge x y
-
-range from 1, to 3
-{\name 'bob', \age 20}
+incr: (x: | + x 1)
 
 ---
 
@@ -554,59 +540,6 @@ name := 'Bob'
 
 # function
 incr := + x 1
-
-# generalized pair syntax?
-# linked list-like syntax?
-# - too much syntax?
-# opposite syntax to get-chaining
-# - quotes left side
-# - associates on right side
-# ambiguous with currying?
-# - no, kwarg is always a 1-tuple
-# map uses 2-element lists as pairs?
-a:b:c:d
-[a [b [c d]]]
-[\a [\b [\c d]]]
-
-# MAC address
-01:23:45:67:89:AB
-
-# time
-12:45:00
-
-# Windows path
-C:\file.txt
-[\C \file.txt]
-
-# not ambiguous if uniform?
-# automatic quote? easy unquoted list
-
-(range list from: 1 to: 9)
-(1: range 2: list from: 1 to: 9)
-([1 range] [2 list] [from 1] [to 9])
-
-# would have to repurpose `.`?
-# it’s already reserved for numbers?
-# what about `...`? `..`?
-
-# `.` and `:` creates an association?
-# - what kind of association?
-
-1.5
-
-127.0.0.1
-
-io.print
-[io \print]
-
-C:hello.txt
-[C \hello \txt]
-
-01:23:45:67:89:ab
-
-12:45
-
-(io.print 'hi')
 
 if (is? user 'bob') then=
   range from=1 to=3
@@ -638,7 +571,7 @@ if (logged-in? user) then:
 # REPL uses a custom evaluator
 # like `let*` per expression
 # with custom commands? Eg. help
-# make it public/embeddable
+# (make it’s API public/embeddable)
 
 # `import` can evaluate list items
 # just like a file-wide `let*`
