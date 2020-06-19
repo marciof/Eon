@@ -77,7 +77,6 @@ JavaScript interpreters:
 - integration tests (Vagrant? Docker?)
 - Code coverage
 - Check style tool
-- linting
 - Memory leaks
   - Valgrind
   - https://github.com/andrewrk/malcheck

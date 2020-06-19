@@ -4,6 +4,11 @@
 
 - https://suckless.org
 - https://christine.website/blog/why-i-use-suckless-tools-2020-06-05
+- minimal bootstrapping seed
+  - Guix Further Reduces Bootstrap Seed to 25%, https://news.ycombinator.com/item?id=23526916
+  - https://guix.gnu.org/blog/2020/guix-further-reduces-bootstrap-seed-to-25/
+  - https://savannah.nongnu.org/projects/stage0
+  - https://bootstrappable.org
 
 ** TODO create core/std/sys/types.c for MSCV?
 
@@ -56,6 +61,11 @@
   - https://github.com/trizen/language-benchmarks
   - https://github.com/sharkdp/hyperfine
   - https://github.com/Gabriel439/bench
+- binary bloat profiler
+  - https://github.com/google/bloaty
+- linting
+  - GitHub Super Linter, https://news.ycombinator.com/item?id=23563823
+- auto code formatter
 - enable optimization in release build? https://gcc.gnu.org/onlinedocs/gcc/Optimize-Options.html
 - where to build with ASAN? `ASAN_OPTIONS="detect_stack_use_after_return=1,print_stats=1"`
 - specify default native build in readme?
@@ -104,8 +114,9 @@
 
 ** TODO reproducible builds?
 
-- https://reproducible-builds.org/docs/
+- https://reproducible-builds.org
 - https://signal.org/blog/reproducible-android/
+- https://savannah.nongnu.org/projects/stage0
 
 ** TODO logging of long integers (eg. 64-bit Multiboot mem region addr/len)
 
