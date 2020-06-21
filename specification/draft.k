@@ -516,42 +516,6 @@ incr: (x: | + x 1)
 
 ---
 
-# pairs as the basis for all?
-# could add static typing?
-# easier global vars?
-# makes `=` reserved?
-# - not if a pair has rigid syntax?
-# - `=` easier to type than `:`
-# how to define new types?
-# non-ambiguous in fns, kwargs last
-# - not good arbitrary rules?
-
-# type inference
-name = 'Bob'
-
-# explicit type
-# can be used for casting?
-name: Text = 'Bob'
-
-Person: {name: Text age: Number}
-
-# dynamic typing
-name := 'Bob'
-
-# function
-incr := + x 1
-
-if (is? user 'bob') then=
-  range from=1 to=3
-
-if (= user 'bob') then=
-  range from=1 to=3
-
-young = (lt age 20)
-young = (<= age 20)
-
----
-
 # Implicit `do`?
 # no, it should pass a list of exprs?
 # more flexibility for each fn?
