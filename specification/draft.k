@@ -418,68 +418,6 @@ push: \(
 
 ---
 
-# math function notation?
-# bindings allows symbols and lists?
-# easier to type `=`, `[` and `]`?
-
-f x y := + x y
-[f x y] = [+ x y]
-
-# "piping" arguments into a list
-# ambiguous w/piping?
-# aka. fn params
-# where’s the return type?
-# what does inspecting see?
-
-names = ['Bob' 'Alice']
-phonebook = {'Bob' = 123}
-sqr = (base: Int | pow base exp = 2)
-sqr: (base: Int | pow base exp: 2)
-sqr: (base::Int | pow base exp: 2)
-
-names 1
-sqr 5
-
-# up to the fn to how to interpret?
-# list: call or array
-
-# make it dead easy to have a list
-# array and/or function?
-# every map created captures scope
-# [] is a list
-# [:] is an associative list
-# () is syntax to call a list as fn
-# no ambiguity w/ "calling" symbols
-# ambiguous w/piping?
-# values can't be "called"
-# then "calling" list is a fn call
-
-# no difference? sym vs \sym
-# anything unquoted is still deferred
-# top-level is a deferred fn call
-# just handled by the interpreter
-
-# calling a symbol returns itself
-# symbol can’t be constrained further
-
-(sym) # \(sym)
-(\sym) # \(\sym))
-
-greet: [io.print 'Hi'] # lexical?
-greet: [| io.print 'Hi']
-incr: [x | + x 1]
-incr: [x: Int | + x 1]
-numbers: [Int | 1 2 3]
-
-(domain greet) # scope
-(formula greet) # quoted value
-(domain incr) # {x: Int scope: ...}
-
-incr: [x . + x 1]
-incr: [x: Int . + x 1]
-incr: [x, + x 1]
-incr: [x; + x 1]
-
 # fn extends map: ordered, so typed?
 # bad to overload meaning of `|`?
 
@@ -488,19 +426,6 @@ pipe: [ls | count]
 incr: (x | + x 1) # array untyped
 incr: {x | + x 1) # set untyped
 incr: {x: Number | + x 1} # map typed
-
-# bad param last, fine for small fns
-# use stdlib for more flexibility?
-incr: [+ x 1 x:]
-
-# no additional syntax
-# easier to remember 
-# more uniform
-# easier to read (via using stdlib)
-# common data types have syntax
-# why not functions too?
-
-incr: [function [x] + x 1]
 
 # "piping" params? Still untyped
 # and weird to overload piping?
