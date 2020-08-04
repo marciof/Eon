@@ -1,6 +1,6 @@
 * TODO improve documentation
 
-- explain `prototype` isn't prototypical inheritance, it's like cloning and modifying (dictionary definition)
+- explain `prototype` isn't prototypical inheritance, it's like cloning and modifying (dictionary definition), with no link to the parent/original
 - lexical and dynamic scope example 
   - should lexical binding be the default for safety?
   - explain how the `bindings` in fn lists affects its scope
