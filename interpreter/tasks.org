@@ -105,6 +105,16 @@
   - "-fanalyzer option in gcc-10", https://news.ycombinator.com/item?id=23103642
 - MSVC SAL https://docs.microsoft.com/cpp/code-quality/understanding-sal
 - MSVC CL https://docs.microsoft.com/cpp/build/reference/analyze-code-analysis
+- https://github.com/returntocorp/semgrep
+- https://clang.llvm.org/extra/clang-tidy/
+- Cyclomatic complexity
+- https://scan.coverity.com
+- https://github.com/SonarSource/sonarqube
+- https://www.owasp.org/index.php/Static_Code_Analysis
+- https://github.com/google/sanitizers
+- http://clang-analyzer.llvm.org
+- shellcheck for shell scripts (add to dependencies as well)
+- https://yetanotherchris.dev/clean-code/gestalt-principles/
 
 ** TODO build documentation
 
