@@ -77,6 +77,7 @@
 - linting
   - GitHub Super Linter, https://news.ycombinator.com/item?id=23563823
 - auto code formatter
+  - shfmt? https://github.com/mvdan/sh
 - enable optimization in release build? https://gcc.gnu.org/onlinedocs/gcc/Optimize-Options.html
 - where to build with ASAN? `ASAN_OPTIONS="detect_stack_use_after_return=1,print_stats=1"`
 - specify default native build in readme?
