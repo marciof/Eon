@@ -194,6 +194,7 @@
 - Haxe
 - Shen
 - REBOL
+- Red
 - HyperCard
 - Awk
 - Parabola.io
