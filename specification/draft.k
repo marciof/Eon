@@ -453,6 +453,7 @@ if (logged-in? user) then:
 # a file is a list of expressions
 # an empty file is an empty list
 # stdin is also a list of expressions
+# - list length isn’t known a priori
 # REPL is just stdin as a “file”
 # REPL can also use a file as input
 
