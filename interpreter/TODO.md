@@ -160,7 +160,7 @@ Finder, Safari, Xcode, Textual, Skype, Calendar and more are supported. Shortcat
 - Brace expansion (maybe?), including ranges
 - Unix IO: arbitrarily long byte sequences, everything is a file
 - Standard IO: input, output, error
-- Pipelines
+- Pipelines, including named pipes
 - IO redirection
 - Online help system
 - Command history (shared? separate?)
