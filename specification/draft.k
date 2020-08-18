@@ -1,3 +1,14 @@
+# streaming support? Define that
+# useful for pipelines
+# iterator protocol?
+# for lazy values?
+# `next` is an iterator?
+# how to detect a value as iterator?
+
+# generator expressions? JS yield?
+
+---
+
 # Pipeline support? shell pipe?
 
 # goals:
@@ -192,8 +203,6 @@ Numbers: \(map Number (List map:))
 numbers: Numbers [1 2 3]
 numbers: List of: Number [1 2 3]
 
-...
-
 # heterogeneous type
 Set: (splice {} map:)
 []
@@ -231,14 +240,11 @@ text: Text [65]
 # static typing, via args
 \(+ 1 scope.arg)
 
-# generics
-...
+# generics?
 
-# disable static typing from value
-...
+# disable static typing from value?
 
-# get type/ctor/? of a value
-...
+# get type/ctor/? of a value?
 
 ---
 
@@ -262,16 +268,14 @@ homogenous: (cast [] [] value: Num)
 
 ---
 
-# streaming support? Define that
-# useful for pipelines
-# iterator protocol?
-# for lazy values?
-# `next` is an iterator?
-# how to detect a value as iterator?
+# currying for easy lambdas?
+# dynamic binding still default?
+(+ x 1 x:)
+(x: | + x 1)
 
-# generator expressions? JS yield?
-
----
+# default is to evaluate arguments?
+# quote to force deferring?
+(io::print arg \arg:)
 
 # currying
 # it’s syntax for creating functions
@@ -404,17 +408,6 @@ push: \(
 # There will always be metadata
 # line, column, file, type
 # debugger, test frameworks, etc
-
----
-
-# currying for easy lambdas?
-# dynamic binding still default?
-(+ x 1 x:)
-(x: | + x 1)
-
-# default is to evaluate arguments?
-# quote to force deferring?
-(io::print arg \arg:)
 
 ---
 

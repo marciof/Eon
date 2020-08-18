@@ -1,10 +1,14 @@
+* TODO avoid prototypical inheritance
+
+- explain `prototype` is like cloning and modifying (dictionary definition), with no persistent link to the parent/original
+- it does "know" the “parent” type (confusing distinction?)
+
+* TODO lexical binding by default for safety?
+
 * TODO improve documentation
 
-- remove fluff, be succinct
-- explain `prototype` isn't prototypical inheritance, it's like cloning and modifying (dictionary definition), with no link to the parent/original
-- lexical and dynamic scope example 
-  - should lexical binding be the default for safety?
-  - explain how `bindings` in fn lists affect their scope
+- be succinct, avoid fluff
+- lexical and dynamic scope example (explain how `bindings` in fn lists affect their scope)
 - function naming example (1st key is the name, 1st value is the body/a fn), eg. `\(incr: + x 1)`
 - use only: must, should, may?
 - add references to each section, where needed, for prior art? https://github.com/denoland/deno/pull/671
