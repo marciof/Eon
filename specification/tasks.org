@@ -43,11 +43,25 @@
 
 * TODO optional static typing?
 
-* TODO make List extend Function? easily merge arg lists into fns?
+* TODO avoid `do` as a built-in?
+
+* TODO avoid separate map syntax?
+
+- too easy to confuse with sets?
+- if using static typing with inference it would be less of a problem?
 
 * TODO shell pipeline syntax?
 
 - "Pipelines Support Vectorized, Point-Free, and Imperative Style", https://www.oilshell.org/blog/2017/01/15.html
+
+* TODO support for streaming, iterators, delayed collections?
+
+- stdlib or core?
+- could be useful for shell pipelines?
+- `next` is an iterator?
+- generator expressions? JS yield?
+
+* TODO make List extend Function? easily merge arg lists into fns?
 
 * TODO replace exceptions/conditions/continuations with optionals?
 

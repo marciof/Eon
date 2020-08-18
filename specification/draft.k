@@ -1,14 +1,3 @@
-# streaming support? Define that
-# useful for pipelines
-# iterator protocol?
-# for lazy values?
-# `next` is an iterator?
-# how to detect a value as iterator?
-
-# generator expressions? JS yield?
-
----
-
 # Pipeline support? shell pipe?
 
 # goals:
@@ -397,10 +386,6 @@ push: \(
 (insert function key value)
 
 ---
-
-# Don't like param count not enforced
-# Don't like `do` as a built-in
-# Don't like separate map syntax
 
 # get, set/put, unset/remove, has?
 # insert/merge
