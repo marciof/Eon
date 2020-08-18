@@ -92,13 +92,13 @@ Practical:
 
 # Coding Style
 
-English is the official language used throughout code and documentation.
+English is the official language used throughout the code and documentation.
 
-Line length should be 80 characters maximum, since going over that limit can often indicate it needs to be refactored for readability.
+Line length should be 80 characters maximum, since going over the limit can indicate issues with readability.
 
 ## Documentation
 
-Documentation is written in the [CommonMark](http://commonmark.org) format. In general, verbs that are also nouns are avoided to prevent ambiguity.
+Documentation is written in [CommonMark](http://commonmark.org) format. In general, verbs that are also nouns should be avoided to prevent ambiguity.
 
 ## Naming
 
