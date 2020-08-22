@@ -1,13 +1,10 @@
 # Pipeline support? shell pipe?
 
-# goals:
-# - minimum syntax, where possible
-# - concise, easy to type, familiar
-
-# rules:
 # - follows shell syntax closely
+#   - familiar
+#   - concise
 # - each pipe part is partial fn call
-# - parens are replaced by pipes
+# - parens are replaced by pipes?
 # - can still have args
 # - pipeline will invoke all fns
 # - may be sequential or parallel
