@@ -413,6 +413,12 @@ incr: {x: Number | + x 1} # map typed
 # - but what does inspecting see?
 
 incr: (x: | + x 1)
+greet: (| io.print 'Hi')
+
+incr: [x: | + x 1]
+incr: [x: Int | + x 1]
+
+(incr 2)
 
 ---
 

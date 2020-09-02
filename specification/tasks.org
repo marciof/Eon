@@ -20,6 +20,14 @@
 - start a changelog? (and do releases?) https://keepachangelog.com/en/1.0.0/
 - avoid too many abbreviations
 
+* TODO attempt to unify data types?
+
+- numbers are symbols that evaluate to themselves
+- booleans are numbers restricted to either 0 or 1
+- maps are the root
+- merge lists/arrays with function lists? `[]` `()`
+- make it easier to type function lists? use `[]`?
+
 * TODO visual grammar diagram?
 
 - Railroad Diagram Generator
@@ -83,13 +91,6 @@
 * TODO have a generic `splice`? = insert + merge + delete
 
 - decouple `insert`? setting from displacing
-
-* TODO attempt to unify data types?
-
-- numbers are symbols that evaluate to themselves
-- booleans are numbers restricted to either 0 or 1
-- maps are the root
-- merge lists/arrays with function lists? `[]` `()`
 
 * TODO verify soundness of Text
 

@@ -149,6 +149,10 @@
 - libgccjit, https://gcc.gnu.org/onlinedocs/jit/
 - Compiling Scheme to C with closure conversion, <http://matt.might.net/articles/compiling-scheme-to-c/>
 
+** TODO add built-in simple HTTP web server?
+
+- https://gist.github.com/willurd/5720255
+
 * javascript
 
 ** TODO move non-JS parts to native and core
