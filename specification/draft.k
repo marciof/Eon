@@ -415,10 +415,22 @@ incr: {x: Number | + x 1} # map typed
 incr: (x: | + x 1)
 greet: (| io.print 'Hi')
 
-incr: [x: | + x 1]
-incr: [x: Int | + x 1]
-
 (incr 2)
+
+if (= user 'bob') then:
+  range from: 1 to: 9
+
+var name: 'bob'
+
+incr: [x: | + x 1]
+incr = [x= | +x 1 ]
+incr: [x: Int | + x 1]
+incr = [x: Int = | + x 1]
+
+if [is user 'bob'] then=
+  range from=1 to=9
+
+var name='bob'
 
 ---
 
@@ -472,15 +484,3 @@ age: 20
 
 io::print name
 io::print age
-
----
-
-if (= user 'bob') then:
-  range from: 1 to: 9
-
-var name: 'bob'
-
-if [is user 'bob'] then=
-  range from=1 to=9
-
-var name='bob'
