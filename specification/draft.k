@@ -423,7 +423,7 @@ if (= user 'bob') then:
 var name: 'bob'
 
 incr: [x: | + x 1]
-incr = [x= | +x 1 ]
+incr = [x= | + x 1 ]
 incr: [x: Int | + x 1]
 incr = [x: Int = | + x 1]
 
