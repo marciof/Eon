@@ -475,5 +475,12 @@ io::print age
 
 ---
 
-if [= user 'bob'] then:
+if (= user 'bob') then:
   range from: 1 to: 9
+
+var name: 'bob'
+
+if [is user 'bob'] then=
+  range from=1 to=9
+
+var name='bob'
