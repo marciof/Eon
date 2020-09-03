@@ -472,3 +472,8 @@ age: 20
 
 io::print name
 io::print age
+
+---
+
+if [= user 'bob'] then:
+  range from: 1 to: 9
