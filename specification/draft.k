@@ -432,6 +432,11 @@ if [is user 'bob'] then=
 
 var name='bob'
 
+# casts
+# list literals
+# set literals
+# map literals
+
 ---
 
 # Implicit `do`?
