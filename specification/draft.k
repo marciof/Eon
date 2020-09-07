@@ -423,19 +423,28 @@ if (= user 'bob') then:
 var name: 'bob'
 
 incr: [x: | + x 1]
-incr = [x= | + x 1 ]
-incr: [x: Int | + x 1]
-incr = [x: Int = | + x 1]
+incr = [x= | + x 1]
+incr = [x:Int= | + x 1]
+
+let teen: [<= age 20]
+let teen = [<~ age 20]
 
 if [is user 'bob'] then=
   range from=1 to=9
 
 var name='bob'
 
-# casts
-# list literals
-# set literals
-# map literals
+# cast vs type assertion
+# list literal
+# set literal
+# map literal
+# "such that" literal
+
+hist() {
+  sort | uniq -c | sort -n -r
+}
+
+hist=
 
 ---
 
