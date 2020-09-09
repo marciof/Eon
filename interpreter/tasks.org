@@ -121,6 +121,8 @@
 
 - check places for missing documentation (eg. `k_Token_parse` should say it's iterative)
 - validate link rot (in documentation as well as comments?)
+  - https://linkchecker.github.io/linkchecker/
+  - https://www.gwern.net/Archiving-URLs#detection
 - avoid too many abbreviations
 
 ** TODO access struct members directly, instead of wrappers for transparency?
