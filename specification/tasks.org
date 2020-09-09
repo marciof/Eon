@@ -1,4 +1,4 @@
-* TODO avoid prototypical inheritance
+* TODO avoid prototypical inheritance?
 
 - explain `prototype` is like cloning and modifying (dictionary definition), with no persistent link to the parent/original
 - it does "know" the “parent” type (confusing distinction?)

@@ -9,7 +9,7 @@
 - [Structure](#structure)
   - [Syntax](#syntax)
   - [Module](#module)
-- [Prototypes](#prototypes)
+- [Data Types](#data-types)
   - [Boolean](#boolean)
   - [Function](#function)
   - [List](#list)
@@ -51,7 +51,6 @@ Simple:
 
 - Minimal syntax, but readable.
 - Fun to use.
-- Prototype-based object model.
 - Flat over nested, helpers over wrappers.
 - No undefined behavior, consistent, uniform.
 - Everything is a value, never null.
@@ -106,7 +105,7 @@ All names use hyphens as the word delimiter.
 
 - **Function:** verb as the first word; predicate functions end in `?`, while accessor functions start with a noun instead and end in `-of`.
 - **Module**: noun, in lower-case.
-- **Prototype:** noun, capitalized.
+- **Data Type:** noun, capitalized.
 
 # Structure
 
@@ -119,7 +118,7 @@ Source code is represented as s-expressions with significant indentation, with t
   - Same-line arguments are passed as-is.
   - Indented lines that follow it are passed as function calls, as described above recursively.
 
-Note that all [non-function data types are callable](#prototypes) as functions, and return the same value itself.
+Note that all [non-function data types are callable](#data-types) as functions, and return the same value itself.
 
 Refer to the [grammar](#grammar) for the precise definition.
 
@@ -129,7 +128,7 @@ A module is a [named](#symbol) implicit [function](#function) call to [`do`](#do
 
 Note that since `do` accepts multiple arguments then a module can also have multiple expressions, and the result of calling it is the result returned by the last expression.
 
-# Prototypes
+# Data Types
 
 A [prototype](#prototype) is the original value used to create another one from.
 

@@ -393,61 +393,6 @@ push: \(
 
 ---
 
-# fn extends map: ordered, so typed?
-# bad to overload meaning of `|`?
-
-incr: \[+ x 1] # dynamic or list?
-pipe: [ls | count]
-incr: (x | + x 1) # array untyped
-incr: {x | + x 1) # set untyped
-incr: {x: Number | + x 1} # map typed
-
-# "piping" params? Still untyped
-# and weird to overload piping?
-# clashes with piping and currying?
-# could be a generalization?
-# a pipe with arguments
-# use pipe+curry to create a closure
-# param name instead of bindings.1?
-# - not an issue anymore
-# - but what does inspecting see?
-
-incr: (x: | + x 1)
-greet: (| io.print 'Hi')
-
-(incr 2)
-
-if (= user 'bob') then:
-  range from: 1 to: 9
-
-var name: 'bob'
-
-incr: [x: | + x 1]
-incr = [x= | + x 1]
-incr = [x:Int= | + x 1]
-
-let teen: [<= age 20]
-let teen = [<~ age 20]
-
-if [is user 'bob'] then=
-  range from=1 to=9
-
-var name='bob'
-
-# cast vs type assertion
-# list literal
-# set literal
-# map literal
-# "such that" literal
-
-hist() {
-  sort | uniq -c | sort -n -r
-}
-
-hist=
-
----
-
 # Implicit `do`?
 # no, it should pass a list of exprs?
 # more flexibility for each fn?
@@ -498,3 +443,73 @@ age: 20
 
 io::print name
 io::print age
+
+---
+
+# fn extends map: ordered, so typed?
+# bad to overload meaning of `|`?
+
+incr: \[+ x 1] # dynamic or list?
+pipe: [ls | count]
+incr: (x | + x 1) # array untyped
+incr: {x | + x 1) # set untyped
+incr: {x: Number | + x 1} # map typed
+
+# "piping" params? Still untyped
+# and weird to overload piping?
+# clashes with piping and currying?
+# could be a generalization?
+# a pipe with arguments
+# use pipe+curry to create a closure
+# param name instead of bindings.1?
+# - not an issue anymore
+# - but what does inspecting see?
+
+if (= user 'bob') then:
+  range from: 1 to: 9
+
+incr: (x: | + x 1)
+greet: (| io.print 'Hi')
+
+(incr 2)
+
+var name: 'bob'
+
+incr: [x: | + x 1]
+
+greet = [| print 'Hi']
+incr = [x= | + x 1]
+incr = [x:Int= | + x 1]
+
+let teen: [<= age 20]
+let teen = [<~ age 20]
+let teen = [< age 20]
+let teen = [</ age 20]
+
+var name='bob'
+
+# cast vs type assertion
+# list literal
+# set literal
+# map literal
+# "such that" literal
+# varargs
+
+hist() {
+  sort | uniq -c | sort -n -r
+}
+
+hist = [| sort | uniq | sort]
+
+---
+
+# alternative syntax?
+# - easier scripting?
+# - easier to enable static typing?
+# - reserved `=` hinders readability?
+
+if [is user 'bob'] then=
+  range from=1 to=9
+
+var signed: Boolean = true
+var signed = [Boolean true]
