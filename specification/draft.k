@@ -1,8 +1,6 @@
 # Pipeline support? shell pipe?
 
-# - follows shell syntax closely
-#   - familiar
-#   - concise
+# - shell syntax (familiar, concise)
 # - each pipe part is partial fn call
 # - parens are replaced by pipes?
 # - can still have args
@@ -10,19 +8,26 @@
 # - may be sequential or parallel
 # - fn return value is output
 # - last param is input
-# - currying to fix/rearrange params
+# - partial to fix/rearrange params
 
-# original form
 (print (count re'\d' (split val)))
+
+split val | count re'\d' | print
+
+split val, count re'\d', print
+
+let top: (sort results, uniq, head)
+let top: (sort results | uniq | head)
+
+let top=[sort results, uniq, head]
 
 # just pass input as last arg?
 # too implicit?
 # problem is it can break easily?
 # use a pre-determined keyword arg?
 # it'd be the same as orig form?
-split val | count re'\d' | print
 
-# or currying indicates input param?
+# or partial indicates input param?
 # too verbose?
 # used only to rearrange params?
 # or to fix params?
@@ -254,7 +259,7 @@ homogenous: (cast [] [] value: Num)
 
 ---
 
-# currying for easy lambdas?
+# partial for easy lambdas?
 # dynamic binding still default?
 (+ x 1 x:)
 (x: | + x 1)
@@ -263,7 +268,7 @@ homogenous: (cast [] [] value: Num)
 # quote to force deferring?
 (io::print arg \arg:)
 
-# currying
+# partial
 # it’s syntax for creating functions
 # can also rearrange params?
 
@@ -289,21 +294,21 @@ homogenous: (cast [] [] value: Num)
 \(\(+ x 1)
   x:
 
-# currying? too implicit?
-# how to curry varargs?
+# partial? too implicit?
+# how to partial varargs?
 let
   phonebook: {'Bob': 12345}
   lookup: (get phonebook key:)
   (lookup 'Bob')
 
-# multiple currying?
+# multiple partial?
 (insert list: key:)
 
 # renaming curried params
 (\(get phonebook key: name) name:)
 (lookup name: 'Bob')
 
-# currying keys? too weird/implicit?
+# partial keys? too weird/implicit?
 (get map: key: \name)
 ::name
 
@@ -457,10 +462,10 @@ incr: {x: Number | + x 1} # map typed
 
 # "piping" params? Still untyped
 # and weird to overload piping?
-# clashes with piping and currying?
+# clashes with piping and partial?
 # could be a generalization?
 # a pipe with arguments
-# use pipe+curry to create a closure
+# use pipe+partial create a closure
 # param name instead of bindings.1?
 # - not an issue anymore
 # - but what does inspecting see?
@@ -511,5 +516,6 @@ hist = [| sort | uniq | sort]
 if [is user 'bob'] then=
   range from=1 to=9
 
-var signed: Boolean = true
-var signed = [Boolean true]
+let pow = [x= y= | ^ x 1]
+
+let pow = [x= y=, ^ x y]
