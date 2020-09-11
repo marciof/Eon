@@ -14,7 +14,14 @@
 
 split val | count re'\d' | print
 
-split val, count re'\d', print
+split txt, count re'\d', reduce + 0
+
+[reduce
+  [map
+    [split txt]
+    [count re'\d']]
+  +
+  0]
 
 let top: (sort results, uniq, head)
 let top: (sort results | uniq | head)
@@ -509,13 +516,22 @@ hist = [| sort | uniq | sort]
 ---
 
 # alternative syntax?
-# - easier scripting?
-# - easier to enable static typing?
-# - reserved `=` hinders readability?
+# + easier scripting?
+# + easier to enable static typing?
+# - less familiar?
+# - reserved `=` hurts readability?
 
 if [is user 'bob'] then=
   range from=1 to=9
 
-let pow = [x= y= | ^ x 1]
-
 let pow = [x= y=, ^ x y]
+
+# partial by default? good for pipes?
+
+let pow2 = [pow 2]
+
+# vectorized by default w/ pipes?
+
+(1 2 3), pow 2, print
+(1 2 3), [pow 2], print
+(1 2 3), pow 2 y=, print
