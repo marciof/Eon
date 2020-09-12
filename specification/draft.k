@@ -10,23 +10,15 @@
 # - last param is input
 # - partial to fix/rearrange params
 
-(print (count re'\d' (split val)))
+(reduce + 0
+  (map parse
+    (match '\d+' txt)))
 
-split val | count re'\d' | print
+match '\d+' txt | to-int | reduce + 0
 
-split txt, count re'\d', reduce + 0
+match '\d+' txt, to-int, reduce + 0
 
-[reduce
-  [map
-    [split txt]
-    [count re'\d']]
-  +
-  0]
-
-let top: (sort results, uniq, head)
-let top: (sort results | uniq | head)
-
-let top=[sort results, uniq, head]
+# list vs scalar? use "iterables"?
 
 # just pass input as last arg?
 # too implicit?
