@@ -11,14 +11,19 @@
 # - partial to fix/rearrange params
 
 (reduce + 0
-  (map parse
+  (map to-int
     (match '\d+' txt)))
 
 match '\d+' txt | to-int | reduce + 0
 
 match '\d+' txt, to-int, reduce + 0
 
+# comma conflicts with number sep?
 # list vs scalar? use "iterables"?
+# text isn’t an iterable by default?
+
+(as List 'Bob')
+(merge [] 'Bob')
 
 # just pass input as last arg?
 # too implicit?

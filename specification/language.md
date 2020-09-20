@@ -35,7 +35,7 @@
   - [`insert`](#insert)
   - [`load`](#load)
   - [`next`](#next)
-  - [`prototype`](#prototype)
+  - [`proto`](#proto)
   - [`remove`](#remove)
   - [`unwind`](#unwind)
 - [Grammar](#grammar)
@@ -130,18 +130,18 @@ Note that since `do` accepts multiple arguments then a module can also have mult
 
 # Data Types
 
-A [prototype](#prototype) is the original value used to create another one from.
-
 Not all values can be literally represented in source code, since not all have an associated [grammar](#grammar) production. They can however be assigned names, by using [symbols](#symbol) stored in the [bindings](#bindings) map.
 
 All data types are callable as zero-parameter functions that return the same value itself, except for [functions](#function) that are handled as regular function calls.
+
+The [proto](#proto) value of a given data type is the original value used to create it.
 
 ## Boolean
 
 A boolean is a binary logical value that can only be either true or false. It does not have a literal source code representation.
 
-- **Prototype:** true
-- **Base Prototype:** (itself)
+- **Proto:** true
+- **Base Proto:** (itself)
 
 ### Conditions
 
@@ -150,16 +150,16 @@ A boolean is a binary logical value that can only be either true or false. It do
 ### Examples
 
 ```
-(prototype (= 1 1))
+(proto (= 1 1))
 # true
 
-(prototype (prototype (= 1 1)))
+(proto (proto (= 1 1)))
 # true
 
-(prototype (= 1 2))
+(proto (= 1 2))
 # true
 
-(prototype (prototype (= 1 2)))
+(proto (proto (= 1 2)))
 # true
 ```
 
@@ -173,8 +173,8 @@ Calling an empty function returns itself. Calling a non-empty function involves 
 
 Tail calls are guaranteed to be efficient and use a similar amount of memory as an iterative loop. A tail call is a self-recursive function call when it calls itself, a tail function call when it's the last expression in the calling function, or a self-tail function call when it calls itself as the last expression.
 
-- **Prototype:** empty [function](#function), `()`
-- **Base Prototype:** empty [map](#map), `{:}`
+- **Proto:** empty [function](#function), `()`
+- **Base Proto:** empty [map](#map), `{:}`
 
 ### Conditions
 
@@ -201,16 +201,16 @@ Tail calls are guaranteed to be efficient and use a similar amount of memory as 
 (\(* 4 5))
 # 20
 
-(prototype -)
+(proto -)
 # ()
 
-(prototype prototype)
+(proto proto)
 # ()
 
-(prototype \(* 4 5))
+(proto \(* 4 5))
 # ()
 
-(prototype ())
+(proto ())
 # {:}
 
 +
@@ -221,8 +221,8 @@ Tail calls are guaranteed to be efficient and use a similar amount of memory as 
 
 A list is an immutable sequence of elements, that associates consecutive positive integer keys in ascending order with values.
 
-- **Prototype:** empty [list](#list), `[]`
-- **Base Prototype:** empty [map](#map), `{:}`
+- **Proto:** empty [list](#list), `[]`
+- **Base Proto:** empty [map](#map), `{:}`
 
 ### Conditions
 
@@ -240,10 +240,10 @@ A list is an immutable sequence of elements, that associates consecutive positiv
 [8 2 2 \abc]
 # [8 2 2 abc]
 
-(prototype ['x'])
+(proto ['x'])
 # []
 
-(prototype [])
+(proto [])
 # {:}
 ```
 
@@ -253,8 +253,8 @@ A map is an immutable insertion ordered collection, that associates unique keys 
 
 If the same key appears multiple times, the last associated value takes precedence over all previous ones.
 
-- **Prototype:** empty [map](#map), `{:}`
-- **Base Prototype:** (itself)
+- **Proto:** empty [map](#map), `{:}`
+- **Base Proto:** (itself)
 
 ### Conditions
 
@@ -272,10 +272,10 @@ If the same key appears multiple times, the last associated value takes preceden
 {\key: 8 \key: \value}
 # {key: value}
 
-(prototype {\name: 'Bob'})
+(proto {\name: 'Bob'})
 # {:}
 
-(prototype {:})
+(proto {:})
 # {:}
 ```
 
@@ -283,8 +283,8 @@ If the same key appears multiple times, the last associated value takes preceden
 
 A rational number.
 
-- **Prototype:** integer zero, `0`
-- **Base Prototype:** (itself)
+- **Proto:** integer zero, `0`
+- **Base Proto:** (itself)
 
 ### Conditions
 
@@ -317,10 +317,10 @@ A rational number.
 3Km
 # (Km 3)
 
-(prototype 3)
+(proto 3)
 # 0
 
-(prototype 0)
+(proto 0)
 # 0
 ```
 
@@ -328,8 +328,8 @@ A rational number.
 
 A set is an immutable collection of unique elements, that associates keys to be the same as values.
 
-- **Prototype:** empty [set](#set), `{}`
-- **Base Prototype:** empty [map](#map), `{:}`
+- **Proto:** empty [set](#set), `{}`
+- **Base Proto:** empty [map](#map), `{:}`
 
 ### Conditions
 
@@ -347,10 +347,10 @@ A set is an immutable collection of unique elements, that associates keys to be 
 {8 2 2 \abc}
 # {8 2 abc}
 
-(prototype {'x'})
+(proto {'x'})
 # {}
 
-(prototype {})
+(proto {})
 # {:}
 ```
 
@@ -360,8 +360,8 @@ A symbol is an immutable case-sensitive name, that restricts the character set u
 
 A symbol that isn't [deferred](#defer) is [evaluated](#evaluate) in the context of the [bindings](#bindings) map, and recursively within each key named `bindings` until a value is found.
 
-- **Prototype:** empty symbol
-- **Base Prototype:** empty [text](#text), `''`
+- **Proto:** empty symbol
+- **Base Proto:** empty [text](#text), `''`
 
 ### Conditions
 
@@ -382,7 +382,7 @@ A symbol that isn't [deferred](#defer) is [evaluated](#evaluate) in the context 
 \...
 # ...
 
-(prototype (prototype \xyz))
+(proto (proto \xyz))
 # ''
 ```
 
@@ -390,8 +390,8 @@ A symbol that isn't [deferred](#defer) is [evaluated](#evaluate) in the context 
 
 A text is an immutable sequence of Unicode characters, each one identified by a numeric code-point. Also known as a string.
 
-- **Prototype:** empty [text](#text), `''`
-- **Base Prototype:** empty [list](#list), `[]`
+- **Proto:** empty [text](#text), `''`
+- **Base Proto:** empty [list](#list), `[]`
 
 ### Conditions
 
@@ -415,10 +415,10 @@ hex'1F'
 re'\d+'g
 # (re '\d+' \g)
 
-(prototype 'Bob')
+(proto 'Bob')
 # ''
 
-(prototype '')
+(proto '')
 # []
 ```
 
@@ -429,10 +429,10 @@ A built-in is a [symbol](#symbol) that's already present in the [bindings](#bind
 The following conventions are used for documentation:
 
 * `(f x)`: function named `f`, with a parameter named `x`.
-* `x: y`: `x` is a prototype of or a `y`.
+* `x: y`: `x` is a proto of or a `y`.
 * `[x]`: optional function parameter named `x`.
 * `...`: zero or more function parameters.
-* `...: y`: zero or more function parameters, where each one is a prototype of or a `y`.
+* `...: y`: zero or more function parameters, where each one is a proto of or a `y`.
 
 ## `=` (equal)
 
@@ -980,13 +980,13 @@ A [function](#function) that returns the first key, or the key following `key` i
 # name
 ```
 
-## `prototype`
+## `proto`
 
 ```
-(prototype value)
+(proto value)
 ```
 
-A [function](#function) that retrieves the [prototype](#prototypes) of `value`.
+A [function](#function) that retrieves the [proto](#data-types) of `value`.
 
 ### Complexity
 
@@ -1000,13 +1000,13 @@ A [function](#function) that retrieves the [prototype](#prototypes) of `value`.
 ### Examples
 
 ```
-(prototype 'Bob')
+(proto 'Bob')
 # ''
 
-(prototype '')
+(proto '')
 # []
 
-(prototype {})
+(proto {})
 # {}
 ```
 
@@ -1106,7 +1106,7 @@ Unwinding is a non-local early exit of a given scope. Unwinding global scope exi
   # 3
 
   (let y: 2
-    (unwind 3 (prototype bindings))
+    (unwind 3 (proto bindings))
     y)
 
   x)
