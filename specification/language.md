@@ -489,7 +489,7 @@ A [function](#function) that compares two or more [numbers](#number) (with short
 ### Conditions
 
 - *Called with less than two arguments:* [unwinds](#unwind) global scope with `\parameter-mismatch`
-- *Argument isn't a prototype of nor a number:* [unwinds](#unwind) global scope with `\prototype-mismatch`
+- *Argument isn't a proto of nor a number:* [unwinds](#unwind) global scope with `\proto-mismatch`
 
 ## `>` (greater than)
 
@@ -507,7 +507,7 @@ A [function](#function) that compares two or more [numbers](#number) (with short
 ### Conditions
 
 - *Called with less than two arguments:* [unwinds](#unwind) global scope with `\parameter-mismatch`
-- *Argument isn't a prototype of nor a number:* [unwinds](#unwind) global scope with `\prototype-mismatch`
+- *Argument isn't a proto of nor a number:* [unwinds](#unwind) global scope with `\proto-mismatch`
 
 ## `+` (add)
 
@@ -525,7 +525,7 @@ A [function](#function) that adds one or more [numbers](#number).
 ### Conditions
 
 - *Called with no arguments:* [unwinds](#unwind) global scope with `\parameter-mismatch`
-- *Argument isn't a prototype of nor a number:* [unwinds](#unwind) global scope with `\prototype-mismatch`
+- *Argument isn't a proto of nor a number:* [unwinds](#unwind) global scope with `\proto-mismatch`
 - *Adding negative and positive infinity:* [unwinds](#unwind) global scope with `\undefined-result`
 
 ## `-` (subtract)
@@ -544,7 +544,7 @@ A [function](#function) that subtracts one or more [numbers](#number).
 ### Conditions
 
 - *Called with no arguments:* [unwinds](#unwind) global scope with `\parameter-mismatch`
-- *Argument isn't a prototype of nor a number:* [unwinds](#unwind) global scope with `\prototype-mismatch`
+- *Argument isn't a proto of nor a number:* [unwinds](#unwind) global scope with `\proto-mismatch`
 - *Subtracting infinity from infinity:* [unwinds](#unwind) global scope with `\undefined-result`
 
 ## `*` (multiply)
@@ -563,7 +563,7 @@ A [function](#function) that multiplies two or more [numbers](#number).
 ### Conditions
 
 - *Called with less than two arguments:* [unwinds](#unwind) global scope with `\parameter-mismatch`
-- *Argument isn't a prototype of nor a number:* [unwinds](#unwind) global scope with `\prototype-mismatch`
+- *Argument isn't a proto of nor a number:* [unwinds](#unwind) global scope with `\proto-mismatch`
 - *Multiplying zero and infinity:* [unwinds](#unwind) global scope with `\undefined-result`
 
 ## `/` (divide)
@@ -582,7 +582,7 @@ A [function](#function) that divides two or more [numbers](#number).
 ### Conditions
 
 - *Called with less than two arguments:* [unwinds](#unwind) global scope with `\parameter-mismatch`
-- *Argument isn't a prototype of nor a number:* [unwinds](#unwind) global scope with `\prototype-mismatch`
+- *Argument isn't a proto of nor a number:* [unwinds](#unwind) global scope with `\proto-mismatch`
 - *Dividing by zero or infinity by infinity:* [unwinds](#unwind) global scope with `\undefined-result`
 
 ### Examples
@@ -621,7 +621,7 @@ A [function](#function) that returns the number of key/value pairs in a `map`.
 ### Conditions
 
 - *Called with less or more than one argument:* [unwinds](#unwind) global scope with `\parameter-mismatch`
-- *`map` argument isn't a prototype of nor a map:* [unwinds](#unwind) global scope with `\prototype-mismatch`
+- *`map` argument isn't a proto of nor a map:* [unwinds](#unwind) global scope with `\proto-mismatch`
 
 ### Examples
 
@@ -670,7 +670,7 @@ A [function](#function) that creates a snapshot of an `expression` thereby preve
 ### Conditions
 
 - *Called with zero or more than two arguments:* [unwinds](#unwind) global scope with `\parameter-mismatch`
-- *`escape` argument isn't a prototype of nor a symbol:* [unwinds](#unwind) global scope with `\prototype-mismatch`
+- *`escape` argument isn't a proto of nor a symbol:* [unwinds](#unwind) global scope with `\proto-mismatch`
 
 ### Examples
 
@@ -742,9 +742,9 @@ A [function](#function) that evaluates an `expression` and returns the result, o
 ### Conditions
 
 - *Called with zero or more than two arguments:* [unwinds](#unwind) global scope with `\parameter-mismatch`
-- *`bindings` argument isn't a prototype of nor a map:* [unwinds](#unwind) global scope with `\prototype-mismatch`
+- *`bindings` argument isn't a proto of nor a map:* [unwinds](#unwind) global scope with `\proto-mismatch`
 - *`expression` argument contains a non-deferred symbol without a bindings value:* [unwinds](#unwind) global scope with `\unbound-symbol`
-- *`expression` argument contains a function call to a non-function value:* [unwinds](#unwind) global scope with `\prototype-mismatch`
+- *`expression` argument contains a function call to a non-function value:* [unwinds](#unwind) global scope with `\proto-mismatch`
 
 ### Examples
 
@@ -797,7 +797,7 @@ A [function](#function) that retrieves the value associated with a `key` in a `m
 ### Conditions
 
 - *Called with less than two or more than three arguments:* [unwinds](#unwind) global scope with `\parameter-mismatch`
-- *`map` argument isn't a prototype of nor a map:* [unwinds](#unwind) global scope with `\prototype-mismatch`
+- *`map` argument isn't a proto of nor a map:* [unwinds](#unwind) global scope with `\proto-mismatch`
 - *Association doesn't exist and a `default` value isn't provided:* [unwinds](#unwind) global scope with `\unknown-key`
 
 ### Examples
@@ -885,11 +885,11 @@ List / Function:
 ### Conditions
 
 - *Called with less than two or more than three arguments:* [unwinds](#unwind) global scope with `\parameter-mismatch`
-- *`map` argument isn't a prototype of nor a map:* [unwinds](#unwind) global scope with `\prototype-mismatch`
-- *`map` argument is a prototype of or a set and `key` isn't equal to `value`:* [unwinds](#unwind) global scope with `\parameter-mismatch`
-- *`set` argument isn't a prototype of nor a set:* [unwinds](#unwind) global scope with `\prototype-mismatch`
-- *`list` argument is a prototype of or a list and `key` isn't a positive integer less than or equal to its length plus one:* [unwinds](#unwind) global scope with `\parameter-mismatch`
-- *`function` argument is a prototype of or a function and when `key` is a number it isn't a positive integer less than or equal to its highest positive integer key plus one:* [unwinds](#unwind) global scope with `\parameter-mismatch`
+- *`map` argument isn't a proto of nor a map:* [unwinds](#unwind) global scope with `\proto-mismatch`
+- *`map` argument is a proto of or a set and `key` isn't equal to `value`:* [unwinds](#unwind) global scope with `\parameter-mismatch`
+- *`set` argument isn't a proto of nor a set:* [unwinds](#unwind) global scope with `\proto-mismatch`
+- *`list` argument is a proto of or a list and `key` isn't a positive integer less than or equal to its length plus one:* [unwinds](#unwind) global scope with `\parameter-mismatch`
+- *`function` argument is a proto of or a function and when `key` is a number it isn't a positive integer less than or equal to its highest positive integer key plus one:* [unwinds](#unwind) global scope with `\parameter-mismatch`
 
 ### Examples
 
@@ -938,7 +938,7 @@ A [function](#function) that loads a [module](#module) by `path`, and returns th
 ### Conditions
 
 - *Called with less than one argument:* [unwinds](#unwind) global scope with `\parameter-mismatch`
-- *`path` argument isn't a prototype of nor a non-empty list of symbols:* [unwinds](#unwind) global scope with `\prototype-mismatch`
+- *`path` argument isn't a proto of nor a non-empty list of symbols:* [unwinds](#unwind) global scope with `\proto-mismatch`
 - *Module can't be found:* [unwinds](#unwind) global scope with `\unknown-module`
 - *Module is invalid:* [unwinds](#unwind) global scope with `\undefined-result`
 
@@ -964,7 +964,7 @@ A [function](#function) that returns the first key, or the key following `key` i
 ### Conditions
 
 - *Called with zero or more than two arguments:* [unwinds](#unwind) global scope with `\parameter-mismatch`
-- *`map` argument isn't a prototype of nor a map:* [unwinds](#unwind) global scope with `\prototype-mismatch`
+- *`map` argument isn't a proto of nor a map:* [unwinds](#unwind) global scope with `\proto-mismatch`
 - *`map` is empty or `key` is the last key:* [unwinds](#unwind) global scope with `\unknown-key`
 
 ### Examples
@@ -1045,9 +1045,9 @@ List / Function:
 ### Conditions
 
 - *Called with less or more than two arguments:* [unwinds](#unwind) global scope with `\parameter-mismatch`
-- *`map` argument isn't a prototype of nor a map:* [unwinds](#unwind) global scope with `\prototype-mismatch`
-- *`list` argument is a prototype of or a list and `key` isn't a positive integer:* [unwinds](#unwind) global scope with `\parameter-mismatch`
-- *`function` argument is a prototype of or a function and when `key` is a number it isn't a positive integer:* [unwinds](#unwind) global scope with `\parameter-mismatch`
+- *`map` argument isn't a proto of nor a map:* [unwinds](#unwind) global scope with `\proto-mismatch`
+- *`list` argument is a proto of or a list and `key` isn't a positive integer:* [unwinds](#unwind) global scope with `\parameter-mismatch`
+- *`function` argument is a proto of or a function and when `key` is a number it isn't a positive integer:* [unwinds](#unwind) global scope with `\parameter-mismatch`
 
 ### Examples
 
@@ -1089,7 +1089,7 @@ Unwinding is a non-local early exit of a given scope. Unwinding global scope exi
 ### Conditions
 
 - *Called with zero or more than two arguments:* [unwinds](#unwind) global scope with `\parameter-mismatch`
-- *`bindings` argument isn't a prototype of nor a bindings map:* [unwinds](#unwind) global scope with `\prototype-mismatch`
+- *`bindings` argument isn't a proto of nor a bindings map:* [unwinds](#unwind) global scope with `\proto-mismatch`
 
 ### Examples
 

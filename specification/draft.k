@@ -1,14 +1,12 @@
 # Pipeline support? shell pipe?
 
-# - shell syntax (familiar, concise)
-# - each pipe part is partial fn call
+# - each pipe part is partial fn?
 # - parens are replaced by pipes?
 # - can still have args
 # - pipeline will invoke all fns
 # - may be sequential or parallel
 # - fn return value is output
-# - last param is input
-# - partial to fix/rearrange params
+# - last param is input?
 
 (reduce + 0
   (map to-int
@@ -525,7 +523,7 @@ let pow = [x= y=, ^ x y]
 
 # partial by default? good for pipes?
 
-let pow2 = [pow 2]
+let pow-of-2 = [pow 2]
 
 # vectorized by default w/ pipes?
 
