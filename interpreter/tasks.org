@@ -155,6 +155,10 @@
 
 - https://gist.github.com/willurd/5720255
 
+** TODO sponsoring?
+
+- https://www.vim.org/sponsor/
+
 * javascript
 
 ** TODO move non-JS parts to native and core
