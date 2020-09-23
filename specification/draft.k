@@ -1,3 +1,33 @@
+# alternative syntax?
+# - easier scripting?
+# - easier pipelines?
+# - partial by default?
+# - easier to have static typing?
+
+# questions:
+# - less familiar?
+# - reserved `=` hurts readability?
+# - partial for varargs
+# - homogenous type
+# - varargs type
+# - heterogeneous type
+# - "generics"
+# - optional dynamic typing?
+
+if [is user 'bob'] then=
+  range from=1 to=9
+
+let pow = [x= y=, ^ x y]
+
+let pow-of-2 = [pow 2]
+let pow-of-2 = [pow 2 y=]
+
+(1 2 3), pow 2, print
+(1 2 3), [pow 2], print
+(1 2 3), pow 2 y=, print
+
+---
+
 # Pipeline support? shell pipe?
 
 # - each pipe part is partial fn?
@@ -507,26 +537,3 @@ hist() {
 }
 
 hist = [| sort | uniq | sort]
-
----
-
-# alternative syntax?
-# + easier scripting?
-# + easier to enable static typing?
-# - less familiar?
-# - reserved `=` hurts readability?
-
-if [is user 'bob'] then=
-  range from=1 to=9
-
-let pow = [x= y=, ^ x y]
-
-# partial by default? good for pipes?
-
-let pow-of-2 = [pow 2]
-
-# vectorized by default w/ pipes?
-
-(1 2 3), pow 2, print
-(1 2 3), [pow 2], print
-(1 2 3), pow 2 y=, print
