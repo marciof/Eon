@@ -20,10 +20,13 @@ if [is user 'bob'] then=
 let pow = [x= y=, ^ x y]
 
 let pow-of-2 = [pow 2]
-let pow-of-2 = [pow 2 y=]
-
 (1 2 3), pow 2, print
-(1 2 3), [pow 2], print
+
+# with partial no need for `param=`?
+# same syntax in fn literal though
+# unify maps and functions?
+
+let pow-of-2 = [pow 2 y=]
 (1 2 3), pow 2 y=, print
 
 ---
