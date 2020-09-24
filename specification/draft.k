@@ -19,15 +19,26 @@ if [is user 'bob'] then=
 
 let pow = [x= y=, ^ x y]
 
+# partial of 1 arg, params unchanged:
+
 let pow-of-2 = [pow 2]
 (1 2 3), pow 2, print
+
+# partial of 1 arg, and 1 param only:
+
+let pow-of-2 = [pow 2 y=]
+(1 2 3), pow 2 y=, print
 
 # with partial no need for `param=`?
 # same syntax in fn literal though
 # unify maps and functions?
 
-let pow-of-2 = [pow 2 y=]
-(1 2 3), pow 2 y=, print
+# "calling" a map w/o args = itself
+# "calling" a map w/ args = function
+# how to handle multiple args?
+# how to handle varargs?
+# how to handle no args?
+# - "calling" a list?
 
 ---
 
@@ -48,6 +59,9 @@ let pow-of-2 = [pow 2 y=]
 match '\d+' txt | to-int | reduce + 0
 
 match '\d+' txt, to-int, reduce + 0
+
+if [list-sizes, reduce + 0, zero?]
+  print 'hello'
 
 # comma conflicts with number sep?
 # list vs scalar? use "iterables"?
