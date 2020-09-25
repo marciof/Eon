@@ -83,6 +83,7 @@
 - specify default native build in readme?
 - add stages for alpha (Debug with instrumentation), beta (Debug), gamma (Release with instrumentation), release (Release)?
 - add support for Bochs and Qemu? easier for installation, for vm.sh, and screenshots?
+  - https://pcem-emulator.co.uk/
 - add minimal functional tests?
 - https://embeddedbits.org/how-is-the-linux-kernel-tested/
 
