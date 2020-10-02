@@ -17,7 +17,14 @@
 if [is user 'bob'] then=
   range from=1 to=9
 
+# pipe w/ 2 params? eg. stdin 
+
 let pow = [x= y=, ^ x y]
+
+# or more like math's "such that"?
+
+[x:Number= y:Number= | ^ x y]
+Numbers = {x:Number= |}
 
 # partial of 1 arg, params unchanged:
 
@@ -39,6 +46,11 @@ let pow-of-2 = [pow 2 y=]
 # how to handle varargs?
 # how to handle no args?
 # - "calling" a list?
+
+name = 'Bob'
+incr = \[+ x 1]
+incr = \[+ x 1 bind: {x}]
+[incr x] = [+ x 1]
 
 ---
 
