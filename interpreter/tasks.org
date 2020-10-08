@@ -1,5 +1,9 @@
 * interpreter
 
+** TODO dynamic vs static linking
+
+- as an option?
+
 ** TODO rename words?
 
 - https://news.ycombinator.com/item?id=23473387, https://www.hanselman.com/blog/EasilyRenameYourGitDefaultBranchFromMasterToMain.aspx
