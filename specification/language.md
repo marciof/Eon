@@ -91,9 +91,9 @@ Practical:
 
 # Coding Style
 
-English is the official language used throughout the code and documentation.
+English is the official language used throughout code and documentation.
 
-Line length should be 80 characters maximum, since going over the limit can indicate issues with readability.
+Line length should be 80 characters maximum, as going over the limit sometimes indicates issues with readability.
 
 ## Documentation
 
