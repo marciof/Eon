@@ -139,6 +139,9 @@
 
 * TODO FEXPRs: "Special Forms in Lisp", https://www.nhplace.com/kent/Papers/Special-Forms.html
 
+- "On Fexprs and Defmacro"
+  - https://news.ycombinator.com/item?id=24932701
+  - https://www.brinckerhoff.org/scraps/joe-marshall-on-FEXPRS-and-DEFMACRO.txt
 - macros instead of fexprs?
 - arguments for quoted parameters aren’t automatically evaluated, but unquoted are?
 - could allows early returns?
