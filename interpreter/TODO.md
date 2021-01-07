@@ -170,6 +170,3 @@ Finder, Safari, Xcode, Textual, Skype, Calendar and more are supported. Shortcat
 
 500 Byte Images: The Haiku Vector Icon Format
 http://blog.leahhanson.us/post/recursecenter2016/haiku_icons.html
-
-Tildes site implementation
-https://docs.tildes.net/philosophy/site-implementation

@@ -1,3 +1,11 @@
+* TODO fix site redirect
+
+- Tildes site implementation, https://docs.tildes.net/philosophy/site-implementation
+- https://hstspreload.org/
+- https://www.ssllabs.com/ssltest/
+- https://dnssec-name-and-shame.com/
+- https://www.cloudflare.com/ssl/encrypted-sni/
+
 * TODO lexical binding by default for safety?
 
 * TODO improve documentation
