@@ -25,6 +25,7 @@
 
 - C includes, `#include <karyon/core/Log.h>`
 - C library, `-lkaryon`
+- inspiration from Cosmopolitan? https://justine.lol/cosmopolitan/
 
 ** TODO CMake is too complex/big, alternatives? Make?
 
