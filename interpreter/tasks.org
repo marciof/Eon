@@ -1,31 +1,9 @@
 * interpreter
 
-** TODO dynamic vs static linking
-
-- as an option?
-
 ** TODO rename words?
 
 - https://news.ycombinator.com/item?id=23473387, https://www.hanselman.com/blog/EasilyRenameYourGitDefaultBranchFromMasterToMain.aspx
 - https://mail.gnome.org/archives/desktop-devel-list/2019-May/msg00066.html
-
-** TODO ensure simplicity
-
-- https://suckless.org
-- https://christine.website/blog/why-i-use-suckless-tools-2020-06-05
-- minimal bootstrapping seed
-  - Guix Further Reduces Bootstrap Seed to 25%, https://news.ycombinator.com/item?id=23526916
-  - https://guix.gnu.org/blog/2020/guix-further-reduces-bootstrap-seed-to-25/
-  - https://savannah.nongnu.org/projects/stage0
-  - https://bootstrappable.org
-
-** TODO create core/std/sys/types.c for MSCV?
-
-** TODO decouple interpreter sub-modules from each other?
-
-- C includes, `#include <karyon/core/Log.h>`
-- C library, `-lkaryon`
-- inspiration from Cosmopolitan? https://justine.lol/cosmopolitan/
 
 ** TODO CMake is too complex/big, alternatives? Make?
 
@@ -38,11 +16,31 @@
 - https://david.rothlis.net/large-gnu-make/
 - dev cycle watch (use inotify?), https://github.com/watchexec/watchexec
 
+** TODO decouple interpreter sub-modules from each other?
+
+- C includes, `#include <karyon/core/Log.h>`
+- C library, `-lkaryon`
+- inspiration from Cosmopolitan? https://justine.lol/cosmopolitan/
+
+** TODO ensure simplicity
+
+- https://suckless.org
+- https://christine.website/blog/why-i-use-suckless-tools-2020-06-05
+- minimal bootstrapping seed
+  - Guix Further Reduces Bootstrap Seed to 25%, https://news.ycombinator.com/item?id=23526916
+  - https://guix.gnu.org/blog/2020/guix-further-reduces-bootstrap-seed-to-25/
+  - https://savannah.nongnu.org/projects/stage0
+  - https://bootstrappable.org
+
+** TODO dynamic vs static linking
+
+- as an option?
+
 ** TODO simplify error handling and use Maybe/Optional types?
 
-** TODO support Haiku?
+** TODO support Haiku? ReactOS?
 
-- very different OS than others, so there's value in proper abstraction?
+- very different OS than others, so there's value in testing this has a proper/working abstraction layer?
 - https://www.haiku-os.org/get-haiku/installation-guide/
 
 ** TODO split dependencies per build target (eg. native, x86-32, etc)
@@ -131,7 +129,7 @@
   - https://www.gwern.net/Archiving-URLs#detection
 - avoid too many abbreviations
 
-** TODO access struct members directly, instead of wrappers for transparency?
+** TODO access struct members directly, instead of wrappers for transparency? downsides?
 
 ** TODO make the system more resilient
 
@@ -150,16 +148,6 @@
 - https://savannah.nongnu.org/projects/stage0
 
 ** TODO logging of long integers (eg. 64-bit Multiboot mem region addr/len)
-
-** TODO JIT? compilation?
-
-- QBE, https://c9x.me/compile/
-- libgccjit, https://gcc.gnu.org/onlinedocs/jit/
-- Compiling Scheme to C with closure conversion, <http://matt.might.net/articles/compiling-scheme-to-c/>
-
-** TODO add built-in simple HTTP web server?
-
-- https://gist.github.com/willurd/5720255
 
 ** TODO sponsoring?
 
