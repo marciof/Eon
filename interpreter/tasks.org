@@ -128,6 +128,9 @@
   - https://linkchecker.github.io/linkchecker/
   - https://www.gwern.net/Archiving-URLs#detection
 - avoid too many abbreviations
+- add a document on the architecture?
+  - https://news.ycombinator.com/item?id=26048784
+  - https://matklad.github.io//2021/02/06/ARCHITECTURE.md.html
 
 ** TODO access struct members directly, instead of wrappers for transparency? downsides?
 
