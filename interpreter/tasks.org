@@ -131,6 +131,8 @@
 - add a document on the architecture?
   - https://news.ycombinator.com/item?id=26048784
   - https://matklad.github.io//2021/02/06/ARCHITECTURE.md.html
+- add code review guidelines? more general than that?
+  - eg. "we'll never need more than X of Y"
 
 ** TODO access struct members directly, instead of wrappers for transparency? downsides?
 
