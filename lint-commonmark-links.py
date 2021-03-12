@@ -89,6 +89,7 @@ class DeDupQueue (queue.Queue):
             super().put(item, **kwargs)
 
 
+# TODO is it performant? 
 # TODO normalize links?
 # TODO cache results?
 def validate_links(

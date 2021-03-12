@@ -160,6 +160,8 @@
 
 * javascript
 
+** TODO build library too? 
+
 ** TODO move non-JS parts to native and core
 
 ** TODO always append '\0' to Str instances?
