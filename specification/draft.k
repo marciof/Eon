@@ -6,16 +6,27 @@
 
 # questions:
 # - less familiar?
-# - reserved `=` hurts readability?
-# - partial for varargs
-# - homogenous type
-# - varargs type
-# - heterogeneous type
-# - "generics"
+# - reserved `=` hurts boolean readability?
+# - how partial for varargs? 
+# - how homogenous type? 
+# - how varargs type? 
+# - how heterogeneous type? 
+# - how "generics"? 
 # - optional dynamic typing?
+
+if (= user 'bob') then:
+  range from: 1 to: 2
 
 if [is user 'bob'] then=
   range from=1 to=9
+
+let teen: (<= age 20) 
+let teen = [<~ age 20]
+let teen = [< age 20]
+let teen = [</ age 20]
+
+var name: 'bob'
+var name='bob'
 
 # pipe w/ 2 params? eg. stdin 
 
@@ -52,7 +63,7 @@ incr = \[+ x 1]
 incr = \[+ x 1 bind: {x}]
 [incr x] = [+ x 1]
 
----
+-----
 
 # Pipeline support? shell pipe?
 
@@ -105,7 +116,7 @@ date | file 'blah'
 
 # what inspecting sees when quoted?
 
----
+-----
 
 # can type annotations be added
 # and handled in stdlib?
@@ -166,9 +177,9 @@ let user: {\name: 'bob' \age: 20}
 names: [::Text]
 phonebook: {Text::Number}
 
----
+-----
 
-# values as fns for constraints
+# values as fns for constraints? 
 # - explicit type is documentation
 # - can’t do generics with type inf?
 # - creates a new prototype
@@ -539,20 +550,11 @@ greet: (| io.print 'Hi')
 
 (incr 2)
 
-var name: 'bob'
-
 incr: [x: | + x 1]
 
 greet = [| print 'Hi']
 incr = [x= | + x 1]
 incr = [x:Int= | + x 1]
-
-let teen: [<= age 20]
-let teen = [<~ age 20]
-let teen = [< age 20]
-let teen = [</ age 20]
-
-var name='bob'
 
 # cast vs type assertion
 # list literal
