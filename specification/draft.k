@@ -24,6 +24,7 @@ let teen: (<= age 20)
 let teen = [<~ age 20]
 let teen = [< age 20]
 let teen = [</ age 20]
+let teen: Bool = [</ age 20]
 
 var name: 'bob'
 var name='bob'
@@ -135,15 +136,17 @@ date | file 'blah'
 # because can be made compile time?
 # then use hints?
 
-# there are already constraints
-# symbol has constraints
-# text has constraints
-# having a built-in only exposes them
-# but not necessarily
-# could be impl in some builtin fns
+-----
 
-# not proto value or type hierarchy:
-# value "hierarchy" from constraints
+# Built-in types already have constraints. 
+# Reify the constraint feature.
+# No prototypical inheritance. 
+# Type "hierarchy" from constraints. 
+
+# Questions:
+# - New syntax or new built-in? 
+
+-----
 
 # new constraint
 (restrict base values)
@@ -195,7 +198,8 @@ names: ['Bob'] Text
 names: [] Text
 phonebook: {:} Text Number
 
-# heterogeneous, default
+# heterogeneous, default (unsafe?) 
+# list -> tuple? 
 list: []
 names: ['Bob']
 person: {\name: ''}

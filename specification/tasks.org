@@ -57,6 +57,8 @@
 
 * TODO optional static typing?
 
+- remove prototypical inheritance? 
+
 * TODO avoid `do` as a built-in?
 
 * TODO shell pipeline syntax?
