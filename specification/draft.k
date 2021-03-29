@@ -147,8 +147,13 @@ date | file 'blah'
 # Questions:
 # - New syntax or new built-in? 
 # - Constraints for scalar types? 
+# - Type inference? 
+# - Some built-ins have constraint logic? 
+#   - Leave logic to functions? Simpler? 
+#   - Then why are types handled differently? 
 
 # Requirements:
+# - Ensure data types remain "callable" 
 # - Create a new restricted value
 # - Query restrictions
 # - Safe defaults, easy to prototype
@@ -160,7 +165,7 @@ date | file 'blah'
 [] # heterogeneous
 [0 1] # heterogeneous
 [] Number # homogeneous 
-[0 1] [Number Number] # tuple
+[0 1] [Number Number] # tuple, fixed length
 
 # values as fns for constraints? 
 # - explicit type is documentation
