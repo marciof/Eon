@@ -165,8 +165,15 @@ date | file 'blah'
 
 [] # heterogeneous
 [0 1] # heterogeneous
-[] Number # homogeneous 
+[] Number # homogeneous
+
+# define precisely what constitutes a type
+# as well as a constraint
 [0 1] [Number Number] # tuple, fixed length
+# vs
+[0 1] ([] Number) 
+# vs
+[] [Number Number] 
 
 # values as fns for constraints? 
 # - explicit type is documentation
