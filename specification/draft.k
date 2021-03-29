@@ -138,49 +138,29 @@ date | file 'blah'
 
 -----
 
-# Built-in types already have constraints. 
+# Built-in types already have constraints.
+# Functions too. Can be considered one-off types. 
 # Reify the constraint feature.
-# No prototypical inheritance. 
-# Type "hierarchy" from constraints. 
+# Remove prototypical inheritance. 
+# Type "hierarchy" built from constraints. 
 
 # Questions:
 # - New syntax or new built-in? 
+# - Constraints for scalar types? 
 
------
+# Requirements:
+# - Create a new restricted value
+# - Query restrictions
+# - Safe defaults, easy to prototype
+# - Homogenous types, eg. list, map
+# - Heterogeneous types, eg. struct
+# - Generics 
+# - Varargs
 
-# new constraint
-(restrict base values)
-(restrict base keys values)
-
-# homogenous types
-Names: (restrict [] Text)
-Phonebook: (restrict {:} Text Number}
-
-# query constraint
-(proto value)
-
-# query built in constraints
-(proto [])
-# ({:} NaturalNumber)
-
-# define errors, updates, adds, dels
-
-# dynamic scope?
-\(+ x 1)
-
-# lexical scope? what'll inspect see?
-(+ 1 x:)
-(+ 1 x x:)
-(x: | + x 1) # ambiguous w/piping?
-
-let user: {\name: 'bob' \age: 20}
-  if (= user.name 'bob') then:
-    math.range from: 1 to: 3
-
-names: [::Text]
-phonebook: {Text::Number}
-
------
+[] # heterogeneous
+[0 1] # heterogeneous
+[] Number # homogeneous 
+[0 1] [Number Number] # tuple
 
 # values as fns for constraints? 
 # - explicit type is documentation
@@ -222,7 +202,41 @@ incr: (x: Number :: + x 1)
 incr: (x: Number; + x 1)
 incr: (x; + x 1)
 
----
+-----
+
+# new constraint
+(restrict base values)
+(restrict base keys values)
+
+# homogenous types
+Names: (restrict [] Text)
+Phonebook: (restrict {:} Text Number}
+
+# query constraint
+(proto value)
+
+# query built in constraints
+(proto [])
+# ({:} NaturalNumber)
+
+# define errors, updates, adds, dels
+
+# dynamic scope?
+\(+ x 1)
+
+# lexical scope? what'll inspect see?
+(+ 1 x:)
+(+ 1 x x:)
+(x: | + x 1) # ambiguous w/piping?
+
+let user: {\name: 'bob' \age: 20}
+  if (= user.name 'bob') then:
+    math.range from: 1 to: 3
+
+names: [::Text]
+phonebook: {Text::Number}
+
+-----
 
 # proto as fn ctor?
 # - no new syntax
