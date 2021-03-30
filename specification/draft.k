@@ -163,17 +163,28 @@ date | file 'blah'
 # - Varargs
 # - Cast, down, up
 
-[] # heterogeneous
-[0 1] # heterogeneous
-[] Number # homogeneous
+Any = (prototype)
+List = [] # heterogeneous
+List = [] Any # ditto
+Numbers = [] Number # homogeneous
+
+Numbers = List Number # tighten constraint? 
+List = Numbers Any # relax constraint? 
+(prototype Numbers) = ??? 
+
+[] # heterogeneous, what's the type? 
+[0 1]
+[1 'Bob']
+
+[0 1] Number # homogeneous
 
 # define precisely what constitutes a type
 # as well as a constraint
 [0 1] [Number Number] # tuple, fixed length
 # vs
-[0 1] ([] Number) 
+[0 1] ([] Number) # what's the type? 
 # vs
-[] [Number Number] 
+[] [Number Number] # what's the type? 
 
 # values as fns for constraints? 
 # - explicit type is documentation
