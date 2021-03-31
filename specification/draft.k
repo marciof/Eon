@@ -164,8 +164,8 @@ date | file 'blah'
 # - Cast, down, up
 
 Any = (prototype)
-List = [] # heterogeneous
-List = [] Any # ditto
+List = [] # heterogeneous (tuple like?) 
+List = [] Any # ditto (?) 
 Numbers = [] Number # homogeneous
 
 Numbers = List Number # tighten constraint? 
