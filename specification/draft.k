@@ -168,9 +168,19 @@ List = [] # heterogeneous (tuple like?)
 List = [] Any # ditto (?) 
 Numbers = [] Number # homogeneous
 
+[0 1] Number # explicit
+
 Numbers = List Number # tighten constraint? 
-List = Numbers Any # relax constraint? 
-(prototype Numbers) = ??? 
+List = Numbers Any # relax constraint?
+(prototype Numbers) = (List Number)
+
+# conflicts with constraints? 
+# no because it's already constrained? 
+# too ambiguous?
+(Numbers 1 2 3) # easy to type and read
+(Numbers [1 2 3])
+(Numbers ages) 
+(Numbers from: [1 2 3])
 
 [] # heterogeneous, what's the type? 
 [0 1]
