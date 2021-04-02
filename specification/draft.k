@@ -157,14 +157,29 @@ date | file 'blah'
 # - Create a new restricted value
 # - Query restrictions
 # - Safe defaults, easy to prototype
-# - Homogenous types, eg. list, map
+# - homogeneous types, eg. list, map
 # - Heterogeneous types, eg. struct
 # - Generics 
 # - Varargs
 # - Cast, down, up
+ 
+# homogeneous
+[] Number
+numbers = [0 1] Number
+ages = [] Number
+matrix = [] ([] Number)
+
+# homogeneous, down cast 
+['Bob'] Symbol
+
+# homogeneous, up cast 
+[\xyz] Text
+
+# heterogeneous (tuple like?) 
+[] 
+
 
 Any = (prototype)
-List = [] # heterogeneous (tuple like?) 
 List = [] Any # ditto (?) 
 Numbers = [] Number # homogeneous
 
