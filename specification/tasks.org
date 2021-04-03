@@ -1,3 +1,8 @@
+* TODO principle of least astonishment
+
+- apply it to the language grammar
+- apply it to the interpreter
+
 * TODO fix site redirect
 
 - Tildes site implementation, https://docs.tildes.net/philosophy/site-implementation
