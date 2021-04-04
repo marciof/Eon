@@ -151,6 +151,8 @@
 * TODO version vs feature detection
 
 - https://github.com/oilshell/oil/wiki/Feature-Detection-Is-Better-than-Version-Detection
+- allow multiple versions of the same package (see Python venv)
+- allow freezing/pinning dependency versions (version tree) 
 
 * TODO FEXPRs: "Special Forms in Lisp", https://www.nhplace.com/kent/Papers/Special-Forms.html
 
