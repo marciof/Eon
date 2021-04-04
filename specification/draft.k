@@ -144,6 +144,10 @@ date | file 'blah'
 # Remove prototypical inheritance. 
 # Type "hierarchy" built from constraints. 
 
+# To have static typing use pure functions? 
+# - Avoids the whole problem altogether. 
+# - No new syntax. 
+
 # Questions:
 # - New syntax or new built-in? 
 # - Constraints for scalar types? 
@@ -151,6 +155,13 @@ date | file 'blah'
 # - Some built-ins have constraint logic? 
 #   - Leave logic to functions? Simpler? 
 #   - Then why are types handled differently? 
+#   - Types are functions that create values of the same "class"? Operations and restrictions, logic on the values from that type, are encapsulated in functions that operate on them. A constraint simply says the type, or class, that a given value must have. 
+
+# unifying, but too much syntax? 
+value : constraint
+
+# constraints only for maps? Limiting? 
+# includes text, symbol, set, list, function
 
 # Requirements:
 # - Ensure data types remain "callable" 
@@ -169,8 +180,10 @@ numbers = [0 1] Number
 ages = [] Number
 matrix = [] ([] Number)
 
-# homogeneous, down cast 
+# homogeneous, down cast
+# wouldn't this be an error? 
 ['Bob'] Symbol
+[(Symbol 'Bob')] Symbol
 
 # homogeneous, up cast 
 [\xyz] Text
