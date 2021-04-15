@@ -138,30 +138,21 @@ date | file 'blah'
 
 -----
 
-# Built-in types already have constraints.
-# Functions too. Can be considered one-off types. 
-# Reify the constraint feature.
-# Remove prototypical inheritance. 
-# Type "hierarchy" built from constraints. 
+# Data has data only, no constraints.
+# - Built-in data type literals only *seem* to have constraints. 
+# - Data type constructors (functions) are what have the logic/constraints.
+# - There's no prototypical inheritance.
+# - Data type "hierarchy" is "built" from constraints.
 
-# To have static typing use pure functions? 
-# - Avoids the whole problem altogether. 
-# - No new syntax. 
+# Functions have logic, describe constraints on data. 
+# - Functions are dual in the sense that are also data.
+# - Static typing is achieved with pure functions.
+# - Avoids adding new syntax.
 
 # Questions:
-# - New syntax or new built-in? 
-# - Constraints for scalar types? 
-# - Type inference? 
-# - Some built-ins have constraint logic? 
-#   - Leave logic to functions? Simpler? 
-#   - Then why are types handled differently? 
-#   - Types are functions that create values of the same "class"? Operations and restrictions, logic on the values from that type, are encapsulated in functions that operate on them. A constraint simply says the type, or class, that a given value must have. 
-
-# unifying, but too much syntax? 
-value : constraint
-
-# constraints only for maps? Limiting? 
-# includes text, symbol, set, list, function
+# - New syntax or new built-in?
+# - Constraints for scalar types?
+# - Type inference?
 
 # Requirements:
 # - Ensure data types remain "callable" 
@@ -173,7 +164,14 @@ value : constraint
 # - Generics 
 # - Varargs
 # - Cast, down, up
- 
+
+# Equivalent
+[1 2 3]
+(List 1 2 3)
+
+# unifying, but too much syntax? 
+value : constraint
+
 # homogeneous
 [] Number
 numbers = [0 1] Number
@@ -190,7 +188,6 @@ matrix = [] ([] Number)
 
 # heterogeneous (tuple like?) 
 [] 
-
 
 Any = (prototype)
 List = [] Any # ditto (?) 
