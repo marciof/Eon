@@ -145,6 +145,12 @@ Finder, Safari, Xcode, Textual, Skype, Calendar and more are supported. Shortcat
 
 # Inspiration
 
+# IDE
+
+- Automatic completion (no keys needed to trigger)
+- Spell-check
+- Detects wrong commands proactively and prevents execution (underline like spell check).
+
 ## Unix shell
 
 - POSIX compatibility
@@ -161,7 +167,7 @@ Finder, Safari, Xcode, Textual, Skype, Calendar and more are supported. Shortcat
 - Unix IO: arbitrarily long byte sequences, everything is a file
 - Standard IO: input, output, error
 - Pipelines, including named pipes
-- IO redirection
+- IO redirection, including using any command as a file eg. `wc -o <(head file)`
 - Online help system
 - Command history (shared? separate?)
 - Completion: commands, variables, user names, host names, file names, directories
