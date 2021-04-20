@@ -28,7 +28,14 @@
 # - Cast, down, up
 
 # Example without constraints
-[function add [x y] [+ x y]] 
+# Does it default to using generics? 
+(function add (x y) (+ x y))
+
+# Same example with type constraints
+# It's a helper, how does it look when inspected? 
+(var Number (prototype 0))
+(function add (x: Number y: Number): Number
+  (+ x y))
 
 # Equivalent
 [1 2 3]
