@@ -1,3 +1,67 @@
+# Data has data only, no constraints.
+# - Built-in data type literals only *seem* to have constraints. 
+# - Data type constructors (functions) are what have the logic/constraints.
+# - There's no prototypical inheritance.
+# - Data type "hierarchy" is "built" from constraints.
+
+# Functions have logic, describe constraints on data. 
+# - Functions are dual in the sense that are also data.
+# - Static typing is achieved with pure functions.
+# - Avoids adding new syntax.
+
+# Questions:
+# - New syntax or new built-in?
+# - Constraints for scalar types?
+# - Type inference?
+
+# Requirements:
+# - Avoid too much syntax. Keep language small. 
+# - Be explicit and safe by default:
+#   - static typing
+#   - lexical scope (is `defer` WYSIWYG?)
+# - Ensure data types remain "callable" 
+# - How to do homogeneous types, eg. list, map
+# - How to do heterogeneous types, eg. struct
+# - Generics 
+# - Varargs
+# - Cast, down, up
+
+# Example without constraints
+[function add [x y] [+ x y]] 
+
+# Equivalent
+[1 2 3]
+(List 1 2 3)
+
+# Unifying, but too much syntax? 
+value : constraint
+
+Any = (prototype) 
+
+# cast with default
+name: (cast '' 'Bob')
+chars: (cast [] 'Bob')
+panic: (cast 0 'Bob')
+safe: (cast 0 'Bob' -1)
+homogenous: (cast [] [] value: Num)
+
+# proto as fn ctor?
+# - no new syntax
+# - explicit and readable
+# - extensible since it uses fns
+# - still doesn’t introduce types
+# - can be used for type cast
+
+Number: proto 0
+age: Number 20
+
+Person: proto {:} (lambda (map name)
+  (insert map \name name))
+
+bob: Person 'Bob'
+
+-----
+
 # alternative syntax?
 # - easier scripting?
 # - easier pipelines?
@@ -119,167 +183,6 @@ date | file 'blah'
 
 -----
 
-# can type annotations be added
-# and handled in stdlib?
-# with a sort of code loading hook?
-
-# `:` less syntax, "prettier", no w/s
-
-# avoid too much syntax
-# be explicit and safe by default:
-# - static typing
-# - lexical scope (is defer WYSIWYG?)
-
-# constraint fn? Or struct compat?
-# consistent with how `proto` works?
-# why stop at types for validation?
-# because can be made compile time?
-# then use hints?
-
------
-
-# Data has data only, no constraints.
-# - Built-in data type literals only *seem* to have constraints. 
-# - Data type constructors (functions) are what have the logic/constraints.
-# - There's no prototypical inheritance.
-# - Data type "hierarchy" is "built" from constraints.
-
-# Functions have logic, describe constraints on data. 
-# - Functions are dual in the sense that are also data.
-# - Static typing is achieved with pure functions.
-# - Avoids adding new syntax.
-
-# Questions:
-# - New syntax or new built-in?
-# - Constraints for scalar types?
-# - Type inference?
-
-# Requirements:
-# - Ensure data types remain "callable" 
-# - Create a new restricted value
-# - Query restrictions
-# - Safe defaults, easy to prototype
-# - homogeneous types, eg. list, map
-# - Heterogeneous types, eg. struct
-# - Generics 
-# - Varargs
-# - Cast, down, up
-
-# Equivalent
-[1 2 3]
-(List 1 2 3)
-
-# unifying, but too much syntax? 
-value : constraint
-
-# homogeneous
-[] Number
-numbers = [0 1] Number
-ages = [] Number
-matrix = [] ([] Number)
-
-# homogeneous, down cast
-# wouldn't this be an error? 
-['Bob'] Symbol
-[(Symbol 'Bob')] Symbol
-
-# homogeneous, up cast 
-[\xyz] Text
-
-# heterogeneous (tuple like?) 
-[] 
-
-Any = (prototype)
-List = [] Any # ditto (?) 
-Numbers = [] Number # homogeneous
-
-[0 1] Number # explicit
-
-Numbers = List Number # tighten constraint? 
-List = Numbers Any # relax constraint?
-(prototype Numbers) = (List Number)
-
-# conflicts with constraints? 
-# no because it's already constrained? 
-# too ambiguous?
-(Numbers 1 2 3) # easy to type and read
-(Numbers [1 2 3])
-(Numbers ages) 
-(Numbers from: [1 2 3])
-
-[] # heterogeneous, what's the type? 
-[0 1]
-[1 'Bob']
-
-[0 1] Number # homogeneous
-
-# define precisely what constitutes a type
-# as well as a constraint
-[0 1] [Number Number] # tuple, fixed length
-# vs
-[0 1] ([] Number) # what's the type? 
-# vs
-[] [Number Number] # what's the type? 
-
-# values as fns for constraints? 
-# - explicit type is documentation
-# - can’t do generics with type inf?
-# - creates a new prototype
-# - can't constrain fns?
-# - less explicit/readable?
-# - can't constrain heterogeneous?
-
-Text: ''
-Number: 0
-
-# homogenous, explicit
-names: ['Bob'] Text
-names: [] Text
-phonebook: {:} Text Number
-
-# heterogeneous, default (unsafe?) 
-# list -> tuple? 
-list: []
-names: ['Bob']
-person: {\name: ''}
-
-# dynamic typing
-Any: (prototype)
-list: [] Any
-
-# fn params
-incr: [: + x 1] x: Number
-incr: (| + x 1) x: Number
-incr: \(+ x 1) x: Number
-incr: \(+ x 1) x: Number scope:
-incr: \(+ x 1 scope: {x: Number})
-incr: (x: | + x 1) x: Number
-incr: () x: Number ???
-incr: () {\x: Number} ???
-incr: (x: Number | + x 1)
-incr: (x: Number :: + x 1)
-incr: (x: Number; + x 1)
-incr: (x; + x 1)
-
------
-
-# new constraint
-(restrict base values)
-(restrict base keys values)
-
-# homogenous types
-Names: (restrict [] Text)
-Phonebook: (restrict {:} Text Number}
-
-# query constraint
-(proto value)
-
-# query built in constraints
-(proto [])
-# ({:} NaturalNumber)
-
-# define errors, updates, adds, dels
-
 # dynamic scope?
 \(+ x 1)
 
@@ -288,33 +191,9 @@ Phonebook: (restrict {:} Text Number}
 (+ 1 x x:)
 (x: | + x 1) # ambiguous w/piping?
 
-let user: {\name: 'bob' \age: 20}
-  if (= user.name 'bob') then:
-    math.range from: 1 to: 3
-
-names: [::Text]
-phonebook: {Text::Number}
-
 -----
 
-# proto as fn ctor?
-# - no new syntax
-# - explicit and readable
-# - extensible since it uses fns
-# - still doesn’t introduce types
-# - can be used for type cast
-
-Number: proto 0
-age: Number 20
-
-Person: proto {:} (lambda (map name)
-  (insert map \name name))
-
-bob: Person 'Bob'
-
----
-
-# fn as a value constraint
+# fn as a value constraint? 
 # - more flexible
 # - no new syntax
 # - easy to understand
@@ -385,26 +264,6 @@ text: Text [65]
 # disable static typing from value?
 
 # get type/ctor/? of a value?
-
----
-
-# only associations can have type?
-# it’s how it’s enforced?
-
-name: Text: 'Bob'
-names: [Text]: 'Bob'
-phonebook: {Text: Number}: {:}
-
-person: ???: {\name: '' \age: 0}
-
----
-
-# cast with default
-name: (cast '' 'Bob')
-chars: (cast [] 'Bob')
-panic: (cast 0 'Bob')
-safe: (cast 0 'Bob' -1)
-homogenous: (cast [] [] value: Num)
 
 ---
 
