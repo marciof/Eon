@@ -15,6 +15,7 @@
 # - Type inference?
 
 # Requirements:
+# - Ensure documentation is still readable and contains type information. Eg. avoid Python documentation with very hard to find typing information, especially return type documentation
 # - Avoid too much syntax. Keep language small. 
 # - Be explicit and safe by default:
 #   - static typing
