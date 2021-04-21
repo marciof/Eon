@@ -1,75 +1,3 @@
-# Data has data only, no constraints.
-# - Built-in data type literals only *seem* to have constraints. 
-# - Data type constructors (functions) are what have the logic/constraints.
-# - There's no prototypical inheritance.
-# - Data type "hierarchy" is "built" from constraints.
-
-# Functions have logic, describe constraints on data. 
-# - Functions are dual in the sense that are also data.
-# - Static typing is achieved with pure functions.
-# - Avoids adding new syntax.
-
-# Questions:
-# - New syntax or new built-in?
-# - Constraints for scalar types?
-# - Type inference?
-
-# Requirements:
-# - Ensure documentation is still readable and contains type information. Eg. avoid Python documentation with very hard to find typing information, especially return type documentation
-# - Avoid too much syntax. Keep language small. 
-# - Be explicit and safe by default:
-#   - static typing
-#   - lexical scope (is `defer` WYSIWYG?)
-# - Ensure data types remain "callable" 
-# - How to do homogeneous types, eg. list, map
-# - How to do heterogeneous types, eg. struct
-# - Generics 
-# - Varargs
-# - Cast, down, up
-
-# Example without constraints
-# Does it default to using generics? 
-(function add (x y) (+ x y))
-
-# Same example with type constraints
-# It's a helper, how does it look when inspected? 
-(var Number (prototype 0))
-(function add (x: Number y: Number): Number
-  (+ x y))
-
-# Equivalent
-[1 2 3]
-(List 1 2 3)
-
-# Unifying, but too much syntax? 
-value : constraint
-
-Any = (prototype) 
-
-# cast with default
-name: (cast '' 'Bob')
-chars: (cast [] 'Bob')
-panic: (cast 0 'Bob')
-safe: (cast 0 'Bob' -1)
-homogenous: (cast [] [] value: Num)
-
-# proto as fn ctor?
-# - no new syntax
-# - explicit and readable
-# - extensible since it uses fns
-# - still doesn’t introduce types
-# - can be used for type cast
-
-Number: proto 0
-age: Number 20
-
-Person: proto {:} (lambda (map name)
-  (insert map \name name))
-
-bob: Person 'Bob'
-
------
-
 # alternative syntax?
 # - easier scripting?
 # - easier pipelines?
@@ -125,7 +53,11 @@ let pow-of-2 = [pow 2 y=]
 # unify maps and functions?
 
 # "calling" a map w/o args = itself
+[{\name = 'Bob'}] 
+
 # "calling" a map w/ args = function
+[{\(x y) = \[+ x y]} 1 2]
+
 # how to handle multiple args?
 # how to handle varargs?
 # how to handle no args?
@@ -135,6 +67,128 @@ name = 'Bob'
 incr = \[+ x 1]
 incr = \[+ x 1 bind: {x}]
 [incr x] = [+ x 1]
+
+# fn extends map: ordered, so typed?
+# bad to overload meaning of `|`?
+
+incr: \[+ x 1] # dynamic or list?
+pipe: [ls | count]
+incr: (x | + x 1) # array untyped
+incr: {x | + x 1) # set untyped
+incr: {x: Number | + x 1} # map typed
+
+# "piping" params? Still untyped
+# and weird to overload piping?
+# clashes with piping and partial?
+# could be a generalization?
+# a pipe with arguments
+# use pipe+partial create a closure
+# param name instead of bindings.1?
+# - not an issue anymore
+# - but what does inspecting see?
+
+if (= user 'bob') then:
+  range from: 1 to: 9
+
+incr: (x: | + x 1)
+greet: (| io.print 'Hi')
+
+(incr 2)
+
+incr: [x: | + x 1]
+
+greet = [| print 'Hi']
+incr = [x= | + x 1]
+incr = [x:Int= | + x 1]
+
+# cast vs type assertion
+# list literal
+# set literal
+# map literal
+# "such that" literal
+# varargs
+
+hist() {
+  sort | uniq -c | sort -n -r
+}
+
+hist = [| sort | uniq | sort]
+
+-----
+
+# Data has data only, no constraints.
+# - Built-in data type literals only *seem* to have constraints. 
+# - Data type constructors (functions) are what have the logic/constraints.
+# - There's no prototypical inheritance.
+# - Data type "hierarchy" is "built" from constraints.
+
+# Functions have logic, describe constraints on data. 
+# - Functions are dual in the sense that are also data.
+# - Static typing is achieved with pure functions.
+# - Avoids adding new syntax.
+
+# Questions:
+# - Functions are similar to multi-methods in that their parameter types describe what kind of data they act on?
+# - New syntax or new built-in?
+# - Constraints for scalar types?
+# - Type inference?
+
+# Requirements:
+# - Ensure documentation is still readable and contains type information. Eg. avoid Python documentation with very hard to find typing information, especially return type documentation
+# - Avoid too much syntax. Keep language small. 
+# - Be explicit and safe by default:
+#   - static typing
+#   - lexical scope (is `defer` WYSIWYG?)
+# - Ensure data types remain "callable" 
+# - How to do homogeneous types, eg. list, map
+# - How to do heterogeneous types, eg. struct
+# - Generics 
+# - Varargs
+# - Cast, down, up
+
+# Unifying, but too much syntax?
+# Constraint is a function. 
+# Data type constructors are also functions. 
+value : constraint
+
+# Example function w/o constraints
+# Does it default to using generics?
+[x: y:, + x y]
+[x= y=, + x y]
+
+# Same example w/ type constraints
+# How do pipes look when inspected?
+let Number = [prototype 0]
+[x:Number y:Number, + x y]
+[x:Number= y:Number=, + x y]
+
+# Equivalent
+(1 2 3) 
+[List 1 2 3] 
+
+let Any = [prototype] 
+
+# cast with default? 
+name: (cast '' 'Bob')
+chars: (cast [] 'Bob')
+panic: (cast 0 'Bob')
+safe: (cast 0 'Bob' -1)
+homogenous: (cast [] [] value: Num)
+
+# proto as fn ctor?
+# - no new syntax
+# - explicit and readable
+# - extensible since it uses fns
+# - still doesn’t introduce types
+# - can be used for type cast
+
+let Number = prototype 0
+let age = Number 20
+
+let Person = prototype {=} [lambda (map name)
+  [insert map \name name]] 
+
+let Bob = Person 'Bob'
 
 -----
 
@@ -187,7 +241,7 @@ date | file 'blah'
 # no new syntax, optional parens
 \(date | file 'blah')
 
-# what inspecting sees when quoted?
+# what does inspecting see?
 
 -----
 
@@ -315,6 +369,8 @@ text: Text [65]
 let
   phonebook: {'Bob': 12345}
   lookup: (get phonebook key:)
+  lookup: (key:, get phonebook key)
+  lookup: (bind get phonebook) 
   (lookup 'Bob')
 
 # multiple partial?
@@ -464,51 +520,3 @@ age: 20
 
 io::print name
 io::print age
-
----
-
-# fn extends map: ordered, so typed?
-# bad to overload meaning of `|`?
-
-incr: \[+ x 1] # dynamic or list?
-pipe: [ls | count]
-incr: (x | + x 1) # array untyped
-incr: {x | + x 1) # set untyped
-incr: {x: Number | + x 1} # map typed
-
-# "piping" params? Still untyped
-# and weird to overload piping?
-# clashes with piping and partial?
-# could be a generalization?
-# a pipe with arguments
-# use pipe+partial create a closure
-# param name instead of bindings.1?
-# - not an issue anymore
-# - but what does inspecting see?
-
-if (= user 'bob') then:
-  range from: 1 to: 9
-
-incr: (x: | + x 1)
-greet: (| io.print 'Hi')
-
-(incr 2)
-
-incr: [x: | + x 1]
-
-greet = [| print 'Hi']
-incr = [x= | + x 1]
-incr = [x:Int= | + x 1]
-
-# cast vs type assertion
-# list literal
-# set literal
-# map literal
-# "such that" literal
-# varargs
-
-hist() {
-  sort | uniq -c | sort -n -r
-}
-
-hist = [| sort | uniq | sort]
