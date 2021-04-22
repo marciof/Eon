@@ -119,21 +119,17 @@ hist = [| sort | uniq | sort]
 # Data has data only, no constraints.
 # - Built-in data type literals only *seem* to have constraints. 
 # - Data type constructors (functions) are what have the logic/constraints.
+# - Constructors can be used for type casting. TODO: specify
 # - There's no prototypical inheritance.
 # - Data type "hierarchy" is "built" from constraints.
 
 # Functions have logic, describe constraints on data. 
 # - Functions are dual in the sense that are also data.
-# - Static typing is achieved with pure functions.
 # - Avoids adding new syntax.
 
-# Questions:
-# - Functions are similar to multi-methods in that their parameter types describe what kind of data they act on?
-# - New syntax or new built-in?
-# - Constraints for scalar types?
-# - Type inference?
-
-# Requirements:
+# Considerations:
+# - How to integrate having no prototypical inheritance with the data type hierarchy? 
+# - Data type identification. Proto VS prototype? 
 # - Ensure documentation is still readable and contains type information. Eg. avoid Python documentation with very hard to find typing information, especially return type documentation
 # - Avoid too much syntax. Keep language small. 
 # - Be explicit and safe by default:
@@ -145,48 +141,35 @@ hist = [| sort | uniq | sort]
 # - Generics 
 # - Varargs
 # - Cast, down, up
-
-# Unifying, but too much syntax?
-# Constraint is a function. 
-# Data type constructors are also functions. 
-value : constraint
+# - Default args
 
 # Example function w/o constraints
 # Does it default to using generics?
-[x: y:, + x y]
+
 [x= y=, + x y]
 
-# Same example w/ type constraints
+# Example function w/ type constraints
+# Impl via stdlib helper function
 # How do pipes look when inspected?
-let Number = [prototype 0]
-[x:Number y:Number, + x y]
-[x:Number= y:Number=, + x y]
+
+let Number = [proto 0]
+let Any = [proto]
+[with x=Number y=Number, + x y]
 
 # Equivalent
-(1 2 3) 
+ 
 [List 1 2 3] 
+(1 2 3)
 
-let Any = [prototype] 
+# Implicit and explicit type information
 
-# cast with default? 
-name: (cast '' 'Bob')
-chars: (cast [] 'Bob')
-panic: (cast 0 'Bob')
-safe: (cast 0 'Bob' -1)
-homogenous: (cast [] [] value: Num)
-
-# proto as fn ctor?
-# - no new syntax
-# - explicit and readable
-# - extensible since it uses fns
-# - still doesn’t introduce types
-# - can be used for type cast
-
-let Number = prototype 0
+let age = 20
 let age = Number 20
 
-let Person = prototype {=} [lambda (map name)
-  [insert map \name name]] 
+# New data type
+
+let Person = [proto Map
+  [map= name=, insert map \name name]] 
 
 let Bob = Person 'Bob'
 
@@ -214,6 +197,8 @@ if [list-sizes, reduce + 0, zero?]
   print 'hello'
 
 # comma conflicts with number sep?
+# number separator comma is itself ambiguous? 
+# different number systems? 
 # list vs scalar? use "iterables"?
 # text isn’t an iterable by default?
 
