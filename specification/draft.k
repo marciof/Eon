@@ -7,6 +7,7 @@
 # questions:
 # - less familiar?
 # - reserved `=` hurts boolean readability?
+#   - counterpoint, Perl/shell has lt, gt, lê, etc
 # - how partial for varargs? 
 # - how homogenous type? 
 # - how varargs type? 
@@ -22,97 +23,11 @@ if [is user 'bob'] then=
 
 let teen: (<= age 20) 
 let teen = [<~ age 20]
-let teen = [< age 20]
+let teen = [<e age 20]
 let teen = [</ age 20]
-let teen: Bool = [</ age 20]
 
 var name: 'bob'
 var name='bob'
-
-# pipe w/ 2 params? eg. stdin 
-
-let pow = [x= y=, ^ x y]
-
-# or more like math's "such that"?
-
-[x:Number= y:Number= | ^ x y]
-Numbers = {x:Number= |}
-
-# partial of 1 arg, params unchanged:
-
-let pow-of-2 = [pow 2]
-(1 2 3), pow 2, print
-
-# partial of 1 arg, and 1 param only:
-
-let pow-of-2 = [pow 2 y=]
-(1 2 3), pow 2 y=, print
-
-# with partial no need for `param=`?
-# same syntax in fn literal though
-# unify maps and functions?
-
-# "calling" a map w/o args = itself
-[{\name = 'Bob'}] 
-
-# "calling" a map w/ args = function
-[{\(x y) = \[+ x y]} 1 2]
-
-# how to handle multiple args?
-# how to handle varargs?
-# how to handle no args?
-# - "calling" a list?
-
-name = 'Bob'
-incr = \[+ x 1]
-incr = \[+ x 1 bind: {x}]
-[incr x] = [+ x 1]
-
-# fn extends map: ordered, so typed?
-# bad to overload meaning of `|`?
-
-incr: \[+ x 1] # dynamic or list?
-pipe: [ls | count]
-incr: (x | + x 1) # array untyped
-incr: {x | + x 1) # set untyped
-incr: {x: Number | + x 1} # map typed
-
-# "piping" params? Still untyped
-# and weird to overload piping?
-# clashes with piping and partial?
-# could be a generalization?
-# a pipe with arguments
-# use pipe+partial create a closure
-# param name instead of bindings.1?
-# - not an issue anymore
-# - but what does inspecting see?
-
-if (= user 'bob') then:
-  range from: 1 to: 9
-
-incr: (x: | + x 1)
-greet: (| io.print 'Hi')
-
-(incr 2)
-
-incr: [x: | + x 1]
-
-greet = [| print 'Hi']
-incr = [x= | + x 1]
-incr = [x:Int= | + x 1]
-
-# cast vs type assertion
-# list literal
-# set literal
-# map literal
-# "such that" literal
-# varargs
-
-hist() {
-  sort | uniq -c | sort -n -r
-}
-
-hist = [| sort | uniq | sort]
 
 -----
 
@@ -227,6 +142,91 @@ date | file 'blah'
 \(date | file 'blah')
 
 # what does inspecting see?
+
+# pipe w/ 2 params? eg. stdin 
+
+let pow = [x= y=, ^ x y]
+
+# or more like math's "such that"?
+
+[x:Number= y:Number= | ^ x y]
+Numbers = {x:Number= |}
+
+# partial of 1 arg, params unchanged:
+
+let pow-of-2 = [pow 2]
+(1 2 3), pow 2, print
+
+# partial of 1 arg, and 1 param only:
+
+let pow-of-2 = [pow 2 y=]
+(1 2 3), pow 2 y=, print
+
+# with partial no need for `param=`?
+# that way it's the same syntax in fn literal
+# unify maps and functions?
+
+# "calling" a map w/o args = itself
+[{\name = 'Bob'}] 
+
+# "calling" a map w/ args = function
+[{\(x y) = \[+ x y]} 1 2]
+
+# how to handle multiple args?
+# how to handle varargs?
+# how to handle no args?
+# - "calling" a list?
+
+name = 'Bob'
+incr = \[+ x 1]
+incr = \[+ x 1 bind: {x}]
+[incr x] = [+ x 1]
+
+# fn extends map: ordered, so typed?
+# bad to overload meaning of `|`?
+
+incr: \[+ x 1] # dynamic or list?
+pipe: [ls | count]
+incr: (x | + x 1) # array untyped
+incr: {x | + x 1) # set untyped
+incr: {x: Number | + x 1} # map typed
+
+# "piping" params? Still untyped
+# and weird to overload piping?
+# clashes with piping and partial?
+# could be a generalization?
+# a pipe with arguments
+# use pipe+partial create a closure
+# param name instead of bindings.1?
+# - not an issue anymore
+# - but what does inspecting see?
+
+if (= user 'bob') then:
+  range from: 1 to: 9
+
+incr: (x: | + x 1)
+greet: (| io.print 'Hi')
+
+(incr 2)
+
+incr: [x: | + x 1]
+
+greet = [| print 'Hi']
+incr = [x= | + x 1]
+incr = [x:Int= | + x 1]
+
+# cast vs type assertion
+# list literal
+# set literal
+# map literal
+# "such that" literal
+# varargs
+
+hist() {
+  sort | uniq -c | sort -n -r
+}
+
+hist = [| sort | uniq | sort]
 
 -----
 
