@@ -192,7 +192,7 @@ Tail calls are guaranteed to be efficient and use a similar amount of memory as 
 [* 4 5]
 # 20
 
-* multiplicand: 4 multiplier: 5
+* multiplicand=4 multiplier=5
 # 20
 
 \[]
