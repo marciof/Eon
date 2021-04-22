@@ -26,6 +26,8 @@ let teen = [<~ age 20]
 let teen = [<e age 20]
 let teen = [</ age 20]
 
+if [>/ age 20] ...
+
 var name: 'bob'
 var name='bob'
 

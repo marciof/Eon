@@ -150,16 +150,16 @@ A boolean is a binary logical value that can only be either true or false. It do
 ### Examples
 
 ```
-(proto (= 1 1))
+proto [= 1 1]
 # true
 
-(proto (proto (= 1 1)))
+proto [proto [= 1 1]]
 # true
 
-(proto (= 1 2))
+proto [= 1 2]
 # true
 
-(proto (proto (= 1 2)))
+proto [proto [= 1 2]]
 # true
 ```
 
@@ -173,8 +173,8 @@ Calling an empty function returns itself. Calling a non-empty function involves 
 
 Tail calls are guaranteed to be efficient and use a similar amount of memory as an iterative loop. A tail call is a self-recursive function call when it calls itself, a tail function call when it's the last expression in the calling function, or a self-tail function call when it calls itself as the last expression.
 
-- **Proto:** empty [function](#function), `()`
-- **Base Proto:** empty [map](#map), `{:}`
+- **Proto:** empty [function](#function), `[]`
+- **Base Proto:** empty [map](#map), `{=}`
 
 ### Conditions
 
@@ -183,38 +183,41 @@ Tail calls are guaranteed to be efficient and use a similar amount of memory as 
 ### Examples
 
 ```
-()
-# ()
+[]
+# []
 
-(* 4 5)
+* 4 5
 # 20
 
-(* multiplicand: 4 multiplier: 5)
+[* 4 5]
 # 20
 
-\()
-# ()
-
-\(* 4 5)
-# (* 4 5)
-
-(\(* 4 5))
+* multiplicand: 4 multiplier: 5
 # 20
 
-(proto -)
-# ()
+\[]
+# []
 
-(proto proto)
-# ()
+\[* 4 5]
+# [* 4 5]
 
-(proto \(* 4 5))
-# ()
+[\[* 4 5]]
+# 20
 
-(proto ())
-# {:}
+proto +
+# []
+
+proto proto
+# []
+
+proto \[* 4 5]
+# []
+
+proto []
+# {=}
 
 +
-# (+: ())
+# [+: []]
 ```
 
 ## List

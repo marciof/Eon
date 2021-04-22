@@ -1,8 +1,3 @@
-* TODO principle of least astonishment
-
-- apply it to the language grammar
-- apply it to the interpreter
-
 * TODO fix site redirect
 
 - Tildes site implementation, https://docs.tildes.net/philosophy/site-implementation
@@ -15,6 +10,7 @@
 
 * TODO improve documentation
 
+- how to regularly ensure language goals are being met?
 - be succinct, avoid fluff
 - lexical and dynamic scope example (explain how `bindings` in fn lists affect their scope)
 - function naming example (1st key is the name, 1st value is the body/a fn), eg. `\(incr: + x 1)`

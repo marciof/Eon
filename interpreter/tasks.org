@@ -120,6 +120,7 @@
 - http://clang-analyzer.llvm.org
 - shellcheck for shell scripts (add to dependencies as well)
 - https://yetanotherchris.dev/clean-code/gestalt-principles/
+- https://semgrep.dev/
 
 ** TODO build documentation
 
