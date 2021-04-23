@@ -17,6 +17,7 @@
 
 * TODO improve documentation
 
+- make big O notation more explicit
 - how to regularly ensure language goals are being met?
 - be succinct, avoid fluff
 - lexical and dynamic scope example (explain how `bindings` in fn lists affect their scope)

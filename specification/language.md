@@ -19,7 +19,7 @@
   - [Symbol](#symbol)
   - [Text](#text)
 - [Built-ins](#built-ins)
-  - [`=` (equal)](#-equal)
+  - [`is`](#is)
   - [`<` (less than)](#-less-than)
   - [`>` (greater than)](#-greater-than)
   - [`+` (add)](#-add)
@@ -332,7 +332,7 @@ proto 0
 A set is an immutable collection of unique elements, that associates keys to be the same as values.
 
 - **Proto:** empty [set](#set), `{}`
-- **Base Proto:** empty [map](#map), `{:}`
+- **Base Proto:** empty [map](#map), `{=}`
 
 ### Conditions
 
@@ -350,11 +350,11 @@ A set is an immutable collection of unique elements, that associates keys to be 
 {8 2 2 \abc}
 # {8 2 abc}
 
-(proto {'x'})
+proto {'x'}
 # {}
 
-(proto {})
-# {:}
+proto {}
+# {=}
 ```
 
 ## Symbol
@@ -385,7 +385,7 @@ A symbol that isn't [deferred](#defer) is [evaluated](#evaluate) in the context 
 \...
 # ...
 
-(proto (proto \xyz))
+proto [proto \xyz]]
 # ''
 ```
 
@@ -394,7 +394,7 @@ A symbol that isn't [deferred](#defer) is [evaluated](#evaluate) in the context 
 A text is an immutable sequence of Unicode characters, each one identified by a numeric code-point. Also known as a string.
 
 - **Proto:** empty [text](#text), `''`
-- **Base Proto:** empty [list](#list), `[]`
+- **Base Proto:** empty [list](#list), `()`
 
 ### Conditions
 
@@ -413,16 +413,16 @@ A text is an immutable sequence of Unicode characters, each one identified by a 
 # '<a href=''http://www.example.com''>'
 
 hex'1F'
-# (hex '1F')
+# [hex '1F']
 
 re'\d+'g
-# (re '\d+' \g)
+# [re '\d+' \g]
 
-(proto 'Bob')
+proto 'Bob'
 # ''
 
-(proto '')
-# []
+proto ''
+# ()
 ```
 
 # Built-ins
@@ -431,16 +431,15 @@ A built-in is a [symbol](#symbol) that's already present in the [bindings](#bind
 
 The following conventions are used for documentation:
 
-* `(f x)`: function named `f`, with a parameter named `x`.
-* `x: y`: `x` is a proto of or a `y`.
-* `[x]`: optional function parameter named `x`.
+* `[f x]`: function named `f`, with a symbol parameter named `x`.
+* `x=y`: `x` is a proto of or a `y`.
 * `...`: zero or more function parameters.
-* `...: y`: zero or more function parameters, where each one is a proto of or a `y`.
+* `...=y`: zero or more function parameters, each one a proto of or a `y`.
 
-## `=` (equal)
+## `is`
 
 ```
-(= x y ...): Boolean
+[is x y ...] = Boolean
 ```
 
 A [function](#function) that compares two or more values (with short-circuit evaluation) and returns true if they are all equal, or false otherwise.
@@ -457,29 +456,32 @@ A [function](#function) that compares two or more values (with short-circuit eva
 ### Examples
 
 ```
-(= 1 1.0)
+is 1 1.0
 # true
 
-(= -0 +0)
+is -0 +0
 # true
 
-(= 'A' 'a')
+is 'A' 'a'
 # false
 
-(= [1 2 3] [1 2 3])
-# true
-
-(= [] {})
+is \A \a
 # false
 
-(= {0 1} {1 0})
+is (1 2 3) (1 2 3)
+# true
+
+is () {}
+# false
+
+is {0 1} {1 0}
 # true
 ```
 
 ## `<` (less than)
 
 ```
-(< x:Number y:Number ...:Number): Boolean
+[< x=Number y=Number ...=Number] = Boolean
 ```
 
 A [function](#function) that compares two or more [numbers](#number) (with short-circuit evaluation) and returns true if each one is less than the next, or false otherwise.
@@ -497,7 +499,7 @@ A [function](#function) that compares two or more [numbers](#number) (with short
 ## `>` (greater than)
 
 ```
-(> x:Number y:Number ...:Number): Boolean
+[> x=Number y=Number ...=Number] = Boolean
 ```
 
 A [function](#function) that compares two or more [numbers](#number) (with short-circuit evaluation) and returns true if each one is greater than the next, or false otherwise.
@@ -660,7 +662,8 @@ A [function](#function) that returns the number of key/value pairs in a `map`.
 ## `defer`
 
 ```
-(defer expression [escape]:Symbol)
+[defer expression]
+[defer expression escape:Symbol]
 ```
 
 A [function](#function) that creates a snapshot of an `expression` thereby preventing it from being [evaluated](#evaluate), optionally using an `escape` [symbol](#symbol) for re-enabling evaluation inside the expression.
@@ -732,7 +735,8 @@ A [function](#function) that evaluates a sequence of one or more expressions and
 ## `evaluate`
 
 ```
-(evaluate expression [bindings]:Map)
+[evaluate expression]
+[evaluate expression bindings:Map]
 ```
 
 A [function](#function) that evaluates an `expression` and returns the result, optionally using different `bindings` for the evaluation.
@@ -787,7 +791,8 @@ A [function](#function) that evaluates an `expression` and returns the result, o
 ## `get`
 
 ```
-(get map:Map key [default])
+[get map:Map key]
+[get map:Map key default]
 ```
 
 A [function](#function) that retrieves the value associated with a `key` in a `map`, optionally using a lazily [evaluated](#evaluate) `default` value if no such association exists.
@@ -954,7 +959,8 @@ A [function](#function) that loads a [module](#module) by `path`, and returns th
 ## `next`
 
 ```
-(next map:Map [key])
+[next map:Map]
+[next map:Map key]
 ```
 
 A [function](#function) that returns the first key, or the key following `key` in a `map`.
@@ -1077,7 +1083,8 @@ List / Function:
 ## `unwind`
 
 ```
-(unwind value [bindings]:Map)
+[unwind value]
+[unwind value bindings:Map]
 ```
 
 A [function](#function) that aborts the current scope or the scope associated with the given `bindings`, and returns `value` as the result.
