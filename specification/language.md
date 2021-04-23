@@ -224,8 +224,8 @@ proto []
 
 A list is an immutable sequence of elements, that associates consecutive positive integer keys in ascending order with values.
 
-- **Proto:** empty [list](#list), `[]`
-- **Base Proto:** empty [map](#map), `{:}`
+- **Proto:** empty [list](#list), `()`
+- **Base Proto:** empty [map](#map), `{=}`
 
 ### Conditions
 
@@ -234,20 +234,20 @@ A list is an immutable sequence of elements, that associates consecutive positiv
 ### Examples
 
 ```
-[]
-# []
+()
+# ()
 
-['x' 'y']
-# ['x' 'y']
+('x' 'y')
+# ('x' 'y')
 
-[8 2 2 \abc]
-# [8 2 2 abc]
+(8 2 2 \abc)
+# (8 2 2 abc)
 
-(proto ['x'])
-# []
+proto ('x')
+# ()
 
-(proto [])
-# {:}
+proto ()
+# {=}
 ```
 
 ## Map
