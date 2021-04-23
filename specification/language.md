@@ -436,48 +436,6 @@ The following conventions are used for documentation:
 * `...`: zero or more function parameters.
 * `...=y`: zero or more function parameters, each one a proto of or a `y`.
 
-## `is`
-
-```
-[is x y ...] = Boolean
-```
-
-A [function](#function) that compares two or more values (with short-circuit evaluation) and returns true if they are all equal, or false otherwise.
-
-### Complexity
-
-- Time: `O(n)`
-- Space: `O(1)`
-
-### Conditions
-
-- *Called with less than two arguments:* [unwinds](#unwind) global scope with `\parameter-mismatch`
-
-### Examples
-
-```
-is 1 1.0
-# true
-
-is -0 +0
-# true
-
-is 'A' 'a'
-# false
-
-is \A \a
-# false
-
-is (1 2 3) (1 2 3)
-# true
-
-is () {}
-# false
-
-is {0 1} {1 0}
-# true
-```
-
 ## `<` (less than)
 
 ```
@@ -928,6 +886,48 @@ List / Function:
 
 (insert \x (get 'y' 1))
 # xy
+```
+
+## `is`
+
+```
+[is x y ...] = Boolean
+```
+
+A [function](#function) that compares two or more values (with short-circuit evaluation) and returns true if they are all equal, or false otherwise.
+
+### Complexity
+
+- Time: `O(n)`
+- Space: `O(1)`
+
+### Conditions
+
+- *Called with less than two arguments:* [unwinds](#unwind) global scope with `\parameter-mismatch`
+
+### Examples
+
+```
+is 1 1.0
+# true
+
+is -0 +0
+# true
+
+is 'A' 'a'
+# false
+
+is \A \a
+# false
+
+is (1 2 3) (1 2 3)
+# true
+
+is () {}
+# false
+
+is {0 1} {1 0}
+# true
 ```
 
 ## `load`
