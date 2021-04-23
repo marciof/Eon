@@ -256,7 +256,7 @@ A map is an immutable insertion ordered collection, that associates unique keys 
 
 If the same key appears multiple times, the last associated value takes precedence over all previous ones.
 
-- **Proto:** empty [map](#map), `{:}`
+- **Proto:** empty [map](#map), `{=}`
 - **Base Proto:** (itself)
 
 ### Conditions
@@ -266,20 +266,20 @@ If the same key appears multiple times, the last associated value takes preceden
 ### Examples
 
 ```
-{:}
-# {:}
+{=}
+# {=}
 
-{\name: 'Bob' \age: 20}
-# {name: 'Bob' age: 20}
+{\name='Bob' \age=20}
+# {name='Bob' age=20}
 
-{\key: 8 \key: \value}
-# {key: value}
+{\key=8 \key=\value}
+# {key=value}
 
-(proto {\name: 'Bob'})
-# {:}
+proto {\name='Bob'}
+# {=}
 
-(proto {:})
-# {:}
+proto {=}
+# {=}
 ```
 
 ## Number

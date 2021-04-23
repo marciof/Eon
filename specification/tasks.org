@@ -6,6 +6,13 @@
 - https://dnssec-name-and-shame.com/
 - https://www.cloudflare.com/ssl/encrypted-sni/
 
+* TODO make duplicate keys an error in map literals?
+
+- Python defaults to allowing duplicates. 
+- Default should be safe. 
+- Add option to disable the error? Helper function?
+- Similarly when removing keys?
+
 * TODO lexical binding by default for safety?
 
 * TODO improve documentation
