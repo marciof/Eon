@@ -209,6 +209,9 @@ if (= user 'bob') then:
 incr: (x: | + x 1)
 greet: (| io.print 'Hi')
 
+# . for prop access disables ellipsis
+# also .. for parent, etc
+
 (incr 2)
 
 incr: [x: | + x 1]

@@ -475,7 +475,7 @@ A [function](#function) that compares two or more [numbers](#number) (with short
 ## `+` (add)
 
 ```
-(+ x:Number ...:Number): Number
+[+ x=Number ...=Number] = Number
 ```
 
 A [function](#function) that adds one or more [numbers](#number).
@@ -494,7 +494,7 @@ A [function](#function) that adds one or more [numbers](#number).
 ## `-` (subtract)
 
 ```
-(- x:Number ...:Number): Number
+[- x=Number ...=Number] = Number
 ```
 
 A [function](#function) that subtracts one or more [numbers](#number).
@@ -513,7 +513,7 @@ A [function](#function) that subtracts one or more [numbers](#number).
 ## `*` (multiply)
 
 ```
-(* multiplicand:Number multiplier:Number ...:Number): Number
+[* multiplicand=Number multiplier=Number ...=Number] = Number
 ```
 
 A [function](#function) that multiplies two or more [numbers](#number).
@@ -532,7 +532,7 @@ A [function](#function) that multiplies two or more [numbers](#number).
 ## `/` (divide)
 
 ```
-(/ dividend:Number divisor:Number ...:Number): Number
+[/ dividend=Number divisor=Number ...=Number] = Number
 ```
 
 A [function](#function) that divides two or more [numbers](#number).
@@ -551,17 +551,17 @@ A [function](#function) that divides two or more [numbers](#number).
 ### Examples
 
 ```
-(/ 12 3)
+/ 12 3
 # 4
 
-(/ 1 3)
+/ 1 3
 # 0.(3)
 ```
 
 ## `bindings`
 
 ```
-bindings: Map
+bindings = Map
 ```
 
 Bindings currently in scope, which is a [map](#map) that associates [symbols](#symbol) to values.
@@ -571,7 +571,7 @@ The bindings map always contains a symbol key named `bindings` with a value set 
 ## `count`
 
 ```
-(count map:Map): Number
+[count map=Map] = Number
 ```
 
 A [function](#function) that returns the number of key/value pairs in a `map`.
@@ -589,31 +589,31 @@ A [function](#function) that returns the number of key/value pairs in a `map`.
 ### Examples
 
 ```
-(count {})
+count {}
 # 0
 
-(count {:})
+count {=}
 # 0
 
-(count {\name: 'Bob'})
+count {\name='Bob'}
 # 1
 
-(count [\x \y])
+count [\x \y]
 # 2
 
-(count {\x \y \y})
+count {\x \y \y}
 # 2
 
-(count 'Bob')
+count 'café'
 # 3
 
-(count +)
+count +
 # 0
 
-(count \())
+count \[]
 # 0
 
-(count \xyz)
+count \xyz
 # 3
 ```
 
