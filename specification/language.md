@@ -939,7 +939,7 @@ is {0 1} {1 0}
 ## `load`
 
 ```
-(load path:List)
+[load path=List]
 ```
 
 A [function](#function) that loads a [module](#module) by `path`, and returns the [unevaluated](#evaluate) single [expression](#grammar) contained within. A `path` is a list of zero or more names, ending with the [module](#module) name.
@@ -959,7 +959,7 @@ A [function](#function) that loads a [module](#module) by `path`, and returns th
 ### Examples
 
 ```
-(load [\io])
+load (\io)
 ```
 
 ## `next`
@@ -985,20 +985,20 @@ A [function](#function) that returns the first key, or the key following `key` i
 ### Examples
 
 ```
-(next [\x \y \z])
+next (\x \y \z)
 # 1
 
-(next [\x \y \z] 2)
+next (\x \y \z) 2
 # 3
 
-(next {\name: 'Bob' \age: 20})
+next {\name='Bob' \age=20}
 # name
 ```
 
 ## `proto`
 
 ```
-(proto value)
+proto value
 ```
 
 A [function](#function) that retrieves the [proto](#data-types) of `value`.
@@ -1015,14 +1015,14 @@ A [function](#function) that retrieves the [proto](#data-types) of `value`.
 ### Examples
 
 ```
-(proto 'Bob')
+proto 'Bob'
 # ''
 
-(proto '')
-# []
+proto ''
+# ()
 
-(proto {})
-# {}
+proto {=}
+# {=}
 ```
 
 ## `remove`
