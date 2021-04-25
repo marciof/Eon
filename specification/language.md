@@ -1028,14 +1028,14 @@ proto {=}
 ## `remove`
 
 ```
-(remove map:Map key): Map
+[remove map=Map key] = Map
 ```
 
 A [function](#function) that disassociates a `key` from a value in a `map`, and returns the new [map](#map). If `key` isn't present, then `map` is returned unchanged.
 
 ```
-(remove list:List key:Number): List
-(remove function:Function key): Function
+[remove list=List key=Number] = List
+[remove function=Function key] = Function
 ```
 
 A [function](#function) that disassociates a `key` from a value in a `list` or `function`, and returns the new [list](#list) or [function](#function) respectively. If `key` isn't present, then `list` or `function` is returned unchanged. If `key` is present and is a positive integer, then it displaces instead all following integer keys, if any, decrementing each by one.
@@ -1067,23 +1067,23 @@ List / Function:
 ### Examples
 
 ```
-(remove [7 8 9] 2)
-# [7 9]
+remove (7 8 9) 2
+# (7 9)
 
-(remove ['x' 'y'] 3)
-# ['x' 'y']
+remove ('x' 'y') 3
+# ('x' 'y')
 
-(remove {'x' 'y'} 'y')
+remove {'x' 'y'} 'y'
 # {'x'}
 
-(remove 'Bob' 2)
+remove 'Bob' 2
 # 'Bb'
 
-(remove {\name: 'Bob' \age: 20} \age)
-# {name: 'Bob'}
+remove {\name='Bob' \age=20} \age
+# {name='Bob'}
 
-(remove {\name: 'Bob'} \age)
-# {name: 'Bob'}
+remove {\name='Bob'} \age
+# {name='Bob'}
 ```
 
 ## `unwind`
@@ -1110,22 +1110,22 @@ Unwinding is a non-local early exit of a given scope. Unwinding global scope exi
 ### Examples
 
 ```
-(let x: 1
+let x=1
 
-  (let y: 2
-    y)
+  let y=2
+    y
   # 2
 
-  (let y: 2
-    (unwind 3)
-    y)
+  let y=2
+    unwind 3
+    y
   # 3
 
-  (let y: 2
-    (unwind 3 (proto bindings))
-    y)
+  let y=2
+    unwind 3 [proto bindings]
+    y
 
-  x)
+  x
 # 3
 ```
 
@@ -1160,9 +1160,11 @@ Number:
 
 ```
 Quantity ::= Number Symbol?
-Number ::= Sign? Digit+ ("." <U+2E> (Digits | Digits? Function-Begin Digits Function-End))?
+Number ::= Sign? Digit+ (Decimal-Separator (Digits | Digits? List-Begin Digits List-End))?
+Decimal-Separator ::= "." <U+2E>
+Digit-Group-Delimiter ::= "," <U+2C>
 Sign ::= "+" <U+2B> | "-" <U+2D>
-Digits ::= Digit+ ("," <U+2C>? Digit+)*
+Digits ::= Digit+ (Digit-Group-Delimiter? Digit+)*
 Digit ::= "0" <U+30> | "1" <U+31> | "2" <U+32> | "3" <U+33> | "4" <U+34> | "5" <U+35> | "6" <U+36> | "7" <U+37> | "8" <U+38> | "9" <U+39>
 ```
 
@@ -1188,7 +1190,7 @@ Map:
 Map ::= Map-Empty | Map-Begin White-Space* Pair (White-Space+ Pair)* White-Space* Map-End
 Map-Empty ::= Map-Begin Pair-Separator Map-End
 Pair ::= Expression Pair-Separator White-Space* Expression
-Pair-Separator ::= ":" <U+3A>
+Pair-Separator ::= "=" <U+3A>
 Map-Begin ::= "{" <U+7B>
 Map-End ::= "}" <U+7D>
 ```
@@ -1197,8 +1199,8 @@ List:
 
 ```
 List ::= List-Begin White-Space* (Expression (White-Space+ Expression)* White-Space*)? List-End
-List-Begin ::= "[" <U+5B>
-List-End ::= "]" <U+5D>
+List-Begin ::= "(" <U+5B>
+List-End ::= ")" <U+5D>
 ```
 
 Set:
@@ -1211,20 +1213,20 @@ Function:
 
 ```
 Function ::= (Function-Begin White-Space* (Function-Value (White-Space+ Function-Value)* White-Space*)? Function-End) | Get-Chain
-Get-Chain ::= Symbol (Pair-Separator{2} (Symbol | Number))+
+Get-Chain ::= Symbol (Decimal-Separator (Symbol | Number))+
 Function-Value ::= Expression | Pair
-Function-Begin ::= "(" <U+28>
-Function-End ::= ")" <U+28>
+Function-Begin ::= "[" <U+28>
+Function-End ::= "]" <U+28>
 ```
 
 ## Transformations
 
 These are the syntactic transformations that occur for each associated non-terminal. Each letter represents a matching element of a grammar production.
 
-|Non-Terminal       |Syntax|Transformation|Example       |Notes         |
-|-------------------|------|--------------|--------------|--------------|
-|*Get-Chain*        |`x::y`|`(get x \y)`  |`user::name`  |Left to right.|
-|*Tagged-Text*      |`xyz` |`(x y z)`     |`base'1F'16`  |              |
-|*Function-Value*   |`x`   |`N:x`         |`(f)`         |Position `N`. |
-|*Number*           |`xy`  |`(y x)`       |`2Km`         |              |
-|*Defer*            |`\x`  |`(defer x)`   |`\length`     |              |
+|Non-Terminal    |Syntax|Transformation|Example     |Notes         |
+|----------------|------|--------------|------------|--------------|
+|*Get-Chain*     |`x.y` |`[get x \y]`  |`user.name` |Left to right.|
+|*Tagged-Text*   |`xyz` |`[x y z]`     |`base'1F'16`|              |
+|*Function-Value*|`x`   |`N=x`         |`[f]`       |Position `N`. |
+|*Number*        |`xy`  |`[y x]`       |`2Km`       |              |
+|*Defer*         |`\x`  |`[defer x]`   |`\length`   |              |

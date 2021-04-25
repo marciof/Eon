@@ -17,6 +17,7 @@
 
 * TODO improve documentation
 
+- change the digit group delimiter to `'`? It's not ambiguous, it's also an accepted delimiter, and doesn't clash with commas if used for pipes 
 - specify indentation rules
 - avoid word lazy
 - add examples to the section on significant indentation
