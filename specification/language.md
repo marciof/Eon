@@ -639,7 +639,7 @@ A [function](#function) that creates a snapshot of an `expression` thereby preve
 ### Examples
 
 ```
-(let x: 2
+let x=2
 
   \x
   # x
@@ -647,23 +647,23 @@ A [function](#function) that creates a snapshot of an `expression` thereby preve
   x
   # 2
 
-  (+ 1 x)
+  + 1 x
   # 3
 
-  \(+ 1 x)
-  # (+ 1 x)
+  \[+ 1 x]
+  # [+ 1 x]
 
-  (defer (+ 1 x))
-  # (+ 1 x)
+  defer [+ 1 x]
+  # [+ 1 x]
 
-  (defer (+ 1 (escape x)) \escape))
-  # (+ 1 2)
+  defer [+ 1 [escape x]] \escape]
+  # [+ 1 2]
 ```
 
 ## `do`
 
 ```
-(do expression ...)
+[do expression ...]
 ```
 
 A [function](#function) that evaluates a sequence of one or more expressions and returns the value of the last expression.
@@ -680,13 +680,13 @@ A [function](#function) that evaluates a sequence of one or more expressions and
 ### Examples
 
 ```
-(do 'abc')
+do 'abc'
 # 'abc'
 
-(do (* 4 5))
+do [* 4 5]
 # 20
 
-(do (* 4 5) (+ 8 2))
+do [* 4 5] [+ 8 2]
 # 10
 ```
 
@@ -714,35 +714,38 @@ A [function](#function) that evaluates an `expression` and returns the result, o
 ### Examples
 
 ```
-(evaluate 'Bob')
+evaluate 'Bob'
 # 'Bob'
 
-(let x: \(+ 8 2)
+[let x=\[+ 8 2]
 
   x
-  # (+ 8 2)
+  # [+ 8 2]
 
-  (x)
+  [x]
   # 10
 
-  (evaluate x)
+  [do x]
+  # [+ 8 2]
+
+  [evaluate x]
   # 10
 
-  (evaluate \x)
-  # (+ 8 2)
+  [evaluate \x]
+  # [+ 8 2]
 
-  (evaluate \(x)))
+  [evaluate \[x]]]
   # 10
 
-(let y: 2
+let y=2
 
-  (evaluate \y)
+  evaluate \y
   # 2
 
-  (evaluate \y {\y: 8})
+  evaluate \y {\y=8}
   # 8
 
-  (evaluate \y bindings))
+  evaluate \y bindings
   # 2
 ```
 
