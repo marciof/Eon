@@ -756,7 +756,7 @@ let y=2
 [get map=Map key default]
 ```
 
-A [function](#function) that retrieves the value associated with a `key` in a `map`, optionally using a lazily [evaluated](#evaluate) `default` value if no such association exists.
+A [function](#function) that retrieves the value associated with a `key` in a `map`, optionally using a delayed [evaluated](#evaluate) `default` value if no such association exists.
 
 ### Complexity
 

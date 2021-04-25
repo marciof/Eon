@@ -1,35 +1,8 @@
 # alternative syntax?
-# - easier scripting?
 # - easier pipelines?
 # - partial by default?
 # - easier to have static typing?
-
-# questions:
-# - less familiar?
-# - reserved `=` hurts boolean readability?
-#   - counterpoint, Perl/shell has lt, gt, lê, etc
 # - how partial for varargs? 
-# - how homogenous type? 
-# - how varargs type? 
-# - how heterogeneous type? 
-# - how "generics"? 
-# - optional dynamic typing?
-
-if (= user 'bob') then:
-  range from: 1 to: 2
-
-if [is user 'bob'] then=
-  range from=1 to=9
-
-let teen: (<= age 20) 
-let teen = [<~ age 20]
-let teen = [<e age 20]
-let teen = [</ age 20]
-
-if [>/ age 20] ...
-
-var name: 'bob'
-var name='bob'
 
 # . for prop access disables ellipsis
 # also .. for parent, etc
@@ -40,7 +13,6 @@ var name='bob'
 names 1
 
 if [admin? [names 1]] then=...
-
 if [admin? names.1] then=...
 
 -----
