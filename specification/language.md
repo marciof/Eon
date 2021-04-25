@@ -772,64 +772,67 @@ A [function](#function) that retrieves the value associated with a `key` in a `m
 ### Examples
 
 ```
-(get [8 2 2] 1)
+get [8 2 2] key=1
 # 8
 
-(get {'a' 'b'} 'b')
+get {'a' 'b'} 'b'
 # 'b'
 
-(get \(+ 6 7) 2)
+get \[+ 6 7] 2
 # 6
 
-(get 'Bob' 3)
+get 'Bob' 3
 # 98
 
-(get \Bob 3)
+get \Bob 3
 # 98
 
-(get {:} \age 20)
+get 'café' 4
+# 233
+
+get {=} \age default=20
 # 20
 
-(get {\age: 30} \age 20)
+get {\age=30} \age 20
 # 30
 
-(let user: {\name: 'Bob'}
-     users: [user]
+let user={\name='Bob'}
+    users=(user)
 
-  (get user \name)
+  get user \name
   # 'Bob'
 
-  user::name
+  user.name
   # 'Bob'
 
-  users::1::name
-  # 'Bob')
+  users.1.name
+  # 'Bob'
 ```
 
 ## `insert`
 
 ```
-(insert set:Set value): Set
+[insert set=Set value] = Set
 ```
 
 A [function](#function) that adds a `value` to a `set`, and returns the new [set](#set). If `value` is already present, then `set` is returned unchanged.
 
 ```
-(insert list:List value): List
-(insert function:Function value): Function
+[insert list=List value] = List
+[insert function=Function value] = Function
 ```
 
 A [function](#function) that associates a `value` with the next highest positive integer key in a `list` or `function`, and returns the new [list](#list) or [function](#function) respectively.
 
 ```
-(insert map:Map key value): Map
+[insert map=Map key value] = Map
 ```
 
 A [function](#function) that associates a `key` with a `value` in a `map`, and returns the new [map](#map). If `key` already exists, then its associated value becomes `value`.
 
 ```
-(insert list:List key:Number value): List
-(insert function:Function key value): Function
+[insert list=List key=Number value] = List
+[insert function=Function key value] = Function
 ```
 
 A [function](#function) that associates a `key` with a `value` in a `list` or `function`, and returns the new [list](#list) or [function](#function) respectively. If `key` already exists and isn't a positive integer, then its associated value becomes `value`. If `key` already exists and is a positive integer, then it displaces instead the existing key and all following integer keys, if any, incrementing each by one.
@@ -863,31 +866,31 @@ List / Function:
 ### Examples
 
 ```
-(insert [8] 1 9)
-# [9 8]
+insert (8) 1 9
+# (9 8)
 
-(insert [8] 9)
-# [8 9]
+insert (8) 9
+# (8 9)
 
-(insert ['x' 'y'] 3 'z')
-# ['x' 'y' 'z']
+insert ('x' 'y') 3 'z'
+# ('x' 'y' 'z')
 
-(insert {1 2} 3)
+insert {1 2} 3
 # {1 2 3}
 
-(insert 'Bo' 98)
+insert 'Bo' 98
 # 'Bob'
 
-(insert 'ob' 1 66)
+insert 'ob' 1 66
 # 'Bob'
 
-(insert {:} \name 'Bob')
-# {name: 'Bob'}
+insert {=} \name 'Bob'
+# {name='Bob'}
 
-(insert {\name: 'Bob'} \name 'John')
-# {name: 'John'}
+insert {\name='Bob'} \name 'John'
+# {name='John'}
 
-(insert \x (get 'y' 1))
+insert \x [get 'y' 1]
 # xy
 ```
 

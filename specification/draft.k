@@ -31,6 +31,18 @@ if [>/ age 20] ...
 var name: 'bob'
 var name='bob'
 
+# . for prop access disables ellipsis
+# also .. for parent, etc
+# use data types as callables?
+
+[get names 1]
+[names 1]
+names 1
+
+if [admin? [names 1]] then=...
+
+if [admin? names.1] then=...
+
 -----
 
 # Data has data only, no constraints.
@@ -71,6 +83,8 @@ var name='bob'
 
 let Number = [proto 0]
 let Any = [proto]
+
+[with x y, + x y]
 [with x=Number y=Number, + x y]
 
 # Equivalent

@@ -17,6 +17,9 @@
 
 * TODO improve documentation
 
+- specify indentation rules
+- avoid word lazy
+- add examples to the section on significant indentation
 - make big O notation more explicit
 - how to regularly ensure language goals are being met?
 - be succinct, avoid fluff
