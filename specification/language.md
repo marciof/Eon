@@ -160,8 +160,12 @@ The [proto](#proto) value of a given data type is the original value used to cre
 
 A boolean is a binary logical value that can only be either true or false. It does not have a literal source code representation.
 
-- **Proto:** true
-- **Base Proto:** (itself)
+- **Proto:** boolean true
+- **Base Proto:** itself
+
+### Complexity
+
+- Space: `O(1)`
 
 ### Conditions
 
@@ -195,6 +199,10 @@ Tail calls are guaranteed to be efficient and use a similar amount of memory as 
 
 - **Proto:** empty [function](#function), `[]`
 - **Base Proto:** empty [map](#map), `{=}`
+
+### Complexity
+
+- Space: `O(n)`, where `n` is the number of arguments
 
 ### Conditions
 
@@ -247,6 +255,10 @@ A list is an immutable sequence of elements, that associates consecutive positiv
 - **Proto:** empty [list](#list), `()`
 - **Base Proto:** empty [map](#map), `{=}`
 
+### Complexity
+
+- Space: `O(n)`, where `n` is the number of elements
+
 ### Conditions
 
 - *Called with one or more arguments:* [unwinds](#unwind) global scope with `\parameter-mismatch`
@@ -277,7 +289,11 @@ A map is an immutable insertion ordered collection, that associates unique keys 
 If the same key appears multiple times, the last associated value takes precedence over all previous ones.
 
 - **Proto:** empty [map](#map), `{=}`
-- **Base Proto:** (itself)
+- **Base Proto:** itself
+
+### Complexity
+
+- Space: `O(n)`, where `n` is the number of key/value pairs
 
 ### Conditions
 
@@ -306,8 +322,12 @@ proto {=}
 
 A rational number.
 
-- **Proto:** integer zero, `0`
-- **Base Proto:** (itself)
+- **Proto:** number zero, `0`
+- **Base Proto:** itself
+
+### Complexity
+
+- Space: `O(1)`
 
 ### Conditions
 
@@ -354,6 +374,10 @@ A set is an immutable collection of unique elements, that associates keys to be 
 - **Proto:** empty [set](#set), `{}`
 - **Base Proto:** empty [map](#map), `{=}`
 
+### Complexity
+
+- Space: `O(n)`, where `n` is the number of elements
+
 ### Conditions
 
 - *Called with one or more arguments:* [unwinds](#unwind) global scope with `\parameter-mismatch`
@@ -386,6 +410,10 @@ A symbol that isn't [deferred](#defer) is [evaluated](#evaluate) in the context 
 - **Proto:** empty symbol
 - **Base Proto:** empty [text](#text), `''`
 
+### Complexity
+
+- Space: `O(n)`, where `n` is the number of characters
+
 ### Conditions
 
 - *Called with one or more arguments:* [unwinds](#unwind) global scope with `\parameter-mismatch`
@@ -415,6 +443,10 @@ A text is an immutable sequence of Unicode characters, each one identified by a 
 
 - **Proto:** empty [text](#text), `''`
 - **Base Proto:** empty [list](#list), `()`
+
+### Complexity
+
+- Space: `O(n)`, where `n` is the number of characters
 
 ### Conditions
 
