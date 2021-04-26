@@ -6,8 +6,8 @@ Validate links in CommonMark documents are valid and respond with HTTP 200 OK.
 
 Arguments: see Python's `fileinput.input()`
 Stdin: see Python's `fileinput.input()`
-Stdout: CSV with one line per unique link, containing the HTTP status code
-        (or '?' if unknown) followed by the URL
+Stdout: one line per unique link, containing the HTTP status code
+        (or '?' if unknown) followed by a space and then the URL
 """
 
 # stdlib
@@ -76,7 +76,6 @@ def list_html_links(html: str, callback: Callable[[str], None]) -> None:
 
 
 # TODO report redirects?
-# TODO ensure valid CSV output
 # TODO use logger instead of `print`ing
 def is_link_valid(link: str, logger: logging.Logger) -> bool:
     if not link.startswith('http'):
@@ -85,14 +84,14 @@ def is_link_valid(link: str, logger: logging.Logger) -> bool:
     try:
         with urlopen(Request(link, method='HEAD')) as request:
             status_code = request.getcode()
-            print('%d,%s' % (status_code, link))
+            print(status_code, link)
             return status_code == HTTPStatus.OK
     except HTTPError as error:
-        print('%d,%s' % (error.code, link))
+        print(error.code, link)
         logger.exception('%s: %s', link, error)
         return False
     except URLError as error:
-        print('?,%s' % link)
+        print('?', link)
         logger.exception('%s: %s', link, error)
         return False
 
