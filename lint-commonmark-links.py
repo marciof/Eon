@@ -30,19 +30,24 @@ from urllib.request import Request, urlopen
 from commonmark import commonmark  # type: ignore
 
 
-# TODO remove globals
-formatter = logging.Formatter('%(asctime)s [%(levelname)s] %(message)s')
-stream_handler = logging.StreamHandler(sys.stderr)
-stream_handler.setFormatter(formatter)
+def create_logger() -> logging.Logger:
+    formatter = logging.Formatter('%(asctime)s [%(levelname)s] %(message)s')
+    stream_handler = logging.StreamHandler(sys.stderr)
+    stream_handler.setFormatter(formatter)
 
-# TODO log to stdout or stderr depending on level?
-logger = logging.getLogger(__name__)
-logger.setLevel(logging.INFO)
-logger.addHandler(stream_handler)
+    # TODO log to stdout or stderr depending on level?
+    logger = logging.getLogger(__name__)
+    logger.setLevel(logging.INFO)
+    logger.addHandler(stream_handler)
+
+    return logger
 
 
-# TODO logging
 class LinkExtractorHtmlParser (HTMLParser):
+    """
+    HTML parser that extracts `href`'s and supplies them to a callback.
+    """
+
     def __init__(self, callback: Callable[[str], None]):
         super().__init__()
         self.callback = callback
@@ -54,12 +59,13 @@ class LinkExtractorHtmlParser (HTMLParser):
                     self.callback(attr_value)
 
 
-# TODO stream input
+# TODO stream input for performance? (measure first)
+# TODO split inputs per filename for debugging?
 def slurp_input() -> str:
     return ''.join([line for line in fileinput.input()])
 
 
-# TODO walk CommonMark AST instead of parsing to HTML just to get links
+# TODO walk CommonMark AST, instead of parsing to HTML just to get links
 def convert_commonmark_to_html(text: str) -> str:
     return commonmark(text)
 
@@ -71,7 +77,8 @@ def list_html_links(html: str, callback: Callable[[str], None]) -> None:
 
 # TODO report redirects?
 # TODO ensure valid CSV output
-def is_link_valid(link: str) -> bool:
+# TODO use logger instead of `print`ing
+def is_link_valid(link: str, logger: logging.Logger) -> bool:
     if not link.startswith('http'):
         return True
 
@@ -90,7 +97,11 @@ def is_link_valid(link: str) -> bool:
         return False
 
 
-class DeDupQueue (queue.Queue):
+class DedupingQueue (queue.Queue):
+    """
+    Queue that discards items previously seen.
+    """
+
     def __init__(self):
         super().__init__()
         self.seen_items = set()
@@ -101,21 +112,20 @@ class DeDupQueue (queue.Queue):
             super().put(item, **kwargs)
 
 
-# TODO is it performant?
-# TODO normalize links?
-# TODO cache results?
+# TODO thread count was chosen arbitrarily
 def validate_links(
         commonmark_doc_iterator: Iterable[str],
+        logger: logging.Logger,
         max_num_parallel_workers: int = 10) -> bool:
 
-    link_queue = DeDupQueue()
+    link_queue = DedupingQueue()
     are_links_valid = True
 
     def validate_link_queue() -> None:
         nonlocal are_links_valid
 
         while True:
-            if not is_link_valid(link_queue.get()):
+            if not is_link_valid(link_queue.get(), logger):
                 are_links_valid = False
 
             link_queue.task_done()
@@ -131,8 +141,7 @@ def validate_links(
     return are_links_valid
 
 
-# TODO documentation
 # TODO tests
 if __name__ == '__main__':
-    if not validate_links(doc for doc in [slurp_input()]):
+    if not validate_links((doc for doc in [slurp_input()]), create_logger()):
         sys.exit(1)
