@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: UTF-8 -*-
 
-# Standard:
+# stdlib
 import fileinput
 from http import HTTPStatus
 from html.parser import HTMLParser
@@ -13,7 +13,7 @@ from typing import Callable, Iterable
 from urllib.error import URLError, HTTPError
 from urllib.request import Request, urlopen
 
-# External:
+# external
 # TODO use the official lib https://github.com/commonmark/cmark
 # TODO paka.cmark fails to build on Windows https://github.com/PavloKapyshin/paka.cmark/pull/6
 from commonmark import commonmark

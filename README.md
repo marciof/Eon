@@ -27,7 +27,7 @@ Common build targets:
   - [commonmark](https://pypi.org/project/commonmark/)
   - internet
 
-Project layout-specific builds:
+Project layout-specific builds (see [Compatibility](#compatibility) below for details):
 
 - `interpreter/`:
   - `core/`:

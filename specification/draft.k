@@ -20,7 +20,7 @@ if [admin? names.1] then=...
 # Data has data only, no constraints.
 # - Built-in data type literals only *seem* to have constraints. 
 # - Data type constructors (functions) are what have the logic/constraints.
-# - Constructors can be used for type casting. TODO: specify
+# - Constructors can be used for type casting. TODO specify
 # - There's no prototypical inheritance.
 # - Data type "hierarchy" is "built" from constraints.
 

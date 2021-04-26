@@ -2,9 +2,9 @@
 #include "Log.h"
 
 // Result data type experiment
-// TODO: function name, file name, line number?
-// TODO: define and describe error codes?
-// TODO: compatible with `errno`
+// TODO function name, file name, line number?
+// TODO define and describe error codes?
+// TODO compatible with `errno`
 
 #include <errno.h>
 
