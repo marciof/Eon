@@ -122,6 +122,26 @@ Note that all [non-function data types are callable](#data-types) as functions, 
 
 Refer to the [grammar](#grammar) for the precise definition.
 
+### Examples
+
+```
+1
+# 1
+
+[1]
+# 1
+
+[ + 2 3]
+# 5
+
++ 2 3
+# 5
+
+do
+  + 2 3
+# 5
+```
+
 ## Module
 
 A module is a [named](#symbol) implicit [function](#function) call to [`do`](#do), represented as Unicode text encoded in UTF-8 without a Byte Order Mark.
