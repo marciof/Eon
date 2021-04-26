@@ -133,7 +133,7 @@ Finder, Safari, Xcode, Textual, Skype, Calendar and more are supported. Shortcat
   - Add flag option to print token stream.
   - Add flag option for `-e` expressions.
   - Add verbose option, print func/file/line on errors only in debug mode.
-  - Add few functional high-level black-box language tests, eg. input "(+ 1 2)", translate to JavaScript, run, output "3". (Or even with the token stream option alone as well). With Valgrind.
+  - Add few functional high-level opaque-box language tests, eg. input "(+ 1 2)", translate to JavaScript, run, output "3". (Or even with the token stream option alone as well). With Valgrind.
   - Add requirements one by one, even if with limitations (eg. no fully unlimited precision arithmetic at first): immutable collections, Unicode text, prototypical inheritance, first class scope, unlimited precision arithmetic, homoiconic, unevaluated arguments.
   - When done with JavaScript backend, start translating to PicoLisp (or even ECL, Common Lisp, Clojure) since it can be embedded (verify first), and reuse the tests written previously.
   - Skip translation and interpret directly. Look to PicoLisp for inspiration. Maybe still leave translation in as an option, especially if to JavaScript since that also makes the browser another possible host and can be useful (lower barrier to entry and also ability to use a single language full-stack).
@@ -149,7 +149,7 @@ Finder, Safari, Xcode, Textual, Skype, Calendar and more are supported. Shortcat
 
 - Automatic completion (no keys needed to trigger)
 - Spell-check
-- Detects wrong commands proactively and prevents execution (underline like spell check).
+- Detects wrong commands proactively and prevents execution (underline like spell check).
 
 ## Unix shell
 

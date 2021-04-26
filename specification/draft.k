@@ -484,7 +484,7 @@ if (logged-in? user) then:
 #   - won’t be like let* ?
 #     - it will? it’s in bindings
 #     - but it’s all evaluated first?
-#     - `do` must be lazy, not eager
+#     - `do` must be delay loaded, not eager
 #     - has to modify bindings?
 #     - for each evaluated kwarg
 #     - not if each var new fn call

@@ -2,6 +2,7 @@
 
 ** TODO rename words?
 
+- rename x86-32 to i386 (x86-64 as amd64) like Debian? more correct?
 - https://news.ycombinator.com/item?id=23473387, https://www.hanselman.com/blog/EasilyRenameYourGitDefaultBranchFromMasterToMain.aspx
 - https://mail.gnome.org/archives/desktop-devel-list/2019-May/msg00066.html
 
