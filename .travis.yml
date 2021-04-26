@@ -86,7 +86,7 @@ jobs:
         # https://chocolatey.org/docs/how-to-parse-package-parameters-argument#installing-with-package-parameters
         # https://chocolatey.org/docs/helpers-get-package-parameters#description
         - choco install python3 --params "'/InstallDir:$PYTHON_PATH'"
-        - python -m pip install -r requirements.txt 2>&1
+        - python -m pip install -r requirements.lint-commonmark-links.txt -r requirements.lint-sources-python.txt 2>&1
       before_script:
         - |
           echo "
@@ -103,7 +103,7 @@ jobs:
         - cd "$TRAVIS_BUILD_DIR/interpreter/native"
         - nmake.bat all 2>&1
 
-before_script: python3 -m pip install -r requirements.txt
+before_script: python3 -m pip install -r -r requirements.lint-commonmark-links.txt -r requirements.lint-sources-python.txt
 script:
   - make all
   - cd "$TRAVIS_BUILD_DIR/specification"

@@ -1,6 +1,15 @@
 #!/usr/bin/env python3
 # -*- coding: UTF-8 -*-
 
+"""
+Validate links in CommonMark documents are valid and respond with HTTP 200 OK.
+
+Arguments: see Python's `fileinput.input()`
+Stdin: see Python's `fileinput.input()`
+Stdout: CSV with one line per unique link, containing the HTTP status code
+        (or '?' if unknown) followed by the URL
+"""
+
 # stdlib
 import fileinput
 from http import HTTPStatus
@@ -15,10 +24,13 @@ from urllib.request import Request, urlopen
 
 # external
 # TODO use the official lib https://github.com/commonmark/cmark
-# TODO paka.cmark fails to build on Windows https://github.com/PavloKapyshin/paka.cmark/pull/6
-from commonmark import commonmark
+# TODO paka.cmark fails to build on Windows
+#      https://github.com/PavloKapyshin/paka.cmark/pull/6
+# TODO missing type stubs for some external libraries
+from commonmark import commonmark  # type: ignore
 
 
+# TODO remove globals
 formatter = logging.Formatter('%(asctime)s [%(levelname)s] %(message)s')
 stream_handler = logging.StreamHandler(sys.stderr)
 stream_handler.setFormatter(formatter)
@@ -58,21 +70,22 @@ def list_html_links(html: str, callback: Callable[[str], None]) -> None:
 
 
 # TODO report redirects?
+# TODO ensure valid CSV output
 def is_link_valid(link: str) -> bool:
     if not link.startswith('http'):
         return True
 
     try:
-        with urlopen(Request(link, method = 'HEAD')) as request:
+        with urlopen(Request(link, method='HEAD')) as request:
             status_code = request.getcode()
-            print(status_code, link)
+            print('%d,%s' % (status_code, link))
             return status_code == HTTPStatus.OK
     except HTTPError as error:
-        print(error.code, link)
+        print('%d,%s' % (error.code, link))
         logger.exception('%s: %s', link, error)
         return False
     except URLError as error:
-        print('?', link)
+        print('?,%s' % link)
         logger.exception('%s: %s', link, error)
         return False
 
@@ -82,14 +95,13 @@ class DeDupQueue (queue.Queue):
         super().__init__()
         self.seen_items = set()
 
-
     def put(self, item, **kwargs):
         if item not in self.seen_items:
             self.seen_items.add(item)
             super().put(item, **kwargs)
 
 
-# TODO is it performant? 
+# TODO is it performant?
 # TODO normalize links?
 # TODO cache results?
 def validate_links(
@@ -109,11 +121,11 @@ def validate_links(
             link_queue.task_done()
 
     for i in range(max_num_parallel_workers):
-        threading.Thread(target = validate_link_queue, daemon = True).start()
+        threading.Thread(target=validate_link_queue, daemon=True).start()
 
     for commonmark_doc in commonmark_doc_iterator:
         list_html_links(convert_commonmark_to_html(commonmark_doc),
-            callback = link_queue.put)
+                        callback=link_queue.put)
 
     link_queue.join()
     return are_links_valid
@@ -122,5 +134,5 @@ def validate_links(
 # TODO documentation
 # TODO tests
 if __name__ == '__main__':
-    if not validate_links(commonmark_doc for commonmark_doc in [slurp_input()]):
+    if not validate_links(doc for doc in [slurp_input()]):
         sys.exit(1)

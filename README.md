@@ -24,8 +24,12 @@ Common build targets:
 
 - `lint-documentation`
   - [Python 3](https://www.python.org/downloads/)
-  - [commonmark](https://pypi.org/project/commonmark/)
-  - internet
+  - `requirements.lint-commonmark-links.txt` (for [pip](https://pip.pypa.io))
+  - internet access for validating links
+
+- `lint-sources-python`
+  - [Python 3](https://www.python.org/downloads/)
+  - `requirements.lint-sources-python.txt` (for [pip](https://pip.pypa.io))
 
 Project layout-specific builds (see [Compatibility](#compatibility) below for details):
 
