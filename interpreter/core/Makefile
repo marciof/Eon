@@ -6,9 +6,9 @@
 include ../Makefile.config #\
 !ENDIF
 
-all: $(LIBPREFIX)karyon$(LIB)
+all: $(LIBPREFIX)karyon-core$(LIB)
 
-$(LIBPREFIX)karyon$(LIB): Err$(OBJ) Log$(OBJ)
+$(LIBPREFIX)karyon-core$(LIB): Err$(OBJ) Log$(OBJ)
 	$(AR) $(ARFLAGS) $(AROUT)$@ $?
 
 Err$(OBJ): Err.c Err.h
