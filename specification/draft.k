@@ -16,11 +16,13 @@ names 1
 if [admin? [names 1]] then=...
 if [admin? names.1] then=...
 
-# modules and functions as if they're executables?
+# model element access as if they're executables?
 # syntax conflicts with the division operator
-# suggestion: [\ 1 2]
+[\ 1 2]
+[: 1 2]
+
 # then syntax conflicts with defer
-# suggestion: {`name='Bob'}
+{`name='Bob'}
 
 if [admin? users/2]
   io/text/print 'Hello'
