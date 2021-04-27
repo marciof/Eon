@@ -2,13 +2,11 @@
 
 ** TODO CMake is too complex/big, alternatives? Make?
 
-- linker dependencies README
+- dependencies aren't very clear in the README, improve it
+  - linker dependencies README
 - build instructions README
-- https://noahloomans.com/tutorials/makefile/
-- https://nullprogram.com/blog/2017/08/20/
-- https://pubs.opengroup.org/onlinepubs/9699919799/utilities/make.html
-- https://skramm.blogspot.com/2013/04/writing-portable-makefiles.html
-- https://david.rothlis.net/large-gnu-make/
+  - explain the various `CFLAGS_GCC_*` variables, as well as `CFLAGS_ASAN`
+  - explain `Makefile.config`
 - dev cycle watch (use inotify?), https://github.com/watchexec/watchexec
 
 ** TODO decouple interpreter sub-modules from each other?

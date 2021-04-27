@@ -5,7 +5,7 @@
 // TODO function name, file name, line number?
 // TODO define and describe error codes?
 // TODO compatible with `errno`
-
+/*
 #include <errno.h>
 
 #define K_RESULT(type) struct k_Result_##type
@@ -34,13 +34,16 @@ K_RESULT(char) get_opt() {
 
     return K_RESULT_OK(char, '1');
 }
+*/
 
 int main(int argc, char* argv[]) {
+    /*
     K_RESULT(char) result = get_opt();
 
     if (!result.failed) {
         char ch = result.value;
     }
+     */
 
     struct k_Err err = K_ERR_INIT;
     struct k_Log log;
