@@ -53,7 +53,6 @@
   - https://about.gitlab.com/product/continuous-integration/
 - update README dependencies
   - https://deno.land/std/manual.md#download-and-install
-- split native build into library and executable? (library would be used by the javascript build)
 
 ** TODO run build on Travis CI for simple initial testing?
 
