@@ -7,6 +7,7 @@
 # . for prop access disables ellipsis
 # also .. for parent, etc
 # use data types as callables?
+# accessing function elements always needs `get`
 
 [get names 1]
 [names 1]
@@ -15,12 +16,24 @@ names 1
 if [admin? [names 1]] then=...
 if [admin? names.1] then=...
 
+# modules and functions as if they're executables?
+# syntax conflicts with the division operator
+# suggestion: [\ 1 2]
+# then syntax conflicts with defer
+# suggestion: {`name='Bob'}
+
+if [admin? users/2]
+  io/text/print 'Hello'
+
+dir/file
+[get dir \file]
+
 -----
 
 # Data has data only, no constraints.
 # - Built-in data type literals only *seem* to have constraints. 
 # - Data type constructors (functions) are what have the logic/constraints.
-# - Constructors can be used for type casting. TODO specify
+# - Constructors can be used for type casting. TODO: specify
 # - There's no prototypical inheritance.
 # - Data type "hierarchy" is "built" from constraints.
 
@@ -484,7 +497,7 @@ if (logged-in? user) then:
 #   - won’t be like let* ?
 #     - it will? it’s in bindings
 #     - but it’s all evaluated first?
-#     - `do` must be delay loaded, not eager
+#     - `do` must be lazy, not eager
 #     - has to modify bindings?
 #     - for each evaluated kwarg
 #     - not if each var new fn call
