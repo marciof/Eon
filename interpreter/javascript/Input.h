@@ -4,7 +4,6 @@
 #include <stdint.h>
 #include "../core/Err.h"
 #include "../core/Ref.h"
-#include "Str.h"
 
 #define K_COMMENT_QUOTE 0x23
 #define K_END_OF_LINE 0xA

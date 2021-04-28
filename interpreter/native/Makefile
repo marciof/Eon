@@ -14,5 +14,7 @@ karyon$(EXE): main$(OBJ) ../core/$(LIBPREFIX)karyon-core$(LIB) $(LIBPREFIX)karyo
 $(LIBPREFIX)karyon$(LIB): Errno$(OBJ) Log$(OBJ)
 	$(AR) $(ARFLAGS) $(AROUT)$@ $?
 
+# TODO missing dependencies for main.c?
+# TODO missing dependencies from core headers?
 Errno$(OBJ): Errno.c Errno.h
 Log$(OBJ): Log.c Log.h

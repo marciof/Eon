@@ -153,9 +153,10 @@
 
 * javascript
 
-** TODO build library too? 
+** TODO build library too? only library?
 
-** TODO move non-JS parts to native and core
+- in a way that it can be "plugged" into the native build, as well as others?
+- move non-JS parts to native and core, remove main entrypoint
 
 ** TODO always append '\0' to Str instances?
 
