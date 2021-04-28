@@ -2,12 +2,14 @@
 
 ** TODO CMake is too complex/big, alternatives? Make?
 
-- dependencies aren't very clear in the README, improve it
+- dependencies aren't very clear in the README
   - linker dependencies README
 - build instructions README
   - explain the various `CFLAGS_GCC_*` variables, as well as `CFLAGS_ASAN`
-  - explain `Makefile.config`
+  - explain `Makefile.config` and compiler specific ones
 - dev cycle watch (use inotify?), https://github.com/watchexec/watchexec
+
+** TODO allow easy FFI for reuse and interoperability
 
 ** TODO decouple interpreter sub-modules from each other?
 
@@ -25,16 +27,9 @@
   - https://savannah.nongnu.org/projects/stage0
   - https://bootstrappable.org
 
-** TODO dynamic vs static linking
-
-- as an option?
+** TODO dynamic vs static linking? As option? 
 
 ** TODO simplify error handling and use Maybe/Optional types?
-
-** TODO support Haiku? ReactOS?
-
-- very different OS than others, so there's value in testing this has a proper/working abstraction layer?
-- https://www.haiku-os.org/get-haiku/installation-guide/
 
 ** TODO split dependencies per build target (eg. native, x86-32, etc)
 
