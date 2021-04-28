@@ -498,7 +498,7 @@ A [function](#function) that compares two or more [numbers](#number) (with short
 
 ### Complexity
 
-- Time: `O(n)`
+- Time: `O(n)`, where `n` is the number of arguments
 - Space: `O(1)`
 
 ### Conditions
@@ -516,7 +516,7 @@ A [function](#function) that compares two or more [numbers](#number) (with short
 
 ### Complexity
 
-- Time: `O(n)`
+- Time: `O(n)`, where `n` is the number of arguments
 - Space: `O(1)`
 
 ### Conditions
@@ -534,7 +534,7 @@ A [function](#function) that adds one or more [numbers](#number).
 
 ### Complexity
 
-- Time: `O(n)`
+- Time: `O(n)`, where `n` is the number of arguments
 - Space: `O(1)`
 
 ### Conditions
@@ -553,7 +553,7 @@ A [function](#function) that subtracts one or more [numbers](#number).
 
 ### Complexity
 
-- Time: `O(n)`
+- Time: `O(n)`, where `n` is the number of arguments
 - Space: `O(1)`
 
 ### Conditions
@@ -572,7 +572,7 @@ A [function](#function) that multiplies two or more [numbers](#number).
 
 ### Complexity
 
-- Time: `O(n)`
+- Time: `O(n)`, where `n` is the number of arguments
 - Space: `O(1)`
 
 ### Conditions
@@ -591,7 +591,7 @@ A [function](#function) that divides two or more [numbers](#number).
 
 ### Complexity
 
-- Time: `O(n)`
+- Time: `O(n)`, where `n` is the number of arguments
 - Space: `O(1)`
 
 ### Conditions
@@ -680,7 +680,7 @@ A [function](#function) that creates a snapshot of an `expression` thereby preve
 
 ### Complexity
 
-- Time: `O(1+k)` where `k` is the number of `escape` calls
+- Time: `O(n)`, where `n` is the number of calls to `escape`
 - Space: `O(1)`
 
 ### Conditions
@@ -722,7 +722,7 @@ A [function](#function) that evaluates a sequence of one or more expressions and
 
 ### Complexity
 
-- Time: `O(n)`
+- Time: `O(n)`, where `n` is the number of arguments
 - Space: `O(1)`
 
 ### Conditions
