@@ -6,7 +6,8 @@
 include ../Makefile.config #\
 !ENDIF
 
-EXE_DEPS=main$(OBJ) ../core/$(LIBPREFIX)karyon-core$(LIB) ../native/$(LIBPREFIX)karyon-native$(LIB) $(LIBPREFIX)karyon-javascript$(LIB)
+EXT_DEPS=../core/$(LIBPREFIX)karyon-core$(LIB) ../native/$(LIBPREFIX)karyon-native$(LIB)
+EXE_DEPS=main$(OBJ) $(EXT_DEPS) $(LIBPREFIX)karyon-javascript$(LIB)
 LIB_DEPS=Str$(OBJ) Input$(OBJ) Token$(OBJ)
 
 all: karyon-javascript$(EXE)
@@ -17,8 +18,6 @@ karyon-javascript$(EXE): $(EXE_DEPS)
 $(LIBPREFIX)karyon-javascript$(LIB): $(LIB_DEPS)
 	$(AR) $(ARFLAGS) $(AROUT)$@ $(LIB_DEPS)
 
-# TODO missing deps for main.c? (it'll be removed anyway? plugin to native)
-# TODO missing dependencies from core and native headers?
-Str$(OBJ): Str.c Str.h
-Input$(OBJ): Input.c Input.h
-Token$(OBJ): Token.c Token.h Input.h Str.h
+Str$(OBJ): Str.c Str.h $(EXT_DEPS)
+Input$(OBJ): Input.c Input.h $(EXT_DEPS)
+Token$(OBJ): Token.c Token.h Input.h Str.h $(EXT_DEPS)
