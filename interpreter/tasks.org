@@ -7,6 +7,7 @@
 - build instructions README
   - explain the various `CFLAGS_GCC_*` variables, as well as `CFLAGS_ASAN`
   - explain `Makefile.config` and compiler specific ones
+  - https://news.ycombinator.com/item?id=26537805
 - dev cycle watch?
   - https://github.com/watchexec/watchexec
   - `watchexec --exts c,h 'date; make CCNAME=gcc; echo'`
