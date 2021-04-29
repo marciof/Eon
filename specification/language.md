@@ -753,8 +753,8 @@ A [function](#function) that evaluates an `expression` and returns the result, o
 
 ### Complexity
 
-- Time: `O(n)`
-- Space: `O(1)`
+- Time: `O(n)`, where `n` is the time complexity of `expression`
+- Space: `O(n)`, where `n` is the space complexity of `expression`
 
 ### Conditions
 
@@ -891,6 +891,20 @@ A [function](#function) that associates a `key` with a `value` in a `list` or `f
 
 ### Complexity
 
+Function:
+
+- Time:
+  - Number key: `O(n)`, where `n` is the number of elements
+  - Otherwise: `O(1)`
+- Space: `O(1)`
+
+List:
+
+- Time:
+  - Number key: `O(n)`, where `n` is the number of elements
+  - Otherwise: `O(1)`
+- Space: `O(1)`
+
 Map:
 
 - Time: `O(1)`
@@ -899,11 +913,6 @@ Map:
 Set:
 
 - Time: `O(1)`
-- Space: `O(1)`
-
-List / Function:
-
-- Time: `O(n)` for number keys, otherwise `O(1)`
 - Space: `O(1)`
 
 ### Conditions
@@ -956,7 +965,7 @@ A [function](#function) that compares two or more values (with short-circuit eva
 
 ### Complexity
 
-- Time: `O(n)`
+- Time: `O(n)`, where `n` is the number of arguments
 - Space: `O(1)`
 
 ### Conditions
@@ -998,8 +1007,8 @@ A [function](#function) that loads a [module](#module) by `path`, and returns th
 
 ### Complexity
 
-- Time: `O(n)`
-- Space: `O(n)`
+- Time: `O(n)`, where `n` is the time complexity of the `path` location
+- Space: `O(n)`, where `n` is the space complexity of the module at `path`
 
 ### Conditions
 
@@ -1050,7 +1059,7 @@ next {\name='Bob' \age=20}
 ## `proto`
 
 ```
-proto value
+[proto value]
 ```
 
 A [function](#function) that retrieves the [proto](#data-types) of `value`.
@@ -1094,6 +1103,20 @@ A [function](#function) that disassociates a `key` from a value in a `list` or `
 
 ### Complexity
 
+Function:
+
+- Time:
+  - Number key: `O(n)`, where `n` is the number of elements
+  - Otherwise: `O(1)`
+- Space: `O(1)`
+
+List:
+
+- Time:
+  - Number key: `O(n)`, where `n` is the number of elements
+  - Otherwise: `O(1)`
+- Space: `O(1)`
+
 Map:
 
 - Time: `O(1)`
@@ -1102,11 +1125,6 @@ Map:
 Set:
 
 - Time: `O(1)`
-- Space: `O(1)`
-
-List / Function:
-
-- Time: `O(n)` for number keys, otherwise `O(1)`
 - Space: `O(1)`
 
 ### Conditions
