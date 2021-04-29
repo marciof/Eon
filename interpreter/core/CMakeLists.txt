@@ -1,1 +1,0 @@
-add_library(${CORE_LIBRARY_NAME} ${CORE_SOURCES})

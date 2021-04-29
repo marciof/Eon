@@ -6,7 +6,7 @@
 include ../Makefile.config #\
 !ENDIF
 
-EXE_DEPS=main$(OBJ) ../core/$(LIBPREFIX)karyon-core$(LIB) ../native/$(LIBPREFIX)karyon$(LIB) $(LIBPREFIX)karyon-javascript$(LIB)
+EXE_DEPS=main$(OBJ) ../core/$(LIBPREFIX)karyon-core$(LIB) ../native/$(LIBPREFIX)karyon-native$(LIB) $(LIBPREFIX)karyon-javascript$(LIB)
 LIB_DEPS=Str$(OBJ) Input$(OBJ) Token$(OBJ)
 
 all: karyon-javascript$(EXE)

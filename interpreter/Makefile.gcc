@@ -6,7 +6,7 @@ CFLAGS_GCC_7=-Wduplicated-branches -Wrestrict
 # https://gcc.gnu.org/gcc-6/changes.html
 CFLAGS_GCC_6=$(CFLAGS_GCC_7) -Wduplicated-cond -Wnull-dereference
 
-# Address Sanitizer
+# Address Sanitizer (same as for Makefile.clang)
 # https://github.com/google/sanitizers/wiki/AddressSanitizer
 # https://github.com/google/sanitizers/wiki/AddressSanitizerFlags
 CFLAGS_ASAN=

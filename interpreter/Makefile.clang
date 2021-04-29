@@ -1,6 +1,6 @@
 .POSIX:
 
-# Address Sanitizer
+# Address Sanitizer (same as for Makefile.gcc)
 # https://github.com/google/sanitizers/wiki/AddressSanitizer
 # https://github.com/google/sanitizers/wiki/AddressSanitizerFlags
 CFLAGS_ASAN=
