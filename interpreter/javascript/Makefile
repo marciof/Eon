@@ -6,15 +6,18 @@
 include ../Makefile.config #\
 !ENDIF
 
-all: karyon-js$(EXE)
+EXE_DEPS=main$(OBJ) ../core/$(LIBPREFIX)karyon-core$(LIB) ../native/$(LIBPREFIX)karyon$(LIB) $(LIBPREFIX)karyon-javascript$(LIB)
+LIB_DEPS=Str$(OBJ) Input$(OBJ) Token$(OBJ)
 
-karyon-js$(EXE): main$(OBJ) ../core/$(LIBPREFIX)karyon-core$(LIB) ../native/$(LIBPREFIX)karyon$(LIB) $(LIBPREFIX)karyon-js$(LIB)
-	$(CC) $(LDFLAGS) $(LDOUT)$@ $?
+all: karyon-javascript$(EXE)
 
-$(LIBPREFIX)karyon-js$(LIB): Str$(OBJ) Input$(OBJ) Token$(OBJ)
-	$(AR) $(ARFLAGS) $(AROUT)$@ $?
+karyon-javascript$(EXE): $(EXE_DEPS)
+	$(CC) $(LDFLAGS) $(LDOUT)$@ $(EXE_DEPS)
 
-# TODO missing dependencies for main.c? (it'll be removed anyway?)
+$(LIBPREFIX)karyon-javascript$(LIB): $(LIB_DEPS)
+	$(AR) $(ARFLAGS) $(AROUT)$@ $(LIB_DEPS)
+
+# TODO missing deps for main.c? (it'll be removed anyway? plugin to native)
 # TODO missing dependencies from core and native headers?
 Str$(OBJ): Str.c Str.h
 Input$(OBJ): Input.c Input.h

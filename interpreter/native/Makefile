@@ -6,15 +6,18 @@
 include ../Makefile.config #\
 !ENDIF
 
+EXE_DEPS=main$(OBJ) ../core/$(LIBPREFIX)karyon-core$(LIB) $(LIBPREFIX)karyon-native$(LIB)
+LIB_DEPS=Errno$(OBJ) Log$(OBJ)
+
 all: karyon$(EXE)
 
-karyon$(EXE): main$(OBJ) ../core/$(LIBPREFIX)karyon-core$(LIB) $(LIBPREFIX)karyon$(LIB)
-	$(CC) $(LDFLAGS) $(LDOUT)$@ $?
+karyon$(EXE): $(EXE_DEPS)
+	$(CC) $(LDFLAGS) $(LDOUT)$@ $(EXE_DEPS)
 
-$(LIBPREFIX)karyon$(LIB): Errno$(OBJ) Log$(OBJ)
-	$(AR) $(ARFLAGS) $(AROUT)$@ $?
+$(LIBPREFIX)karyon-native$(LIB): $(LIB_DEPS)
+	$(AR) $(ARFLAGS) $(AROUT)$@ $(LIB_DEPS)
 
 # TODO missing dependencies for main.c?
 # TODO missing dependencies from core headers?
 Errno$(OBJ): Errno.c Errno.h
-Log$(OBJ): Log.c Log.h
+Log$(OBJ): Log.c Log.h Errno.h
