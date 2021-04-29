@@ -9,10 +9,8 @@ CFLAGS_GCC_6=$(CFLAGS_GCC_7) -Wduplicated-cond -Wnull-dereference
 # Address Sanitizer (same as for Makefile.clang)
 # https://github.com/google/sanitizers/wiki/AddressSanitizer
 # https://github.com/google/sanitizers/wiki/AddressSanitizerFlags
-CFLAGS_ASAN=
 CFLAGS_ASAN_ON=-fsanitize=address -fno-omit-frame-pointer
-LDFLAGS_ASAN=
 LDFLAGS_ASAN_ON=$(CFLAGS_ASAN_ON)
 
-CFLAGS=$(CFLAGS_GCC_6) $(CFLAGS_ASAN) -std=c99 -pedantic-errors -Wall -Wextra -Wundef -Wunused-macros -Wvla -Wempty-body -Wdouble-promotion -Wformat=2 -Wc++-compat -Wredundant-decls -Wshadow -Wswitch-default -Wlogical-op -Wjump-misses-init -D_POSIX_C_SOURCE=200809L
+CFLAGS=$(CFLAGS_GCC_6) $(CFLAGS_ASAN) -std=c99 -pedantic-errors -Wall -Wextra -Wundef -Wunused-macros -Wvla -Wempty-body -Wdouble-promotion -Wformat=2 -Wc++-compat -Wredundant-decls -Wshadow -Wswitch-default -Wlogical-op -Wjump-misses-init -D_POSIX_C_SOURCE=200809L $(CFLAGS_EXTRA)
 LDFLAGS=$(LDFLAGS_ASAN)

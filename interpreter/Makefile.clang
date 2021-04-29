@@ -3,9 +3,7 @@
 # Address Sanitizer (same as for Makefile.gcc)
 # https://github.com/google/sanitizers/wiki/AddressSanitizer
 # https://github.com/google/sanitizers/wiki/AddressSanitizerFlags
-CFLAGS_ASAN=
 CFLAGS_ASAN_ON=-fsanitize=address -fno-omit-frame-pointer
-LDFLAGS_ASAN=
 LDFLAGS_ASAN_ON=$(CFLAGS_ASAN_ON)
 
 CFLAGS=$(CFLAGS_ASAN) -std=c99 -pedantic-errors -Wall -Wextra -Wundef -Wunused-macros -Wvla -Wempty-body -Wdouble-promotion -Wformat=2 -Wc++-compat -Wreserved-id-macro -Wshadow-all -Wused-but-marked-unused -Wmissing-field-initializers -Wmissing-prototypes -Wsign-conversion -D_POSIX_C_SOURCE=200809L
