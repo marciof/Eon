@@ -10,7 +10,7 @@
   - https://news.ycombinator.com/item?id=26537805
 - dev cycle watch?
   - https://github.com/watchexec/watchexec
-  - `watchexec --exts c,h 'date; make CCNAME=gcc; echo'`
+  - watchexec -c --exts c,h 'echo -- `date`; make CCNAME=gcc; echo'
 
 ** TODO allow easy FFI for reuse and interoperability
 
