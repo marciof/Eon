@@ -12,7 +12,7 @@
 #define STATIC_ASSERT(expr, message) \
     enum {CONCAT_EXPAND(STATIC_ASSERTION_, __LINE__) = 1 / ((expr) ? 1 : 0)}
 
-extern void k_Memory_Physical_set_gdt_reg(uint16_t size_bytes, uint32_t addr);
+extern void k_GDT_set_reg(uint16_t size_bytes, uint32_t addr);
 
 enum Segment_Attr {
     ACCESSED = K_BIT(0),

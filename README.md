@@ -43,6 +43,7 @@ Build dependencies:
 
 - [Core](#core)
 - [compiler](#compiler)
+- [librarian](#librarian)
 - [linker](#linker)
 
 Runtime dependencies:
@@ -54,6 +55,8 @@ Runtime dependencies:
 Build dependencies:
 
 - [Core](#core)
+- [compiler](#compiler)
+- [assembler](#assembler)
 - [Multiboot](https://en.m.wikipedia.org/wiki/Multiboot_specification) dev headers
   - Ubuntu: `$ apt install multiboot`
 
@@ -90,7 +93,13 @@ Supported compilers:
 - `c99` (POSIX compliant)
 - [GCC](https://gcc.gnu.org)
 - [Clang](https://clang.llvm.org)
-- `cl` ([Visual Studio Build Tools](https://www.visualstudio.com/thank-you-downloading-visual-studio/?sku=BuildTools))
+- MSVC ([Visual Studio Build Tools](https://www.visualstudio.com/thank-you-downloading-visual-studio/?sku=BuildTools))
+
+## Assembler
+
+Supported assemblers:
+
+- [NASM](http://www.nasm.us)
 
 ## Librarian
 

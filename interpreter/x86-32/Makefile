@@ -8,9 +8,10 @@ include ../Makefile.config #\
 !ENDIF
 
 # TODO add CFLAGS_EXTRA to other configs (other than Makefile.gcc)
+# TODO test the other non-GCC Makefile configs
 CFLAGS_EXTRA=-fno-exceptions -nostdlib -nodefaultlibs -ffreestanding -m32
 EXT_DEPS=../core/$(LIBPREFIX)karyon-core$(LIB)
-LIB_DEPS=Memory$(OBJ) Multiboot$(OBJ) vga/Attr$(OBJ) vga/Color$(OBJ) vga/CRT$(OBJ) vga/Extern$(OBJ) vga/Gfx$(OBJ) vga/Log$(OBJ) vga/Seqr$(OBJ) vga/Text$(OBJ)
+LIB_DEPS=IO$(OBJ) GDT$(OBJ) Memory$(OBJ) Multiboot$(OBJ) vga/Attr$(OBJ) vga/Color$(OBJ) vga/CRT$(OBJ) vga/Extern$(OBJ) vga/Gfx$(OBJ) vga/Log$(OBJ) vga/Seqr$(OBJ) vga/Text$(OBJ)
 WATCHEXEC=watchexec
 
 all: $(LIB_DEPS)
@@ -18,6 +19,13 @@ all: $(LIB_DEPS)
 dev:
 	$(WATCHEXEC) --exts c,h $(MAKE) all $(MAKEFLAGS)
 
+# TODO add config macros for the assembler, including flags
+.SUFFIXES: .asm
+.asm$(OBJ):
+	nasm -f elf $<
+
+IO$(OBJ): arg.asm
+GDT($OBJ): arg.asm
 Memory$(OBJ): $(EXT_DEPS)
 Multiboot$(OBJ): $(EXT_DEPS) Multiboot.h
 vga/Attr$(OBJ): $(EXT_DEPS) vga/Attr.h vga/Extern.h IO.h

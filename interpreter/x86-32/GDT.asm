@@ -10,8 +10,8 @@ gdtr:
 section .text
 align 4
 
-global k_Memory_Physical_set_gdt_reg
-k_Memory_Physical_set_gdt_reg:
+global k_GDT_set_reg
+k_GDT_set_reg:
     enter 0, 0
     
     mov ax, K_ARG(1)
