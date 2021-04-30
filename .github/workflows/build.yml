@@ -22,7 +22,8 @@ jobs:
         working-directory: specification/
 
   # TODO use nmake on Windows
-  build-core:
+  # TODO compiler matrix
+  core:
     runs-on: ${{matrix.os}}
     strategy:
       fail-fast: false
