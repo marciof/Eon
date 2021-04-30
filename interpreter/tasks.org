@@ -5,6 +5,8 @@
 - explain the various `CFLAGS_GCC_*` variables, as well as `CFLAGS_ASAN`
 - explain `Makefile.config` and compiler specific ones
 - enable more MSVC CL warnings
+- lowercase source code files?
+- ensure good source code documentation right from the start (eg. core)
 
 ** TODO decouple interpreter modules from each other?
 
@@ -13,7 +15,7 @@
 
 ** TODO simplify error handling and use Maybe/Optional/Result types?
 
-** TODO setup initial build/run/test CD/CI on GitHub Actions
+** TODO setup initial build and minimal testing/run CD/CI on GitHub Actions
 
 - setup CI builds for both 32-bit and 64-bit hosts
 - TAP protocol, https://testanything.org/
