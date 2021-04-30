@@ -1,5 +1,6 @@
 .POSIX:
 
+# Workaround for include-line support on both `make` and `nmake`.
 #\
 !INCLUDE ../Makefile.config #\
 !IF 0
