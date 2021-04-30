@@ -4,9 +4,10 @@ on:
   push:
     branches: [main]
 
+# TODO avoid duplicating source code checkouts
 jobs:
+
   lint:
-    name: Lint documentation and source code
     runs-on: ${{matrix.os}}
     strategy:
       fail-fast: false
@@ -19,3 +20,15 @@ jobs:
       - run: make all
       - run: make all
         working-directory: specification/
+
+  # TODO use nmake on Windows
+  build-core:
+    runs-on: ${{matrix.os}}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+    steps:
+      - uses: actions/checkout@v2
+      - run: make all
+        working-directory: interpreter/core/

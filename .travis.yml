@@ -103,7 +103,7 @@ jobs:
         - cd "$TRAVIS_BUILD_DIR/interpreter/native"
         - nmake.bat all 2>&1
 
-before_script: python3 -m pip install -r -r requirements.lint-commonmark-links.txt -r requirements.lint-sources-python.txt
+before_script: python3 -m pip install -r requirements.lint-commonmark-links.txt -r requirements.lint-sources-python.txt
 script:
   - make all
   - cd "$TRAVIS_BUILD_DIR/specification"

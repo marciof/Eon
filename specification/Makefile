@@ -6,5 +6,6 @@ all: lint-documentation
 
 # TODO validate links in org-mode files
 # TODO validate CommonMark documents
+# TODO avoid duplicate work linting links (eg. documents at root)
 lint-documentation: language.md
 	$(PYTHON) ../lint-commonmark-links.py $?
