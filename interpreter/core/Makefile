@@ -8,8 +8,12 @@ include ../Makefile.config #\
 !ENDIF
 
 LIB_DEPS=Err$(OBJ) Log$(OBJ)
+WATCHEXEC=watchexec
 
 all: $(LIBPREFIX)karyon-core$(LIB)
+
+dev:
+	$(WATCHEXEC) --exts c,h $(MAKE) all $(MAKEFLAGS)
 
 $(LIBPREFIX)karyon-core$(LIB): $(LIB_DEPS)
 	$(AR) $(ARFLAGS) $(AROUT)$@ $(LIB_DEPS)

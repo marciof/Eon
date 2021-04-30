@@ -6,7 +6,7 @@ It includes a well-defined specification, a platform-agnostic implementation cor
 
 # Structure
 
-Project layout:
+Soure code layout:
 
 - `interpreter/`: Implementation of the language specification.
   - `core/`: Builds an embeddable library with the host-independent core of the implementation and host-dependent hooks.
@@ -92,3 +92,19 @@ Supported librarians:
 ### Linker
 
 (TODO list supported linkers)
+
+# Development
+
+To continuously and automatically build on source code changes and get immediate feedback, use the `dev` build target. It uses [watchexec](https://github.com/watchexec/watchexec) to monitor changes, with the `all` build target.
+
+For example, to do development on and build the **native** executable on Linux using GCC, start with watching the core build:
+
+```
+interpreter/core/$ make dev CCNAME=gcc
+```
+
+And then separately watching the native build:
+
+```
+interpreter/native/$ make dev CCNAME=gcc
+```

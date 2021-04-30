@@ -10,8 +10,12 @@ include ../Makefile.config #\
 EXT_DEPS=../core/$(LIBPREFIX)karyon-core$(LIB)
 EXE_DEPS=main$(OBJ) $(EXT_DEPS) $(LIBPREFIX)karyon-native$(LIB)
 LIB_DEPS=Errno$(OBJ) Log$(OBJ)
+WATCHEXEC=watchexec
 
 all: karyon$(EXE)
+
+dev:
+	$(WATCHEXEC) --exts c,h $(MAKE) all $(MAKEFLAGS)
 
 karyon$(EXE): $(EXE_DEPS)
 	$(CC) $(LDFLAGS) $(LDOUT)$@ $(EXE_DEPS)

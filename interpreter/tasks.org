@@ -1,10 +1,9 @@
 * interpreter
 
-** TODO switch from CMake to Makefiles?
+** TODO switch from CMake to Makefiles (potentially simpler, faster)
 
 - explain the various `CFLAGS_GCC_*` variables, as well as `CFLAGS_ASAN`
 - explain `Makefile.config` and compiler specific ones
-- dev cycle watch? watchexec -c --exts c,h 'echo -- `date`; make CCNAME=gcc; echo'
 
 ** TODO allow easy FFI for reuse and interoperability
 
