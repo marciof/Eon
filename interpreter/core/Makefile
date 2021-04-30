@@ -18,5 +18,5 @@ dev:
 $(LIBPREFIX)karyon-core$(LIB): $(LIB_DEPS)
 	$(AR) $(ARFLAGS) $(AROUT)$@ $(LIB_DEPS)
 
-Err$(OBJ): Err.c Err.h
-Log$(OBJ): Log.c Log.h Err.h std/sys/types.h
+Err$(OBJ): Err.h
+Log$(OBJ): Log.h Err.h std/sys/types.h

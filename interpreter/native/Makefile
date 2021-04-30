@@ -23,5 +23,5 @@ karyon$(EXE): $(EXE_DEPS)
 $(LIBPREFIX)karyon-native$(LIB): $(LIB_DEPS)
 	$(AR) $(ARFLAGS) $(AROUT)$@ $(LIB_DEPS)
 
-Errno$(OBJ): Errno.c Errno.h $(EXT_DEPS)
-Log$(OBJ): Log.c Log.h Errno.h $(EXT_DEPS)
+Errno$(OBJ): $(EXT_DEPS) Errno.h
+Log$(OBJ): $(EXT_DEPS) Log.h Errno.h

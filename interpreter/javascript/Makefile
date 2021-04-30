@@ -19,6 +19,6 @@ karyon-javascript$(EXE): $(EXE_DEPS)
 $(LIBPREFIX)karyon-javascript$(LIB): $(LIB_DEPS)
 	$(AR) $(ARFLAGS) $(AROUT)$@ $(LIB_DEPS)
 
-Str$(OBJ): Str.c Str.h $(EXT_DEPS)
-Input$(OBJ): Input.c Input.h $(EXT_DEPS)
-Token$(OBJ): Token.c Token.h Input.h Str.h $(EXT_DEPS)
+Str$(OBJ): $(EXT_DEPS) Str.h
+Input$(OBJ): $(EXT_DEPS) Input.h
+Token$(OBJ): $(EXT_DEPS) Token.h Input.h Str.h
