@@ -6,16 +6,69 @@ It includes a well-defined specification, a platform-agnostic implementation cor
 
 # Structure
 
-Soure code layout:
+Source code layout:
 
-- `interpreter/`: Implementation of the language specification.
+- `interpreter/`: Implementation of the language specification. Components:
   - `core/`: Builds an embeddable library with the host-independent core of the implementation and host-dependent hooks.
   - `native/`: Builds an embeddable library and a standalone executable to run natively (eg. Linux, Windows, MacOS).
   - `x86-32/`: Builds a Multiboot-compliant executable to run on an Intel x86 32-bit host.
 - `library/`: Standard library for the interpreter.
 - `specification/`: Language specification.
 
-# Building
+# Dependencies
+
+Component dependencies are listed in the sub-sections below. The [compatibility](#compatibility) section lists supported operating systems and environments.
+
+These are the rest of dependencies for shared build targets:
+
+- `lint-documentation`
+  - [Python 3](https://www.python.org/downloads/)
+  - `requirements.lint-commonmark-links.txt` (for [pip](https://pip.pypa.io))
+  - internet access for validating links
+
+- `lint-sources-python`
+  - [Python 3](https://www.python.org/downloads/)
+  - `requirements.lint-sources-python.txt` (for [pip](https://pip.pypa.io))
+
+## Core
+
+Build dependencies:
+
+- [compiler](#compiler)
+- [librarian](#librarian)
+
+## Native
+
+Build dependencies:
+
+- [Core](#core)
+- [compiler](#compiler)
+- [linker](#linker)
+
+Runtime dependencies:
+
+- [operating system](#operating-system)
+
+## x86-32
+
+Build dependencies:
+
+- [Core](#core)
+- [Multiboot](https://www.gnu.org/software/grub/manual/multiboot/) dev headers
+  - Ubuntu: `apt install multiboot`
+
+If cross-compiling on a 64-bit host:
+
+- [libc](https://en.wikipedia.org/wiki/C_standard_library) x86-32 dev headers
+  - Ubuntu: `apt install gcc-multilib`
+
+Runtime dependencies:
+
+- (TODO list x86-32 run-time dependencies)
+
+# Compatibility
+
+## Operating System
 
 Supported operating systems:
 
@@ -23,12 +76,36 @@ Supported operating systems:
 - macOS
 - Windows
 
+## Build Tool
+
 Supported build tools:
 
 - `make` (POSIX compliant)
 - `nmake` ([Visual Studio Build Tools](https://www.visualstudio.com/thank-you-downloading-visual-studio/?sku=BuildTools))
 
-After installing or building the required [dependencies](#dependencies) for a given build type, then run a supported build tool on the `all` target.
+## Compiler
+
+Supported compilers:
+
+- `c99` (POSIX compliant)
+- [GCC](https://gcc.gnu.org)
+- [Clang](https://clang.llvm.org)
+- `cl` ([Visual Studio Build Tools](https://www.visualstudio.com/thank-you-downloading-visual-studio/?sku=BuildTools))
+
+## Librarian
+
+Supported librarians:
+
+- `ar` (POSIX compliant)
+- `lib` ([Visual Studio Build Tools](https://www.visualstudio.com/thank-you-downloading-visual-studio/?sku=BuildTools))
+
+## Linker
+
+(TODO list supported linkers)
+
+# Building
+
+After installing or building the required [dependencies](#dependencies) for a given component, then run a supported [build tool](#build-tool) on the `all` build target.
 
 For example, to build and run the **native** executable on Linux:
 
@@ -46,56 +123,9 @@ interpreter/x86-32/$ make all
 interpreter/x86-32/$ ./vm.sh karyon-x86-32
 ```
 
-## Dependencies
-
-Dependencies by build type:
-
-- `interpreter/`:
-  - `core/`:
-    - [compiler](#compiler)
-    - [librarian](#librarian)
-  - `native/`:
-    - core build
-    - [compiler](#compiler)
-    - [linker](#linker)
-  - `x86-32/`:
-    - core build
-    - (TODO list x86-32 build and run-time dependencies)
-
-Dependencies by build target, shared across build types:
-
-- `lint-documentation`
-  - [Python 3](https://www.python.org/downloads/)
-  - `requirements.lint-commonmark-links.txt` (for [pip](https://pip.pypa.io))
-  - internet access for validating links
-
-- `lint-sources-python`
-  - [Python 3](https://www.python.org/downloads/)
-  - `requirements.lint-sources-python.txt` (for [pip](https://pip.pypa.io))
-
-### Compiler
-
-Supported compilers:
-
-- `c99` (POSIX compliant)
-- [GCC](https://gcc.gnu.org)
-- [Clang](https://clang.llvm.org)
-- `cl` ([Visual Studio Build Tools](https://www.visualstudio.com/thank-you-downloading-visual-studio/?sku=BuildTools))
-
-### Librarian
-
-Supported librarians:
-
-- `ar` (POSIX compliant)
-- `lib` ([Visual Studio Build Tools](https://www.visualstudio.com/thank-you-downloading-visual-studio/?sku=BuildTools))
-
-### Linker
-
-(TODO list supported linkers)
-
 # Development
 
-To continuously and automatically build on source code changes and get immediate feedback, use the `dev` build target. It uses [watchexec](https://github.com/watchexec/watchexec) to monitor changes, with the `all` build target.
+To continuously and automatically build on source code changes and get immediate feedback, use the `dev` build target. It uses [watchexec](https://github.com/watchexec/watchexec) to monitor changes, and builds the `all` build target.
 
 For example, to do development on and build the **native** executable on Linux using GCC, start with watching the core build:
 
