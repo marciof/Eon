@@ -35,6 +35,7 @@
 - Runnable examples, eg. https://doc.rust-lang.org/book/
 - start a changelog? (and do releases?) https://keepachangelog.com/en/1.0.0/
 - avoid too many abbreviations
+- ensure: simplicity, clarity, and frugality
 
 * TODO attempt to unify data types?
 
@@ -159,6 +160,8 @@
 - https://github.com/oilshell/oil/wiki/Feature-Detection-Is-Better-than-Version-Detection
 - allow multiple versions of the same package (see Python venv)
 - allow freezing/pinning dependency versions (version tree) 
+
+* TODO allow easy FFI for reuse and interoperability
 
 * TODO FEXPRs: "Special Forms in Lisp", https://www.nhplace.com/kent/Papers/Special-Forms.html
 
