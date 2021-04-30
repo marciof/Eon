@@ -9,6 +9,7 @@ Stdin: see Python's `fileinput.input()`
 Stdout: one line per unique link, containing the HTTP status code
         (or '?' if unknown) followed by a space and then the URL
 """
+# TODO use TAP for output? http://testanything.org
 
 # stdlib
 import fileinput
@@ -111,7 +112,7 @@ class DedupingQueue (queue.Queue):
             super().put(item, **kwargs)
 
 
-# TODO thread count was chosen arbitrarily
+# TODO don't choose thread count arbitrarily
 def validate_links(
         commonmark_doc_iterator: Iterable[str],
         logger: logging.Logger,

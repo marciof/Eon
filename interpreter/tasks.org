@@ -1,4 +1,14 @@
+* javascript
+
+** TODO merge into native and core
+
+** TODO always append '\0' to Str instances?
+
 * interpreter
+
+** TODO create scripts/helpers folder?
+
+- cleaner project root?
 
 ** TODO switch from CMake to Makefiles (potentially simpler, faster)
 
@@ -18,7 +28,6 @@
 ** TODO setup initial build and minimal testing/run CD/CI on GitHub Actions
 
 - setup CI builds for both 32-bit and 64-bit hosts
-- TAP protocol, https://testanything.org/
 - Cram CLI test framework, https://bitheap.org/cram/
 - benchmark/performance tests
   - https://github.com/trizen/language-benchmarks
@@ -65,6 +74,10 @@
   - https://www.win.tue.nl/~aeb/linux/hh/protection.html
 
 ** TODO use other sanitizers too? eg. LeakSanitizer, UndefinedBehaviorSanitizer
+
+- https://github.com/google/sanitizers
+- https://clang.llvm.org/docs/UndefinedBehaviorSanitizer.html
+- https://github.com/google/sanitizers/wiki/AddressSanitizerLeakSanitizer
 
 ** TODO enable static code analyzers
 
@@ -120,15 +133,6 @@
 ** TODO sponsoring?
 
 - https://www.vim.org/sponsor/
-
-* javascript
-
-** TODO build library too? only library?
-
-- in a way that it can be "plugged" into the native build, as well as others?
-- move non-JS parts to native and core, remove main entrypoint
-
-** TODO always append '\0' to Str instances?
 
 * native
 
