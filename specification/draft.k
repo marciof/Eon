@@ -24,7 +24,7 @@ if [admin? names.1] then=...
 # then syntax conflicts with defer
 {`name='Bob'}
 
-if [admin? users/2]
+if [admin? users/2] then=
   io/text/print 'Hello'
 
 dir/file

@@ -1,9 +1,3 @@
-* javascript
-
-** TODO merge into native and core
-
-** TODO always append '\0' to Str instances?
-
 * interpreter
 
 ** TODO switch from CMake to Makefiles (potentially simpler, faster)
@@ -13,49 +7,60 @@
   - https://ccache.dev/
   - https://github.com/mozilla/sccache
   - https://docs.microsoft.com/cpp/build/reference/showincludes-list-include-files
-- cleaner project root? create scripts/helpers folder?
-- Avoid abbreviations unless for acronyms or well understood longer words? Eg String, Error
 - explain the various `CFLAGS_GCC_*` variables, as well as `CFLAGS_ASAN`
 - explain `Makefile.config` and compiler specific ones
-- enable more MSVC CL warnings
-- lowercase source code files?
-- ensure good source code documentation right from the start (eg. core)
-
-** TODO decouple interpreter modules from each other?
-
-- C includes, `#include <karyon/core/Log.h>`
-- C library, `-lkaryon`
-
-** TODO simplify error handling and use Maybe/Optional/Result types?
+- don't forget to remove CMakeLists files
+- other build cleanups:
+  - ensure good source code documentation right from the start (eg. core, native, etc)
+  - cleaner project root? create scripts/helpers folder?
+  - Avoid abbreviations unless for acronyms or well understood longer words? Eg String, Error
+  - lowercase source code files?
 
 ** TODO setup initial build and minimal testing/run CD/CI on GitHub Actions
 
+- fix failing Windows build (enable more MSVC CL warnings?) 
 - setup CI builds for both 32-bit and 64-bit hosts
-- Cram CLI test framework, https://bitheap.org/cram/
-- benchmark/performance tests
-  - https://github.com/trizen/language-benchmarks
-  - https://github.com/sharkdp/hyperfine
-  - https://github.com/Gabriel439/bench
+- add minimal functional tests? Cram CLI test framework, https://bitheap.org/cram/
+- which build matrix should use ASAN? debug and release builds? `ASAN_OPTIONS="detect_stack_use_after_return=1,print_stats=1"`
+- add support for Bochs and Qemu? easier for installation, for vm.sh, and screenshot? See https://pcem-emulator.co.uk
+- https://embeddedbits.org/how-is-the-linux-kernel-tested/
+- sign-up to interest mailing lists for dependencies? including OS, CI, etc
+
+** TODO add more linting that's missing
+
+- GitHub Super Linter, https://news.ycombinator.com/item?id=23563823
+
+** TODO coding style conventions
+
+- auto code formatter for consistency, add to dev-cycle
+- shfmt? https://github.com/mvdan/sh
+
+** TODO merge Javascript builds into native and core
+
+** TODO always append '\0' to Str instances?
+
+** TODO decouple interpreter modules from each other?
+
+- via C includes, `#include <karyon/core/Log.h>`
+- via C library linking, `-lkaryon`
+
+** TODO simplify error handling and use Maybe/Optional/Result types?
+
+** TODO CI benchmark/test performance w/regressions as failures
+
+- https://github.com/trizen/language-benchmarks
+- https://github.com/sharkdp/hyperfine
+- https://github.com/Gabriel439/bench
 - latency
   - https://pavelfatin.com/typing-with-pleasure/
   - https://thume.ca/2020/05/20/making-a-latency-tester/
   - https://danluu.com/input-lag/
   - https://danluu.com/keyboard-latency/
   - https://danluu.com/term-latency/
-- binary bloat profiler
-  - https://github.com/google/bloaty
-- linting
-  - GitHub Super Linter, https://news.ycombinator.com/item?id=23563823
-- auto code formatter
-  - shfmt? https://github.com/mvdan/sh
-- enable optimization in release build? https://gcc.gnu.org/onlinedocs/gcc/Optimize-Options.html
-- where to build with ASAN? `ASAN_OPTIONS="detect_stack_use_after_return=1,print_stats=1"`
-- add stages for alpha (Debug with instrumentation), beta (Debug), gamma (Release with instrumentation), release (Release)?
-- add support for Bochs and Qemu? easier for installation, for vm.sh, and screenshots?
-  - https://pcem-emulator.co.uk/
-- add minimal functional tests?
-- https://embeddedbits.org/how-is-the-linux-kernel-tested/
-- sign-up to interest mailing lists for dependencies? including OS, CI, etc
+
+** TODO CI binary bloat profiler w/regressions as failures
+
+- https://github.com/google/bloaty
 
 ** TODO minimal bootstrapping seed size
 
@@ -113,8 +118,6 @@
 - add code review guidelines? more general than that?
   - eg. "we'll never need more than X of Y"
 
-** TODO access struct members directly, instead of wrappers for transparency? downsides?
-
 ** TODO make the system more resilient
 
 - warn more instead of aborting
@@ -132,10 +135,6 @@
 - https://savannah.nongnu.org/projects/stage0
 
 ** TODO logging of long integers (eg. 64-bit Multiboot mem region addr/len)
-
-** TODO sponsoring?
-
-- https://www.vim.org/sponsor/
 
 * native
 
@@ -171,7 +170,7 @@
 - keep supporting Multiboot 1?
 - support EFI/UEFI?
 
-** TODO look into adding support for x86-64
+** TODO add support for x86-64
 
 - ASFLAGS += -f elf64
 - CCFLAGS += -m64
