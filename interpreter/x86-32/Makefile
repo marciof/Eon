@@ -11,8 +11,12 @@ include ../Makefile.config #\
 CFLAGS_EXTRA=-fno-exceptions -nostdlib -nodefaultlibs -ffreestanding
 EXT_DEPS=../core/$(LIBPREFIX)karyon-core$(LIB)
 LIB_DEPS=Memory$(OBJ) Multiboot$(OBJ)
+WATCHEXEC=watchexec
 
 all: $(LIB_DEPS)
+
+dev:
+	$(WATCHEXEC) --exts c,h $(MAKE) all $(MAKEFLAGS)
 
 Memory$(OBJ): Memory.c $(EXT_DEPS)
 Multiboot$(OBJ): Multiboot.c Multiboot.h $(EXT_DEPS)
