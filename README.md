@@ -67,7 +67,7 @@ If cross-compiling on a 64-bit host:
 
 Runtime dependencies:
 
-- (TODO list x86-32 run-time dependencies)
+- (TODO list x86-32 runtime dependencies)
 
 # Compatibility
 
