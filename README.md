@@ -10,7 +10,7 @@ Source code layout:
 
 - `interpreter/`: Implementation of the language specification. Components:
   - `core/`: Builds an embeddable library with the host-independent core of the implementation and host-dependent hooks.
-  - `native/`: Builds an embeddable library and a standalone executable to run natively (eg. Linux, Windows, MacOS).
+  - `native/`: Builds an embeddable library and a standalone executable to run natively (eg. on Linux, Windows, or MacOS).
   - `x86-32/`: Builds a Multiboot-compliant executable to run on an Intel x86 32-bit host.
 - `library/`: Standard library for the interpreter.
 - `specification/`: Language specification.
@@ -19,7 +19,7 @@ Source code layout:
 
 Component dependencies are listed in the sub-sections below. The [compatibility](#compatibility) section lists supported operating systems and environments.
 
-These are the rest of dependencies for shared build targets:
+These are the rest of the dependencies for build targets shared across different components:
 
 - `lint-documentation`
   - [Python 3](https://www.python.org/downloads/)
@@ -54,13 +54,13 @@ Runtime dependencies:
 Build dependencies:
 
 - [Core](#core)
-- [Multiboot](https://www.gnu.org/software/grub/manual/multiboot/) dev headers
-  - Ubuntu: `apt install multiboot`
+- [Multiboot](https://en.m.wikipedia.org/wiki/Multiboot_specification) dev headers
+  - Ubuntu: `$ apt install multiboot`
 
 If cross-compiling on a 64-bit host:
 
-- [libc](https://en.wikipedia.org/wiki/C_standard_library) x86-32 dev headers
-  - Ubuntu: `apt install gcc-multilib`
+- [libc](https://en.wikipedia.org/wiki/C_standard_library) 32-bit dev headers
+  - Ubuntu: `$ apt install gcc-multilib`
 
 Runtime dependencies:
 
@@ -107,7 +107,7 @@ Supported librarians:
 
 After installing or building the required [dependencies](#dependencies) for a given component, then run a supported [build tool](#build-tool) on the `all` build target.
 
-For example, to build and run the **native** executable on Linux:
+For example, to build and run the [native](#native) executable on Linux:
 
 ```
 interpreter/core/$ make all
@@ -115,7 +115,7 @@ interpreter/native/$ make all
 interpreter/native/$ ./karyon
 ```
 
-For example, to build and run (under a VM) the **x86-32** executable on Linux:
+For example, to build and run (under a VM) the [x86-32](#x86-32) executable on Linux:
 
 ```
 interpreter/core/$ make all
@@ -127,7 +127,7 @@ interpreter/x86-32/$ ./vm.sh karyon-x86-32
 
 To continuously and automatically build on source code changes and get immediate feedback, use the `dev` build target. It uses [watchexec](https://github.com/watchexec/watchexec) to monitor changes, and builds the `all` build target.
 
-For example, to do development on and build the **native** executable on Linux using GCC, start with watching the core build:
+For example, to do development on and build the [native](#native) executable on Linux using GCC, start with watching the core build:
 
 ```
 interpreter/core/$ make dev CCNAME=gcc
