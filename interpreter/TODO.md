@@ -38,20 +38,6 @@ Lisp interpreters:
   - http://wiki.call-cc.org/man/4/Embedding
   - https://wiki.call-cc.org/man/4/Cross%20development
 
-JavaScript interpreters:
-
-- QuickJS, embeddable JavaScript: https://bellard.org/quickjs/
-- Duktape, embeddable JavaScript: https://duktape.org/
-
-# Cleanups
-
-- Error handling:
-  - Check uses of K_LOG_LEVEL_ERROR and whether it should be made an Err for proper logging elsewhere.
-  - Make Err be the last param always for consistency.
-  - Check places where it assumed K_LOG_LEVEL_ERROR was stopping the system.
-  - Verify all uses of Err (where it's missing, where it's not needed, etc).
-  - Show line context in error messages?
-
 # Implementation
 
 - **Make a shell/REPL so that I can start using it ASAP, for early use and testing.** Phases:
@@ -59,6 +45,8 @@ JavaScript interpreters:
   - Integrate with readline.
   - Syntax highlighting. (Language Server Protocol? https://langserver.org/)
   - Translate AST to a backend that writes JavaScript (browser and node?) and/or Lisp for a quicker first release? Can use an embedded interpreter to run it on spot (pico Lisp).
+    - Duktape, embeddable JavaScript: https://duktape.org/
+    - QuickJS, embeddable JavaScript: https://bellard.org/quickjs/
 
 # Testing
 

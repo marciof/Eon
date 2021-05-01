@@ -16,6 +16,7 @@
   - cleaner project root? create scripts/helpers folder?
   - Avoid abbreviations unless for acronyms or well understood longer words? Eg String, Error
   - lowercase source code files?
+  - Rename root folders? language/spec, stdlib, compiler
 
 ** TODO setup initial build and minimal testing/run CD/CI on GitHub Actions
 
@@ -47,6 +48,14 @@
 - via C library linking, `-lkaryon`
 
 ** TODO simplify error handling and use Maybe/Optional/Result types?
+
+Otherwise:
+
+- Check uses of K_LOG_LEVEL_ERROR and whether it should be made an Err for proper logging elsewhere.
+- Make Err be the last param always for consistency.
+- Check places where it assumed K_LOG_LEVEL_ERROR was stopping the system.
+- Verify all uses of Err (where it's missing, where it's not needed, etc).
+- Show line context in error messages?
 
 ** TODO CI benchmark/test performance w/regressions as failures
 
