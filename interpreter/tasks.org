@@ -11,6 +11,7 @@
 
 * TODO switch from CMake to Makefiles (potentially simpler, faster)
 
+- sign-up to interest mailing lists for dependencies? including OS, CI, etc, regularly test new versions, don't want to be blindsided and unprepared for things like Travis CI dropping free for OSS
 - https://github.com/keepassxreboot/keepassxc/wiki/Building-KeePassXC
 - auto-generated C file dependencies?
   - https://en.wikipedia.org/wiki/Makedepend
@@ -37,13 +38,13 @@
 
 * TODO setup initial build and minimal testing/run CD/CI on GitHub Actions
 
+- remove Travis CI config file 
 - fix failing Windows build (enable more MSVC CL warnings?) 
 - setup CI builds for both 32-bit and 64-bit hosts
 - add minimal functional tests? Cram CLI test framework, https://bitheap.org/cram/
 - which build matrix should use ASAN? debug and release builds? `ASAN_OPTIONS="detect_stack_use_after_return=1,print_stats=1"`
 - add support for Bochs and Qemu? easier for installation, for vm.sh, and screenshot? See https://pcem-emulator.co.uk
 - https://embeddedbits.org/how-is-the-linux-kernel-tested/
-- sign-up to interest mailing lists for dependencies? including OS, CI, etc, regularly test new versions
 
 * TODO add more linting that's missing
 
