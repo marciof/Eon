@@ -15,23 +15,9 @@ Testing:
   - https://gitlab.com/akihe/radamsa
 - scale testing (DoS on hashing, etc)
 
-Dependencies:
-
-# native
-# javascript
-- valgrind
-# vm.sh
-- grub-common # contains grub-mkrescue to build a bootable ISO
-- grub-pc-bin # PC/BIOS architecture version of GRUB (eg. non-UEFI)
-- mtools # symlinked from mformat, needed by grub-mkrescue
-- xorriso # create ISO files, needed by grub-mkrescue
-# VirtualBox
-
 Other notes:
 
 - tooling, https://nullprogram.com/blog/2020/01/21/
-- Option or tool to validate Coding Style guidelines.
-- Verify space/time complexity in the spec matches the implementation.
 - Prototyping:
   - "I Built a Lisp Compiler", https://news.ycombinator.com/item?id=19508616 (timmorgan.org)
   - "Lisp Shell", https://news.ycombinator.com/item?id=16878498, https://github.com/tonyg/racket-something

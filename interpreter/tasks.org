@@ -12,7 +12,7 @@
 * TODO switch from CMake to Makefiles (potentially simpler, faster)
 
 - https://github.com/keepassxreboot/keepassxc/wiki/Building-KeePassXC
-- auto-generate dependencies?
+- auto-generated C file dependencies?
   - https://en.wikipedia.org/wiki/Makedepend
   - https://ccache.dev/
   - https://github.com/mozilla/sccache
@@ -20,6 +20,14 @@
 - explain the various `CFLAGS_GCC_*` variables, as well as `CFLAGS_ASAN`
 - explain `Makefile.config` and compiler specific ones
 - don't forget to remove CMakeLists files
+- x86-32 dependencies:
+  - valgrind
+  - for vm.sh:
+    - grub-common # contains grub-mkrescue to build a bootable ISO
+    - grub-pc-bin # PC/BIOS architecture version of GRUB (eg. non-UEFI)
+    - mtools # symlinked from mformat, needed by grub-mkrescue
+    - xorriso # create ISO files, needed by grub-mkrescue
+    - VirtualBox
 - other build cleanups:
   - ensure good source code documentation right from the start (eg. core, native, etc)
   - cleaner project root? create scripts/helpers folder?
@@ -44,6 +52,7 @@
 * TODO coding style conventions
 
 - auto code formatter for consistency, add to dev-cycle
+- validate/enforce coding style is being followed
 - shfmt? https://github.com/mvdan/sh
 - for Python? https://black.readthedocs.io/
 
@@ -130,6 +139,7 @@ Otherwise:
 
 * TODO build documentation
 
+- analyze and document big O time and space complexity
 - Doxygen? Too big? 
 - check places for missing documentation (eg. `k_Token_parse` should say it's iterative)
 - validate link rot (in documentation as well as comments?)
