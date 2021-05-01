@@ -1,0 +1,39 @@
+* TODO rename?
+
+- to i386 (and x86-64 to amd64) like Debian?
+- more correct?
+
+* TODO fix static linking
+
+- need `-rdynamic` when linking to allow getting backtraces from within?
+- why can't the final executable static link against the core library?
+- https://stackoverflow.com/questions/6578484/telling-gcc-directly-to-link-a-library-statically
+- https://stackoverflow.com/questions/47614835/how-to-compile-static-lib-library-for-windows-in-linux-or-macos
+
+* TODO how to have proper documentation comments in NASM Assembly source code? Built it too
+
+* TODO remove direct references to globals/singletons
+
+- make `Text` not directly reference the global `Gfx` memory map?
+- pass Multiboot variables to `main` instead of using globals
+- avoid these repeated calls to `*_get()`
+
+* TODO use mimalloc memory allocation library?
+
+- https://github.com/microsoft/mimalloc
+
+* TODO upgrade to Multiboot 2? UEFI?
+
+- Coreboot? https://puri.sm/projects/coreboot/
+- keep supporting Multiboot 1?
+- support EFI/UEFI?
+
+* TODO add support for x86-64
+
+- ASFLAGS += -f elf64
+- CCFLAGS += -m64
+- LINKFLAGS += -m elf_x86_64
+
+* TODO implement shutdown (it currently halts -- use it for debugging?)
+
+* TODO timestamp logging

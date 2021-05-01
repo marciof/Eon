@@ -1,9 +1,4 @@
-Arbitrary precision arithmetic:
-
-- GMP, https://gmplib.org/
-- LibBF, https://bellard.org/libbf/
-
-# Testing
+Testing:
 
 - profiling
   - Evaluation of CPU profiling tools: gperftools, Valgrind and gprof, https://news.ycombinator.com/item?id=21480984

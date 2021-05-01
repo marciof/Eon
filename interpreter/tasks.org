@@ -1,6 +1,4 @@
-* interpreter
-
-** TODO shell/REPL, release EARLY, release OFTEN
+* TODO shell/REPL, release EARLY, release OFTEN
 
 - priority is to make a shell/REPL so that I can start using it ASAP, for early use and testing.
 - Unix tools philosophy for the interpreter? Command line options for each stage for textual output (easier to debug and integrate with other external tools without code linking?): stream tokens from input one per line, then parser, etc.
@@ -11,7 +9,7 @@
   - Duktape, embeddable JavaScript: https://duktape.org/
   - QuickJS, embeddable JavaScript: https://bellard.org/quickjs/
 
-** TODO switch from CMake to Makefiles (potentially simpler, faster)
+* TODO switch from CMake to Makefiles (potentially simpler, faster)
 
 - https://github.com/keepassxreboot/keepassxc/wiki/Building-KeePassXC
 - auto-generate dependencies?
@@ -29,7 +27,7 @@
   - lowercase source code files?
   - Rename root folders? language/spec, stdlib, compiler (or interpreter? shell? this word works well in both the terminal or command line sense, as well as the shell for building a GUI/UI, and doesn't dictate whether it's compiled or interpreted)
 
-** TODO setup initial build and minimal testing/run CD/CI on GitHub Actions
+* TODO setup initial build and minimal testing/run CD/CI on GitHub Actions
 
 - fix failing Windows build (enable more MSVC CL warnings?) 
 - setup CI builds for both 32-bit and 64-bit hosts
@@ -39,26 +37,26 @@
 - https://embeddedbits.org/how-is-the-linux-kernel-tested/
 - sign-up to interest mailing lists for dependencies? including OS, CI, etc, regularly test new versions
 
-** TODO add more linting that's missing
+* TODO add more linting that's missing
 
 - GitHub Super Linter, https://news.ycombinator.com/item?id=23563823
 
-** TODO coding style conventions
+* TODO coding style conventions
 
 - auto code formatter for consistency, add to dev-cycle
 - shfmt? https://github.com/mvdan/sh
 - for Python? https://black.readthedocs.io/
 
-** TODO merge Javascript builds into native and core
+* TODO merge Javascript builds into native and core
 
-** TODO always append '\0' to Str instances?
+* TODO always append '\0' to Str instances?
 
-** TODO decouple interpreter modules from each other?
+* TODO decouple interpreter modules from each other?
 
 - via C includes, `#include <karyon/core/Log.h>`
 - via C library linking, `-lkaryon`
 
-** TODO simplify error handling and use Maybe/Optional/Result types?
+* TODO simplify error handling and use Maybe/Optional/Result types?
 
 Otherwise:
 
@@ -68,7 +66,7 @@ Otherwise:
 - Verify all uses of Err (where it's missing, where it's not needed, etc).
 - Show line context in error messages?
 
-** TODO CI benchmark/test performance w/regressions as failures
+* TODO CI benchmark/test performance w/regressions as failures
 
 - how to measure and track memory usage as well, to avoid bloat? 
 - https://github.com/ggreer/the_silver_searcher#how-is-it-so-fast
@@ -82,11 +80,11 @@ Otherwise:
   - https://danluu.com/keyboard-latency/
   - https://danluu.com/term-latency/
 
-** TODO CI binary bloat profiler w/regressions as failures
+* TODO CI binary bloat profiler w/regressions as failures
 
 - https://github.com/google/bloaty
 
-** TODO minimal bootstrapping seed size
+* TODO minimal bootstrapping seed size
 
 - Guix Further Reduces Bootstrap Seed to 25%, https://news.ycombinator.com/item?id=23526916
 - https://guix.gnu.org/blog/2020/guix-further-reduces-bootstrap-seed-to-25/
@@ -94,7 +92,7 @@ Otherwise:
 - https://bootstrappable.org
 - How to audit dependencies?
 
-** TODO add check for non-executable stacks
+* TODO add check for non-executable stacks
 
 - https://unix.stackexchange.com/questions/66802/disable-stack-protection-on-ubuntu-for-buffer-overflow-without-c-compiler-flags
 - also verify library if needed
@@ -106,13 +104,13 @@ Otherwise:
   - https://www.airs.com/blog/archives/518
   - https://www.win.tue.nl/~aeb/linux/hh/protection.html
 
-** TODO use other sanitizers too? eg. LeakSanitizer, UndefinedBehaviorSanitizer
+* TODO use other sanitizers too? eg. LeakSanitizer, UndefinedBehaviorSanitizer
 
 - https://github.com/google/sanitizers
 - https://clang.llvm.org/docs/UndefinedBehaviorSanitizer.html
 - https://github.com/google/sanitizers/wiki/AddressSanitizerLeakSanitizer
 
-** TODO enable static code analyzers
+* TODO enable (more?) static code analyzers
 
 - https://developers.redhat.com/blog/2020/03/26/static-analysis-in-gcc-10/
   - "-fanalyzer option in gcc-10", https://news.ycombinator.com/item?id=23103642
@@ -130,7 +128,7 @@ Otherwise:
 - https://yetanotherchris.dev/clean-code/gestalt-principles/
 - https://semgrep.dev/
 
-** TODO build documentation
+* TODO build documentation
 
 - Doxygen? Too big? 
 - check places for missing documentation (eg. `k_Token_parse` should say it's iterative)
@@ -144,63 +142,26 @@ Otherwise:
 - add code review guidelines? more general than that?
   - eg. "we'll never need more than X of Y"
 
-** TODO make the system more resilient
+* TODO make the system more resilient
 
 - warn more instead of aborting
 - handle (ignore?) errors during logging
 - magnetic amplifier, https://news.ycombinator.com/item?id=23548891
 
-** TODO allow custom memory allocators?
+* TODO allow custom memory allocators?
 
 - to not dictate how it's to be used
 - https://ziglang.org/documentation/master/#Choosing-an-Allocator
 
-** TODO reproducible builds?
+* TODO reproducible builds?
 
 - https://reproducible-builds.org
 - https://signal.org/blog/reproducible-android/
 - https://savannah.nongnu.org/projects/stage0
 
-** TODO logging of long integers (eg. 64-bit Multiboot mem region addr/len)
+* TODO logging of long integers? (eg. 64-bit Multiboot mem region addr/len)
 
-* x86-32
+* TODO arbitrate precision arithmetic
 
-** TODO rename?
-
-- to i386 (and x86-64 to amd64) like Debian?
-- more correct?
-
-** TODO fix static linking
-
-- need `-rdynamic` when linking to allow getting backtraces from within?
-- why can't the final executable static link against the core library?
-- https://stackoverflow.com/questions/6578484/telling-gcc-directly-to-link-a-library-statically
-- https://stackoverflow.com/questions/47614835/how-to-compile-static-lib-library-for-windows-in-linux-or-macos
-
-** TODO how to have proper documentation comments in NASM Assembly source code? Built it too
-
-** TODO remove direct references to globals/singletons
-
-- make `Text` not directly reference the global `Gfx` memory map?
-- pass Multiboot variables to `main` instead of using globals
-- avoid these repeated calls to `*_get()`
-
-** TODO use mimalloc memory allocation library?
-
-- https://github.com/microsoft/mimalloc
-
-** TODO upgrade to Multiboot 2? UEFI?
-
-- Coreboot? https://puri.sm/projects/coreboot/
-- keep supporting Multiboot 1?
-- support EFI/UEFI?
-
-** TODO add support for x86-64
-
-- ASFLAGS += -f elf64
-- CCFLAGS += -m64
-- LINKFLAGS += -m elf_x86_64
-
-** TODO implement shutdown (it currently halts -- use it for debugging?)
-
-** TODO timestamp logging
+- https://bellard.org/libbf/
+- https://gmplib.org/
