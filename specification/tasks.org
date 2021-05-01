@@ -1,6 +1,5 @@
 * TODO fix site redirect
 
-- Tildes site implementation, https://docs.tildes.net/philosophy/site-implementation
 - https://hstspreload.org/
 - https://www.ssllabs.com/ssltest/
 - https://dnssec-name-and-shame.com/
@@ -29,13 +28,19 @@
   - https://github.com/denoland/deno/pull/671
   - https://github.com/ulid/spec#prior-art
 - in examples, should the resulting output of each expression be `repr`-like?
-- https://github.com/keepassxreboot/keepassxc/wiki/Building-KeePassXC
 - Function sub headings? Examples and conditions per section
 - Language code snippet example right on the front page
 - Runnable examples, eg. https://doc.rust-lang.org/book/
 - start a changelog? (and do releases?) https://keepachangelog.com/en/1.0.0/
 - avoid too many abbreviations
 - ensure: simplicity, clarity, and frugality
+- Philosophy from Tildes fellow
+
+"Use modern versions of simple, reliable, "boring" technology
+
+There should need to be an extremely compelling reason to use a new or less-known technology to implement something if it could also be done with one of the reliable ones already being used.
+
+This will, also, make it easier for people to understand and contribute to the open-source code when there are fewer pieces involved and the ones being used are generally well-known and well-documented."
 
 * TODO attempt to unify data types?
 

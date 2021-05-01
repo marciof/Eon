@@ -2,6 +2,7 @@
 
 ** TODO switch from CMake to Makefiles (potentially simpler, faster)
 
+- https://github.com/keepassxreboot/keepassxc/wiki/Building-KeePassXC
 - auto-generate dependencies?
   - https://en.wikipedia.org/wiki/Makedepend
   - https://ccache.dev/
@@ -24,7 +25,7 @@
 - which build matrix should use ASAN? debug and release builds? `ASAN_OPTIONS="detect_stack_use_after_return=1,print_stats=1"`
 - add support for Bochs and Qemu? easier for installation, for vm.sh, and screenshot? See https://pcem-emulator.co.uk
 - https://embeddedbits.org/how-is-the-linux-kernel-tested/
-- sign-up to interest mailing lists for dependencies? including OS, CI, etc
+- sign-up to interest mailing lists for dependencies? including OS, CI, etc, regularly test new versions
 
 ** TODO add more linting that's missing
 
@@ -34,6 +35,7 @@
 
 - auto code formatter for consistency, add to dev-cycle
 - shfmt? https://github.com/mvdan/sh
+- for Python? https://black.readthedocs.io/
 
 ** TODO merge Javascript builds into native and core
 
@@ -48,6 +50,7 @@
 
 ** TODO CI benchmark/test performance w/regressions as failures
 
+- https://github.com/ggreer/the_silver_searcher#how-is-it-so-fast
 - https://github.com/trizen/language-benchmarks
 - https://github.com/sharkdp/hyperfine
 - https://github.com/Gabriel439/bench
@@ -107,6 +110,7 @@
 
 ** TODO build documentation
 
+- Doxygen? Too big? 
 - check places for missing documentation (eg. `k_Token_parse` should say it's iterative)
 - validate link rot (in documentation as well as comments?)
   - https://linkchecker.github.io/linkchecker/
@@ -126,6 +130,7 @@
 
 ** TODO allow custom memory allocators?
 
+- to not dictate how it's to be used
 - https://ziglang.org/documentation/master/#Choosing-an-Allocator
 
 ** TODO reproducible builds?
@@ -135,10 +140,6 @@
 - https://savannah.nongnu.org/projects/stage0
 
 ** TODO logging of long integers (eg. 64-bit Multiboot mem region addr/len)
-
-* native
-
-** TODO colored logging
 
 * x86-32
 
@@ -154,9 +155,7 @@
 - https://stackoverflow.com/questions/6578484/telling-gcc-directly-to-link-a-library-statically
 - https://stackoverflow.com/questions/47614835/how-to-compile-static-lib-library-for-windows-in-linux-or-macos
 
-** TODO how to have proper documentation comments in NASM Assembly source code?
-
-- also build documentation
+** TODO how to have proper documentation comments in NASM Assembly source code? Built it too
 
 ** TODO remove direct references to globals/singletons
 

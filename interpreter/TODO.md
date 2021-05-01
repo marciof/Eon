@@ -45,20 +45,12 @@ JavaScript interpreters:
 
 # Cleanups
 
-- x86 VGA log: warn when clock not available for timestamps
-
-- regularly test with new Cmake versions (subscribe to mailing list for announcements, just like for the other dependencies)
-
-- Doxygen?
 - Error handling:
   - Check uses of K_LOG_LEVEL_ERROR and whether it should be made an Err for proper logging elsewhere.
   - Make Err be the last param always for consistency.
   - Check places where it assumed K_LOG_LEVEL_ERROR was stopping the system.
   - Verify all uses of Err (where it's missing, where it's not needed, etc).
-- JS uses the same native code, since it's just a backend for code generation, just like a real-time interpreter is another backend. So don't merge it into native to allow an embedded systems to just pick core+native, but merge JS-independent parts into core.
-  - Start moving core stuff (eg. AST) from javascript/ to core/
   - Show line context in error messages?
-  - Move non-essentials out of core/
 
 # Implementation
 
@@ -84,23 +76,6 @@ JavaScript interpreters:
   - http://lcamtuf.coredump.cx/afl/
   - https://gitlab.com/akihe/radamsa
 - scale testing (DoS on hashing, etc)
-
----
-
-Shortcat app
-
-Click with the keyboard
-
-Shortcat is a unique application that enables you to click without using the mouse! Shortcat is particularly suited to fast typists.
-
-You simply activate Shortcat with a keyboard shortcut, type a few letters that match the UI element you want to click on, and Shortcat will search the current active window (and menu bar) for matching elements.
-
-Simply hit 'Return' to click on the desired element!
-Works with most apps
-
-Shortcat leverages the Accessibility API, which is supported by all applications that come with Mac OS X and most applications!
-
-Finder, Safari, Xcode, Textual, Skype, Calendar and more are supported. Shortcat is constantly being updated to work better with more applications!
 
 ---
 
