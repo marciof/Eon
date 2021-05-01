@@ -1,32 +1,7 @@
-# Ideas
-
-- Quick and easy interactivity like GNU Octave (ie. Matlab).
-- Able to run over SSH efficiently like X11?
-- Print type after each value in the REPL like Elm? eg. `5 : number`
-- Unix tools philosophy for the interpreter? Command line options for each stage for textual output (easier to debug and integrate with other external tools without code linking?): stream tokens from input one per line, then parser, etc
-
-# Resources
-
-Memory management:
-
-- malloc minimal implementation: https://github.com/microsoft/mimalloc
-
 Arbitrary precision arithmetic:
 
 - GMP, https://gmplib.org/
 - LibBF, https://bellard.org/libbf/
-- JavaScript BigInt, https://github.com/tc39/proposal-bigint
-
-Lisp interpreters:
-
-- Make-A-Lisp, https://github.com/kanaka/mal/blob/master/process/guide.md
-- Kilo LISP, http://t3x.org/klisp/index.html
-- femtolisp, https://github.com/JeffBezanson/femtolisp
-- MicroScheme, https://ryansuchocki.github.io/microscheme/
-- Gambit Scheme, http://gambitscheme.org/wiki/index.php/Main_Page
-- Chicken Scheme, http://call-cc.org/
-  - http://wiki.call-cc.org/man/4/Embedding
-  - https://wiki.call-cc.org/man/4/Cross%20development
 
 # Testing
 

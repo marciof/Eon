@@ -3,10 +3,11 @@
 ** TODO shell/REPL, release EARLY, release OFTEN
 
 - priority is to make a shell/REPL so that I can start using it ASAP, for early use and testing.
-- Just echo back each line from stdin in a robust way.
-- Integrate with lib readline.
-- Syntax highlighting. (Language Server Protocol? https://langserver.org/)
-- Translate AST to a backend that writes JavaScript (browser and node?) and/or Lisp for a quicker first release? Can use an embedded interpreter to run it on spot (pico Lisp).
+- Unix tools philosophy for the interpreter? Command line options for each stage for textual output (easier to debug and integrate with other external tools without code linking?): stream tokens from input one per line, then parser, etc.
+  - Just echo back each line from stdin in a robust way.
+  - Integrate with lib readline.
+  - Syntax highlighting. (Language Server Protocol? https://langserver.org/)
+  - Translate AST to a backend that writes JavaScript (browser and node?) and/or Lisp for a quicker first release? Can use an embedded interpreter to run it on spot (pico Lisp).
   - Duktape, embeddable JavaScript: https://duktape.org/
   - QuickJS, embeddable JavaScript: https://bellard.org/quickjs/
 
@@ -91,6 +92,7 @@ Otherwise:
 - https://guix.gnu.org/blog/2020/guix-further-reduces-bootstrap-seed-to-25/
 - https://savannah.nongnu.org/projects/stage0
 - https://bootstrappable.org
+- How to audit dependencies?
 
 ** TODO add check for non-executable stacks
 
@@ -182,6 +184,10 @@ Otherwise:
 - make `Text` not directly reference the global `Gfx` memory map?
 - pass Multiboot variables to `main` instead of using globals
 - avoid these repeated calls to `*_get()`
+
+** TODO use mimalloc memory allocation library?
+
+- https://github.com/microsoft/mimalloc
 
 ** TODO upgrade to Multiboot 2? UEFI?
 
