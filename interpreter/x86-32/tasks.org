@@ -18,9 +18,10 @@
 - pass Multiboot variables to `main` instead of using globals
 - avoid these repeated calls to `*_get()`
 
-* TODO use mimalloc memory allocation library?
+* TODO use external memory allocation library?
 
-- https://github.com/microsoft/mimalloc
+- general purpose, compact, performant, https://github.com/microsoft/mimalloc
+- security focused, https://github.com/GrapheneOS/hardened_malloc/blob/main/README.md
 
 * TODO upgrade to Multiboot 2? UEFI?
 

@@ -161,7 +161,11 @@ Otherwise:
 
 * TODO logging of long integers? (eg. 64-bit Multiboot mem region addr/len)
 
-* TODO arbitrate precision arithmetic
+* TODO arbitrary precision arithmetic
 
 - https://bellard.org/libbf/
 - https://gmplib.org/
+
+* TODO SSL/TLS protocol
+
+- https://bearssl.org/

@@ -15,13 +15,8 @@ Testing:
   - https://gitlab.com/akihe/radamsa
 - scale testing (DoS on hashing, etc)
 
----
+Dependencies:
 
-- https://github.com/GrapheneOS/hardened_malloc/blob/master/README.md
-- malloc once for Str and other types
-- https://danluu.com/input-lag/
-- https://www.bearssl.org
-- Travis CI make each interpreter sub-project a separate build
 # native
 # javascript
 - valgrind
@@ -31,6 +26,8 @@ Testing:
 - mtools # symlinked from mformat, needed by grub-mkrescue
 - xorriso # create ISO files, needed by grub-mkrescue
 # VirtualBox
+
+Other notes:
 
 - tooling, https://nullprogram.com/blog/2020/01/21/
 - Option or tool to validate Coding Style guidelines.
@@ -55,32 +52,3 @@ Testing:
     - libreadline
     - GNU MP / MPFR
   - Finally integrate with the "core" hooks so that it works with any host layer available.
-
-# Inspiration
-
-# IDE
-
-- Automatic completion (no keys needed to trigger)
-- Spell-check
-- Detects wrong commands proactively and prevents execution (underline like spell check).
-
-## Unix shell
-
-- POSIX compatibility
-- Editing mode (readline compatibility): vi, Emacs; line/readline editing/moving keyboard shortcuts: line feed ctrl-j, backspace ctrl-h, tab
-- Special variables: $PATH, $HOME, $USER
-- Find where: command -v, which, whereis, whence
-- Job control, `fg`, `bg`, `jobs`, `nice`, `&`, including keyboard shortcuts: ctrl-z
-- Prompt: customizable, special escape sequence support
-- Color support
-- getopt compatibility
-- Tilde notation, including home directory (eg. ~bob, ~bob/some-file, ~/my-file
-- Wildcard expansion/globbing
-- Brace expansion (maybe?), including ranges
-- Unix IO: arbitrarily long byte sequences, everything is a file
-- Standard IO: input, output, error
-- Pipelines, including named pipes
-- IO redirection, including using any command as a file eg. `wc -o <(head file)`
-- Online help system
-- Command history (shared? separate?)
-- Completion: commands, variables, user names, host names, file names, directories
