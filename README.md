@@ -57,7 +57,7 @@ Build dependencies:
 - [Core](#core)
 - [compiler](#compiler)
 - [assembler](#assembler)
-- [Multiboot](https://en.m.wikipedia.org/wiki/Multiboot_specification) dev headers
+- [Multiboot](https://www.gnu.org/software/grub/manual/multiboot/) dev headers
   - Ubuntu: `$ apt install multiboot`
 
 If cross-compiling on a 64-bit host:

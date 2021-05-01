@@ -34,12 +34,11 @@
 - start a changelog? (and do releases?) https://keepachangelog.com/en/1.0.0/
 - avoid too many abbreviations
 - ensure: simplicity, clarity, and frugality
-- Philosophy from Tildes fellow
+
+Philosophy from Tildes:
 
 "Use modern versions of simple, reliable, "boring" technology
-
 There should need to be an extremely compelling reason to use a new or less-known technology to implement something if it could also be done with one of the reliable ones already being used.
-
 This will, also, make it easier for people to understand and contribute to the open-source code when there are fewer pieces involved and the ones being used are generally well-known and well-documented."
 
 * TODO attempt to unify data types?
