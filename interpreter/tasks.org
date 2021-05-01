@@ -1,5 +1,15 @@
 * interpreter
 
+** TODO shell/REPL, release EARLY, release OFTEN
+
+- priority is to make a shell/REPL so that I can start using it ASAP, for early use and testing.
+- Just echo back each line from stdin in a robust way.
+- Integrate with lib readline.
+- Syntax highlighting. (Language Server Protocol? https://langserver.org/)
+- Translate AST to a backend that writes JavaScript (browser and node?) and/or Lisp for a quicker first release? Can use an embedded interpreter to run it on spot (pico Lisp).
+  - Duktape, embeddable JavaScript: https://duktape.org/
+  - QuickJS, embeddable JavaScript: https://bellard.org/quickjs/
+
 ** TODO switch from CMake to Makefiles (potentially simpler, faster)
 
 - https://github.com/keepassxreboot/keepassxc/wiki/Building-KeePassXC
@@ -16,7 +26,7 @@
   - cleaner project root? create scripts/helpers folder?
   - Avoid abbreviations unless for acronyms or well understood longer words? Eg String, Error
   - lowercase source code files?
-  - Rename root folders? language/spec, stdlib, compiler
+  - Rename root folders? language/spec, stdlib, compiler (or interpreter? shell? this word works well in both the terminal or command line sense, as well as the shell for building a GUI/UI, and doesn't dictate whether it's compiled or interpreted)
 
 ** TODO setup initial build and minimal testing/run CD/CI on GitHub Actions
 
@@ -59,6 +69,7 @@ Otherwise:
 
 ** TODO CI benchmark/test performance w/regressions as failures
 
+- how to measure and track memory usage as well, to avoid bloat? 
 - https://github.com/ggreer/the_silver_searcher#how-is-it-so-fast
 - https://github.com/trizen/language-benchmarks
 - https://github.com/sharkdp/hyperfine

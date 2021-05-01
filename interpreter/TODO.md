@@ -17,16 +17,6 @@ Arbitrary precision arithmetic:
 - LibBF, https://bellard.org/libbf/
 - JavaScript BigInt, https://github.com/tc39/proposal-bigint
 
-Immutable data structures:
-
-- https://github.com/immerjs/immer (JavaScript)
-- https://github.com/rtfeldman/seamless-immutable (JavaScript)
-- https://github.com/slburson/fset (Common Lisp)
-
-Compilation:
-
-- LibJIT, https://www.gnu.org/software/libjit/
-
 Lisp interpreters:
 
 - Make-A-Lisp, https://github.com/kanaka/mal/blob/master/process/guide.md
@@ -37,16 +27,6 @@ Lisp interpreters:
 - Chicken Scheme, http://call-cc.org/
   - http://wiki.call-cc.org/man/4/Embedding
   - https://wiki.call-cc.org/man/4/Cross%20development
-
-# Implementation
-
-- **Make a shell/REPL so that I can start using it ASAP, for early use and testing.** Phases:
-  - Just echo back each line from stdin in a robust way.
-  - Integrate with readline.
-  - Syntax highlighting. (Language Server Protocol? https://langserver.org/)
-  - Translate AST to a backend that writes JavaScript (browser and node?) and/or Lisp for a quicker first release? Can use an embedded interpreter to run it on spot (pico Lisp).
-    - Duktape, embeddable JavaScript: https://duktape.org/
-    - QuickJS, embeddable JavaScript: https://bellard.org/quickjs/
 
 # Testing
 
@@ -134,8 +114,3 @@ Lisp interpreters:
 - Online help system
 - Command history (shared? separate?)
 - Completion: commands, variables, user names, host names, file names, directories
-
----
-
-500 Byte Images: The Haiku Vector Icon Format
-http://blog.leahhanson.us/post/recursecenter2016/haiku_icons.html
