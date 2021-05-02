@@ -1,6 +1,7 @@
 * TODO shell/REPL, release EARLY, release OFTEN
 
 - priority is to make a shell/REPL so that I can start using it ASAP, for early use and testing.
+- code reuse is also very important, don't reinvent the wheel, https://sourceware.org/libffi/
 - Unix tools philosophy for the interpreter? Command line options for each stage for textual output (easier to debug and integrate with other external tools without code linking?): stream tokens from input one per line, then parser, etc.
   - Just echo back each line from stdin in a robust way.
   - Integrate with lib readline.
@@ -75,6 +76,7 @@ Otherwise:
 - Check places where it assumed K_LOG_LEVEL_ERROR was stopping the system.
 - Verify all uses of Err (where it's missing, where it's not needed, etc).
 - Show line context in error messages?
+- Consider libunwind? http://www.nongnu.org/libunwind/
 
 * TODO CI benchmark/test performance w/regressions as failures
 
@@ -83,6 +85,11 @@ Otherwise:
 - https://github.com/trizen/language-benchmarks
 - https://github.com/sharkdp/hyperfine
 - https://github.com/Gabriel439/bench
+- profiler:
+  - Evaluation of CPU profiling tools: gperftools, Valgrind and gprof
+    - https://gernotklingler.com/blog/gprof-valgrind-gperftools-evaluation-tools-application-level-cpu-profiling-linux/
+    - https://news.ycombinator.com/item?id=21480984
+  - flamegraphs, http://www.brendangregg.com/flamegraphs.html
 - latency
   - https://pavelfatin.com/typing-with-pleasure/
   - https://thume.ca/2020/05/20/making-a-latency-tester/
@@ -114,11 +121,22 @@ Otherwise:
   - https://www.airs.com/blog/archives/518
   - https://www.win.tue.nl/~aeb/linux/hh/protection.html
 
-* TODO use other sanitizers too? eg. LeakSanitizer, UndefinedBehaviorSanitizer
+* TODO use other analyzers/sanitizers too? eg. LeakSanitizer, UndefinedBehaviorSanitizer
 
 - https://github.com/google/sanitizers
 - https://clang.llvm.org/docs/UndefinedBehaviorSanitizer.html
-- https://github.com/google/sanitizers/wiki/AddressSanitizerLeakSanitizer
+- memory leaks?
+  - https://github.com/google/sanitizers/wiki/AddressSanitizerLeakSanitizer
+  - Valgrind? Will it conflict or overlap in functionality with other ones? 
+
+* TODO test memory allocations
+
+- handle out of memory, https://github.com/andrewrk/malcheck
+
+* TODO fuzzer/fuzzy testing
+
+- http://lcamtuf.coredump.cx/afl/
+- https://gitlab.com/akihe/radamsa
 
 * TODO enable (more?) static code analyzers
 

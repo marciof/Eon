@@ -1,24 +1,11 @@
-Testing:
-
-- profiling
-  - Evaluation of CPU profiling tools: gperftools, Valgrind and gprof, https://news.ycombinator.com/item?id=21480984
-  - flamegraphs, http://www.brendangregg.com/flamegraphs.html
 - unit tests
 - integration tests (Vagrant? Docker?)
 - Code coverage
-- Check style tool
-- Memory leaks
-  - Valgrind
-  - https://github.com/andrewrk/malcheck
-- Fuzzy testing
-  - http://lcamtuf.coredump.cx/afl/
-  - https://gitlab.com/akihe/radamsa
 - scale testing (DoS on hashing, etc)
-
-Other notes:
-
 - tooling, https://nullprogram.com/blog/2020/01/21/
-- Prototyping:
+
+Prototyping:
+
   - "I Built a Lisp Compiler", https://news.ycombinator.com/item?id=19508616 (timmorgan.org)
   - "Lisp Shell", https://news.ycombinator.com/item?id=16878498, https://github.com/tonyg/racket-something
   - "Crafting Interpreters", Bob Nystrom: http://craftinginterpreters.com
@@ -33,8 +20,4 @@ Other notes:
   - Add requirements one by one, even if with limitations (eg. no fully unlimited precision arithmetic at first): immutable collections, Unicode text, prototypical inheritance, first class scope, unlimited precision arithmetic, homoiconic, unevaluated arguments.
   - When done with JavaScript backend, start translating to PicoLisp (or even ECL, Common Lisp, Clojure) since it can be embedded (verify first), and reuse the tests written previously.
   - Skip translation and interpret directly. Look to PicoLisp for inspiration. Maybe still leave translation in as an option, especially if to JavaScript since that also makes the browser another possible host and can be useful (lower barrier to entry and also ability to use a single language full-stack).
-    - http://www.nongnu.org/libunwind/
-    - https://sourceware.org/libffi/
-    - libreadline
-    - GNU MP / MPFR
   - Finally integrate with the "core" hooks so that it works with any host layer available.
