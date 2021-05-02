@@ -8,7 +8,7 @@ It includes a well-defined specification, a platform-agnostic implementation cor
 
 Source code layout:
 
-- `specification/`: Language specification.
+- `language/`: Language specification.
 - `stdlib/`: Standard library for the interpreter.
 - `tools/`: Helper scripts for building and testing.
 - `interpreter/`: Implementation of the language specification. Components:
