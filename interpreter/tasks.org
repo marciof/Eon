@@ -1,18 +1,23 @@
 * TODO shell/REPL, release EARLY, release OFTEN
 
 - priority is to make a shell/REPL so that I can start using it ASAP, for early use and testing.
-- code reuse is also very important, don't reinvent the wheel, https://sourceware.org/libffi/
+- code reuse is also very important, don't reinvent the wheel (but weigh it against the Bootstrapping seed goal)
+  - https://sourceware.org/libffi/
   - make the Core log more familiar like printf?
   - use a string library instead of own Str?
-- Unix tools philosophy for the interpreter? Command line options for each stage for textual output (easier to debug and integrate with other external tools without code linking?): stream tokens from input one per line, then parser, etc.
-  - Just echo back each line from stdin in a robust way.
-  - Integrate with lib readline.
-  - Syntax highlighting. (Language Server Protocol? https://langserver.org/)
-  - Translate AST to a backend that writes JavaScript (browser and node?) and/or Lisp for a quicker first release? Can use an embedded interpreter to run it on spot (pico Lisp).
+- Unix tools philosophy for the interpreter?
+  - Command line options for each stage for textual output (easier to debug and integrate with other external tools without code linking?): pipeline -- stream tokens from input one per line, then parser, etc. 
+  - Start with echoing back each line from stdin in a robust way.
+  - Syntax highlighting. Language Server Protocol? https://langserver.org/
   - Duktape, embeddable JavaScript: https://duktape.org/
   - QuickJS, embeddable JavaScript: https://bellard.org/quickjs/
 
-* TODO switch from CMake to Makefiles (potentially simpler, faster)
+* TODO add additional goals doc for the interpreter?
+
+- mostly similar to the Lang spec goals
+- add specific goals, such as: keep Bootstrapping seed small, encourage reuse to avoid reinventing the wheel, reproducible builds, etc
+
+* TODO switch from CMake to Makefiles (potentially simpler, smaller Bootstrapping seed, faster)
 
 - sign-up to interest mailing lists for dependencies? including OS, CI, etc, regularly test new versions, don't want to be blindsided and unprepared for things like Travis CI dropping free for OSS
 - https://github.com/keepassxreboot/keepassxc/wiki/Building-KeePassXC
@@ -148,7 +153,7 @@ Otherwise:
   - "-fanalyzer option in gcc-10", https://news.ycombinator.com/item?id=23103642
 - MSVC SAL https://docs.microsoft.com/cpp/code-quality/understanding-sal
 - MSVC CL https://docs.microsoft.com/cpp/build/reference/analyze-code-analysis
-- https://github.com/returntocorp/semgrep
+- https://github.com/returntocorp/semgrep (add spellcheck check) 
 - https://clang.llvm.org/extra/clang-tidy/
 - Cyclomatic complexity
 - https://scan.coverity.com

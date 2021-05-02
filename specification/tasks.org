@@ -16,6 +16,7 @@
 
 * TODO improve documentation
 
+- add guideline on avoiding abbreviations, acronyms ok
 - how do number keys and keyword parameters work in function lists? Do keywords alias number keys? 
 - change the digit group delimiter to `'`? It's not ambiguous, it's also an accepted delimiter, and doesn't clash with commas if used for pipes 
 - specify indentation coding conventions
