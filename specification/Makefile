@@ -8,4 +8,4 @@ all: lint-documentation
 # TODO validate CommonMark documents
 # TODO avoid duplicate work linting links (eg. documents at root)
 lint-documentation: language.md
-	$(PYTHON) ../lint-commonmark-links.py $?
+	$(PYTHON) ../tools/lint-commonmark-links.py $?

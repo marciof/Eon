@@ -39,7 +39,6 @@
     - VirtualBox
 - other build cleanups:
   - ensure good source code documentation right from the start (eg. core, native, etc)
-  - cleaner project root? create scripts/helpers folder?
   - Avoid abbreviations unless for acronyms or well understood longer words? Eg String, Error
   - lowercase source code files?
   - Rename root folders? language/spec, stdlib, compiler (or interpreter? shell? this word works well in both the terminal or command line sense, as well as the shell for building a GUI/UI, and doesn't dictate whether it's compiled or interpreted)
