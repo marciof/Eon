@@ -43,7 +43,7 @@
 
 # Introduction
 
-A free/libre open source (FLOSS) programming language for interactive use, scripting, and building small to large programs, that aims to be simple, powerful, and practical.
+Karyon is a free/libre open source (FLOSS) programming language for interactive use, scripting, and building small to large programs, that aims to be simple, powerful, and practical.
 
 ## Goals
 
@@ -82,6 +82,8 @@ Practical:
 - Standard tooling: single-style source code formatter/linter, testing framework, profiler, local/remote debugger, package manager, command-line documentation viewer.
 
 ## Inspiration
+
+Programming and scripting languages:
 
 - Lisp
 - Python
