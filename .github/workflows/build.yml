@@ -15,8 +15,7 @@ jobs:
         os: [ubuntu-latest, windows-latest, macos-latest]
     steps:
       - uses: actions/checkout@v2
-      - run: pip3 install -r tools/requirements.lint-commonmark-links.txt
-      - run: pip3 install -r tools/requirements.lint-sources-python.txt
+      - run: pip3 install -r tools/requirements.lint-commonmark-links.txt -r tools/requirements.lint-sources-python.txt
       - run: make all
       - run: make all
         working-directory: specification/

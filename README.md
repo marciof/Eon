@@ -8,12 +8,13 @@ It includes a well-defined specification, a platform-agnostic implementation cor
 
 Source code layout:
 
-- `interpreter/`: Implementation of the language specification. Components:
-  - `core/`: Builds an embeddable library with the host-independent core of the implementation and host-dependent hooks.
-  - `native/`: Builds an embeddable library and a standalone executable to run natively (eg. on Linux, Windows, or MacOS).
-  - `x86-32/`: Builds a Multiboot-compliant executable to run on an Intel x86 32-bit host.
-- `library/`: Standard library for the interpreter.
 - `specification/`: Language specification.
+- `stdlib/`: Standard library for the interpreter.
+- `tools/`: Helper scripts for building and testing.
+- `interpreter/`: Implementation of the language specification. Components:
+  - `core/`: Embeddable library with the host-independent core of the implementation and host-dependent hooks.
+  - `native/`: Embeddable library and standalone executable to run natively (eg. on a Linux, Windows, or MacOS host).
+  - `x86-32/`: Multiboot executable to run on an Intel x86 32-bit host.
 
 # Dependencies
 
