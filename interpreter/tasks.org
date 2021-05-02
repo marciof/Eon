@@ -2,6 +2,8 @@
 
 - priority is to make a shell/REPL so that I can start using it ASAP, for early use and testing.
 - code reuse is also very important, don't reinvent the wheel, https://sourceware.org/libffi/
+  - make the Core log more familiar like printf?
+  - use a string library instead of own Str?
 - Unix tools philosophy for the interpreter? Command line options for each stage for textual output (easier to debug and integrate with other external tools without code linking?): stream tokens from input one per line, then parser, etc.
   - Just echo back each line from stdin in a robust way.
   - Integrate with lib readline.
@@ -61,6 +63,8 @@
 * TODO merge Javascript builds into native and core
 
 * TODO always append '\0' to Str instances?
+
+- encapsulate implementation (check other data types too)
 
 * TODO decouple interpreter modules from each other?
 
