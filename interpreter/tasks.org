@@ -12,6 +12,10 @@
   - Syntax highlighting. Language Server Protocol? https://langserver.org/
   - Duktape, embeddable JavaScript: https://duktape.org/
   - QuickJS, embeddable JavaScript: https://bellard.org/quickjs/
+  - http://buildyourownlisp.com/
+  - https://github.com/kanaka/mal
+  - https://github.com/TinyCC/tinycc/blob/mob/tests/libtcc_test.c
+- tooling, https://nullprogram.com/blog/2020/01/21/
 
 * TODO add additional goals doc for the interpreter?
 
@@ -53,6 +57,9 @@
 - which build matrix should use ASAN? debug and release builds? `ASAN_OPTIONS="detect_stack_use_after_return=1,print_stats=1"`
 - add support for Bochs and Qemu? easier for installation, for vm.sh, and screenshot? See https://pcem-emulator.co.uk
 - https://embeddedbits.org/how-is-the-linux-kernel-tested/
+- code coverage
+- integration testing (Vagrant? Docker?) 
+- unit testing
 
 * TODO add more linting that's missing
 
@@ -62,6 +69,8 @@
 
 - auto code formatter for consistency, add to dev-cycle
 - validate/enforce coding style is being followed
+- https://www.gnu.org/software/indent/manual/indent.html
+- clang-format? 
 - shfmt? https://github.com/mvdan/sh
 - for Python? https://black.readthedocs.io/
 
@@ -89,7 +98,8 @@ Otherwise:
 
 * TODO CI benchmark/test performance w/regressions as failures
 
-- how to measure and track memory usage as well, to avoid bloat? 
+- how to measure and track memory usage as well, to avoid bloat?
+- scale testing (DoS on hashing, etc)
 - https://github.com/ggreer/the_silver_searcher#how-is-it-so-fast
 - https://github.com/trizen/language-benchmarks
 - https://github.com/sharkdp/hyperfine

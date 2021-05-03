@@ -168,6 +168,11 @@ This will, also, make it easier for people to understand and contribute to the o
 
 * TODO allow easy FFI for reuse and interoperability
 
+* TODO tabular lists? Data query language?
+
+- https://github.com/Tablam/TablaM/blob/master/text.tbm
+- only one way to query, https://github.com/Tablam/TablaM
+
 * TODO FEXPRs: "Special Forms in Lisp", https://www.nhplace.com/kent/Papers/Special-Forms.html
 
 - "On Fexprs and Defmacro"
@@ -224,6 +229,7 @@ This will, also, make it easier for people to understand and contribute to the o
 - OCaml
 - C
 - Tcl/Tk
+- TablaM
 - Common Lisp
 - JavaScript
 - Perl
