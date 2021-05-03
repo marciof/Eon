@@ -45,6 +45,7 @@
 
 * TODO setup initial build and minimal testing/run CD/CI on GitHub Actions
 
+- test TinyCC? Easier to reach the goal of minimal Bootstrapping seed? 
 - remove Travis CI config file 
 - fix failing Windows build (enable more MSVC CL warnings?) 
 - setup CI builds for both 32-bit and 64-bit hosts
@@ -115,6 +116,7 @@ Otherwise:
 - https://guix.gnu.org/blog/2020/guix-further-reduces-bootstrap-seed-to-25/
 - https://savannah.nongnu.org/projects/stage0
 - https://bootstrappable.org
+- https://github.com/fosslinux/live-bootstrap
 - How to audit dependencies?
 
 * TODO add check for non-executable stacks
