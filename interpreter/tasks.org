@@ -42,7 +42,6 @@
   - ensure good source code documentation right from the start (eg. core, native, etc)
   - Avoid abbreviations unless for acronyms or well understood longer words? Eg String, Error
   - lowercase source code files?
-  - Rename root folders? compiler or interpreter? shell? this word works well in both the terminal or command line sense, as well as the shell for building a GUI/UI, and doesn't dictate whether it's compiled or interpreted
 
 * TODO setup initial build and minimal testing/run CD/CI on GitHub Actions
 

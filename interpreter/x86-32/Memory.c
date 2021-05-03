@@ -12,6 +12,7 @@
 #define STATIC_ASSERT(expr, message) \
     enum {CONCAT_EXPAND(STATIC_ASSERTION_, __LINE__) = 1 / ((expr) ? 1 : 0)}
 
+// TODO move to a GDT.h file
 extern void k_GDT_set_reg(uint16_t size_bytes, uint32_t addr);
 
 enum Segment_Attr {
