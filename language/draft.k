@@ -6,29 +6,21 @@
 
 # . for prop access disables ellipsis
 # also .. for parent, etc
-# use data types as callables?
-# accessing function elements always needs `get`
-
-[get names 1]
-[names 1]
-names 1
-
-if [admin? [names 1]] then=...
-if [admin? names.1] then=...
 
 # model element access as if they're executables?
 # syntax conflicts with the division operator
-[\ 1 2]
 [: 1 2]
 
+- + * :
+
 # then syntax conflicts with defer
-{`name='Bob'}
+{\name='Bob'}
 
 if [admin? users/2] then=
-  io/text/print 'Hello'
+  io/print 'Hello'
 
-dir/file
-[get dir \file]
+cd ..
+io/print verbose=true ./readme.txt
 
 -----
 
