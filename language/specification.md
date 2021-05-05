@@ -353,8 +353,8 @@ A rational number.
 1.(3)
 # 1.(3)
 
-4,294,967,296
-# 4,294,967,296
+4'294'967'296
+# 4'294'967'296
 
 / 1 0.(0)1
 # infinity
@@ -1234,7 +1234,7 @@ Number:
 Quantity ::= Number Symbol?
 Number ::= Sign? Digit+ (Decimal-Separator (Digits | Digits? List-Begin Digits List-End))?
 Decimal-Separator ::= "." <U+2E>
-Digit-Group-Delimiter ::= "," <U+2C>
+Digit-Group-Delimiter ::= "'" <U+22>
 Sign ::= "+" <U+2B> | "-" <U+2D>
 Digits ::= Digit+ (Digit-Group-Delimiter? Digit+)*
 Digit ::= "0" <U+30> | "1" <U+31> | "2" <U+32> | "3" <U+33> | "4" <U+34> | "5" <U+35> | "6" <U+36> | "7" <U+37> | "8" <U+38> | "9" <U+39>
@@ -1271,8 +1271,8 @@ List:
 
 ```
 List ::= List-Begin White-Space* (Expression (White-Space+ Expression)* White-Space*)? List-End
-List-Begin ::= "(" <U+5B>
-List-End ::= ")" <U+5D>
+List-Begin ::= "(" <U+28>
+List-End ::= ")" <U+29>
 ```
 
 Set:
@@ -1287,8 +1287,8 @@ Function:
 Function ::= (Function-Begin White-Space* (Function-Value (White-Space+ Function-Value)* White-Space*)? Function-End) | Get-Chain
 Get-Chain ::= Symbol (Decimal-Separator (Symbol | Number))+
 Function-Value ::= Expression | Pair
-Function-Begin ::= "[" <U+28>
-Function-End ::= "]" <U+28>
+Function-Begin ::= "[" <U+5B>
+Function-End ::= "]" <U+5D>
 ```
 
 ## Transformations

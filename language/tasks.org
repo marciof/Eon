@@ -14,11 +14,12 @@
 
 * TODO lexical binding by default for safety?
 
+* TODO lint grammar (verify char hex codes) 
+
 * TODO improve documentation
 
 - add guideline on avoiding abbreviations unless for acronyms or well understood longer words? Eg String, Error
 - how do number keys and keyword parameters work in function lists? Do keywords alias number keys? 
-- change the digit group delimiter to `'`? It's not ambiguous, it's also an accepted delimiter, and doesn't clash with commas if used for pipes 
 - specify indentation coding conventions
 - how to regularly ensure language goals are being met?
 - be succinct, avoid fluff

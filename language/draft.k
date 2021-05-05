@@ -20,7 +20,7 @@ if [admin? users/2] then=
   io/print 'Hello'
 
 cd ..
-io/print verbose=true ./readme.txt
+io/print verbose=true ./readme.txt C:/autoexec.bat
 
 -----
 
