@@ -356,7 +356,10 @@ A rational number.
 4'294'967'296
 # 4'294'967'296
 
-/ 1 0.(0)1
+: 1 2
+# 0.5
+
+: 1 0.(0)1
 # infinity
 
 3Km
@@ -583,10 +586,10 @@ A [function](#function) that multiplies two or more [numbers](#number).
 - *Argument isn't a proto of nor a number:* [unwinds](#unwind) global scope with `\proto-mismatch`
 - *Multiplying zero and infinity:* [unwinds](#unwind) global scope with `\undefined-result`
 
-## `/` (divide)
+## `:` (divide)
 
 ```
-[/ dividend=Number divisor=Number ...=Number] = Number
+[: dividend=Number divisor=Number ...=Number] = Number
 ```
 
 A [function](#function) that divides two or more [numbers](#number).
@@ -605,10 +608,10 @@ A [function](#function) that divides two or more [numbers](#number).
 ### Examples
 
 ```
-/ 12 3
+: 12 3
 # 4
 
-/ 1 3
+: 1 3
 # 0.(3)
 ```
 
@@ -856,10 +859,10 @@ let user={\name='Bob'}
   get user \name
   # 'Bob'
 
-  user.name
+  user/name
   # 'Bob'
 
-  users.1.name
+  users/1/name
   # 'Bob'
 ```
 
@@ -1234,9 +1237,9 @@ Number:
 Quantity ::= Number Symbol?
 Number ::= Sign? Digit+ (Decimal-Separator (Digits | Digits? List-Begin Digits List-End))?
 Decimal-Separator ::= "." <U+2E>
-Digit-Group-Delimiter ::= "'" <U+22>
+Digit-Group-Separator ::= "'" <U+22>
 Sign ::= "+" <U+2B> | "-" <U+2D>
-Digits ::= Digit+ (Digit-Group-Delimiter? Digit+)*
+Digits ::= Digit+ (Digit-Group-Separator? Digit+)*
 Digit ::= "0" <U+30> | "1" <U+31> | "2" <U+32> | "3" <U+33> | "4" <U+34> | "5" <U+35> | "6" <U+36> | "7" <U+37> | "8" <U+38> | "9" <U+39>
 ```
 
@@ -1285,8 +1288,9 @@ Function:
 
 ```
 Function ::= (Function-Begin White-Space* (Function-Value (White-Space+ Function-Value)* White-Space*)? Function-End) | Get-Chain
-Get-Chain ::= Symbol (Decimal-Separator (Symbol | Number))+
+Get-Chain ::= Symbol (Get-Chain-Separator (Symbol | Number))+
 Function-Value ::= Expression | Pair
+Get-Chain-Separator ::= "/" <U+2F>
 Function-Begin ::= "[" <U+5B>
 Function-End ::= "]" <U+5D>
 ```
@@ -1297,8 +1301,8 @@ These are the syntactic transformations that occur for each associated non-termi
 
 |Non-Terminal    |Syntax|Transformation|Example     |Notes         |
 |----------------|------|--------------|------------|--------------|
-|*Get-Chain*     |`x.y` |`[get x \y]`  |`user.name` |Left to right.|
-|*Tagged-Text*   |`xyz` |`[x y z]`     |`base'1F'16`|              |
-|*Function-Value*|`x`   |`N=x`         |`[f]`       |Position `N`. |
-|*Number*        |`xy`  |`[y x]`       |`2Km`       |              |
+|*Get-Chain*     |`x/y` |`[get x \y]`  |`user/name` |Left to right.|
+|*Tagged-Text*   |`xty` |`[x t \y]`    |`base'1F'16`|              |
+|*Function-Value*|`x`   |`n=x`         |`[f]`       |Position `n`. |
+|*Number*        |`nx`  |`[x n]`       |`2Km`       |              |
 |*Defer*         |`\x`  |`[defer x]`   |`\length`   |              |

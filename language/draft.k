@@ -1,29 +1,3 @@
-# alternative syntax?
-# - easier pipelines?
-# - partial by default?
-# - easier to have static typing?
-# - how partial for varargs? 
-
-# . for prop access disables ellipsis
-# also .. for parent, etc
-
-# model element access as if they're executables?
-# syntax conflicts with the division operator
-[: 1 2]
-
-- + * :
-
-# then syntax conflicts with defer
-{\name='Bob'}
-
-if [admin? users/2] then=
-  io/print 'Hello'
-
-cd ..
-io/print verbose=true ./readme.txt C:/autoexec.bat
-
------
-
 # Data has data only, no constraints.
 # - Built-in data type literals only *seem* to have constraints. 
 # - Data type constructors (functions) are what have the logic/constraints.
@@ -88,6 +62,8 @@ let Bob = Person 'Bob'
 # Pipeline support? shell pipe?
 
 # - each pipe part is partial fn?
+# - partial by default? 
+# - how partial for varargs? 
 # - parens are replaced by pipes?
 # - can still have args
 # - pipeline will invoke all fns
