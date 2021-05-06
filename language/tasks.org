@@ -72,6 +72,7 @@ This will, also, make it easier for people to understand and contribute to the o
 
 * TODO indentation based syntax grammar
 
+- https://github.com/tonyg/racket-something
 - https://docs.python.org/3/reference/grammar.html
 - https://devguide.python.org/compiler/
 - accept keyword arguments on indented lines as well? (use parenthesis to force a function call, as it‘s a more uniform syntax?)
@@ -82,6 +83,8 @@ This will, also, make it easier for people to understand and contribute to the o
 
 * TODO shell pipeline syntax?
 
+- how are getopt flags handled? eg. `ls -la ./example`
+- https://github.com/willghatch/racket-rash
 - "Pipelines Support Vectorized, Point-Free, and Imperative Style", https://www.oilshell.org/blog/2017/01/15.html
 
 * TODO support for streaming, iterators, delayed collections?
