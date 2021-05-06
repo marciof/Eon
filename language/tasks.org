@@ -14,7 +14,10 @@
 
 * TODO lexical binding by default for safety?
 
-* TODO lint grammar (verify char hex codes) 
+* TODO lint spec
+
+- verify char hex codes in the grammar
+- run code snippets
 
 * TODO improve documentation
 
@@ -73,9 +76,7 @@ This will, also, make it easier for people to understand and contribute to the o
 - https://devguide.python.org/compiler/
 - accept keyword arguments on indented lines as well? (use parenthesis to force a function call, as it‘s a more uniform syntax?)
 
-* TODO optional static typing?
-
-- remove prototypical inheritance? 
+* TODO optional static typing? Remove prototypical inheritance? 
 
 * TODO avoid `do` as a built-in?
 
@@ -136,10 +137,7 @@ This will, also, make it easier for people to understand and contribute to the o
 
 * TODO syntax for imaginary numbers?
 
-* TODO more Map subtypes?
-
-- bidirectional map?
-- sorted map?
+* TODO more Map subtypes? bidirectional map? sorted map?
 
 * TODO numerical tower? with syntax?
 
@@ -152,22 +150,14 @@ This will, also, make it easier for people to understand and contribute to the o
 - (prototype 1.(3)) # real
 - (prototype 1+2i) # imaginary?
 
-* TODO how to expose language metadata?
+* TODO how to expose language Metadata? version vs feature detection? 
 
-- line number
-- column number
-- size of maps
-- type of values
-- prototypes
-- number numerator, denominator
-
-* TODO version vs feature detection
-
+- examples: line number, column number, size of maps, type of values, number numerator, denominator
 - https://github.com/oilshell/oil/wiki/Feature-Detection-Is-Better-than-Version-Detection
 - allow multiple versions of the same package (see Python venv)
 - allow freezing/pinning dependency versions (version tree) 
 
-* TODO allow easy FFI for reuse and interoperability
+* TODO allow easy FFI for reuse and interoperability (this is a MUST) 
 
 * TODO tabular lists? Data query language?
 
@@ -193,23 +183,21 @@ This will, also, make it easier for people to understand and contribute to the o
 
 * TODO "Dealing with Properties", Martin Fowler, https://www.martinfowler.com/apsupp/properties.pdf
 
+* TODO "The Once and Future Shell", https://angelhof.github.io/files/papers/shell-2021-hotos.pdf
+
 * TODO evaluate typing difficulty of each identifier and syntax quantitatively
 
+- Bulk analyze source code out there.
+- Frequency of syntax tokens, familiarity, ease of typing, speaking, identifiers.
 - Can the syntax grammar be simplified without hurting readability and flexibility?
 - Can the language itself/concepts be simplified without sacrificing readability and flexibility?
 - Use easier synonyms for hard to type words?
-- Bulk analyze source code out there.
-- Frequency of syntax tokens, familiarity, ease of typing, speaking, identifiers.
 - https://en.wikipedia.org/wiki/Comparison_of_programming_languages_(syntax)
 - http://hyperpolyglot.org/scripting
 - https://github.com/anvaka/common-words/blob/master/README.md
 - "Psychological effects of coding style"
   - https://www.devever.net/~hl/codingstylepsych
   - https://news.ycombinator.com/item?id=22992914
-
-* TODO switch to Fossil for integrated bug tracking?
-
-- https://www.fossil-scm.org/home/doc/trunk/www/fossil-v-git.wiki
 
 * TODO learn best/worst features of other languages/systems (check first the ones listed as inspiration)
 
