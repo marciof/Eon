@@ -2,6 +2,7 @@
 
 - priority is to make a shell/REPL so that I can start using it ASAP, for early use and testing.
 - code reuse is also very important, don't reinvent the wheel (but weigh it against the Bootstrapping seed goal)
+  - leverage the wealth of GNU software, https://www.gnu.org/software
   - https://sourceware.org/libffi/
   - make the Core log more familiar like printf?
   - use a string library instead of own Str?
@@ -15,6 +16,7 @@
   - http://buildyourownlisp.com/
   - https://github.com/kanaka/mal
   - https://github.com/TinyCC/tinycc/blob/mob/tests/libtcc_test.c
+  - plain text database, https://www.gnu.org/software/recutils/
 - tooling, https://nullprogram.com/blog/2020/01/21/
 
 * TODO add additional goals doc for the interpreter?

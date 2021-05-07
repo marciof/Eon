@@ -204,13 +204,13 @@ This will, also, make it easier for people to understand and contribute to the o
 
 * TODO learn best/worst features of other languages/systems (check first the ones listed as inspiration)
 
+- Oil shell (tons of prior research) 
+  - https://www.oilshell.org/blog/
+  - https://github.com/oilshell/oil/wiki/Language-Design-Principles
 - Elm
 - Rust
   - https://soc.me/languages/notes-on-rust.html
 - Elvish, https://elv.sh/
-- Oil shell
-  - https://www.oilshell.org/blog/
-  - https://github.com/oilshell/oil/wiki/Language-Design-Principles
 - CAS Computer Algebra System
   - GNU Octave
   - Maxima Algebra System
