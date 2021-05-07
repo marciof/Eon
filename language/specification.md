@@ -133,7 +133,7 @@ Refer to the [grammar](#grammar) for the precise definition.
 [1]
 # 1
 
-[ + 2 3]
+[+ 2 3]
 # 5
 
 + 2 3

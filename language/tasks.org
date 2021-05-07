@@ -1,8 +1,6 @@
 * TODO fix site redirect
 
 - https://hstspreload.org/
-- https://www.ssllabs.com/ssltest/
-- https://dnssec-name-and-shame.com/
 - https://www.cloudflare.com/ssl/encrypted-sni/
 
 * TODO make duplicate keys an error in map literals?
