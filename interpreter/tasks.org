@@ -15,6 +15,8 @@
   - QuickJS, embeddable JavaScript: https://bellard.org/quickjs/
   - http://buildyourownlisp.com/
   - https://github.com/kanaka/mal
+  - "Crafting Interpreters", Bob Nystrom: http://craftinginterpreters.com
+  - "LispOS - Specification of a Lisp operating system.", Robert Strandh: http://metamodular.com/lispos.pdf
   - https://github.com/TinyCC/tinycc/blob/mob/tests/libtcc_test.c
   - plain text database, https://www.gnu.org/software/recutils/
 - tooling, https://nullprogram.com/blog/2020/01/21/
