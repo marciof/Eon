@@ -103,7 +103,7 @@ Documentation is written in [CommonMark](http://commonmark.org) format. In gener
 
 ## Naming
 
-All names use hyphens as the word delimiter.
+Use hyphens to separate words. Using acronyms for common or well understood terms is acceptable, but abbreviations should generally be avoided.
 
 - **Function:** verb as the first word; predicate functions end in `?`, while accessor functions start with a noun instead and end in `-of`.
 - **Module**: noun, in lower-case.
