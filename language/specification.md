@@ -95,19 +95,34 @@ Programming and scripting languages:
 
 English is the official language used throughout code and documentation.
 
-Line length should be 80 characters maximum, as going over the limit sometimes indicates issues with readability.
+Line length should be 80 characters maximum, as going over the limit sometimes indicates issues with code readability. Indentation length should be 2 blank spaces.
 
 ## Documentation
 
-Documentation is written in [CommonMark](http://commonmark.org) format. In general, verbs that are also nouns should be avoided to prevent ambiguity.
+Documentation is written in [CommonMark](http://commonmark.org) format.
 
 ## Naming
 
-Use hyphens to separate words. Using acronyms for common or well understood terms is acceptable, but abbreviations should generally be avoided.
+In general, verbs that are also nouns should be avoided to prevent ambiguity. Use hyphens to separate words. Using acronyms for common or well understood terms is acceptable, but abbreviations should generally be avoided outside common usage (such as loop indices) to prevent ambiguity. When in doubt, document.
 
+Guidelines for naming identifiers:
+
+- **Data type:** noun, capitalized.
 - **Function:** verb as the first word; predicate functions end in `?`, while accessor functions start with a noun instead and end in `-of`.
 - **Module**: noun, in lower-case.
-- **Data Type:** noun, capitalized.
+
+### Examples
+
+```
+# Data type
+let Numbers=[proto List Number]
+
+# Function
+let double=[n=, * n 2]
+
+# Module
+io/print 'Hello'
+```
 
 # Structure
 
