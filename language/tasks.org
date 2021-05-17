@@ -1,5 +1,6 @@
 * TODO fix site redirect
 
+- transfer domain out of Google?
 - https://hstspreload.org/
 - https://www.cloudflare.com/ssl/encrypted-sni/
 
