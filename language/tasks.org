@@ -1,8 +1,7 @@
 * TODO fix site redirect
 
-- transfer domain out of Google?
+- transfer domain out of Google? https://www.cloudflare.com/products/registrar/
 - https://hstspreload.org/
-- https://www.cloudflare.com/ssl/encrypted-sni/
 
 * TODO make duplicate keys an error in map literals?
 
