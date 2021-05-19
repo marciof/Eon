@@ -10,6 +10,7 @@ Stdout: one line per unique link, containing the HTTP status code
         (or '?' if unknown) followed by a space and then the URL
 """
 # TODO use TAP for output? http://testanything.org
+# TODO use brok? https://github.com/smallhadroncollider/brok
 
 # stdlib
 import fileinput
