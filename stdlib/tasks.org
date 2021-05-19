@@ -12,3 +12,8 @@
 * TODO support varargs (eg. boolean logic functions, etc)
 
 * TODO add a fuzzy matching operator, `=~`
+
+* TODO concurrency support as a control-flow black box?
+
+- "nursery"-like, Trio library, https://github.com/python-trio/trio/
+- https://vorpus.org/blog/notes-on-structured-concurrency-or-go-statement-considered-harmful/
