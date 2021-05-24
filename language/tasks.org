@@ -218,6 +218,7 @@ This will, also, make it easier for people to understand and contribute to the o
   - Mathematica
   - SageMath
   - Matlab
+- insect, https://insect.sh
 - PowerShell
 - OCaml
 - C
