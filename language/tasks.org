@@ -1,3 +1,9 @@
+* TODO revisit license?
+
+- switch to European Union Public Licence?
+- https://oppen.digital/memex/posts/tech/licenses/
+- https://codeberg.org/oppenlab/oppen_license
+
 * TODO fix site redirect
 
 - transfer domain out of Google? https://www.cloudflare.com/products/registrar/
