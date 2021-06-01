@@ -5,6 +5,7 @@
 
 * TODO make duplicate keys an error in map literals?
 
+- Use multimaps as the default general case?
 - Python defaults to allowing duplicates. 
 - Default should be safe. 
 - Add option to disable the error? Helper function?
