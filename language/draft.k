@@ -59,6 +59,14 @@ let Bob = Person 'Bob'
 
 -----
 
+let Multimap = [proto Map]
+overload insert () ...
+[Multimap \key=value1 \key=value]
+
+# Still breaks on function definition of parameters?
+
+-----
+
 # Pipeline support? shell pipe?
 
 # - each pipe part is partial fn?
