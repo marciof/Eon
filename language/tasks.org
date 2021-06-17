@@ -215,6 +215,7 @@ This will, also, make it easier for people to understand and contribute to the o
   - https://www.oilshell.org/blog/
   - https://github.com/oilshell/oil/wiki/Language-Design-Principles
 - dgsh, directed graph shell, https://www2.dmst.aueb.gr/dds/sw/dgsh/
+- nutshell, https://github.com/nushell/nushell
 - Elm
 - Rust
   - https://soc.me/languages/notes-on-rust.html
