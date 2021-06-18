@@ -69,6 +69,9 @@ overload insert () ...
 
 # Pipeline support? shell pipe?
 
+# Very to similar to Nushell?
+open Cargo.toml | get package.version # 0.5.1
+
 # - each pipe part is partial fn?
 # - partial by default? 
 # - how partial for varargs? 
