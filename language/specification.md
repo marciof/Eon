@@ -315,6 +315,7 @@ If the same key appears multiple times, the last associated value takes preceden
 ### Conditions
 
 - *Called with one or more arguments:* [unwinds](#unwind) global scope with `\parameter-mismatch`
+- *Duplicate key in map literal:* [unwinds](#unwind) global scope with `\`
 
 ### Examples
 

@@ -1,3 +1,7 @@
+* TODO make duplicate keys an error in map literals? Default should be safe.
+
+* TODO rename `insert` to `put`? Easier to type 
+
 * TODO revisit license?
 
 - switch to European Union Public Licence?
@@ -8,14 +12,6 @@
 
 - transfer domain out of Google? https://www.cloudflare.com/products/registrar/
 - https://hstspreload.org/
-
-* TODO make duplicate keys an error in map literals?
-
-- Use multimaps as the default general case?
-- Python defaults to allowing duplicates. 
-- Default should be safe. 
-- Add option to disable the error? Helper function?
-- Similarly when removing keys?
 
 * TODO lexical binding by default for safety?
 

@@ -59,15 +59,9 @@ let Bob = Person 'Bob'
 
 -----
 
-let Multimap = [proto Map]
-overload insert () ...
-[Multimap \key=value1 \key=value]
-
-# Still breaks on function definition of parameters?
-
------
-
 # Pipeline support? shell pipe?
+
+{:} | put 'Bob' 123 | put 'Bob' 789
 
 # Very to similar to Nushell?
 open Cargo.toml | get package.version # 0.5.1
