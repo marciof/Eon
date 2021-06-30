@@ -80,7 +80,10 @@ This will, also, make it easier for people to understand and contribute to the o
 - https://devguide.python.org/compiler/
 - accept keyword arguments on indented lines as well? (use parenthesis to force a function call, as it‘s a more uniform syntax?)
 
-* TODO optional static typing? Remove prototypical inheritance? 
+* TODO optional static typing?
+
+- Remove prototypical inheritance?
+- check out BLisp, https://ytakano.github.io/blisp/
 
 * TODO avoid `do` as a built-in?
 
@@ -223,6 +226,7 @@ This will, also, make it easier for people to understand and contribute to the o
   - SageMath
   - Matlab
 - insect, https://insect.sh
+- BLisp
 - PowerShell
 - OCaml
 - C
