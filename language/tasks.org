@@ -166,7 +166,10 @@ This will, also, make it easier for people to understand and contribute to the o
 - allow multiple versions of the same package (see Python venv)
 - allow freezing/pinning dependency versions (version tree) 
 
-* TODO allow easy FFI for reuse and interoperability (this is a MUST) 
+* TODO allow easy FFI for reuse and interoperability
+
+- This is a Must? 
+- https://github.com/morloc-project/morloc
 
 * TODO tabular lists? Data query language?
 
