@@ -1,4 +1,14 @@
-* TODO make duplicate keys an error in map literals? Default should be safe.
+* TODO shell pipeline syntax?
+
+- update grammar (comma as the pipe character) 
+- add pipe examples in the function section 
+- how are getopt flags handled? eg. `ls -la ./example`
+- https://github.com/willghatch/racket-rash
+- "Pipelines Support Vectorized, Point-Free, and Imperative Style", https://www.oilshell.org/blog/2017/01/15.html
+
+* TODO make duplicate keys an error in map literals? 
+
+- Default should be safe.
 
 * TODO rename `insert` to `put`? Easier to type 
 
@@ -7,6 +17,7 @@
 - switch to European Union Public Licence?
 - https://oppen.digital/memex/posts/tech/licenses/
 - https://codeberg.org/oppenlab/oppen_license
+- https://prosperitylicense.com/ 
 
 * TODO fix site redirect
 
@@ -19,6 +30,7 @@
 
 - verify char hex codes in the grammar
 - run code snippets
+- ensure non-numbered bullet point lists are in alphabetical order
 
 * TODO improve documentation
 
@@ -86,12 +98,6 @@ This will, also, make it easier for people to understand and contribute to the o
 - check out BLisp, https://ytakano.github.io/blisp/
 
 * TODO avoid `do` as a built-in?
-
-* TODO shell pipeline syntax?
-
-- how are getopt flags handled? eg. `ls -la ./example`
-- https://github.com/willghatch/racket-rash
-- "Pipelines Support Vectorized, Point-Free, and Imperative Style", https://www.oilshell.org/blog/2017/01/15.html
 
 * TODO support for streaming, iterators, delayed collections?
 

@@ -34,6 +34,9 @@
 # Impl via stdlib helper function
 # How do pipes look when inspected?
 
+let Numbers=[proto List Number] 
+let Numbers=[List of=Number]
+
 let Number = [proto 0]
 let Any = [proto]
 
@@ -60,8 +63,12 @@ let Bob = Person 'Bob'
 -----
 
 # Pipeline support? shell pipe?
+# (Handle possible duplicate keys in map literals) 
+# (performance hit?) 
 
 {:} | put 'Bob' 123 | put 'Bob' 789
+
+{:}, put 'Bob' 123, put 'Bob' 789
 
 # Very to similar to Nushell?
 open Cargo.toml | get package.version # 0.5.1
