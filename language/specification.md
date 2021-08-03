@@ -303,7 +303,7 @@ proto ()
 
 A map is an immutable insertion ordered collection, that associates unique keys with values.
 
-It is an error to use the same key more than once in a map literal. To build a map where there may be duplicate keys call [`insert`](#insert).
+It's an error to use the same key more than once in a map literal. To build a map where there may be duplicate keys use [`insert`](#insert).
 
 - **Proto:** empty [map](#map), `{=}`
 - **Base Proto:** itself
@@ -324,6 +324,9 @@ It is an error to use the same key more than once in a map literal. To build a m
 
 {\name='Bob' \age=20}
 # {name='Bob' age=20}
+
+{'Bob'=\bob \bob=123}
+# {'Bob'=bob bob=123}
 
 proto {\name='Bob'}
 # {=}
@@ -388,6 +391,8 @@ proto 0
 
 A set is an immutable collection of unique elements, that associates keys to be the same as values.
 
+It's an error to use the same element more than once in a set literal. To build a set where there may be duplicate elements use [`insert`](#insert).
+
 - **Proto:** empty [set](#set), `{}`
 - **Base Proto:** empty [map](#map), `{=}`
 
@@ -408,8 +413,8 @@ A set is an immutable collection of unique elements, that associates keys to be 
 {'x' 'y'}
 # {'x' 'y'}
 
-{8 2 2 \abc}
-# {8 2 abc}
+{8 \abc}
+# {8 abc}
 
 proto {'x'}
 # {}
