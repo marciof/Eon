@@ -32,7 +32,7 @@
   - [`do`](#do)
   - [`evaluate`](#evaluate)
   - [`get`](#get)
-  - [`insert`](#insert)
+  - [`put`](#put)
   - [`load`](#load)
   - [`next`](#next)
   - [`proto`](#proto)
@@ -303,7 +303,7 @@ proto ()
 
 A map is an immutable insertion ordered collection, that associates unique keys with values.
 
-It's an error to use the same key more than once in a map literal. To build a map where there may be duplicate keys use [`insert`](#insert).
+It's an error to use the same key more than once in a map literal. To build a map where there may be duplicate keys use [`put`](#put).
 
 - **Proto:** empty [map](#map), `{=}`
 - **Base Proto:** itself
@@ -391,7 +391,7 @@ proto 0
 
 A set is an immutable collection of unique elements, that associates keys to be the same as values.
 
-It's an error to use the same element more than once in a set literal. To build a set where there may be duplicate elements use [`insert`](#insert).
+It's an error to use the same element more than once in a set literal. To build a set where there may be duplicate elements use [`put`](#put).
 
 - **Proto:** empty [set](#set), `{}`
 - **Base Proto:** empty [map](#map), `{=}`
@@ -883,100 +883,6 @@ let user={\name='Bob'}
   # 'Bob'
 ```
 
-## `insert`
-
-```
-[insert set=Set value] = Set
-```
-
-A [function](#function) that adds a `value` to a `set`, and returns the new [set](#set). If `value` is already present, then `set` is returned unchanged.
-
-```
-[insert list=List value] = List
-[insert function=Function value] = Function
-```
-
-A [function](#function) that associates a `value` with the next highest positive integer key in a `list` or `function`, and returns the new [list](#list) or [function](#function) respectively.
-
-```
-[insert map=Map key value] = Map
-```
-
-A [function](#function) that associates a `key` with a `value` in a `map`, and returns the new [map](#map). If `key` already exists, then its associated value becomes `value`.
-
-```
-[insert list=List key=Number value] = List
-[insert function=Function key value] = Function
-```
-
-A [function](#function) that associates a `key` with a `value` in a `list` or `function`, and returns the new [list](#list) or [function](#function) respectively. If `key` already exists and isn't a positive integer, then its associated value becomes `value`. If `key` already exists and is a positive integer, then it displaces instead the existing key and all following integer keys, if any, incrementing each by one.
-
-### Complexity
-
-Function:
-
-- Time:
-  - Number key: `O(n)`, where `n` is the number of elements
-  - Otherwise: `O(1)`
-- Space: `O(1)`
-
-List:
-
-- Time:
-  - Number key: `O(n)`, where `n` is the number of elements
-  - Otherwise: `O(1)`
-- Space: `O(1)`
-
-Map:
-
-- Time: `O(1)`
-- Space: `O(1)`
-
-Set:
-
-- Time: `O(1)`
-- Space: `O(1)`
-
-### Conditions
-
-- *Called with less than two or more than three arguments:* [unwinds](#unwind) global scope with `\parameter-mismatch`
-- *`map` argument isn't a proto of nor a map:* [unwinds](#unwind) global scope with `\proto-mismatch`
-- *`map` argument is a proto of or a set and `key` isn't equal to `value`:* [unwinds](#unwind) global scope with `\parameter-mismatch`
-- *`set` argument isn't a proto of nor a set:* [unwinds](#unwind) global scope with `\proto-mismatch`
-- *`list` argument is a proto of or a list and `key` isn't a positive integer less than or equal to its length plus one:* [unwinds](#unwind) global scope with `\parameter-mismatch`
-- *`function` argument is a proto of or a function and when `key` is a number it isn't a positive integer less than or equal to its highest positive integer key plus one:* [unwinds](#unwind) global scope with `\parameter-mismatch`
-
-### Examples
-
-```
-insert (8) 1 9
-# (9 8)
-
-insert (8) 9
-# (8 9)
-
-insert ('x' 'y') 3 'z'
-# ('x' 'y' 'z')
-
-insert {1 2} 3
-# {1 2 3}
-
-insert 'Bo' 98
-# 'Bob'
-
-insert 'ob' 1 66
-# 'Bob'
-
-insert {=} \name 'Bob'
-# {name='Bob'}
-
-insert {\name='Bob'} \name 'John'
-# {name='John'}
-
-insert \x [get 'y' 1]
-# xy
-```
-
 ## `is`
 
 ```
@@ -1106,6 +1012,100 @@ proto ''
 
 proto {=}
 # {=}
+```
+
+## `put`
+
+```
+[put set=Set value] = Set
+```
+
+A [function](#function) that adds a `value` to a `set`, and returns the new [set](#set). If `value` is already present, then `set` is returned unchanged.
+
+```
+[put list=List value] = List
+[put function=Function value] = Function
+```
+
+A [function](#function) that associates a `value` with the next highest positive integer key in a `list` or `function`, and returns the new [list](#list) or [function](#function) respectively.
+
+```
+[put map=Map key value] = Map
+```
+
+A [function](#function) that associates a `key` with a `value` in a `map`, and returns the new [map](#map). If `key` already exists, then its associated value becomes `value`.
+
+```
+[put list=List key=Number value] = List
+[put function=Function key value] = Function
+```
+
+A [function](#function) that associates a `key` with a `value` in a `list` or `function`, and returns the new [list](#list) or [function](#function) respectively. If `key` already exists and isn't a positive integer, then its associated value becomes `value`. If `key` already exists and is a positive integer, then it displaces instead the existing key and all following integer keys, if any, incrementing each by one.
+
+### Complexity
+
+Function:
+
+- Time:
+  - Number key: `O(n)`, where `n` is the number of elements
+  - Otherwise: `O(1)`
+- Space: `O(1)`
+
+List:
+
+- Time:
+  - Number key: `O(n)`, where `n` is the number of elements
+  - Otherwise: `O(1)`
+- Space: `O(1)`
+
+Map:
+
+- Time: `O(1)`
+- Space: `O(1)`
+
+Set:
+
+- Time: `O(1)`
+- Space: `O(1)`
+
+### Conditions
+
+- *Called with less than two or more than three arguments:* [unwinds](#unwind) global scope with `\parameter-mismatch`
+- *`map` argument isn't a proto of nor a map:* [unwinds](#unwind) global scope with `\proto-mismatch`
+- *`map` argument is a proto of or a set and `key` isn't equal to `value`:* [unwinds](#unwind) global scope with `\parameter-mismatch`
+- *`set` argument isn't a proto of nor a set:* [unwinds](#unwind) global scope with `\proto-mismatch`
+- *`list` argument is a proto of or a list and `key` isn't a positive integer less than or equal to its length plus one:* [unwinds](#unwind) global scope with `\parameter-mismatch`
+- *`function` argument is a proto of or a function and when `key` is a number it isn't a positive integer less than or equal to its highest positive integer key plus one:* [unwinds](#unwind) global scope with `\parameter-mismatch`
+
+### Examples
+
+```
+put (8) 1 9
+# (9 8)
+
+put (8) 9
+# (8 9)
+
+put ('x' 'y') 3 'z'
+# ('x' 'y' 'z')
+
+put {1 2} 3
+# {1 2 3}
+
+put 'Bo' 98
+# 'Bob'
+
+put 'ob' 1 66
+# 'Bob'
+
+put {=} \name 'Bob'
+# {name='Bob'}
+
+put {\name='Bob'} \name 'John'
+# {name='John'}
+
+put \x [get 'y' 1]
+# xy
 ```
 
 ## `remove`
