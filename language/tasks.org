@@ -6,10 +6,6 @@
 - https://github.com/willghatch/racket-rash
 - "Pipelines Support Vectorized, Point-Free, and Imperative Style", https://www.oilshell.org/blog/2017/01/15.html
 
-* TODO make duplicate keys an error in map literals? 
-
-- Default should be safe.
-
 * TODO rename `insert` to `put`? Easier to type 
 
 * TODO revisit license?

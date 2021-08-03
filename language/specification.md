@@ -303,7 +303,7 @@ proto ()
 
 A map is an immutable insertion ordered collection, that associates unique keys with values.
 
-If the same key appears multiple times, the last associated value takes precedence over all previous ones.
+It is an error to use the same key more than once in a map literal. To build a map where there may be duplicate keys call [`insert`](#insert).
 
 - **Proto:** empty [map](#map), `{=}`
 - **Base Proto:** itself
@@ -315,7 +315,6 @@ If the same key appears multiple times, the last associated value takes preceden
 ### Conditions
 
 - *Called with one or more arguments:* [unwinds](#unwind) global scope with `\parameter-mismatch`
-- *Duplicate key in map literal:* [unwinds](#unwind) global scope with `\`
 
 ### Examples
 
@@ -325,9 +324,6 @@ If the same key appears multiple times, the last associated value takes preceden
 
 {\name='Bob' \age=20}
 # {name='Bob' age=20}
-
-{\key=8 \key=\value}
-# {key=value}
 
 proto {\name='Bob'}
 # {=}

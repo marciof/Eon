@@ -63,10 +63,7 @@ let Bob = Person 'Bob'
 -----
 
 # Pipeline support? shell pipe?
-# (Handle possible duplicate keys in map literals) 
-# (performance hit?) 
-
-{:} | put 'Bob' 123 | put 'Bob' 789
+# Are built-ins optimized for pipeing?
 
 {:}, put 'Bob' 123, put 'Bob' 789
 
