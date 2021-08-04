@@ -6,6 +6,10 @@
 - https://github.com/willghatch/racket-rash
 - "Pipelines Support Vectorized, Point-Free, and Imperative Style", https://www.oilshell.org/blog/2017/01/15.html
 
+* TODO are sets also insertion ordered? 
+
+- Even if implicitly, state it in the spec. 
+
 * TODO revisit license?
 
 - switch to European Union Public Licence?
@@ -121,6 +125,12 @@ This will, also, make it easier for people to understand and contribute to the o
 * TODO have a generic `splice`? = insert + merge + delete
 
 - decouple `insert`? setting from displacing
+
+* TODO make `insert` accept where before at?
+
+- Since maps are insertion ordered. 
+- `(insert map key value [before])`
+- `(insert set value [before])`
 
 * TODO verify soundness of Text
 

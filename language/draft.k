@@ -300,7 +300,10 @@ text: Text [65]
 # partial for easy lambdas?
 # dynamic binding still default?
 (+ x 1 x:)
+
+# Reuse pipes? 
 (x: | + x 1)
+[x=, + x 1]
 
 # default is to evaluate arguments?
 # quote to force deferring?
@@ -414,18 +417,6 @@ push: \(
 # get = intersection by key
 
 # remove = symmetric difference
-
----
-
-# make insert accept where before at?
-
-(insert set value)
-(insert list value)
-(insert function value)
-
-(insert map key value [before])
-(insert list key value)
-(insert function key value)
 
 ---
 
