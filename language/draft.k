@@ -12,7 +12,7 @@
 # Considerations:
 # - How to integrate having no prototypical inheritance with the data type hierarchy? 
 # - Data type identification. Proto VS prototype? 
-# - Ensure documentation is still readable and contains type information. Eg. avoid Python documentation with very hard to find typing information, especially return type documentation
+# - Ensure documentation is still readable and contains type information. Eg. avoid Python documentation with very hard to find typing information, return type documentation, etc.
 # - Avoid too much syntax. Keep language small. 
 # - Be explicit and safe by default:
 #   - static typing

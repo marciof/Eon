@@ -28,7 +28,7 @@
 
 * TODO improve documentation
 
-- ensure open of open standards, eg. https://github.com/deltachat/deltachat-core-rust/blob/master/standards.md#standards-used-in-delta-chat
+- ensure use of open standards, eg. https://github.com/deltachat/deltachat-core-rust/blob/master/standards.md#standards-used-in-delta-chat
 - ensure sections are alphabetical for ease of use
 - how do number keys and keyword parameters work in function lists? Do keywords alias number keys?
 - function naming example (1st key is the name, 1st value is the body/a fn), eg. `\(incr: + x 1)`
