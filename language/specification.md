@@ -389,7 +389,7 @@ proto 0
 
 ## Set
 
-A set is an immutable collection of unique elements, that associates keys to be the same as values.
+A set is an immutable insertion ordered collection of unique elements, that associates keys to be the same as values.
 
 It's an error to use the same element more than once in a set literal. To build a set where there may be duplicate elements use [`put`](#put).
 

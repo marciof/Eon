@@ -6,10 +6,6 @@
 - https://github.com/willghatch/racket-rash
 - "Pipelines Support Vectorized, Point-Free, and Imperative Style", https://www.oilshell.org/blog/2017/01/15.html
 
-* TODO are sets also insertion ordered? 
-
-- Even if implicitly, state it in the spec. 
-
 * TODO revisit license?
 
 - switch to European Union Public Licence?
@@ -29,6 +25,10 @@
 - verify char hex codes in the grammar
 - run code snippets
 - ensure non-numbered bullet point lists are in alphabetical order
+
+* TODO decouple interfaces from implementations
+
+- Case in point: sets were implied to be insertion ordered by deriving them from maps. 
 
 * TODO improve documentation
 
