@@ -417,9 +417,3 @@ push: \(
 # get = intersection by key
 
 # remove = symmetric difference
-
----
-
-# There will always be metadata
-# line, column, file, type
-# debugger, test frameworks, etc
