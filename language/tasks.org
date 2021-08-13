@@ -6,6 +6,43 @@
 - https://github.com/willghatch/racket-rash
 - "Pipelines Support Vectorized, Point-Free, and Imperative Style", https://www.oilshell.org/blog/2017/01/15.html
 
+* TODO indentation based syntax grammar
+
+- https://github.com/tonyg/racket-something
+- https://docs.python.org/3/reference/grammar.html
+- https://devguide.python.org/compiler/
+- accept keyword arguments on indented lines as well? (use parenthesis to force a function call, as it‘s a more uniform syntax?)
+- avoid `do` as a built-in? Specify indentation
+  - too Implicit? More flexibility? Ambiguous?
+- A file is a list of expressions. 
+  - an empty file is an empty list
+  - stdin is also a list of expressions (list length isn’t known a priori?)
+  - REPL is just stdin as a “file”
+  - REPL can also use a file as input
+  - file should be the same as a REPL?
+  - REPL uses a custom evaluator
+    - like `let*` per expression
+    - with custom commands? Eg. help
+    - (make its API public/embeddable)
+  - `import` can evaluate list items
+  - just like a file-wide `let*`
+ 
+if [logged-in? user] then=
+  this-first
+  this-second
+
+if [logged-in? user] then=do
+  this-first
+  this-second
+
+if [logged-in? user] do
+  this-first
+  this-second
+
+# Globals without `let`
+name='Bob'
+age=20
+
 * TODO revisit license?
 
 - switch to European Union Public Licence?
@@ -30,7 +67,7 @@
 
 - Case in point: sets were implied to be insertion ordered by deriving them from maps. 
 
-* TODO improve documentation
+* TODO improve/clean documentation
 
 - ensure use of open standards, eg. https://github.com/deltachat/deltachat-core-rust/blob/master/standards.md#standards-used-in-delta-chat
 - ensure sections are alphabetical for ease of use
@@ -83,19 +120,10 @@ This will, also, make it easier for people to understand and contribute to the o
 - https://github.com/remarkjs/remark-lint
 - https://github.com/notslang/tidy-markdown
 
-* TODO indentation based syntax grammar
-
-- https://github.com/tonyg/racket-something
-- https://docs.python.org/3/reference/grammar.html
-- https://devguide.python.org/compiler/
-- accept keyword arguments on indented lines as well? (use parenthesis to force a function call, as it‘s a more uniform syntax?)
-
 * TODO optional static typing?
 
 - Remove prototypical inheritance?
 - check out BLisp, https://ytakano.github.io/blisp/
-
-* TODO avoid `do` as a built-in?
 
 * TODO support for streaming, iterators, delayed collections?
 
