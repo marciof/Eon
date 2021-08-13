@@ -95,6 +95,24 @@ This will, also, make it easier for people to understand and contribute to the o
 
 * TODO create coding style linting tool (use unifiedjs or similar?)
 
+* TODO how easy is it to convert a map to a function list? and other list operations? 
+
+- can `merge` (with reducer param?) or `splice` replace all other operations? (get, put, remove, count)
+- union, intersection
+- get = intersection by key
+- remove = symmetric difference
+- changing types (down/up cast)
+
+* TODO add a core built-in `has?`?
+
+- decouple `insert`? setting from displacing
+
+* TODO make `insert` accept where before at?
+
+- Since maps are insertion ordered. 
+- `(insert map key value [before])`
+- `(insert set value [before])`
+
 * TODO attempt to unify data types?
 
 - separate map syntax is confusing with sets? would static typing with inference make it less of a problem?
@@ -149,18 +167,6 @@ This will, also, make it easier for people to understand and contribute to the o
 - Language ergonomics shouldn't need an IDE?
 
 * TODO make `count` throw an error for built-ins or foreign values?
-
-* TODO add a core built-in `has?`?
-
-* TODO have a generic `splice`? = insert + merge + delete
-
-- decouple `insert`? setting from displacing
-
-* TODO make `insert` accept where before at?
-
-- Since maps are insertion ordered. 
-- `(insert map key value [before])`
-- `(insert set value [before])`
 
 * TODO verify soundness of Text
 
