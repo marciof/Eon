@@ -420,9 +420,6 @@ push: \(
 
 ---
 
-# get, set/put, unset/remove, has?
-# insert/merge
-
 # There will always be metadata
 # line, column, file, type
 # debugger, test frameworks, etc

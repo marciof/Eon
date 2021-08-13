@@ -150,6 +150,8 @@ This will, also, make it easier for people to understand and contribute to the o
 
 * TODO make `count` throw an error for built-ins or foreign values?
 
+* TODO add a core built-in `has?`?
+
 * TODO have a generic `splice`? = insert + merge + delete
 
 - decouple `insert`? setting from displacing
