@@ -12,6 +12,7 @@
 - https://docs.python.org/3/reference/grammar.html
 - https://devguide.python.org/compiler/
 - accept keyword arguments on indented lines as well? (use parenthesis to force a function call, as it‘s a more uniform syntax?)
+- pass indented block as a list of functions? Let each function decide what to do.
 - avoid `do` as a built-in? Specify indentation
   - too Implicit? More flexibility? Ambiguous?
 - A file is a list of expressions. 
@@ -27,6 +28,10 @@
   - `import` can evaluate list items
   - just like a file-wide `let*`
  
+if [logged-in? user]
+  this-first
+  this-second
+
 if [logged-in? user] then=
   this-first
   this-second
@@ -38,6 +43,10 @@ if [logged-in? user] then=do
 if [logged-in? user] do
   this-first
   this-second
+
+let
+  name='Bob'
+  age=20
 
 # Globals without `let`
 name='Bob'
@@ -206,6 +215,8 @@ This will, also, make it easier for people to understand and contribute to the o
 - (prototype -1.0) # decimal
 - (prototype 1.(3)) # real
 - (prototype 1+2i) # imaginary?
+
+* TODO language and built-ins easy to parallelize?
 
 * TODO how to expose language Metadata? version vs feature detection? 
 
