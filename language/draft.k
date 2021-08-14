@@ -213,16 +213,6 @@ hist = [| sort | uniq | sort]
 
 -----
 
-# dynamic scope?
-\(+ x 1)
-
-# lexical scope? what'll inspect see?
-(+ 1 x:)
-(+ 1 x x:)
-(x: | + x 1) # ambiguous w/piping?
-
------
-
 # fn as a value constraint? 
 # - more flexible
 # - no new syntax

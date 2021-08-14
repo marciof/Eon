@@ -57,6 +57,8 @@ age=20
 
 * TODO lexical binding by default for safety?
 
+- eg. `[n=, * n 2]`, What does inspecting see?
+
 * TODO lint spec
 
 - verify char hex codes in the grammar
@@ -265,8 +267,7 @@ This will, also, make it easier for people to understand and contribute to the o
 - dgsh, directed graph shell, https://www2.dmst.aueb.gr/dds/sw/dgsh/
 - nutshell, https://github.com/nushell/nushell
 - Elm
-- Rust
-  - https://soc.me/languages/notes-on-rust.html
+- Rust, https://soc.me/languages/notes-on-rust.html
 - Elvish, https://elv.sh/
 - CAS Computer Algebra System
   - GNU Octave
