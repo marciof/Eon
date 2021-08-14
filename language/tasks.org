@@ -13,6 +13,10 @@
 - https://devguide.python.org/compiler/
 - accept keyword arguments on indented lines as well? (use parenthesis to force a function call, as it‘s a more uniform syntax?)
 - pass indented block as a list of functions? Let each function decide what to do.
+  - pass each line still as a single argument 
+  - a varargs arg gets all args in a list, `then...`
+  - a dangling keyword arg gets all args in a list, `then=`
+  - issue: ambiguous with passing an actual list? Or not an issue? 
 - avoid `do` as a built-in? Specify indentation
   - too Implicit? More flexibility? Ambiguous?
 - A file is a list of expressions. 
@@ -43,6 +47,14 @@ if [logged-in? user] then=do
 if [logged-in? user] do
   this-first
   this-second
+
+if [logged-in? user]
+  then=
+    this-first
+    this-second
+  else=
+    that-first
+    that-second
 
 let
   name='Bob'
