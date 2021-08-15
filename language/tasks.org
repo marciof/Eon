@@ -16,7 +16,7 @@
   - pass each line still as a single argument 
   - a varargs arg gets all args in a list, `then...`
   - a dangling keyword arg gets all args in a list, `then=`
-  - issue: ambiguous with passing an actual list? Or not an issue? 
+  - issue: ambiguous with passing an actual list? Or not an issue? Not an issue if a varargs arg, since it'll always get a list?
 - avoid `do` as a built-in? Specify indentation
   - too Implicit? More flexibility? Ambiguous?
 - A file is a list of expressions. 
@@ -107,7 +107,10 @@ age=20
 - Function sub headings? Examples and conditions per section
 - Language code snippet example right on the front page (simple example, and show-off powerful example)
 - Runnable examples, eg. https://doc.rust-lang.org/book/
-- start a changelog? (and do releases?) https://keepachangelog.com/en/1.0.0/
+- start a changelog? (and do releases?)
+  - https://keepachangelog.com/en/1.0.0/
+  - https://github.com/kurtmckee/feedparser/blob/develop/CHANGELOG.rst 
+  - https://github.com/ytdl-org/youtube-dl/blob/master/ChangeLog 
 - ensure: simplicity, clarity, and frugality
 
 Philosophy from Tildes:
