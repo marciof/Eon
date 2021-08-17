@@ -6,19 +6,18 @@
 - https://github.com/willghatch/racket-rash
 - "Pipelines Support Vectorized, Point-Free, and Imperative Style", https://www.oilshell.org/blog/2017/01/15.html
 
-* TODO indentation based syntax grammar
+* TODO specify indentation based syntax grammar
 
 - https://github.com/tonyg/racket-something
 - https://docs.python.org/3/reference/grammar.html
 - https://devguide.python.org/compiler/
-- accept keyword arguments on indented lines as well? (use parenthesis to force a function call, as it‘s a more uniform syntax?)
-- pass indented block as a list of functions? Let each function decide what to do.
-  - pass each line still as a single argument 
+- accept keyword arguments on indented lines as well?
+  - use parenthesis to force a function call, as it‘s a more uniform syntax?
+  - pass each line still as a single argument, to not deviate from other langs 
   - a varargs arg gets all args in a list, `then...`
-  - a dangling keyword arg gets all args in a list, `then=`
-  - issue: ambiguous with passing an actual list? Or not an issue? Not an issue if a varargs arg, since it'll always get a list?
-- avoid `do` as a built-in? Specify indentation
-  - too Implicit? More flexibility? Ambiguous?
+  - a dangling keyword arg gets all args in an empty function list, `then=`
+  - an empty function does nothing, evaluates its arguments (sequentially or in parallel?), and returns the last one 
+- avoid `do` as a built-in? Otherwise it's too implicit? 
 - A file is a list of expressions. 
   - an empty file is an empty list
   - stdin is also a list of expressions (list length isn’t known a priori?)
