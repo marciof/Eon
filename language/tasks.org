@@ -1,3 +1,5 @@
+* TODO add security as a goal
+
 * TODO shell pipeline syntax?
 
 - update grammar (comma as the pipe character) 
@@ -174,6 +176,7 @@ This will, also, make it easier for people to understand and contribute to the o
 - could be useful for shell pipelines?
 - `next` is an iterator?
 - generator expressions? JS yield?
+- Can unify unwind with yield? 
 
 * TODO replace exceptions/conditions/continuations with optionals?
 
@@ -286,6 +289,7 @@ This will, also, make it easier for people to understand and contribute to the o
 
 * TODO learn best/worst features of other languages/systems (check first the ones listed as inspiration)
 
+- PowerShell
 - Oil shell (tons of prior research) 
   - https://www.oilshell.org/blog/
   - https://github.com/oilshell/oil/wiki/Language-Design-Principles
@@ -302,7 +306,6 @@ This will, also, make it easier for people to understand and contribute to the o
   - Matlab
 - insect, https://insect.sh
 - BLisp
-- PowerShell
 - OCaml
 - C
 - Tcl/Tk
