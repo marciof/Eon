@@ -157,10 +157,11 @@ Otherwise:
 
 - handle out of memory, https://github.com/andrewrk/malcheck
 
-* TODO fuzzer/fuzzy testing
+* TODO fuzz/fuzzer/fuzzy testing
 
 - http://lcamtuf.coredump.cx/afl/
 - https://gitlab.com/akihe/radamsa
+- https://github.com/google/oss-fuzz 
 
 * TODO enable (more?) static code analyzers
 
