@@ -37,8 +37,8 @@
 let Numbers=[proto List Number] 
 let Numbers=[List of=Number]
 
-let Number = [proto 0]
-let Any = [proto]
+let Number=[proto 0]
+let Any=[proto]
 
 [with x y, + x y]
 [with x=Number y=Number, + x y]
@@ -50,15 +50,15 @@ let Any = [proto]
 
 # Implicit and explicit type information
 
-let age = 20
-let age = Number 20
+let age=20
+let age=Number 20
 
 # New data type
 
-let Person = [proto Map
+let Person=[proto Map
   [map= name=, insert map \name name]] 
 
-let Bob = Person 'Bob'
+let Bob=Person 'Bob'
 
 -----
 

@@ -5,8 +5,16 @@
 - update grammar (comma as the pipe character) 
 - add pipe examples in the function section 
 - how are getopt flags handled? eg. `ls -la ./example`
+  - every function argument is already quoted
 - https://github.com/willghatch/racket-rash
 - "Pipelines Support Vectorized, Point-Free, and Imperative Style", https://www.oilshell.org/blog/2017/01/15.html
+
+# Symbols as "flags"?
+# Unreserving backslash would allow it for division?
+
+{\name='Bob' \age=20}
+{--name='Bob' --age=20}
+{-name='Bob' -age=20}
 
 * TODO specify indentation based syntax grammar
 
