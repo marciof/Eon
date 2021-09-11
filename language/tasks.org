@@ -12,19 +12,25 @@
 # Symbols as "flags"?
 # Unreserving backslash would allow it for division?
 # And less/greater than or equal? 
+# But reserves minus char?
+# Just leave it to stdlib? 
 
 {\name='Bob' \age=20}
 {--name='Bob' --age=20}
 {-name='Bob' -age=20}
+{-name:'Bob' -age:20}
 
 : 1 2
 \ 1 2
 <\ x y
+<_ x y
+<< x y
 
 # More syntax for symbols and arguments?
-# stdlib? 
+# stdlib?
 
 [ls -la --color=auto]
+[ls color: \auto]
 [ls \l=true \a=true \color="auto"]
 
 # Keyword arguments won't be used much?
