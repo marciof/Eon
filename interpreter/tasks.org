@@ -6,6 +6,7 @@
   - https://sourceware.org/libffi/
   - make the Core log more familiar like printf?
   - use a string library instead of own Str?
+  - "Tree-sitter is a parser generator tool and an incremental parsing library", https://github.com/tree-sitter/tree-sitter
 - Unix tools philosophy for the interpreter?
   - Command line options for each stage for textual output (easier to debug and integrate with other external tools without code linking?): pipeline -- stream tokens from input one per line, then parser, etc. 
   - AST, similar approach to unifiedjs? https://unifiedjs.com/learn/guide/introduction-to-unified/
