@@ -106,6 +106,7 @@ age=20
 * TODO fix site redirect
 
 - transfer domain out of Google? https://www.cloudflare.com/products/registrar/
+- https://www.privacyguides.org/providers/dns/
 - https://hstspreload.org/
 
 * TODO lexical binding by default for safety?
