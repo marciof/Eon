@@ -18,7 +18,8 @@
 {\name='Bob' \age=20}
 {--name='Bob' --age=20}
 {-name='Bob' -age=20}
-{-name:'Bob' -age:20}
+{--name:'Bob' --age:20}
+{-name:'Bob' -age:20} 
 
 : 1 2
 \ 1 2
@@ -29,15 +30,25 @@
 # More syntax for symbols and arguments?
 # stdlib?
 
-[ls -la --color=auto]
-[ls color: \auto]
-[ls \l=true \a=true \color="auto"]
+# ls -la --color=auto
+
+ls \l=true \a=true \color='auto' 
+ls color:`auto
 
 # Keyword arguments won't be used much?
-# Switch '=' to ':' ?
+# Switch '=' to ':'? More readable. 
 
 # Only back compat for POSIX? 
-# Use single letter tools instead (eg. show.sh)
+# Use single letter tools instead (eg. show.sh) 
+
+# Just quote left always, it's more common. 
+{name:'Bob' age:20}
+
+# Make it multiple values to generalize? Orthogonal? 
+# How to escape? 
+
+{\'Hi\n':123}
+`symbol
 
 * TODO specify indentation based syntax grammar
 
