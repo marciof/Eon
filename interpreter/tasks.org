@@ -27,6 +27,11 @@
 - mostly similar to the Lang spec goals
 - add specific goals, such as: keep Bootstrapping seed small, encourage reuse to avoid reinventing the wheel, reproducible builds, etc
 
+* TODO add support to Haiku OS?
+
+- Non-Unix OS that's different enough to stress test portability?
+- Or is the browser/Javascript target good enough for that goal? 
+
 * TODO switch from CMake to Makefiles (potentially simpler, smaller Bootstrapping seed, faster)
 
 - sign-up to interest mailing lists for dependencies? including OS, CI, etc, regularly test new versions, don't want to be blindsided and unprepared for things like Travis CI dropping free for OSS

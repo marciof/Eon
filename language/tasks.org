@@ -53,8 +53,6 @@ ls color:`auto
 if [is user 'bob'] then=
   io/print {name='bob' age=[: 20 1]} 
 
-# Unify strings and symbols? 
-'Raw string'
 `Interpolated string\n` # not needed? 
 [defer (list of strings and numbers 1 2 3 \[+ 1 3])]
 
