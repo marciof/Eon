@@ -52,9 +52,7 @@ ls color:`auto
 # Unify symbols and strings? 
 
 {\name:123}
-
 {name=123}
-{'name'=123}
 
 `symbol
 
@@ -73,6 +71,8 @@ if [<= age 20] ...
 
 # Math expression helper? 
 if [expr age <= (max-age + 10)] ...
+
+# Avoid reserving equals sign?
 
 * TODO specify indentation based syntax grammar
 
