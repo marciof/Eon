@@ -9,20 +9,31 @@
 - https://github.com/willghatch/racket-rash
 - "Pipelines Support Vectorized, Point-Free, and Imperative Style", https://www.oilshell.org/blog/2017/01/15.html
 
-# Symbols as "flags"?
-# Unreserving backslash would allow it for division?
-# And less/greater than or equal? 
-# But reserves minus char?
-# Just leave it to stdlib? 
+# Symbols are unquoted strings, bare words.
+# Still defined in the grammar. 
+# Just don't have separate types.
+# This means source parsing round-trip isn't 1:1.
+# Precedent in the grammar transformations.
 
-{\name='Bob' \age=20}
-{--name='Bob' --age=20}
-{-name='Bob' -age=20}
-{--name:'Bob' --age:20}
-{-name:'Bob' -age:20} 
+{'name'='Bob' 'age'=20}
+
+# Dangling get chain for quoting.
+# It's equivalent.
+
+{/name='Bob' /age=20} 
+
+# Useful also for command line flags.
+# Eg: ls -la --color=auto
+
+ls color=/auto
+
+# Division syntax.
 
 : 1 2
 \ 1 2
+
+
+
 <\ x y
 <_ x y
 << x y
@@ -31,11 +42,6 @@
 
 # More syntax for symbols and arguments?
 # stdlib?
-
-# ls -la --color=auto
-
-ls \l=true \a=true \color='auto' 
-ls color:`auto
 
 # Keyword arguments won't be used much?
 # Switch '=' to ':'? More readable?
@@ -49,10 +55,6 @@ ls color:`auto
 
 # Make it multiple values to generalize? Orthogonal? 
 # How to escape? 
-# Unify symbols and strings? 
-
-{\name:123}
-{name=123}
 
 `symbol
 
@@ -234,6 +236,7 @@ This will, also, make it easier for people to understand and contribute to the o
 
 * TODO optional static typing?
 
+- easier to navigate a new code base? 
 - Remove prototypical inheritance?
 - check out BLisp, https://ytakano.github.io/blisp/
 
