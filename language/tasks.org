@@ -17,13 +17,13 @@
 
 {'name'='Bob' 'age'=20}
 
-# Dangling get chain for quoting.
-# It's equivalent.
+# Dangling get chain reused for quoting.
+# Equivalent.
 
 {/name='Bob' /age=20} 
 
 # Useful also for command line flags.
-# Eg: ls -la --color=auto
+# Eg: ls --color=auto
 
 ls color=/auto
 
@@ -32,7 +32,7 @@ ls color=/auto
 : 1 2
 \ 1 2
 
-
+# Numeric comparison operators.
 
 <\ x y
 <_ x y
@@ -40,18 +40,7 @@ ls color=/auto
 |< x y
 >| x y
 
-# More syntax for symbols and arguments?
-# stdlib?
 
-# Keyword arguments won't be used much?
-# Switch '=' to ':'? More readable?
-
-# Only back compat for POSIX? 
-# Use single letter tools instead (eg. show.sh) 
-
-# Just quote left always, it's more common?
-# More consistent? 
-{name:'Bob' age:20}
 
 # Make it multiple values to generalize? Orthogonal? 
 # How to escape? 
