@@ -19,9 +19,23 @@
 
 # Dangling get chain reused for quoting.
 # Equivalent.
+# Familiar/reflects get chain usage. 
 # Ambiguous with accessing root entries? 
+# Maybe don't need syntax for quoting? 
 
 {/name='Bob' /age=20} 
+
+# Root entry syntax? 
+# Similar to current, parent and home? 
+
+:/bin/ls
+./bin/ls
+../bin/ls
+~/bin/ls
+
+# Trailing syntax? 
+
+some/folder/
 
 # Useful also for command line flags.
 # Eg: ls --color=auto
@@ -42,14 +56,6 @@ ls color=/auto
 >| x y
 
 
-
-# Make it multiple values to generalize? Orthogonal? 
-# How to escape? 
-
-`symbol
-
-if [is user 'bob'] then=
-  io/print {name='bob' age=[\ 20 1]} 
 
 `Interpolated string\n` # not needed? 
 [defer (list of strings and numbers 1 2 3 \[+ 1 3])]
