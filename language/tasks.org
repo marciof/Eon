@@ -18,10 +18,7 @@
 {'name'='Bob' 'age'=20}
 
 # Dangling get chain reused for quoting.
-# Equivalent.
-# Familiar/reflects get chain usage. 
-# Ambiguous with accessing root entries? 
-# Maybe don't need syntax for quoting? 
+# It's familiar and reflects get chain usage.
 
 {/name='Bob' /age=20} 
 
@@ -38,9 +35,9 @@
 some/folder/
 
 # Useful also for command line flags.
-# Eg: ls --color=auto
+# Eg: ls -a --color=auto
 
-ls color=/auto
+ls a=true color=/auto
 
 # Division syntax.
 
@@ -49,28 +46,14 @@ ls color=/auto
 
 # Numeric comparison operators.
 
+<\\ x y
+>\\ x y
+
 <\ x y
 <_ x y
 << x y
 |< x y
 >| x y
-
-
-
-`Interpolated string\n` # not needed? 
-[defer (list of strings and numbers 1 2 3 \[+ 1 3])]
-
-# Over using keyword parameters? 
-if [age < 20] ...
-if [age <= 20] ...
-
-# And function names? 
-if [<= age 20] ...
-
-# Math expression helper? 
-if [expr age <= (max-age + 10)] ...
-
-# Avoid reserving equals sign?
 
 * TODO specify indentation based syntax grammar
 
