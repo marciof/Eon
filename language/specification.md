@@ -25,7 +25,7 @@
   - [`+` (add)](#-add)
   - [`-` (subtract)](#-subtract)
   - [`*` (multiply)](#-multiply)
-  - [`/` (divide)](#-divide)
+  - [`\` (divide)](#-divide)
   - [`bindings`](#bindings)
   - [`count`](#count)
   - [`defer`](#defer)
@@ -118,7 +118,7 @@ Guidelines for naming identifiers:
 let Numbers=[proto List Number]
 
 # Function
-let double=[n=, * n 2]
+let increment=[n=, + n 1]
 
 # Module
 io/print 'Hello'
@@ -186,7 +186,7 @@ A boolean is a binary logical value that can only be either true or false. It do
 
 ### Conditions
 
-- *Called with one or more arguments:* [unwinds](#unwind) global scope with `\parameter-mismatch`
+- *Called with one or more arguments:* [unwinds](#unwind) global scope with `'parameter-mismatch'`
 
 ### Examples
 
@@ -223,7 +223,7 @@ Tail calls are guaranteed to be efficient and use a similar amount of memory as 
 
 ### Conditions
 
-- *Empty function called with one or more arguments:* [unwinds](#unwind) global scope with `\parameter-mismatch`
+- *Empty function called with one or more arguments:* [unwinds](#unwind) global scope with `'parameter-mismatch'`
 
 ### Examples
 
@@ -240,13 +240,13 @@ Tail calls are guaranteed to be efficient and use a similar amount of memory as 
 * multiplicand=4 multiplier=5
 # 20
 
-\[]
+defer []
 # []
 
-\[* 4 5]
+defer [* 4 5]
 # [* 4 5]
 
-[\[* 4 5]]
+[defer [* 4 5]]
 # 20
 
 proto +
@@ -255,7 +255,7 @@ proto +
 proto proto
 # []
 
-proto \[* 4 5]
+proto [defer [* 4 5]]
 # []
 
 proto []
@@ -278,7 +278,7 @@ A list is an immutable sequence of elements, that associates consecutive positiv
 
 ### Conditions
 
-- *Called with one or more arguments:* [unwinds](#unwind) global scope with `\parameter-mismatch`
+- *Called with one or more arguments:* [unwinds](#unwind) global scope with `'parameter-mismatch'`
 
 ### Examples
 
@@ -289,8 +289,8 @@ A list is an immutable sequence of elements, that associates consecutive positiv
 ('x' 'y')
 # ('x' 'y')
 
-(8 2 2 \abc)
-# (8 2 2 abc)
+(8 2 2 'abc')
+# (8 2 2 'abc')
 
 proto ('x')
 # ()
@@ -314,7 +314,7 @@ It's an error to use the same key more than once in a map literal. To build a ma
 
 ### Conditions
 
-- *Called with one or more arguments:* [unwinds](#unwind) global scope with `\parameter-mismatch`
+- *Called with one or more arguments:* [unwinds](#unwind) global scope with `'parameter-mismatch'`
 
 ### Examples
 
@@ -322,13 +322,13 @@ It's an error to use the same key more than once in a map literal. To build a ma
 {=}
 # {=}
 
-{\name='Bob' \age=20}
-# {name='Bob' age=20}
+{'name'='Bob' 'age'=20}
+# {'name'='Bob' 'age'=20}
 
-{'Bob'=\bob \bob=123}
-# {'Bob'=bob bob=123}
+{+='add' -='subtract' 'description'='Math'}
+# {+='add' -='subtract' 'description'='Math'}
 
-proto {\name='Bob'}
+proto {'name'='Bob'}
 # {=}
 
 proto {=}
@@ -348,7 +348,7 @@ A rational number.
 
 ### Conditions
 
-- *Called with one or more arguments:* [unwinds](#unwind) global scope with `\parameter-mismatch`
+- *Called with one or more arguments:* [unwinds](#unwind) global scope with `'parameter-mismatch'`
 
 ### Examples
 
@@ -371,10 +371,10 @@ A rational number.
 4'294'967'296
 # 4'294'967'296
 
-: 1 2
+\ 1 2
 # 0.5
 
-: 1 0.(0)1
+\ 1 0.(0)1
 # infinity
 
 3Km
@@ -402,7 +402,7 @@ It's an error to use the same element more than once in a set literal. To build 
 
 ### Conditions
 
-- *Called with one or more arguments:* [unwinds](#unwind) global scope with `\parameter-mismatch`
+- *Called with one or more arguments:* [unwinds](#unwind) global scope with `'parameter-mismatch'`
 
 ### Examples
 
@@ -413,8 +413,8 @@ It's an error to use the same element more than once in a set literal. To build 
 {'x' 'y'}
 # {'x' 'y'}
 
-{8 \abc}
-# {8 abc}
+{8 'abc'}
+# {8 'abc'}
 
 proto {'x'}
 # {}
@@ -438,24 +438,24 @@ A symbol that isn't [deferred](#defer) is [evaluated](#evaluate) in the context 
 
 ### Conditions
 
-- *Called with one or more arguments:* [unwinds](#unwind) global scope with `\parameter-mismatch`
+- *Called with one or more arguments:* [unwinds](#unwind) global scope with `'parameter-mismatch'`
 
 ### Examples
 
 ```
-\abc
+defer abc
 # abc
 
-\empty?
+defer empty?
 # empty?
 
-\!
+defer !
 # !
 
-\...
+defer ...
 # ...
 
-proto [proto \xyz]]
+proto [proto [defer xyz]]
 # ''
 ```
 
@@ -472,7 +472,7 @@ A text is an immutable sequence of Unicode characters, each one identified by a 
 
 ### Conditions
 
-- *Called with one or more arguments:* [unwinds](#unwind) global scope with `\parameter-mismatch`
+- *Called with one or more arguments:* [unwinds](#unwind) global scope with `'parameter-mismatch'`
 
 ### Examples
 
@@ -483,6 +483,9 @@ A text is an immutable sequence of Unicode characters, each one identified by a 
 'café'
 # 'café'
 
+/café
+# 'café'
+
 '<a href=''http://www.example.com''>'
 # '<a href=''http://www.example.com''>'
 
@@ -490,9 +493,12 @@ hex'1F'
 # [hex '1F']
 
 re'\d+'g
-# [re '\d+' \g]
+# [re '\d+' 'g']
 
 proto 'Bob'
+# ''
+
+proto /Bob
 # ''
 
 proto ''
@@ -603,10 +609,10 @@ A [function](#function) that multiplies two or more [numbers](#number).
 - *Argument isn't a proto of nor a number:* [unwinds](#unwind) global scope with `\proto-mismatch`
 - *Multiplying zero and infinity:* [unwinds](#unwind) global scope with `\undefined-result`
 
-## `:` (divide)
+## `\` (divide)
 
 ```
-[: dividend=Number divisor=Number ...=Number] = Number
+[\ dividend=Number divisor=Number ...=Number] = Number
 ```
 
 A [function](#function) that divides two or more [numbers](#number).
@@ -625,10 +631,10 @@ A [function](#function) that divides two or more [numbers](#number).
 ### Examples
 
 ```
-: 12 3
+\ 12 3
 # 4
 
-: 1 3
+\ 1 3
 # 0.(3)
 ```
 
