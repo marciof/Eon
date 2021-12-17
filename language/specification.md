@@ -1220,23 +1220,22 @@ The grammar is expressed in Extended Backus-Naur Form syntax with the following 
 Expression:
 
 ```
-Expression ::= White-Space* Defer* (Quantity | Symbol | Text | Map | Set | List | Function) White-Space*
-Defer ::= "\" <U+27>
+Expression ::= Number-Quantity | Symbol | Deferred-Symbol | Text | Map | List | Set | Function
+Deferred-Symbol ::= Get-Chain-Separator Symbol
 ```
 
 White-space:
 
 ```
 White-Space ::= " " <U+20> | End-of-Line | Comment
-Comment ::= Comment-Quote not(End-of-Line)* End-of-Line
-Comment-Quote ::= "#" <U+23>
+Comment ::= "#" <U+23> not(End-of-Line)* End-of-Line
 End-of-Line ::= "" <U+A>
 ```
 
 Number:
 
 ```
-Quantity ::= Number Symbol?
+Number-Quantity ::= Number Symbol?
 Number ::= Sign? Digit+ (Decimal-Separator (Digits | Digits? List-Begin Digits List-End))?
 Decimal-Separator ::= "." <U+2E>
 Digit-Group-Separator ::= "'" <U+22>
@@ -1249,7 +1248,7 @@ Symbol:
 
 ```
 Symbol ::= not(Reserved-Character, White-Space, Sign, Digit) not(Reserved-Character, White-Space)*
-Reserved-Character ::= List-Begin | List-End | Function-Begin | Function-End | Map-Begin | Map-End | Comment-Quote | Text-Quote | Defer | Pair-Separator
+Reserved-Character ::= List-Begin | List-End | Function-Begin | Function-End | Map-Begin | Map-End | Get-Chain-Separator | Pair-Separator | Text-Quote
 ```
 
 Text:
@@ -1257,7 +1256,7 @@ Text:
 ```
 Text ::= Simple-Text | Tagged-Text
 Simple-Text ::= Text-Quote (not(Text-Quote) | Text-Quote{2})* Text-Quote
-Tagged-Text ::= Symbol Simple-Text Symbol?
+Tagged-Text ::= Symbol Simple-Text (Symbol | Number)?
 Text-Quote ::= "'" <U+22>
 ```
 
@@ -1290,8 +1289,8 @@ Function:
 
 ```
 Function ::= (Function-Begin White-Space* (Function-Value (White-Space+ Function-Value)* White-Space*)? Function-End) | Get-Chain
-Get-Chain ::= Symbol (Get-Chain-Separator (Symbol | Number))+
 Function-Value ::= Expression | Pair
+Get-Chain ::= Symbol (Get-Chain-Separator (Symbol | Number))+
 Get-Chain-Separator ::= "/" <U+2F>
 Function-Begin ::= "[" <U+5B>
 Function-End ::= "]" <U+5D>
@@ -1301,10 +1300,10 @@ Function-End ::= "]" <U+5D>
 
 These are the syntactic transformations that occur for each associated non-terminal. Each letter represents a matching element of a grammar production.
 
-|Non-Terminal    |Syntax|Transformation|Example     |Notes         |
-|----------------|------|--------------|------------|--------------|
-|*Get-Chain*     |`x/y` |`[get x \y]`  |`user/name` |Left to right.|
-|*Tagged-Text*   |`xty` |`[x t \y]`    |`base'1F'16`|              |
-|*Function-Value*|`x`   |`n=x`         |`[f]`       |Position `n`. |
-|*Number*        |`nx`  |`[x n]`       |`2Km`       |              |
-|*Defer*         |`\x`  |`[defer x]`   |`\length`   |              |
+|Non-Terminal     |Syntax|Transformation|Example     |Notes         |
+|-----------------|------|--------------|------------|--------------|
+|*Get-Chain*      |`x/y` |`[get x /y]`  |`io/print`  |Left to right.|
+|*Deferred-Symbol*|`/x`  |`[defer x]`   |`/name`     |              |
+|*Tagged-Text*    |`xty` |`[x t /y]`    |`re'\d+'g`  |              |
+|*Function-Value* |`x`   |`n=x`         |`[f]`       |Position `n`. |
+|*Number-Quantity*|`nx`  |`[x n]`       |`3Km`       |              |
