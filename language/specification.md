@@ -186,7 +186,7 @@ A boolean is a binary logical value that can only be either true or false. It do
 
 ### Conditions
 
-- *Called with one or more arguments:* [unwinds](#unwind) global scope with `'parameter-mismatch'`
+- *Called with one or more arguments:* [unwinds](#unwind) global scope with `/parameter-mismatch`
 
 ### Examples
 
@@ -223,7 +223,7 @@ Tail calls are guaranteed to be efficient and use a similar amount of memory as 
 
 ### Conditions
 
-- *Empty function called with one or more arguments:* [unwinds](#unwind) global scope with `'parameter-mismatch'`
+- *Empty function called with one or more arguments:* [unwinds](#unwind) global scope with `/parameter-mismatch`
 
 ### Examples
 
@@ -239,9 +239,6 @@ Tail calls are guaranteed to be efficient and use a similar amount of memory as 
 
 * multiplicand=4 multiplier=5
 # 20
-
-defer []
-# []
 
 defer [* 4 5]
 # [* 4 5]
@@ -278,7 +275,7 @@ A list is an immutable sequence of elements, that associates consecutive positiv
 
 ### Conditions
 
-- *Called with one or more arguments:* [unwinds](#unwind) global scope with `'parameter-mismatch'`
+- *Called with one or more arguments:* [unwinds](#unwind) global scope with `/parameter-mismatch`
 
 ### Examples
 
@@ -289,8 +286,8 @@ A list is an immutable sequence of elements, that associates consecutive positiv
 ('x' 'y')
 # ('x' 'y')
 
-(8 2 2 'abc')
-# (8 2 2 'abc')
+(2 2 (/xyz) 'abc')
+# (2 2 (/xyz) 'abc')
 
 proto ('x')
 # ()
@@ -314,7 +311,7 @@ It's an error to use the same key more than once in a map literal. To build a ma
 
 ### Conditions
 
-- *Called with one or more arguments:* [unwinds](#unwind) global scope with `'parameter-mismatch'`
+- *Called with one or more arguments:* [unwinds](#unwind) global scope with `/parameter-mismatch`
 
 ### Examples
 
@@ -322,13 +319,13 @@ It's an error to use the same key more than once in a map literal. To build a ma
 {=}
 # {=}
 
-{'name'='Bob' 'age'=20}
-# {'name'='Bob' 'age'=20}
+{/name='Bob' /age=20}
+# {name='Bob' age=20}
 
-{+='add' -='subtract' 'description'='Math'}
-# {+='add' -='subtract' 'description'='Math'}
+{+='add' -='subtract' /description='Math'}
+# {+='add' -='subtract' description='Math'}
 
-proto {'name'='Bob'}
+proto {/name='Bob'}
 # {=}
 
 proto {=}
@@ -348,7 +345,7 @@ A rational number.
 
 ### Conditions
 
-- *Called with one or more arguments:* [unwinds](#unwind) global scope with `'parameter-mismatch'`
+- *Called with one or more arguments:* [unwinds](#unwind) global scope with `/parameter-mismatch`
 
 ### Examples
 
@@ -402,7 +399,7 @@ It's an error to use the same element more than once in a set literal. To build 
 
 ### Conditions
 
-- *Called with one or more arguments:* [unwinds](#unwind) global scope with `'parameter-mismatch'`
+- *Called with one or more arguments:* [unwinds](#unwind) global scope with `/parameter-mismatch`
 
 ### Examples
 
@@ -413,8 +410,8 @@ It's an error to use the same element more than once in a set literal. To build 
 {'x' 'y'}
 # {'x' 'y'}
 
-{8 'abc'}
-# {8 'abc'}
+{2 {/xyz} 'abc'}
+# {2 {/xyz} 'abc'}
 
 proto {'x'}
 # {}
@@ -425,7 +422,7 @@ proto {}
 
 ## Symbol
 
-A symbol is an immutable case-sensitive name, that restricts the character set used according to the [grammar](#grammar). The empty symbol does not have a literal source code representation.
+A symbol is an immutable case-sensitive name, that restricts the character set used according to the [grammar](#grammar). The empty symbol does not have a literal source code representation, but is otherwise a valid value.
 
 A symbol that isn't [deferred](#defer) is [evaluated](#evaluate) in the context of the [bindings](#bindings) map, and recursively within each key named `bindings` until a value is found.
 
@@ -438,24 +435,27 @@ A symbol that isn't [deferred](#defer) is [evaluated](#evaluate) in the context 
 
 ### Conditions
 
-- *Called with one or more arguments:* [unwinds](#unwind) global scope with `'parameter-mismatch'`
+- *Called with one or more arguments:* [unwinds](#unwind) global scope with `/parameter-mismatch`
 
 ### Examples
 
 ```
+/abc
+# abc
+
 defer abc
 # abc
 
-defer empty?
+/empty?
 # empty?
 
-defer !
+/!
 # !
 
-defer ...
+/...
 # ...
 
-proto [proto [defer xyz]]
+proto [proto /xyz]
 # ''
 ```
 
@@ -472,7 +472,7 @@ A text is an immutable sequence of Unicode characters, each one identified by a 
 
 ### Conditions
 
-- *Called with one or more arguments:* [unwinds](#unwind) global scope with `'parameter-mismatch'`
+- *Called with one or more arguments:* [unwinds](#unwind) global scope with `/parameter-mismatch`
 
 ### Examples
 
@@ -483,9 +483,6 @@ A text is an immutable sequence of Unicode characters, each one identified by a 
 'café'
 # 'café'
 
-/café
-# 'café'
-
 '<a href=''http://www.example.com''>'
 # '<a href=''http://www.example.com''>'
 
@@ -493,12 +490,9 @@ hex'1F'
 # [hex '1F']
 
 re'\d+'g
-# [re '\d+' 'g']
+# [re '\d+' /g]
 
 proto 'Bob'
-# ''
-
-proto /Bob
 # ''
 
 proto ''
@@ -531,8 +525,8 @@ A [function](#function) that compares two or more [numbers](#number) (with short
 
 ### Conditions
 
-- *Called with less than two arguments:* [unwinds](#unwind) global scope with `'parameter-mismatch'`
-- *Argument isn't a proto of nor a number:* [unwinds](#unwind) global scope with `'proto-mismatch'`
+- *Called with less than two arguments:* [unwinds](#unwind) global scope with `/parameter-mismatch`
+- *Argument isn't a proto of nor a number:* [unwinds](#unwind) global scope with `/proto-mismatch`
 
 ## `>` (greater than)
 
@@ -549,8 +543,8 @@ A [function](#function) that compares two or more [numbers](#number) (with short
 
 ### Conditions
 
-- *Called with less than two arguments:* [unwinds](#unwind) global scope with `'parameter-mismatch'`
-- *Argument isn't a proto of nor a number:* [unwinds](#unwind) global scope with `'proto-mismatch'`
+- *Called with less than two arguments:* [unwinds](#unwind) global scope with `/parameter-mismatch`
+- *Argument isn't a proto of nor a number:* [unwinds](#unwind) global scope with `/proto-mismatch`
 
 ## `+` (add)
 
@@ -567,9 +561,9 @@ A [function](#function) that adds one or more [numbers](#number).
 
 ### Conditions
 
-- *Called with no arguments:* [unwinds](#unwind) global scope with `'parameter-mismatch'`
-- *Argument isn't a proto of nor a number:* [unwinds](#unwind) global scope with `'proto-mismatch'`
-- *Adding negative and positive infinity:* [unwinds](#unwind) global scope with `'undefined-result'`
+- *Called with no arguments:* [unwinds](#unwind) global scope with `/parameter-mismatch`
+- *Argument isn't a proto of nor a number:* [unwinds](#unwind) global scope with `/proto-mismatch`
+- *Adding negative and positive infinity:* [unwinds](#unwind) global scope with `/undefined-result`
 
 ## `-` (subtract)
 
@@ -586,9 +580,9 @@ A [function](#function) that subtracts one or more [numbers](#number).
 
 ### Conditions
 
-- *Called with no arguments:* [unwinds](#unwind) global scope with `'parameter-mismatch'`
-- *Argument isn't a proto of nor a number:* [unwinds](#unwind) global scope with `'proto-mismatch'`
-- *Subtracting infinity from infinity:* [unwinds](#unwind) global scope with `'undefined-result'`
+- *Called with no arguments:* [unwinds](#unwind) global scope with `/parameter-mismatch`
+- *Argument isn't a proto of nor a number:* [unwinds](#unwind) global scope with `/proto-mismatch`
+- *Subtracting infinity from infinity:* [unwinds](#unwind) global scope with `/undefined-result`
 
 ## `*` (multiply)
 
@@ -605,9 +599,9 @@ A [function](#function) that multiplies two or more [numbers](#number).
 
 ### Conditions
 
-- *Called with less than two arguments:* [unwinds](#unwind) global scope with `'parameter-mismatch'`
-- *Argument isn't a proto of nor a number:* [unwinds](#unwind) global scope with `'proto-mismatch'`
-- *Multiplying zero and infinity:* [unwinds](#unwind) global scope with `'undefined-result'`
+- *Called with less than two arguments:* [unwinds](#unwind) global scope with `/parameter-mismatch`
+- *Argument isn't a proto of nor a number:* [unwinds](#unwind) global scope with `/proto-mismatch`
+- *Multiplying zero and infinity:* [unwinds](#unwind) global scope with `/undefined-result`
 
 ## `\` (divide)
 
@@ -624,9 +618,9 @@ A [function](#function) that divides two or more [numbers](#number).
 
 ### Conditions
 
-- *Called with less than two arguments:* [unwinds](#unwind) global scope with `'parameter-mismatch'`
-- *Argument isn't a proto of nor a number:* [unwinds](#unwind) global scope with `'proto-mismatch'`
-- *Dividing by zero or infinity by infinity:* [unwinds](#unwind) global scope with `'undefined-result'`
+- *Called with less than two arguments:* [unwinds](#unwind) global scope with `/parameter-mismatch`
+- *Argument isn't a proto of nor a number:* [unwinds](#unwind) global scope with `/proto-mismatch`
+- *Dividing by zero or infinity by infinity:* [unwinds](#unwind) global scope with `/undefined-result`
 
 ### Examples
 
@@ -663,8 +657,8 @@ A [function](#function) that returns the number of key/value pairs in a `map`.
 
 ### Conditions
 
-- *Called with less or more than one argument:* [unwinds](#unwind) global scope with `'parameter-mismatch'`
-- *`map` argument isn't a proto of nor a map:* [unwinds](#unwind) global scope with `'proto-mismatch'`
+- *Called with less or more than one argument:* [unwinds](#unwind) global scope with `/parameter-mismatch`
+- *`map` argument isn't a proto of nor a map:* [unwinds](#unwind) global scope with `/proto-mismatch`
 
 ### Examples
 
@@ -675,7 +669,7 @@ count {}
 count {=}
 # 0
 
-count {'name'='Bob'}
+count {/name='Bob'}
 # 1
 
 count ('x' 'y')
@@ -710,15 +704,15 @@ A [function](#function) that creates a snapshot of an `expression` thereby preve
 
 ### Conditions
 
-- *Called with zero or more than two arguments:* [unwinds](#unwind) global scope with `'parameter-mismatch'`
-- *`escape` argument isn't a proto of nor a symbol:* [unwinds](#unwind) global scope with `'proto-mismatch'`
+- *Called with zero or more than two arguments:* [unwinds](#unwind) global scope with `/parameter-mismatch`
+- *`escape` argument isn't a proto of nor a symbol:* [unwinds](#unwind) global scope with `/proto-mismatch`
 
 ### Examples
 
 ```
 let x=2
 
-  \x
+  /x
   # x
 
   x
@@ -727,13 +721,10 @@ let x=2
   + 1 x
   # 3
 
-  \[+ 1 x]
-  # [+ 1 x]
-
   defer [+ 1 x]
   # [+ 1 x]
 
-  defer [+ 1 [escape x]] \escape]
+  defer [+ 1 [escape x]] /escape]
   # [+ 1 2]
 ```
 
@@ -752,7 +743,7 @@ A [function](#function) that evaluates a sequence of one or more expressions and
 
 ### Conditions
 
-- *Called with zero arguments:* [unwinds](#unwind) global scope with `'parameter-mismatch'`
+- *Called with zero arguments:* [unwinds](#unwind) global scope with `/parameter-mismatch`
 
 ### Examples
 
@@ -764,6 +755,11 @@ do [* 4 5]
 # 20
 
 do [* 4 5] [+ 8 2]
+# 10
+
+do
+  [* 4 5]
+  [+ 8 2]
 # 10
 ```
 
@@ -783,10 +779,10 @@ A [function](#function) that evaluates an `expression` and returns the result, o
 
 ### Conditions
 
-- *Called with zero or more than two arguments:* [unwinds](#unwind) global scope with `'parameter-mismatch'`
-- *`bindings` argument isn't a proto of nor a map:* [unwinds](#unwind) global scope with `'proto-mismatch'`
-- *`expression` argument contains a non-deferred symbol without a bindings value:* [unwinds](#unwind) global scope with `\unbound-symbol`
-- *`expression` argument contains a function call to a non-function value:* [unwinds](#unwind) global scope with `'proto-mismatch'`
+- *Called with zero or more than two arguments:* [unwinds](#unwind) global scope with `/parameter-mismatch`
+- *`bindings` argument isn't a proto of nor a map:* [unwinds](#unwind) global scope with `/proto-mismatch`
+- *`expression` argument contains a non-deferred symbol without a bindings value:* [unwinds](#unwind) global scope with `/unbound-symbol`
+- *`expression` argument contains a function call to a non-function value:* [unwinds](#unwind) global scope with `/proto-mismatch`
 
 ### Examples
 
@@ -794,35 +790,15 @@ A [function](#function) that evaluates an `expression` and returns the result, o
 evaluate 'Bob'
 # 'Bob'
 
-[let x=\[+ 8 2]
+let x=2
 
-  x
-  # [+ 8 2]
-
-  [x]
-  # 10
-
-  [do x]
-  # [+ 8 2]
-
-  [evaluate x]
-  # 10
-
-  [evaluate \x]
-  # [+ 8 2]
-
-  [evaluate \[x]]]
-  # 10
-
-let y=2
-
-  evaluate \y
+  evaluate /x
   # 2
 
-  evaluate \y {\y=8}
+  evaluate /x {/x=8}
   # 8
 
-  evaluate \y bindings
+  evaluate /x bindings
   # 2
 ```
 
@@ -842,9 +818,9 @@ A [function](#function) that retrieves the value associated with a `key` in a `m
 
 ### Conditions
 
-- *Called with less than two or more than three arguments:* [unwinds](#unwind) global scope with `'parameter-mismatch'`
-- *`map` argument isn't a proto of nor a map:* [unwinds](#unwind) global scope with `'proto-mismatch'`
-- *Association doesn't exist and a `default` value isn't provided:* [unwinds](#unwind) global scope with `\unknown-key`
+- *Called with less than two or more than three arguments:* [unwinds](#unwind) global scope with `/parameter-mismatch`
+- *`map` argument isn't a proto of nor a map:* [unwinds](#unwind) global scope with `/proto-mismatch`
+- *Association doesn't exist and a `default` value isn't provided:* [unwinds](#unwind) global scope with `/unknown-key`
 
 ### Examples
 
@@ -855,28 +831,28 @@ get [8 2 2] key=1
 get {'a' 'b'} 'b'
 # 'b'
 
-get \[+ 6 7] 2
+get [defer [+ 6 7]] 2
 # 6
 
 get 'Bob' 3
 # 98
 
-get \Bob 3
+get /Bob 3
 # 98
 
 get 'café' 4
 # 233
 
-get {=} \age default=20
+get {=} /age default=20
 # 20
 
-get {\age=30} \age 20
+get {/age=30} /age 20
 # 30
 
-let user={\name='Bob'}
+let user={/name='Bob'}
     users=(user)
 
-  get user \name
+  get user /name
   # 'Bob'
 
   user/name
@@ -901,7 +877,7 @@ A [function](#function) that compares two or more values (with short-circuit eva
 
 ### Conditions
 
-- *Called with less than two arguments:* [unwinds](#unwind) global scope with `'parameter-mismatch'`
+- *Called with less than two arguments:* [unwinds](#unwind) global scope with `/parameter-mismatch`
 
 ### Examples
 
@@ -915,8 +891,14 @@ is -0 +0
 is 'A' 'a'
 # false
 
-is \A \a
+is /A /a
 # false
+
+is 'A' /A
+# false
+
+is 'A' 'A'
+# true
 
 is (1 2 3) (1 2 3)
 # true
@@ -943,15 +925,15 @@ A [function](#function) that loads a [module](#module) by `path`, and returns th
 
 ### Conditions
 
-- *Called with less than one argument:* [unwinds](#unwind) global scope with `'parameter-mismatch'`
-- *`path` argument isn't a proto of nor a non-empty list of symbols:* [unwinds](#unwind) global scope with `'proto-mismatch'`
-- *Module can't be found:* [unwinds](#unwind) global scope with `\unknown-module`
-- *Module is invalid:* [unwinds](#unwind) global scope with `'undefined-result'`
+- *Called with less than one argument:* [unwinds](#unwind) global scope with `/parameter-mismatch`
+- *`path` argument isn't a proto of nor a non-empty list of symbols:* [unwinds](#unwind) global scope with `/proto-mismatch`
+- *Module can't be found:* [unwinds](#unwind) global scope with `/unknown-module`
+- *Module is invalid:* [unwinds](#unwind) global scope with `/undefined-result`
 
 ### Examples
 
 ```
-load (\io)
+load (/io)
 ```
 
 ## `next`
@@ -970,20 +952,20 @@ A [function](#function) that returns the first key, or the key following `key` i
 
 ### Conditions
 
-- *Called with zero or more than two arguments:* [unwinds](#unwind) global scope with `'parameter-mismatch'`
-- *`map` argument isn't a proto of nor a map:* [unwinds](#unwind) global scope with `'proto-mismatch'`
-- *`map` is empty or `key` is the last key:* [unwinds](#unwind) global scope with `\unknown-key`
+- *Called with zero or more than two arguments:* [unwinds](#unwind) global scope with `/parameter-mismatch`
+- *`map` argument isn't a proto of nor a map:* [unwinds](#unwind) global scope with `/proto-mismatch`
+- *`map` is empty or `key` is the last key:* [unwinds](#unwind) global scope with `/unknown-key`
 
 ### Examples
 
 ```
-next (\x \y \z)
+next (/x /y /z)
 # 1
 
-next (\x \y \z) 2
+next (/x /y /z) 2
 # 3
 
-next {\name='Bob' \age=20}
+next {/name='Bob' /age=20}
 # name
 ```
 
@@ -1002,7 +984,7 @@ A [function](#function) that retrieves the [proto](#data-types) of `value`.
 
 ### Conditions
 
-- *Called with zero or more than one argument:* [unwinds](#unwind) global scope with `'parameter-mismatch'`
+- *Called with zero or more than one argument:* [unwinds](#unwind) global scope with `/parameter-mismatch`
 
 ### Examples
 
@@ -1073,12 +1055,12 @@ Set:
 
 ### Conditions
 
-- *Called with less than two or more than three arguments:* [unwinds](#unwind) global scope with `'parameter-mismatch'`
-- *`map` argument isn't a proto of nor a map:* [unwinds](#unwind) global scope with `'proto-mismatch'`
-- *`map` argument is a proto of or a set and `key` isn't equal to `value`:* [unwinds](#unwind) global scope with `'parameter-mismatch'`
-- *`set` argument isn't a proto of nor a set:* [unwinds](#unwind) global scope with `'proto-mismatch'`
-- *`list` argument is a proto of or a list and `key` isn't a positive integer less than or equal to its length plus one:* [unwinds](#unwind) global scope with `'parameter-mismatch'`
-- *`function` argument is a proto of or a function and when `key` is a number it isn't a positive integer less than or equal to its highest positive integer key plus one:* [unwinds](#unwind) global scope with `'parameter-mismatch'`
+- *Called with less than two or more than three arguments:* [unwinds](#unwind) global scope with `/parameter-mismatch`
+- *`map` argument isn't a proto of nor a map:* [unwinds](#unwind) global scope with `/proto-mismatch`
+- *`map` argument is a proto of or a set and `key` isn't equal to `value`:* [unwinds](#unwind) global scope with `/parameter-mismatch`
+- *`set` argument isn't a proto of nor a set:* [unwinds](#unwind) global scope with `/proto-mismatch`
+- *`list` argument is a proto of or a list and `key` isn't a positive integer less than or equal to its length plus one:* [unwinds](#unwind) global scope with `/parameter-mismatch`
+- *`function` argument is a proto of or a function and when `key` is a number it isn't a positive integer less than or equal to its highest positive integer key plus one:* [unwinds](#unwind) global scope with `/parameter-mismatch`
 
 ### Examples
 
@@ -1101,13 +1083,13 @@ put 'Bo' 98
 put 'ob' 1 66
 # 'Bob'
 
-put {=} \name 'Bob'
+put {=} /name 'Bob'
 # {name='Bob'}
 
-put {\name='Bob'} \name 'John'
+put {/name='Bob'} /name 'John'
 # {name='John'}
 
-put \x [get 'y' 1]
+put /x [get 'y' 1]
 # xy
 ```
 
@@ -1154,10 +1136,10 @@ Set:
 
 ### Conditions
 
-- *Called with less or more than two arguments:* [unwinds](#unwind) global scope with `'parameter-mismatch'`
-- *`map` argument isn't a proto of nor a map:* [unwinds](#unwind) global scope with `'proto-mismatch'`
-- *`list` argument is a proto of or a list and `key` isn't a positive integer:* [unwinds](#unwind) global scope with `'parameter-mismatch'`
-- *`function` argument is a proto of or a function and when `key` is a number it isn't a positive integer:* [unwinds](#unwind) global scope with `'parameter-mismatch'`
+- *Called with less or more than two arguments:* [unwinds](#unwind) global scope with `/parameter-mismatch`
+- *`map` argument isn't a proto of nor a map:* [unwinds](#unwind) global scope with `/proto-mismatch`
+- *`list` argument is a proto of or a list and `key` isn't a positive integer:* [unwinds](#unwind) global scope with `/parameter-mismatch`
+- *`function` argument is a proto of or a function and when `key` is a number it isn't a positive integer:* [unwinds](#unwind) global scope with `/parameter-mismatch`
 
 ### Examples
 
@@ -1174,10 +1156,10 @@ remove {'x' 'y'} 'y'
 remove 'Bob' 2
 # 'Bb'
 
-remove {\name='Bob' \age=20} \age
+remove {/name='Bob' /age=20} /age
 # {name='Bob'}
 
-remove {\name='Bob'} \age
+remove {/name='Bob'} /age
 # {name='Bob'}
 ```
 
@@ -1199,8 +1181,8 @@ Unwinding is a non-local early exit of a given scope. Unwinding global scope exi
 
 ### Conditions
 
-- *Called with zero or more than two arguments:* [unwinds](#unwind) global scope with `'parameter-mismatch'`
-- *`bindings` argument isn't a proto of nor a bindings map:* [unwinds](#unwind) global scope with `'proto-mismatch'`
+- *Called with zero or more than two arguments:* [unwinds](#unwind) global scope with `/parameter-mismatch`
+- *`bindings` argument isn't a proto of nor a bindings map:* [unwinds](#unwind) global scope with `/proto-mismatch`
 
 ### Examples
 
