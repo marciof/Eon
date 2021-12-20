@@ -17,6 +17,13 @@
 # This means source parsing round-trip isn't 1:1.
 # Precedent in the grammar transformations.
 
+# Are symbols callable? Zero argument functions?
+# Prevents unifying symbols and strings?
+# Need to specific calling symbol functions.
+
+[/count users]
+['count' users]
+
 {'name'='Bob' 'age'=20}
 
 # Dangling get chain reused for quoting?
