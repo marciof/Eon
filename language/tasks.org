@@ -11,27 +11,25 @@
 - https://github.com/willghatch/racket-rash
 - "Pipelines Support Vectorized, Point-Free, and Imperative Style", https://www.oilshell.org/blog/2017/01/15.html
 
-# Symbols are unquoted strings, bare words.
-# Still defined in the grammar. 
-# Just don't have separate types.
-# This means source parsing round-trip isn't 1:1.
-# Precedent in the grammar transformations.
+# Symbols are callable, like functions.
+# Calling a symbol does a late binding lookup.
+# A literal deferred  symbol is already a call.
 
-# Are symbols callable? Zero argument functions?
-# Prevents unifying symbols and strings?
-# Need to specific calling symbol functions.
+# Can't unify symbols and strings?
+
+/count
+# count
+
+/count users
+# 
 
 [/count users]
-['count' users]
+# 
 
-{'name'='Bob' 'age'=20}
+[[defer [count users]]]
+# 
 
-# Dangling get chain reused for quoting?
-# It's familiar and reflects get chain usage.
-
-{/name='Bob' /age=20} 
-
-# Module paths?
+# Module paths? Loading? 
 
 ???
 
