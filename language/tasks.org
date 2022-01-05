@@ -11,11 +11,19 @@
 - https://github.com/willghatch/racket-rash
 - "Pipelines Support Vectorized, Point-Free, and Imperative Style", https://www.oilshell.org/blog/2017/01/15.html
 
+name-to-alias, pairs, map do name= alias=
+  i'\(name) is \(alias)'
+
+# Interpolated strings as functions? 
+i'\(name=) is \(alias=)'
+
 # Symbols are callable, like functions.
 # Calling a symbol does a late binding lookup.
 # A literal deferred  symbol is already a call.
 
 # Can't unify symbols and strings?
+# A literal string evaluates to itself. 
+# A literal string call does dynamic binding.
 
 /count
 # count
