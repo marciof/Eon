@@ -1,3 +1,7 @@
+* TODO add a glossary section
+
+- eg. explain what a "fexpr" is
+
 * TODO add security as a goal
 
 * TODO disallow empty symbols?
@@ -168,7 +172,7 @@ age=20
 - ensure sections are alphabetical for ease of use
 - how do number keys and keyword parameters work in function lists? Do keywords alias number keys?
 - function naming example (1st key is the name, 1st value is the body/a fn), eg. `\(incr: + x 1)`
-- how to regularly ensure language goals are being met?
+- how to regularly ensure language goals are being met? How to quantify?
 - be succinct, avoid fluff
 - lexical and dynamic scope example (explain how `bindings` in fn lists affect their scope)
 - use only: must, should, may? And explain each one like RFCs
