@@ -49,7 +49,7 @@ Karyon is a free/libre open source (FLOSS) programming language for interactive 
 
 Simple:
 
-- Minimal syntax, but readable.
+- Minimal, readable syntax.
 - Fun to use.
 - Flat over nested, helpers over wrappers.
 - No undefined behavior, consistent, uniform.

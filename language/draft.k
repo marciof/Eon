@@ -34,8 +34,8 @@
 # Impl via stdlib helper function
 # How do pipes look when inspected?
 
-let Numbers=[proto List Number] 
-let Numbers=[List of=Number]
+let Numbers=[proto List Number] # FIXME uses proto/types
+let Numbers=[List of=Number] # simpler?
 
 let Number=[proto 0]
 let Any=[proto]
