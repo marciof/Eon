@@ -14,6 +14,7 @@
 # - Data type identification.
 #   - Proto VS prototype?
 #   - Attempt unify proto + maps as fns + fns as sets
+#   - How do pipes look like when inspected? Must be simple
 # - Ensure documentation is still readable and contains type information. Eg. avoid Python documentation with very hard to find typing information, return type documentation, etc.
 # - Avoid too much syntax. Keep language small. 
 # - Be explicit and safe by default:
@@ -27,7 +28,17 @@
 # - Cast, down, up
 # - Default args
 
-let is = [x= y=, [get {x=0 y=1} x]]
+# Booleans implemented in the stdlib?
+# Everything is built out of numbers or maps? 
+
+let is? = [x= y=, get {x=0 y=1} x]
+
+# Identifying numbers vs maps
+# Then static typing is in the stdlib and w/ analysis? 
+# (Make more functions work with either data type?) 
+
+count 123 # = 123
+let number? = [x=, is? x [count x]]
 
 let < = # if x-y is negative then x < y
 
