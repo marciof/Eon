@@ -11,7 +11,9 @@
 
 # Considerations:
 # - How to integrate having no prototypical inheritance with the data type hierarchy? 
-# - Data type identification. Proto VS prototype? 
+# - Data type identification.
+#   - Proto VS prototype?
+#   - Attempt unify proto + maps as fns + fns as sets
 # - Ensure documentation is still readable and contains type information. Eg. avoid Python documentation with very hard to find typing information, return type documentation, etc.
 # - Avoid too much syntax. Keep language small. 
 # - Be explicit and safe by default:
@@ -25,21 +27,30 @@
 # - Cast, down, up
 # - Default args
 
+let is = [x= y=, [get {x=0 y=1} x]]
+
+let < = # if x-y is negative then x < y
+
 # Example function w/o constraints
 # Does it default to using generics?
 
 [x= y=, + x y]
+[x: y:, + x y]
 
 # Example function w/ type constraints
 # Impl via stdlib helper function
 # How do pipes look when inspected?
 
-let Numbers=[proto List Number] # FIXME uses proto/types
-let Numbers=[List of=Number] # simpler?
-
-let Number=[proto 0]
+let Number=[proto 0] # "proto" means "first" 
 let Any=[proto]
 
+Number # yields 0
+Number 20 # yields 20
+
+let Numbers=[proto List Number]
+let Numbers=[List of=Number] # simpler?
+
+[fn x y, + x y]
 [with x y, + x y]
 [with x=Number y=Number, + x y]
 
@@ -128,7 +139,8 @@ date | file 'blah'
 let pow = [x= y=, ^ x y]
 
 # or more like math's "such that"?
-
+# functions as sets?
+ 
 [x:Number= y:Number= | ^ x y]
 Numbers = {x:Number= |}
 
