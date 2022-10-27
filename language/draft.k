@@ -31,14 +31,16 @@
 # Booleans implemented in the stdlib?
 # Everything is built out of numbers or maps? 
 
-let is? = [x= y=, get {x=0 y=1} x]
+let is = [x= y=, get {x=0 y=1} x]
 
 # Identifying numbers vs maps
 # Then static typing is in the stdlib and w/ analysis? 
 # (Make more functions work with either data type?) 
+# How to tell apart lists from maps? 
+# Still need to know how to hash? 
 
 count 123 # = 123
-let number? = [x=, is? x [count x]]
+let number? = [x=, is x [count x]]
 
 let < = # if x-y is negative then x < y
 
@@ -46,7 +48,6 @@ let < = # if x-y is negative then x < y
 # Does it default to using generics?
 
 [x= y=, + x y]
-[x: y:, + x y]
 
 # Example function w/ type constraints
 # Impl via stdlib helper function
