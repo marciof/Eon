@@ -1,3 +1,7 @@
+# types are predicate functions?
+# "A type in Verse is "simply a function". E.g. int is the identity function on integers, and fails otherwise"
+# every expression/function evaluates to a sequence of zero or more values 
+
 # Data has data only, no constraints.
 # - Built-in data type literals only *seem* to have constraints. 
 # - Data type constructors (functions) are what have the logic/constraints.
@@ -10,6 +14,7 @@
 # - Avoids adding new syntax.
 
 # Considerations:
+# - Structural typing vs nominative typing 
 # - How to integrate having no prototypical inheritance with the data type hierarchy? 
 # - Data type identification.
 #   - Proto VS prototype?
@@ -37,6 +42,8 @@ let is = [x= y=, get {x=0 y=1} x]
 # Then static typing is in the stdlib and w/ analysis? 
 # (Make more functions work with either data type?) 
 # How to tell apart lists from maps? 
+# Data types should be reified.
+# Other type id can be left to the user. 
 # Still need to know how to hash? 
 
 count 123 # = 123
@@ -56,11 +63,11 @@ let < = # if x-y is negative then x < y
 let Number=[proto 0] # "proto" means "first" 
 let Any=[proto]
 
-Number # yields 0
+Number # yields 0 (or must be explicit) 
 Number 20 # yields 20
 
 let Numbers=[proto List Number]
-let Numbers=[List of=Number] # simpler?
+let Numbers=[List of=Number] # simpler? Closer to cloning
 
 [fn x y, + x y]
 [with x y, + x y]
@@ -387,3 +394,9 @@ push: \(
     value: value)
   list:
   value:)
+
+---
+
+[f 1] = 1
+[f 2] = 2
+[f n] = [f [- n 2]] + [f [- n 1]]
