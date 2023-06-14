@@ -400,3 +400,22 @@ push: \(
 [f 1] = 1
 [f 2] = 2
 [f n] = [f [- n 2]] + [f [- n 1]]
+
+---
+
+# Set-builder notation as the only generic data type?
+# - single data type hierarchy
+# - gives ranges and iteration for free
+# - unifies atoms (numbers) with non-atoms
+
+let even-numbers = {x, * 2 x}
+
+Number 123
+{x, 123}
+
+List 1, 2 3
+{x, 1 2 3}
+
+# list literal vs list ctor
+(1 2 3)
+() 1 2 3
