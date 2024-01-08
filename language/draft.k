@@ -408,6 +408,8 @@ push: \(
 # - gives ranges and iteration for free
 # - unifies atoms (numbers) with non-atoms
 
+# Types are superpositions of values, no distinction
+
 let even-numbers = {x, * 2 x}
 
 Number 123
